@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>Comments on: Sending Emails by Queue in Magento 1.9.1</title>
+	<atom:link href="http://www.aschroder.com/2015/01/sending-emails-by-queue-in-magento-1-9-1/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.aschroder.com/2015/01/sending-emails-by-queue-in-magento-1-9-1/</link>
+	<description>Notes on Web Development</description>
+	<lastBuildDate>Wed, 23 Dec 2020 09:25:05 +0000</lastBuildDate>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8.15</generator>
+	<item>
+		<title>By: Ashish @ MagikCommerce</title>
+		<link>http://www.aschroder.com/2015/01/sending-emails-by-queue-in-magento-1-9-1/comment-page-1/#comment-107072</link>
+		<dc:creator><![CDATA[Ashish @ MagikCommerce]]></dc:creator>
+		<pubDate>Mon, 09 Feb 2015 08:28:58 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=2939#comment-107072</guid>
+		<description><![CDATA[Which queuing mechanism is being used here? I personally use Redis based queuing which works rock solid but i am definitely going to to try this.]]></description>
+		<content:encoded><![CDATA[<p>Which queuing mechanism is being used here? I personally use Redis based queuing which works rock solid but i am definitely going to to try this.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: ranbir</title>
+		<link>http://www.aschroder.com/2015/01/sending-emails-by-queue-in-magento-1-9-1/comment-page-1/#comment-106590</link>
+		<dc:creator><![CDATA[ranbir]]></dc:creator>
+		<pubDate>Fri, 06 Feb 2015 04:49:36 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=2939#comment-106590</guid>
+		<description><![CDATA[hello sir,
+
+i am using magento 1.9.0.1 version to develop a store. and i want to remove the sku from order email. but after trying all metheds which are mentioned in google search like (sales.xml and editing  block and template ) .i am unable to remove it form email.
+please help......]]></description>
+		<content:encoded><![CDATA[<p>hello sir,</p>
+<p>i am using magento 1.9.0.1 version to develop a store. and i want to remove the sku from order email. but after trying all metheds which are mentioned in google search like (sales.xml and editing  block and template ) .i am unable to remove it form email.<br />
+please help&#8230;&#8230;</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Helmy</title>
+		<link>http://www.aschroder.com/2015/01/sending-emails-by-queue-in-magento-1-9-1/comment-page-1/#comment-105767</link>
+		<dc:creator><![CDATA[Helmy]]></dc:creator>
+		<pubDate>Sat, 31 Jan 2015 10:11:18 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=2939#comment-105767</guid>
+		<description><![CDATA[Hello Ashley, 
+
+Thank you so much for such useful notes, reading this i do understand to some extent about how to handle new email setup in magento 1.9.1
+
+I found the database table as you mentioned all the emails are queued.. after this point i couldn&#039;t follow the instruction about the magento two new cron jobs (core_email_queue_send_all, core_email_queue_clean_up) are this cron jobs already exists in cron tab of some xml file? or do we need to create this entry in some .xml file?
+
+If this were cron job&#039;s already exists in some file, could you please share with us the location of the file please... ? so i can create a &quot;command&quot; to run this job from my hostgator cronjob manager...
+
+P.S: i also tested by removing the queue process from the template.php file inorder to send an instant email when order is placed by the customer and it worked well..:), but i don&#039;t want to deviate from the magento way of sending new order email...
+
+Thank you so much and appreciate your valuable inputs.. 
+
+Helmy]]></description>
+		<content:encoded><![CDATA[<p>Hello Ashley, </p>
+<p>Thank you so much for such useful notes, reading this i do understand to some extent about how to handle new email setup in magento 1.9.1</p>
+<p>I found the database table as you mentioned all the emails are queued.. after this point i couldn&#8217;t follow the instruction about the magento two new cron jobs (core_email_queue_send_all, core_email_queue_clean_up) are this cron jobs already exists in cron tab of some xml file? or do we need to create this entry in some .xml file?</p>
+<p>If this were cron job&#8217;s already exists in some file, could you please share with us the location of the file please&#8230; ? so i can create a &#8220;command&#8221; to run this job from my hostgator cronjob manager&#8230;</p>
+<p>P.S: i also tested by removing the queue process from the template.php file inorder to send an instant email when order is placed by the customer and it worked well..:), but i don&#8217;t want to deviate from the magento way of sending new order email&#8230;</p>
+<p>Thank you so much and appreciate your valuable inputs.. </p>
+<p>Helmy</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Jeff</title>
+		<link>http://www.aschroder.com/2015/01/sending-emails-by-queue-in-magento-1-9-1/comment-page-1/#comment-105515</link>
+		<dc:creator><![CDATA[Jeff]]></dc:creator>
+		<pubDate>Thu, 29 Jan 2015 18:52:37 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=2939#comment-105515</guid>
+		<description><![CDATA[A recent problem i&#039;m having with this new way of sending emails is that the scheduler only runs for either 10 / 20 mins (jobs) before stopping abruptly... 
+
+If i truncate the cron_schedule table it starts again and merrily continues with its job.
+It will schedule ahead as per admin settings, but never regenerate past the initial generation of jobs.
+
+any ideas..?]]></description>
+		<content:encoded><![CDATA[<p>A recent problem i&#8217;m having with this new way of sending emails is that the scheduler only runs for either 10 / 20 mins (jobs) before stopping abruptly&#8230; </p>
+<p>If i truncate the cron_schedule table it starts again and merrily continues with its job.<br />
+It will schedule ahead as per admin settings, but never regenerate past the initial generation of jobs.</p>
+<p>any ideas..?</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Johan</title>
+		<link>http://www.aschroder.com/2015/01/sending-emails-by-queue-in-magento-1-9-1/comment-page-1/#comment-105484</link>
+		<dc:creator><![CDATA[Johan]]></dc:creator>
+		<pubDate>Thu, 29 Jan 2015 13:26:29 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=2939#comment-105484</guid>
+		<description><![CDATA[So it&#039;s basically using the database as a job queue, which from a scaling perspective is inviting trouble from all sorts of angles. From a performance point of view, this just screams out for being replaced by an external messaging or e-mail service. Shops slowing down due to non-essential tasks is never a good thing. 
+
+AWS fans could consider SQS for the queueing and then SES for the sending. Perhaps an idea for MageSend to incorporate SQS job queueing so other systems can also use SES via a common system-in-the-middle.]]></description>
+		<content:encoded><![CDATA[<p>So it&#8217;s basically using the database as a job queue, which from a scaling perspective is inviting trouble from all sorts of angles. From a performance point of view, this just screams out for being replaced by an external messaging or e-mail service. Shops slowing down due to non-essential tasks is never a good thing. </p>
+<p>AWS fans could consider SQS for the queueing and then SES for the sending. Perhaps an idea for MageSend to incorporate SQS job queueing so other systems can also use SES via a common system-in-the-middle.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Yorrd</title>
+		<link>http://www.aschroder.com/2015/01/sending-emails-by-queue-in-magento-1-9-1/comment-page-1/#comment-105213</link>
+		<dc:creator><![CDATA[Yorrd]]></dc:creator>
+		<pubDate>Tue, 27 Jan 2015 19:24:53 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=2939#comment-105213</guid>
+		<description><![CDATA[I have updated Magento to 1.9.1 a few days back and I cannot find any tables beginning with core_email. This is already leading to issues (for example with paypal). 
+
+From what I remember after skimming through your nice article, I suspect my database is messed up? Can anyone confirm this and tell me there SHOULD in fact be tables like that? 
+
+Or even better, can someone tell me where I find the structure of those tables so that I can recreate them on my own in order to fix the issue the paypal module is running into? Thanks a lot in advance ;)]]></description>
+		<content:encoded><![CDATA[<p>I have updated Magento to 1.9.1 a few days back and I cannot find any tables beginning with core_email. This is already leading to issues (for example with paypal). </p>
+<p>From what I remember after skimming through your nice article, I suspect my database is messed up? Can anyone confirm this and tell me there SHOULD in fact be tables like that? </p>
+<p>Or even better, can someone tell me where I find the structure of those tables so that I can recreate them on my own in order to fix the issue the paypal module is running into? Thanks a lot in advance 😉</p>
+]]></content:encoded>
+	</item>
+</channel>
+</rss>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:14:28 by W3 Total Cache -->

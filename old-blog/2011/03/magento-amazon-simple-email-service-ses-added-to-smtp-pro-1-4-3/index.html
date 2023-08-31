@@ -1,0 +1,1295 @@
+<!doctype html>
+<html lang="en-US">
+
+<!-- Mirrored from www.aschroder.com/2011/03/magento-amazon-simple-email-service-ses-added-to-smtp-pro-1-4-3/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:24:19 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="../../../xmlrpc.php">
+
+<title>Magento + Amazon Simple Email Service (SES) added to SMTP Pro 1.4.3 | ASchroder.com</title>
+
+<!-- All in One SEO Pack 2.4.2 by Michael Torbert of Semper Fi Web Design[289,385] -->
+<meta name="description"  content="I decided to investigate what it would take to add Amazon SES functionality to my Magento Email extension, SMTP Pro, and the good news is, not too much!" />
+
+<meta name="keywords"  content="amazon ses,magento email,smtp pro" />
+
+<!-- /all in one seo pack -->
+<link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
+<link rel='dns-prefetch' href='http://s.w.org/' />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Feed" href="../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Comments Feed" href="../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Magento + Amazon Simple Email Service (SES) added to SMTP Pro 1.4.3 Comments Feed" href="feed/index.html" />
+<!-- This site uses the Google Analytics by MonsterInsights plugin v6.2.4 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+<script type="text/javascript" data-cfasync="false">
+		var disableStr = 'ga-disable-UA-6477134-1';
+
+	/* Function to detect opted out users */
+	function __gaTrackerIsOptedOut() {
+		return document.cookie.indexOf(disableStr + '=true') > -1;
+	}
+
+	/* Disable tracking if the opt-out cookie exists. */
+	if ( __gaTrackerIsOptedOut() ) {
+		window[disableStr] = true;
+	}
+
+	/* Opt-out function */
+	function __gaTrackerOptout() {
+	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+	  window[disableStr] = true;
+	}
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','http://www.google-analytics.com/analytics.js','__gaTracker');
+
+	__gaTracker('create', 'UA-6477134-1', 'auto');
+	__gaTracker('set', 'forceSSL', true);
+	__gaTracker('send','pageview');
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/www.aschroder.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.15"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='yarppWidgetCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/widget101e.css?ver=4.8.15' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-syntax-css-css'  href='../../../wp-content/plugins/wp-syntax/css/wp-syntax4963.css?ver=1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-style-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/style5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<style id='storefront-style-inline-css' type='text/css'>
+
+			.main-navigation ul li a,
+			.site-title a,
+			ul.menu li a,
+			.site-branding h1 a,
+			.site-footer .storefront-handheld-footer-bar a:not(.button),
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				color: #333333;
+			}
+
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				border-color: #333333;
+			}
+
+			.main-navigation ul li a:hover,
+			.main-navigation ul li:hover > a,
+			.site-title a:hover,
+			a.cart-contents:hover,
+			.site-header-cart .widget_shopping_cart a:hover,
+			.site-header-cart:hover > li > a,
+			.site-header ul.menu li.current-menu-item > a {
+				color: #838383;
+			}
+
+			table th {
+				background-color: #f8f8f8;
+			}
+
+			table tbody td {
+				background-color: #fdfdfd;
+			}
+
+			table tbody tr:nth-child(2n) td,
+			fieldset,
+			fieldset legend {
+				background-color: #fbfbfb;
+			}
+
+			.site-header,
+			.secondary-navigation ul ul,
+			.main-navigation ul.menu > li.menu-item-has-children:after,
+			.secondary-navigation ul.menu ul,
+			.storefront-handheld-footer-bar,
+			.storefront-handheld-footer-bar ul li > a,
+			.storefront-handheld-footer-bar ul li.search .site-search,
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				background-color: #ffffff;
+			}
+
+			p.site-description,
+			.site-header,
+			.storefront-handheld-footer-bar {
+				color: #6d6d6d;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count,
+			button.menu-toggle:after,
+			button.menu-toggle:before,
+			button.menu-toggle span:before {
+				background-color: #333333;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				color: #ffffff;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				border-color: #ffffff;
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+				color: #333333;
+			}
+
+			.widget h1 {
+				border-bottom-color: #333333;
+			}
+
+			body,
+			.secondary-navigation a,
+			.onsale,
+			.pagination .page-numbers li .page-numbers:not(.current), .woocommerce-pagination .page-numbers li .page-numbers:not(.current) {
+				color: #6d6d6d;
+			}
+
+			.widget-area .widget a,
+			.hentry .entry-header .posted-on a,
+			.hentry .entry-header .byline a {
+				color: #9f9f9f;
+			}
+
+			a  {
+				color: #0228d1;
+			}
+
+			a:focus,
+			.button:focus,
+			.button.alt:focus,
+			.button.added_to_cart:focus,
+			.button.wc-forward:focus,
+			button:focus,
+			input[type="button"]:focus,
+			input[type="reset"]:focus,
+			input[type="submit"]:focus {
+				outline-color: #0228d1;
+			}
+
+			button, input[type="button"], input[type="reset"], input[type="submit"], .button, .added_to_cart, .widget a.button, .site-header-cart .widget_shopping_cart a.button {
+				background-color: #eeeeee;
+				border-color: #eeeeee;
+				color: #333333;
+			}
+
+			button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, .button:hover, .added_to_cart:hover, .widget a.button:hover, .site-header-cart .widget_shopping_cart a.button:hover {
+				background-color: #d5d5d5;
+				border-color: #d5d5d5;
+				color: #333333;
+			}
+
+			button.alt, input[type="button"].alt, input[type="reset"].alt, input[type="submit"].alt, .button.alt, .added_to_cart.alt, .widget-area .widget a.button.alt, .added_to_cart, .widget a.button.checkout {
+				background-color: #333333;
+				border-color: #333333;
+				color: #ffffff;
+			}
+
+			button.alt:hover, input[type="button"].alt:hover, input[type="reset"].alt:hover, input[type="submit"].alt:hover, .button.alt:hover, .added_to_cart.alt:hover, .widget-area .widget a.button.alt:hover, .added_to_cart:hover, .widget a.button.checkout:hover {
+				background-color: #1a1a1a;
+				border-color: #1a1a1a;
+				color: #ffffff;
+			}
+
+			.pagination .page-numbers li .page-numbers.current, .woocommerce-pagination .page-numbers li .page-numbers.current {
+				background-color: #e6e6e6;
+				color: #6d6d6d;
+			}
+
+			#comments .comment-list .comment-content .comment-text {
+				background-color: #f8f8f8;
+			}
+
+			.site-footer {
+				background-color: #f0f0f0;
+				color: #6d6d6d;
+			}
+
+			.site-footer a:not(.button) {
+				color: #333333;
+			}
+
+			.site-footer h1, .site-footer h2, .site-footer h3, .site-footer h4, .site-footer h5, .site-footer h6 {
+				color: #333333;
+			}
+
+			#order_review {
+				background-color: #ffffff;
+			}
+
+			#payment .payment_methods > li .payment_box,
+			#payment .place-order {
+				background-color: #fafafa;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice) {
+				background-color: #f5f5f5;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice):hover {
+				background-color: #f0f0f0;
+			}
+
+			@media screen and ( min-width: 768px ) {
+				.secondary-navigation ul.menu a:hover {
+					color: #868686;
+				}
+
+				.secondary-navigation ul.menu a {
+					color: #6d6d6d;
+				}
+
+				.site-header-cart .widget_shopping_cart,
+				.main-navigation ul.menu ul.sub-menu,
+				.main-navigation ul.nav-menu ul.children {
+					background-color: #f0f0f0;
+				}
+
+				.site-header-cart .widget_shopping_cart .buttons,
+				.site-header-cart .widget_shopping_cart .total {
+					background-color: #f5f5f5;
+				}
+
+				.site-header {
+					border-bottom-color: #f0f0f0;
+				}
+			}
+</style>
+<link rel='stylesheet' id='storefront-icons-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/sass/base/icons5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-fonts-css'  href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,600,700,900&amp;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jqueryb8ff.js?ver=1.12.4'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jquery-migrate.min330a.js?ver=1.4.1'></script>
+<link rel='https://api.w.org/' href='../../../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../xmlrpc0db0.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Command line Magento 1.5 install on MAMP' href='../command-line-magento-1-5-install-on-mamp/index.html' />
+<link rel='next' title='Introducing MageSpeedTest.com V2 &#8211; Performance test Magento from 4 different countries' href='../introducing-magespeedtest-com-v2-performance-test-magento-from-4-different-countries/index.html' />
+<meta name="generator" content="WordPress 4.8.15" />
+<link rel="canonical" href="index.html" />
+<link rel='shortlink' href='../../../indexc190.html?p=1413' />
+<link rel="alternate" type="application/json+oembed" href="../../../wp-json/oembed/1.0/embedaab9.json?url=http%3A%2F%2Fwww.aschroder.com%2F2011%2F03%2Fmagento-amazon-simple-email-service-ses-added-to-smtp-pro-1-4-3%2F" />
+<link rel="alternate" type="text/xml+oembed" href="../../../wp-json/oembed/1.0/embed801a?url=http%3A%2F%2Fwww.aschroder.com%2F2011%2F03%2Fmagento-amazon-simple-email-service-ses-added-to-smtp-pro-1-4-3%2F&amp;format=xml" />
+</head>
+
+<body class="post-template-default single single-post postid-1413 single-format-standard no-wc-breadcrumb storefront-full-width-content right-sidebar">
+
+
+<div id="page" class="hfeed site">
+	
+	<header id="masthead" class="site-header" role="banner" style="">
+		<div class="col-full">
+
+					<a class="skip-link screen-reader-text" href="#site-navigation">Skip to navigation</a>
+		<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+				<div class="site-branding">
+			<div class="beta site-title"><a href="../../../index.html" rel="home">ASchroder.com</a></div><p class="site-description">Notes on Web Development</p>		</div>
+		<div class="storefront-primary-navigation">		<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="Primary Navigation">
+		<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><span>Menu</span></button>
+			<div class="primary-navigation"><ul id="menu-main-menu" class="menu"><li id="menu-item-1119" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li id="menu-item-1118" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li id="menu-item-1872" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div><div class="handheld-navigation"><ul id="menu-main-menu-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div>		</nav><!-- #site-navigation -->
+		</div>
+		</div>
+	</header><!-- #masthead -->
+
+	
+	<div id="content" class="site-content" tabindex="-1">
+		<div class="col-full">
+
+		
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+<div id="post-1413" class="post-1413 post type-post status-publish format-standard hentry category-magento tag-amazon-ses tag-magento-email tag-smtp-pro">
+
+			<header class="entry-header">
+		<span class="posted-on">Posted on <a href="index.html" rel="bookmark"><time class="entry-date published" datetime="2011-03-19T20:35:22+00:00">March 19, 2011</time> <time class="updated" datetime="2013-07-02T04:14:38+00:00">July 2, 2013</time></a></span><h1 class="entry-title">Magento + Amazon Simple Email Service (SES) added to SMTP Pro 1.4.3</h1>		</header><!-- .entry-header -->
+				<aside class="entry-meta">
+						<div class="author">
+				<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' /><div class="label">Written by</div><a href="../../../author/admin/index.html" title="Posts by Ashley" rel="author">Ashley</a>			</div>
+							<div class="cat-links">
+					<div class="label">Posted in</div><a href="../../../category/magento/index.html" rel="category tag">Magento</a>				</div>
+			
+							<div class="tags-links">
+					<div class="label">Tagged</div><a href="../../../tag/amazon-ses/index.html" rel="tag">Amazon SES</a>, <a href="../../../tag/magento-email/index.html" rel="tag">magento email</a>, <a href="../../../tag/smtp-pro/index.html" rel="tag">smtp pro</a>				</div>
+			
+		
+							<div class="comments-link">
+					<div class="label">Comments</div>					<span class="comments-link"><a href="index.html#comments">41 Comments</a></span>
+				</div>
+					</aside>
+				<div class="entry-content">
+		<p>There was <a href="http://twitter.com/#!/ProContractors/status/49003265211367425">some</a> <a href="http://twitter.com/#!/nickweisser/status/49087033234309121">twittering</a> <a href="http://twitter.com/#!/aschroder/status/48899337434042368">yesterday</a> about the possibility of Amazon&#8217;s <a href="http://aws.amazon.com/ses/">Simple Email Service</a> being added to Magento, so that outbound emails could enjoy the high level of deliverability that comes from ESP&#8217;s (Email service providers) like <a href="http://mailchimp.com/">Mailchimp</a> or <a href="http://www.campaignmonitor.com/">Campaign Monitor</a>. </p>
+<p><strong>Update July 2013:</strong> I have since released a premium extension for sending email using Amazon SES called MageSend, if you&#8217;re having toruble sending email with Magento, please check it out, it was created to solve many common Magento email issues.</p>
+<p>I decided to investigate what it would take to add the functionality to my Magento Email extension, SMTP Pro, and the good news is, not too much. I&#8217;ll run through what&#8217;s changed in SMTP Pro and how the changes were made in this article. If you don&#8217;t actually care, just <a href="#downloads">jump straight to the downloads</a> to get the new version, or <a href="http://www.magentocommerce.com/magento-connect/ASchroder/extension/1865/aschroder.com-smtp-pro">get it on Magento Connect</a>.<br />
+<span id="more-1413"></span><br />
+We use Google Apps accounts as our store email accounts and I have no complaints about the service at all. Deliverability is excellent, reliability has never been an issue (<em>how often is gmail down, after all?</em>). However, it&#8217;s comforting to know that if something changed, we could now swap to Amazon&#8217;s equally reliable, scalable, pay-per-use option quickly and easily.</p>
+<h3>Implementing the changes</h3>
+<p>I was able to integrate Magento to SES in a very short amount of time thanks mostly to the work of <a href="http://www.christophervalles.com/">Christopher Valles</a>, he made a <a href="https://github.com/christophervalles/Amazon-SES-Zend-Mail-Transport">Zend transport for SES</a>, which I was able to plug in to my extension quite simply. Christopher, if I&#8217;m ever back in Spain, I&#8217;ll buy you a beer.</p>
+<p>Asides from the SES API, the extension just needed a few UI tweaks, and to better handle the slightly different paradigm that comes with a non-SMTP email transport (mostly in self testing).</p>
+<p>So it hasn&#8217;t changed too drastically &#8211; ready to give it a go? Read on for set up instructions.</p>
+<h3>Setting up Simple Email Service</h3>
+<p>Getting the SES up and running is really easy. Here&#8217;s what you need to do.</p>
+<p><strong>1) Signup</strong> <a href="http://aws-portal.amazon.com/gp/aws/developer/subscription/index.html?ie=UTF8&amp;productCode=AmazonSES">Signup for SES</a> (and if you haven&#8217;t already, AWS)</p>
+<p><strong>2) Download Tools</strong> Get the <a href="http://aws.amazon.com/developertools/Amazon-SES/8945574369528337">SES command-line tools</a>. They&#8217;re Perl scripts, so I&#8217;m going to assume you have a Perl environment installed to run them.</p>
+<p><strong>3) Verify Email</strong> Verify your test email address(s) using this command:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;">ses-verify-email-address.pl <span style="color: #660033;">-v</span> youremail<span style="color: #000000; font-weight: bold;">@</span>gmail.com</pre></td></tr></table><p class="theCode" style="display:none;">ses-verify-email-address.pl -v youremail@gmail.com</p></div>
+
+<p><strong>Note: </strong>You can set an environment variable to save having to specify the location of your AWS credentials all the time.</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #7a0874; font-weight: bold;">export</span> <span style="color: #007800;">AWS_CREDENTIALS_FILE</span>=aws-credentials</pre></td></tr></table><p class="theCode" style="display:none;">export AWS_CREDENTIALS_FILE=aws-credentials</p></div>
+
+<p>You should get an email like this, follow the link to verify:</p>
+<p><img src="../../../../cdn.aschroder.com/wp-content/uploads/2011/03/verify-ses-email.png" alt="Verify SES Email" title="Verify SES Email" width="531" height="304" class="aligncenter size-full wp-image-1421" srcset="http://cdn.aschroder.com/wp-content/uploads/2011/03/verify-ses-email.png 531w, http://cdn.aschroder.com/wp-content/uploads/2011/03/verify-ses-email-300x171.png 300w" sizes="(max-width: 531px) 100vw, 531px" /></p>
+<p><strong>4) Test it</strong> Run a quick test</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;">ses-send-email.pl <span style="color: #660033;">-k</span> aws-credentials <span style="color: #660033;">-s</span> <span style="color: #ff0000;">&quot;This is a test&quot;</span> <span style="color: #660033;">-f</span> you<span style="color: #000000; font-weight: bold;">@</span>yourdomain.com you<span style="color: #000000; font-weight: bold;">@</span>yourdomain.com <span style="color: #000000; font-weight: bold;">&lt;</span> msgbody.txt</pre></td></tr></table><p class="theCode" style="display:none;">ses-send-email.pl -k aws-credentials -s &quot;This is a test&quot; -f you@yourdomain.com you@yourdomain.com &lt; msgbody.txt</p></div>
+
+<p>Assuming that worked, you should have the SES side of things all set up. Well done!</p>
+<h3>Setting up the Extension</h3>
+<p>To use SES with my SMTP Pro extension first make sure you know your <a href="https://aws-portal.amazon.com/gp/aws/developer/account/index.html?ie=UTF8&amp;action=access-key">access key and secret key</a>. </p>
+<p>Input these into the section in System-Configuration-System-SES settings. </p>
+<p><img src="../../../../cdn.aschroder.com/wp-content/uploads/2011/03/SES-settings.png" alt="SES Email Settings" title="SES Email Settings" width="462" height="187" class="aligncenter size-full wp-image-1418" srcset="http://cdn.aschroder.com/wp-content/uploads/2011/03/SES-settings.png 462w, http://cdn.aschroder.com/wp-content/uploads/2011/03/SES-settings-300x121.png 300w" sizes="(max-width: 462px) 100vw, 462px" /></p>
+<p>Make sure you choose <code>SES (experimental)</code> as the extension option in the General Settings section too.</p>
+<p><img src="../../../../cdn.aschroder.com/wp-content/uploads/2011/03/general-settings.png" alt="Choose SES in the general settings" title="Choose SES in the general settings" width="513" height="170" class="aligncenter size-full wp-image-1419" srcset="http://cdn.aschroder.com/wp-content/uploads/2011/03/general-settings.png 513w, http://cdn.aschroder.com/wp-content/uploads/2011/03/general-settings-300x99.png 300w" sizes="(max-width: 513px) 100vw, 513px" /></p>
+<p>You&#8217;ll need to make sure the contact form email address is verified with SES (System-Configuration-Contacts), and also the contact form sender address (System-Configuration-Store Email Addresses). In my testing I just made all of these the same address for simplicity.</p>
+<p>If you get this part wrong, it&#8217;ll break the email sending and self-test. It is important for SES during development as all emails sent to &#038; received from need to be verified. Once you&#8217;re in <a href="http://aws.amazon.com/ses/fullaccessrequest">SES production mode</a> that won&#8217;t be required.</p>
+<p>A symptom of getting it wrong is an error like this in <code>var/log/exception.log</code>:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="xml" style="font-family:monospace;"><span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;ErrorResponse</span> <span style="color: #000066;">xmlns</span>=<span style="color: #ff0000;">&quot;http://ses.amazonaws.com/doc/2010-12-01/&quot;</span><span style="color: #000000; font-weight: bold;">&gt;</span></span>
+  <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;Error<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+    <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;Type<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>Sender<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/Type<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+    <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;Code<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>MessageRejected<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/Code<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+    <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;Message<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>Email address is not verified.<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/Message<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+  <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/Error<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+  <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;RequestId<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>0da2c23a-52a0-11e0-8fd7-f3adea62ee04<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/RequestId<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/ErrorResponse<span style="color: #000000; font-weight: bold;">&gt;</span></span></span></pre></td></tr></table><p class="theCode" style="display:none;">&lt;ErrorResponse xmlns=&quot;http://ses.amazonaws.com/doc/2010-12-01/&quot;&gt;
+  &lt;Error&gt;
+    &lt;Type&gt;Sender&lt;/Type&gt;
+    &lt;Code&gt;MessageRejected&lt;/Code&gt;
+    &lt;Message&gt;Email address is not verified.&lt;/Message&gt;
+  &lt;/Error&gt;
+  &lt;RequestId&gt;0da2c23a-52a0-11e0-8fd7-f3adea62ee04&lt;/RequestId&gt;
+&lt;/ErrorResponse&gt;</p></div>
+
+<p>Once you have it all set up you should be able to run a self test, if should give you output like this:</p>
+<p><img src="../../../../cdn.aschroder.com/wp-content/uploads/2011/03/self-test-output.png" alt="SMTP Pro Self Test Output" title="SMTP Pro Self Test Output" width="507" height="162" class="aligncenter size-full wp-image-1423" srcset="http://cdn.aschroder.com/wp-content/uploads/2011/03/self-test-output.png 507w, http://cdn.aschroder.com/wp-content/uploads/2011/03/self-test-output-300x95.png 300w" sizes="(max-width: 507px) 100vw, 507px" /></p>
+<p>You should also receive the two test emails like these:</p>
+<p><img src="../../../../cdn.aschroder.com/wp-content/uploads/2011/03/test-email.png" alt="Self-test email" title="Self-test email" width="462" height="283" class="aligncenter size-full wp-image-1424" srcset="http://cdn.aschroder.com/wp-content/uploads/2011/03/test-email.png 462w, http://cdn.aschroder.com/wp-content/uploads/2011/03/test-email-300x183.png 300w" sizes="(max-width: 462px) 100vw, 462px" /></p>
+<p>If you see these emails with the amazonses.com <code>mailed-by</code> header, then everything worked, <em>yah!</em> &#8211; now post a comment to tell me it worked so I can release without the (experimental) clause! </p>
+<h3><a name="downloads">Downloads</a></h3>
+<p>As usual the SMTP Pro 1.4.3 release is <a href="../../../../cdn.aschroder.com/wp-content/uploads/2011/03/ASchroder_SMTPPro-1.4.3.gz">available directly from my site</a>, and also on <a href="http://www.magentocommerce.com/magento-connect/ASchroder/extension/1865/aschroder.com-smtp-pro">Magento Connect</a>. </p>
+<p>Please let me know any feedback about the new service. Particularly if you would like to use it in production. Also, thinking I should rename the SMTP Pro extension to something more like Magento Email Pro now that it&#8217;s not just SMTP &#8211; anyone care to weigh in on that?</p>
+<div class='yarpp-related'>
+<p>You might also be interested in:<ol>
+<li><a href="../../../2010/03/magento-smtp-gmail-and-google-apps-email-combined-extension-released-at-last/index.html" rel="bookmark" title="Magento SMTP, Gmail and Google Apps Email combined extension released (at last)">Magento SMTP, Gmail and Google Apps Email combined extension released (at last) </a></li>
+<li><a href="../../06/smtp-pro-with-magento-a-sort-of-user-guide/index.html" rel="bookmark" title="SMTP Pro with Magento: A sort-of user guide.">SMTP Pro with Magento: A sort-of user guide. </a></li>
+<li><a href="../../../2013/06/introducing-magesend-simple-reliable-email-for-magento-with-amazon-ses/index.html" rel="bookmark" title="Introducing MageSend &#8211; Simple, reliable email for Magento with Amazon SES.">Introducing MageSend &#8211; Simple, reliable email for Magento with Amazon SES. </a></li>
+<li><a href="../../../2010/04/new-magento-smtp-features-email-logging-and-email-sending-events/index.html" rel="bookmark" title="New Magento SMTP features: Email logging and email sending events">New Magento SMTP features: Email logging and email sending events </a></li>
+<li><a href="../../../2010/06/new-smtp-pro-magento-email-extension-released/index.html" rel="bookmark" title="New SMTP Pro Magento Email extension released">New SMTP Pro Magento Email extension released </a></li>
+</ol></p>
+</div>
+		</div><!-- .entry-content -->
+		<nav id="post-navigation" class="navigation post-navigation" role="navigation" aria-label="Post Navigation"><span class="screen-reader-text">Post navigation</span><div class="nav-links"><div class="nav-previous"><a href="../command-line-magento-1-5-install-on-mamp/index.html" rel="prev">Command line Magento 1.5 install on MAMP</a></div><div class="nav-next"><a href="../introducing-magespeedtest-com-v2-performance-test-magento-from-4-different-countries/index.html" rel="next">Introducing MageSpeedTest.com V2 &#8211; Performance test Magento from 4 different countries</a></div></div></nav>
+<section id="comments" class="comments-area" aria-label="Post Comments">
+
+			<h2 class="comments-title">
+			41 thoughts on &ldquo;<span>Magento + Amazon Simple Email Service (SES) added to SMTP Pro 1.4.3</span>&rdquo;		</h2>
+
+		
+		<ol class="comment-list">
+					<li class="comment even thread-even depth-1" id="comment-2206">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/619858816e0fb499a3fe7ab3d736e8b7?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/619858816e0fb499a3fe7ab3d736e8b7?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://yoururl/' rel='external nofollow' class='url'>Yash</a></cite>			</div>
+			
+			<a href="index.html#comment-2206" class="comment-date">
+				<time datetime="2011-03-22T00:14:42+00:00">March 22, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2206" class="comment-content">
+				<div class="comment-text">
+		<p>Pretty fantastic. I will give this a try after running a couple of tests  and let you know the results. I&#8217;ve recenetly switched over to a new server only to find out my new IP has been flagged by some ISPs in a passed life.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-2207">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-2207" class="comment-date">
+				<time datetime="2011-03-22T00:27:46+00:00">March 22, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2207" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, Yash &#8211; great reason to switch to SES very interested to hear how it goes. Please report back with results!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2209">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/56ea5b7554209154e8f6a7d50e342740?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/56ea5b7554209154e8f6a7d50e342740?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://estacaodecompras.com/' rel='external nofollow' class='url'>Tiago</a></cite>			</div>
+			
+			<a href="index.html#comment-2209" class="comment-date">
+				<time datetime="2011-03-22T14:14:27+00:00">March 22, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2209" class="comment-content">
+				<div class="comment-text">
+		<p>Failed to connect to SMTP server. Reason: php_network_getaddresses: getaddrinfo failed: Name or service not known(0)???</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-2210">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-2210" class="comment-date">
+				<time datetime="2011-03-22T15:05:51+00:00">March 22, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2210" class="comment-content">
+				<div class="comment-text">
+		<p>@Tiago I need more information &#8211; what settings are you using? What server are you trying to connect to?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2216">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/a8ee26a3ba771c278193e61eac3b8582?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/a8ee26a3ba771c278193e61eac3b8582?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://yoururl/' rel='external nofollow' class='url'>Nicholas</a></cite>			</div>
+			
+			<a href="index.html#comment-2216" class="comment-date">
+				<time datetime="2011-03-24T01:22:13+00:00">March 24, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2216" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Asyley,</p>
+<p>I have some problem with smtp pro. i have insert all the info require and when i press on run self test.<br />
+it show</p>
+<p>ASchroder.com SMTP Pro Self-test results<br />
+Testing outbound connectivity to Server:<br />
+Using Google Apps/Gmail configuration options<br />
+Connection to Host SMTP server successful.<br />
+Sending test email to your contact form address <a href="mailto:contact@flingson.com">contact@flingson.com</a>:<br />
+Unable to send test email. Exception message was: Unable to connect via TLS&#8230;<br />
+Please check and double check your username and password.<br />
+Contact Form test email did not use SMTPPro to send.<br />
+Testing failed, please review the reported problems and if you need further help visit ASchroder.com to contact me.</p>
+<p>i have double check the pass and user and is not wrong.<br />
+i have also asked my server admin to enable TLS on my server. but it seems that is still not working. any idea?</p>
+<p>im using magento 1.5.0.1 and smtppro 1.4.3</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2217">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='../../../index.html' rel='external nofollow' class='url'>Ashley</a></cite>			</div>
+			
+			<a href="index.html#comment-2217" class="comment-date">
+				<time datetime="2011-03-24T01:36:02+00:00">March 24, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2217" class="comment-content">
+				<div class="comment-text">
+		<p>@Nicholas can you please try running these two commands from your server:<br />
+telnet smtp.gmail.com 465<br />
+and<br />
+telnet smtp.gmail.com 587</p>
+<p>Both should connect OK &#8211; but that PHP message hints that  one or both will not.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2219">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/ebfad6af2c6e618aa7bf60d0d5cbe667?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/ebfad6af2c6e618aa7bf60d0d5cbe667?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://yoururl/' rel='external nofollow' class='url'>diego</a></cite>			</div>
+			
+			<a href="index.html#comment-2219" class="comment-date">
+				<time datetime="2011-03-25T16:22:59+00:00">March 25, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2219" class="comment-content">
+				<div class="comment-text">
+		<p>Can it handle throttling?</p>
+<p>Amazon SES allows me to send a limited amount of email per second, as well a top of email per day. So, I would like to configure the module in a way that if I send 10,000 emails in a few seconds it should be able to catch them, store them and send them 1 to 2 per second and spaced in several days, sending 2000 per day in order to comply with the Amazon quota.</p>
+<p>Is that possible?</p>
+<p>Thanks<br />
+Diego </p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-2220">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-2220" class="comment-date">
+				<time datetime="2011-03-26T13:12:54+00:00">March 26, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2220" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Diego, It does not handle throttling like you describe. That would require a server-side store of emails, and quite a bit more complicated throttling logic. It would be better I think to just not send 10000 all at once!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2221">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo avatar-default' height='128' width='128' />			<cite class="fn"><a href='http://yoururl/' rel='external nofollow' class='url'>Nicholas</a></cite>			</div>
+			
+			<a href="index.html#comment-2221" class="comment-date">
+				<time datetime="2011-03-27T02:43:00+00:00">March 27, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2221" class="comment-content">
+				<div class="comment-text">
+		<p>hi ashley, is me again.<br />
+i have asked my server administrator to run the command and he told me that i cant telnet smtp.gmail.com for sure as it will get blocked.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-2222">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-2222" class="comment-date">
+				<time datetime="2011-03-27T11:25:24+00:00">March 27, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2222" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, Nicholas &#8211; It&#8217;s hard to tell if you server admin is saying the ports (465, 587) are definitely blocked at his end (which means you can&#8217;t use gmail to send), or if he thinks he can&#8217;t telnet to smtp.gmail.com on those (open) ports and won&#8217;t try. Either way, if he&#8217;s not forthcoming with help on this, I suggest you get a <a href="../../../2009/05/nexcess-magento-hosting-review/index.html" rel="nofollow">decent magetno host</a> and move on.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2229">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo avatar-default' height='128' width='128' />			<cite class="fn"><a href='http://yoururl/' rel='external nofollow' class='url'>Scott</a></cite>			</div>
+			
+			<a href="index.html#comment-2229" class="comment-date">
+				<time datetime="2011-03-29T13:49:25+00:00">March 29, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2229" class="comment-content">
+				<div class="comment-text">
+		<p>I am using this through Amazon SES and it is sending emails from my store just fine.  The self test failed as not verified (even though I did verify the send email with Amazon) but I still got the test email.  Then I switched my SES service to production and everything is working. Customers are getting emails and the header shows it is coming from Amazon SES.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2230">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo avatar-default' height='128' width='128' />			<cite class="fn"><a href='http://yoururl/' rel='external nofollow' class='url'>Nicholas</a></cite>			</div>
+			
+			<a href="index.html#comment-2230" class="comment-date">
+				<time datetime="2011-03-30T01:54:36+00:00">March 30, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2230" class="comment-content">
+				<div class="comment-text">
+		<p>hi ashley.<br />
+i was thingking to change to other host too but the one you suggest, their server is kinda slow for me as im located at south east asia area. Do you have any good server in asia for suggestion?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2245">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/a07d91de1c5ac8114cadd2a284e002bf?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/a07d91de1c5ac8114cadd2a284e002bf?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://yoururl/' rel='external nofollow' class='url'>Merlin</a></cite>			</div>
+			
+			<a href="index.html#comment-2245" class="comment-date">
+				<time datetime="2011-04-07T22:55:02+00:00">April 7, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2245" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Ashley,great job ,I was looking up this for several days,your extension must be what I am looking for.Do you have any suggest or solution for the newsletter subscribe ?We all know the Magento Community Version don&#8217;t have the user name blank to let them submit with their Email account.Also do you have any suggest and solution on the autoresponder Email managment or if it is possible just use Magento&#8217;s basic email management function as the autoresponder.Thanks man !</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-2246">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-2246" class="comment-date">
+				<time datetime="2011-04-08T02:53:29+00:00">April 8, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2246" class="comment-content">
+				<div class="comment-text">
+		<p>@Merlin See <a href="http://mailchimp.com/" rel="nofollow">Mail Chimp</a> &#8211; they get my vote.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2250">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo avatar-default' height='128' width='128' />			<cite class="fn"><a href='http://yoururl/' rel='external nofollow' class='url'>Merlin</a></cite>			</div>
+			
+			<a href="index.html#comment-2250" class="comment-date">
+				<time datetime="2011-04-09T02:27:45+00:00">April 9, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2250" class="comment-content">
+				<div class="comment-text">
+		<p>@Ashley sorry,I didn&#8217;t tell you what I really mean. What I am doing is trying to setup my very own autoresponder service for my Magento Store.I have Advanced Newsletter and Follow up Email all from Aheadworks. The last thing I am looking for a email sending solution,I think Amazon SES will do the job especially with your new version SMTP Pro. Do you think this is a plan?I am not technqie like you guys, from my understanding,the autoresponder have 3 parts ,the newsletter subscribe ,the email list and email sequence management and the email sending service(SMTP).Am I heading to the right direction? </p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2285">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/a8ed3ad201a99a7142168fce7ba2b938?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/a8ed3ad201a99a7142168fce7ba2b938?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.evogue.co.uk/' rel='external nofollow' class='url'>ldn_tech_exec</a></cite>			</div>
+			
+			<a href="index.html#comment-2285" class="comment-date">
+				<time datetime="2011-05-05T08:14:59+00:00">May 5, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2285" class="comment-content">
+				<div class="comment-text">
+		<p>Been looking for this for a while, will try with SES, SendGrid and Gmail and let you know how it goes on Magento Enterprise.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2286">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/a8ed3ad201a99a7142168fce7ba2b938?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/a8ed3ad201a99a7142168fce7ba2b938?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.evogue.co.uk/' rel='external nofollow' class='url'>ldn_tech_exec</a></cite>			</div>
+			
+			<a href="index.html#comment-2286" class="comment-date">
+				<time datetime="2011-05-05T14:50:13+00:00">May 5, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2286" class="comment-content">
+				<div class="comment-text">
+		<p>@Ashley</p>
+<p>This is one of the best extensions I&#8217;ve come across, should be part of native Magento. However I have 2 requests:</p>
+<p>1. Increase support for  sendgrid.com &#8211; this is an amazing service, for those that don&#8217;t know, its like Mailchimp but for transactional emails, outstanding webhook technology and fantastic API. However, when using it as SMTP with this module, Magento emails come through uncategorised, and it&#8217;s difficult to break down statistics by the type of email &#8211; this is easily done by adding the following code to the email header:</p>
+<p>X-SMTPAPI: {&#8220;category&#8221;: &#8220;Email Type&#8221;}</p>
+<p>where Email Type is Forgot Password, Welcome Email etc&#8230; this allows me to see for e.g. if New Order emails have a higher open rate than Shipment emails, then i might charge a premium for banner ads in my New Order emails. </p>
+<p>As you know we cannot modify email headers via Magento&#8217;s Email Template editor so it would be great if the module did this automatically.</p>
+<p>2. I have not tried SES yet&#8230; I&#8217;m so caught up in the endless possibilities of now having APi access to opens/clicks/reports on Magento transactional emails&#8230; however, it would be nice if it supported Mailchimp&#8217;s SES integration, so that we can see all the stats of the SES email campaigns in Mailchimp.</p>
+<p>I believe this is done by Magento sending the emails via the Mailchimp API instead of via SES, so long as the Mailchimp account is integrated with SES&#8230; more on that here: <a href="http://blog.mailchimp.com/mailchimp-launches-transactional-email-service-on-top-of-amazon-ses/" rel="nofollow">http://blog.mailchimp.com/mailchimp-launches-transactional-email-service-on-top-of-amazon-ses/</a></p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-2290">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-2290" class="comment-date">
+				<time datetime="2011-05-09T13:13:42+00:00">May 9, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2290" class="comment-content">
+				<div class="comment-text">
+		<p>Both sound like good feature requests to me. I shall investigate the API&#8217;s and if possible add this to the next release, thanks for letting me know about them.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2323">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/e6707be932b7607d95a29b405e1c2a46?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/e6707be932b7607d95a29b405e1c2a46?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://i.amniels.com/' rel='external nofollow' class='url'>Niels</a></cite>			</div>
+			
+			<a href="index.html#comment-2323" class="comment-date">
+				<time datetime="2011-05-23T05:20:12+00:00">May 23, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2323" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks for this great extension. Well written and works out of the box even with Google Apps domain aliases.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2377">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/319cd993ab5b027a59eb3b09faa6c4e5?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/319cd993ab5b027a59eb3b09faa6c4e5?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.mingaberlin.com/' rel='external nofollow' class='url'>Markus</a></cite>			</div>
+			
+			<a href="index.html#comment-2377" class="comment-date">
+				<time datetime="2011-06-14T12:19:37+00:00">June 14, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2377" class="comment-content">
+				<div class="comment-text">
+		<p>thanks Ashley, SES works just perfect! Just testing in the admin area did not work for SES, but with SES on production the emails are send and received!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2380">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/74d204da8555d9e9c60a14c08ebb2d8f?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/74d204da8555d9e9c60a14c08ebb2d8f?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.mingaberlin.com/' rel='external nofollow' class='url'>Markus</a></cite>			</div>
+			
+			<a href="index.html#comment-2380" class="comment-date">
+				<time datetime="2011-06-16T11:53:48+00:00">June 16, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2380" class="comment-content">
+				<div class="comment-text">
+		<p>there is one little bug: If you have setup an e-mail address to get a copy of all order/shipping/etc-confirmation mails via BCC, it does not get delivered to the BCC address. If you setup magento to send the copy of the confirmation mails via separate e-mail, SES is working fine again&#8230;</p>
+<p>Cheers!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-2381">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-2381" class="comment-date">
+				<time datetime="2011-06-16T14:29:01+00:00">June 16, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2381" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks for the heads up Markus!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2548">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/d275ff6012568eead7ba11acd2432215?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/d275ff6012568eead7ba11acd2432215?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ian</cite>			</div>
+			
+			<a href="index.html#comment-2548" class="comment-date">
+				<time datetime="2011-08-22T08:19:12+00:00">August 22, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2548" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Ashley,</p>
+<p>is it possible to get this extension to work with the contact form of magento as i am having no luck at the minute?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-2549">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-2549" class="comment-date">
+				<time datetime="2011-08-22T12:23:30+00:00">August 22, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2549" class="comment-content">
+				<div class="comment-text">
+		<p>Ian, have you checked for extension clashes with extension made for that? If only one type of email is not sending, it might be due to an extension clash.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2743">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/f7d22138529ae29ed85876e15fab63a9?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/f7d22138529ae29ed85876e15fab63a9?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Beeno</cite>			</div>
+			
+			<a href="index.html#comment-2743" class="comment-date">
+				<time datetime="2011-11-11T10:03:05+00:00">November 11, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2743" class="comment-content">
+				<div class="comment-text">
+		<p>Ashley,</p>
+<p>Just got setup with SES on a development box today. Works great! The one feature request I would have, if possible, is to include the option to add DKIM authentication. Right now emails are showing up with the &#8220;via&#8221; message in the header.</p>
+<p>More info here: <a href="http://docs.amazonwebservices.com/ses/latest/DeveloperGuide/index.html?DKIM.html" rel="nofollow">http://docs.amazonwebservices.com/ses/latest/DeveloperGuide/index.html?DKIM.html</a></p>
+<p>Thanks again!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-2744">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-2744" class="comment-date">
+				<time datetime="2011-11-11T20:26:24+00:00">November 11, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2744" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks for the heads up, consider it on the roadmap.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2764">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/5d3f4f38a6849a2864f4db907ce86b27?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/5d3f4f38a6849a2864f4db907ce86b27?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">joop</cite>			</div>
+			
+			<a href="index.html#comment-2764" class="comment-date">
+				<time datetime="2011-11-30T01:34:41+00:00">November 30, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2764" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks Marcus and Ashley ofcourse! that did the trick, wasn&#8217;t receiving anything on BCC</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2791">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29a23a0cc49238926c61869638e4db83?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29a23a0cc49238926c61869638e4db83?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Chris</cite>			</div>
+			
+			<a href="index.html#comment-2791" class="comment-date">
+				<time datetime="2011-12-06T14:31:55+00:00">December 6, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2791" class="comment-content">
+				<div class="comment-text">
+		<p>I have the same issue as @Scott mentioned above. The self test reports a failure:</p>
+<p>ASchroder.com SMTP Pro Self-test results<br />
+Testing outbound connectivity to Server:<br />
+Connection to Amazon SES server not tested (&#8230;yet)<br />
+Sending test email to your contact form address colemanc@*****:<br />
+Unable to send test email. Exception message was: Sender MessageRejected Email address is not verified. d3b5f152-2059-11e1-81d6-0dcf36f85d9f &#8230;<br />
+Please check and double check your username and password.<br />
+Contact Form test email used SMTPPro to send correctly.<br />
+Testing failed, please review the reported problems and if you need further help visit ASchroder.com to contact me.</p>
+<p>(I substituted the asterisks for my domain to prevent SPAM)</p>
+<p>I&#8217;ve verified that both the sending email address and recipient are validated in Amazon SES and I &gt;&gt;&gt; do &lt;&lt;&lt; successfully receive the email in my Inbox from the correct sender with correct subject, message body, etc.</p>
+<p>My command line tests all work without issue as well.</p>
+<p>Any ideas?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2862">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/f84d8f8412cf5543a47cdf766b56c342?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/f84d8f8412cf5543a47cdf766b56c342?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.4ws.com/' rel='external nofollow' class='url'>Kevin</a></cite>			</div>
+			
+			<a href="index.html#comment-2862" class="comment-date">
+				<time datetime="2012-01-16T15:26:39+00:00">January 16, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2862" class="comment-content">
+				<div class="comment-text">
+		<p>I have installed your extension and it is working great with SES.  Thank you!</p>
+<p>There is one bug that I think might be present.  When an order confirmation is e-mailed, we used to get a Bcc of that email (as set up at Configuration &gt; Sales Emails &gt; Send Order Email Copy To).  Now the customer is getting sent a confirmation, but the Bcc is not being sent to us.</p>
+<p>Any ideas?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2886">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/e3ced816c790c08be3a925789b358b52?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/e3ced816c790c08be3a925789b358b52?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://shop.scenicwa.com/' rel='external nofollow' class='url'>Doug</a></cite>			</div>
+			
+			<a href="index.html#comment-2886" class="comment-date">
+				<time datetime="2012-01-25T13:33:21+00:00">January 25, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2886" class="comment-content">
+				<div class="comment-text">
+		<p>I&#8217;m using CE 1.6.1 and getting the same results as Chris.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2902">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/e3ced816c790c08be3a925789b358b52?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/e3ced816c790c08be3a925789b358b52?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://shop.scenicwa.com/' rel='external nofollow' class='url'>Doug</a></cite>			</div>
+			
+			<a href="index.html#comment-2902" class="comment-date">
+				<time datetime="2012-01-30T19:01:22+00:00">January 30, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2902" class="comment-content">
+				<div class="comment-text">
+		<p>I got it working.  I ended up adding a signing certificate. This is done at AWS in IAM &gt; Users &gt; /your username/ &gt; Security Credentials. Although the self test still produced the same error as @Chris above, I received the test e-mail this time.  It appears to be working in my CE 1.6.1 install.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4009">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/643c2d799f59a25f8007945df7f7d9ca?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/643c2d799f59a25f8007945df7f7d9ca?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.blenderbox.com/' rel='external nofollow' class='url'>Nick</a></cite>			</div>
+			
+			<a href="index.html#comment-4009" class="comment-date">
+				<time datetime="2012-03-30T06:02:20+00:00">March 30, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4009" class="comment-content">
+				<div class="comment-text">
+		<p>I noticed that your email address is hard-coded as the &#8216;from&#8217; address in line 91 of the IndexController.php.</p>
+<p>This causes the SES test email to fail because the &#8216;from&#8217; address needs to be an authorized sender.  When I manually change the line to be &#8216;from&#8217; one of my authorized senders, everything works.</p>
+<p>I&#8217;m not a Magento expert, but I assume pulling in the &#8216;from&#8217; email address from the website settings would fix some of the issues people are describing above.</p>
+<p>Thanks for setting up this module &#8211; it&#8217;s very helpful.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-4757">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/9b03d4376934c7d61dd7a116e28abd42?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/9b03d4376934c7d61dd7a116e28abd42?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Naz</cite>			</div>
+			
+			<a href="index.html#comment-4757" class="comment-date">
+				<time datetime="2012-04-22T13:44:10+00:00">April 22, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4757" class="comment-content">
+				<div class="comment-text">
+		<p>Hi,</p>
+<p>Thanks for your useful module but have you added the attachment support to it as well or not. Any plans for it?</p>
+<p>Thanks</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4807">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/d2ed8f7e94c6fd5e799c394affe09031?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/d2ed8f7e94c6fd5e799c394affe09031?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.mammoth.co.za/' rel='external nofollow' class='url'>Andrew</a></cite>			</div>
+			
+			<a href="index.html#comment-4807" class="comment-date">
+				<time datetime="2012-05-14T08:16:17+00:00">May 14, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4807" class="comment-content">
+				<div class="comment-text">
+		<p>@Kevin to fix that you need to go to Configuration &gt; Sales &gt; Sales Emails and change the drop down menu Send Order Email Copy Method from Bcc to Separate Email as Marcus suggested earlier &#8211; it does then work. </p>
+<p>I was getting an error that the test mail wasn&#8217;t sending using SMTP PRO. I followed the instructions on this blog (another post) on how to remove a conflict line from the Ebizmarts Mailchimp extension and that fixed the problem. It&#8217;s important to note that you need to address this clash even if you&#8217;ve deactivated the Mailchimp extension (at least that&#8217;s our experience). </p>
+<p>Looking forward to the Bcc error being fixed in future versions and hopefully the introduction of DKIM authentication.</p>
+<p>We are now running SES on our live site.</p>
+<p>Thanks Ashley.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-4861">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/5eda765c3de8feed161adde5f159a64a?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/5eda765c3de8feed161adde5f159a64a?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">meteew</cite>			</div>
+			
+			<a href="index.html#comment-4861" class="comment-date">
+				<time datetime="2012-07-02T22:41:29+00:00">July 2, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4861" class="comment-content">
+				<div class="comment-text">
+		<p>Amazon ses limit 10,000 emails / day , 5 emails/second</p>
+<p>Normally , it will work or not in the newsletter of magento ?</p>
+<p>  public function scheduledSend($schedule)<br />
+    {<br />
+        $countOfQueue  = 3;<br />
+        $countOfSubscritions = 20;</p>
+<p>Thanks.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4873">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/4fd336fee62cc94709e4252ff379be07?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/4fd336fee62cc94709e4252ff379be07?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://aqpredict.com/' rel='external nofollow' class='url'>Surajit</a></cite>			</div>
+			
+			<a href="index.html#comment-4873" class="comment-date">
+				<time datetime="2012-07-09T11:18:05+00:00">July 9, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4873" class="comment-content">
+				<div class="comment-text">
+		<p>Made some mods to this excellent plugin to get DKIM working.</p>
+<p>In the zip files are three files which you need to put in the lib folder<br />
+/app/code/community/Aschroder/SMTPPro/lib</p>
+<p>The file AmazonSES.php is already there and will have to be replaced with the version in the zip file &#8230;</p>
+<p>Link to the zip archive below<br />
+<a href="http://www.filedropper.com/aschroedersesdkim" rel="nofollow">http://www.filedropper.com/aschroedersesdkim</a></p>
+<p>In the file dkim-settings.php there are the instructions as well as the settings. Hopefully that will be all you need to get the DKIM thing working</p>
+<p>The most politically correct way to do it is to ofcourse<br />
+1. Put all DKIM settings in Magento Backend (for the php retarded)<br />
+2. Override this code using the usual Magento gas of config files and directory structure.</p>
+<p>I will however wait for someone else to produce a more politically correct version of this mod.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-4970">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/762ed3e085dd81b0afc80eb8abebbd0c?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/762ed3e085dd81b0afc80eb8abebbd0c?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Divyansh</cite>			</div>
+			
+			<a href="index.html#comment-4970" class="comment-date">
+				<time datetime="2012-08-29T01:27:34+00:00">August 29, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4970" class="comment-content">
+				<div class="comment-text">
+		<p>Ok, first of all thanks for such an amazing extension.<br />
+For those who are getting MessageRejected error, go to IndexController.php and on Line 91 type your verified email id.</p>
+<p>If you guys have production account, it&#8217;ll anyway work without any problem.</p>
+<p>Now for all those who are getting BCC error and aren&#8217;t receiving mails on BCC id, just change send method from BCC to separate mails. It will work</p>
+<p>Thanks<br />
+<a href="mailto:divyanshbajaj@gmail.com">divyanshbajaj@gmail.com</a></p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-5325">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/1de2a116ac0dd9a2bb422c7c48307029?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/1de2a116ac0dd9a2bb422c7c48307029?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ahamed Sha</cite>			</div>
+			
+			<a href="index.html#comment-5325" class="comment-date">
+				<time datetime="2012-12-27T14:32:56+00:00">December 27, 2012</time>			</a>
+		</div>
+				<div id="div-comment-5325" class="comment-content">
+				<div class="comment-text">
+		<p>i would like to get you to install the extension and setup ses perfectly on our site to get it up and running. pls contact me when possible.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-10037">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/b1326d264726db293f3d6584138fb8df?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/b1326d264726db293f3d6584138fb8df?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">César</cite>			</div>
+			
+			<a href="index.html#comment-10037" class="comment-date">
+				<time datetime="2013-04-10T11:17:53+00:00">April 10, 2013</time>			</a>
+		</div>
+				<div id="div-comment-10037" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, It works with 1.7.0.2?</p>
+<p>Thx.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-10240">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/d1be19006f977a92cace7396585a368a?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/d1be19006f977a92cace7396585a368a?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://denco.su/' rel='external nofollow' class='url'>Dubinin Dens</a></cite>			</div>
+			
+			<a href="index.html#comment-10240" class="comment-date">
+				<time datetime="2013-05-20T15:06:54+00:00">May 20, 2013</time>			</a>
+		</div>
+				<div id="div-comment-10240" class="comment-content">
+				<div class="comment-text">
+		<p>ASchroder.com SMTP Pro Self-test results<br />
+Testing outbound connectivity to Server:<br />
+Connection to Amazon SES server not tested (&#8230;yet)<br />
+Sending test email to your contact form address <a href="mailto:dadubinin1@gmail.com">dadubinin1@gmail.com</a>:<br />
+Unable to send test email. Exception message was: Sender RequestExpired Request timestamp: Tue, 21 May 2013 01:06:19 +0000 expired. It must be within 300 secs/ of server time. b46353da-c1a1-11e2-a61e-1b797f39bb9d &#8230;<br />
+Please check and double check your username and password.<br />
+Contact Form test email did not use SMTPPro to send.<br />
+Testing failed, please review the reported problems and if you need further help visit ASchroder.com to contact me.</p>
+<p>Please help me</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-10244">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/d1be19006f977a92cace7396585a368a?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/d1be19006f977a92cace7396585a368a?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://denco.su/' rel='external nofollow' class='url'>Dubinin Dens</a></cite>			</div>
+			
+			<a href="index.html#comment-10244" class="comment-date">
+				<time datetime="2013-05-20T23:06:05+00:00">May 20, 2013</time>			</a>
+		</div>
+				<div id="div-comment-10244" class="comment-content">
+				<div class="comment-text">
+		<p>the problem was the time on the server<br />
+thank you!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		</ol><!-- .comment-list -->
+
+				<p class="no-comments">Comments are closed.</p>
+	
+</section><!-- #comments -->
+
+</div><!-- #post-## -->
+
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+		</div><!-- .col-full -->
+	</div><!-- #content -->
+
+	
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="col-full">
+
+					<div class="site-info">
+			&copy; ASchroder.com 2023						<br /> Storefront designed by <a href="http://www.woocommerce.com/" title="WooCommerce - The Best eCommerce Platform for WordPress" rel="author">WooCommerce</a>.					</div><!-- .site-info -->
+		
+		</div><!-- .col-full -->
+	</footer><!-- #colophon -->
+
+	
+</div><!-- #page -->
+
+<link rel='stylesheet' id='yarppRelatedCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/related101e.css?ver=4.8.15' type='text/css' media='all' />
+<script type='text/javascript' src='../../../wp-content/plugins/wp-syntax/js/wp-syntax4963.js?ver=1.1'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/navigation.min11a8.js?ver=20120206'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/skip-link-focus-fix.min08e0.js?ver=20130115'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/wp-embed.min101e.js?ver=4.8.15'></script>
+
+</body>
+
+<!-- Mirrored from www.aschroder.com/2011/03/magento-amazon-simple-email-service-ses-added-to-smtp-pro-1-4-3/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:24:30 GMT -->
+</html>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:16:11 by W3 Total Cache -->

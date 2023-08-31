@@ -1,0 +1,904 @@
+<!doctype html>
+<html lang="en-US">
+
+<!-- Mirrored from www.aschroder.com/2011/02/magento-development-and-deployment-setting-up-a-modman-based-magento-project-on-magento-1-5/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:18:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="../../../xmlrpc.php">
+
+<title>Magento Development and Deployment: Setting up a Modman based Magento project on Magento 1.5 | ASchroder.com</title>
+
+<!-- All in One SEO Pack 2.4.2 by Michael Torbert of Semper Fi Web Design[289,410] -->
+<meta name="description"  content="This post will take you through the steps to set up Magento development with Eclipse for editing/debugging and SVN for version control, with deployment being" />
+
+<!-- /all in one seo pack -->
+<link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
+<link rel='dns-prefetch' href='http://s.w.org/' />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Feed" href="../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Comments Feed" href="../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Magento Development and Deployment: Setting up a Modman based Magento project on Magento 1.5 Comments Feed" href="feed/index.html" />
+<!-- This site uses the Google Analytics by MonsterInsights plugin v6.2.4 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+<script type="text/javascript" data-cfasync="false">
+		var disableStr = 'ga-disable-UA-6477134-1';
+
+	/* Function to detect opted out users */
+	function __gaTrackerIsOptedOut() {
+		return document.cookie.indexOf(disableStr + '=true') > -1;
+	}
+
+	/* Disable tracking if the opt-out cookie exists. */
+	if ( __gaTrackerIsOptedOut() ) {
+		window[disableStr] = true;
+	}
+
+	/* Opt-out function */
+	function __gaTrackerOptout() {
+	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+	  window[disableStr] = true;
+	}
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','http://www.google-analytics.com/analytics.js','__gaTracker');
+
+	__gaTracker('create', 'UA-6477134-1', 'auto');
+	__gaTracker('set', 'forceSSL', true);
+	__gaTracker('send','pageview');
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/www.aschroder.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.15"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='yarppWidgetCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/widget101e.css?ver=4.8.15' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-syntax-css-css'  href='../../../wp-content/plugins/wp-syntax/css/wp-syntax4963.css?ver=1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-style-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/style5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<style id='storefront-style-inline-css' type='text/css'>
+
+			.main-navigation ul li a,
+			.site-title a,
+			ul.menu li a,
+			.site-branding h1 a,
+			.site-footer .storefront-handheld-footer-bar a:not(.button),
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				color: #333333;
+			}
+
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				border-color: #333333;
+			}
+
+			.main-navigation ul li a:hover,
+			.main-navigation ul li:hover > a,
+			.site-title a:hover,
+			a.cart-contents:hover,
+			.site-header-cart .widget_shopping_cart a:hover,
+			.site-header-cart:hover > li > a,
+			.site-header ul.menu li.current-menu-item > a {
+				color: #838383;
+			}
+
+			table th {
+				background-color: #f8f8f8;
+			}
+
+			table tbody td {
+				background-color: #fdfdfd;
+			}
+
+			table tbody tr:nth-child(2n) td,
+			fieldset,
+			fieldset legend {
+				background-color: #fbfbfb;
+			}
+
+			.site-header,
+			.secondary-navigation ul ul,
+			.main-navigation ul.menu > li.menu-item-has-children:after,
+			.secondary-navigation ul.menu ul,
+			.storefront-handheld-footer-bar,
+			.storefront-handheld-footer-bar ul li > a,
+			.storefront-handheld-footer-bar ul li.search .site-search,
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				background-color: #ffffff;
+			}
+
+			p.site-description,
+			.site-header,
+			.storefront-handheld-footer-bar {
+				color: #6d6d6d;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count,
+			button.menu-toggle:after,
+			button.menu-toggle:before,
+			button.menu-toggle span:before {
+				background-color: #333333;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				color: #ffffff;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				border-color: #ffffff;
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+				color: #333333;
+			}
+
+			.widget h1 {
+				border-bottom-color: #333333;
+			}
+
+			body,
+			.secondary-navigation a,
+			.onsale,
+			.pagination .page-numbers li .page-numbers:not(.current), .woocommerce-pagination .page-numbers li .page-numbers:not(.current) {
+				color: #6d6d6d;
+			}
+
+			.widget-area .widget a,
+			.hentry .entry-header .posted-on a,
+			.hentry .entry-header .byline a {
+				color: #9f9f9f;
+			}
+
+			a  {
+				color: #0228d1;
+			}
+
+			a:focus,
+			.button:focus,
+			.button.alt:focus,
+			.button.added_to_cart:focus,
+			.button.wc-forward:focus,
+			button:focus,
+			input[type="button"]:focus,
+			input[type="reset"]:focus,
+			input[type="submit"]:focus {
+				outline-color: #0228d1;
+			}
+
+			button, input[type="button"], input[type="reset"], input[type="submit"], .button, .added_to_cart, .widget a.button, .site-header-cart .widget_shopping_cart a.button {
+				background-color: #eeeeee;
+				border-color: #eeeeee;
+				color: #333333;
+			}
+
+			button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, .button:hover, .added_to_cart:hover, .widget a.button:hover, .site-header-cart .widget_shopping_cart a.button:hover {
+				background-color: #d5d5d5;
+				border-color: #d5d5d5;
+				color: #333333;
+			}
+
+			button.alt, input[type="button"].alt, input[type="reset"].alt, input[type="submit"].alt, .button.alt, .added_to_cart.alt, .widget-area .widget a.button.alt, .added_to_cart, .widget a.button.checkout {
+				background-color: #333333;
+				border-color: #333333;
+				color: #ffffff;
+			}
+
+			button.alt:hover, input[type="button"].alt:hover, input[type="reset"].alt:hover, input[type="submit"].alt:hover, .button.alt:hover, .added_to_cart.alt:hover, .widget-area .widget a.button.alt:hover, .added_to_cart:hover, .widget a.button.checkout:hover {
+				background-color: #1a1a1a;
+				border-color: #1a1a1a;
+				color: #ffffff;
+			}
+
+			.pagination .page-numbers li .page-numbers.current, .woocommerce-pagination .page-numbers li .page-numbers.current {
+				background-color: #e6e6e6;
+				color: #6d6d6d;
+			}
+
+			#comments .comment-list .comment-content .comment-text {
+				background-color: #f8f8f8;
+			}
+
+			.site-footer {
+				background-color: #f0f0f0;
+				color: #6d6d6d;
+			}
+
+			.site-footer a:not(.button) {
+				color: #333333;
+			}
+
+			.site-footer h1, .site-footer h2, .site-footer h3, .site-footer h4, .site-footer h5, .site-footer h6 {
+				color: #333333;
+			}
+
+			#order_review {
+				background-color: #ffffff;
+			}
+
+			#payment .payment_methods > li .payment_box,
+			#payment .place-order {
+				background-color: #fafafa;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice) {
+				background-color: #f5f5f5;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice):hover {
+				background-color: #f0f0f0;
+			}
+
+			@media screen and ( min-width: 768px ) {
+				.secondary-navigation ul.menu a:hover {
+					color: #868686;
+				}
+
+				.secondary-navigation ul.menu a {
+					color: #6d6d6d;
+				}
+
+				.site-header-cart .widget_shopping_cart,
+				.main-navigation ul.menu ul.sub-menu,
+				.main-navigation ul.nav-menu ul.children {
+					background-color: #f0f0f0;
+				}
+
+				.site-header-cart .widget_shopping_cart .buttons,
+				.site-header-cart .widget_shopping_cart .total {
+					background-color: #f5f5f5;
+				}
+
+				.site-header {
+					border-bottom-color: #f0f0f0;
+				}
+			}
+</style>
+<link rel='stylesheet' id='storefront-icons-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/sass/base/icons5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-fonts-css'  href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,600,700,900&amp;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jqueryb8ff.js?ver=1.12.4'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jquery-migrate.min330a.js?ver=1.4.1'></script>
+<link rel='https://api.w.org/' href='../../../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../xmlrpc0db0.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Magento Imagine 2011 Presentation Notes and Links: Engineering your Magento Store' href='../magento-imagine-2011-presentation-notes-and-links-engineering-your-magento-store/index.html' />
+<link rel='next' title='Magento 1.5.0.1 and SMTPPro 1.4.2 Now Working &#8211; Free Gmail/SMTP, ahoy!' href='../../03/magento-1-5-0-1-and-smtppro-1-4-2-now-working-free-gmailsmtp-ahoy/index.html' />
+<meta name="generator" content="WordPress 4.8.15" />
+<link rel="canonical" href="index.html" />
+<link rel='shortlink' href='../../../index3661.html?p=1375' />
+<link rel="alternate" type="application/json+oembed" href="../../../wp-json/oembed/1.0/embed59c2.json?url=http%3A%2F%2Fwww.aschroder.com%2F2011%2F02%2Fmagento-development-and-deployment-setting-up-a-modman-based-magento-project-on-magento-1-5%2F" />
+<link rel="alternate" type="text/xml+oembed" href="../../../wp-json/oembed/1.0/embed2540?url=http%3A%2F%2Fwww.aschroder.com%2F2011%2F02%2Fmagento-development-and-deployment-setting-up-a-modman-based-magento-project-on-magento-1-5%2F&amp;format=xml" />
+</head>
+
+<body class="post-template-default single single-post postid-1375 single-format-standard no-wc-breadcrumb storefront-full-width-content right-sidebar">
+
+
+<div id="page" class="hfeed site">
+	
+	<header id="masthead" class="site-header" role="banner" style="">
+		<div class="col-full">
+
+					<a class="skip-link screen-reader-text" href="#site-navigation">Skip to navigation</a>
+		<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+				<div class="site-branding">
+			<div class="beta site-title"><a href="../../../index.html" rel="home">ASchroder.com</a></div><p class="site-description">Notes on Web Development</p>		</div>
+		<div class="storefront-primary-navigation">		<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="Primary Navigation">
+		<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><span>Menu</span></button>
+			<div class="primary-navigation"><ul id="menu-main-menu" class="menu"><li id="menu-item-1119" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li id="menu-item-1118" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li id="menu-item-1872" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div><div class="handheld-navigation"><ul id="menu-main-menu-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div>		</nav><!-- #site-navigation -->
+		</div>
+		</div>
+	</header><!-- #masthead -->
+
+	
+	<div id="content" class="site-content" tabindex="-1">
+		<div class="col-full">
+
+		
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+<div id="post-1375" class="post-1375 post type-post status-publish format-standard hentry category-magento category-magento-installation category-mamp category-web-development tag-engineering-magento tag-magento tag-magento-1-5 tag-web-development">
+
+			<header class="entry-header">
+		<span class="posted-on">Posted on <a href="index.html" rel="bookmark"><time class="entry-date published" datetime="2011-02-27T02:26:11+00:00">February 27, 2011</time> <time class="updated" datetime="2011-02-27T12:05:11+00:00">February 27, 2011</time></a></span><h1 class="entry-title">Magento Development and Deployment: Setting up a Modman based Magento project on Magento 1.5</h1>		</header><!-- .entry-header -->
+				<aside class="entry-meta">
+						<div class="author">
+				<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' /><div class="label">Written by</div><a href="../../../author/admin/index.html" title="Posts by Ashley" rel="author">Ashley</a>			</div>
+							<div class="cat-links">
+					<div class="label">Posted in</div><a href="../../../category/magento/index.html" rel="category tag">Magento</a>, <a href="../../../category/magento-installation/index.html" rel="category tag">Magento Installation</a>, <a href="../../../category/mamp/index.html" rel="category tag">MAMP</a>, <a href="../../../category/web-development/index.html" rel="category tag">Web Development</a>				</div>
+			
+							<div class="tags-links">
+					<div class="label">Tagged</div><a href="../../../tag/engineering-magento/index.html" rel="tag">engineering magento</a>, <a href="../../../tag/magento/index.html" rel="tag">Magento</a>, <a href="../../../tag/magento-1-5/index.html" rel="tag">magento 1.5</a>, <a href="../../../tag/web-development/index.html" rel="tag">Web Development</a>				</div>
+			
+		
+							<div class="comments-link">
+					<div class="label">Comments</div>					<span class="comments-link"><a href="index.html#comments">12 Comments</a></span>
+				</div>
+					</aside>
+				<div class="entry-content">
+		<p>As I had <a href="../../01/new-version-of-smtp-pro-released-support-for-magento-1-4-2-and-several-bug-fixes/comment-page-1/index.html#comment-2166">noted earlier this week</a>, I have not had a lot of Magento development time lately, so today I thought I&#8217;d spend a bit of time setting up a Magento 1.5 development environment on my Mac. This post will take you through the steps to set up Magento development with Eclipse for editing/debugging and SVN for version control, with deployment being managed by Modman. This relates to the project structure <a href="../magento-imagine-2011-presentation-notes-and-links-engineering-your-magento-store/index.html">I described in my presentation at Magento Imagine</a>, with the exception that I won&#8217;t go into detail about setting up a separate extensions repository, as that is probably more relevant to developers who build and release extensions than developers working on a single Magento project.</p>
+<p><strong>What this guide assumes:</strong></p>
+<ul>
+<li>Mac development environment with MAMP</li>
+<li>Linux production environment</li>
+<li><a href="http://subversion.tigris.org/">SVN</a> for version control, but <a href="http://git-scm.com/">Git</a> can work too.</li>
+<li><a href="http://code.google.com/p/module-manager/">Modman</a> for deployment. Written by <a href="http://colin.mollenhour.com/">Colin Mollenhour</a></li>
+</ul>
+<p><strong>What we will cover:</strong></p>
+<ul>
+<li>Installing SVN, Magento and Modman.</li>
+<li>Getting a free SVN repository.</li>
+<li>Setting up a Magento store development project with version controlled extensions, templates/themes, locale and emails.</li>
+<li>Development and deployment of changes to Production.</li>
+</ul>
+<p>We have a lot to get through, so let&#8217;s not delay.</p>
+<h3>Step 1: Install Magento Locally</h3>
+<p>We&#8217;ll zap through a commandline install. We&#8217;ll be installing into your web server doc root. If you would like help setting that up I wrote a <a href="../../../2009/02/how-to-install-mamp-on-your-macbook/index.html">guide to installing MAMP on a Mac</a> (a long time ago) and also (extra for experts) a <a href="../../../2009/02/how-to-set-up-apache-virtual-hosting-on-mamp-for-magento/index.html">guide to setting up virtual hosts on MAMP</a> too.</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #666666; font-style: italic;">#In your ~/Downloads directory or some where suitable</span>
+<span style="color: #c20cb9; font-weight: bold;">wget</span> http:<span style="color: #000000; font-weight: bold;">//</span>www.magentocommerce.com<span style="color: #000000; font-weight: bold;">/</span>downloads<span style="color: #000000; font-weight: bold;">/</span>assets<span style="color: #000000; font-weight: bold;">/</span>1.5.0.1<span style="color: #000000; font-weight: bold;">/</span>magento-1.5.0.1.tar.gz
+<span style="color: #c20cb9; font-weight: bold;">tar</span> xzf magento-1.5.0.1.tar.gz
+<span style="color: #666666; font-style: italic;"># I keep all of my Magento development versions in a web folder within ~/Documents</span>
+<span style="color: #c20cb9; font-weight: bold;">mv</span> magento ~<span style="color: #000000; font-weight: bold;">/</span>Documents<span style="color: #000000; font-weight: bold;">/</span>web<span style="color: #000000; font-weight: bold;">/</span>magento<span style="color: #000000; font-weight: bold;">/</span>1.5.0.1</pre></td></tr></table><p class="theCode" style="display:none;">#In your ~/Downloads directory or some where suitable
+wget http://www.magentocommerce.com/downloads/assets/1.5.0.1/magento-1.5.0.1.tar.gz
+tar xzf magento-1.5.0.1.tar.gz
+# I keep all of my Magento development versions in a web folder within ~/Documents
+mv magento ~/Documents/web/magento/1.5.0.1</p></div>
+
+<p><span id="more-1375"></span><br />
+Now the files are where they need to be, we can install Magento. First we&#8217;ll need a database to install into this can be done easily through the <a href="../../../2009/03/how-to-use-the-mamp-mysql-command-line-client-in-a-terminal/index.html">MySQL command line on MAMP</a>:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #666666; font-style: italic;"># Default MAMP password is root - but you changed it right?</span>
+<span style="color: #000000; font-weight: bold;">/</span>Applications<span style="color: #000000; font-weight: bold;">/</span>MAMP<span style="color: #000000; font-weight: bold;">/</span>Library<span style="color: #000000; font-weight: bold;">/</span>bin<span style="color: #000000; font-weight: bold;">/</span>mysql <span style="color: #660033;">-uroot</span> <span style="color: #660033;">-p</span> <span style="color: #660033;">-e</span> <span style="color: #ff0000;">&quot;create database magento1501&quot;</span>
+<span style="color: #666666; font-style: italic;"># If you're paranoid about security, I suggest a better password for your Magento database than 'password'.</span>
+<span style="color: #000000; font-weight: bold;">/</span>Applications<span style="color: #000000; font-weight: bold;">/</span>MAMP<span style="color: #000000; font-weight: bold;">/</span>Library<span style="color: #000000; font-weight: bold;">/</span>bin<span style="color: #000000; font-weight: bold;">/</span>mysql <span style="color: #660033;">-uroot</span> <span style="color: #660033;">-p</span> <span style="color: #660033;">-e</span> <span style="color: #ff0000;">&quot;grant all on magento1501.* to magento1501@'localhost' identified by 'password'&quot;</span></pre></td></tr></table><p class="theCode" style="display:none;"># Default MAMP password is root - but you changed it right?
+/Applications/MAMP/Library/bin/mysql -uroot -p -e &quot;create database magento1501&quot;
+# If you're paranoid about security, I suggest a better password for your Magento database than 'password'.
+/Applications/MAMP/Library/bin/mysql -uroot -p -e &quot;grant all on magento1501.* to magento1501@'localhost' identified by 'password'&quot;</p></div>
+
+<p>Right, we have the files and a database, let&#8217;s run the Magento install.</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #666666; font-style: italic;"># Fix up the permissions, see http://www.magentocommerce.com/wiki/groups/227/installing_magento_via_shell_ssh</span>
+<span style="color: #7a0874; font-weight: bold;">cd</span> ~<span style="color: #000000; font-weight: bold;">/</span>Documents<span style="color: #000000; font-weight: bold;">/</span>web<span style="color: #000000; font-weight: bold;">/</span>magento<span style="color: #000000; font-weight: bold;">/</span>1.5.0.1
+<span style="color: #c20cb9; font-weight: bold;">chmod</span> <span style="color: #660033;">-R</span> o+<span style="color: #c20cb9; font-weight: bold;">w</span> media var
+<span style="color: #c20cb9; font-weight: bold;">chmod</span> o+<span style="color: #c20cb9; font-weight: bold;">w</span> app<span style="color: #000000; font-weight: bold;">/</span>etc
+&nbsp;
+<span style="color: #666666; font-style: italic;"># Now we can run the actual install (all one line)</span>
+<span style="color: #000000; font-weight: bold;">/</span>Applications<span style="color: #000000; font-weight: bold;">/</span>MAMP<span style="color: #000000; font-weight: bold;">/</span>bin<span style="color: #000000; font-weight: bold;">/</span>php5<span style="color: #000000; font-weight: bold;">/</span>bin<span style="color: #000000; font-weight: bold;">/</span>php <span style="color: #660033;">-f</span> install.php <span style="color: #660033;">--</span> --license_agreement_accepted <span style="color: #ff0000;">&quot;yes&quot;</span> <span style="color: #660033;">--locale</span> <span style="color: #ff0000;">&quot;en_US&quot;</span> <span style="color: #660033;">--timezone</span> <span style="color: #ff0000;">&quot;America/Los_Angeles&quot;</span> --default_currency <span style="color: #ff0000;">&quot;USD&quot;</span> --db_host <span style="color: #ff0000;">&quot;localhost&quot;</span> --db_name <span style="color: #ff0000;">&quot;magento1501&quot;</span> --db_user <span style="color: #ff0000;">&quot;magento1501&quot;</span> --db_pass <span style="color: #ff0000;">&quot;password&quot;</span> <span style="color: #660033;">--url</span> <span style="color: #ff0000;">&quot;http://127.0.0.1:8888/magento/1.5.0.1/&quot;</span> --use_rewrites <span style="color: #ff0000;">&quot;yes&quot;</span> --use_secure <span style="color: #ff0000;">&quot;no&quot;</span> --secure_base_url <span style="color: #ff0000;">&quot;&quot;</span> --use_secure_admin <span style="color: #ff0000;">&quot;no&quot;</span> --admin_firstname <span style="color: #ff0000;">&quot;max&quot;</span> --admin_lastname <span style="color: #ff0000;">&quot;power&quot;</span> --admin_email <span style="color: #ff0000;">&quot;ashley.schroder@gmail.com&quot;</span> --admin_username <span style="color: #ff0000;">&quot;admin&quot;</span> --admin_password <span style="color: #ff0000;">&quot;password&quot;</span>
+<span style="color: #666666; font-style: italic;"># God willing you'll see something like this:</span>
+SUCCESS: 76752360b8917ff49e815cb44934ef81</pre></td></tr></table><p class="theCode" style="display:none;"># Fix up the permissions, see http://www.magentocommerce.com/wiki/groups/227/installing_magento_via_shell_ssh
+cd ~/Documents/web/magento/1.5.0.1
+chmod -R o+w media var
+chmod o+w app/etc
+
+# Now we can run the actual install (all one line)
+/Applications/MAMP/bin/php5/bin/php -f install.php -- --license_agreement_accepted &quot;yes&quot; --locale &quot;en_US&quot; --timezone &quot;America/Los_Angeles&quot; --default_currency &quot;USD&quot; --db_host &quot;localhost&quot; --db_name &quot;magento1501&quot; --db_user &quot;magento1501&quot; --db_pass &quot;password&quot; --url &quot;http://127.0.0.1:8888/magento/1.5.0.1/&quot; --use_rewrites &quot;yes&quot; --use_secure &quot;no&quot; --secure_base_url &quot;&quot; --use_secure_admin &quot;no&quot; --admin_firstname &quot;max&quot; --admin_lastname &quot;power&quot; --admin_email &quot;ashley.schroder@gmail.com&quot; --admin_username &quot;admin&quot; --admin_password &quot;password&quot;
+# God willing you'll see something like this:
+SUCCESS: 76752360b8917ff49e815cb44934ef81</p></div>
+
+<p>If it worked you should be able to get to the default Magento start page here: <a href="http://127.0.0.1:8888/magento/1.5.0.1/">http://127.0.0.1:8888/magento/1.5.0.1/</a> (or where ever your web server&#8217;s doc root is).</p>
+<h3>Step 2: Install Modman and SVN</h3>
+<p>For SVN I use the <a href="http://www.open.collab.net/downloads/community/">CollabNet SVN packages</a>, you can install them easily like any Mac app. Try to fight back the gag reflex that comes with a login-required download. </p>
+<p><iframe title="YouTube video player" width="480" height="390" src="http://www.youtube.com/embed/N-NrPOMBKnw" frameborder="0" allowfullscreen></iframe></p>
+<p>Once you have SVN installed you&#8217;ll want the latest Modman script (1.1.1) too.</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #666666; font-style: italic;"># If you use a local bin directory then it's a great place to keep it</span>
+<span style="color: #7a0874; font-weight: bold;">cd</span> ~<span style="color: #000000; font-weight: bold;">/</span>bin
+<span style="color: #c20cb9; font-weight: bold;">wget</span> http:<span style="color: #000000; font-weight: bold;">//</span>module-manager.googlecode.com<span style="color: #000000; font-weight: bold;">/</span>files<span style="color: #000000; font-weight: bold;">/</span>modman-1.1.1
+<span style="color: #c20cb9; font-weight: bold;">mv</span> modman-1.1.1 modman
+<span style="color: #c20cb9; font-weight: bold;">chmod</span> +x modman <span style="color: #666666; font-style: italic;">#needs to be executable</span></pre></td></tr></table><p class="theCode" style="display:none;"># If you use a local bin directory then it's a great place to keep it
+cd ~/bin
+wget http://module-manager.googlecode.com/files/modman-1.1.1
+mv modman-1.1.1 modman
+chmod +x modman #needs to be executable</p></div>
+
+<p><strong>Optional tip:</strong> You can use something like <code>export PATH=$PATH:/Users/yourname/bin/</code> in your <code>~/.bash_profile</code> to set up a local bin folder. it&#8217;s also a nice place to put symlinks to the various MAMP binaries.</p>
+<p>It&#8217;s worth mentioning at this point that to actually use SVN you&#8217;ll need a repository to store the code in. I run my own SVN server, but there are a number of great free online services you can use to get started. There&#8217;s a <a href="http://stackoverflow.com/questions/59791/free-online-private-svn-repositories">thread on the subject</a> at Stack Overflow. Here are a few links to free signups &#8211; if you have experience with any of these please comment to let us know:</p>
+<ul>
+<li><a href="http://www.assembla.com/catalog/tag/free">Assembla</a></li>
+<li><a href="https://signup.beanstalkapp.com/accounts/new/?plan=Trial">Beanstalk</a></li>
+<li><a href="https://secure.unfuddle.com/accounts/new?plan=private">Unfuddle</a></li>
+<li><a href="http://projectlocker.com/signup/startup">ProjectLocker</a></li>
+</ul>
+<p>So get onto one of those sites, or your preferred alternative and sign up for a repository. In the coming steps we&#8217;ll need a <strong>repository URL</strong> and a <strong>username/password</strong>.</p>
+<h3>Step 3: Create Magento Store project</h3>
+<p>Finally, must be nearly <a href="http://www.urbandictionary.com/define.php?term=smoko">smoko time</a>! We&#8217;ve installed Magento, Modman and SVN. We set up a SVN repository. Now we can get started with some Magento development!</p>
+<p>Slight detour first to make our skeleton Modman project and check it in to our repository. This is a good opportunity to flush out SVN issues before we get into the nitty gritty too. You can run these commands from anywhere.</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #666666; font-style: italic;">#Get your empty repository</span>
+<span style="color: #c20cb9; font-weight: bold;">svn co</span> http:<span style="color: #000000; font-weight: bold;">//</span>your-repository.com<span style="color: #000000; font-weight: bold;">/</span>path<span style="color: #000000; font-weight: bold;">/</span>to<span style="color: #000000; font-weight: bold;">/</span>repository
+<span style="color: #7a0874; font-weight: bold;">cd</span> repository</pre></td></tr></table><p class="theCode" style="display:none;">#Get your empty repository
+svn co http://your-repository.com/path/to/repository
+cd repository</p></div>
+
+<p>Now, if you&#8217;re putting multiple store projects into one repository you might like to name your project after the store so make a directory for each one like this. The @shell thing is just a simple way of making a sort of &#8216;Hello World&#8217; Modman project.</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #c20cb9; font-weight: bold;">mkdir</span> acmewidgets.com 
+<span style="color: #7a0874; font-weight: bold;">echo</span> <span style="color: #ff0000;">&quot;@shell   echo 'Hello World'&quot;</span> <span style="color: #000000; font-weight: bold;">&gt;</span> acmewidgets.com<span style="color: #000000; font-weight: bold;">/</span>modman
+<span style="color: #c20cb9; font-weight: bold;">svn add</span> acmewidgets.com
+<span style="color: #c20cb9; font-weight: bold;">svn ci</span> <span style="color: #660033;">-m</span> <span style="color: #ff0000;">&quot;initial import of acmewidgets.com store project&quot;</span> .
+<span style="color: #666666; font-style: italic;"># If you see Committed revision X then it probably worked!</span></pre></td></tr></table><p class="theCode" style="display:none;">mkdir acmewidgets.com 
+echo &quot;@shell   echo 'Hello World'&quot; &gt; acmewidgets.com/modman
+svn add acmewidgets.com
+svn ci -m &quot;initial import of acmewidgets.com store project&quot; .
+# If you see Committed revision X then it probably worked!</p></div>
+
+<p>Now we initialize Modman in the root of our Magento store. As an aside, <a href="http://code.google.com/p/module-manager/wiki/Tutorial">Modman is well documented</a> so you should check out the <a href="http://code.google.com/p/module-manager/wiki/Tutorial">project wiki</a>.</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #7a0874; font-weight: bold;">cd</span> ~<span style="color: #000000; font-weight: bold;">/</span>Documents<span style="color: #000000; font-weight: bold;">/</span>web<span style="color: #000000; font-weight: bold;">/</span>magento<span style="color: #000000; font-weight: bold;">/</span>1.5.0.1
+modman init
+modman acmewidgets.com checkout http:<span style="color: #000000; font-weight: bold;">//</span>your-repository.com<span style="color: #000000; font-weight: bold;">/</span>path<span style="color: #000000; font-weight: bold;">/</span>to<span style="color: #000000; font-weight: bold;">/</span>repository<span style="color: #000000; font-weight: bold;">/</span>acmewidgets.com</pre></td></tr></table><p class="theCode" style="display:none;">cd ~/Documents/web/magento/1.5.0.1
+modman init
+modman acmewidgets.com checkout http://your-repository.com/path/to/repository/acmewidgets.com</p></div>
+
+<p>You should see &#8216;Hello World&#8217; output like this:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;">A    acmewidgets.com<span style="color: #000000; font-weight: bold;">/</span>modman
+Checked out revision <span style="color: #000000;">1</span>.
+Hello World
+Checkout of module acmewidgets.com <span style="color: #7a0874; font-weight: bold;">complete</span></pre></td></tr></table><p class="theCode" style="display:none;">A    acmewidgets.com/modman
+Checked out revision 1.
+Hello World
+Checkout of module acmewidgets.com complete</p></div>
+
+<p>Ok so far so good, we now have all the Modman functionality in place, and a skeleton project in our repository. Let&#8217;s add some useful Magento functionality to our project. </p>
+<p>At this point you can actually fire up <a href="http://www.eclipse.org/">your favorite IDE</a> and map a SVN project to the folder <code>.modman/acmewidgets.com</code> and a new project. It&#8217;s also a good idea to map in the core code, but only for reference, <strong>not to change</strong>! If you do create an IDE project then you would add the below folders using the IDE, but I&#8217;ll keep going with the command line for transparency and simplicity.</p>
+<p>What we are setting up now is the various parts of Magento that we want to have Modman link into the appropriate places in the Magento install. We&#8217;ll start simple with a new theme and a local override directory ( I have <a href="http://www.magentocommerce.com/bug-tracking/issue/?issue=10487">a feeling</a> we&#8217;ll need this in Magento 1.5.0.1&#8230;).</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;">&nbsp;
+<span style="color: #7a0874; font-weight: bold;">cd</span> .modman<span style="color: #000000; font-weight: bold;">/</span>acmewidgets.com
+&nbsp;
+<span style="color: #666666; font-style: italic;"># We'll base it on the modern theme, for better or worse.</span>
+<span style="color: #c20cb9; font-weight: bold;">mkdir</span> theme
+<span style="color: #c20cb9; font-weight: bold;">cp</span> <span style="color: #660033;">-r</span> ..<span style="color: #000000; font-weight: bold;">/</span>..<span style="color: #000000; font-weight: bold;">/</span>app<span style="color: #000000; font-weight: bold;">/</span>design<span style="color: #000000; font-weight: bold;">/</span>frontend<span style="color: #000000; font-weight: bold;">/</span>default<span style="color: #000000; font-weight: bold;">/</span>modern<span style="color: #000000; font-weight: bold;">/</span> theme<span style="color: #000000; font-weight: bold;">/</span>design
+<span style="color: #c20cb9; font-weight: bold;">cp</span> <span style="color: #660033;">-r</span> ..<span style="color: #000000; font-weight: bold;">/</span>..<span style="color: #000000; font-weight: bold;">/</span>skin<span style="color: #000000; font-weight: bold;">/</span>frontend<span style="color: #000000; font-weight: bold;">/</span>default<span style="color: #000000; font-weight: bold;">/</span>modern<span style="color: #000000; font-weight: bold;">/</span> theme<span style="color: #000000; font-weight: bold;">/</span>skin
+&nbsp;
+<span style="color: #666666; font-style: italic;"># Create a place for local overrides too</span>
+<span style="color: #c20cb9; font-weight: bold;">mkdir</span> <span style="color: #7a0874; font-weight: bold;">local</span></pre></td></tr></table><p class="theCode" style="display:none;">
+cd .modman/acmewidgets.com
+
+# We'll base it on the modern theme, for better or worse.
+mkdir theme
+cp -r ../../app/design/frontend/default/modern/ theme/design
+cp -r ../../skin/frontend/default/modern/ theme/skin
+
+# Create a place for local overrides too
+mkdir local</p></div>
+
+<p>Now edit the <code>modman</code> file as we&#8217;ll need to add some new mappings:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #c20cb9; font-weight: bold;">vi</span> modman</pre></td></tr></table><p class="theCode" style="display:none;">vi modman</p></div>
+
+<p>You need to add contents as follows to the <code>modman</code> file &#8211; these map the project directories to their Magento store counterparts, Modman will manage the linking process for us. The syntax is described on <a href="http://code.google.com/p/module-manager/wiki/Tutorial">the Modman wiki</a>.</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #666666; font-style: italic;"># add the theme</span>
+theme<span style="color: #000000; font-weight: bold;">/</span>design app<span style="color: #000000; font-weight: bold;">/</span>design<span style="color: #000000; font-weight: bold;">/</span>frontend<span style="color: #000000; font-weight: bold;">/</span>default<span style="color: #000000; font-weight: bold;">/</span>acme
+theme<span style="color: #000000; font-weight: bold;">/</span>skin skin<span style="color: #000000; font-weight: bold;">/</span>frontend<span style="color: #000000; font-weight: bold;">/</span>default<span style="color: #000000; font-weight: bold;">/</span>acme
+&nbsp;
+&nbsp;
+<span style="color: #666666; font-style: italic;"># add Magento local overrides</span>
+<span style="color: #7a0874; font-weight: bold;">local</span> app<span style="color: #000000; font-weight: bold;">/</span>code<span style="color: #000000; font-weight: bold;">/</span><span style="color: #7a0874; font-weight: bold;">local</span>
+&nbsp;
+<span style="color: #666666; font-style: italic;"># Keep the Hello World in here, for the benefit of the tutorial.</span>
+<span style="color: #000000; font-weight: bold;">@</span>shell   <span style="color: #7a0874; font-weight: bold;">echo</span> <span style="color: #ff0000;">'Hello World'</span></pre></td></tr></table><p class="theCode" style="display:none;"># add the theme
+theme/design app/design/frontend/default/acme
+theme/skin skin/frontend/default/acme
+
+
+# add Magento local overrides
+local app/code/local
+
+# Keep the Hello World in here, for the benefit of the tutorial.
+@shell   echo 'Hello World'</p></div>
+
+<p>Save the changes to the <code>modman</code> file and then check they work.</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #7a0874; font-weight: bold;">cd</span> ..<span style="color: #000000; font-weight: bold;">/</span>..<span style="color: #000000; font-weight: bold;">/</span>
+<span style="color: #666666; font-style: italic;">#The force will overwrite the app/code/local directory with our symlink</span>
+modman acmewidgets.com update <span style="color: #660033;">--force</span></pre></td></tr></table><p class="theCode" style="display:none;">cd ../../
+#The force will overwrite the app/code/local directory with our symlink
+modman acmewidgets.com update --force</p></div>
+
+<p>We should now see successful output like this:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;">At revision <span style="color: #000000;">1</span>.
+Created link: theme<span style="color: #000000; font-weight: bold;">/</span>design app<span style="color: #000000; font-weight: bold;">/</span>design<span style="color: #000000; font-weight: bold;">/</span>frontend<span style="color: #000000; font-weight: bold;">/</span>default<span style="color: #000000; font-weight: bold;">/</span>acme
+Created link: theme<span style="color: #000000; font-weight: bold;">/</span>skin skin<span style="color: #000000; font-weight: bold;">/</span>frontend<span style="color: #000000; font-weight: bold;">/</span>default<span style="color: #000000; font-weight: bold;">/</span>acme
+Created link: <span style="color: #7a0874; font-weight: bold;">local</span> app<span style="color: #000000; font-weight: bold;">/</span>code<span style="color: #000000; font-weight: bold;">/</span><span style="color: #7a0874; font-weight: bold;">local</span>
+Hello World
+Update of module acmewidgets.com complete.</pre></td></tr></table><p class="theCode" style="display:none;">At revision 1.
+Created link: theme/design app/design/frontend/default/acme
+Created link: theme/skin skin/frontend/default/acme
+Created link: local app/code/local
+Hello World
+Update of module acmewidgets.com complete.</p></div>
+
+<p>Let&#8217;s check this in and send the changes to our Production Magento environment. Remember that all of these steps are probably best done in an IDE, I have shown them on the commandline only because I think it&#8217;s more transparent than a bunch of screnshots from a GUI.</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #c20cb9; font-weight: bold;">svn add</span> .modman<span style="color: #000000; font-weight: bold;">/</span>acmewidgets.com<span style="color: #000000; font-weight: bold;">/*</span>
+<span style="color: #c20cb9; font-weight: bold;">svn ci</span> <span style="color: #660033;">-m</span> <span style="color: #ff0000;">&quot;added our acme theme and a local override directory to the project&quot;</span> .modman<span style="color: #000000; font-weight: bold;">/</span>acmewidgets.com<span style="color: #000000; font-weight: bold;">/</span></pre></td></tr></table><p class="theCode" style="display:none;">svn add .modman/acmewidgets.com/*
+svn ci -m &quot;added our acme theme and a local override directory to the project&quot; .modman/acmewidgets.com/</p></div>
+
+<h3>Step 4: Deploy development project to Production</h3>
+<p>Now we can bring our Magento store project to the Production server and test it has worked. </p>
+<p>I&#8217;ll assume you already have a fresh 1.5 Magento running on your production server. You should also install SVN and Modman. For a Linux server installing SVN should be <a href="http://www.google.com/search?q=ubuntu+svn">easy-peasy</a>, the Modman instructions I gave earlier for Mac are largely transferable, make sure you put the script somewhere sensible for running it in your environment.</p>
+<p>First go to the root of you Magento store and grab the Modman project we setup. Modman will take care of the rest for us. </p>
+<p><strong>Note:</strong> If this is your <em>honest-to-god</em> production Magento store <strong>DON&#8217;T DO THIS YET</strong>, as part of the tutorial things will <em>not</em> go well. Just read, don&#8217;t run this.</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #7a0874; font-weight: bold;">cd</span> <span style="color: #000000; font-weight: bold;">/</span>the<span style="color: #000000; font-weight: bold;">/</span>root<span style="color: #000000; font-weight: bold;">/</span>of<span style="color: #000000; font-weight: bold;">/</span>your<span style="color: #000000; font-weight: bold;">/</span>acme<span style="color: #000000; font-weight: bold;">/</span>store
+modman init
+modman acmewidgets.com checkout http:<span style="color: #000000; font-weight: bold;">//</span>your-repository.com<span style="color: #000000; font-weight: bold;">/</span>path<span style="color: #000000; font-weight: bold;">/</span>to<span style="color: #000000; font-weight: bold;">/</span>repository<span style="color: #000000; font-weight: bold;">/</span>acmewidgets.com</pre></td></tr></table><p class="theCode" style="display:none;">cd /the/root/of/your/acme/store
+modman init
+modman acmewidgets.com checkout http://your-repository.com/path/to/repository/acmewidgets.com</p></div>
+
+<p>And now we can set the store theme to acme in the Magento admin and we should be presented with a copy of the modern theme running at acmewidgets.com, awaiting customization. Right?</p>
+<p><img src="../../../../cdn.aschroder.com/wp-content/uploads/2011/02/dude-wheres-my-header.png" alt="" title="dude-wheres-my-header" width="450" height="231" class="aligncenter size-full wp-image-1387" srcset="http://cdn.aschroder.com/wp-content/uploads/2011/02/dude-wheres-my-header.png 450w, http://cdn.aschroder.com/wp-content/uploads/2011/02/dude-wheres-my-header-300x154.png 300w" sizes="(max-width: 450px) 100vw, 450px" /></p>
+<p><strong>WRONG!</strong>, <em>Oh shit</em>, something has gone wrong hasn&#8217;t it, your (<em>not-really-production</em>) store is missing a header! How stupid do we feel right now, we forgot to test our changes in our local Magento store and now we have pushed broken code to production. Don&#8217;t worry that only <em>ever</em> happens during a simulated disaster in a tutorial, we&#8217;d never make the same mistake in the real world&#8230;</p>
+<p><strong>Magento since 1.4.2 has broken Modman</strong>. The error is shown in exception.log if you enable logging in Magento:<br />
+<code>CRIT (2): Not valid template file:frontend/default/acme/template/page/html/header.phtml</code></p>
+<p>It is a <a href="http://www.magentocommerce.com/bug-tracking/issue/?issue=10487">reported bug</a> with a working patch, we just need to apply it.</p>
+<p><em>Never fear</em>, the next part of the tutorial will take us through making a local code fix and deploying it to production, that was fortuitous&#8230;</p>
+<h3>Dry-Run: Making local changes and deploying them</h3>
+<p>This last step just shows how you can actually go through a development-deploy cycle. Thankfully we have an excellent use case: fixing <a href="http://www.magentocommerce.com/bug-tracking/issue/?issue=10487">this bug</a> which affects Modman.</p>
+<p>Back on our local development computer we need to apply this fix as a local code override.</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #7a0874; font-weight: bold;">cd</span> ~<span style="color: #000000; font-weight: bold;">/</span>Documents<span style="color: #000000; font-weight: bold;">/</span>web<span style="color: #000000; font-weight: bold;">/</span>magento<span style="color: #000000; font-weight: bold;">/</span>1.5.0.1
+<span style="color: #c20cb9; font-weight: bold;">mkdir</span> <span style="color: #660033;">-p</span> .modman<span style="color: #000000; font-weight: bold;">/</span>acmewidgets.com<span style="color: #000000; font-weight: bold;">/</span>local<span style="color: #000000; font-weight: bold;">/</span>Mage<span style="color: #000000; font-weight: bold;">/</span>Core<span style="color: #000000; font-weight: bold;">/</span>Block<span style="color: #000000; font-weight: bold;">/</span>
+<span style="color: #c20cb9; font-weight: bold;">cp</span> app<span style="color: #000000; font-weight: bold;">/</span>code<span style="color: #000000; font-weight: bold;">/</span>core<span style="color: #000000; font-weight: bold;">/</span>Mage<span style="color: #000000; font-weight: bold;">/</span>Core<span style="color: #000000; font-weight: bold;">/</span>Block<span style="color: #000000; font-weight: bold;">/</span>Template.php .modman<span style="color: #000000; font-weight: bold;">/</span>acmewidgets.com<span style="color: #000000; font-weight: bold;">/</span>local<span style="color: #000000; font-weight: bold;">/</span>Mage<span style="color: #000000; font-weight: bold;">/</span>Core<span style="color: #000000; font-weight: bold;">/</span>Block<span style="color: #000000; font-weight: bold;">/</span>
+<span style="color: #c20cb9; font-weight: bold;">vi</span> .modman<span style="color: #000000; font-weight: bold;">/</span>acmewidgets.com<span style="color: #000000; font-weight: bold;">/</span>local<span style="color: #000000; font-weight: bold;">/</span>Mage<span style="color: #000000; font-weight: bold;">/</span>Core<span style="color: #000000; font-weight: bold;">/</span>Block<span style="color: #000000; font-weight: bold;">/</span>Template.php</pre></td></tr></table><p class="theCode" style="display:none;">cd ~/Documents/web/magento/1.5.0.1
+mkdir -p .modman/acmewidgets.com/local/Mage/Core/Block/
+cp app/code/core/Mage/Core/Block/Template.php .modman/acmewidgets.com/local/Mage/Core/Block/
+vi .modman/acmewidgets.com/local/Mage/Core/Block/Template.php</p></div>
+
+<p>Make the following change at line 215:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="php" style="font-family:monospace;"><span style="color: #339933;">...</span>
+<span style="color: #666666; font-style: italic;">// Fix from CM @ http://www.magentocommerce.com/bug-tracking/issue/?issue=10487</span>
+<span style="color: #666666; font-style: italic;">// We do not test real path as symlinks fail, instead check for attempts to access parent directories</span>
+&nbsp;
+<span style="color: #666666; font-style: italic;">// if (strpos($includeFilePath, realpath($this-&gt;_viewDir)) === 0) {</span>
+<span style="color: #b1b100;">if</span><span style="color: #009900;">&#40;</span><span style="color: #990000;">strpos</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$includeFilePath</span><span style="color: #339933;">,</span><span style="color: #0000ff;">'..'</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">===</span> <span style="color: #009900; font-weight: bold;">false</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+<span style="color: #339933;">...</span></pre></td></tr></table><p class="theCode" style="display:none;">...
+// Fix from CM @ http://www.magentocommerce.com/bug-tracking/issue/?issue=10487
+// We do not test real path as symlinks fail, instead check for attempts to access parent directories
+
+// if (strpos($includeFilePath, realpath($this-&gt;_viewDir)) === 0) {
+if(strpos($includeFilePath,'..') === false) {
+...</p></div>
+
+<p>Now check in our changes.</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #c20cb9; font-weight: bold;">svn add</span> .modman<span style="color: #000000; font-weight: bold;">/</span>acmewidgets.com<span style="color: #000000; font-weight: bold;">/</span>local<span style="color: #000000; font-weight: bold;">/</span>Mage<span style="color: #000000; font-weight: bold;">/</span>
+<span style="color: #c20cb9; font-weight: bold;">svn ci</span> <span style="color: #660033;">-m</span> <span style="color: #ff0000;">&quot;fix for the symlink issue in Magento 1.4.2+&quot;</span> .modman<span style="color: #000000; font-weight: bold;">/</span>acmewidgets.com<span style="color: #000000; font-weight: bold;">/</span>local<span style="color: #000000; font-weight: bold;">/</span>Mage<span style="color: #000000; font-weight: bold;">/</span></pre></td></tr></table><p class="theCode" style="display:none;">svn add .modman/acmewidgets.com/local/Mage/
+svn ci -m &quot;fix for the symlink issue in Magento 1.4.2+&quot; .modman/acmewidgets.com/local/Mage/</p></div>
+
+<p>&#8230;and deploy them to production (after you have tested locally and are satisfied with the results, of course).</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #666666; font-style: italic;"># Back on the production server</span>
+<span style="color: #7a0874; font-weight: bold;">cd</span> <span style="color: #000000; font-weight: bold;">/</span>the<span style="color: #000000; font-weight: bold;">/</span>root<span style="color: #000000; font-weight: bold;">/</span>of<span style="color: #000000; font-weight: bold;">/</span>your<span style="color: #000000; font-weight: bold;">/</span>acme<span style="color: #000000; font-weight: bold;">/</span>store
+modman acmewidgets.com update</pre></td></tr></table><p class="theCode" style="display:none;"># Back on the production server
+cd /the/root/of/your/acme/store
+modman acmewidgets.com update</p></div>
+
+<p>Now we should see the modern theme we were expecting! That is how you can make and test changes locally, and then deploy to production (or staging).</p>
+<p><img src="../../../../cdn.aschroder.com/wp-content/uploads/2011/02/all-good.png" alt="" title="all-good" width="450" height="335" class="aligncenter size-full wp-image-1390" srcset="http://cdn.aschroder.com/wp-content/uploads/2011/02/all-good.png 450w, http://cdn.aschroder.com/wp-content/uploads/2011/02/all-good-300x223.png 300w" sizes="(max-width: 450px) 100vw, 450px" /></p>
+<h3>Conclusion</h3>
+<p><em>Phew</em>, this turned out to be a bit of a monster post, if you&#8217;re still with me, <strong>Well Done</strong> for sticking with it. I hope these steps help a few people set up a structured Magento development project. </p>
+<p>I&#8217;ll continue this series with some simple little tips to build on this setup like; clearing your Magento cache after a deploy, installing extensions via Modman. If there are any topics in particular that you&#8217;d like, let me know.</p>
+<p>If you spot any errors or have any trouble following these steps please let me know in the comments. If you want to send praise to the creator of Modman (and you should, it&#8217;s an excellent tool) Colin can be reached at <a href="http://colin.mollenhour.com/">his blog</a>. </p>
+<p>If you have any ideas for improving this setup I&#8217;d very much like to hear them. Likewise if anyone has steps for using Windows, or Git then I&#8217;d gladly add them here for completeness. <a href="../../../feed/index.html">Stay tuned</a> for more information like this.</p>
+<div class='yarpp-related'>
+<p>You might also be interested in:<ol>
+<li><a href="../../../2012/07/using-git-submodules-and-import-with-modman-for-magento/index.html" rel="bookmark" title="Using Git submodules and @import with Modman for Magento">Using Git submodules and @import with Modman for Magento </a></li>
+<li><a href="../../../2010/07/structuring-your-magento-project-for-engineering-not-hacking/index.html" rel="bookmark" title="Structuring your Magento project for Engineering, not Hacking">Structuring your Magento project for Engineering, not Hacking </a></li>
+<li><a href="../../../2009/02/how-to-set-up-apache-virtual-hosting-on-mamp-for-magento/index.html" rel="bookmark" title="How to set up Apache Virtual hosting on MAMP for Magento">How to set up Apache Virtual hosting on MAMP for Magento </a></li>
+<li><a href="../magento-imagine-2011-presentation-notes-and-links-engineering-your-magento-store/index.html" rel="bookmark" title="Magento Imagine 2011 Presentation Notes and Links: Engineering your Magento Store">Magento Imagine 2011 Presentation Notes and Links: Engineering your Magento Store </a></li>
+<li><a href="../../03/command-line-magento-1-5-install-on-mamp/index.html" rel="bookmark" title="Command line Magento 1.5 install on MAMP">Command line Magento 1.5 install on MAMP </a></li>
+</ol></p>
+</div>
+		</div><!-- .entry-content -->
+		<nav id="post-navigation" class="navigation post-navigation" role="navigation" aria-label="Post Navigation"><span class="screen-reader-text">Post navigation</span><div class="nav-links"><div class="nav-previous"><a href="../magento-imagine-2011-presentation-notes-and-links-engineering-your-magento-store/index.html" rel="prev">Magento Imagine 2011 Presentation Notes and Links: Engineering your Magento Store</a></div><div class="nav-next"><a href="../../03/magento-1-5-0-1-and-smtppro-1-4-2-now-working-free-gmailsmtp-ahoy/index.html" rel="next">Magento 1.5.0.1 and SMTPPro 1.4.2 Now Working &#8211; Free Gmail/SMTP, ahoy!</a></div></div></nav>
+<section id="comments" class="comments-area" aria-label="Post Comments">
+
+			<h2 class="comments-title">
+			12 thoughts on &ldquo;<span>Magento Development and Deployment: Setting up a Modman based Magento project on Magento 1.5</span>&rdquo;		</h2>
+
+		
+		<ol class="comment-list">
+					<li class="comment even thread-even depth-1" id="comment-2174">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/23351b66423667b19371aaca46b8b921?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/23351b66423667b19371aaca46b8b921?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://bradysewall.com/' rel='external nofollow' class='url'>Brady</a></cite>			</div>
+			
+			<a href="index.html#comment-2174" class="comment-date">
+				<time datetime="2011-03-02T14:10:19+00:00">March 2, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2174" class="comment-content">
+				<div class="comment-text">
+		<p>BRILLIANT!</p>
+<p>Thank you very much for this article. I&#8217;ve been waiting a long time for someone to do a write-up on how to properly setup a &#8220;real&#8221; dev environment for Magento. Not just &#8220;use TextMate or Coda or (yikes) Dreamweaver&#8221;</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2198">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/8dc9ee95746f099172b14a4e3a50a85a?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/8dc9ee95746f099172b14a4e3a50a85a?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://tonigrigoriu.com/' rel='external nofollow' class='url'>Toni Grigoriu</a></cite>			</div>
+			
+			<a href="index.html#comment-2198" class="comment-date">
+				<time datetime="2011-03-18T13:18:22+00:00">March 18, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2198" class="comment-content">
+				<div class="comment-text">
+		<p>They fixed the symlinked templates issue in 1.5.1.0-beta1 <a href="https://gist.github.com/876865" rel="nofollow">https://gist.github.com/876865</a></p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-2199">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-2199" class="comment-date">
+				<time datetime="2011-03-18T13:39:49+00:00">March 18, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2199" class="comment-content">
+				<div class="comment-text">
+		<p>Sweet, I thought I saw that item in the release notes this morning, but they hadn&#8217;t updated <a href="http://www.magentocommerce.com/bug-tracking/issue/?issue=10487" rel="nofollow">the bug</a> so I was a little confused.</p>
+<p>Not sure I agree that it needs to be a config switch, but hey, it&#8217;ll save a core override, so I&#8217;m happy.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2201">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/0551158e4fe4424709ff1c40843687fa?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/0551158e4fe4424709ff1c40843687fa?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.merchantguru.com/' rel='external nofollow' class='url'>Joe Fletcher</a></cite>			</div>
+			
+			<a href="index.html#comment-2201" class="comment-date">
+				<time datetime="2011-03-20T21:38:42+00:00">March 20, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2201" class="comment-content">
+				<div class="comment-text">
+		<p>Brilliant! 2 questions stand out for me:<br />
+1) How do you manage changes to the development database and production db? Especially, e.g., if you make configuration changes in development, how do you track all those changes to push to production?</p>
+<p>2) Magento upgrades. You note in another post that all of this will hopefully result in a less painful upgrade process. What&#8217;s been your experience? How do you go about upgrading to new releases?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2202">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/23351b66423667b19371aaca46b8b921?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/23351b66423667b19371aaca46b8b921?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://bradysewall.com/' rel='external nofollow' class='url'>Brady</a></cite>			</div>
+			
+			<a href="index.html#comment-2202" class="comment-date">
+				<time datetime="2011-03-21T16:50:19+00:00">March 21, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2202" class="comment-content">
+				<div class="comment-text">
+		<p>Question &#8211; when you do your initial &#8216;svn co&#8217; in Step 3, should that be in the ~/bin directory (where Step 2 left off) or in the localhost root directory or in the Magento root directory?</p>
+<p>Thanks!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-2203">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-2203" class="comment-date">
+				<time datetime="2011-03-21T17:23:52+00:00">March 21, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2203" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, so good to hear from someone following the steps! </p>
+<p>That initial checkout can be done anywhere (I did note that actually!) because it&#8217;s really just setting up the skeleton repository and checking it in, you can delete it afterwards if you want. The real <code>svn co</code> happens via the modman script in the next set of commands.</p>
+<p>Let me know how you get on.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2308">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/fa960c6c5c836ae5ad3ab6bc8230e566?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/fa960c6c5c836ae5ad3ab6bc8230e566?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.decadentwaste.com/' rel='external nofollow' class='url'>Steve</a></cite>			</div>
+			
+			<a href="index.html#comment-2308" class="comment-date">
+				<time datetime="2011-05-16T17:26:09+00:00">May 16, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2308" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks for the tutorial! Got a nice little local workflow set up with Magento 1.5.1.0 thanks to this and your MAMP articles.</p>
+<p>If you&#8217;re on 1.5.1.0, be sure to enable Magento developer mode by adding this to your .htaccess:<br />
+<code>#Magento Developer Mode<br />
+SetEnv MAGE_IS_DEVELOPER_MODE "true"</code><br />
+and then you don&#8217;t need the code tweak.</p>
+<p>I also want to point out because it wasn&#8217;t clear to a moron like me that modman also allows you to symlink files, not just folders. Which is what you&#8217;ll want to do with your <code>app/etc/modules</code> xml file so that you don&#8217;t overwrite the ones already there.</p>
+<p>Cheers!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-2312">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-2312" class="comment-date">
+				<time datetime="2011-05-17T14:09:04+00:00">May 17, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2312" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks for the feedback Steve, good tip about Developer Mode, that&#8217;s new in 1.5.1.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2438">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/a067847029d3d91e8a0c0919aa1cf3f5?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/a067847029d3d91e8a0c0919aa1cf3f5?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">amy</cite>			</div>
+			
+			<a href="index.html#comment-2438" class="comment-date">
+				<time datetime="2011-07-07T10:43:29+00:00">July 7, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2438" class="comment-content">
+				<div class="comment-text">
+		<p>what about on windoze 7 ?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2507">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/1217aef6f1df3899ff53d14277cf2cf5?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/1217aef6f1df3899ff53d14277cf2cf5?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.expertmagentodevelopers.com/' rel='external nofollow' class='url'>magento development company</a></cite>			</div>
+			
+			<a href="index.html#comment-2507" class="comment-date">
+				<time datetime="2011-08-09T20:28:49+00:00">August 9, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2507" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks for the tutorial! It is nice little local workflow set up with Magento 1.5.1.0 thanks to this and your MAMP articles.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2748">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/79385e1c7cb64d052ea18b4655abf524?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/79385e1c7cb64d052ea18b4655abf524?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">isecondthisquestion</cite>			</div>
+			
+			<a href="index.html#comment-2748" class="comment-date">
+				<time datetime="2011-11-14T16:13:49+00:00">November 14, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2748" class="comment-content">
+				<div class="comment-text">
+		<p>I&#8217;m new to SVN and I second this question:</p>
+<p>&#8220;1) How do you manage changes to the development database and production db? Especially, e.g., if you make configuration changes in development, how do you track all those changes to push to production?&#8221;</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2921">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/af3582069e105bebaca567e9b03f61e6?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/af3582069e105bebaca567e9b03f61e6?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.magentoconnect.us/' rel='external nofollow' class='url'>magento developer</a></cite>			</div>
+			
+			<a href="index.html#comment-2921" class="comment-date">
+				<time datetime="2012-02-03T00:28:34+00:00">February 3, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2921" class="comment-content">
+				<div class="comment-text">
+		<p>Thank you for new trick specially /Applications/MAMP/bin/php5/bin/php -f install.php part of installation.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		</ol><!-- .comment-list -->
+
+				<p class="no-comments">Comments are closed.</p>
+	
+</section><!-- #comments -->
+
+</div><!-- #post-## -->
+
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+		</div><!-- .col-full -->
+	</div><!-- #content -->
+
+	
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="col-full">
+
+					<div class="site-info">
+			&copy; ASchroder.com 2023						<br /> Storefront designed by <a href="http://www.woocommerce.com/" title="WooCommerce - The Best eCommerce Platform for WordPress" rel="author">WooCommerce</a>.					</div><!-- .site-info -->
+		
+		</div><!-- .col-full -->
+	</footer><!-- #colophon -->
+
+	
+</div><!-- #page -->
+
+<link rel='stylesheet' id='yarppRelatedCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/related101e.css?ver=4.8.15' type='text/css' media='all' />
+<script type='text/javascript' src='../../../wp-content/plugins/wp-syntax/js/wp-syntax4963.js?ver=1.1'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/navigation.min11a8.js?ver=20120206'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/skip-link-focus-fix.min08e0.js?ver=20130115'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/wp-embed.min101e.js?ver=4.8.15'></script>
+
+</body>
+
+<!-- Mirrored from www.aschroder.com/2011/02/magento-development-and-deployment-setting-up-a-modman-based-magento-project-on-magento-1-5/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:18:48 GMT -->
+</html>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:12:40 by W3 Total Cache -->

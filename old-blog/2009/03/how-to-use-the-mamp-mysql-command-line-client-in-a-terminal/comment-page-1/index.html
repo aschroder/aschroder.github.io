@@ -1,0 +1,1226 @@
+<!doctype html>
+<html lang="en-US">
+
+<!-- Mirrored from www.aschroder.com/2009/03/how-to-use-the-mamp-mysql-command-line-client-in-a-terminal/comment-page-1/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:33:15 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="../../../../xmlrpc.php">
+
+<title>How to use the MAMP Mysql command line client in a terminal | ASchroder.com</title>
+
+<!-- All in One SEO Pack 2.4.2 by Michael Torbert of Semper Fi Web Design[289,377] -->
+<meta name="description"  content="I just wanted to share a quick and easy way to access the MAMP mysql command line client on Mac OSX." />
+
+<meta name="keywords"  content="mysql,mamp,cli,terminal,command line,tips" />
+
+<!-- /all in one seo pack -->
+<link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
+<link rel='dns-prefetch' href='http://s.w.org/' />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Feed" href="../../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Comments Feed" href="../../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; How to use the MAMP Mysql command line client in a terminal Comments Feed" href="../feed/index.html" />
+<!-- This site uses the Google Analytics by MonsterInsights plugin v6.2.4 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+<script type="text/javascript" data-cfasync="false">
+		var disableStr = 'ga-disable-UA-6477134-1';
+
+	/* Function to detect opted out users */
+	function __gaTrackerIsOptedOut() {
+		return document.cookie.indexOf(disableStr + '=true') > -1;
+	}
+
+	/* Disable tracking if the opt-out cookie exists. */
+	if ( __gaTrackerIsOptedOut() ) {
+		window[disableStr] = true;
+	}
+
+	/* Opt-out function */
+	function __gaTrackerOptout() {
+	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+	  window[disableStr] = true;
+	}
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','http://www.google-analytics.com/analytics.js','__gaTracker');
+
+	__gaTracker('create', 'UA-6477134-1', 'auto');
+	__gaTracker('set', 'forceSSL', true);
+	__gaTracker('send','pageview');
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/www.aschroder.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.15"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='yarppWidgetCss-css'  href='../../../../wp-content/plugins/yet-another-related-posts-plugin/style/widget101e.css?ver=4.8.15' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-syntax-css-css'  href='../../../../wp-content/plugins/wp-syntax/css/wp-syntax4963.css?ver=1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-style-css'  href='../../../../../cdn.aschroder.com/wp-content/themes/storefront/style5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<style id='storefront-style-inline-css' type='text/css'>
+
+			.main-navigation ul li a,
+			.site-title a,
+			ul.menu li a,
+			.site-branding h1 a,
+			.site-footer .storefront-handheld-footer-bar a:not(.button),
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				color: #333333;
+			}
+
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				border-color: #333333;
+			}
+
+			.main-navigation ul li a:hover,
+			.main-navigation ul li:hover > a,
+			.site-title a:hover,
+			a.cart-contents:hover,
+			.site-header-cart .widget_shopping_cart a:hover,
+			.site-header-cart:hover > li > a,
+			.site-header ul.menu li.current-menu-item > a {
+				color: #838383;
+			}
+
+			table th {
+				background-color: #f8f8f8;
+			}
+
+			table tbody td {
+				background-color: #fdfdfd;
+			}
+
+			table tbody tr:nth-child(2n) td,
+			fieldset,
+			fieldset legend {
+				background-color: #fbfbfb;
+			}
+
+			.site-header,
+			.secondary-navigation ul ul,
+			.main-navigation ul.menu > li.menu-item-has-children:after,
+			.secondary-navigation ul.menu ul,
+			.storefront-handheld-footer-bar,
+			.storefront-handheld-footer-bar ul li > a,
+			.storefront-handheld-footer-bar ul li.search .site-search,
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				background-color: #ffffff;
+			}
+
+			p.site-description,
+			.site-header,
+			.storefront-handheld-footer-bar {
+				color: #6d6d6d;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count,
+			button.menu-toggle:after,
+			button.menu-toggle:before,
+			button.menu-toggle span:before {
+				background-color: #333333;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				color: #ffffff;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				border-color: #ffffff;
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+				color: #333333;
+			}
+
+			.widget h1 {
+				border-bottom-color: #333333;
+			}
+
+			body,
+			.secondary-navigation a,
+			.onsale,
+			.pagination .page-numbers li .page-numbers:not(.current), .woocommerce-pagination .page-numbers li .page-numbers:not(.current) {
+				color: #6d6d6d;
+			}
+
+			.widget-area .widget a,
+			.hentry .entry-header .posted-on a,
+			.hentry .entry-header .byline a {
+				color: #9f9f9f;
+			}
+
+			a  {
+				color: #0228d1;
+			}
+
+			a:focus,
+			.button:focus,
+			.button.alt:focus,
+			.button.added_to_cart:focus,
+			.button.wc-forward:focus,
+			button:focus,
+			input[type="button"]:focus,
+			input[type="reset"]:focus,
+			input[type="submit"]:focus {
+				outline-color: #0228d1;
+			}
+
+			button, input[type="button"], input[type="reset"], input[type="submit"], .button, .added_to_cart, .widget a.button, .site-header-cart .widget_shopping_cart a.button {
+				background-color: #eeeeee;
+				border-color: #eeeeee;
+				color: #333333;
+			}
+
+			button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, .button:hover, .added_to_cart:hover, .widget a.button:hover, .site-header-cart .widget_shopping_cart a.button:hover {
+				background-color: #d5d5d5;
+				border-color: #d5d5d5;
+				color: #333333;
+			}
+
+			button.alt, input[type="button"].alt, input[type="reset"].alt, input[type="submit"].alt, .button.alt, .added_to_cart.alt, .widget-area .widget a.button.alt, .added_to_cart, .widget a.button.checkout {
+				background-color: #333333;
+				border-color: #333333;
+				color: #ffffff;
+			}
+
+			button.alt:hover, input[type="button"].alt:hover, input[type="reset"].alt:hover, input[type="submit"].alt:hover, .button.alt:hover, .added_to_cart.alt:hover, .widget-area .widget a.button.alt:hover, .added_to_cart:hover, .widget a.button.checkout:hover {
+				background-color: #1a1a1a;
+				border-color: #1a1a1a;
+				color: #ffffff;
+			}
+
+			.pagination .page-numbers li .page-numbers.current, .woocommerce-pagination .page-numbers li .page-numbers.current {
+				background-color: #e6e6e6;
+				color: #6d6d6d;
+			}
+
+			#comments .comment-list .comment-content .comment-text {
+				background-color: #f8f8f8;
+			}
+
+			.site-footer {
+				background-color: #f0f0f0;
+				color: #6d6d6d;
+			}
+
+			.site-footer a:not(.button) {
+				color: #333333;
+			}
+
+			.site-footer h1, .site-footer h2, .site-footer h3, .site-footer h4, .site-footer h5, .site-footer h6 {
+				color: #333333;
+			}
+
+			#order_review {
+				background-color: #ffffff;
+			}
+
+			#payment .payment_methods > li .payment_box,
+			#payment .place-order {
+				background-color: #fafafa;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice) {
+				background-color: #f5f5f5;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice):hover {
+				background-color: #f0f0f0;
+			}
+
+			@media screen and ( min-width: 768px ) {
+				.secondary-navigation ul.menu a:hover {
+					color: #868686;
+				}
+
+				.secondary-navigation ul.menu a {
+					color: #6d6d6d;
+				}
+
+				.site-header-cart .widget_shopping_cart,
+				.main-navigation ul.menu ul.sub-menu,
+				.main-navigation ul.nav-menu ul.children {
+					background-color: #f0f0f0;
+				}
+
+				.site-header-cart .widget_shopping_cart .buttons,
+				.site-header-cart .widget_shopping_cart .total {
+					background-color: #f5f5f5;
+				}
+
+				.site-header {
+					border-bottom-color: #f0f0f0;
+				}
+			}
+</style>
+<link rel='stylesheet' id='storefront-icons-css'  href='../../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/sass/base/icons5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-fonts-css'  href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,600,700,900&amp;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../../cdn.aschroder.com/wp-includes/js/jquery/jqueryb8ff.js?ver=1.12.4'></script>
+<script type='text/javascript' src='../../../../../cdn.aschroder.com/wp-includes/js/jquery/jquery-migrate.min330a.js?ver=1.4.1'></script>
+<link rel='https://api.w.org/' href='../../../../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../../xmlrpc0db0.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Top 3 Solutions when your Magento Categories are not displaying' href='../../top-3-solutions-when-your-magento-categories-are-not-displaying/index.html' />
+<link rel='next' title='A simple way to password protect your Magento store' href='../../a-simple-way-to-password-protect-your-magento-store/index.html' />
+<meta name="generator" content="WordPress 4.8.15" />
+<link rel="canonical" href="index.html#comments" />
+<link rel='shortlink' href='../../../../index85b0.html?p=233' />
+<link rel="alternate" type="application/json+oembed" href="../../../../wp-json/oembed/1.0/embedceea.json?url=http%3A%2F%2Fwww.aschroder.com%2F2009%2F03%2Fhow-to-use-the-mamp-mysql-command-line-client-in-a-terminal%2F" />
+<link rel="alternate" type="text/xml+oembed" href="../../../../wp-json/oembed/1.0/embed4e63?url=http%3A%2F%2Fwww.aschroder.com%2F2009%2F03%2Fhow-to-use-the-mamp-mysql-command-line-client-in-a-terminal%2F&amp;format=xml" />
+</head>
+
+<body class="post-template-default single single-post postid-233 single-format-standard no-wc-breadcrumb storefront-full-width-content right-sidebar">
+
+
+<div id="page" class="hfeed site">
+	
+	<header id="masthead" class="site-header" role="banner" style="">
+		<div class="col-full">
+
+					<a class="skip-link screen-reader-text" href="#site-navigation">Skip to navigation</a>
+		<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+				<div class="site-branding">
+			<div class="beta site-title"><a href="../../../../index.html" rel="home">ASchroder.com</a></div><p class="site-description">Notes on Web Development</p>		</div>
+		<div class="storefront-primary-navigation">		<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="Primary Navigation">
+		<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><span>Menu</span></button>
+			<div class="primary-navigation"><ul id="menu-main-menu" class="menu"><li id="menu-item-1119" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../../index.html">Home</a></li>
+<li id="menu-item-1118" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../../about/index.html">About</a></li>
+<li id="menu-item-1872" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../../presentations/index.html">Presentations</a></li>
+</ul></div><div class="handheld-navigation"><ul id="menu-main-menu-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../../index.html">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../../about/index.html">About</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../../presentations/index.html">Presentations</a></li>
+</ul></div>		</nav><!-- #site-navigation -->
+		</div>
+		</div>
+	</header><!-- #masthead -->
+
+	
+	<div id="content" class="site-content" tabindex="-1">
+		<div class="col-full">
+
+		
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+<div id="post-233" class="post-233 post type-post status-publish format-standard hentry category-mac category-magento category-mamp category-mysql tag-cli tag-leopard tag-mac tag-mac-osx tag-magento tag-mamp tag-mysql tag-terminal">
+
+			<header class="entry-header">
+		<span class="posted-on">Posted on <a href="../index.html" rel="bookmark"><time class="entry-date published" datetime="2009-03-17T02:41:40+00:00">March 17, 2009</time> <time class="updated" datetime="2010-07-02T17:53:01+00:00">July 2, 2010</time></a></span><h1 class="entry-title">How to use the MAMP Mysql command line client in a terminal</h1>		</header><!-- .entry-header -->
+				<aside class="entry-meta">
+						<div class="author">
+				<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' /><div class="label">Written by</div><a href="../../../../author/admin/index.html" title="Posts by Ashley" rel="author">Ashley</a>			</div>
+							<div class="cat-links">
+					<div class="label">Posted in</div><a href="../../../../category/mac/index.html" rel="category tag">Mac</a>, <a href="../../../../category/magento/index.html" rel="category tag">Magento</a>, <a href="../../../../category/mamp/index.html" rel="category tag">MAMP</a>, <a href="../../../../category/mysql/index.html" rel="category tag">Mysql</a>				</div>
+			
+							<div class="tags-links">
+					<div class="label">Tagged</div><a href="../../../../tag/cli/index.html" rel="tag">cli</a>, <a href="../../../../tag/leopard/index.html" rel="tag">leopard</a>, <a href="../../../../tag/mac/index.html" rel="tag">Mac</a>, <a href="../../../../tag/mac-osx/index.html" rel="tag">mac osx</a>, <a href="../../../../tag/magento/index.html" rel="tag">Magento</a>, <a href="../../../../tag/mamp/index.html" rel="tag">MAMP</a>, <a href="../../../../tag/mysql/index.html" rel="tag">Mysql</a>, <a href="../../../../tag/terminal/index.html" rel="tag">terminal</a>				</div>
+			
+		
+							<div class="comments-link">
+					<div class="label">Comments</div>					<span class="comments-link"><a href="../index.html#comments">37 Comments</a></span>
+				</div>
+					</aside>
+				<div class="entry-content">
+		<p>Coming from a Linux background, one of the things I didn&#8217;t like about MAMP was the way it hid away the mysql command line interface. Once you are comfortable using it, the CLI is a powerful and quick method of interacting with a mysql server. I just wanted to share a quick and easy way to access the MAMP mysql command line client on Mac OSX.</p>
+<p>Firstly you can run the Mac OSX terminal easily by just typing:</p>
+<p><code>ctrl + space bar</code> (to access spotlight)</p>
+<p>Then start typing &#8216;Terminal&#8217; before you have even finished the little Apple gnomes will have guessed you want to open the Terminal (which of course you do). Start the Terminal by hitting enter when spotlight highlights the Terminal app.</p>
+<p>Now that you are in a Terminal you are able to do all sorts of excellent things to your Mac. For now though, we&#8217;ll stick to running the mysql client. The client is located in /Applications/MAMP/Library/bin so to run it execute this command:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #000000; font-weight: bold;">/</span>Applications<span style="color: #000000; font-weight: bold;">/</span>MAMP<span style="color: #000000; font-weight: bold;">/</span>Library<span style="color: #000000; font-weight: bold;">/</span>bin<span style="color: #000000; font-weight: bold;">/</span>mysql <span style="color: #660033;">-uroot</span> <span style="color: #660033;">-p</span></pre></td></tr></table><p class="theCode" style="display:none;">/Applications/MAMP/Library/bin/mysql -uroot -p</p></div>
+
+<p><span id="more-233"></span></p>
+<p>The <code>-uroot</code> tells the client you want to log in as user &#8216;root&#8217; if you have other users you could equally log in as those. The <code>-p</code> tells the client to ask for a password, you can pass the password to the client so it won&#8217;t ask, but this will leave your password dangling in places like your bash history file. If you don&#8217;t care about that &#8211; then by all means change the <code>-p</code> to <code>-psecret</code> where your password replaces &#8216;secret&#8217;.</p>
+<p>If you leave the <code>-p</code> as it is, you&#8217;ll be prompted for your password, which you can see on the MAMP &#8216;start page&#8217; in case you have forgotten. If you have done it right you should now see a command line prompt like this:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;">mysql<span style="color: #000000; font-weight: bold;">&gt;</span></pre></td></tr></table><p class="theCode" style="display:none;">mysql&gt;</p></div>
+
+<p>This is where the magic happens. I won&#8217;t go in to too much detail because there are roughly 2 million mysql books in existence, testament to the fact there is a lot to cover, far more than I could get through in a single blog post. However, to give you a few commands to try out, here are a handful of useful mysql commands.</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="mysql" style="font-family:monospace;"><span style="color: #990099; font-weight: bold;">USE</span> database_name</pre></td></tr></table><p class="theCode" style="display:none;">USE database_name</p></div>
+
+<p>Where <code>database_name</code> is the name of the database you are interested in inspecting/changing. This sets the client context to given database. You can pass a database name as an argument to the client, to pre-set the context. For example:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #000000; font-weight: bold;">/</span>Applications<span style="color: #000000; font-weight: bold;">/</span>MAMP<span style="color: #000000; font-weight: bold;">/</span>Library<span style="color: #000000; font-weight: bold;">/</span>bin<span style="color: #000000; font-weight: bold;">/</span>mysql <span style="color: #660033;">-uroot</span> <span style="color: #660033;">-p</span> my_db</pre></td></tr></table><p class="theCode" style="display:none;">/Applications/MAMP/Library/bin/mysql -uroot -p my_db</p></div>
+
+<p>Will implicitly set the client to use &#8216;my_db&#8217; when it starts, so that you do not have to type the <code>USE</code> command.</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="mysql" style="font-family:monospace;"><span style="color: #990099; font-weight: bold;">SHOW</span> <span style="color: #990099; font-weight: bold;">TABLES</span><span style="color: #000033;">;</span></pre></td></tr></table><p class="theCode" style="display:none;">SHOW TABLES;</p></div>
+
+<p>This command will print a list of tables in the current database. This is useful if you are trying to figure out what tables exist in a new database, or to find out if there is some sort of logging table (e.g. <a href="../../../02/3-quick-methods-to-diagnose-problems-between-magento-and-google-checkout/index.html">the Google Checkout logging table in Magento</a>) that might be useful.</p>
+<p>To get an idea for how big a table is (in terms of row count) you can run a quick:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="mysql" style="font-family:monospace;"><span style="color: #990099; font-weight: bold;">SELECT</span> <span style="color: #000099;">COUNT</span><span style="color: #FF00FF;">&#40;</span><span style="color: #CC0099;">*</span><span style="color: #FF00FF;">&#41;</span> <span style="color: #990099; font-weight: bold;">FROM</span> table_name<span style="color: #000033;">;</span></pre></td></tr></table><p class="theCode" style="display:none;">SELECT COUNT(*) FROM table_name;</p></div>
+
+<p>This will report how many rows are in the table named <code>table_name</code>. This can be useful if you are about to <code>select *</code> from the table, because it might save you spamming your terminal full of query output.</p>
+<p>One last handy little trick is the formatting for query output. By default it will come out in row format which, for queries with lots of result rows or lots of selected columns, can be hard to read. By replacing the semi-colon <code>;</code> at the end of a query with a <code>\G</code> you can cause the output to be made vertical in the format field:value.</p>
+<p>For example:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="mysql" style="font-family:monospace;"><span style="color: #990099; font-weight: bold;">SELECT</span> <span style="color: #CC0099;">*</span> <span style="color: #990099; font-weight: bold;">FROM</span> table_name\G</pre></td></tr></table><p class="theCode" style="display:none;">SELECT * FROM table_name\G</p></div>
+
+<p>Will show all the rows from <code>table_name</code> in a more easily readable vertical format.</p>
+<p><a name="extra"></p>
+<h3>Extra for Experts: adding a local bin dir to make running MySQL easier</h3>
+<p></a></p>
+<p>Based on <a href="index.html#comment-1491">comment feedback from daffy</a> I&#8217;m adding a little guide to make running mysql easier.</p>
+<p>Firstly make a directory for your local bin:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #c20cb9; font-weight: bold;">mkdir</span> ~<span style="color: #000000; font-weight: bold;">/</span>bin</pre></td></tr></table><p class="theCode" style="display:none;">mkdir ~/bin</p></div>
+
+<p>Now link the mysql binary (and as many others as you want) in to this directory.</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #7a0874; font-weight: bold;">cd</span> ~<span style="color: #000000; font-weight: bold;">/</span>bin
+<span style="color: #666666; font-style: italic;"># The syntax is ln -s TARGET LINK_NAME</span>
+<span style="color: #c20cb9; font-weight: bold;">ln</span> <span style="color: #660033;">-s</span> <span style="color: #000000; font-weight: bold;">/</span>Applications<span style="color: #000000; font-weight: bold;">/</span>MAMP<span style="color: #000000; font-weight: bold;">/</span>Library<span style="color: #000000; font-weight: bold;">/</span>bin<span style="color: #000000; font-weight: bold;">/</span>mysql mysql</pre></td></tr></table><p class="theCode" style="display:none;">cd ~/bin
+# The syntax is ln -s TARGET LINK_NAME
+ln -s /Applications/MAMP/Library/bin/mysql mysql</p></div>
+
+<p>Lastly edit your .bash_profile file (it&#8217;s in your home directory) and add the following line in order to add your new local bin directory to your path:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #666666; font-style: italic;"># If you use vi, you'll win friends and influence people</span>
+<span style="color: #666666; font-style: italic;"># i puts you into insert mode, ESC takes you out of it.</span>
+<span style="color: #666666; font-style: italic;"># :x saves and exits</span>
+<span style="color: #666666; font-style: italic;"># shift+g moves the cursor to the end</span>
+<span style="color: #c20cb9; font-weight: bold;">vi</span> ~<span style="color: #000000; font-weight: bold;">/</span>.bash_profile</pre></td></tr></table><p class="theCode" style="display:none;"># If you use vi, you'll win friends and influence people
+# i puts you into insert mode, ESC takes you out of it.
+# :x saves and exits
+# shift+g moves the cursor to the end
+vi ~/.bash_profile</p></div>
+
+<p>Then add this line &#8211; but if you already have a PATH declaration, you can just add it to the end of that:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #666666; font-style: italic;"># For example mine is: /Users/ashley/bin/</span>
+<span style="color: #7a0874; font-weight: bold;">export</span> <span style="color: #007800;">PATH</span>=<span style="color: #007800;">$PATH</span>:<span style="color: #000000; font-weight: bold;">/</span>Users<span style="color: #000000; font-weight: bold;">/</span>_your_username_here<span style="color: #000000; font-weight: bold;">/</span>bin<span style="color: #000000; font-weight: bold;">/</span></pre></td></tr></table><p class="theCode" style="display:none;"># For example mine is: /Users/ashley/bin/
+export PATH=$PATH:/Users/_your_username_here/bin/</p></div>
+
+<p>Now you can run MySQL by just typing <code>mysql</code> on the terminal command line.</p>
+<p><strong>Troubleshooting:</strong><br />
+1) Check your PATH contains your local bin:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #7a0874; font-weight: bold;">echo</span> <span style="color: #007800;">$PATH</span></pre></td></tr></table><p class="theCode" style="display:none;">echo $PATH</p></div>
+
+<p>2) Check your bin directory has the link correctly:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #c20cb9; font-weight: bold;">ls</span> <span style="color: #660033;">-la</span> ~<span style="color: #000000; font-weight: bold;">/</span>bin</pre></td></tr></table><p class="theCode" style="display:none;">ls -la ~/bin</p></div>
+
+<p>3) Check the mysql being run is the one from your local bin:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #c20cb9; font-weight: bold;">which</span> mysql</pre></td></tr></table><p class="theCode" style="display:none;">which mysql</p></div>
+
+<p>Well, that concludes the little 10 minute introduction to running and using the mysql command line client for MAMP in Mac OSX. You can find out much much more about the wonders of mysql by reading the <a href="http://dev.mysql.com/doc/">mysql manual</a>.</p>
+<div class='yarpp-related'>
+<p>You might also be interested in:<ol>
+<li><a href="../../../../2011/03/command-line-magento-1-5-install-on-mamp/index.html" rel="bookmark" title="Command line Magento 1.5 install on MAMP">Command line Magento 1.5 install on MAMP </a></li>
+<li><a href="../../../04/whoops-magento-supports-php-520-or-newer/index.html" rel="bookmark" title="Whoops: Magento supports PHP 5.2.0 or newer">Whoops: Magento supports PHP 5.2.0 or newer </a></li>
+<li><a href="../../../02/how-to-set-up-apache-virtual-hosting-on-mamp-for-magento/index.html" rel="bookmark" title="How to set up Apache Virtual hosting on MAMP for Magento">How to set up Apache Virtual hosting on MAMP for Magento </a></li>
+<li><a href="../../../02/how-to-install-mamp-on-your-macbook/index.html" rel="bookmark" title="How to install MAMP on your Leopard Mac">How to install MAMP on your Leopard Mac </a></li>
+<li><a href="../../../04/how-to-use-apache-virtual-hosts-over-a-local-network-with-mamp/index.html" rel="bookmark" title="How to use Apache Virtual Hosts over a local network with MAMP">How to use Apache Virtual Hosts over a local network with MAMP </a></li>
+</ol></p>
+</div>
+		</div><!-- .entry-content -->
+		<nav id="post-navigation" class="navigation post-navigation" role="navigation" aria-label="Post Navigation"><span class="screen-reader-text">Post navigation</span><div class="nav-links"><div class="nav-previous"><a href="../../top-3-solutions-when-your-magento-categories-are-not-displaying/index.html" rel="prev">Top 3 Solutions when your Magento Categories are not displaying</a></div><div class="nav-next"><a href="../../a-simple-way-to-password-protect-your-magento-store/index.html" rel="next">A simple way to password protect your Magento store</a></div></div></nav>
+<section id="comments" class="comments-area" aria-label="Post Comments">
+
+			<h2 class="comments-title">
+			37 thoughts on &ldquo;<span>How to use the MAMP Mysql command line client in a terminal</span>&rdquo;		</h2>
+
+		
+		<ol class="comment-list">
+					<li class="comment even thread-even depth-1" id="comment-105">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/419afa28741bad68d284018cb231fb21?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/419afa28741bad68d284018cb231fb21?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Leo</cite>			</div>
+			
+			<a href="index.html#comment-105" class="comment-date">
+				<time datetime="2009-03-23T22:15:31+00:00">March 23, 2009</time>			</a>
+		</div>
+				<div id="div-comment-105" class="comment-content">
+				<div class="comment-text">
+		<p>Wow, short and sweet and very helpful. Nice run-through! Thanks!! 🙂</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-179">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/3fa28a7956df536d6c50cfd803ac17a0?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/3fa28a7956df536d6c50cfd803ac17a0?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://ilikemyiphone.com/' rel='external nofollow' class='url'>Kiran</a></cite>			</div>
+			
+			<a href="index.html#comment-179" class="comment-date">
+				<time datetime="2009-04-10T06:00:28+00:00">April 10, 2009</time>			</a>
+		</div>
+				<div id="div-comment-179" class="comment-content">
+				<div class="comment-text">
+		<p>Yay! You made my day buddy! Was looking everywhere trying to make it work. It will be a challenge working on terminal given my background with GUI applications to do the same.</p>
+<p>I like your blog, simple, nice to the point&#8230;.</p>
+<p>Cheers!<br />
+Kiran</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-186">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/9efac573b47564424c9b1412a7ad106b?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/9efac573b47564424c9b1412a7ad106b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">manual labour</cite>			</div>
+			
+			<a href="index.html#comment-186" class="comment-date">
+				<time datetime="2009-04-14T12:14:49+00:00">April 14, 2009</time>			</a>
+		</div>
+				<div id="div-comment-186" class="comment-content">
+				<div class="comment-text">
+		<p>Outstanding tutorial, saved me loads of time and effort after many, many dead ends. thanks!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-248">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/b8cdb9223f1e9d1186666b1d7f7ea191?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/b8cdb9223f1e9d1186666b1d7f7ea191?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Dawood Abbas</cite>			</div>
+			
+			<a href="index.html#comment-248" class="comment-date">
+				<time datetime="2009-05-06T20:38:37+00:00">May 6, 2009</time>			</a>
+		</div>
+				<div id="div-comment-248" class="comment-content">
+				<div class="comment-text">
+		<p>I was getting nowhere with various overpriced books until I followed this tutorial. God bless!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-375">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/36543ecd7ef6e5c20b8277480945def4?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/36543ecd7ef6e5c20b8277480945def4?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Scott</cite>			</div>
+			
+			<a href="index.html#comment-375" class="comment-date">
+				<time datetime="2009-07-24T03:31:15+00:00">July 24, 2009</time>			</a>
+		</div>
+				<div id="div-comment-375" class="comment-content">
+				<div class="comment-text">
+		<p>Alternatively you can create a link so all you will have to do is call mysql like this:<br />
+mysql -uroot -p</p>
+<p>By entering these commands into terminal then you wont have to type the long command anymore.<br />
+//Fix mysql command line link for mamp<br />
+sudo ln -s /Applications/MAMP/Library/bin/mysql /usr/local/bin/mysql<br />
+sudo ln -s /Applications/MAMP/Library/bin/mysqldump /usr/local/bin/mysqldump<br />
+sudo ln -s /Applications/MAMP/Library/bin/mysqladmin /usr/local/bin/mysqladmin</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-422">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/5f2adabe75b675259da852ed3ea1d360?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/5f2adabe75b675259da852ed3ea1d360?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.8lions.com.au/' rel='external nofollow' class='url'>stefan</a></cite>			</div>
+			
+			<a href="index.html#comment-422" class="comment-date">
+				<time datetime="2009-08-29T00:12:13+00:00">August 29, 2009</time>			</a>
+		</div>
+				<div id="div-comment-422" class="comment-content">
+				<div class="comment-text">
+		<p>very helpful, thanks a lot!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-630">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/3c5cc44be18772e46551d945e37ff553?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/3c5cc44be18772e46551d945e37ff553?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Geoff Taylor</cite>			</div>
+			
+			<a href="index.html#comment-630" class="comment-date">
+				<time datetime="2009-10-26T01:14:56+00:00">October 26, 2009</time>			</a>
+		</div>
+				<div id="div-comment-630" class="comment-content">
+				<div class="comment-text">
+		<p>Wow, looks like this will be very useful. Just going to start an &#8220;Intro to SQL&#8221; course using mySQL at eclasses.org, and wasn&#8217;t sure how to get SQL commands working in MAMP. Thanks very much in advance.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-792">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/41573421ff24ad8cd9054bb8192a5f64?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/41573421ff24ad8cd9054bb8192a5f64?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Michael Peters</cite>			</div>
+			
+			<a href="index.html#comment-792" class="comment-date">
+				<time datetime="2010-01-07T03:51:24+00:00">January 7, 2010</time>			</a>
+		</div>
+				<div id="div-comment-792" class="comment-content">
+				<div class="comment-text">
+		<p>Definitely took me out of a jam. I had a huge database to Import that was too big for phpMyAdmin, so I just went in to MySQL using Terminal as described and used the source statement to import the database. It took about 30 seconds.</p>
+<p>Thanks.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-810">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/a39933974f085d1a47bada10a7c19d19?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/a39933974f085d1a47bada10a7c19d19?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">victor</cite>			</div>
+			
+			<a href="index.html#comment-810" class="comment-date">
+				<time datetime="2010-01-21T22:54:22+00:00">January 21, 2010</time>			</a>
+		</div>
+				<div id="div-comment-810" class="comment-content">
+				<div class="comment-text">
+		<p>wow thanks!! I knew how to do this on windows, but didn&#8217;t know how to do this on my mac. saved me a lot of time! </p>
+<p>thanks again for this post</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-865">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/658893c9a490a09954cbd1d8bcb914f0?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/658893c9a490a09954cbd1d8bcb914f0?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">lichi</cite>			</div>
+			
+			<a href="index.html#comment-865" class="comment-date">
+				<time datetime="2010-02-18T08:34:03+00:00">February 18, 2010</time>			</a>
+		</div>
+				<div id="div-comment-865" class="comment-content">
+				<div class="comment-text">
+		<p>Sweet!!&#8230; thanks..<br />
+And also thanks to Scott for the tip for the short command.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-906">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/374123a6e452edb7ba235f2ce298fc05?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/374123a6e452edb7ba235f2ce298fc05?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.sarahgerman.com/' rel='external nofollow' class='url'>Sarah</a></cite>			</div>
+			
+			<a href="index.html#comment-906" class="comment-date">
+				<time datetime="2010-03-02T09:56:58+00:00">March 2, 2010</time>			</a>
+		</div>
+				<div id="div-comment-906" class="comment-content">
+				<div class="comment-text">
+		<p>Very helpful, I ran into the same issue as Michael, having a database too large to import with phpMyAdmin. After getting a handle on the CLI, phpMyAdmin is a pain to use, so I&#8217;m glad to have come across this workaround for MAMP.</p>
+<p>As for getting to the mySQL command line as lazily as possible, I went this route:</p>
+<p>cd ~<br />
+vi .bash_profile</p>
+<p>Use the vi editor to add this to your profile:</p>
+<p># mysql command line access for mamp<br />
+alias db=&#8221;/Applications/MAMP/Library/bin/mysql -uroot -p&#8221;</p>
+<p>Save your change, quit vi editor, and reload your profile (. ~/.bash_profile). Now you can just type &#8220;db&#8221; and you&#8217;ll be prompted for your MAMP root password.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-909">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/1cadb2757dd3b3288141c88366cf6999?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/1cadb2757dd3b3288141c88366cf6999?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://nicholasblexrud.com/' rel='external nofollow' class='url'>Nicholas Blexrud</a></cite>			</div>
+			
+			<a href="index.html#comment-909" class="comment-date">
+				<time datetime="2010-03-02T15:06:36+00:00">March 2, 2010</time>			</a>
+		</div>
+				<div id="div-comment-909" class="comment-content">
+				<div class="comment-text">
+		<p>Awesome. Just what I needed. Was using myPHPadmin and trying to import a database that was larger than 32mb. Much thanks!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1274">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/7c0e6e0cba4bc312005402d1d1b27b6d?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/7c0e6e0cba4bc312005402d1d1b27b6d?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">ling</cite>			</div>
+			
+			<a href="index.html#comment-1274" class="comment-date">
+				<time datetime="2010-04-22T22:37:10+00:00">April 22, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1274" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks.<br />
+Assuming that a database is already created in phpmyadmin,<br />
+and that the sql file you ant to load is somewhere your mac.</p>
+<p>Here is a 1 line command I use to quickly setup a local environment from a web downloaded sqlfile.</p>
+<p>/Applications/MAMP/Library/bin/mysql -uroot -proot tan -e &#8220;drop database tan;&#8221; &amp;&amp; /Applications/MAMP/Library/bin/mysql -uroot -proot -e &#8220;create database tan;&#8221; &amp;&amp; /Applications/MAMP/Library/bin/mysql -uroot -proot -e &#8220;source /anyFolder/&#8230;/mySqlBackup.sql&#8221; tan</p>
+<p>Hope this helps someone&#8230;</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1329">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/f32af0277c84f1b2291cb3ddf82030cd?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/f32af0277c84f1b2291cb3ddf82030cd?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Chris</cite>			</div>
+			
+			<a href="index.html#comment-1329" class="comment-date">
+				<time datetime="2010-05-15T18:17:35+00:00">May 15, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1329" class="comment-content">
+				<div class="comment-text">
+		<p>Great post. Very useful. </p>
+<p>Thanks.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1491">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/70ed66ca3b42b775ec53b73483e68421?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/70ed66ca3b42b775ec53b73483e68421?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">daffy</cite>			</div>
+			
+			<a href="index.html#comment-1491" class="comment-date">
+				<time datetime="2010-07-02T07:01:17+00:00">July 2, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1491" class="comment-content">
+				<div class="comment-text">
+		<p>if you want to get mysql to work without typing in the full PATH to the mysql executable in the bin directory..<br />
+look at the install docs for mysql..</p>
+<p>you add a symbolic link to the directory where the mysql installation resides.. ie in MAMP</p>
+<p>check out this guys website for configuring mysql for the command line..</p>
+<p>then you can just type<br />
+mysql </p>
+<p>at the command prompt and it works..</p>
+<p><a href="http://www.tonyamoyal.com/2010/04/13/install-mysql-on-mac-os-x-10-6-and-add-startupitem/" rel="nofollow">http://www.tonyamoyal.com/2010/04/13/install-mysql-on-mac-os-x-10-6-and-add-startupitem/</a></p>
+<p>D</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-1494">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-1494" class="comment-date">
+				<time datetime="2010-07-02T17:50:35+00:00">July 2, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1494" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks, I&#8217;ve added a similar step above based on your feedback &#8211; I actually have a local bin dir that I symlink things into on Mac, and then add my local bin to the path. I&#8217;ve included instructions for that, if anyone is interested. See the <a href="#extra" rel="nofollow">extra for experts section</a> for more info.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1766">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/ceb38a8e6fecb196f998a487d6c7e059?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/ceb38a8e6fecb196f998a487d6c7e059?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://polikarpov.org/' rel='external nofollow' class='url'>Ivan</a></cite>			</div>
+			
+			<a href="index.html#comment-1766" class="comment-date">
+				<time datetime="2010-08-25T23:12:03+00:00">August 25, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1766" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks! Very useful!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1788">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/7bef127725cc05320fca2e874b410d67?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/7bef127725cc05320fca2e874b410d67?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://shorelineconsulting.ca/' rel='external nofollow' class='url'>Adam</a></cite>			</div>
+			
+			<a href="index.html#comment-1788" class="comment-date">
+				<time datetime="2010-08-31T04:06:29+00:00">August 31, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1788" class="comment-content">
+				<div class="comment-text">
+		<p>Thank you kindly for the article! Don&#8217;t forget to restart apache afterwards so the path setting gets read. I didn&#8217;t notice this in the tutorial, but maybe could be added to the troubleshooting or steps?<br />
+Thanks again!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2053">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/94a48db6f37a1574240e0e62e4d8d13e?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/94a48db6f37a1574240e0e62e4d8d13e?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.dbfaq.com/' rel='external nofollow' class='url'>DB faq</a></cite>			</div>
+			
+			<a href="index.html#comment-2053" class="comment-date">
+				<time datetime="2011-01-03T19:02:04+00:00">January 3, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2053" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Ashley, </p>
+<p>Thanks so much for the step-by-instructions.<br />
+MySQL is new to me &#8230;added to that recently&#8230; switched to Mac&#8230;was breaking my head on how to use Terminal to access MySQL&#8230;.to create database and upload about 6000 records. Was gathering info from net in bits-n-pieces&#8230;.Thanks again.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2239">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/8d012de0037e89e187efe1760a8b789a?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/8d012de0037e89e187efe1760a8b789a?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://iarmar.com/' rel='external nofollow' class='url'>ibrahim azhar armar</a></cite>			</div>
+			
+			<a href="index.html#comment-2239" class="comment-date">
+				<time datetime="2011-04-04T04:47:36+00:00">April 4, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2239" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Ashley, this proved quite useful for me to get started with CLI, thank you for posting 🙂</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2512">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/ce79d4ccd0542fd6705a103b4658e805?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/ce79d4ccd0542fd6705a103b4658e805?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">David H</cite>			</div>
+			
+			<a href="index.html#comment-2512" class="comment-date">
+				<time datetime="2011-08-12T08:20:48+00:00">August 12, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2512" class="comment-content">
+				<div class="comment-text">
+		<p>2 days ago on my MacPro OS 10.6.8 I uploaded the latest Adobe updates. My Dreamweaver CS4 was also starting to crash. I had to get rid of a Configuration-1 that had formed. No more repeated crashes.</p>
+<p>But I could not get the Dreamweaver connections actions to see databases any more. I reinstalled MAMP after saving the db folder and reinstalling it. Mamp&#8217;s PHP Admin sees databases just fine.</p>
+<p>Navicat Lite which I just installed today sees my mysql databases perfectly and immediately.</p>
+<p>Dreamweaver CS4 fails in every possible way to see the tables.  I have spent two days going from &#8220;solution&#8221; to solution.  I have changed PHP and Mysql ports back and forth between 8888 &amp; 8889 to 80 &amp; 3306, I have done terminal sudo commands to create  a &#8220;symbolic&#8221; link between the mysql socket in MAMP in the Application folder etc. etc.</p>
+<p>But every single connection that I create or try to re-use from days ago fails. No tables seen.</p>
+<p>I have removed connections and started over.  I have all the Dreamweaver site files in the Mamp htdocs folder.  The Dreamweaver site shows that my local and testing server urls are working.</p>
+<p>PHP works fine.  either localhost  or localhost.8888 works, depending on whether I have started MAMP in 80 &amp; 3306  or 8888 &amp; 8889 for apache &amp; mysql.</p>
+<p>I see in the connection files in Dreamweaver that in the MAC folder it says that it is going to use HTTP as the connection method if it detects that it is on a Mac computer.</p>
+<p>In the Navicat Lite download it included a folder with connection scripts for setting up HTTP Tunnel. I put that folder into the MAMP installation to see if I could figure out how to use them.</p>
+<p>But I can&#8217;t find information on how to set up HTTP tunnel.</p>
+<p>At any rate, PHPMyAdmin and Navicat Lite can connect to my mysql databases created inside MAMP.</p>
+<p>I now need ONE solution that FORCES Dreamweaver to use the proper connection string, to go looking for the same socket or data connection method that works by default.</p>
+<p>Only Dreamweaver is too stupid to find it.</p>
+<p>I say this because I have worked with Dreamweaver since the 90&#8217;s on Windows machines. Version after version of Dreamweaver NEVER gets this issue permanently resolved.</p>
+<p>Have you any special knowledge of how to MODIFY Dreamweaver connectivity to see what every other mysql product sees instantly?</p>
+<p>Thank you for something really creative.  I have spent two days reading and trying all the standard resolutions.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2538">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/0e021414673078c342a0c9a16d424767?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/0e021414673078c342a0c9a16d424767?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://felipevolpatto.blogspot.com/' rel='external nofollow' class='url'>Felipe Volpatto</a></cite>			</div>
+			
+			<a href="index.html#comment-2538" class="comment-date">
+				<time datetime="2011-08-20T11:38:18+00:00">August 20, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2538" class="comment-content">
+				<div class="comment-text">
+		<p>Very useful, thank you, Ashley!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2576">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/56394196312b31bccd03f296a479af02?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/56394196312b31bccd03f296a479af02?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Marcus</cite>			</div>
+			
+			<a href="index.html#comment-2576" class="comment-date">
+				<time datetime="2011-09-02T01:22:51+00:00">September 2, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2576" class="comment-content">
+				<div class="comment-text">
+		<p>This was very helpful. Thanks.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2598">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/3bf7b00c7ff58b22cb081ca7ce57bc04?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/3bf7b00c7ff58b22cb081ca7ce57bc04?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Neri</cite>			</div>
+			
+			<a href="index.html#comment-2598" class="comment-date">
+				<time datetime="2011-09-08T05:04:26+00:00">September 8, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2598" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks a lot, very useful.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2673">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/a226bafa0cf0a4bc9986498417dab785?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/a226bafa0cf0a4bc9986498417dab785?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.enjoycreativity.com/' rel='external nofollow' class='url'>David Needham</a></cite>			</div>
+			
+			<a href="index.html#comment-2673" class="comment-date">
+				<time datetime="2011-10-06T12:34:04+00:00">October 6, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2673" class="comment-content">
+				<div class="comment-text">
+		<p>2 years later and still so relevant. Thanks!!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2739">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/3f6a0a6cbec5294346fb5ccd4c0340e9?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/3f6a0a6cbec5294346fb5ccd4c0340e9?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.realchaseadams.com/' rel='external nofollow' class='url'>Chase Adams</a></cite>			</div>
+			
+			<a href="index.html#comment-2739" class="comment-date">
+				<time datetime="2011-11-09T06:21:37+00:00">November 9, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2739" class="comment-content">
+				<div class="comment-text">
+		<p>Great, relevant content. Thanks Ashley!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2782">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/789ff970b2254cebbadf1524a93e8339?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/789ff970b2254cebbadf1524a93e8339?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Jason</cite>			</div>
+			
+			<a href="index.html#comment-2782" class="comment-date">
+				<time datetime="2011-12-04T19:59:00+00:00">December 4, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2782" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks! Very helpful! 🙂</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-3350">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/6ece3ab4e66a7f7360f1ed6cdabfb356?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/6ece3ab4e66a7f7360f1ed6cdabfb356?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Laurent</cite>			</div>
+			
+			<a href="index.html#comment-3350" class="comment-date">
+				<time datetime="2012-03-06T06:29:01+00:00">March 6, 2012</time>			</a>
+		</div>
+				<div id="div-comment-3350" class="comment-content">
+				<div class="comment-text">
+		<p>Hello!</p>
+<p>When I execute the command line, after entering my password I get this message:</p>
+<p>ERROR 2002 (HY000): Can&#8217;t connect to local MySQL server through socket &#8216;/Applications/MAMP/tmp/mysql/mysql.sock&#8217; (2)</p>
+<p>Do you know what happens?</p>
+<p>I run under mac os 10.7.3</p>
+<p>Or do you know any other mysql CLI for Mac?</p>
+<p>Thank you for your kind reply!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-3351">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/6ece3ab4e66a7f7360f1ed6cdabfb356?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/6ece3ab4e66a7f7360f1ed6cdabfb356?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Laurent</cite>			</div>
+			
+			<a href="index.html#comment-3351" class="comment-date">
+				<time datetime="2012-03-06T06:31:28+00:00">March 6, 2012</time>			</a>
+		</div>
+				<div id="div-comment-3351" class="comment-content">
+				<div class="comment-text">
+		<p>Ok forget all about my message, I have the answer.</p>
+<p>Have a nice day!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-3762">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/fc01d82eac493b2e21ecbfe4a8092ca4?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/fc01d82eac493b2e21ecbfe4a8092ca4?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Marcus Goss</cite>			</div>
+			
+			<a href="index.html#comment-3762" class="comment-date">
+				<time datetime="2012-03-19T16:53:23+00:00">March 19, 2012</time>			</a>
+		</div>
+				<div id="div-comment-3762" class="comment-content">
+				<div class="comment-text">
+		<p>Thank you.   I was veering back towards phpMyAdmin until I read this and now have new hope for learning mysql the proper way.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-4368">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/b52cd88cc918bedfea866a618064dfd5?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/b52cd88cc918bedfea866a618064dfd5?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.kindlen.eu/' rel='external nofollow' class='url'>Simon Kindlen</a></cite>			</div>
+			
+			<a href="index.html#comment-4368" class="comment-date">
+				<time datetime="2012-04-07T04:11:37+00:00">April 7, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4368" class="comment-content">
+				<div class="comment-text">
+		<p>Ashley,</p>
+<p>Thanks for this tip.</p>
+<p>Needed to restart the terminal session and worked like a dream.</p>
+<p>Peace,</p>
+<p>Simon</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4406">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/cbc5eeb1708fd2556f1a487d6cebd36b?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/cbc5eeb1708fd2556f1a487d6cebd36b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Matt</cite>			</div>
+			
+			<a href="index.html#comment-4406" class="comment-date">
+				<time datetime="2012-04-07T13:08:24+00:00">April 7, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4406" class="comment-content">
+				<div class="comment-text">
+		<p>You can also go to: </p>
+<p>Applications/MAMP/Library/Bin/</p>
+<p>and then double click on &#8216;mysql&#8217;. It brings it right up. However, as always, TMTOWTDI.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-5015">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/1db65519e6a9255bb95928eab6d12a0a?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/1db65519e6a9255bb95928eab6d12a0a?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">JAumete</cite>			</div>
+			
+			<a href="index.html#comment-5015" class="comment-date">
+				<time datetime="2012-09-21T14:22:10+00:00">September 21, 2012</time>			</a>
+		</div>
+				<div id="div-comment-5015" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks! Usefull!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-5069">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/588165918d9eb84f286aaa9c275abb69?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/588165918d9eb84f286aaa9c275abb69?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">David</cite>			</div>
+			
+			<a href="index.html#comment-5069" class="comment-date">
+				<time datetime="2012-10-24T20:12:38+00:00">October 24, 2012</time>			</a>
+		</div>
+				<div id="div-comment-5069" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks man!  That answer was more helpful than what I was finding on Stack Overflow.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-5153">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/2b56f700e4a1913aa6cd0484cf297cb9?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/2b56f700e4a1913aa6cd0484cf297cb9?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://xn--c1ardeb/' rel='external nofollow' class='url'>Даниил</a></cite>			</div>
+			
+			<a href="index.html#comment-5153" class="comment-date">
+				<time datetime="2012-11-15T04:08:58+00:00">November 15, 2012</time>			</a>
+		</div>
+				<div id="div-comment-5153" class="comment-content">
+				<div class="comment-text">
+		<p>Спасибо,очень помогла статья!)</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-5318">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/156d51a80a8aedd329da9f25458119b0?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/156d51a80a8aedd329da9f25458119b0?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Kiran Biliyawala</cite>			</div>
+			
+			<a href="index.html#comment-5318" class="comment-date">
+				<time datetime="2012-12-24T02:41:58+00:00">December 24, 2012</time>			</a>
+		</div>
+				<div id="div-comment-5318" class="comment-content">
+				<div class="comment-text">
+		<p>thanks a lot..!!<br />
+worked excellently.. 🙂</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-10282">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/f595e47e7e65077a2e13a8c2709b0b49?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/f595e47e7e65077a2e13a8c2709b0b49?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://writenowdesign.com/' rel='external nofollow' class='url'>Pat Fortino</a></cite>			</div>
+			
+			<a href="index.html#comment-10282" class="comment-date">
+				<time datetime="2013-05-29T14:42:39+00:00">May 29, 2013</time>			</a>
+		</div>
+				<div id="div-comment-10282" class="comment-content">
+				<div class="comment-text">
+		<p>Great tutorial. Thanks</p>
+<p>One thing missing on setting up ~/.bash_profile<br />
+After editing the file, you need to source it (reload .bash_profile) before you can use the mysql command or you need to log out and back in.<br />
+To source it, from the command line, enter source ~/.bash_profile</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		</ol><!-- .comment-list -->
+
+				<p class="no-comments">Comments are closed.</p>
+	
+</section><!-- #comments -->
+
+</div><!-- #post-## -->
+
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+		</div><!-- .col-full -->
+	</div><!-- #content -->
+
+	
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="col-full">
+
+					<div class="site-info">
+			&copy; ASchroder.com 2023						<br /> Storefront designed by <a href="http://www.woocommerce.com/" title="WooCommerce - The Best eCommerce Platform for WordPress" rel="author">WooCommerce</a>.					</div><!-- .site-info -->
+		
+		</div><!-- .col-full -->
+	</footer><!-- #colophon -->
+
+	
+</div><!-- #page -->
+
+<link rel='stylesheet' id='yarppRelatedCss-css'  href='../../../../wp-content/plugins/yet-another-related-posts-plugin/style/related101e.css?ver=4.8.15' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../wp-content/plugins/wp-syntax/js/wp-syntax4963.js?ver=1.1'></script>
+<script type='text/javascript' src='../../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/navigation.min11a8.js?ver=20120206'></script>
+<script type='text/javascript' src='../../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/skip-link-focus-fix.min08e0.js?ver=20130115'></script>
+<script type='text/javascript' src='../../../../../cdn.aschroder.com/wp-includes/js/wp-embed.min101e.js?ver=4.8.15'></script>
+
+</body>
+
+<!-- Mirrored from www.aschroder.com/2009/03/how-to-use-the-mamp-mysql-command-line-client-in-a-terminal/comment-page-1/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:33:15 GMT -->
+</html>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:22:01 by W3 Total Cache -->

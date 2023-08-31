@@ -1,0 +1,950 @@
+<!doctype html>
+<html lang="en-US">
+
+<!-- Mirrored from www.aschroder.com/2010/07/why-are-my-magento-products-not-showing-up/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:31:04 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="../../../xmlrpc.php">
+
+<title>Why are my Magento products not showing up? | ASchroder.com</title>
+
+<!-- All in One SEO Pack 2.4.2 by Michael Torbert of Semper Fi Web Design[289,362] -->
+<meta name="description"  content="I got caught out with a weird issue where Magento products in a category just disappeared - existed if you navigated to their URL, but not shown in categories." />
+
+<meta name="keywords"  content="magento products,not displaying,troubleshooting" />
+
+<!-- /all in one seo pack -->
+<link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
+<link rel='dns-prefetch' href='http://s.w.org/' />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Feed" href="../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Comments Feed" href="../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Why are my Magento products not showing up?! Comments Feed" href="feed/index.html" />
+<!-- This site uses the Google Analytics by MonsterInsights plugin v6.2.4 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+<script type="text/javascript" data-cfasync="false">
+		var disableStr = 'ga-disable-UA-6477134-1';
+
+	/* Function to detect opted out users */
+	function __gaTrackerIsOptedOut() {
+		return document.cookie.indexOf(disableStr + '=true') > -1;
+	}
+
+	/* Disable tracking if the opt-out cookie exists. */
+	if ( __gaTrackerIsOptedOut() ) {
+		window[disableStr] = true;
+	}
+
+	/* Opt-out function */
+	function __gaTrackerOptout() {
+	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+	  window[disableStr] = true;
+	}
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','http://www.google-analytics.com/analytics.js','__gaTracker');
+
+	__gaTracker('create', 'UA-6477134-1', 'auto');
+	__gaTracker('set', 'forceSSL', true);
+	__gaTracker('send','pageview');
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/www.aschroder.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.15"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='yarppWidgetCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/widget101e.css?ver=4.8.15' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-syntax-css-css'  href='../../../wp-content/plugins/wp-syntax/css/wp-syntax4963.css?ver=1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-style-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/style5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<style id='storefront-style-inline-css' type='text/css'>
+
+			.main-navigation ul li a,
+			.site-title a,
+			ul.menu li a,
+			.site-branding h1 a,
+			.site-footer .storefront-handheld-footer-bar a:not(.button),
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				color: #333333;
+			}
+
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				border-color: #333333;
+			}
+
+			.main-navigation ul li a:hover,
+			.main-navigation ul li:hover > a,
+			.site-title a:hover,
+			a.cart-contents:hover,
+			.site-header-cart .widget_shopping_cart a:hover,
+			.site-header-cart:hover > li > a,
+			.site-header ul.menu li.current-menu-item > a {
+				color: #838383;
+			}
+
+			table th {
+				background-color: #f8f8f8;
+			}
+
+			table tbody td {
+				background-color: #fdfdfd;
+			}
+
+			table tbody tr:nth-child(2n) td,
+			fieldset,
+			fieldset legend {
+				background-color: #fbfbfb;
+			}
+
+			.site-header,
+			.secondary-navigation ul ul,
+			.main-navigation ul.menu > li.menu-item-has-children:after,
+			.secondary-navigation ul.menu ul,
+			.storefront-handheld-footer-bar,
+			.storefront-handheld-footer-bar ul li > a,
+			.storefront-handheld-footer-bar ul li.search .site-search,
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				background-color: #ffffff;
+			}
+
+			p.site-description,
+			.site-header,
+			.storefront-handheld-footer-bar {
+				color: #6d6d6d;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count,
+			button.menu-toggle:after,
+			button.menu-toggle:before,
+			button.menu-toggle span:before {
+				background-color: #333333;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				color: #ffffff;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				border-color: #ffffff;
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+				color: #333333;
+			}
+
+			.widget h1 {
+				border-bottom-color: #333333;
+			}
+
+			body,
+			.secondary-navigation a,
+			.onsale,
+			.pagination .page-numbers li .page-numbers:not(.current), .woocommerce-pagination .page-numbers li .page-numbers:not(.current) {
+				color: #6d6d6d;
+			}
+
+			.widget-area .widget a,
+			.hentry .entry-header .posted-on a,
+			.hentry .entry-header .byline a {
+				color: #9f9f9f;
+			}
+
+			a  {
+				color: #0228d1;
+			}
+
+			a:focus,
+			.button:focus,
+			.button.alt:focus,
+			.button.added_to_cart:focus,
+			.button.wc-forward:focus,
+			button:focus,
+			input[type="button"]:focus,
+			input[type="reset"]:focus,
+			input[type="submit"]:focus {
+				outline-color: #0228d1;
+			}
+
+			button, input[type="button"], input[type="reset"], input[type="submit"], .button, .added_to_cart, .widget a.button, .site-header-cart .widget_shopping_cart a.button {
+				background-color: #eeeeee;
+				border-color: #eeeeee;
+				color: #333333;
+			}
+
+			button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, .button:hover, .added_to_cart:hover, .widget a.button:hover, .site-header-cart .widget_shopping_cart a.button:hover {
+				background-color: #d5d5d5;
+				border-color: #d5d5d5;
+				color: #333333;
+			}
+
+			button.alt, input[type="button"].alt, input[type="reset"].alt, input[type="submit"].alt, .button.alt, .added_to_cart.alt, .widget-area .widget a.button.alt, .added_to_cart, .widget a.button.checkout {
+				background-color: #333333;
+				border-color: #333333;
+				color: #ffffff;
+			}
+
+			button.alt:hover, input[type="button"].alt:hover, input[type="reset"].alt:hover, input[type="submit"].alt:hover, .button.alt:hover, .added_to_cart.alt:hover, .widget-area .widget a.button.alt:hover, .added_to_cart:hover, .widget a.button.checkout:hover {
+				background-color: #1a1a1a;
+				border-color: #1a1a1a;
+				color: #ffffff;
+			}
+
+			.pagination .page-numbers li .page-numbers.current, .woocommerce-pagination .page-numbers li .page-numbers.current {
+				background-color: #e6e6e6;
+				color: #6d6d6d;
+			}
+
+			#comments .comment-list .comment-content .comment-text {
+				background-color: #f8f8f8;
+			}
+
+			.site-footer {
+				background-color: #f0f0f0;
+				color: #6d6d6d;
+			}
+
+			.site-footer a:not(.button) {
+				color: #333333;
+			}
+
+			.site-footer h1, .site-footer h2, .site-footer h3, .site-footer h4, .site-footer h5, .site-footer h6 {
+				color: #333333;
+			}
+
+			#order_review {
+				background-color: #ffffff;
+			}
+
+			#payment .payment_methods > li .payment_box,
+			#payment .place-order {
+				background-color: #fafafa;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice) {
+				background-color: #f5f5f5;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice):hover {
+				background-color: #f0f0f0;
+			}
+
+			@media screen and ( min-width: 768px ) {
+				.secondary-navigation ul.menu a:hover {
+					color: #868686;
+				}
+
+				.secondary-navigation ul.menu a {
+					color: #6d6d6d;
+				}
+
+				.site-header-cart .widget_shopping_cart,
+				.main-navigation ul.menu ul.sub-menu,
+				.main-navigation ul.nav-menu ul.children {
+					background-color: #f0f0f0;
+				}
+
+				.site-header-cart .widget_shopping_cart .buttons,
+				.site-header-cart .widget_shopping_cart .total {
+					background-color: #f5f5f5;
+				}
+
+				.site-header {
+					border-bottom-color: #f0f0f0;
+				}
+			}
+</style>
+<link rel='stylesheet' id='storefront-icons-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/sass/base/icons5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-fonts-css'  href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,600,700,900&amp;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jqueryb8ff.js?ver=1.12.4'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jquery-migrate.min330a.js?ver=1.4.1'></script>
+<link rel='https://api.w.org/' href='../../../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../xmlrpc0db0.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Structuring your Magento project for Engineering, not Hacking' href='../structuring-your-magento-project-for-engineering-not-hacking/index.html' />
+<link rel='next' title='Easily Set a Custom Order Number in Magento With My Free SetStartOrderNumber Extension' href='../easily-set-a-custom-order-number-in-magento-with-my-free-setstartordernumber-extension/index.html' />
+<meta name="generator" content="WordPress 4.8.15" />
+<link rel="canonical" href="index.html" />
+<link rel='shortlink' href='../../../indexc0cd.html?p=904' />
+<link rel="alternate" type="application/json+oembed" href="../../../wp-json/oembed/1.0/embed99f1.json?url=http%3A%2F%2Fwww.aschroder.com%2F2010%2F07%2Fwhy-are-my-magento-products-not-showing-up%2F" />
+<link rel="alternate" type="text/xml+oembed" href="../../../wp-json/oembed/1.0/embedc628?url=http%3A%2F%2Fwww.aschroder.com%2F2010%2F07%2Fwhy-are-my-magento-products-not-showing-up%2F&amp;format=xml" />
+</head>
+
+<body class="post-template-default single single-post postid-904 single-format-standard no-wc-breadcrumb storefront-full-width-content right-sidebar">
+
+
+<div id="page" class="hfeed site">
+	
+	<header id="masthead" class="site-header" role="banner" style="">
+		<div class="col-full">
+
+					<a class="skip-link screen-reader-text" href="#site-navigation">Skip to navigation</a>
+		<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+				<div class="site-branding">
+			<div class="beta site-title"><a href="../../../index.html" rel="home">ASchroder.com</a></div><p class="site-description">Notes on Web Development</p>		</div>
+		<div class="storefront-primary-navigation">		<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="Primary Navigation">
+		<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><span>Menu</span></button>
+			<div class="primary-navigation"><ul id="menu-main-menu" class="menu"><li id="menu-item-1119" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li id="menu-item-1118" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li id="menu-item-1872" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div><div class="handheld-navigation"><ul id="menu-main-menu-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div>		</nav><!-- #site-navigation -->
+		</div>
+		</div>
+	</header><!-- #masthead -->
+
+	
+	<div id="content" class="site-content" tabindex="-1">
+		<div class="col-full">
+
+		
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+<div id="post-904" class="post-904 post type-post status-publish format-standard hentry category-magento category-web-development tag-magento-products tag-not-displaying tag-troubleshooting">
+
+			<header class="entry-header">
+		<span class="posted-on">Posted on <a href="index.html" rel="bookmark"><time class="entry-date published" datetime="2010-07-14T17:00:40+00:00">July 14, 2010</time> <time class="updated" datetime="2010-07-15T00:21:50+00:00">July 15, 2010</time></a></span><h1 class="entry-title">Why are my Magento products not showing up?!</h1>		</header><!-- .entry-header -->
+				<aside class="entry-meta">
+						<div class="author">
+				<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' /><div class="label">Written by</div><a href="../../../author/admin/index.html" title="Posts by Ashley" rel="author">Ashley</a>			</div>
+							<div class="cat-links">
+					<div class="label">Posted in</div><a href="../../../category/magento/index.html" rel="category tag">Magento</a>, <a href="../../../category/web-development/index.html" rel="category tag">Web Development</a>				</div>
+			
+							<div class="tags-links">
+					<div class="label">Tagged</div><a href="../../../tag/magento-products/index.html" rel="tag">magento products</a>, <a href="../../../tag/not-displaying/index.html" rel="tag">not displaying</a>, <a href="../../../tag/troubleshooting/index.html" rel="tag">troubleshooting</a>				</div>
+			
+		
+							<div class="comments-link">
+					<div class="label">Comments</div>					<span class="comments-link"><a href="index.html#comments">126 Comments</a></span>
+				</div>
+					</aside>
+				<div class="entry-content">
+		<p>This is a just a quickie &#8211; got caught out with a weird issue yesterday where the Magento products in a particular category just disappeared &#8211; they still existed if you navigated directly to their URL, but they would not show in their categories (though the Manage Categories screen in the Magento admin still showed those products <em>in</em> their correct category).</p>
+<p>These things <strong>always</strong> happen at inopportune times, I was right about to start a pre-go-live review of a site, and was left with one category completely devoid of products, <em>thanks for making me look like an egg, Magento</em>!<br />
+<span id="more-904"></span><br />
+It prompted me to begin a sequence of steps I have found myself often taking to diagnose why products do not appear on the Magento frontend like I expect them to. I thought it might be worth documenting those steps I take and things I check to find out what is preventing a product to show up. Ironically yesterday, I got to the end of my usual list and the products <em>still</em> didn&#8217;t show up! So I now have one other thing to suggest you try when products appear to inexplicably stop displaying. </p>
+<p>Here we go with my top things to check for when your products don&#8217;t show up:</p>
+<p><strong>Are the products In Stock?</strong><br />
+I know it sounds obvious but when you&#8217;re adding a quick test product, it&#8217;s easy to miss this field, trust me. Make sure it&#8217;s set to In Stock as shown below:</p>
+<p><a href="../../../../cdn.aschroder.com/wp-content/uploads/2010/07/instock.png"><img src="../../../../cdn.aschroder.com/wp-content/uploads/2010/07/instock.png" alt="Product in stock" title="Product in stock" width="589" height="50" class="aligncenter size-full wp-image-914" srcset="http://cdn.aschroder.com/wp-content/uploads/2010/07/instock.png 589w, http://cdn.aschroder.com/wp-content/uploads/2010/07/instock-300x25.png 300w" sizes="(max-width: 589px) 100vw, 589px" /></a></p>
+<p>You can also set up the inventory configuration to <em>Display out of stock products</em>, which sort of negates this one if it is set to Yes:</p>
+<p><a href="../../../../cdn.aschroder.com/wp-content/uploads/2010/07/config-inventory.png"><img src="../../../../cdn.aschroder.com/wp-content/uploads/2010/07/config-inventory.png" alt="Confugure inventory to show out of stock" title="Confugure inventory to show out of stock" width="556"  class="aligncenter size-full wp-image-911" srcset="http://cdn.aschroder.com/wp-content/uploads/2010/07/config-inventory.png 656w, http://cdn.aschroder.com/wp-content/uploads/2010/07/config-inventory-300x104.png 300w" sizes="(max-width: 656px) 100vw, 656px" /></a></p>
+<p><strong>Are the products Enabled?</strong></p>
+<p>Again another easy one to miss when adding a product manually, not so easy to stuff up if you use bulk product imports though. Interestingly the fix I eventually found below involved this attribute.</p>
+<p><a href="../../../../cdn.aschroder.com/wp-content/uploads/2010/07/status.png"><img src="../../../../cdn.aschroder.com/wp-content/uploads/2010/07/status.png" alt="Enabled status" title="Enabled status" width="536" height="46" class="aligncenter size-full wp-image-916" srcset="http://cdn.aschroder.com/wp-content/uploads/2010/07/status.png 536w, http://cdn.aschroder.com/wp-content/uploads/2010/07/status-300x25.png 300w" sizes="(max-width: 536px) 100vw, 536px" /></a></p>
+<p><strong>Are the products Visible?</strong></p>
+<p>In some merchandising situations you want your simple products to be invisible and only show the parent products. However if you do want your product to be visible make sure you set it where applicable in this field.</p>
+<p><a href="../../../../cdn.aschroder.com/wp-content/uploads/2010/07/visibility.png"><img src="../../../../cdn.aschroder.com/wp-content/uploads/2010/07/visibility.png" alt="Check the visibility" title="Check the visibility" width="505" height="40" class="aligncenter size-full wp-image-915" srcset="http://cdn.aschroder.com/wp-content/uploads/2010/07/visibility.png 505w, http://cdn.aschroder.com/wp-content/uploads/2010/07/visibility-300x23.png 300w, http://cdn.aschroder.com/wp-content/uploads/2010/07/visibility-500x40.png 500w" sizes="(max-width: 505px) 100vw, 505px" /></a></p>
+<p><strong>Are any associated products in stock? </strong></p>
+<p>If you have a complex product like a bundled or configurable product, at least one of the simple products that comprise it must be in stock and enabled (almost a bit of a recursion on this list, eh?!). A well behaved configurable will have an associated products tab that looks a bit like this:</p>
+<p><a href="../../../../cdn.aschroder.com/wp-content/uploads/2010/07/associated-products.png"><img src="../../../../cdn.aschroder.com/wp-content/uploads/2010/07/associated-products.png" alt="Check Associated Products" title="Check Associated Products" width="550" class="aligncenter size-full wp-image-913" srcset="http://cdn.aschroder.com/wp-content/uploads/2010/07/associated-products.png 714w, http://cdn.aschroder.com/wp-content/uploads/2010/07/associated-products-300x163.png 300w" sizes="(max-width: 714px) 100vw, 714px" /></a></p>
+<p><strong>Are the products in the expected category?</strong></p>
+<p>More of a sanity check than anything, but the individual product should be reporting it belongs to the correct category like this:</p>
+<p><a href="../../../../cdn.aschroder.com/wp-content/uploads/2010/07/expected-category.png"><img src="../../../../cdn.aschroder.com/wp-content/uploads/2010/07/expected-category.png" alt="Expected Category" title="Expected Category" width="245" height="221" class="aligncenter size-full wp-image-912" /></a></p>
+<p><strong>Are your Caches and Indexes out of date?</strong><br />
+It never hurts to clear/reindex these when you&#8217;re scratching your head, it&#8217;s getting pretty desperate if you&#8217;re still with me to here!</p>
+<p>Access these options in the System -> Cache Management and System -> Index Management menus.</p>
+<p><a href="../../../../cdn.aschroder.com/wp-content/uploads/2010/07/caches.png"><img src="../../../../cdn.aschroder.com/wp-content/uploads/2010/07/caches.png" alt="Clear your Cache" title="Clear your Cache" width="393" height="54" class="aligncenter size-full wp-image-910" srcset="http://cdn.aschroder.com/wp-content/uploads/2010/07/caches.png 393w, http://cdn.aschroder.com/wp-content/uploads/2010/07/caches-300x41.png 300w" sizes="(max-width: 393px) 100vw, 393px" /></a></p>
+<p><a href="../../../../cdn.aschroder.com/wp-content/uploads/2010/07/indexes.png"><img src="../../../../cdn.aschroder.com/wp-content/uploads/2010/07/indexes.png" alt="Reindex" title="Reindex" width="261" height="288" class="aligncenter size-full wp-image-909" /></a></p>
+<p><strong>Have you run out of other things to try?</strong><br />
+And lastly &#8211; the weird situation I had yesterday where the products were visible when navigating directly, but not when looking at their category page (and oddly it only affected one category). I suspect this must be to do with an index table not being correct, or a cache, but I tried re-indexing and refreshing the cache to no avail, so I can&#8217;t pin it on this for sure.</p>
+<p>Anyway, all it took to have the products re-associate with their category was to bulk disable them and then bulk re-enable them. Strange eh? I had tested a bulk attribute change earlier and that didn&#8217;t fix them, so it wasn&#8217;t just any attribute change, but particularly the status. I just wish I knew <em>why</em> that fixed them &#8211; but I didn&#8217;t have time to investigate further, or even try to replicate the issue. So for now It&#8217;s a &#8216;solar flare&#8217; problem&#8230;</p>
+<p>Got through all of these and still no luck? Let me know. Also I&#8217;d appreciate any feedback on other tips or suggestions people may have on this, always good to add another possible fix to my list. </p>
+<div class='yarpp-related'>
+<p>You might also be interested in:<ol>
+<li><a href="../../../2009/03/top-3-solutions-when-your-magento-categories-are-not-displaying/index.html" rel="bookmark" title="Top 3 Solutions when your Magento Categories are not displaying">Top 3 Solutions when your Magento Categories are not displaying </a></li>
+<li><a href="../../../2009/01/magento-full-text-search-fails-after-upgrading-from-earlier-versions/index.html" rel="bookmark" title="Magento 1.2.0.1 Full Text Search fails after upgrading from earlier versions">Magento 1.2.0.1 Full Text Search fails after upgrading from earlier versions </a></li>
+<li><a href="../../../2009/10/3-easy-steps-to-add-products-to-the-magento-home-page-or-any-cms-page/index.html" rel="bookmark" title="3 easy steps to add products to the Magento Home Page (or any CMS page)">3 easy steps to add products to the Magento Home Page (or any CMS page) </a></li>
+<li><a href="../../../2009/04/how-to-bulk-enable-products-when-google-checkout-is-disabled-in-magento/index.html" rel="bookmark" title="How to Bulk Enable Products when Google Checkout is Disabled in Magento">How to Bulk Enable Products when Google Checkout is Disabled in Magento </a></li>
+<li><a href="../../10/magento-product-audit-extension-monitor-and-record-changes-to-your-products/index.html" rel="bookmark" title="Magento Product Audit Extension &#8211; Monitor and Record Changes to your Products">Magento Product Audit Extension &#8211; Monitor and Record Changes to your Products </a></li>
+</ol></p>
+</div>
+		</div><!-- .entry-content -->
+		<nav id="post-navigation" class="navigation post-navigation" role="navigation" aria-label="Post Navigation"><span class="screen-reader-text">Post navigation</span><div class="nav-links"><div class="nav-previous"><a href="../structuring-your-magento-project-for-engineering-not-hacking/index.html" rel="prev">Structuring your Magento project for Engineering, not Hacking</a></div><div class="nav-next"><a href="../easily-set-a-custom-order-number-in-magento-with-my-free-setstartordernumber-extension/index.html" rel="next">Easily Set a Custom Order Number in Magento With My Free SetStartOrderNumber Extension</a></div></div></nav>
+<section id="comments" class="comments-area" aria-label="Post Comments">
+
+			<h2 class="comments-title">
+			126 thoughts on &ldquo;<span>Why are my Magento products not showing up?!</span>&rdquo;		</h2>
+
+				<nav id="comment-nav-above" class="comment-navigation" role="navigation" aria-label="Comment Navigation Above">
+			<span class="screen-reader-text">Comment navigation</span>
+			<div class="nav-previous"><a href="comment-page-2/index.html#comments" >&larr; Older Comments</a></div>
+			<div class="nav-next"></div>
+		</nav><!-- #comment-nav-above -->
+		
+		<ol class="comment-list">
+					<li class="comment even thread-even depth-1" id="comment-7179">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/6a9ffd07a1c0aeb88c2271565a85912a?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/6a9ffd07a1c0aeb88c2271565a85912a?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Max</cite>			</div>
+			
+			<a href="comment-page-3/index.html#comment-7179" class="comment-date">
+				<time datetime="2013-01-15T07:07:32+00:00">January 15, 2013</time>			</a>
+		</div>
+				<div id="div-comment-7179" class="comment-content">
+				<div class="comment-text">
+		<p>thx, it solved my problem. manage product -&gt; product -&gt; inventory -&gt; Stock Availability -&gt; In Stock</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-7237">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/8330d38caad83e82478dbf84dcec1394?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/8330d38caad83e82478dbf84dcec1394?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Stefan</cite>			</div>
+			
+			<a href="comment-page-3/index.html#comment-7237" class="comment-date">
+				<time datetime="2013-01-16T00:51:27+00:00">January 16, 2013</time>			</a>
+		</div>
+				<div id="div-comment-7237" class="comment-content">
+				<div class="comment-text">
+		<p>Had the same problem but only the newly added configurable products won&#8217;t show, doesn&#8217;t matter which attributset they&#8217;re using, if they&#8217;re copies of existing ones (status set to active, in stock, everything checked).<br />
+Even the bulk re-enable didn&#8217;t work, if I go to the url of the configurable product it shows up, the simple products work without a problem&#8230;</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-7904">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/7280c6dab8277367eafad0c6f4a5aa5b?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/7280c6dab8277367eafad0c6f4a5aa5b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">kimberly</cite>			</div>
+			
+			<a href="comment-page-3/index.html#comment-7904" class="comment-date">
+				<time datetime="2013-01-20T09:10:11+00:00">January 20, 2013</time>			</a>
+		</div>
+				<div id="div-comment-7904" class="comment-content">
+				<div class="comment-text">
+		<p>I am having the same issue &#8211; It happens overnight and has happened twice this week. No products show. But then I bulk disable, then enable and they show? Anyone find out why this is happening?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-7944">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/5eef746e0042392828d7278500f0f132?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/5eef746e0042392828d7278500f0f132?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://istockphp.com/' rel='external nofollow' class='url'>Kea</a></cite>			</div>
+			
+			<a href="comment-page-3/index.html#comment-7944" class="comment-date">
+				<time datetime="2013-01-20T16:17:14+00:00">January 20, 2013</time>			</a>
+		</div>
+				<div id="div-comment-7944" class="comment-content">
+				<div class="comment-text">
+		<p>i test the search product, but not showing up, i re index the data, now its showing up. thanks.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-8611">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/a717eb3d58e6659053d2e32a6fd4592e?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/a717eb3d58e6659053d2e32a6fd4592e?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Swati Lohiya</cite>			</div>
+			
+			<a href="comment-page-3/index.html#comment-8611" class="comment-date">
+				<time datetime="2013-01-24T00:48:36+00:00">January 24, 2013</time>			</a>
+		</div>
+				<div id="div-comment-8611" class="comment-content">
+				<div class="comment-text">
+		<p>Hey Thanks&#8230;.</p>
+<p>Even my products were not showing up at the front end&#8230;but your solution really worked out for me.<br />
+Thanks for such a great explaination:)</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-9366">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/c74e02effe1fd77fd67975fb8953cfdb?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/c74e02effe1fd77fd67975fb8953cfdb?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.blairgeddes.co.uk/' rel='external nofollow' class='url'>Blair Geddes</a></cite>			</div>
+			
+			<a href="comment-page-3/index.html#comment-9366" class="comment-date">
+				<time datetime="2013-01-30T08:22:33+00:00">January 30, 2013</time>			</a>
+		</div>
+				<div id="div-comment-9366" class="comment-content">
+				<div class="comment-text">
+		<p>Good article, have tried all of the above though, and still not showing. Have had products showing fine for around 7 months now. Performed server move around a week ago, products showing fine yesterday, around 48,000 in total, today we have 0 showing in categories. All of the products are still there, and showing at the specific product url. But all categories are empty. Categories still showing the products within them in backend. Any ideas on how to resolve would be greatly appreciated. The store is <a href="http://www.galaxystores.co.uk/" rel="nofollow">http://www.galaxystores.co.uk</a> if you want to view the issue. Thanks.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-9487">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/9a259144c3e786fb0b4dd8b82e64b438?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/9a259144c3e786fb0b4dd8b82e64b438?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://codefight.org/' rel='external nofollow' class='url'>Damu</a></cite>			</div>
+			
+			<a href="comment-page-3/index.html#comment-9487" class="comment-date">
+				<time datetime="2013-01-30T22:18:04+00:00">January 30, 2013</time>			</a>
+		</div>
+				<div id="div-comment-9487" class="comment-content">
+				<div class="comment-text">
+		<p>We have manage stock set to NO and status is enabled, visibility set to catalog/search.</p>
+<p>Product stopped showing after product name was changed. deleted core rewrite data, deleted product key and resaved, reindexed but nothing helps 🙁</p>
+<p>any help would be appreciated.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-9664">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/c74e02effe1fd77fd67975fb8953cfdb?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/c74e02effe1fd77fd67975fb8953cfdb?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.blairgeddes.co.uk/' rel='external nofollow' class='url'>Blair Geddes</a></cite>			</div>
+			
+			<a href="comment-page-3/index.html#comment-9664" class="comment-date">
+				<time datetime="2013-02-01T09:59:31+00:00">February 1, 2013</time>			</a>
+		</div>
+				<div id="div-comment-9664" class="comment-content">
+				<div class="comment-text">
+		<p>Most annoyingly I have fixed my products showing in categories, but broken the products displaying at their rewritten url. Fixed products in categories using the magento database repair tool. I &#8220;think&#8221; it was down to corrupt indexes in the table that relates to products being stored in set categories. Anyone any ideas on why products might now not be showing? Have refreshed indexes etc, and tried the full list of concepts online in forums for how to get products displaying. Currently just presenting a 404 page on any product url. Categories and CMS pages display fine. Search also working fine. Most puzzling!!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-9678">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/0a82bb3393d04f0f581a8a55d1347671?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/0a82bb3393d04f0f581a8a55d1347671?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Syed Asghar Abbas</cite>			</div>
+			
+			<a href="comment-page-3/index.html#comment-9678" class="comment-date">
+				<time datetime="2013-02-07T10:42:52+00:00">February 7, 2013</time>			</a>
+		</div>
+				<div id="div-comment-9678" class="comment-content">
+				<div class="comment-text">
+		<p>if the above options are not working add the below code in your home page design</p>
+<p>CMS &gt; Page &gt; home page,   and then open the Design option and paste these code and save then refresh the frontend page.  your product will be showing..</p>
+<p>enjoye..</p>
+<p>bundlebundle/catalog_product_pricebundle/catalog/product/price.phtml<br />
+bundlebundle/catalog_product_pricebundle/catalog/product/price.phtml<br />
+bundlebundle/catalog_product_pricebundle/catalog/product/price.phtml</p>
+<p>right.reports.product.viewed<br />
+right.reports.product.compared</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-9679">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/0a82bb3393d04f0f581a8a55d1347671?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/0a82bb3393d04f0f581a8a55d1347671?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Syed Asghar Abbas</cite>			</div>
+			
+			<a href="comment-page-3/index.html#comment-9679" class="comment-date">
+				<time datetime="2013-02-07T10:44:29+00:00">February 7, 2013</time>			</a>
+		</div>
+				<div id="div-comment-9679" class="comment-content">
+				<div class="comment-text">
+		<p>bundlebundle/catalog_product_pricebundle/catalog/product/price.phtml<br />
+bundlebundle/catalog_product_pricebundle/catalog/product/price.phtml<br />
+bundlebundle/catalog_product_pricebundle/catalog/product/price.phtml</p>
+<p>right.reports.product.viewed<br />
+right.reports.product.compared</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-9682">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/ccb8ca95b69cda0f1183a4d4c1c118d2?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/ccb8ca95b69cda0f1183a4d4c1c118d2?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Psy</cite>			</div>
+			
+			<a href="comment-page-3/index.html#comment-9682" class="comment-date">
+				<time datetime="2013-02-09T16:44:09+00:00">February 9, 2013</time>			</a>
+		</div>
+				<div id="div-comment-9682" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks for your help with this &#8211; although none of the ideas here helped me.  Im on magento 1.7.0.2.  I have recently set up a second website/store running from the same backend. </p>
+<p>My problem was that some of the products seemed to go into the category on the second site without a problem, others would no show up at all either through URL, Category or search.  Others would show up in search and URL, but not category.  </p>
+<p>As most seasoned magento users would know.  If you change from the default store view to another view (under product management) &#8211;  Usually you will find all text entry boxes and options are greyed out &#8211; with a checkbox next to each one allowing you to  &#8220;use default value / config&#8221;. In my case, when switching store views on the offending products, I noticed none of these &#8220;use default values&#8221; were checked.  One would think &#8211; &#8220;Thats not a problem &#8211; the settings are fine&#8221; &#8211; but in actual fact, it is a problem.  After I went through and checked all the &#8220;use default value&#8221; options &#8211; everything started to come back to life.  -Products displaying in categories and search without issue.</p>
+<p>Again i must stress &#8211; I did this AFTER changing to &#8220;Second Website &gt; Second Store &gt; English&#8221; &#8211; If you know what I mean.</p>
+<p>I have a feeling this will affect every single product which was created BEFORE I created the new secondary store.  Changing them all will be a very laborious task.  &#8211; YAY. </p>
+<p>Hope this helps someone.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-9688">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/3853e80da2426698830c6cfaf0c50477?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/3853e80da2426698830c6cfaf0c50477?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.turrifftyres.co.uk/' rel='external nofollow' class='url'>Krys</a></cite>			</div>
+			
+			<a href="comment-page-3/index.html#comment-9688" class="comment-date">
+				<time datetime="2013-02-11T12:17:08+00:00">February 11, 2013</time>			</a>
+		</div>
+				<div id="div-comment-9688" class="comment-content">
+				<div class="comment-text">
+		<p>In my case category disappearing from product just 2000 products keeping kategory nothing helping</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-9694">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/6f0b379051d2d63f645d5dcf5b66a144?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/6f0b379051d2d63f645d5dcf5b66a144?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Shikhzz</cite>			</div>
+			
+			<a href="comment-page-3/index.html#comment-9694" class="comment-date">
+				<time datetime="2013-02-15T10:16:19+00:00">February 15, 2013</time>			</a>
+		</div>
+				<div id="div-comment-9694" class="comment-content">
+				<div class="comment-text">
+		<p>I had same problem and after trying a lot as what went wrong&#8230;I finally realized its a minor tab..<br />
+Tried this and my product showed up..<br />
+Catlog&gt; Manage product&gt; website&gt; tick the checkbox<br />
+I had missed that one&#8230;</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-9695">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/6f0b379051d2d63f645d5dcf5b66a144?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/6f0b379051d2d63f645d5dcf5b66a144?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Shikhzz</cite>			</div>
+			
+			<a href="comment-page-3/index.html#comment-9695" class="comment-date">
+				<time datetime="2013-02-15T10:19:08+00:00">February 15, 2013</time>			</a>
+		</div>
+				<div id="div-comment-9695" class="comment-content">
+				<div class="comment-text">
+		<p>I had same problem and after trying a lot as what went wrong…I finally realized its a minor tab..<br />
+Tried this and my product showed up..<br />
+Catlog&gt; Manage product&gt; website&gt; tick the checkbox &gt; save&gt; cache management&gt; resfresh cache (Blocks HTML output)<br />
+I had missed that one…</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-9767">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/87a348560d239cb789e193c66068122c?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/87a348560d239cb789e193c66068122c?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">aditi</cite>			</div>
+			
+			<a href="comment-page-3/index.html#comment-9767" class="comment-date">
+				<time datetime="2013-03-06T22:44:28+00:00">March 6, 2013</time>			</a>
+		</div>
+				<div id="div-comment-9767" class="comment-content">
+				<div class="comment-text">
+		<p>thanx so much&#8230;</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-9884">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/63b144bff769c44775001b57d09bd5ec?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/63b144bff769c44775001b57d09bd5ec?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.mkgd.net/' rel='external nofollow' class='url'>Michelle</a></cite>			</div>
+			
+			<a href="comment-page-3/index.html#comment-9884" class="comment-date">
+				<time datetime="2013-03-20T20:59:59+00:00">March 20, 2013</time>			</a>
+		</div>
+				<div id="div-comment-9884" class="comment-content">
+				<div class="comment-text">
+		<p>I&#8217;ve been banging my head against the wall over this for days!<br />
+I tried all of the above and then came across this stack overflow answer <a href="http://stackoverflow.com/questions/10297359/magento-1-5-0-1-configurable-products-attributes-not-showing-in-front-end" rel="nofollow">http://stackoverflow.com/questions/10297359/magento-1-5-0-1-configurable-products-attributes-not-showing-in-front-end</a> . I removed the additional jQuery from my js folder, which I&#8217;d added a few days ago and BAM! it works but my jQuery stuff didn&#8217;t. The offender is Prototype (part of scriptalicious).<br />
+Here&#8217;s how to get magento to play with jQuery<br />
+<a href="http://css-tricks.com/using-jquery-in-magneto/" rel="nofollow">http://css-tricks.com/using-jquery-in-magneto/</a></p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-9903">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/c0acb7fbaedd727edd994fa9087bf7c9?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/c0acb7fbaedd727edd994fa9087bf7c9?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://makegoodmedia.ca/' rel='external nofollow' class='url'>Steve</a></cite>			</div>
+			
+			<a href="comment-page-3/index.html#comment-9903" class="comment-date">
+				<time datetime="2013-03-27T14:45:33+00:00">March 27, 2013</time>			</a>
+		</div>
+				<div id="div-comment-9903" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Folks, Got the same issue happening to a site we just launched. Mr Google doesn&#8217;t return a solution this time and all my efforts to retrace the bug are in vain. apart from knowing the client was editing the category descriptions. </p>
+<p>I will keep you all posted if a solution comes to mind. otherwise for now if anyone knows why some products (configurable + simple products) disappear from a category let me know</p>
+<p>Cheers!<br />
+Steve</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-9915">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/05508f57d1c9b74771b11d12623f7cf3?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/05508f57d1c9b74771b11d12623f7cf3?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Chris</cite>			</div>
+			
+			<a href="comment-page-3/index.html#comment-9915" class="comment-date">
+				<time datetime="2013-03-28T16:47:09+00:00">March 28, 2013</time>			</a>
+		</div>
+				<div id="div-comment-9915" class="comment-content">
+				<div class="comment-text">
+		<p>I had the same problem for awhile i followed your steps and they didnt seem to work, so i started again this time i noticed that on the home page in cms the layout update xml was commented out and this was a fresh install of magento, soon as i uncommented the code in the layout update xml section the products were showing up as well as recently viewed products</p>
+<p>Hope this will help others with the same problem</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-10047">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/70ee9c5c4f649e99d7d76389b79be894?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/70ee9c5c4f649e99d7d76389b79be894?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://notliveyet/' rel='external nofollow' class='url'>Peter Evans</a></cite>			</div>
+			
+			<a href="comment-page-3/index.html#comment-10047" class="comment-date">
+				<time datetime="2013-04-11T03:11:02+00:00">April 11, 2013</time>			</a>
+		</div>
+				<div id="div-comment-10047" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks so much, you solved my problem.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-10086">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/1a44929b9625f2410704b805b442effd?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/1a44929b9625f2410704b805b442effd?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Fahim</cite>			</div>
+			
+			<a href="comment-page-3/index.html#comment-10086" class="comment-date">
+				<time datetime="2013-04-18T03:39:51+00:00">April 18, 2013</time>			</a>
+		</div>
+				<div id="div-comment-10086" class="comment-content">
+				<div class="comment-text">
+		<p>Great, it helped me 🙂</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-10113">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/fc56344a30def55b388963fcc3091c01?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/fc56344a30def55b388963fcc3091c01?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Roger</cite>			</div>
+			
+			<a href="comment-page-3/index.html#comment-10113" class="comment-date">
+				<time datetime="2013-04-22T04:36:56+00:00">April 22, 2013</time>			</a>
+		</div>
+				<div id="div-comment-10113" class="comment-content">
+				<div class="comment-text">
+		<p>See <a href="http://stackoverflow.com/questions/14966117/magento-wont-show-all-products-on-homepage" rel="nofollow">http://stackoverflow.com/questions/14966117/magento-wont-show-all-products-on-homepage</a> as well. I&#8217;ve had this problem, where I used different code that didn&#8217;t show all products. This code showed all. </p>
+<p>{{block type=&#8221;catalog/product_list&#8221; name=&#8221;home.catalog.product.list&#8221; alias=&#8221;products_homepage&#8221; template=&#8221;catalog/product/list.phtml&#8221;}}</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-10307">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/bdabc95a69a702660f7ba9286ce6711c?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/bdabc95a69a702660f7ba9286ce6711c?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.neturja.com/' rel='external nofollow' class='url'>Neturja</a></cite>			</div>
+			
+			<a href="comment-page-3/index.html#comment-10307" class="comment-date">
+				<time datetime="2013-06-08T02:57:49+00:00">June 8, 2013</time>			</a>
+		</div>
+				<div id="div-comment-10307" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks Ashley..scratched my head for 3 hours. finally your post solved this issue. Wish Magento team put such important parameters (Stock) in a highlighted manner in the configuration window to make them more visible</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-10350">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/8271065388c3764fe3b098d623c3b075?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/8271065388c3764fe3b098d623c3b075?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://lovewithbug.com/' rel='external nofollow' class='url'>Dharam</a></cite>			</div>
+			
+			<a href="comment-page-3/index.html#comment-10350" class="comment-date">
+				<time datetime="2013-06-17T22:54:27+00:00">June 17, 2013</time>			</a>
+		</div>
+				<div id="div-comment-10350" class="comment-content">
+				<div class="comment-text">
+		<p>Easy to miss out. haha really, I did misout that part of (Stock Availability) and have been pulling my hair. Smart magento and smart you. thanks</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-10377">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/e893c62ea5a1087c7abc110048c28240?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/e893c62ea5a1087c7abc110048c28240?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Jogi</cite>			</div>
+			
+			<a href="comment-page-3/index.html#comment-10377" class="comment-date">
+				<time datetime="2013-06-21T02:59:49+00:00">June 21, 2013</time>			</a>
+		</div>
+				<div id="div-comment-10377" class="comment-content">
+				<div class="comment-text">
+		<p>Was doing a first time setup, and not seeing my test product on the home page. The missing step was to select a widget which displays products in the Home CMS page.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-10410">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/deba22b4f586dd2bfe391a4b5c3785e5?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/deba22b4f586dd2bfe391a4b5c3785e5?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Kristi</cite>			</div>
+			
+			<a href="comment-page-3/index.html#comment-10410" class="comment-date">
+				<time datetime="2013-06-27T09:00:24+00:00">June 27, 2013</time>			</a>
+		</div>
+				<div id="div-comment-10410" class="comment-content">
+				<div class="comment-text">
+		<p>Anyone have any idea why the product information isn&#8217;t showing on the back end? When we go in to edit to enable/disable, there is no option.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-10431">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/1f215010eb64f6bf519645813cefc452?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/1f215010eb64f6bf519645813cefc452?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Craig</cite>			</div>
+			
+			<a href="comment-page-3/index.html#comment-10431" class="comment-date">
+				<time datetime="2013-07-01T04:54:10+00:00">July 1, 2013</time>			</a>
+		</div>
+				<div id="div-comment-10431" class="comment-content">
+				<div class="comment-text">
+		<p>Hi,</p>
+<p>Also, ensure you are not using Custom Layout Updates.  I had this problem then realised I was referencing a folder that didn&#8217;t exist with the theme I was using.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		</ol><!-- .comment-list -->
+
+				<nav id="comment-nav-below" class="comment-navigation" role="navigation" aria-label="Comment Navigation Below">
+			<span class="screen-reader-text">Comment navigation</span>
+			<div class="nav-previous"><a href="comment-page-2/index.html#comments" >&larr; Older Comments</a></div>
+			<div class="nav-next"></div>
+		</nav><!-- #comment-nav-below -->
+				<p class="no-comments">Comments are closed.</p>
+	
+</section><!-- #comments -->
+
+</div><!-- #post-## -->
+
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+		</div><!-- .col-full -->
+	</div><!-- #content -->
+
+	
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="col-full">
+
+					<div class="site-info">
+			&copy; ASchroder.com 2023						<br /> Storefront designed by <a href="http://www.woocommerce.com/" title="WooCommerce - The Best eCommerce Platform for WordPress" rel="author">WooCommerce</a>.					</div><!-- .site-info -->
+		
+		</div><!-- .col-full -->
+	</footer><!-- #colophon -->
+
+	
+</div><!-- #page -->
+
+<link rel='stylesheet' id='yarppRelatedCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/related101e.css?ver=4.8.15' type='text/css' media='all' />
+<script type='text/javascript' src='../../../wp-content/plugins/wp-syntax/js/wp-syntax4963.js?ver=1.1'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/navigation.min11a8.js?ver=20120206'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/skip-link-focus-fix.min08e0.js?ver=20130115'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/wp-embed.min101e.js?ver=4.8.15'></script>
+
+</body>
+
+<!-- Mirrored from www.aschroder.com/2010/07/why-are-my-magento-products-not-showing-up/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:31:16 GMT -->
+</html>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:20:18 by W3 Total Cache -->

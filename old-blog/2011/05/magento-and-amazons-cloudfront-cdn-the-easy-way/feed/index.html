@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>Comments on: Magento and Amazon&#8217;s CloudFront CDN &#8211; The Easy Way</title>
+	<atom:link href="http://www.aschroder.com/2011/05/magento-and-amazons-cloudfront-cdn-the-easy-way/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.aschroder.com/2011/05/magento-and-amazons-cloudfront-cdn-the-easy-way/</link>
+	<description>Notes on Web Development</description>
+	<lastBuildDate>Wed, 23 Dec 2020 09:25:05 +0000</lastBuildDate>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8.15</generator>
+	<item>
+		<title>By: Kalen</title>
+		<link>http://www.aschroder.com/2011/05/magento-and-amazons-cloudfront-cdn-the-easy-way/comment-page-1/#comment-10366</link>
+		<dc:creator><![CDATA[Kalen]]></dc:creator>
+		<pubDate>Thu, 20 Jun 2013 16:02:31 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1472#comment-10366</guid>
+		<description><![CDATA[Implemented a little MageRun command to refresh skin and JS url&#039;s:
+https://github.com/kalenjordan/magerun-addons/blob/master/README.md#bust-frontend-browser-caches]]></description>
+		<content:encoded><![CDATA[<p>Implemented a little MageRun command to refresh skin and JS url&#8217;s:<br />
+<a href="https://github.com/kalenjordan/magerun-addons/blob/master/README.md#bust-frontend-browser-caches" rel="nofollow">https://github.com/kalenjordan/magerun-addons/blob/master/README.md#bust-frontend-browser-caches</a></p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Kalen</title>
+		<link>http://www.aschroder.com/2011/05/magento-and-amazons-cloudfront-cdn-the-easy-way/comment-page-1/#comment-10285</link>
+		<dc:creator><![CDATA[Kalen]]></dc:creator>
+		<pubDate>Fri, 31 May 2013 21:53:01 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1472#comment-10285</guid>
+		<description><![CDATA[Definitely re: the invalidation approach.  I think I&#039;ll go that route.
+
+Have you done any analysis on the difference in page load speeds with cloudfront?  Or maybe there are generic non-Magento-specific ones out there.
+
+I just did some comparison against my current host and at one point both were being served up in about 100ms.  Then a few minutes later my host was at around 400ms and cloudfront was still around 100ms.]]></description>
+		<content:encoded><![CDATA[<p>Definitely re: the invalidation approach.  I think I&#8217;ll go that route.</p>
+<p>Have you done any analysis on the difference in page load speeds with cloudfront?  Or maybe there are generic non-Magento-specific ones out there.</p>
+<p>I just did some comparison against my current host and at one point both were being served up in about 100ms.  Then a few minutes later my host was at around 400ms and cloudfront was still around 100ms.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Ashley</title>
+		<link>http://www.aschroder.com/2011/05/magento-and-amazons-cloudfront-cdn-the-easy-way/comment-page-1/#comment-10248</link>
+		<dc:creator><![CDATA[Ashley]]></dc:creator>
+		<pubDate>Wed, 22 May 2013 02:10:51 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1472#comment-10248</guid>
+		<description><![CDATA[@Raul Who&#039;s your host? Flickr just announced they&#039;re giving away 1TB of image storage, seems like hosts need to lift their storage game!]]></description>
+		<content:encoded><![CDATA[<p>@Raul Who&#8217;s your host? Flickr just announced they&#8217;re giving away 1TB of image storage, seems like hosts need to lift their storage game!</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Raul</title>
+		<link>http://www.aschroder.com/2011/05/magento-and-amazons-cloudfront-cdn-the-easy-way/comment-page-1/#comment-10246</link>
+		<dc:creator><![CDATA[Raul]]></dc:creator>
+		<pubDate>Tue, 21 May 2013 21:54:03 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1472#comment-10246</guid>
+		<description><![CDATA[This solution is compelling,
+However, what happens if I have a hosting with limited space and only want to host original images and send all derivative ones (thumbnails, feature images, etc) to Amazon S3.
+
+Do you think in this case, the extension would help us saving space by always uploading it to S3 and not caching the images in our hosting, right now we keep running out of space every week and we need to clean the cache to avoid this problem.
+
+Thanks]]></description>
+		<content:encoded><![CDATA[<p>This solution is compelling,<br />
+However, what happens if I have a hosting with limited space and only want to host original images and send all derivative ones (thumbnails, feature images, etc) to Amazon S3.</p>
+<p>Do you think in this case, the extension would help us saving space by always uploading it to S3 and not caching the images in our hosting, right now we keep running out of space every week and we need to clean the cache to avoid this problem.</p>
+<p>Thanks</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: ashley</title>
+		<link>http://www.aschroder.com/2011/05/magento-and-amazons-cloudfront-cdn-the-easy-way/comment-page-1/#comment-10239</link>
+		<dc:creator><![CDATA[ashley]]></dc:creator>
+		<pubDate>Mon, 20 May 2013 21:29:17 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1472#comment-10239</guid>
+		<description><![CDATA[Hi Kalen, thanks for the feedback.
+
+I have seen that extension and agree that it seems like quite a lot of overhead.
+
+I think a better way would be to change the .htaccess to treat a certain type of subdirectory in the path as not being there.
+
+For example:
+
+www.yourstore.com/content-2013-05-21/skin
+www.yourstore.com/content-2013-05-21/js
+...
+
+So those just get mapped to the underlying skin and js directories.
+
+This way the extension could simply change the base url to the new date (or whatever pattern you like, maybe unix timestamps) to cause a full invalidation of all static assets. Then Magento&#039;s built in URL functionality should &#039;just work&#039;, right?]]></description>
+		<content:encoded><![CDATA[<p>Hi Kalen, thanks for the feedback.</p>
+<p>I have seen that extension and agree that it seems like quite a lot of overhead.</p>
+<p>I think a better way would be to change the .htaccess to treat a certain type of subdirectory in the path as not being there.</p>
+<p>For example:</p>
+<p><a href="http://www.yourstore.com/content-2013-05-21/skin" rel="nofollow">http://www.yourstore.com/content-2013-05-21/skin</a><br />
+<a href="http://www.yourstore.com/content-2013-05-21/js" rel="nofollow">http://www.yourstore.com/content-2013-05-21/js</a><br />
+&#8230;</p>
+<p>So those just get mapped to the underlying skin and js directories.</p>
+<p>This way the extension could simply change the base url to the new date (or whatever pattern you like, maybe unix timestamps) to cause a full invalidation of all static assets. Then Magento&#8217;s built in URL functionality should &#8216;just work&#8217;, right?</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Kalen Jordan</title>
+		<link>http://www.aschroder.com/2011/05/magento-and-amazons-cloudfront-cdn-the-easy-way/comment-page-1/#comment-10238</link>
+		<dc:creator><![CDATA[Kalen Jordan]]></dc:creator>
+		<pubDate>Mon, 20 May 2013 20:55:55 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1472#comment-10238</guid>
+		<description><![CDATA[Thanks Ashley!  Great resource here.  I know a few people in the comments asked about a module to help with the cache-busting.  I recently stumbled onto this module by Guidance:
+https://github.com/gknoppe-guidance/magento-cachebuster
+
+I&#039;m checking it out myself now.  Haven&#039;t deployed it yet.  I think the only thing that I&#039;m wondering is what the performance hit looks like.  The way that it works is that it observes controller_action_postdispatch, parses and replaces the HTML using regular expressions.]]></description>
+		<content:encoded><![CDATA[<p>Thanks Ashley!  Great resource here.  I know a few people in the comments asked about a module to help with the cache-busting.  I recently stumbled onto this module by Guidance:<br />
+<a href="https://github.com/gknoppe-guidance/magento-cachebuster" rel="nofollow">https://github.com/gknoppe-guidance/magento-cachebuster</a></p>
+<p>I&#8217;m checking it out myself now.  Haven&#8217;t deployed it yet.  I think the only thing that I&#8217;m wondering is what the performance hit looks like.  The way that it works is that it observes controller_action_postdispatch, parses and replaces the HTML using regular expressions.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Azzam</title>
+		<link>http://www.aschroder.com/2011/05/magento-and-amazons-cloudfront-cdn-the-easy-way/comment-page-1/#comment-10140</link>
+		<dc:creator><![CDATA[Azzam]]></dc:creator>
+		<pubDate>Sat, 27 Apr 2013 20:12:51 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1472#comment-10140</guid>
+		<description><![CDATA[@Jan,
+
+I agree with you, that is definitely a smarter way of doing it. But, what about the https?]]></description>
+		<content:encoded><![CDATA[<p>@Jan,</p>
+<p>I agree with you, that is definitely a smarter way of doing it. But, what about the https?</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Serge</title>
+		<link>http://www.aschroder.com/2011/05/magento-and-amazons-cloudfront-cdn-the-easy-way/comment-page-1/#comment-9685</link>
+		<dc:creator><![CDATA[Serge]]></dc:creator>
+		<pubDate>Mon, 11 Feb 2013 10:56:11 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1472#comment-9685</guid>
+		<description><![CDATA[I would also suggest to have a look at GoGrid cdn which is edgecast reseller and it is so much faster than Amazon cloud front! 
+http://blog.ryankearney.com/2009/12/comparing-cdn-performance-part-2/]]></description>
+		<content:encoded><![CDATA[<p>I would also suggest to have a look at GoGrid cdn which is edgecast reseller and it is so much faster than Amazon cloud front!<br />
+<a href="http://blog.ryankearney.com/2009/12/comparing-cdn-performance-part-2/" rel="nofollow">http://blog.ryankearney.com/2009/12/comparing-cdn-performance-part-2/</a></p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Jan (naturkost.com)</title>
+		<link>http://www.aschroder.com/2011/05/magento-and-amazons-cloudfront-cdn-the-easy-way/comment-page-1/#comment-9670</link>
+		<dc:creator><![CDATA[Jan (naturkost.com)]]></dc:creator>
+		<pubDate>Mon, 04 Feb 2013 23:21:43 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1472#comment-9670</guid>
+		<description><![CDATA[Great post, thank you.
+
+But instead of the original domain (as origin for the static files) like www.domain.tld I recommend setting up an own host for just that purpose, e.g. cdn-origin.domain.tld and to configure the host in a way that only the directories /media, /skin and /js can be accessed.
+
+This will prevent your setup from producing duplicate content.]]></description>
+		<content:encoded><![CDATA[<p>Great post, thank you.</p>
+<p>But instead of the original domain (as origin for the static files) like <a href="http://www.domain.tld" rel="nofollow">http://www.domain.tld</a> I recommend setting up an own host for just that purpose, e.g. cdn-origin.domain.tld and to configure the host in a way that only the directories /media, /skin and /js can be accessed.</p>
+<p>This will prevent your setup from producing duplicate content.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Raphael Suzuki</title>
+		<link>http://www.aschroder.com/2011/05/magento-and-amazons-cloudfront-cdn-the-easy-way/comment-page-1/#comment-4975</link>
+		<dc:creator><![CDATA[Raphael Suzuki]]></dc:creator>
+		<pubDate>Sat, 01 Sep 2012 23:02:51 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1472#comment-4975</guid>
+		<description><![CDATA[Well, this method won&#039;t invalidate OnePica extension at all, since it is aimed primarly at S3 and other CDNs without custom origin pull support (CloudFront support is relatively new).
+
+Otherwise great article, Ashley, as always!]]></description>
+		<content:encoded><![CDATA[<p>Well, this method won&#8217;t invalidate OnePica extension at all, since it is aimed primarly at S3 and other CDNs without custom origin pull support (CloudFront support is relatively new).</p>
+<p>Otherwise great article, Ashley, as always!</p>
+]]></content:encoded>
+	</item>
+</channel>
+</rss>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:38:44 by W3 Total Cache -->

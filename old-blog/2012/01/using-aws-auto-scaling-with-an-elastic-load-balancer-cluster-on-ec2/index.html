@@ -1,0 +1,823 @@
+<!doctype html>
+<html lang="en-US">
+
+<!-- Mirrored from www.aschroder.com/2012/01/using-aws-auto-scaling-with-an-elastic-load-balancer-cluster-on-ec2/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:32:24 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="../../../xmlrpc.php">
+
+<title>Using AWS Auto Scaling with an Elastic Load Balancer cluster on EC2 | ASchroder.com</title>
+
+<!-- All in One SEO Pack 2.4.2 by Michael Torbert of Semper Fi Web Design[289,385] -->
+<meta name="description"  content="Back in June last year I wrote about creating a Wordpress cluster on Amazon&#039;s EC2. In this post I&#039;ll run through a couple of the problems with that cluster," />
+
+<!-- /all in one seo pack -->
+<link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
+<link rel='dns-prefetch' href='http://s.w.org/' />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Feed" href="../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Comments Feed" href="../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Using AWS Auto Scaling with an Elastic Load Balancer cluster on EC2 Comments Feed" href="feed/index.html" />
+<!-- This site uses the Google Analytics by MonsterInsights plugin v6.2.4 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+<script type="text/javascript" data-cfasync="false">
+		var disableStr = 'ga-disable-UA-6477134-1';
+
+	/* Function to detect opted out users */
+	function __gaTrackerIsOptedOut() {
+		return document.cookie.indexOf(disableStr + '=true') > -1;
+	}
+
+	/* Disable tracking if the opt-out cookie exists. */
+	if ( __gaTrackerIsOptedOut() ) {
+		window[disableStr] = true;
+	}
+
+	/* Opt-out function */
+	function __gaTrackerOptout() {
+	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+	  window[disableStr] = true;
+	}
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','http://www.google-analytics.com/analytics.js','__gaTracker');
+
+	__gaTracker('create', 'UA-6477134-1', 'auto');
+	__gaTracker('set', 'forceSSL', true);
+	__gaTracker('send','pageview');
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/www.aschroder.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.15"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='yarppWidgetCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/widget101e.css?ver=4.8.15' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-syntax-css-css'  href='../../../wp-content/plugins/wp-syntax/css/wp-syntax4963.css?ver=1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-style-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/style5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<style id='storefront-style-inline-css' type='text/css'>
+
+			.main-navigation ul li a,
+			.site-title a,
+			ul.menu li a,
+			.site-branding h1 a,
+			.site-footer .storefront-handheld-footer-bar a:not(.button),
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				color: #333333;
+			}
+
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				border-color: #333333;
+			}
+
+			.main-navigation ul li a:hover,
+			.main-navigation ul li:hover > a,
+			.site-title a:hover,
+			a.cart-contents:hover,
+			.site-header-cart .widget_shopping_cart a:hover,
+			.site-header-cart:hover > li > a,
+			.site-header ul.menu li.current-menu-item > a {
+				color: #838383;
+			}
+
+			table th {
+				background-color: #f8f8f8;
+			}
+
+			table tbody td {
+				background-color: #fdfdfd;
+			}
+
+			table tbody tr:nth-child(2n) td,
+			fieldset,
+			fieldset legend {
+				background-color: #fbfbfb;
+			}
+
+			.site-header,
+			.secondary-navigation ul ul,
+			.main-navigation ul.menu > li.menu-item-has-children:after,
+			.secondary-navigation ul.menu ul,
+			.storefront-handheld-footer-bar,
+			.storefront-handheld-footer-bar ul li > a,
+			.storefront-handheld-footer-bar ul li.search .site-search,
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				background-color: #ffffff;
+			}
+
+			p.site-description,
+			.site-header,
+			.storefront-handheld-footer-bar {
+				color: #6d6d6d;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count,
+			button.menu-toggle:after,
+			button.menu-toggle:before,
+			button.menu-toggle span:before {
+				background-color: #333333;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				color: #ffffff;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				border-color: #ffffff;
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+				color: #333333;
+			}
+
+			.widget h1 {
+				border-bottom-color: #333333;
+			}
+
+			body,
+			.secondary-navigation a,
+			.onsale,
+			.pagination .page-numbers li .page-numbers:not(.current), .woocommerce-pagination .page-numbers li .page-numbers:not(.current) {
+				color: #6d6d6d;
+			}
+
+			.widget-area .widget a,
+			.hentry .entry-header .posted-on a,
+			.hentry .entry-header .byline a {
+				color: #9f9f9f;
+			}
+
+			a  {
+				color: #0228d1;
+			}
+
+			a:focus,
+			.button:focus,
+			.button.alt:focus,
+			.button.added_to_cart:focus,
+			.button.wc-forward:focus,
+			button:focus,
+			input[type="button"]:focus,
+			input[type="reset"]:focus,
+			input[type="submit"]:focus {
+				outline-color: #0228d1;
+			}
+
+			button, input[type="button"], input[type="reset"], input[type="submit"], .button, .added_to_cart, .widget a.button, .site-header-cart .widget_shopping_cart a.button {
+				background-color: #eeeeee;
+				border-color: #eeeeee;
+				color: #333333;
+			}
+
+			button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, .button:hover, .added_to_cart:hover, .widget a.button:hover, .site-header-cart .widget_shopping_cart a.button:hover {
+				background-color: #d5d5d5;
+				border-color: #d5d5d5;
+				color: #333333;
+			}
+
+			button.alt, input[type="button"].alt, input[type="reset"].alt, input[type="submit"].alt, .button.alt, .added_to_cart.alt, .widget-area .widget a.button.alt, .added_to_cart, .widget a.button.checkout {
+				background-color: #333333;
+				border-color: #333333;
+				color: #ffffff;
+			}
+
+			button.alt:hover, input[type="button"].alt:hover, input[type="reset"].alt:hover, input[type="submit"].alt:hover, .button.alt:hover, .added_to_cart.alt:hover, .widget-area .widget a.button.alt:hover, .added_to_cart:hover, .widget a.button.checkout:hover {
+				background-color: #1a1a1a;
+				border-color: #1a1a1a;
+				color: #ffffff;
+			}
+
+			.pagination .page-numbers li .page-numbers.current, .woocommerce-pagination .page-numbers li .page-numbers.current {
+				background-color: #e6e6e6;
+				color: #6d6d6d;
+			}
+
+			#comments .comment-list .comment-content .comment-text {
+				background-color: #f8f8f8;
+			}
+
+			.site-footer {
+				background-color: #f0f0f0;
+				color: #6d6d6d;
+			}
+
+			.site-footer a:not(.button) {
+				color: #333333;
+			}
+
+			.site-footer h1, .site-footer h2, .site-footer h3, .site-footer h4, .site-footer h5, .site-footer h6 {
+				color: #333333;
+			}
+
+			#order_review {
+				background-color: #ffffff;
+			}
+
+			#payment .payment_methods > li .payment_box,
+			#payment .place-order {
+				background-color: #fafafa;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice) {
+				background-color: #f5f5f5;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice):hover {
+				background-color: #f0f0f0;
+			}
+
+			@media screen and ( min-width: 768px ) {
+				.secondary-navigation ul.menu a:hover {
+					color: #868686;
+				}
+
+				.secondary-navigation ul.menu a {
+					color: #6d6d6d;
+				}
+
+				.site-header-cart .widget_shopping_cart,
+				.main-navigation ul.menu ul.sub-menu,
+				.main-navigation ul.nav-menu ul.children {
+					background-color: #f0f0f0;
+				}
+
+				.site-header-cart .widget_shopping_cart .buttons,
+				.site-header-cart .widget_shopping_cart .total {
+					background-color: #f5f5f5;
+				}
+
+				.site-header {
+					border-bottom-color: #f0f0f0;
+				}
+			}
+</style>
+<link rel='stylesheet' id='storefront-icons-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/sass/base/icons5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-fonts-css'  href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,600,700,900&amp;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jqueryb8ff.js?ver=1.12.4'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jquery-migrate.min330a.js?ver=1.4.1'></script>
+<link rel='https://api.w.org/' href='../../../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../xmlrpc0db0.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='How to Edit and Disable Checkout Fields in Woocommerce' href='../how-to-edit-and-disable-checkout-fields-in-woocommerce/index.html' />
+<link rel='next' title='New Look for Magento Speed Test, Thanks to Twitter Bootstrap.' href='../../02/new-look-for-magento-speed-test-thanks-to-twitter-bootstrap/index.html' />
+<meta name="generator" content="WordPress 4.8.15" />
+<link rel="canonical" href="index.html" />
+<link rel='shortlink' href='../../../indexfb54.html?p=1670' />
+<link rel="alternate" type="application/json+oembed" href="../../../wp-json/oembed/1.0/embed70ed.json?url=http%3A%2F%2Fwww.aschroder.com%2F2012%2F01%2Fusing-aws-auto-scaling-with-an-elastic-load-balancer-cluster-on-ec2%2F" />
+<link rel="alternate" type="text/xml+oembed" href="../../../wp-json/oembed/1.0/embed89e0?url=http%3A%2F%2Fwww.aschroder.com%2F2012%2F01%2Fusing-aws-auto-scaling-with-an-elastic-load-balancer-cluster-on-ec2%2F&amp;format=xml" />
+</head>
+
+<body class="post-template-default single single-post postid-1670 single-format-standard no-wc-breadcrumb storefront-full-width-content right-sidebar">
+
+
+<div id="page" class="hfeed site">
+	
+	<header id="masthead" class="site-header" role="banner" style="">
+		<div class="col-full">
+
+					<a class="skip-link screen-reader-text" href="#site-navigation">Skip to navigation</a>
+		<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+				<div class="site-branding">
+			<div class="beta site-title"><a href="../../../index.html" rel="home">ASchroder.com</a></div><p class="site-description">Notes on Web Development</p>		</div>
+		<div class="storefront-primary-navigation">		<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="Primary Navigation">
+		<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><span>Menu</span></button>
+			<div class="primary-navigation"><ul id="menu-main-menu" class="menu"><li id="menu-item-1119" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li id="menu-item-1118" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li id="menu-item-1872" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div><div class="handheld-navigation"><ul id="menu-main-menu-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div>		</nav><!-- #site-navigation -->
+		</div>
+		</div>
+	</header><!-- #masthead -->
+
+	
+	<div id="content" class="site-content" tabindex="-1">
+		<div class="col-full">
+
+		
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+<div id="post-1670" class="post-1670 post type-post status-publish format-standard hentry category-web-development tag-auto-scaling tag-aws tag-ec2 tag-wordpress">
+
+			<header class="entry-header">
+		<span class="posted-on">Posted on <a href="index.html" rel="bookmark"><time class="entry-date published" datetime="2012-01-27T21:50:46+00:00">January 27, 2012</time> <time class="updated" datetime="2012-01-30T18:13:54+00:00">January 30, 2012</time></a></span><h1 class="entry-title">Using AWS Auto Scaling with an Elastic Load Balancer cluster on EC2</h1>		</header><!-- .entry-header -->
+				<aside class="entry-meta">
+						<div class="author">
+				<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' /><div class="label">Written by</div><a href="../../../author/admin/index.html" title="Posts by Ashley" rel="author">Ashley</a>			</div>
+							<div class="cat-links">
+					<div class="label">Posted in</div><a href="../../../category/web-development/index.html" rel="category tag">Web Development</a>				</div>
+			
+							<div class="tags-links">
+					<div class="label">Tagged</div><a href="../../../tag/auto-scaling/index.html" rel="tag">auto scaling</a>, <a href="../../../tag/aws/index.html" rel="tag">aws</a>, <a href="../../../tag/ec2/index.html" rel="tag">ec2</a>, <a href="../../../tag/wordpress/index.html" rel="tag">wordpress</a>				</div>
+			
+		
+							<div class="comments-link">
+					<div class="label">Comments</div>					<span class="comments-link"><a href="index.html#comments">17 Comments</a></span>
+				</div>
+					</aside>
+				<div class="entry-content">
+		<p>Back in June last year <a href="../../../2011/06/clustering-wordpress-on-amazon-ec2-micro-instances/index.html">I wrote about creating a WordPress cluster on Amazon&#8217;s EC2</a>. In this post I&#8217;ll run through a couple of the problems with that cluster, I&#8217;ve experienced, and how I solved them with <a href="http://aws.amazon.com/autoscaling/">Amazon&#8217;s Auto Scaling service</a>.</p>
+<h3>The problems with the cluster</h3>
+<p>A couple of things were not ideal with the cluster that I&#8217;ve been putting up with for far too long but finally set aside some time this afternoon to fix.</p>
+<p><strong>1) The price of micro-sized spot instances spikes, to crazy prices, sometimes.</strong><br />
+This has meant that although the price of micro instances while they&#8217;re running is cheap, when the price spikes they all die off and leave the cluster vulnerable. Unfortunately to set up auto-scaling in combination with spot-priced micro instances would require coding up a hybrid solution with shell scripts, and although I enjoy tinkering with this setup, I can&#8217;t justify <em>that</em> much effort when an out-of-the-box solution exists, <a href="http://aws.amazon.com/autoscaling/">Auto Scaling</a>.<br />
+<span id="more-1670"></span><br />
+<strong>2) Even when using on-demand instances, they <em>just die</em> sometimes</strong><br />
+I had set up a <a href="http://aws.amazon.com/cloudwatch/">CloudWatch alarm</a> to email when the number of healthy instances drops below my minimum level (2 instances). This normally means the cluster is getting a bit weak, and more often than not shortly after getting this email, I get <a href="../../../../monitor.aschroder.com/index.html">my monitoring email</a> to say the site is down. This was happening infrequently enough for me to tolerate, but frequently enough to be a hassle &#8211; I&#8217;d have to keep stopping the unhealthy instance and firing up a new one once every 7-10 days.</p>
+<p>So&#8230; with those two pain points nagging me, I present the next iteration of the micro instance WordPress cluster, the self healing, self scaling cluster &#8211; all thanks to Amazons <a href="http://aws.amazon.com/autoscaling/">Auto Scaling</a> and CloudWatch services.</p>
+<h3>Setting up Auto Scaling</h3>
+<p>It&#8217;s actually not <em>too</em> hard to set all this up here&#8217;s roughly 4 steps that should do it.</p>
+<p><strong>0) Make sure you have the right AWS tools installed and setup.</strong></p>
+<p>You&#8217;ll need the <a href="http://aws.amazon.com/developertools/2535">Auto Scaling tools</a> and if you haven&#8217;t got them already, the <a href="http://aws.amazon.com/developertools/351">latest EC2 tools</a> &#8211; though not strictly needed, it&#8217;s worth setting them both up.</p>
+<p>Chuck them in some sensible location like <code>~/bin/AWS/</code> and then if you&#8217;re bash user, a <code>~/.bashrc</code> with these in it, will help:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #7a0874; font-weight: bold;">export</span> <span style="color: #007800;">KEY_HOME</span>=<span style="color: #000000; font-weight: bold;">/</span>Users<span style="color: #000000; font-weight: bold;">/</span>you<span style="color: #000000; font-weight: bold;">/</span>bin<span style="color: #000000; font-weight: bold;">/</span>AWS<span style="color: #000000; font-weight: bold;">/</span>your-aws-certs
+<span style="color: #7a0874; font-weight: bold;">export</span> <span style="color: #007800;">EC2_PRIVATE_KEY</span>=<span style="color: #007800;">$KEY_HOME</span><span style="color: #000000; font-weight: bold;">/</span>pk-ABCDEFG123746293642325354.pem
+<span style="color: #7a0874; font-weight: bold;">export</span> <span style="color: #007800;">EC2_CERT</span>=<span style="color: #007800;">$KEY_HOME</span><span style="color: #000000; font-weight: bold;">/</span>cert-ABCDEFG123746293642325354.pem
+&nbsp;
+<span style="color: #7a0874; font-weight: bold;">export</span> <span style="color: #007800;">EC2_HOME</span>=<span style="color: #000000; font-weight: bold;">/</span>Users<span style="color: #000000; font-weight: bold;">/</span>you<span style="color: #000000; font-weight: bold;">/</span>bin<span style="color: #000000; font-weight: bold;">/</span>AWS<span style="color: #000000; font-weight: bold;">/</span>ec2-api-tools-1.5.2.4<span style="color: #000000; font-weight: bold;">/</span>
+<span style="color: #7a0874; font-weight: bold;">export</span> <span style="color: #007800;">JAVA_HOME</span>=<span style="color: #000000; font-weight: bold;">/</span>Library<span style="color: #000000; font-weight: bold;">/</span>Java<span style="color: #000000; font-weight: bold;">/</span>Home
+&nbsp;
+<span style="color: #7a0874; font-weight: bold;">export</span> <span style="color: #007800;">AWS_AUTO_SCALING_HOME</span>=<span style="color: #000000; font-weight: bold;">/</span>Users<span style="color: #000000; font-weight: bold;">/</span>you<span style="color: #000000; font-weight: bold;">/</span>bin<span style="color: #000000; font-weight: bold;">/</span>AWS<span style="color: #000000; font-weight: bold;">/</span>AutoScaling-1.0.49.0<span style="color: #000000; font-weight: bold;">/</span>
+<span style="color: #7a0874; font-weight: bold;">export</span> <span style="color: #007800;">PATH</span>=<span style="color: #007800;">$EC2_HOME</span><span style="color: #000000; font-weight: bold;">/</span>bin:<span style="color: #007800;">$AWS_AUTO_SCALING_HOME</span><span style="color: #000000; font-weight: bold;">/</span>bin:<span style="color: #007800;">$PATH</span></pre></td></tr></table><p class="theCode" style="display:none;">export KEY_HOME=/Users/you/bin/AWS/your-aws-certs
+export EC2_PRIVATE_KEY=$KEY_HOME/pk-ABCDEFG123746293642325354.pem
+export EC2_CERT=$KEY_HOME/cert-ABCDEFG123746293642325354.pem
+
+export EC2_HOME=/Users/you/bin/AWS/ec2-api-tools-1.5.2.4/
+export JAVA_HOME=/Library/Java/Home
+
+export AWS_AUTO_SCALING_HOME=/Users/you/bin/AWS/AutoScaling-1.0.49.0/
+export PATH=$EC2_HOME/bin:$AWS_AUTO_SCALING_HOME/bin:$PATH</p></div>
+
+<p>You should see your current instances by running <code>ec2-describe-instances</code> &#8211; if you do, then everything appears to be in order.</p>
+<p><strong>1) Create the Auto Scaling launch configuration and group</strong></p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;">as-create-launch-config <span style="color: #007800;">$YOUR_CONFIG_NAME</span> <span style="color: #660033;">--image-id</span> ami-<span style="color: #000000;">123456</span> <span style="color: #660033;">--instance-type</span> t1.micro <span style="color: #660033;">--group</span> <span style="color: #007800;">$YOUR_SECURITY_GROUP</span> <span style="color: #660033;">-monitoring-disabled</span></pre></td></tr></table><p class="theCode" style="display:none;">as-create-launch-config $YOUR_CONFIG_NAME --image-id ami-123456 --instance-type t1.micro --group $YOUR_SECURITY_GROUP -monitoring-disabled</p></div>
+
+<p><strong>Note:</strong> I use <code>-monitoring-disabled</code> because I want the basic monitoring, not the premium detailed monitoring. If you&#8217;re a real cloud high-roller, splash out on detailed monitoring by using the flag <code>-monitoring-enabled</code></p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;">as-create-auto-scaling-group <span style="color: #007800;">$YOUR_GROUP_NAME</span> <span style="color: #660033;">--availability-zones</span> us-east-1a <span style="color: #660033;">--launch-configuration</span> <span style="color: #007800;">$YOUR_CONFIG_NAME</span> <span style="color: #660033;">--desired-capacity</span> <span style="color: #000000;">2</span> <span style="color: #660033;">--min-size</span> <span style="color: #000000;">2</span> <span style="color: #660033;">--max-size</span> <span style="color: #000000;">4</span> <span style="color: #660033;">--load-balancers</span> <span style="color: #007800;">$ELB_NAME</span> <span style="color: #660033;">--health-check-type</span> ELB <span style="color: #660033;">--grace-period</span> <span style="color: #007800;">$MAX_TIME_IN_SECONDS_IT_TAKES_TO_BE_HEALTHY</span></pre></td></tr></table><p class="theCode" style="display:none;">as-create-auto-scaling-group $YOUR_GROUP_NAME --availability-zones us-east-1a --launch-configuration $YOUR_CONFIG_NAME --desired-capacity 2 --min-size 2 --max-size 4 --load-balancers $ELB_NAME --health-check-type ELB --grace-period $MAX_TIME_IN_SECONDS_IT_TAKES_TO_BE_HEALTHY</p></div>
+
+<p><strong>Note:</strong> $MAX_TIME_IN_SECONDS_IT_TAKES_TO_BE_HEALTHY can be whatever suits for your servers and application, I use 5 minutes and it seems fine so far.</p>
+<p>In my example group above I have a max of 4, a min of 2 and a desired capacity of 2. Auto Scaling will ensure your instance count remains within those parameters. Desired capacity means, the number of instances you normally have running.</p>
+<p>Your numbers will be different depending on your traffic requirements. I suggest you set a maximum above your desired capacity, so that you can add an alarm (see step 3 below) that increases your instance count <em>when</em> you get featured on reddit or slashdot&#8230;</p>
+<p><strong>2) Create the policy for scaling up</strong></p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;">as-put-scaling-policy <span style="color: #007800;">$YOUR_POLICY_NAME</span> <span style="color: #660033;">--auto-scaling-group</span> <span style="color: #007800;">$YOUR_GROUP_NAME</span> <span style="color: #660033;">--adjustment</span>=<span style="color: #000000;">1</span> <span style="color: #660033;">--type</span> ChangeInCapacity</pre></td></tr></table><p class="theCode" style="display:none;">as-put-scaling-policy $YOUR_POLICY_NAME --auto-scaling-group $YOUR_GROUP_NAME --adjustment=1 --type ChangeInCapacity</p></div>
+
+<p>This policy will add 1 extra instance, but there are other policy types, that can do things like ensure a specific number of instances. The &#8211;help options for the command line tools will guide you on this well, <a href="https://twitter.com/aschroder/status/163097975571234818">they&#8217;re very useful and I like them</a>.</p>
+<p><strong>3) Create the actual alarms that invoke the policy in 2)</strong></p>
+<p>This is easiest in the actual <a href="https://console.aws.amazon.com/cloudwatch/home?region=us-east-1">CloudWatch web-based console</a>. It will step you through a wizard. I suggest using both the policy, but also to add a notification, so that you get an email when the autoscaling happens &#8211; that way you can know if it&#8217;s <a href="https://www.google.com/search?q=define+running+amok">running amok</a>. </p>
+<p>Here&#8217;s my setup with 2 alarms, one for self healing, and one for ramping up for big traffic:</p>
+<p><strong>Alarm:</strong> Unhealthy<br />
+<strong>Threshold:</strong> HealthyHostCount < 2 for 5 minutes
+<strong>Actions:</strong><br />
+in ALARM state &#8211;<br />
+Use policy &#8220;AddInstances (Add 1 instance)&#8221; for group &#8220;your-group&#8221;<br />
+Send message to topic &#8220;addingInstance&#8221; (you@gmail.com)</p>
+<p><strong>Alarm:</strong> HighTraffic<br />
+<strong>Threshold:</strong> RequestCount >= 100 for 5 minutes<br />
+<strong>Actions:</strong><br />
+in ALARM state &#8211;<br />
+Use policy &#8220;AddInstances (Add 1 instance)&#8221; for group &#8220;your-group&#8221;<br />
+Send message to topic &#8220;HighTraffic&#8221; (you@gmail.com)</p>
+<p><strong>4) Test your handy work</strong></p>
+<p>Choose your favorite way of breaking a server, this will probably be sufficient on most Debian systems:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #c20cb9; font-weight: bold;">sudo</span> <span style="color: #000000; font-weight: bold;">/</span>etc<span style="color: #000000; font-weight: bold;">/</span>init.d<span style="color: #000000; font-weight: bold;">/</span>apache2 stop</pre></td></tr></table><p class="theCode" style="display:none;">sudo /etc/init.d/apache2 stop</p></div>
+
+<p>Within 5-10 minutes the auto scaling should have kicked in, started up a new instance and killed your failing one.</p>
+<p><em>I hope it goes without saying, don&#8217;t do this on your mission critical production server&#8230;</em></p>
+<p>A couple of cool side effects of doing this the AWS way, rather than rolling your own shell scripts to start/stop instances and add them to the ELB.</p>
+<ol>
+<li>Auto Scaling will terminate unhealthy instances and remove them from the load balancer cluster automatically.</li>
+<li>Auto scaling will add newly created instances to the cluster automatically.</li>
+</ol>
+<p>I&#8217;ll update this article if I find any problems with the setup I have described here. If you try this on your own cluster, please let me know your results. </p>
+<p><strong>Update 31 Jan 2012:</strong>  So one obvious problem is that it increases instances, and never decreases them, doh!</p>
+<p>You&#8217;ll want something like this give it a name like removeInstance:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;">as-put-scaling-policy <span style="color: #007800;">$YOUR_POLICY_NAME</span> <span style="color: #660033;">--auto-scaling-group</span> <span style="color: #007800;">$YOUR_GROUP_NAME</span> <span style="color: #660033;">--adjustment</span>=-<span style="color: #000000;">1</span> <span style="color: #660033;">--type</span> ChangeInCapacity</pre></td></tr></table><p class="theCode" style="display:none;">as-put-scaling-policy $YOUR_POLICY_NAME --auto-scaling-group $YOUR_GROUP_NAME --adjustment=-1 --type ChangeInCapacity</p></div>
+
+<p>Then set an alarm for &#8216;normal&#8217; traffic and have it reduce the instances.</p>
+<p>Another issue is I found, the minimum number of instances in the configuration group, should also be your desired capacity (probably, your setup may vary). To do that run a <code>as-update-auto-scaling-group</code> like so:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;">as-update-auto-scaling-group <span style="color: #007800;">$YOUR_GROUP_NAME</span> <span style="color: #660033;">--availability-zones</span> us-east-1a <span style="color: #660033;">--launch-configuration</span> <span style="color: #007800;">$YOUR_CONFIG_NAME</span> <span style="color: #660033;">--desired-capacity</span> <span style="color: #000000;">2</span> <span style="color: #660033;">--min-size</span> <span style="color: #000000;">2</span> <span style="color: #660033;">--max-size</span> <span style="color: #000000;">4</span> <span style="color: #660033;">--load-balancers</span> <span style="color: #007800;">$ELB_NAME</span> <span style="color: #660033;">--health-check-type</span> ELB <span style="color: #660033;">--grace-period</span> <span style="color: #007800;">$MAX_TIME_IN_SECONDS_IT_TAKES_TO_BE_HEALTHY</span></pre></td></tr></table><p class="theCode" style="display:none;">as-update-auto-scaling-group $YOUR_GROUP_NAME --availability-zones us-east-1a --launch-configuration $YOUR_CONFIG_NAME --desired-capacity 2 --min-size 2 --max-size 4 --load-balancers $ELB_NAME --health-check-type ELB --grace-period $MAX_TIME_IN_SECONDS_IT_TAKES_TO_BE_HEALTHY</p></div>
+
+<p>I have also updated the above original creation of the group command to reflect the <code>minimum = desired</code> capcity change.</p>
+<div class='yarpp-related'>
+<p>You might also be interested in:<ol>
+<li><a href="../../../2013/01/updating-your-aws-auto-scaling-ami-to-a-new-version/index.html" rel="bookmark" title="Updating your AWS Auto-Scaling AMI to a new version">Updating your AWS Auto-Scaling AMI to a new version </a></li>
+<li><a href="../../../2013/04/actually-running-magento-on-amazons-elastic-beanstalk-cloud-platform/index.html" rel="bookmark" title="Actually running Magento on Amazon&#8217;s Elastic Beanstalk Cloud platform">Actually running Magento on Amazon&#8217;s Elastic Beanstalk Cloud platform </a></li>
+<li><a href="../../../2013/04/magento-and-aws-elastic-beanstalk-the-scalability-silver-bullet/index.html" rel="bookmark" title="Magento and AWS Elastic Beanstalk &#8211; The Scalability Silver Bullet?">Magento and AWS Elastic Beanstalk &#8211; The Scalability Silver Bullet? </a></li>
+<li><a href="../../../2009/05/using-gmail-or-google-apps-email-with-magento/index.html" rel="bookmark" title="Using Gmail or Google Apps email with Magento">Using Gmail or Google Apps email with Magento </a></li>
+<li><a href="../../../2011/06/clustering-wordpress-on-amazon-ec2-micro-instances/index.html" rel="bookmark" title="Clustering WordPress on Amazon EC2 micro instances">Clustering WordPress on Amazon EC2 micro instances </a></li>
+</ol></p>
+</div>
+		</div><!-- .entry-content -->
+		<nav id="post-navigation" class="navigation post-navigation" role="navigation" aria-label="Post Navigation"><span class="screen-reader-text">Post navigation</span><div class="nav-links"><div class="nav-previous"><a href="../how-to-edit-and-disable-checkout-fields-in-woocommerce/index.html" rel="prev">How to Edit and Disable Checkout Fields in Woocommerce</a></div><div class="nav-next"><a href="../../02/new-look-for-magento-speed-test-thanks-to-twitter-bootstrap/index.html" rel="next">New Look for Magento Speed Test, Thanks to Twitter Bootstrap.</a></div></div></nav>
+<section id="comments" class="comments-area" aria-label="Post Comments">
+
+			<h2 class="comments-title">
+			17 thoughts on &ldquo;<span>Using AWS Auto Scaling with an Elastic Load Balancer cluster on EC2</span>&rdquo;		</h2>
+
+		
+		<ol class="comment-list">
+					<li class="comment even thread-even depth-1" id="comment-2889">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/dcab45a460a1e06066b86122ce70b70e?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/dcab45a460a1e06066b86122ce70b70e?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Arush</cite>			</div>
+			
+			<a href="index.html#comment-2889" class="comment-date">
+				<time datetime="2012-01-28T04:04:55+00:00">January 28, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2889" class="comment-content">
+				<div class="comment-text">
+		<p>Could this work for magento? I guess you would need to split the db and the web servers on to different instances? And does autoscaling require any server configuration? How does AWS know how to configure the new instance? E.g. With linux users, ftp passwords etc&#8230; This sounds a whole lot easier than paying for rightscale and building servertemplates&#8230; What about the ELB, is that set up automatically? How would it distribute traffic, round-robin? Sorry for all the questions!!!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2901">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='../../../index.html' rel='external nofollow' class='url'>Ashley</a></cite>			</div>
+			
+			<a href="index.html#comment-2901" class="comment-date">
+				<time datetime="2012-01-30T17:57:56+00:00">January 30, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2901" class="comment-content">
+				<div class="comment-text">
+		<p>Yes totally can work with magento. It uses an existing machine image (AMI) to b the template for each server that stops and starts.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2913">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/598e3aee4616198eb8820005e08f0622?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/598e3aee4616198eb8820005e08f0622?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.winningcause.org/' rel='external nofollow' class='url'>Andy</a></cite>			</div>
+			
+			<a href="index.html#comment-2913" class="comment-date">
+				<time datetime="2012-02-01T17:09:55+00:00">February 1, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2913" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Ashley,</p>
+<p>I&#8217;ve been following your blog for awhile, always good stuff!  So we are currently trying to load balance our Magento site but have run into problems with a good Admin solution that will allow us to propagate images to all nodes.  I don&#8217;t know if you&#8217;ve actually tried this yet, but if you set up a load balancer and give it a domain name, ie load.com, and access the Admin panel through load.com/admin, then you never know which node you might randomly be using for admin access.  That said, setting up a new item through a random node and uploading an image means only that node gets an image.  We have other issues with server side files not propagating, but that&#8217;s a custom extension&#8211;similar problem, nonetheless.  Any ideas how to put the images in one place?  S3 bucket?  I&#8217;ve seen One Pica, but that doesn&#8217;t solve problems with shared writeable files as well as images&#8230; and I&#8217;m not even sure it works that well for images in a load balanced or auto scaled environment.  On the other hand, and this relates to another post of yours, we are looking at using MageMojo instead of AWS to hopefully reduce the monthly hosting bill and avoid the need to load balance at all.  Thanks in advance for your insight!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2914">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='../../../index.html' rel='external nofollow' class='url'>Ashley</a></cite>			</div>
+			
+			<a href="index.html#comment-2914" class="comment-date">
+				<time datetime="2012-02-01T17:32:27+00:00">February 1, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2914" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, I&#8217;d consider mounting an NFS point and symlinking var/media (and related folders) so that all the servers share the same images (and even cached versions of those images). </p>
+<p>Once an image is loaded the first time by your CDN (if you use one) then it won&#8217;t hit the cluster again for the image.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-3757">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/9f5831be4487097f1ba5b8a96054d1b9?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/9f5831be4487097f1ba5b8a96054d1b9?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Heiko</cite>			</div>
+			
+			<a href="index.html#comment-3757" class="comment-date">
+				<time datetime="2012-03-19T08:52:22+00:00">March 19, 2012</time>			</a>
+		</div>
+				<div id="div-comment-3757" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Ashley,</p>
+<p>on which instance do I have to start the shell commands? The master instance?<br />
+Or do the shell commands work from every linux shell. I&#8217;ve never used them before.</p>
+<p>Regards<br />
+Heiko</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4647">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/565899ed120fcc0b86d3910079b1d613?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/565899ed120fcc0b86d3910079b1d613?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://adhown.ini-aja.com/' rel='external nofollow' class='url'>adhown</a></cite>			</div>
+			
+			<a href="index.html#comment-4647" class="comment-date">
+				<time datetime="2012-04-10T19:26:26+00:00">April 10, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4647" class="comment-content">
+				<div class="comment-text">
+		<p>hello Ashley</p>
+<p>I need Your help please, I have client who using AWS. and now I have problem with Loadbalancer, I launch instance from cloudformation template, which is use autoscale performance. And my problem is, why loadbalancer can&#8217;t check my EC2 instance when it&#8217;s autoscale. I just launch EC2 instance in eu-west-1c and after autoscale my EC2 move to eu-west-1b region why like that? so the Loadbalance can&#8217;t check it.<br />
+please give me solution.</p>
+<p>thanks before ashley</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-4769">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/2d0923ebae0a343c1d9dab45c882c233?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/2d0923ebae0a343c1d9dab45c882c233?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://twitter.com/JimmyRittenborg' rel='external nofollow' class='url'>Jimmy Rittenborg</a></cite>			</div>
+			
+			<a href="index.html#comment-4769" class="comment-date">
+				<time datetime="2012-04-28T06:23:35+00:00">April 28, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4769" class="comment-content">
+				<div class="comment-text">
+		<p>A AWS CloudFormation template for all this, would have been killer ;P</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4837">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/f1cd89018f2cb87fa3c101ce353efd6c?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/f1cd89018f2cb87fa3c101ce353efd6c?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Arjun</cite>			</div>
+			
+			<a href="index.html#comment-4837" class="comment-date">
+				<time datetime="2012-06-05T04:16:06+00:00">June 5, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4837" class="comment-content">
+				<div class="comment-text">
+		<p>Why not override Image.php and disable image file check at the website level? So using Pica, you can upload images via Admin to S3/Cloudfront.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-4960">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/4ffbad5e0e1e6f0fad77d07668823d42?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/4ffbad5e0e1e6f0fad77d07668823d42?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Dave</cite>			</div>
+			
+			<a href="index.html#comment-4960" class="comment-date">
+				<time datetime="2012-08-25T09:26:01+00:00">August 25, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4960" class="comment-content">
+				<div class="comment-text">
+		<p>Hi,<br />
+How much it will cost per month for this setup?</p>
+<p>Thanks</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4964">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='../../../index.html' rel='external nofollow' class='url'>Ashley</a></cite>			</div>
+			
+			<a href="index.html#comment-4964" class="comment-date">
+				<time datetime="2012-08-26T16:51:59+00:00">August 26, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4964" class="comment-content">
+				<div class="comment-text">
+		<p>So hard to say for sure &#8211; too many variables.</p>
+<p>Depends on traffic, how many instances you set as your min and max, how you pay for them (reserved vs on demand) etc. </p>
+<p>You&#8217;re going to have to get your spreadsheet on.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-4974">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/25411d307fa0ce0f741e7eb1b28d2cd9?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/25411d307fa0ce0f741e7eb1b28d2cd9?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">tim peterson</cite>			</div>
+			
+			<a href="index.html#comment-4974" class="comment-date">
+				<time datetime="2012-08-31T18:49:22+00:00">August 31, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4974" class="comment-content">
+				<div class="comment-text">
+		<p>thanks for the guidance, super helpfu!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-9693">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/5d4ba5fc7609c9932c2d6190f2bcf0f6?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/5d4ba5fc7609c9932c2d6190f2bcf0f6?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ron</cite>			</div>
+			
+			<a href="index.html#comment-9693" class="comment-date">
+				<time datetime="2013-02-14T06:01:27+00:00">February 14, 2013</time>			</a>
+		</div>
+				<div id="div-comment-9693" class="comment-content">
+				<div class="comment-text">
+		<p>Great Post! Thank you for sharing it</p>
+<p>What other alternative can you recommend instead of NFS (to be used in the WordPress scenario with multiple instances) ?</p>
+<p>Thanks!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-9947">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/cdf0b9d35296756caad35e0ac298ebd5?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/cdf0b9d35296756caad35e0ac298ebd5?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Krishna</cite>			</div>
+			
+			<a href="index.html#comment-9947" class="comment-date">
+				<time datetime="2013-04-01T17:32:09+00:00">April 1, 2013</time>			</a>
+		</div>
+				<div id="div-comment-9947" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks for the post.<br />
+When using AutoScaling, do we need to explicitly configure any ELB (or does it get setup automatically)?</p>
+<p>Regards,<br />
+Krishna</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-9958">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-9958" class="comment-date">
+				<time datetime="2013-04-03T12:40:12+00:00">April 3, 2013</time>			</a>
+		</div>
+				<div id="div-comment-9958" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, you need to pass the existing ELB name into the stup command: $ELB_NAME in my examples.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-9960">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/cdf0b9d35296756caad35e0ac298ebd5?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/cdf0b9d35296756caad35e0ac298ebd5?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Krishna</cite>			</div>
+			
+			<a href="index.html#comment-9960" class="comment-date">
+				<time datetime="2013-04-03T17:00:55+00:00">April 3, 2013</time>			</a>
+		</div>
+				<div id="div-comment-9960" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks.<br />
+How do we handle the syncing of databases&#8217;s and files between instances for a typical wordpress like blog?</p>
+<p>Thanks,<br />
+Krishna</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-9961">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-9961" class="comment-date">
+				<time datetime="2013-04-03T17:14:25+00:00">April 3, 2013</time>			</a>
+		</div>
+				<div id="div-comment-9961" class="comment-content">
+				<div class="comment-text">
+		<p>Did you read this post?</p>
+<p><a href="../../../2011/06/clustering-wordpress-on-amazon-ec2-micro-instances/index.html" rel="nofollow">http://www.aschroder.com/2011/06/clustering-wordpress-on-amazon-ec2-micro-instances/</a></p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-9974">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/cdf0b9d35296756caad35e0ac298ebd5?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/cdf0b9d35296756caad35e0ac298ebd5?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Krishna</cite>			</div>
+			
+			<a href="index.html#comment-9974" class="comment-date">
+				<time datetime="2013-04-04T16:07:54+00:00">April 4, 2013</time>			</a>
+		</div>
+				<div id="div-comment-9974" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks, yes &#8211; read that post.<br />
+Couple of questions :<br />
+a) For the DB sharing by pointing to the master node, I guess, if the master dies then all nodes will also wont be able to access the DB. Isn&#8217;t that true OR am i missing something?</p>
+<p>b) Can you please point to bit more detailed instructions on setting up NFS?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		</ol><!-- .comment-list -->
+
+				<p class="no-comments">Comments are closed.</p>
+	
+</section><!-- #comments -->
+
+</div><!-- #post-## -->
+
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+		</div><!-- .col-full -->
+	</div><!-- #content -->
+
+	
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="col-full">
+
+					<div class="site-info">
+			&copy; ASchroder.com 2023						<br /> Storefront designed by <a href="http://www.woocommerce.com/" title="WooCommerce - The Best eCommerce Platform for WordPress" rel="author">WooCommerce</a>.					</div><!-- .site-info -->
+		
+		</div><!-- .col-full -->
+	</footer><!-- #colophon -->
+
+	
+</div><!-- #page -->
+
+<link rel='stylesheet' id='yarppRelatedCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/related101e.css?ver=4.8.15' type='text/css' media='all' />
+<script type='text/javascript' src='../../../wp-content/plugins/wp-syntax/js/wp-syntax4963.js?ver=1.1'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/navigation.min11a8.js?ver=20120206'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/skip-link-focus-fix.min08e0.js?ver=20130115'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/wp-embed.min101e.js?ver=4.8.15'></script>
+
+</body>
+
+<!-- Mirrored from www.aschroder.com/2012/01/using-aws-auto-scaling-with-an-elastic-load-balancer-cluster-on-ec2/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:32:27 GMT -->
+</html>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:21:29 by W3 Total Cache -->

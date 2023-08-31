@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>Comments on: Magento Events Explained and a few Gotchas avoided!</title>
+	<atom:link href="http://www.aschroder.com/2010/01/magento-events-explained-and-a-few-gotchas-avoided/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.aschroder.com/2010/01/magento-events-explained-and-a-few-gotchas-avoided/</link>
+	<description>Notes on Web Development</description>
+	<lastBuildDate>Wed, 23 Dec 2020 09:25:05 +0000</lastBuildDate>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8.15</generator>
+	<item>
+		<title>By: Humayun</title>
+		<link>http://www.aschroder.com/2010/01/magento-events-explained-and-a-few-gotchas-avoided/comment-page-1/#comment-9794</link>
+		<dc:creator><![CDATA[Humayun]]></dc:creator>
+		<pubDate>Tue, 12 Mar 2013 23:22:24 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=598#comment-9794</guid>
+		<description><![CDATA[Cool post!
+I have a weird situation. I am trying to hook on to sales_order_save_after event but it won&#039;t work. To debug this I am doing Mage::log in Mage.php to see what events are firing. Suprirsing, its on printing &#039;resource_get_tablename&#039; and &#039;core_collection_abstract_load_before&#039; and &#039;after&#039; few times (24 lines altogether) and nothing else. To make it more confusing, when I save a product (by going Manage Products) its prints all big list of all the events (its suppose to). Any idea how to debug this? I want to send an email out on sales_order_save_after event.]]></description>
+		<content:encoded><![CDATA[<p>Cool post!<br />
+I have a weird situation. I am trying to hook on to sales_order_save_after event but it won&#8217;t work. To debug this I am doing Mage::log in Mage.php to see what events are firing. Suprirsing, its on printing &#8216;resource_get_tablename&#8217; and &#8216;core_collection_abstract_load_before&#8217; and &#8216;after&#8217; few times (24 lines altogether) and nothing else. To make it more confusing, when I save a product (by going Manage Products) its prints all big list of all the events (its suppose to). Any idea how to debug this? I want to send an email out on sales_order_save_after event.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: prat</title>
+		<link>http://www.aschroder.com/2010/01/magento-events-explained-and-a-few-gotchas-avoided/comment-page-1/#comment-3558</link>
+		<dc:creator><![CDATA[prat]]></dc:creator>
+		<pubDate>Tue, 13 Mar 2012 19:44:31 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=598#comment-3558</guid>
+		<description><![CDATA[HI Ashley,
+ It’s really very informative &#038; useful article. I wanted to know more about event-observer model of Magento.
+ Currently I am focussing on sales order placement event. I have created one custom table in Magento that contains different sales order related columns(like increment id from sales_flat_order, item_name,sku from sales_flat_order_item etc.). I connected to mysql database through PHP. I join these table to form a single query &#038; put this query which fetches &#038; inserts data into custom table.
+ Now my ultimate aim is once customer places order, this php file must get called so that all data fetched through that query get inserted into custom table…
+ So how event-observer model I can use for the same…do u have any sample code for the same…
+ Plz guide me…
+ 
+Regards,
+ Prat]]></description>
+		<content:encoded><![CDATA[<p>HI Ashley,<br />
+ It’s really very informative &amp; useful article. I wanted to know more about event-observer model of Magento.<br />
+ Currently I am focussing on sales order placement event. I have created one custom table in Magento that contains different sales order related columns(like increment id from sales_flat_order, item_name,sku from sales_flat_order_item etc.). I connected to mysql database through PHP. I join these table to form a single query &amp; put this query which fetches &amp; inserts data into custom table.<br />
+ Now my ultimate aim is once customer places order, this php file must get called so that all data fetched through that query get inserted into custom table…<br />
+ So how event-observer model I can use for the same…do u have any sample code for the same…<br />
+ Plz guide me…</p>
+<p>Regards,<br />
+ Prat</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Magento</title>
+		<link>http://www.aschroder.com/2010/01/magento-events-explained-and-a-few-gotchas-avoided/comment-page-1/#comment-2996</link>
+		<dc:creator><![CDATA[Magento]]></dc:creator>
+		<pubDate>Fri, 24 Feb 2012 08:09:18 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=598#comment-2996</guid>
+		<description><![CDATA[Hello，Ashley. Thanks for your great post! I have a question here, I searched magento app folder for &quot;checkout_submit_all_after&quot; event, it was fired in lots of places in Magento Core code. As I know, Magento just run one time of the same event in one request. So why I can still use this event in my own module in local code?
+
+Sorry for my pool English :) Thanks in advanced.]]></description>
+		<content:encoded><![CDATA[<p>Hello，Ashley. Thanks for your great post! I have a question here, I searched magento app folder for &#8220;checkout_submit_all_after&#8221; event, it was fired in lots of places in Magento Core code. As I know, Magento just run one time of the same event in one request. So why I can still use this event in my own module in local code?</p>
+<p>Sorry for my pool English 🙂 Thanks in advanced.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Ashley</title>
+		<link>http://www.aschroder.com/2010/01/magento-events-explained-and-a-few-gotchas-avoided/comment-page-1/#comment-2918</link>
+		<dc:creator><![CDATA[Ashley]]></dc:creator>
+		<pubDate>Thu, 02 Feb 2012 22:05:03 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=598#comment-2918</guid>
+		<description><![CDATA[Troll much? Did you read the section of the article titled:
+&quot;Why is my Observer not firing – Config areas in Magento&quot;
+
+The code is in that section:
+Mage::app()-&#062;loadArea();]]></description>
+		<content:encoded><![CDATA[<p>Troll much? Did you read the section of the article titled:<br />
+&#8220;Why is my Observer not firing – Config areas in Magento&#8221;</p>
+<p>The code is in that section:<br />
+Mage::app()-&gt;loadArea();</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Michael C.</title>
+		<link>http://www.aschroder.com/2010/01/magento-events-explained-and-a-few-gotchas-avoided/comment-page-1/#comment-2917</link>
+		<dc:creator><![CDATA[Michael C.]]></dc:creator>
+		<pubDate>Thu, 02 Feb 2012 21:17:37 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=598#comment-2917</guid>
+		<description><![CDATA[Ashley,
+
+You completely forgot to mention the part about the &quot;config area.&quot;  You talked about your observer&#039;s callback not getting called in command-line context; then you pointed out some code in the parent.  But you never said anything else.  Can you provide working sample snippets showing your final config.xml and observer class?]]></description>
+		<content:encoded><![CDATA[<p>Ashley,</p>
+<p>You completely forgot to mention the part about the &#8220;config area.&#8221;  You talked about your observer&#8217;s callback not getting called in command-line context; then you pointed out some code in the parent.  But you never said anything else.  Can you provide working sample snippets showing your final config.xml and observer class?</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: philippe</title>
+		<link>http://www.aschroder.com/2010/01/magento-events-explained-and-a-few-gotchas-avoided/comment-page-1/#comment-1962</link>
+		<dc:creator><![CDATA[philippe]]></dc:creator>
+		<pubDate>Sat, 13 Nov 2010 17:17:33 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=598#comment-1962</guid>
+		<description><![CDATA[Same problem here. Using magento 1.4.1.1 and &quot;checkout_onepage_controller_success_action&quot; never seems to fire. Done debugging until the app() function call in Mage.php, but can&#039;t find the problem]]></description>
+		<content:encoded><![CDATA[<p>Same problem here. Using magento 1.4.1.1 and &#8220;checkout_onepage_controller_success_action&#8221; never seems to fire. Done debugging until the app() function call in Mage.php, but can&#8217;t find the problem</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Jamaal</title>
+		<link>http://www.aschroder.com/2010/01/magento-events-explained-and-a-few-gotchas-avoided/comment-page-1/#comment-1467</link>
+		<dc:creator><![CDATA[Jamaal]]></dc:creator>
+		<pubDate>Sun, 27 Jun 2010 04:14:04 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=598#comment-1467</guid>
+		<description><![CDATA[Thanks Ashley, just sent you an email! 
+
+-jamaal]]></description>
+		<content:encoded><![CDATA[<p>Thanks Ashley, just sent you an email! </p>
+<p>-jamaal</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Ashley</title>
+		<link>http://www.aschroder.com/2010/01/magento-events-explained-and-a-few-gotchas-avoided/comment-page-1/#comment-1466</link>
+		<dc:creator><![CDATA[Ashley]]></dc:creator>
+		<pubDate>Sat, 26 Jun 2010 23:59:25 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=598#comment-1466</guid>
+		<description><![CDATA[The comment had all your formatting stripped - flick me an email and I&#039;ll run an eye over that config.xml - the php code you pasted in doesn&#039;t look quite right either, but that may be related to the comment formatting.]]></description>
+		<content:encoded><![CDATA[<p>The comment had all your formatting stripped &#8211; flick me an email and I&#8217;ll run an eye over that config.xml &#8211; the php code you pasted in doesn&#8217;t look quite right either, but that may be related to the comment formatting.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Jamaal</title>
+		<link>http://www.aschroder.com/2010/01/magento-events-explained-and-a-few-gotchas-avoided/comment-page-1/#comment-1462</link>
+		<dc:creator><![CDATA[Jamaal]]></dc:creator>
+		<pubDate>Sat, 26 Jun 2010 07:02:14 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=598#comment-1462</guid>
+		<description><![CDATA[I&#039;m still so confused about this.  I am trying to get checkout_onepage_controller_success_action to work when someone checks out I need to send some SOAP data to someone else.  However it never fires!  
+
+
+I&#039;ve RTFM&#039;ed so many times and can&#039;t figure out what&#039;s wrong.  
+
+
+[root@VO12044 etc]# cat config.xml
+
+
+    
+        
+            
+                0.1.0
+            
+        
+        
+            
+                MyCompany_MyModule_Helper
+            
+        
+    
+    
+        
+            &#060;!--  --&#062;
+                
+                
+                    
+                        model
+                        MyCompany_MyModule_Helper_MyFunction
+                        setMyFuction
+                    
+                
+                
+        
+    
+
+&lt;!-- /app/code/local/MyCompany/MyModule/etc/config.xml --&gt;
+
+
+in app/code/local/MyCompany/MyModule/Helper
+
+
+[root@VO12044 Helper]# cat MyFunction.php
+getEvent()-&#062;getOrder();
+     foreach ($order-&#062;getAllItems() as $item) {
+        $fname = ($_SERVER[&#039;DOCUMENT_ROOT&#039;].&#039;orders.txt&#039;);
+        $fhandle = fopen($fname,&quot;a&quot;);
+        fwrite($fhandle,$item);
+        fwrite($fhandle,&quot;BLAH&quot;);
+        fclose($fhandle);
+        //echo $order-&#062;getStatus();
+        //echo $content;
+
+        }
+
+        //$event = $observer-&#062;getEvent();
+        //$order = $event-&#062;getOrder();
+        //$customer = $event-&#062;getCustomer();
+
+        //file_put_contents($_SERVER[&#039;DOCUMENT_ROOT&#039;].&#039;/_db_backups/array.txt&#039;, serialize(base64_encode($order)));
+        //return;
+    }
+}
+// &lt;!-- /app/code/local/MyCompany/MyModule/Helper/MyFunction.php --&gt;
+
+
+I can&#039;t figure out what im doing wrong.   HALP! 
+
+jamaal@cellyeah.com]]></description>
+		<content:encoded><![CDATA[<p>I&#8217;m still so confused about this.  I am trying to get checkout_onepage_controller_success_action to work when someone checks out I need to send some SOAP data to someone else.  However it never fires!  </p>
+<p>I&#8217;ve RTFM&#8217;ed so many times and can&#8217;t figure out what&#8217;s wrong.  </p>
+<p>[root@VO12044 etc]# cat config.xml</p>
+<p>                0.1.0</p>
+<p>                MyCompany_MyModule_Helper</p>
+<p>            &lt;!&#8211;  &#8211;&gt;</p>
+<p>                        model<br />
+                        MyCompany_MyModule_Helper_MyFunction<br />
+                        setMyFuction</p>
+<p><!-- /app/code/local/MyCompany/MyModule/etc/config.xml --></p>
+<p>in app/code/local/MyCompany/MyModule/Helper</p>
+<p>[root@VO12044 Helper]# cat MyFunction.php<br />
+getEvent()-&gt;getOrder();<br />
+     foreach ($order-&gt;getAllItems() as $item) {<br />
+        $fname = ($_SERVER[&#8216;DOCUMENT_ROOT&#8217;].&#8217;orders.txt&#8217;);<br />
+        $fhandle = fopen($fname,&#8221;a&#8221;);<br />
+        fwrite($fhandle,$item);<br />
+        fwrite($fhandle,&#8221;BLAH&#8221;);<br />
+        fclose($fhandle);<br />
+        //echo $order-&gt;getStatus();<br />
+        //echo $content;</p>
+<p>        }</p>
+<p>        //$event = $observer-&gt;getEvent();<br />
+        //$order = $event-&gt;getOrder();<br />
+        //$customer = $event-&gt;getCustomer();</p>
+<p>        //file_put_contents($_SERVER[&#8216;DOCUMENT_ROOT&#8217;].&#8217;/_db_backups/array.txt&#8217;, serialize(base64_encode($order)));<br />
+        //return;<br />
+    }<br />
+}<br />
+// <!-- /app/code/local/MyCompany/MyModule/Helper/MyFunction.php --></p>
+<p>I can&#8217;t figure out what im doing wrong.   HALP! </p>
+<p><a href="mailto:jamaal@cellyeah.com">jamaal@cellyeah.com</a></p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: xer0x</title>
+		<link>http://www.aschroder.com/2010/01/magento-events-explained-and-a-few-gotchas-avoided/comment-page-1/#comment-1392</link>
+		<dc:creator><![CDATA[xer0x]]></dc:creator>
+		<pubDate>Wed, 02 Jun 2010 20:40:20 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=598#comment-1392</guid>
+		<description><![CDATA[Thanks this helped a ton]]></description>
+		<content:encoded><![CDATA[<p>Thanks this helped a ton</p>
+]]></content:encoded>
+	</item>
+</channel>
+</rss>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:31:54 by W3 Total Cache -->

@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="en-US">
+
+<!-- Mirrored from www.aschroder.com/2008/11/magento-google-checkout-free-shipping/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:27:41 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="../../../xmlrpc.php">
+
+<title>Magento 1.1.7 Google Checkout and Free Shipping | ASchroder.com</title>
+
+<!-- All in One SEO Pack 2.4.2 by Michael Torbert of Semper Fi Web Design[289,365] -->
+<meta name="description"  content="How to get Magento Free shipping to work with the Google Checkout XML API." />
+
+<!-- /all in one seo pack -->
+<link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
+<link rel='dns-prefetch' href='http://s.w.org/' />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Feed" href="../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Comments Feed" href="../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Magento 1.1.7 Google Checkout and Free Shipping Comments Feed" href="feed/index.html" />
+<!-- This site uses the Google Analytics by MonsterInsights plugin v6.2.4 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+<script type="text/javascript" data-cfasync="false">
+		var disableStr = 'ga-disable-UA-6477134-1';
+
+	/* Function to detect opted out users */
+	function __gaTrackerIsOptedOut() {
+		return document.cookie.indexOf(disableStr + '=true') > -1;
+	}
+
+	/* Disable tracking if the opt-out cookie exists. */
+	if ( __gaTrackerIsOptedOut() ) {
+		window[disableStr] = true;
+	}
+
+	/* Opt-out function */
+	function __gaTrackerOptout() {
+	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+	  window[disableStr] = true;
+	}
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','http://www.google-analytics.com/analytics.js','__gaTracker');
+
+	__gaTracker('create', 'UA-6477134-1', 'auto');
+	__gaTracker('set', 'forceSSL', true);
+	__gaTracker('send','pageview');
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/www.aschroder.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.15"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='yarppWidgetCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/widget101e.css?ver=4.8.15' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-syntax-css-css'  href='../../../wp-content/plugins/wp-syntax/css/wp-syntax4963.css?ver=1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-style-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/style5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<style id='storefront-style-inline-css' type='text/css'>
+
+			.main-navigation ul li a,
+			.site-title a,
+			ul.menu li a,
+			.site-branding h1 a,
+			.site-footer .storefront-handheld-footer-bar a:not(.button),
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				color: #333333;
+			}
+
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				border-color: #333333;
+			}
+
+			.main-navigation ul li a:hover,
+			.main-navigation ul li:hover > a,
+			.site-title a:hover,
+			a.cart-contents:hover,
+			.site-header-cart .widget_shopping_cart a:hover,
+			.site-header-cart:hover > li > a,
+			.site-header ul.menu li.current-menu-item > a {
+				color: #838383;
+			}
+
+			table th {
+				background-color: #f8f8f8;
+			}
+
+			table tbody td {
+				background-color: #fdfdfd;
+			}
+
+			table tbody tr:nth-child(2n) td,
+			fieldset,
+			fieldset legend {
+				background-color: #fbfbfb;
+			}
+
+			.site-header,
+			.secondary-navigation ul ul,
+			.main-navigation ul.menu > li.menu-item-has-children:after,
+			.secondary-navigation ul.menu ul,
+			.storefront-handheld-footer-bar,
+			.storefront-handheld-footer-bar ul li > a,
+			.storefront-handheld-footer-bar ul li.search .site-search,
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				background-color: #ffffff;
+			}
+
+			p.site-description,
+			.site-header,
+			.storefront-handheld-footer-bar {
+				color: #6d6d6d;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count,
+			button.menu-toggle:after,
+			button.menu-toggle:before,
+			button.menu-toggle span:before {
+				background-color: #333333;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				color: #ffffff;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				border-color: #ffffff;
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+				color: #333333;
+			}
+
+			.widget h1 {
+				border-bottom-color: #333333;
+			}
+
+			body,
+			.secondary-navigation a,
+			.onsale,
+			.pagination .page-numbers li .page-numbers:not(.current), .woocommerce-pagination .page-numbers li .page-numbers:not(.current) {
+				color: #6d6d6d;
+			}
+
+			.widget-area .widget a,
+			.hentry .entry-header .posted-on a,
+			.hentry .entry-header .byline a {
+				color: #9f9f9f;
+			}
+
+			a  {
+				color: #0228d1;
+			}
+
+			a:focus,
+			.button:focus,
+			.button.alt:focus,
+			.button.added_to_cart:focus,
+			.button.wc-forward:focus,
+			button:focus,
+			input[type="button"]:focus,
+			input[type="reset"]:focus,
+			input[type="submit"]:focus {
+				outline-color: #0228d1;
+			}
+
+			button, input[type="button"], input[type="reset"], input[type="submit"], .button, .added_to_cart, .widget a.button, .site-header-cart .widget_shopping_cart a.button {
+				background-color: #eeeeee;
+				border-color: #eeeeee;
+				color: #333333;
+			}
+
+			button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, .button:hover, .added_to_cart:hover, .widget a.button:hover, .site-header-cart .widget_shopping_cart a.button:hover {
+				background-color: #d5d5d5;
+				border-color: #d5d5d5;
+				color: #333333;
+			}
+
+			button.alt, input[type="button"].alt, input[type="reset"].alt, input[type="submit"].alt, .button.alt, .added_to_cart.alt, .widget-area .widget a.button.alt, .added_to_cart, .widget a.button.checkout {
+				background-color: #333333;
+				border-color: #333333;
+				color: #ffffff;
+			}
+
+			button.alt:hover, input[type="button"].alt:hover, input[type="reset"].alt:hover, input[type="submit"].alt:hover, .button.alt:hover, .added_to_cart.alt:hover, .widget-area .widget a.button.alt:hover, .added_to_cart:hover, .widget a.button.checkout:hover {
+				background-color: #1a1a1a;
+				border-color: #1a1a1a;
+				color: #ffffff;
+			}
+
+			.pagination .page-numbers li .page-numbers.current, .woocommerce-pagination .page-numbers li .page-numbers.current {
+				background-color: #e6e6e6;
+				color: #6d6d6d;
+			}
+
+			#comments .comment-list .comment-content .comment-text {
+				background-color: #f8f8f8;
+			}
+
+			.site-footer {
+				background-color: #f0f0f0;
+				color: #6d6d6d;
+			}
+
+			.site-footer a:not(.button) {
+				color: #333333;
+			}
+
+			.site-footer h1, .site-footer h2, .site-footer h3, .site-footer h4, .site-footer h5, .site-footer h6 {
+				color: #333333;
+			}
+
+			#order_review {
+				background-color: #ffffff;
+			}
+
+			#payment .payment_methods > li .payment_box,
+			#payment .place-order {
+				background-color: #fafafa;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice) {
+				background-color: #f5f5f5;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice):hover {
+				background-color: #f0f0f0;
+			}
+
+			@media screen and ( min-width: 768px ) {
+				.secondary-navigation ul.menu a:hover {
+					color: #868686;
+				}
+
+				.secondary-navigation ul.menu a {
+					color: #6d6d6d;
+				}
+
+				.site-header-cart .widget_shopping_cart,
+				.main-navigation ul.menu ul.sub-menu,
+				.main-navigation ul.nav-menu ul.children {
+					background-color: #f0f0f0;
+				}
+
+				.site-header-cart .widget_shopping_cart .buttons,
+				.site-header-cart .widget_shopping_cart .total {
+					background-color: #f5f5f5;
+				}
+
+				.site-header {
+					border-bottom-color: #f0f0f0;
+				}
+			}
+</style>
+<link rel='stylesheet' id='storefront-icons-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/sass/base/icons5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-fonts-css'  href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,600,700,900&amp;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jqueryb8ff.js?ver=1.12.4'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jquery-migrate.min330a.js?ver=1.4.1'></script>
+<link rel='https://api.w.org/' href='../../../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../xmlrpc0db0.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='My list of PHP language features with hard-to-imagine-use-cases: #1 &#8211; The @ symbol that supresses errors' href='../my-list-of-php-language-features-with-hard-to-imagine-use-cases-1-the-symbol-that-supresses-errors/index.html' />
+<link rel='next' title='Magento 1.1.7 Google Checkout and Free Shipping (part 2)' href='../../12/magento-117-google-checkout-and-free-shipping-part-2/index.html' />
+<meta name="generator" content="WordPress 4.8.15" />
+<link rel="canonical" href="index.html" />
+<link rel='shortlink' href='../../../index2dc4.html?p=13' />
+<link rel="alternate" type="application/json+oembed" href="../../../wp-json/oembed/1.0/embedf8f4.json?url=http%3A%2F%2Fwww.aschroder.com%2F2008%2F11%2Fmagento-google-checkout-free-shipping%2F" />
+<link rel="alternate" type="text/xml+oembed" href="../../../wp-json/oembed/1.0/embedeabc?url=http%3A%2F%2Fwww.aschroder.com%2F2008%2F11%2Fmagento-google-checkout-free-shipping%2F&amp;format=xml" />
+</head>
+
+<body class="post-template-default single single-post postid-13 single-format-standard no-wc-breadcrumb storefront-full-width-content right-sidebar">
+
+
+<div id="page" class="hfeed site">
+	
+	<header id="masthead" class="site-header" role="banner" style="">
+		<div class="col-full">
+
+					<a class="skip-link screen-reader-text" href="#site-navigation">Skip to navigation</a>
+		<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+				<div class="site-branding">
+			<div class="beta site-title"><a href="../../../index.html" rel="home">ASchroder.com</a></div><p class="site-description">Notes on Web Development</p>		</div>
+		<div class="storefront-primary-navigation">		<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="Primary Navigation">
+		<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><span>Menu</span></button>
+			<div class="primary-navigation"><ul id="menu-main-menu" class="menu"><li id="menu-item-1119" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li id="menu-item-1118" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li id="menu-item-1872" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div><div class="handheld-navigation"><ul id="menu-main-menu-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div>		</nav><!-- #site-navigation -->
+		</div>
+		</div>
+	</header><!-- #masthead -->
+
+	
+	<div id="content" class="site-content" tabindex="-1">
+		<div class="col-full">
+
+		
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+<div id="post-13" class="post-13 post type-post status-publish format-standard hentry category-google-checkout category-magento category-web-development tag-google-checkout tag-magento tag-magento-121 tag-php tag-shipping tag-web-development tag-xml-api">
+
+			<header class="entry-header">
+		<span class="posted-on">Posted on <a href="index.html" rel="bookmark"><time class="entry-date published" datetime="2008-11-27T04:54:39+00:00">November 27, 2008</time> <time class="updated" datetime="2009-03-26T03:49:42+00:00">March 26, 2009</time></a></span><h1 class="entry-title">Magento 1.1.7 Google Checkout and Free Shipping</h1>		</header><!-- .entry-header -->
+				<aside class="entry-meta">
+						<div class="author">
+				<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' /><div class="label">Written by</div><a href="../../../author/admin/index.html" title="Posts by Ashley" rel="author">Ashley</a>			</div>
+							<div class="cat-links">
+					<div class="label">Posted in</div><a href="../../../category/google-checkout/index.html" rel="category tag">Google Checkout</a>, <a href="../../../category/magento/index.html" rel="category tag">Magento</a>, <a href="../../../category/web-development/index.html" rel="category tag">Web Development</a>				</div>
+			
+							<div class="tags-links">
+					<div class="label">Tagged</div><a href="../../../tag/google-checkout/index.html" rel="tag">Google Checkout</a>, <a href="../../../tag/magento/index.html" rel="tag">Magento</a>, <a href="../../../tag/magento-121/index.html" rel="tag">magento 1.2.1</a>, <a href="../../../tag/php/index.html" rel="tag">PHP</a>, <a href="../../../tag/shipping/index.html" rel="tag">shipping</a>, <a href="../../../tag/web-development/index.html" rel="tag">Web Development</a>, <a href="../../../tag/xml-api/index.html" rel="tag">XML API</a>				</div>
+			
+		
+							<div class="comments-link">
+					<div class="label">Comments</div>					<span class="comments-link"><a href="index.html#comments">2 Comments</a></span>
+				</div>
+					</aside>
+				<div class="entry-content">
+		<p>I have been working with the <a href="http://magentocommerce.com/" onclick="__gaTracker('send', 'event', 'outbound-article', 'http://magentocommerce.com/', 'Magento E-commerce');" rel="nofollow">Magento E-commerce</a> platform and have to say it&#8217;s generally pretty slick. I ran into a problem though when trying to get the Google Checkout integration working. The error message in the Google Checkout integration console was:</p>
+<pre style="padding-left: 30px;">"We were looking for data in your merchant-calculation-results, but were not
+able to find it: result: address-id: XXXXXX"</pre>
+<p>The problem was that the XML response Magento was sending back had the correct calculations for each shipping method that was available but it didn&#8217;t include the shipping methods that were not available for the address. These are required according to the <a href="http://code.google.com/apis/checkout/developer/index.html#merchant_calculations_api" onclick="__gaTracker('send', 'event', 'outbound-article', 'http://code.google.com/apis/checkout/developer/index.html#merchant_calculations_api', 'Google Checkout XML API Docs');" rel="nofollow">Google Checkout XML API Docs</a>.</p>
+<p><span id="more-13"></span></p>
+<p>For example: if there are two shipping methods: standard and free &#8211; where free is only available to UK customers. The customer has 2 potential delivery addresses (One in the UK and one in the US).</p>
+<p>The Google request would look something like this:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="xml" style="font-family:monospace;"><span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;?xml</span> <span style="color: #000066;">version</span>=<span style="color: #ff0000;">&quot;1.0&quot;</span> <span style="color: #000066;">encoding</span>=<span style="color: #ff0000;">&quot;UTF-8&quot;</span><span style="color: #000000; font-weight: bold;">?&gt;</span></span>
+<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;merchant-calculation-callback</span></span>
+<span style="color: #009900;"><span style="color: #000066;">xmlns</span>=<span style="color: #ff0000;">&quot;http://checkout.google.com/schema/2&quot;</span></span>
+<span style="color: #009900;"><span style="color: #000066;">serial-number</span>=<span style="color: #ff0000;">&quot;9999888-a4d9-98b5-9146-a786865421&quot;</span><span style="color: #000000; font-weight: bold;">&gt;</span></span>
+  <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;shopping-cart<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+    <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;items<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+      <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;item<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+        <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;item-weight</span> <span style="color: #000066;">value</span>=<span style="color: #ff0000;">&quot;0.6&quot;</span> <span style="color: #000066;">unit</span>=<span style="color: #ff0000;">&quot;LB&quot;</span> <span style="color: #000000; font-weight: bold;">/&gt;</span></span>
+        <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;tax-table-selector<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>none<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/tax-table-selector<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+        <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;item-name<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>Special Blue Widget<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/item-name<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+        <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;item-description<span style="color: #000000; font-weight: bold;">&gt;</span></span><span style="color: #000000; font-weight: bold;">&lt;/item-description<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+        <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;quantity<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>1<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/quantity<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+        <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;unit-price</span> <span style="color: #000066;">currency</span>=<span style="color: #ff0000;">&quot;GBP&quot;</span><span style="color: #000000; font-weight: bold;">&gt;</span></span>20<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/unit-price<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+        <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;merchant-item-id<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>SBW008<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/merchant-item-id<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+        <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;merchant-private-item-data<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+          <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;quote-item-id<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>450<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/quote-item-id<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+        <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/merchant-private-item-data<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+      <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/item<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+    <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/items<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+    <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;merchant-private-data<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+      <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;quote-id<span style="color: #000000; font-weight: bold;">&gt;</span></span></span><span style="color: #339933;">&lt;![CDATA[88]]&gt;</span><span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/quote-id<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+    <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/merchant-private-data<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+  <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/shopping-cart<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+  <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;buyer-id<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>71862764876424<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/buyer-id<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+  <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;calculate<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+    <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;addresses<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+      <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;anonymous-address</span> <span style="color: #000066;">id</span>=<span style="color: #ff0000;">&quot;769875978986&quot;</span><span style="color: #000000; font-weight: bold;">&gt;</span></span>
+        <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;country-code<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>US<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/country-code<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+        <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;postal-code<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>03801<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/postal-code<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+        <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;city<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>Demo City<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/city<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+        <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;region<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>NH<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/region<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+      <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/anonymous-address<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+      <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;anonymous-address</span> <span style="color: #000066;">id</span>=<span style="color: #ff0000;">&quot;78648564865986&quot;</span><span style="color: #000000; font-weight: bold;">&gt;</span></span>
+        <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;country-code<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>GB<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/country-code<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+        <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;postal-code<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>SP6 7AJ<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/postal-code<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+        <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;city<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>UK Demo Town<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/city<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+        <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;region<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>UK<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/region<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+      <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/anonymous-address<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+    <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/addresses<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+    <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;shipping<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+      <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;method</span> <span style="color: #000066;">name</span>=<span style="color: #ff0000;">&quot;Shipping - Free&quot;</span> <span style="color: #000000; font-weight: bold;">/&gt;</span></span>
+      <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;method</span> <span style="color: #000066;">name</span>=<span style="color: #ff0000;">&quot;Shipping - Standard&quot;</span> <span style="color: #000000; font-weight: bold;">/&gt;</span></span>
+    <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/shipping<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+    <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;tax<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>true<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/tax<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+    <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;merchant-code-strings</span> <span style="color: #000000; font-weight: bold;">/&gt;</span></span>
+  <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/calculate<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+  <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;buyer-language<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>English<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/buyer-language<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/merchant-calculation-callback<span style="color: #000000; font-weight: bold;">&gt;</span></span></span></pre></td></tr></table><p class="theCode" style="display:none;">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;merchant-calculation-callback
+xmlns=&quot;http://checkout.google.com/schema/2&quot;
+serial-number=&quot;9999888-a4d9-98b5-9146-a786865421&quot;&gt;
+  &lt;shopping-cart&gt;
+    &lt;items&gt;
+      &lt;item&gt;
+        &lt;item-weight value=&quot;0.6&quot; unit=&quot;LB&quot; /&gt;
+        &lt;tax-table-selector&gt;none&lt;/tax-table-selector&gt;
+        &lt;item-name&gt;Special Blue Widget&lt;/item-name&gt;
+        &lt;item-description&gt;&lt;/item-description&gt;
+        &lt;quantity&gt;1&lt;/quantity&gt;
+        &lt;unit-price currency=&quot;GBP&quot;&gt;20&lt;/unit-price&gt;
+        &lt;merchant-item-id&gt;SBW008&lt;/merchant-item-id&gt;
+        &lt;merchant-private-item-data&gt;
+          &lt;quote-item-id&gt;450&lt;/quote-item-id&gt;
+        &lt;/merchant-private-item-data&gt;
+      &lt;/item&gt;
+    &lt;/items&gt;
+    &lt;merchant-private-data&gt;
+      &lt;quote-id&gt;&lt;![CDATA[88]]&gt;&lt;/quote-id&gt;
+    &lt;/merchant-private-data&gt;
+  &lt;/shopping-cart&gt;
+  &lt;buyer-id&gt;71862764876424&lt;/buyer-id&gt;
+  &lt;calculate&gt;
+    &lt;addresses&gt;
+      &lt;anonymous-address id=&quot;769875978986&quot;&gt;
+        &lt;country-code&gt;US&lt;/country-code&gt;
+        &lt;postal-code&gt;03801&lt;/postal-code&gt;
+        &lt;city&gt;Demo City&lt;/city&gt;
+        &lt;region&gt;NH&lt;/region&gt;
+      &lt;/anonymous-address&gt;
+      &lt;anonymous-address id=&quot;78648564865986&quot;&gt;
+        &lt;country-code&gt;GB&lt;/country-code&gt;
+        &lt;postal-code&gt;SP6 7AJ&lt;/postal-code&gt;
+        &lt;city&gt;UK Demo Town&lt;/city&gt;
+        &lt;region&gt;UK&lt;/region&gt;
+      &lt;/anonymous-address&gt;
+    &lt;/addresses&gt;
+    &lt;shipping&gt;
+      &lt;method name=&quot;Shipping - Free&quot; /&gt;
+      &lt;method name=&quot;Shipping - Standard&quot; /&gt;
+    &lt;/shipping&gt;
+    &lt;tax&gt;true&lt;/tax&gt;
+    &lt;merchant-code-strings /&gt;
+  &lt;/calculate&gt;
+  &lt;buyer-language&gt;English&lt;/buyer-language&gt;
+&lt;/merchant-calculation-callback&gt;</p></div>
+
+<p>Out of the box Magento would send back data for standard shipping for both addresses, free shipping is only included for the UK address.</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="xml" style="font-family:monospace;"><span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;?xml</span> <span style="color: #000066;">version</span>=<span style="color: #ff0000;">&quot;1.0&quot;</span> <span style="color: #000066;">encoding</span>=<span style="color: #ff0000;">&quot;utf-8&quot;</span><span style="color: #000000; font-weight: bold;">?&gt;</span></span>
+<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;merchant-calculation-results</span> <span style="color: #000066;">xmlns</span>=<span style="color: #ff0000;">&quot;http://checkout.google.com/schema/2&quot;</span><span style="color: #000000; font-weight: bold;">&gt;</span></span>
+  <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;results<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+    <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;result</span> <span style="color: #000066;">shipping-name</span>=<span style="color: #ff0000;">&quot;Shipping - Standard&quot;</span> <span style="color: #000066;">address-id</span>=<span style="color: #ff0000;">&quot;769875978986&quot;</span><span style="color: #000000; font-weight: bold;">&gt;</span></span>
+      <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;shipping-rate</span> <span style="color: #000066;">currency</span>=<span style="color: #ff0000;">&quot;GBP&quot;</span><span style="color: #000000; font-weight: bold;">&gt;</span></span>10<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/shipping-rate<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+      <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;shippable<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>true<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/shippable<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+      <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;total-tax</span> <span style="color: #000066;">currency</span>=<span style="color: #ff0000;">&quot;GBP&quot;</span><span style="color: #000000; font-weight: bold;">&gt;</span></span>0<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/total-tax<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+    <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/result<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+    <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;result</span> <span style="color: #000066;">shipping-name</span>=<span style="color: #ff0000;">&quot;Shipping - Standard&quot;</span> <span style="color: #000066;">address-id</span>=<span style="color: #ff0000;">&quot;78648564865986&quot;</span><span style="color: #000000; font-weight: bold;">&gt;</span></span>
+      <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;shipping-rate</span> <span style="color: #000066;">currency</span>=<span style="color: #ff0000;">&quot;GBP&quot;</span><span style="color: #000000; font-weight: bold;">&gt;</span></span>5<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/shipping-rate<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+      <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;shippable<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>true<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/shippable<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+      <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;total-tax</span> <span style="color: #000066;">currency</span>=<span style="color: #ff0000;">&quot;GBP&quot;</span><span style="color: #000000; font-weight: bold;">&gt;</span></span>0<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/total-tax<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+    <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/result<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+    <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;result</span> <span style="color: #000066;">shipping-name</span>=<span style="color: #ff0000;">&quot;Shipping - Free&quot;</span> <span style="color: #000066;">address-id</span>=<span style="color: #ff0000;">&quot;78648564865986&quot;</span><span style="color: #000000; font-weight: bold;">&gt;</span></span>
+      <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;shipping-rate</span> <span style="color: #000066;">currency</span>=<span style="color: #ff0000;">&quot;GBP&quot;</span><span style="color: #000000; font-weight: bold;">&gt;</span></span>0<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/shipping-rate<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+      <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;shippable<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>true<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/shippable<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+      <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;total-tax</span> <span style="color: #000066;">currency</span>=<span style="color: #ff0000;">&quot;GBP&quot;</span><span style="color: #000000; font-weight: bold;">&gt;</span></span>0<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/total-tax<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+    <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/result<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+  <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/results<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/merchant-calculation-results<span style="color: #000000; font-weight: bold;">&gt;</span></span></span></pre></td></tr></table><p class="theCode" style="display:none;">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;merchant-calculation-results xmlns=&quot;http://checkout.google.com/schema/2&quot;&gt;
+  &lt;results&gt;
+    &lt;result shipping-name=&quot;Shipping - Standard&quot; address-id=&quot;769875978986&quot;&gt;
+      &lt;shipping-rate currency=&quot;GBP&quot;&gt;10&lt;/shipping-rate&gt;
+      &lt;shippable&gt;true&lt;/shippable&gt;
+      &lt;total-tax currency=&quot;GBP&quot;&gt;0&lt;/total-tax&gt;
+    &lt;/result&gt;
+    &lt;result shipping-name=&quot;Shipping - Standard&quot; address-id=&quot;78648564865986&quot;&gt;
+      &lt;shipping-rate currency=&quot;GBP&quot;&gt;5&lt;/shipping-rate&gt;
+      &lt;shippable&gt;true&lt;/shippable&gt;
+      &lt;total-tax currency=&quot;GBP&quot;&gt;0&lt;/total-tax&gt;
+    &lt;/result&gt;
+    &lt;result shipping-name=&quot;Shipping - Free&quot; address-id=&quot;78648564865986&quot;&gt;
+      &lt;shipping-rate currency=&quot;GBP&quot;&gt;0&lt;/shipping-rate&gt;
+      &lt;shippable&gt;true&lt;/shippable&gt;
+      &lt;total-tax currency=&quot;GBP&quot;&gt;0&lt;/total-tax&gt;
+    &lt;/result&gt;
+  &lt;/results&gt;
+&lt;/merchant-calculation-results&gt;</p></div>
+
+<p>The missing element is:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="xml" style="font-family:monospace;"><span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;result</span> <span style="color: #000066;">shipping-name</span>=<span style="color: #ff0000;">&quot;Shipping - Free&quot;</span> <span style="color: #000066;">address-id</span>=<span style="color: #ff0000;">&quot;78648564865986&quot;</span><span style="color: #000000; font-weight: bold;">&gt;</span></span>
+   <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;shipping-rate</span> <span style="color: #000066;">currency</span>=<span style="color: #ff0000;">&quot;GBP&quot;</span><span style="color: #000000; font-weight: bold;">&gt;</span></span>0<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/shipping-rate<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+   <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;shippable<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>false<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/shippable<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+ <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/result<span style="color: #000000; font-weight: bold;">&gt;</span></span></span></pre></td></tr></table><p class="theCode" style="display:none;">&lt;result shipping-name=&quot;Shipping - Free&quot; address-id=&quot;78648564865986&quot;&gt;
+   &lt;shipping-rate currency=&quot;GBP&quot;&gt;0&lt;/shipping-rate&gt;
+   &lt;shippable&gt;false&lt;/shippable&gt;
+ &lt;/result&gt;</p></div>
+
+<p>The fix is in Callback.php around line 216. You need to have an else condition like so:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="php" style="font-family:monospace;"><span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #990000;">isset</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$rates</span><span style="color: #009900;">&#91;</span><span style="color: #000088;">$methodName</span><span style="color: #009900;">&#93;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+    <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getData</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'root/calculate/tax/VALUE'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">==</span><span style="color: #0000ff;">'true'</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+        <span style="color: #000088;">$address</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setShippingMethod</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$rateCodes</span><span style="color: #009900;">&#91;</span><span style="color: #000088;">$methodName</span><span style="color: #009900;">&#93;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+        <span style="color: #000088;">$address</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setCollectShippingRates</span><span style="color: #009900;">&#40;</span><span style="color: #009900; font-weight: bold;">true</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">collectTotals</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+        <span style="color: #000088;">$billingAddress</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setCollectShippingRates</span><span style="color: #009900;">&#40;</span><span style="color: #009900; font-weight: bold;">true</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">collectTotals</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+        <span style="color: #000088;">$taxAmount</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$address</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getTaxAmount</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+        <span style="color: #000088;">$taxAmount</span> <span style="color: #339933;">+=</span> <span style="color: #000088;">$billingAddress</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getTaxAmount</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+        <span style="color: #000088;">$result</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setTaxDetails</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$taxAmount</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+    <span style="color: #009900;">&#125;</span>
+&nbsp;
+    <span style="color: #000088;">$result</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">SetShippingDetails</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$methodName</span><span style="color: #339933;">,</span> <span style="color: #000088;">$rates</span><span style="color: #009900;">&#91;</span><span style="color: #000088;">$methodName</span><span style="color: #009900;">&#93;</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">&quot;true&quot;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+    <span style="color: #000088;">$merchantCalculations</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">AddResult</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$result</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<span style="color: #009900;">&#125;</span> <span style="color: #b1b100;">else</span> <span style="color: #009900;">&#123;</span>
+        <span style="color: #000088;">$result</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">SetShippingDetails</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$methodName</span><span style="color: #339933;">,</span> <span style="color: #cc66cc;">0</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">&quot;false&quot;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+        <span style="color: #000088;">$merchantCalculations</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">AddResult</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$result</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<span style="color: #009900;">&#125;</span></pre></td></tr></table><p class="theCode" style="display:none;">if (isset($rates[$methodName])) {
+    if ($this-&gt;getData('root/calculate/tax/VALUE')=='true') {
+        $address-&gt;setShippingMethod($rateCodes[$methodName]);
+
+        $address-&gt;setCollectShippingRates(true)-&gt;collectTotals();
+        $billingAddress-&gt;setCollectShippingRates(true)-&gt;collectTotals();
+        $taxAmount = $address-&gt;getTaxAmount();
+        $taxAmount += $billingAddress-&gt;getTaxAmount();
+
+        $result-&gt;setTaxDetails($taxAmount);
+    }
+
+    $result-&gt;SetShippingDetails($methodName, $rates[$methodName], &quot;true&quot;);
+    $merchantCalculations-&gt;AddResult($result);
+} else {
+        $result-&gt;SetShippingDetails($methodName, 0, &quot;false&quot;);
+        $merchantCalculations-&gt;AddResult($result);
+}</p></div>
+
+<p>And then you will have the Google Checkout Callbacks working! There is another problem I found with the actual determination of free shipping eligibility. I&#8217;ll document the fix for that in my next post.</p>
+<p>Edit: This is still an issue in Magento 1.2.1.</p>
+<div class='yarpp-related'>
+<p>You might also be interested in:<ol>
+<li><a href="../../../2011/01/magento-1-4-2-and-google-checkout-debugging-weight-based-table-rate-issues/index.html" rel="bookmark" title="Magento 1.4.2 and Google Checkout &#8211; Debugging weight-based table rate issues">Magento 1.4.2 and Google Checkout &#8211; Debugging weight-based table rate issues </a></li>
+<li><a href="../../12/magento-117-google-checkout-and-free-shipping-part-2/index.html" rel="bookmark" title="Magento 1.1.7 Google Checkout and Free Shipping (part 2)">Magento 1.1.7 Google Checkout and Free Shipping (part 2) </a></li>
+<li><a href="../../../2009/01/magento-fails-when-using-google-checkout-merchant-calculated-shipping/index.html" rel="bookmark" title="Magento 1.2.0.1 Fails when using Google Checkout Merchant Calculated Shipping Callbacks: An HTTPS URL is required.">Magento 1.2.0.1 Fails when using Google Checkout Merchant Calculated Shipping Callbacks: An HTTPS URL is required. </a></li>
+<li><a href="../../../2010/09/magento-and-google-checkout-tax-on-shipping-incorrect-in-merchant-calculated-callback/index.html" rel="bookmark" title="Magento and Google Checkout: Tax on Shipping incorrect in Merchant Calculated callback">Magento and Google Checkout: Tax on Shipping incorrect in Merchant Calculated callback </a></li>
+<li><a href="../../../2009/02/3-quick-methods-to-diagnose-problems-between-magento-and-google-checkout/index.html" rel="bookmark" title="3 Quick Methods To Diagnose Communication Problems between Magento and Google Checkout">3 Quick Methods To Diagnose Communication Problems between Magento and Google Checkout </a></li>
+</ol></p>
+</div>
+		</div><!-- .entry-content -->
+		<nav id="post-navigation" class="navigation post-navigation" role="navigation" aria-label="Post Navigation"><span class="screen-reader-text">Post navigation</span><div class="nav-links"><div class="nav-previous"><a href="../my-list-of-php-language-features-with-hard-to-imagine-use-cases-1-the-symbol-that-supresses-errors/index.html" rel="prev">My list of PHP language features with hard-to-imagine-use-cases: #1 &#8211; The @ symbol that supresses errors</a></div><div class="nav-next"><a href="../../12/magento-117-google-checkout-and-free-shipping-part-2/index.html" rel="next">Magento 1.1.7 Google Checkout and Free Shipping (part 2)</a></div></div></nav>
+<section id="comments" class="comments-area" aria-label="Post Comments">
+
+			<h2 class="comments-title">
+			2 thoughts on &ldquo;<span>Magento 1.1.7 Google Checkout and Free Shipping</span>&rdquo;		</h2>
+
+		
+		<ol class="comment-list">
+					<li class="comment even thread-even depth-1" id="comment-724">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/e2133c3b5882694c68c8293c2debabcd?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/e2133c3b5882694c68c8293c2debabcd?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Shane</cite>			</div>
+			
+			<a href="index.html#comment-724" class="comment-date">
+				<time datetime="2009-11-29T10:11:52+00:00">November 29, 2009</time>			</a>
+		</div>
+				<div id="div-comment-724" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, I am receiving the following error for my store&#8230;</p>
+<p>	Merchant Calculations: We were looking for data in your merchant-calculation-results, but were not able to find it: result: address-id:XXXXXXX</p>
+<p>On the surface the problem I seem to have is that Google checkout doesn&#8217;t process &#8220;per item&#8221; shipping. I am using the flat rate method and also an extension via the &#8220;merchant calculated&#8221; method.</p>
+<p>Any help would be fantastic ! ( I am really struggling)</p>
+<p>Many thanks</p>
+<p>Shane</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-727">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-727" class="comment-date">
+				<time datetime="2009-11-30T02:47:44+00:00">November 30, 2009</time>			</a>
+		</div>
+				<div id="div-comment-727" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, Shane<br />
+If you post your XML from the integration console, the parts that say &#8216;what we sent&#8217; and &#8216;what you sent back&#8217; (or words to that effect) &#8211; obviously you&#8217;d want to mask any sensitive info in the xml first! This might allow me to spot what is wrong. Cheers, Ashley</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		</ol><!-- .comment-list -->
+
+				<p class="no-comments">Comments are closed.</p>
+	
+</section><!-- #comments -->
+
+</div><!-- #post-## -->
+
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+		</div><!-- .col-full -->
+	</div><!-- #content -->
+
+	
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="col-full">
+
+					<div class="site-info">
+			&copy; ASchroder.com 2023						<br /> Storefront designed by <a href="http://www.woocommerce.com/" title="WooCommerce - The Best eCommerce Platform for WordPress" rel="author">WooCommerce</a>.					</div><!-- .site-info -->
+		
+		</div><!-- .col-full -->
+	</footer><!-- #colophon -->
+
+	
+</div><!-- #page -->
+
+<link rel='stylesheet' id='yarppRelatedCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/related101e.css?ver=4.8.15' type='text/css' media='all' />
+<script type='text/javascript' src='../../../wp-content/plugins/wp-syntax/js/wp-syntax4963.js?ver=1.1'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/navigation.min11a8.js?ver=20120206'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/skip-link-focus-fix.min08e0.js?ver=20130115'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/wp-embed.min101e.js?ver=4.8.15'></script>
+
+</body>
+
+<!-- Mirrored from www.aschroder.com/2008/11/magento-google-checkout-free-shipping/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:27:44 GMT -->
+</html>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk (Requested URI is rejected)
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:18:10 by W3 Total Cache -->

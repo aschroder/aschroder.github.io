@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="en-US">
+
+<!-- Mirrored from www.aschroder.com/category/magento/page/4/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:39:41 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="../../../../xmlrpc.php">
+
+<title>Magento | ASchroder.com - Part 4</title>
+
+<!-- All in One SEO Pack 2.4.2 by Michael Torbert of Semper Fi Web Design[289,340] -->
+<meta name="description"  content="I have been using Magento for ecommerce development and really like it. I&#039;ll share tips and advice for working with it and improving your Magento Development." />
+<link rel='prev' href='../3/index.html' />
+<link rel='next' href='../5/index.html' />
+
+<!-- /all in one seo pack -->
+<link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
+<link rel='dns-prefetch' href='http://s.w.org/' />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Feed" href="../../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Comments Feed" href="../../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Magento Category Feed" href="../../feed/index.html" />
+<!-- This site uses the Google Analytics by MonsterInsights plugin v6.2.4 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+<script type="text/javascript" data-cfasync="false">
+		var disableStr = 'ga-disable-UA-6477134-1';
+
+	/* Function to detect opted out users */
+	function __gaTrackerIsOptedOut() {
+		return document.cookie.indexOf(disableStr + '=true') > -1;
+	}
+
+	/* Disable tracking if the opt-out cookie exists. */
+	if ( __gaTrackerIsOptedOut() ) {
+		window[disableStr] = true;
+	}
+
+	/* Opt-out function */
+	function __gaTrackerOptout() {
+	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+	  window[disableStr] = true;
+	}
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','http://www.google-analytics.com/analytics.js','__gaTracker');
+
+	__gaTracker('create', 'UA-6477134-1', 'auto');
+	__gaTracker('set', 'forceSSL', true);
+	__gaTracker('send','pageview');
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/www.aschroder.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.15"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='yarppWidgetCss-css'  href='../../../../wp-content/plugins/yet-another-related-posts-plugin/style/widget101e.css?ver=4.8.15' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-syntax-css-css'  href='../../../../wp-content/plugins/wp-syntax/css/wp-syntax4963.css?ver=1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-style-css'  href='../../../../../cdn.aschroder.com/wp-content/themes/storefront/style5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<style id='storefront-style-inline-css' type='text/css'>
+
+			.main-navigation ul li a,
+			.site-title a,
+			ul.menu li a,
+			.site-branding h1 a,
+			.site-footer .storefront-handheld-footer-bar a:not(.button),
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				color: #333333;
+			}
+
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				border-color: #333333;
+			}
+
+			.main-navigation ul li a:hover,
+			.main-navigation ul li:hover > a,
+			.site-title a:hover,
+			a.cart-contents:hover,
+			.site-header-cart .widget_shopping_cart a:hover,
+			.site-header-cart:hover > li > a,
+			.site-header ul.menu li.current-menu-item > a {
+				color: #838383;
+			}
+
+			table th {
+				background-color: #f8f8f8;
+			}
+
+			table tbody td {
+				background-color: #fdfdfd;
+			}
+
+			table tbody tr:nth-child(2n) td,
+			fieldset,
+			fieldset legend {
+				background-color: #fbfbfb;
+			}
+
+			.site-header,
+			.secondary-navigation ul ul,
+			.main-navigation ul.menu > li.menu-item-has-children:after,
+			.secondary-navigation ul.menu ul,
+			.storefront-handheld-footer-bar,
+			.storefront-handheld-footer-bar ul li > a,
+			.storefront-handheld-footer-bar ul li.search .site-search,
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				background-color: #ffffff;
+			}
+
+			p.site-description,
+			.site-header,
+			.storefront-handheld-footer-bar {
+				color: #6d6d6d;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count,
+			button.menu-toggle:after,
+			button.menu-toggle:before,
+			button.menu-toggle span:before {
+				background-color: #333333;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				color: #ffffff;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				border-color: #ffffff;
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+				color: #333333;
+			}
+
+			.widget h1 {
+				border-bottom-color: #333333;
+			}
+
+			body,
+			.secondary-navigation a,
+			.onsale,
+			.pagination .page-numbers li .page-numbers:not(.current), .woocommerce-pagination .page-numbers li .page-numbers:not(.current) {
+				color: #6d6d6d;
+			}
+
+			.widget-area .widget a,
+			.hentry .entry-header .posted-on a,
+			.hentry .entry-header .byline a {
+				color: #9f9f9f;
+			}
+
+			a  {
+				color: #0228d1;
+			}
+
+			a:focus,
+			.button:focus,
+			.button.alt:focus,
+			.button.added_to_cart:focus,
+			.button.wc-forward:focus,
+			button:focus,
+			input[type="button"]:focus,
+			input[type="reset"]:focus,
+			input[type="submit"]:focus {
+				outline-color: #0228d1;
+			}
+
+			button, input[type="button"], input[type="reset"], input[type="submit"], .button, .added_to_cart, .widget a.button, .site-header-cart .widget_shopping_cart a.button {
+				background-color: #eeeeee;
+				border-color: #eeeeee;
+				color: #333333;
+			}
+
+			button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, .button:hover, .added_to_cart:hover, .widget a.button:hover, .site-header-cart .widget_shopping_cart a.button:hover {
+				background-color: #d5d5d5;
+				border-color: #d5d5d5;
+				color: #333333;
+			}
+
+			button.alt, input[type="button"].alt, input[type="reset"].alt, input[type="submit"].alt, .button.alt, .added_to_cart.alt, .widget-area .widget a.button.alt, .added_to_cart, .widget a.button.checkout {
+				background-color: #333333;
+				border-color: #333333;
+				color: #ffffff;
+			}
+
+			button.alt:hover, input[type="button"].alt:hover, input[type="reset"].alt:hover, input[type="submit"].alt:hover, .button.alt:hover, .added_to_cart.alt:hover, .widget-area .widget a.button.alt:hover, .added_to_cart:hover, .widget a.button.checkout:hover {
+				background-color: #1a1a1a;
+				border-color: #1a1a1a;
+				color: #ffffff;
+			}
+
+			.pagination .page-numbers li .page-numbers.current, .woocommerce-pagination .page-numbers li .page-numbers.current {
+				background-color: #e6e6e6;
+				color: #6d6d6d;
+			}
+
+			#comments .comment-list .comment-content .comment-text {
+				background-color: #f8f8f8;
+			}
+
+			.site-footer {
+				background-color: #f0f0f0;
+				color: #6d6d6d;
+			}
+
+			.site-footer a:not(.button) {
+				color: #333333;
+			}
+
+			.site-footer h1, .site-footer h2, .site-footer h3, .site-footer h4, .site-footer h5, .site-footer h6 {
+				color: #333333;
+			}
+
+			#order_review {
+				background-color: #ffffff;
+			}
+
+			#payment .payment_methods > li .payment_box,
+			#payment .place-order {
+				background-color: #fafafa;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice) {
+				background-color: #f5f5f5;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice):hover {
+				background-color: #f0f0f0;
+			}
+
+			@media screen and ( min-width: 768px ) {
+				.secondary-navigation ul.menu a:hover {
+					color: #868686;
+				}
+
+				.secondary-navigation ul.menu a {
+					color: #6d6d6d;
+				}
+
+				.site-header-cart .widget_shopping_cart,
+				.main-navigation ul.menu ul.sub-menu,
+				.main-navigation ul.nav-menu ul.children {
+					background-color: #f0f0f0;
+				}
+
+				.site-header-cart .widget_shopping_cart .buttons,
+				.site-header-cart .widget_shopping_cart .total {
+					background-color: #f5f5f5;
+				}
+
+				.site-header {
+					border-bottom-color: #f0f0f0;
+				}
+			}
+</style>
+<link rel='stylesheet' id='storefront-icons-css'  href='../../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/sass/base/icons5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-fonts-css'  href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,600,700,900&amp;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../../cdn.aschroder.com/wp-includes/js/jquery/jqueryb8ff.js?ver=1.12.4'></script>
+<script type='text/javascript' src='../../../../../cdn.aschroder.com/wp-includes/js/jquery/jquery-migrate.min330a.js?ver=1.4.1'></script>
+<link rel='https://api.w.org/' href='../../../../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../../xmlrpc0db0.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../../wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 4.8.15" />
+</head>
+
+<body class="archive paged category category-magento category-6 paged-4 category-paged-4 no-wc-breadcrumb storefront-full-width-content right-sidebar">
+
+
+<div id="page" class="hfeed site">
+	
+	<header id="masthead" class="site-header" role="banner" style="">
+		<div class="col-full">
+
+					<a class="skip-link screen-reader-text" href="#site-navigation">Skip to navigation</a>
+		<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+				<div class="site-branding">
+			<div class="beta site-title"><a href="../../../../index.html" rel="home">ASchroder.com</a></div><p class="site-description">Notes on Web Development</p>		</div>
+		<div class="storefront-primary-navigation">		<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="Primary Navigation">
+		<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><span>Menu</span></button>
+			<div class="primary-navigation"><ul id="menu-main-menu" class="menu"><li id="menu-item-1119" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../../index.html">Home</a></li>
+<li id="menu-item-1118" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../../about/index.html">About</a></li>
+<li id="menu-item-1872" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../../presentations/index.html">Presentations</a></li>
+</ul></div><div class="handheld-navigation"><ul id="menu-main-menu-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../../index.html">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../../about/index.html">About</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../../presentations/index.html">Presentations</a></li>
+</ul></div>		</nav><!-- #site-navigation -->
+		</div>
+		</div>
+	</header><!-- #masthead -->
+
+	
+	<div id="content" class="site-content" tabindex="-1">
+		<div class="col-full">
+
+		
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+			<header class="page-header">
+				<h1 class="page-title">Category: Magento</h1><div class="taxonomy-description"><p>I have been using Magento for ecommerce development and really like it. I&#8217;ll share tips and advice for working with it and improving your Magento Development.</p>
+</div>			</header><!-- .page-header -->
+
+			
+<article id="post-1592" class="post-1592 post type-post status-publish format-standard hentry category-cloud-backup category-magento tag-cloud-backup tag-magento">
+
+			<header class="entry-header">
+		<span class="posted-on">Posted on <a href="../../../../2011/10/magento-cloud-backup-0-3-rc-new-features-and-an-end-to-the-beta-program-in-sight/index.html" rel="bookmark"><time class="entry-date published updated" datetime="2011-10-25T02:15:36+00:00">October 25, 2011</time></a></span><h2 class="alpha entry-title"><a href="../../../../2011/10/magento-cloud-backup-0-3-rc-new-features-and-an-end-to-the-beta-program-in-sight/index.html" rel="bookmark">Magento Cloud Backup 0.3 RC &#8211; new features and an end to the beta program in sight</a></h2>		</header><!-- .entry-header -->
+				<aside class="entry-meta">
+						<div class="author">
+				<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' /><div class="label">Written by</div><a href="../../../../author/admin/index.html" title="Posts by Ashley" rel="author">Ashley</a>			</div>
+							<div class="cat-links">
+					<div class="label">Posted in</div><a href="../../../cloud-backup/index.html" rel="category tag">Cloud Backup</a>, <a href="../../index.html" rel="category tag">Magento</a>				</div>
+			
+							<div class="tags-links">
+					<div class="label">Tagged</div><a href="../../../../tag/cloud-backup/index.html" rel="tag">Cloud Backup</a>, <a href="../../../../tag/magento/index.html" rel="tag">Magento</a>				</div>
+			
+		
+							<div class="comments-link">
+					<div class="label">Comments</div>					<span class="comments-link"><a href="../../../../2011/10/magento-cloud-backup-0-3-rc-new-features-and-an-end-to-the-beta-program-in-sight/index.html#comments">2 Comments</a></span>
+				</div>
+					</aside>
+				<div class="entry-content">
+		<p>We now have over 300 downloads of our <a href="http://www.magentocommerce.com/magento-connect/world-wide-access-cloud-backup-beta.html">Magento Cloud Backup extension</a>, with users storing over 300GB of their store data safe offsite <a href="http://aws.amazon.com/s3/">using Amazon S3</a>. As we near a post-beta release I thought it might be worth announcing an early RC, for both initial feedback from other developers/admins and because some of the features in this RC have been asked for, and I&#8217;d like to allow those users to gain early access to features they need.</p>
+<h3>What&#8217;s new in CloudBackup?</h3>
+<p><img src="../../../../../cdn.aschroder.com/wp-content/uploads/2011/10/new-features-cloud-backup.png" alt="" title="new-features-cloud-backup" width="557" height="251" class="aligncenter size-full wp-image-1598" srcset="http://cdn.aschroder.com/wp-content/uploads/2011/10/new-features-cloud-backup.png 557w, http://cdn.aschroder.com/wp-content/uploads/2011/10/new-features-cloud-backup-300x135.png 300w" sizes="(max-width: 557px) 100vw, 557px" /></p>
+<p><strong>Auto-cleanup of old backups</strong><br />
+Probably the single biggest feature request is the ability to delete old backups automatically. I have implemented a simple, delete backups older than 3 months process. However if you want more or less backup storage, it&#8217;s easy to change like so:</p>
+<p>Edit <code>Backup.php</code> and change <code>private $NUM_MONTHS = 3;</code> on line 31 to your desired number of months.</p>
+<p>(I&#8217;ll probably make this a fully fledged configuration option for the actual RC when it goes live on Magento Connect.)</p>
+<p>You need to enable the setting as shown in the screenshot above. Once enabled a nightly cron job will look for backups that are older than the specified threshold, and delete them from S3.</p>
+<p><strong>Native Database backup support</strong></p>
+<p>This is a MySQL only, power-user only feature that allows you to skip the Core backup if it takes too long on large stores (>2GB of database data).</p>
+<p>It&#8217;s important to note a couple of things with regard to running native Database backups. The first is that while it&#8217;s running the mysqldump will take a lock over the database, for really really big databases that could be a problem as it may block checkouts/new accounts, for example.</p>
+<p>The second is that mysqldump is run via a <code>system()</code> call this means you need security setting on PHP to allow this. It also means the mysqldump binary needs to be accessible to the PHP webserver user. To help that I have added a simple variable in <code>Native.php</code> (the native equivalent to <code>Db.php</code> provided in Magento core).</p>
+<p>I&#8217;ll just let the code/comments do the talking with regard to configuration:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="php" style="font-family:monospace;"><span style="color: #666666; font-style: italic;">// if mysqldump binary is not on the webserver user's path</span>
+<span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000088;">$PATH_TO_MYSQLDUMP</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">&quot;&quot;</span><span style="color: #339933;">;</span> 
+&nbsp;
+<span style="color: #666666; font-style: italic;">// For example on a MAMP based OSX install you might use: </span>
+<span style="color: #666666; font-style: italic;">// private $PATH_TO_MYSQLDUMP = &quot;/Applications/MAMP/Library/bin/&quot;;</span></pre></td></tr></table><p class="theCode" style="display:none;">// if mysqldump binary is not on the webserver user's path
+private $PATH_TO_MYSQLDUMP = &quot;&quot;; 
+	
+// For example on a MAMP based OSX install you might use: 
+// private $PATH_TO_MYSQLDUMP = &quot;/Applications/MAMP/Library/bin/&quot;;</p></div>
+
+<p>This feature should really only be used by people who see it and think <em>&#8216;great the answer to my prayers&#8217;</em> anybody else is likely to get themselves in to difficulty &#8211; it requires fairly deep access to your server environment &#8211; For example; if you&#8217;re on GoDaddy hosting, I&#8217;d be very surprised if you could run a native backup from PHP!</p>
+<p><strong>Trying the new features</strong></p>
+<p>You can get early <a href="http://worldwideaccess.github.com/Magento-Cloud-Backup/">access to the code over at Github</a>, we&#8217;re using Github pages, it&#8217;s really quite a nice feature.</p>
+<p>Once you have the code, you can install it manually in whatever manner you like, <a href="../../../../2010/05/installing-a-magento-extension-manually-via-ftp-or-ssh/index.html">here&#8217;s some suggestions I wrote up</a> a while back.</p>
+<p>If you&#8217;re patient, I&#8217;ll have the RC release up on Magento Connect within the next few weeks. It needs a little more polishing before I&#8217;ll be happy with it though.</p>
+<h3>The End of the Beta Program</h3>
+<p>We&#8217;ve been running the beta program <a href="../../../../2010/08/magento-backup-extension-cloud-backup-its-finally-approved/index.html">for over 12 months</a> and I consider it a great success from a technical point of view &#8211; the software has matured gradually and with plenty of testers I feel comfortable about the quality of the backups being created, and the consistency with which they&#8217;re being made. It probably doesn&#8217;t take much business savvy though, to realize that with 300 downloads, and a bit over 300GB of data in a first-GB-of-data-free beta program, we&#8217;ve been shouldering quite a burden for everyone&#8217;s backup storage.</p>
+<p>As I&#8217;ve said before, we would never take anything away from those that have been helping us test, so I&#8217;d assure everyone upfront that the initial GB of free storage will remain for those already using the extension. What will most likely happen once the extension is released as a 1.0 stable, is the extension will cost some small amount to buy, or the first GB won&#8217;t be completely subsidized. I&#8217;ll be sure to update everyone once we are clear on which direction the extension will go.</p>
+<p>Anyone who has had a beer with me and endured my rant about the folly of selling not-scarce digital copies of things (including software) will know where I stand philosophically on the matter.</p>
+<p>In any case, if you are considering offsite backups for your Magento store, or your client&#8217;s &#8211; now would be a pretty good time to jump on the bandwagon.</p>
+<p>So that&#8217;s pretty much the update on our Magento Cloud Backup extension, if you have any questions/gripes, please don&#8217;t hesitate to comment below!</p>
+		</div><!-- .entry-content -->
+		
+</article><!-- #post-## -->
+
+<article id="post-1587" class="post-1587 post type-post status-publish format-standard hentry category-magento category-smtp-pro-magento-extension tag-extension-clash tag-magento tag-mailchimp tag-smtp">
+
+			<header class="entry-header">
+		<span class="posted-on">Posted on <a href="../../../../2011/09/using-smtp-pro-and-ebizmarts-mailchimp-extension-in-magento/index.html" rel="bookmark"><time class="entry-date published" datetime="2011-09-18T01:49:19+00:00">September 18, 2011</time> <time class="updated" datetime="2013-07-02T04:14:55+00:00">July 2, 2013</time></a></span><h2 class="alpha entry-title"><a href="../../../../2011/09/using-smtp-pro-and-ebizmarts-mailchimp-extension-in-magento/index.html" rel="bookmark">Using SMTP Pro and Ebizmarts&#8217; MailChimp extension in Magento</a></h2>		</header><!-- .entry-header -->
+				<aside class="entry-meta">
+						<div class="author">
+				<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' /><div class="label">Written by</div><a href="../../../../author/admin/index.html" title="Posts by Ashley" rel="author">Ashley</a>			</div>
+							<div class="cat-links">
+					<div class="label">Posted in</div><a href="../../index.html" rel="category tag">Magento</a>, <a href="../../../smtp-pro-magento-extension/index.html" rel="category tag">SMTP Pro Magento Extension</a>				</div>
+			
+							<div class="tags-links">
+					<div class="label">Tagged</div><a href="../../../../tag/extension-clash/index.html" rel="tag">extension clash</a>, <a href="../../../../tag/magento/index.html" rel="tag">Magento</a>, <a href="../../../../tag/mailchimp/index.html" rel="tag">mailchimp</a>, <a href="../../../../tag/smtp/index.html" rel="tag">smtp</a>				</div>
+			
+		
+							<div class="comments-link">
+					<div class="label">Comments</div>					<span class="comments-link"><a href="../../../../2011/09/using-smtp-pro-and-ebizmarts-mailchimp-extension-in-magento/index.html#comments">14 Comments</a></span>
+				</div>
+					</aside>
+				<div class="entry-content">
+		<p>This is just a quick blog post that will hopefully help people facing the clash in Magento between my <a href="http://www.magentocommerce.com/magento-connect/ASchroder/extension/1865/aschroder.com-smtp-pro">SMTPPro email extension</a> and <a href="http://www.magentocommerce.com/magento-connect/ebizmarts/extension/1208/ebizmarts-mail-chimp-module">Ebizmarts&#8217; MailChimp</a> extension.</p>
+<p>The clash occurs only in one class <code>Mage_Core_Model_Email_Template</code> which we both override to extend the default Magento email sending capability.</p>
+<p>Because it only makes sense to use either SMTPPro <em>or</em> MailChimp as your <a href="http://en.wikipedia.org/wiki/E-mail_service_provider">ESP</a> if you want to use SMTP Pro you can safely disable the MailChimp core class override and then SMTPPro will send the store emails using whichever method you have configured.</p>
+<p><strong>Update July 2013:</strong> I have since released a premium extension for sending email using Amazon SES called MageSend, if you&#8217;re having toruble sending email with Magento, please check it out, it was created to solve many common Magento email issues.</p>
+<p>To remove the core override edit <code>code/local/Ebizmarts/Mailchimp/etc/config.xml</code> and remove the following XML:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="xml" style="font-family:monospace;"><span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;core<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+    <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;rewrite<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+        <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;email_template<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>Ebizmarts_Mailchimp_Model_Email_Template<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/email_template<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+    <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/rewrite<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/core<span style="color: #000000; font-weight: bold;">&gt;</span></span></span></pre></td></tr></table><p class="theCode" style="display:none;">&lt;core&gt;
+    &lt;rewrite&gt;
+        &lt;email_template&gt;Ebizmarts_Mailchimp_Model_Email_Template&lt;/email_template&gt;
+    &lt;/rewrite&gt;
+&lt;/core&gt;</p></div>
+
+<h3>When/Why is this safe to do?</h3>
+<p>You can do this when you are <strong>not</strong> using the <a href="http://blog.mailchimp.com/mailchimp-launches-transactional-email-service-on-top-of-amazon-ses/">MailChimp STS</a> capability and want to use SMTPPro to send your emails. If you don&#8217;t want to send via SMTPPro, just uninstall it to resolve the conflict.</p>
+<p>You can see in the first lines of the override class <code>Ebizmarts_Mailchimp_Model_Email_Template</code> why this is safe:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="php" style="font-family:monospace;"><span style="color: #b1b100;">if</span><span style="color: #009900;">&#40;</span><span style="color: #339933;">!</span>Mage<span style="color: #339933;">::</span><span style="color: #004000;">helper</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'mailchimp'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">isStsActivated</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#123;</span>
+    <span style="color: #b1b100;">return</span> parent<span style="color: #339933;">::</span><span style="color: #004000;">send</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$email</span><span style="color: #339933;">,</span> <span style="color: #000088;">$name</span><span style="color: #339933;">,</span> <span style="color: #000088;">$variables</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<span style="color: #009900;">&#125;</span></pre></td></tr></table><p class="theCode" style="display:none;">if(!Mage::helper('mailchimp')-&gt;isStsActivated()){
+    return parent::send($email, $name, $variables);
+}</p></div>
+
+<p>This means that if you are not using STS, then the whole override is basically a <a href="http://en.wikipedia.org/wiki/NOP">noop</a>.</p>
+<p>One caution I have for you though, once you modify an extension, you have to remember to apply the same patch each time you upgrade it, otherwise the clash will creep back in!</p>
+<p><strong>Update:</strong> I missed some emails notifying me of comments, I missed <a href="../../../../2010/07/latest-version-of-smtp-pro-finally-uploaded-to-magento-connect/comment-page-1/index.html#comment-2589">this fairly important one from Ebizmarts with basically this fix</a> in it&#8230; On a related note, if I didn&#8217;t reply to your comment for the last few weeks, that&#8217;s why.</p>
+		</div><!-- .entry-content -->
+		
+</article><!-- #post-## -->
+
+<article id="post-1535" class="post-1535 post type-post status-publish format-standard hentry category-magento category-magento-speed-test-2 category-web-development tag-mage-speed-test tag-performance-monitoring">
+
+			<header class="entry-header">
+		<span class="posted-on">Posted on <a href="../../../../2011/07/monitor-your-magento-store-with-magespeedtest-com/index.html" rel="bookmark"><time class="entry-date published" datetime="2011-07-06T02:40:08+00:00">July 6, 2011</time> <time class="updated" datetime="2011-07-06T23:41:29+00:00">July 6, 2011</time></a></span><h2 class="alpha entry-title"><a href="../../../../2011/07/monitor-your-magento-store-with-magespeedtest-com/index.html" rel="bookmark">Monitor your Magento Store with MageSpeedTest.com</a></h2>		</header><!-- .entry-header -->
+				<aside class="entry-meta">
+						<div class="author">
+				<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' /><div class="label">Written by</div><a href="../../../../author/admin/index.html" title="Posts by Ashley" rel="author">Ashley</a>			</div>
+							<div class="cat-links">
+					<div class="label">Posted in</div><a href="../../index.html" rel="category tag">Magento</a>, <a href="../../../magento-speed-test-2/index.html" rel="category tag">Magento Speed Test</a>, <a href="../../../web-development/index.html" rel="category tag">Web Development</a>				</div>
+			
+							<div class="tags-links">
+					<div class="label">Tagged</div><a href="../../../../tag/mage-speed-test/index.html" rel="tag">mage speed test</a>, <a href="../../../../tag/performance-monitoring/index.html" rel="tag">performance monitoring</a>				</div>
+			
+		
+							<div class="comments-link">
+					<div class="label">Comments</div>					<span class="comments-link"><a href="../../../../2011/07/monitor-your-magento-store-with-magespeedtest-com/index.html#comments">7 Comments</a></span>
+				</div>
+					</aside>
+				<div class="entry-content">
+		<p>I <a href="http://public.wsu.edu/~brians/errors/snuck.html">snuck/sneaked</a> out a new feature for MageSpeedTest.com last week: Performance Monitoring. </p>
+<p>Basically it&#8217;s the same simple <a href="http://www.magespeedtest.com/">Magento performance test</a> you know and love, run every 6, 12 or 24 hours. If the results of the regular tests differ by more than your preset tolerance, you get an email warning you &#8211; simple.</p>
+<p>I wanted to <a href="http://twitter.com/#!/aschroder/status/83415887578804224">soft launch</a> it to a) try it myself <a href="http://i.imgur.com/y7Hm9.jpg">in production</a> for a while and b) get some tester feedback.</p>
+<p>So with positive results from both I am now officially announcing the new Magento Monitoring feature and inviting you all to <a href="http://www.magespeedtest.com/">try it for free</a>!</p>
+<p> <a href="../../../../2011/07/monitor-your-magento-store-with-magespeedtest-com/index.html#more-1535" class="more-link">Continue reading <span class="screen-reader-text">Monitor your Magento Store with MageSpeedTest.com</span></a></p>
+		</div><!-- .entry-content -->
+		
+</article><!-- #post-## -->
+
+<article id="post-1547" class="post-1547 post type-post status-publish format-standard hentry category-google-apps-email-gmail-magento category-magento category-smtp-pro-magento-extension tag-gmail tag-google-apps tag-magento tag-smtp-pro">
+
+			<header class="entry-header">
+		<span class="posted-on">Posted on <a href="../../../../2011/06/smtp-pro-with-magento-a-sort-of-user-guide/index.html" rel="bookmark"><time class="entry-date published" datetime="2011-06-30T23:10:28+00:00">June 30, 2011</time> <time class="updated" datetime="2013-07-02T04:14:47+00:00">July 2, 2013</time></a></span><h2 class="alpha entry-title"><a href="../../../../2011/06/smtp-pro-with-magento-a-sort-of-user-guide/index.html" rel="bookmark">SMTP Pro with Magento: A sort-of user guide.</a></h2>		</header><!-- .entry-header -->
+				<aside class="entry-meta">
+						<div class="author">
+				<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' /><div class="label">Written by</div><a href="../../../../author/admin/index.html" title="Posts by Ashley" rel="author">Ashley</a>			</div>
+							<div class="cat-links">
+					<div class="label">Posted in</div><a href="../../../google-apps-email-gmail-magento/index.html" rel="category tag">Google Apps Email Magento Extension</a>, <a href="../../index.html" rel="category tag">Magento</a>, <a href="../../../smtp-pro-magento-extension/index.html" rel="category tag">SMTP Pro Magento Extension</a>				</div>
+			
+							<div class="tags-links">
+					<div class="label">Tagged</div><a href="../../../../tag/gmail/index.html" rel="tag">Gmail</a>, <a href="../../../../tag/google-apps/index.html" rel="tag">google apps</a>, <a href="../../../../tag/magento/index.html" rel="tag">Magento</a>, <a href="../../../../tag/smtp-pro/index.html" rel="tag">smtp pro</a>				</div>
+			
+		
+							<div class="comments-link">
+					<div class="label">Comments</div>					<span class="comments-link"><a href="../../../../2011/06/smtp-pro-with-magento-a-sort-of-user-guide/index.html#comments">98 Comments</a></span>
+				</div>
+					</aside>
+				<div class="entry-content">
+		<p>This blog post is about the SMTP Pro extension. It is my attempt at full explanations to some <a href="../../../../2010/07/latest-version-of-smtp-pro-finally-uploaded-to-magento-connect/comment-page-1/index.html#comment-2416">very good questions/feedback from Chris Last in his comment on an earlier post</a>. I decided that I should give thorough explanations to the questions and they probably belong in a blog post rather than a reply comment. Hopefully it&#8217;ll form a mini user-guide, I&#8217;ll try to update it as such over time.</p>
+<p><strong>Update July 2013:</strong> I have since released a premium extension for sending email using Amazon SES called MageSend, if you&#8217;re having toruble sending email with Magento, please check it out, it was created to solve many common Magento email issues.</p>
+<blockquote>
+<p>There are too many sections in Config-&gt;Advanced-&gt;System for me to make complete sense of:</p>
+<p>Mail Sending Settings &#8211; do these have any effect?<br />
+Disable Email Communications	No<br />
+Host	localhost<br />
+Port (25)	25<br />
+Set Return-Path	no</p>
+</blockquote>
+<p><strong>1) </strong>The <strong>Mail Sending Settings</strong> are the built in Magento ones, they don&#8217;t work very well for custom SMTP servers and you can safely ignore them.  One thing to note though. I do adhere to their disable configuration in my extension. So if you disable all emails using the core config here, all emails do stop even if sending via SMTP Pro.<br />
+ <a href="../../../../2011/06/smtp-pro-with-magento-a-sort-of-user-guide/index.html#more-1547" class="more-link">Continue reading <span class="screen-reader-text">SMTP Pro with Magento: A sort-of user guide.</span></a></p>
+		</div><!-- .entry-content -->
+		
+</article><!-- #post-## -->
+
+<article id="post-1472" class="post-1472 post type-post status-publish format-standard hentry category-magento category-web-development tag-amazon tag-cdn tag-cloudfront tag-magento">
+
+			<header class="entry-header">
+		<span class="posted-on">Posted on <a href="../../../../2011/05/magento-and-amazons-cloudfront-cdn-the-easy-way/index.html" rel="bookmark"><time class="entry-date published" datetime="2011-05-02T03:48:48+00:00">May 2, 2011</time> <time class="updated" datetime="2011-05-02T04:01:20+00:00">May 2, 2011</time></a></span><h2 class="alpha entry-title"><a href="../../../../2011/05/magento-and-amazons-cloudfront-cdn-the-easy-way/index.html" rel="bookmark">Magento and Amazon&#8217;s CloudFront CDN &#8211; The Easy Way</a></h2>		</header><!-- .entry-header -->
+				<aside class="entry-meta">
+						<div class="author">
+				<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' /><div class="label">Written by</div><a href="../../../../author/admin/index.html" title="Posts by Ashley" rel="author">Ashley</a>			</div>
+							<div class="cat-links">
+					<div class="label">Posted in</div><a href="../../index.html" rel="category tag">Magento</a>, <a href="../../../web-development/index.html" rel="category tag">Web Development</a>				</div>
+			
+							<div class="tags-links">
+					<div class="label">Tagged</div><a href="../../../../tag/amazon/index.html" rel="tag">amazon</a>, <a href="../../../../tag/cdn/index.html" rel="tag">cdn</a>, <a href="../../../../tag/cloudfront/index.html" rel="tag">cloudfront</a>, <a href="../../../../tag/magento/index.html" rel="tag">Magento</a>				</div>
+			
+		
+							<div class="comments-link">
+					<div class="label">Comments</div>					<span class="comments-link"><a href="../../../../2011/05/magento-and-amazons-cloudfront-cdn-the-easy-way/index.html#comments">46 Comments</a></span>
+				</div>
+					</aside>
+				<div class="entry-content">
+		<p>In this post I will cover a simple way to configure Magento to use the <a href="http://aws.amazon.com/cloudfront/">Amazon CloudFront CDN</a> service and to create a CloudFront distrubution that mirrors the static files in your site. This method relies on the <a href="http://aws.amazon.com/about-aws/whats-new/2010/11/09/cloudfront-adds-support-for-custom-origins-and-sla/">custom origin functionality</a> announced late last year when CloudFront came out of beta. But first, a little background. </p>
+<p>A CDN (<a href="http://en.wikipedia.org/wiki/Content_delivery_network">content distribution network</a>) is a network of servers that puts your files and content closer to the user requesting them, and thus they can get the quicker. Using a CDN has a nice side effect of offloading some work from your own server too &#8211; which if you use Apache means less processes on your server for each customer.</p>
+<p>When Amazon first announced CloudFront I got very excited about the prospect of writing an extension to automatically sync a Magento store&#8217;s media with an S3 bucket, to enable this simple, affordable CDN solution. Alas, it turned out to be quite hairy dealing with the subtle race conditions that can occur when first accessing a specific media file that may not be available on the CDN yet.</p>
+<p>With the introduction of custom origin functionality there is no situation where the CDN won&#8217;t have the file. If the CDN doesn&#8217;t have the file, it gets it from the underlying source server, if it already has it, it serves it. This means the first request for a file will be a bit slower, but after that it&#8217;ll be quick.</p>
+<p>So to make a CloudFront distribution work in Magento it only takes two steps.<br />
+ <a href="../../../../2011/05/magento-and-amazons-cloudfront-cdn-the-easy-way/index.html#more-1472" class="more-link">Continue reading <span class="screen-reader-text">Magento and Amazon&#8217;s CloudFront CDN &#8211; The Easy Way</span></a></p>
+		</div><!-- .entry-content -->
+		
+</article><!-- #post-## -->
+<nav id="post-navigation" class="navigation pagination" role="navigation" aria-label="Post Navigation"><span class="screen-reader-text">Posts navigation</span><div class="nav-links"><ul class='page-numbers'>
+	<li><a class="prev page-numbers" href="../3/index.html">Previous</a></li>
+	<li><a class='page-numbers' href='../../index.html'>1</a></li>
+	<li><span class="page-numbers dots">&hellip;</span></li>
+	<li><a class='page-numbers' href='../3/index.html'>3</a></li>
+	<li><span class='page-numbers current'>4</span></li>
+	<li><a class='page-numbers' href='../5/index.html'>5</a></li>
+	<li><span class="page-numbers dots">&hellip;</span></li>
+	<li><a class='page-numbers' href='../21/index.html'>21</a></li>
+	<li><a class="next page-numbers" href="../5/index.html">Next</a></li>
+</ul>
+</div></nav>
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+		</div><!-- .col-full -->
+	</div><!-- #content -->
+
+	
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="col-full">
+
+					<div class="site-info">
+			&copy; ASchroder.com 2023						<br /> Storefront designed by <a href="http://www.woocommerce.com/" title="WooCommerce - The Best eCommerce Platform for WordPress" rel="author">WooCommerce</a>.					</div><!-- .site-info -->
+		
+		</div><!-- .col-full -->
+	</footer><!-- #colophon -->
+
+	
+</div><!-- #page -->
+
+<script type='text/javascript' src='../../../../wp-content/plugins/wp-syntax/js/wp-syntax4963.js?ver=1.1'></script>
+<script type='text/javascript' src='../../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/navigation.min11a8.js?ver=20120206'></script>
+<script type='text/javascript' src='../../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/skip-link-focus-fix.min08e0.js?ver=20130115'></script>
+<script type='text/javascript' src='../../../../../cdn.aschroder.com/wp-includes/js/wp-embed.min101e.js?ver=4.8.15'></script>
+
+</body>
+
+<!-- Mirrored from www.aschroder.com/category/magento/page/4/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:39:41 GMT -->
+</html>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:34:04 by W3 Total Cache -->

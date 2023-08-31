@@ -1,0 +1,1448 @@
+<!doctype html>
+<html lang="en-US">
+
+<!-- Mirrored from www.aschroder.com/2009/08/magento-smtp-pro-extension-free-smtp-support/comment-page-1/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:39:39 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="../../../../xmlrpc.php">
+
+<title>SMTP Pro Magento extension | ASchroder.com</title>
+
+<!-- All in One SEO Pack 2.4.2 by Michael Torbert of Semper Fi Web Design[289,384] -->
+<meta name="description"  content="This extension is designed to offer expert control of SMTP server settings for Magento. Any aspect of SMTP email sending is configurable." />
+
+<meta name="keywords"  content="magento,smtp,email,sending,port,host" />
+
+<!-- /all in one seo pack -->
+<link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
+<link rel='dns-prefetch' href='http://s.w.org/' />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Feed" href="../../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Comments Feed" href="../../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; SMTP Pro Magento extension, free and open SMTP support for Magento Comments Feed" href="../feed/index.html" />
+<!-- This site uses the Google Analytics by MonsterInsights plugin v6.2.4 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+<script type="text/javascript" data-cfasync="false">
+		var disableStr = 'ga-disable-UA-6477134-1';
+
+	/* Function to detect opted out users */
+	function __gaTrackerIsOptedOut() {
+		return document.cookie.indexOf(disableStr + '=true') > -1;
+	}
+
+	/* Disable tracking if the opt-out cookie exists. */
+	if ( __gaTrackerIsOptedOut() ) {
+		window[disableStr] = true;
+	}
+
+	/* Opt-out function */
+	function __gaTrackerOptout() {
+	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+	  window[disableStr] = true;
+	}
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','http://www.google-analytics.com/analytics.js','__gaTracker');
+
+	__gaTracker('create', 'UA-6477134-1', 'auto');
+	__gaTracker('set', 'forceSSL', true);
+	__gaTracker('send','pageview');
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/www.aschroder.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.15"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='yarppWidgetCss-css'  href='../../../../wp-content/plugins/yet-another-related-posts-plugin/style/widget101e.css?ver=4.8.15' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-syntax-css-css'  href='../../../../wp-content/plugins/wp-syntax/css/wp-syntax4963.css?ver=1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-style-css'  href='../../../../../cdn.aschroder.com/wp-content/themes/storefront/style5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<style id='storefront-style-inline-css' type='text/css'>
+
+			.main-navigation ul li a,
+			.site-title a,
+			ul.menu li a,
+			.site-branding h1 a,
+			.site-footer .storefront-handheld-footer-bar a:not(.button),
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				color: #333333;
+			}
+
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				border-color: #333333;
+			}
+
+			.main-navigation ul li a:hover,
+			.main-navigation ul li:hover > a,
+			.site-title a:hover,
+			a.cart-contents:hover,
+			.site-header-cart .widget_shopping_cart a:hover,
+			.site-header-cart:hover > li > a,
+			.site-header ul.menu li.current-menu-item > a {
+				color: #838383;
+			}
+
+			table th {
+				background-color: #f8f8f8;
+			}
+
+			table tbody td {
+				background-color: #fdfdfd;
+			}
+
+			table tbody tr:nth-child(2n) td,
+			fieldset,
+			fieldset legend {
+				background-color: #fbfbfb;
+			}
+
+			.site-header,
+			.secondary-navigation ul ul,
+			.main-navigation ul.menu > li.menu-item-has-children:after,
+			.secondary-navigation ul.menu ul,
+			.storefront-handheld-footer-bar,
+			.storefront-handheld-footer-bar ul li > a,
+			.storefront-handheld-footer-bar ul li.search .site-search,
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				background-color: #ffffff;
+			}
+
+			p.site-description,
+			.site-header,
+			.storefront-handheld-footer-bar {
+				color: #6d6d6d;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count,
+			button.menu-toggle:after,
+			button.menu-toggle:before,
+			button.menu-toggle span:before {
+				background-color: #333333;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				color: #ffffff;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				border-color: #ffffff;
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+				color: #333333;
+			}
+
+			.widget h1 {
+				border-bottom-color: #333333;
+			}
+
+			body,
+			.secondary-navigation a,
+			.onsale,
+			.pagination .page-numbers li .page-numbers:not(.current), .woocommerce-pagination .page-numbers li .page-numbers:not(.current) {
+				color: #6d6d6d;
+			}
+
+			.widget-area .widget a,
+			.hentry .entry-header .posted-on a,
+			.hentry .entry-header .byline a {
+				color: #9f9f9f;
+			}
+
+			a  {
+				color: #0228d1;
+			}
+
+			a:focus,
+			.button:focus,
+			.button.alt:focus,
+			.button.added_to_cart:focus,
+			.button.wc-forward:focus,
+			button:focus,
+			input[type="button"]:focus,
+			input[type="reset"]:focus,
+			input[type="submit"]:focus {
+				outline-color: #0228d1;
+			}
+
+			button, input[type="button"], input[type="reset"], input[type="submit"], .button, .added_to_cart, .widget a.button, .site-header-cart .widget_shopping_cart a.button {
+				background-color: #eeeeee;
+				border-color: #eeeeee;
+				color: #333333;
+			}
+
+			button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, .button:hover, .added_to_cart:hover, .widget a.button:hover, .site-header-cart .widget_shopping_cart a.button:hover {
+				background-color: #d5d5d5;
+				border-color: #d5d5d5;
+				color: #333333;
+			}
+
+			button.alt, input[type="button"].alt, input[type="reset"].alt, input[type="submit"].alt, .button.alt, .added_to_cart.alt, .widget-area .widget a.button.alt, .added_to_cart, .widget a.button.checkout {
+				background-color: #333333;
+				border-color: #333333;
+				color: #ffffff;
+			}
+
+			button.alt:hover, input[type="button"].alt:hover, input[type="reset"].alt:hover, input[type="submit"].alt:hover, .button.alt:hover, .added_to_cart.alt:hover, .widget-area .widget a.button.alt:hover, .added_to_cart:hover, .widget a.button.checkout:hover {
+				background-color: #1a1a1a;
+				border-color: #1a1a1a;
+				color: #ffffff;
+			}
+
+			.pagination .page-numbers li .page-numbers.current, .woocommerce-pagination .page-numbers li .page-numbers.current {
+				background-color: #e6e6e6;
+				color: #6d6d6d;
+			}
+
+			#comments .comment-list .comment-content .comment-text {
+				background-color: #f8f8f8;
+			}
+
+			.site-footer {
+				background-color: #f0f0f0;
+				color: #6d6d6d;
+			}
+
+			.site-footer a:not(.button) {
+				color: #333333;
+			}
+
+			.site-footer h1, .site-footer h2, .site-footer h3, .site-footer h4, .site-footer h5, .site-footer h6 {
+				color: #333333;
+			}
+
+			#order_review {
+				background-color: #ffffff;
+			}
+
+			#payment .payment_methods > li .payment_box,
+			#payment .place-order {
+				background-color: #fafafa;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice) {
+				background-color: #f5f5f5;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice):hover {
+				background-color: #f0f0f0;
+			}
+
+			@media screen and ( min-width: 768px ) {
+				.secondary-navigation ul.menu a:hover {
+					color: #868686;
+				}
+
+				.secondary-navigation ul.menu a {
+					color: #6d6d6d;
+				}
+
+				.site-header-cart .widget_shopping_cart,
+				.main-navigation ul.menu ul.sub-menu,
+				.main-navigation ul.nav-menu ul.children {
+					background-color: #f0f0f0;
+				}
+
+				.site-header-cart .widget_shopping_cart .buttons,
+				.site-header-cart .widget_shopping_cart .total {
+					background-color: #f5f5f5;
+				}
+
+				.site-header {
+					border-bottom-color: #f0f0f0;
+				}
+			}
+</style>
+<link rel='stylesheet' id='storefront-icons-css'  href='../../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/sass/base/icons5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-fonts-css'  href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,600,700,900&amp;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../../cdn.aschroder.com/wp-includes/js/jquery/jqueryb8ff.js?ver=1.12.4'></script>
+<script type='text/javascript' src='../../../../../cdn.aschroder.com/wp-includes/js/jquery/jquery-migrate.min330a.js?ver=1.4.1'></script>
+<link rel='https://api.w.org/' href='../../../../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../../xmlrpc0db0.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Google Apps Email/Gmail Magento Extension v0.5 released' href='../../google-apps-email-gmail-magento-extension-v05-released/index.html' />
+<link rel='next' title='Sneak Peek at the New Magento Gmail/Google Apps and SMTP extension' href='../../../09/sneak-peek-at-the-new-magento-gmailgoogle-apps-and-smtp-extension/index.html' />
+<meta name="generator" content="WordPress 4.8.15" />
+<link rel="canonical" href="index.html#comments" />
+<link rel='shortlink' href='../../../../index7398.html?p=531' />
+<link rel="alternate" type="application/json+oembed" href="../../../../wp-json/oembed/1.0/embed2197.json?url=http%3A%2F%2Fwww.aschroder.com%2F2009%2F08%2Fmagento-smtp-pro-extension-free-smtp-support%2F" />
+<link rel="alternate" type="text/xml+oembed" href="../../../../wp-json/oembed/1.0/embeddc85?url=http%3A%2F%2Fwww.aschroder.com%2F2009%2F08%2Fmagento-smtp-pro-extension-free-smtp-support%2F&amp;format=xml" />
+</head>
+
+<body class="post-template-default single single-post postid-531 single-format-standard no-wc-breadcrumb storefront-full-width-content right-sidebar">
+
+
+<div id="page" class="hfeed site">
+	
+	<header id="masthead" class="site-header" role="banner" style="">
+		<div class="col-full">
+
+					<a class="skip-link screen-reader-text" href="#site-navigation">Skip to navigation</a>
+		<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+				<div class="site-branding">
+			<div class="beta site-title"><a href="../../../../index.html" rel="home">ASchroder.com</a></div><p class="site-description">Notes on Web Development</p>		</div>
+		<div class="storefront-primary-navigation">		<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="Primary Navigation">
+		<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><span>Menu</span></button>
+			<div class="primary-navigation"><ul id="menu-main-menu" class="menu"><li id="menu-item-1119" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../../index.html">Home</a></li>
+<li id="menu-item-1118" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../../about/index.html">About</a></li>
+<li id="menu-item-1872" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../../presentations/index.html">Presentations</a></li>
+</ul></div><div class="handheld-navigation"><ul id="menu-main-menu-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../../index.html">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../../about/index.html">About</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../../presentations/index.html">Presentations</a></li>
+</ul></div>		</nav><!-- #site-navigation -->
+		</div>
+		</div>
+	</header><!-- #masthead -->
+
+	
+	<div id="content" class="site-content" tabindex="-1">
+		<div class="col-full">
+
+		
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+<div id="post-531" class="post-531 post type-post status-publish format-standard hentry category-magento category-projects category-smtp-pro-magento-extension category-web-development tag-athentication tag-cram-md5 tag-login tag-magento tag-plain tag-smtp tag-ssl tag-tls">
+
+			<header class="entry-header">
+		<span class="posted-on">Posted on <a href="../index.html" rel="bookmark"><time class="entry-date published" datetime="2009-08-29T22:28:28+00:00">August 29, 2009</time> <time class="updated" datetime="2010-02-28T00:02:41+00:00">February 28, 2010</time></a></span><h1 class="entry-title">SMTP Pro Magento extension, free and open SMTP support for Magento</h1>		</header><!-- .entry-header -->
+				<aside class="entry-meta">
+						<div class="author">
+				<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' /><div class="label">Written by</div><a href="../../../../author/admin/index.html" title="Posts by Ashley" rel="author">Ashley</a>			</div>
+							<div class="cat-links">
+					<div class="label">Posted in</div><a href="../../../../category/magento/index.html" rel="category tag">Magento</a>, <a href="../../../../category/projects/index.html" rel="category tag">Projects</a>, <a href="../../../../category/smtp-pro-magento-extension/index.html" rel="category tag">SMTP Pro Magento Extension</a>, <a href="../../../../category/web-development/index.html" rel="category tag">Web Development</a>				</div>
+			
+							<div class="tags-links">
+					<div class="label">Tagged</div><a href="../../../../tag/athentication/index.html" rel="tag">athentication</a>, <a href="../../../../tag/cram-md5/index.html" rel="tag">cram-md5</a>, <a href="../../../../tag/login/index.html" rel="tag">login</a>, <a href="../../../../tag/magento/index.html" rel="tag">Magento</a>, <a href="../../../../tag/plain/index.html" rel="tag">plain</a>, <a href="../../../../tag/smtp/index.html" rel="tag">smtp</a>, <a href="../../../../tag/ssl/index.html" rel="tag">ssl</a>, <a href="../../../../tag/tls/index.html" rel="tag">tls</a>				</div>
+			
+		
+							<div class="comments-link">
+					<div class="label">Comments</div>					<span class="comments-link"><a href="../index.html#comments">220 Comments</a></span>
+				</div>
+					</aside>
+				<div class="entry-content">
+		<p>Well this morning I said I was going to start working on a <a href="../../google-apps-email-gmail-magento-extension-v05-released/index.html">simple SMTP extension for Magento</a>. The weather was completely stink here in Auckland so I ended up making the <a href="http://www.magentocommerce.com/extension/1865">ASchroder.com SMTP Pro Magento extension</a> this afternoon you can <a href="http://www.magentocommerce.com/extension/1865">get it from Magento Connect</a>. It&#8217;s a development release and I&#8217;m seeking feedback on it from people willing to give it a try.<br />
+<span id="more-531"></span><br />
+It has several features over the older SMTP extensions available for Magento. </p>
+<ol>
+<li>supports self testing right from the Magento admin UI</li>
+<li>logs friendly messages if you enable logging in var/log</li>
+<li>has helpful comments to guide you when configuring</li>
+<li>supports Magento built in newsletters</li>
+</ol>
+<p>Several people have asked me to open my <a href="http://www.magentocommerce.com/extension/1326/aschroder.com-google-apps-email-gmail">Google Apps / Gmail Magento extension</a> up to support other SMTP servers. I worried that once I added extra configuration options to my extension, the simplicity and ease of use would be lost. I decided to separate the two extensions so that those who just want to send using gmail or Google Apps, do not need to know anything about TLS, Authentication or what port to send on (it&#8217;s 587 if you care&#8230;). So that&#8217;s why I have made this <a href="http://www.magentocommerce.com/extension/1865">Magento SMTP extension</a>, I&#8217;ll be supporting it as best I can, just as I do with my Google Apps and Gmail extension.</p>
+<p>Here is a screenshot of the configuration dialog:</p>
+<figure id="attachment_533" style="width: 275px" class="wp-caption aligncenter"><img src="../../../../../cdn.aschroder.com/wp-content/uploads/2009/08/smtp-pro-configuration-275x300.png" alt="This shows the Configuration options for the SMTP Pro extension." title="ASchroder.com SMTP Pro Configuration" width="275" height="300" class="size-medium wp-image-533" srcset="http://cdn.aschroder.com/wp-content/uploads/2009/08/smtp-pro-configuration-275x300.png 275w, http://cdn.aschroder.com/wp-content/uploads/2009/08/smtp-pro-configuration.png 579w" sizes="(max-width: 275px) 100vw, 275px" /><figcaption class="wp-caption-text">This shows the Configuration options for the SMTP Pro extension.</figcaption></figure>
+<p>And also a screenshot of a successful self test result:</p>
+<figure id="attachment_534" style="width: 300px" class="wp-caption aligncenter"><img src="../../../../../cdn.aschroder.com/wp-content/uploads/2009/08/self-test-results-300x80.png" alt="This shows the results of a self test." title="SMTP Pro Self Test results" width="300" height="80" class="size-medium wp-image-534" srcset="http://cdn.aschroder.com/wp-content/uploads/2009/08/self-test-results-300x80.png 300w, http://cdn.aschroder.com/wp-content/uploads/2009/08/self-test-results.png 645w" sizes="(max-width: 300px) 100vw, 300px" /><figcaption class="wp-caption-text">This shows the results of a self test.</figcaption></figure>
+<p>If you have any comments, suggestions or feedback, please let me know.</p>
+<div class='yarpp-related'>
+<p>You might also be interested in:<ol>
+<li><a href="../../../11/pre-release-smtp-pro-magento-gmail-google-apps-email-beta-testing-win-a-prize/index.html" rel="bookmark" title="Pre-release: SMTP Pro / Magento Gmail &#038; Google Apps Email Beta testing (win a prize)">Pre-release: SMTP Pro / Magento Gmail &#038; Google Apps Email Beta testing (win a prize) </a></li>
+<li><a href="../../../../2010/03/magento-smtp-gmail-and-google-apps-email-combined-extension-released-at-last/index.html" rel="bookmark" title="Magento SMTP, Gmail and Google Apps Email combined extension released (at last)">Magento SMTP, Gmail and Google Apps Email combined extension released (at last) </a></li>
+<li><a href="../../google-apps-email-gmail-magento-extension-v05-released/index.html" rel="bookmark" title="Google Apps Email/Gmail Magento Extension v0.5 released">Google Apps Email/Gmail Magento Extension v0.5 released </a></li>
+<li><a href="../../../../2014/05/magento-smtp-pro-2-free-and-open-source-smtp-configuration/index.html" rel="bookmark" title="Magento SMTP Pro 2 &#8211; Free and Open Source SMTP Configuration">Magento SMTP Pro 2 &#8211; Free and Open Source SMTP Configuration </a></li>
+<li><a href="../../../09/sneak-peek-at-the-new-magento-gmailgoogle-apps-and-smtp-extension/index.html" rel="bookmark" title="Sneak Peek at the New Magento Gmail/Google Apps and SMTP extension">Sneak Peek at the New Magento Gmail/Google Apps and SMTP extension </a></li>
+</ol></p>
+</div>
+		</div><!-- .entry-content -->
+		<nav id="post-navigation" class="navigation post-navigation" role="navigation" aria-label="Post Navigation"><span class="screen-reader-text">Post navigation</span><div class="nav-links"><div class="nav-previous"><a href="../../google-apps-email-gmail-magento-extension-v05-released/index.html" rel="prev">Google Apps Email/Gmail Magento Extension v0.5 released</a></div><div class="nav-next"><a href="../../../09/sneak-peek-at-the-new-magento-gmailgoogle-apps-and-smtp-extension/index.html" rel="next">Sneak Peek at the New Magento Gmail/Google Apps and SMTP extension</a></div></div></nav>
+<section id="comments" class="comments-area" aria-label="Post Comments">
+
+			<h2 class="comments-title">
+			220 thoughts on &ldquo;<span>SMTP Pro Magento extension, free and open SMTP support for Magento</span>&rdquo;		</h2>
+
+				<nav id="comment-nav-above" class="comment-navigation" role="navigation" aria-label="Comment Navigation Above">
+			<span class="screen-reader-text">Comment navigation</span>
+			<div class="nav-previous"></div>
+			<div class="nav-next"><a href="../comment-page-2/index.html#comments" >Newer Comments &rarr;</a></div>
+		</nav><!-- #comment-nav-above -->
+		
+		<ol class="comment-list">
+					<li class="comment even thread-even depth-1" id="comment-425">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/6c2504bf5dfbb0ef7e93088889e8d454?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/6c2504bf5dfbb0ef7e93088889e8d454?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Joerg</cite>			</div>
+			
+			<a href="index.html#comment-425" class="comment-date">
+				<time datetime="2009-08-30T05:45:32+00:00">August 30, 2009</time>			</a>
+		</div>
+				<div id="div-comment-425" class="comment-content">
+				<div class="comment-text">
+		<p>Hi,</p>
+<p>where can i find the extension?</p>
+<p>Best regards</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-427">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-427" class="comment-date">
+				<time datetime="2009-08-30T13:12:52+00:00">August 30, 2009</time>			</a>
+		</div>
+				<div id="div-comment-427" class="comment-content">
+				<div class="comment-text">
+		<p>Hi,</p>
+<p>The SMTP extension is taking longer than usual to pass through the &#8216;pending&#8217; state over at Magento Connect. If it hasn&#8217;t been published in the next 12 hours, I&#8217;ll hoist a pre-release version up on my blog so you can try it out. Cheers, Ashley</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-431">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-431" class="comment-date">
+				<time datetime="2009-08-31T12:21:04+00:00">August 31, 2009</time>			</a>
+		</div>
+				<div id="div-comment-431" class="comment-content">
+				<div class="comment-text">
+		<p>It&#8217;s published:<br />
+<a href="http://www.magentocommerce.com/extension/1865" rel="nofollow">http://www.magentocommerce.com/extension/1865</a></p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-432">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/a2a325861bb411c92d20386aaf2122dd?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/a2a325861bb411c92d20386aaf2122dd?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://store.fooman.co.nz/extensions' rel='external nofollow' class='url'>Kristof, Fooman</a></cite>			</div>
+			
+			<a href="index.html#comment-432" class="comment-date">
+				<time datetime="2009-08-31T21:11:28+00:00">August 31, 2009</time>			</a>
+		</div>
+				<div id="div-comment-432" class="comment-content">
+				<div class="comment-text">
+		<p>Hey Ashley good stuff.</p>
+<p>I have a small feature request for you. It would be really great if you could implement something to temporarily change the to: field of ANY outgoing communication from your store to a debugging address or just turn off all emails. This would be very handy when you are testing with a copy of your store with live customer data or when you are importing orders.</p>
+<p>Cheers<br />
+Kristof</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-434">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-434" class="comment-date">
+				<time datetime="2009-09-01T01:29:52+00:00">September 1, 2009</time>			</a>
+		</div>
+				<div id="div-comment-434" class="comment-content">
+				<div class="comment-text">
+		<p>Hey Kristof, welcome back!</p>
+<p>That&#8217;s a great suggestion, I&#8217;ll add it to 0.6 for sure. How about, something like a dropdown with:<br />
+&#8216;Suppress ALL emails&#8217;, &#8216;Debug emails to contact form email address&#8217; and &#8216;Send emails normally&#8217; (the default).</p>
+<p>Work for you?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-436">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/a2a325861bb411c92d20386aaf2122dd?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/a2a325861bb411c92d20386aaf2122dd?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://store.fooman.co.nz/extensions' rel='external nofollow' class='url'>Kristof, Fooman</a></cite>			</div>
+			
+			<a href="index.html#comment-436" class="comment-date">
+				<time datetime="2009-09-01T03:56:31+00:00">September 1, 2009</time>			</a>
+		</div>
+				<div id="div-comment-436" class="comment-content">
+				<div class="comment-text">
+		<p>Sounds awesome.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-437">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-437" class="comment-date">
+				<time datetime="2009-09-01T04:03:21+00:00">September 1, 2009</time>			</a>
+		</div>
+				<div id="div-comment-437" class="comment-content">
+				<div class="comment-text">
+		<p>Doh, just realized I mixed up version numbers, I meant to say, it&#8217;ll be in v0.2 (the next version of SMTP Pro) &#8211; though it might be nice functionality for the Magento Google Apps / Gmail extension too&#8230;</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-445">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/f4b9e25c9707e30bd39c3e4bddf514a5?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/f4b9e25c9707e30bd39c3e4bddf514a5?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.kidsloop.eu/' rel='external nofollow' class='url'>bluecos</a></cite>			</div>
+			
+			<a href="index.html#comment-445" class="comment-date">
+				<time datetime="2009-09-03T01:16:22+00:00">September 3, 2009</time>			</a>
+		</div>
+				<div id="div-comment-445" class="comment-content">
+				<div class="comment-text">
+		<p>STATUS is alpha can i use it for production shop site?</p>
+<p>does this solve the spam problem a bid 🙂 ?</p>
+<p>thanks bluecos</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-446">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-446" class="comment-date">
+				<time datetime="2009-09-03T01:23:37+00:00">September 3, 2009</time>			</a>
+		</div>
+				<div id="div-comment-446" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, Bluecos</p>
+<p>You _can_ use it for a production store, in so much as there is no technical reason you can&#8217;t. Would I recommend it? No not really. Try it out in a staging environment first, if it does what you want it to then roll it out to production when you are ready. The code is largely based on the code in my Google Apps extension, which has nearly 1k downloads and no reports of critical problems. But it&#8217;s still very much in development, it&#8217;s the first version after all!</p>
+<p>What&#8217;s the spam problem a bid?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-451">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/6c2504bf5dfbb0ef7e93088889e8d454?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/6c2504bf5dfbb0ef7e93088889e8d454?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Joerg</cite>			</div>
+			
+			<a href="index.html#comment-451" class="comment-date">
+				<time datetime="2009-09-06T11:25:44+00:00">September 6, 2009</time>			</a>
+		</div>
+				<div id="div-comment-451" class="comment-content">
+				<div class="comment-text">
+		<p>Hi,</p>
+<p>i want to try the extension in a german shop, but after the installation i can&#8217;t find anything in the admin menu. Does i need a translated Extension? Can i translate it? Where to find the files for a translation?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-452">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-452" class="comment-date">
+				<time datetime="2009-09-06T13:00:09+00:00">September 6, 2009</time>			</a>
+		</div>
+				<div id="div-comment-452" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, I don&#8217;t think the lack of a German translation would cause the extension not to work at all. More likely you would need to logout of Magento and back in again, or refresh your cache in the cache management section. If you&#8217;re offering to translate it to German that would be excellent! I&#8217;ll include placeholder translations in the next release, and then let you know, if you&#8217;re still keen to help I&#8217;d really appreciate more languages supported 🙂</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-453">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/6c2504bf5dfbb0ef7e93088889e8d454?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/6c2504bf5dfbb0ef7e93088889e8d454?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Joerg</cite>			</div>
+			
+			<a href="index.html#comment-453" class="comment-date">
+				<time datetime="2009-09-06T21:38:11+00:00">September 6, 2009</time>			</a>
+		</div>
+				<div id="div-comment-453" class="comment-content">
+				<div class="comment-text">
+		<p>Hi,</p>
+<p>surely i can/will help you with your translation! </p>
+<p>About my problem: I&#8217;ve tried allready to logout and clear the cache but i didn&#8217;t find the extension. Is there a step by step manual &#8220;how to install the extension&#8221;? (i have only download the extension with the &#8220;key&#8221; and then try to find the options in the admin/system menu &#8211; i found nothing)</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-454">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-454" class="comment-date">
+				<time datetime="2009-09-06T21:41:12+00:00">September 6, 2009</time>			</a>
+		</div>
+				<div id="div-comment-454" class="comment-content">
+				<div class="comment-text">
+		<p>What version of Magento are you on? You could double check the extension is installed by looking with FTP or SSH to make sure $magento_base/app/code/community/Aschroder/SMTPPro exists?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-455">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/6c2504bf5dfbb0ef7e93088889e8d454?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/6c2504bf5dfbb0ef7e93088889e8d454?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Joerg</cite>			</div>
+			
+			<a href="index.html#comment-455" class="comment-date">
+				<time datetime="2009-09-07T10:19:02+00:00">September 7, 2009</time>			</a>
+		</div>
+				<div id="div-comment-455" class="comment-content">
+				<div class="comment-text">
+		<p>I use 1.3.2.3 &#8230; i reinstalled the module and the ooutput was</p>
+<p>&#8212;<br />
+downloading Aschroder_SMTPPro-0.1.tgz &#8230;<br />
+Starting to download Aschroder_SMTPPro-0.1.tgz (7,226 bytes)<br />
+. . &#8230;done: 7,226 bytes<br />
+install ok: channel://connect.magentocommerce.com/community/Aschroder_SMTPPro-0.1<br />
+&#8212;</p>
+<p>but the Directory /code/community/ has only the entry for Mage</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-456">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/6c2504bf5dfbb0ef7e93088889e8d454?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/6c2504bf5dfbb0ef7e93088889e8d454?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Joerg</cite>			</div>
+			
+			<a href="index.html#comment-456" class="comment-date">
+				<time datetime="2009-09-07T10:42:15+00:00">September 7, 2009</time>			</a>
+		</div>
+				<div id="div-comment-456" class="comment-content">
+				<div class="comment-text">
+		<p>oh &#8230; my fault. wrong directions in the pear.ini</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-457">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-457" class="comment-date">
+				<time datetime="2009-09-07T12:22:43+00:00">September 7, 2009</time>			</a>
+		</div>
+				<div id="div-comment-457" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, Glad to hear it&#8217;s all sorted. I&#8217;ll get in touch with you re: translations once I have the placeholder ones in the next release.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-458">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/6c2504bf5dfbb0ef7e93088889e8d454?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/6c2504bf5dfbb0ef7e93088889e8d454?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Joerg</cite>			</div>
+			
+			<a href="index.html#comment-458" class="comment-date">
+				<time datetime="2009-09-07T21:03:04+00:00">September 7, 2009</time>			</a>
+		</div>
+				<div id="div-comment-458" class="comment-content">
+				<div class="comment-text">
+		<p>Okay, send me the files and i will translate them. Btw. It seems that your addon don&#8217;t work with all shared hoster (eg. Goneo in Germany). Now i use your googlemail addon and it runs very nice! If you would, i can translate it too</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-459">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-459" class="comment-date">
+				<time datetime="2009-09-07T21:08:36+00:00">September 7, 2009</time>			</a>
+		</div>
+				<div id="div-comment-459" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, great I will do that, thanks for the offer. Can you give me more details on what was not working with the SMTP extension. Were you using the SMTP to connect to Gogle, or to a shared hosting SMTP? Could you send me any of the failed connection output from the self test or anything? Would be much appreciated. Cheers, Ashley</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-482">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/b54227a25996e134f3d5dd9a308a747d?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/b54227a25996e134f3d5dd9a308a747d?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Labris</cite>			</div>
+			
+			<a href="index.html#comment-482" class="comment-date">
+				<time datetime="2009-09-15T04:54:38+00:00">September 15, 2009</time>			</a>
+		</div>
+				<div id="div-comment-482" class="comment-content">
+				<div class="comment-text">
+		<p>Great plugin, but I encountered a same problem with your plugin as other SMTP extensions. It is that just invoice and shipping email will be sent, but order confirmation email will not be sent (all settings are on). Is there some coding differences between the order confirmation email part and others?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-485">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/b54227a25996e134f3d5dd9a308a747d?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/b54227a25996e134f3d5dd9a308a747d?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Labris</cite>			</div>
+			
+			<a href="index.html#comment-485" class="comment-date">
+				<time datetime="2009-09-16T02:11:18+00:00">September 16, 2009</time>			</a>
+		</div>
+				<div id="div-comment-485" class="comment-content">
+				<div class="comment-text">
+		<p>The uninstall function does not work well. And it might have some conflict with other smtp plugin&#8230;..</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-486">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/b54227a25996e134f3d5dd9a308a747d?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/b54227a25996e134f3d5dd9a308a747d?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Labris</cite>			</div>
+			
+			<a href="index.html#comment-486" class="comment-date">
+				<time datetime="2009-09-16T02:26:24+00:00">September 16, 2009</time>			</a>
+		</div>
+				<div id="div-comment-486" class="comment-content">
+				<div class="comment-text">
+		<p>Another thing is that it does not work well with multiple virtual hosts.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-487">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-487" class="comment-date">
+				<time datetime="2009-09-16T02:55:07+00:00">September 16, 2009</time>			</a>
+		</div>
+				<div id="div-comment-487" class="comment-content">
+				<div class="comment-text">
+		<p>Hi,</p>
+<p>Yes naturally if you install two SMTP plugins there will be conflict, please just choose one. </p>
+<p>Uninstall should work as with any Magento extension though, can you describe what is not uninstalling? Are the files in app/code/community/ASchroder still? Please give me more info and I can help you out.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-488">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-488" class="comment-date">
+				<time datetime="2009-09-16T03:01:49+00:00">September 16, 2009</time>			</a>
+		</div>
+				<div id="div-comment-488" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, Do you mean &#8216;virtual hosts&#8217; in the Apache directive sense? Can you explain how these affect Magento or my extension specifically, I use it personally on at least 3 vhosted stores without problem. if there is a bug I&#8217;d really like to fix it up!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-490">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/0d9e7a7557eb5def3c2b2d45d7a05c5a?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/0d9e7a7557eb5def3c2b2d45d7a05c5a?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.jeanography.com/' rel='external nofollow' class='url'>Jon</a></cite>			</div>
+			
+			<a href="index.html#comment-490" class="comment-date">
+				<time datetime="2009-09-17T06:51:46+00:00">September 17, 2009</time>			</a>
+		</div>
+				<div id="div-comment-490" class="comment-content">
+				<div class="comment-text">
+		<p>Hi,<br />
+Im getting a 334 error, on the gmail app test.   Whats a 334 error?</p>
+<p>cheers</p>
+<p>JOn</p>
+<p>ASchroder.com Google Apps and Gmail Self-test results<br />
+Testing outbound connectivity to Google:<br />
+Connection to Google SMTP server successful.<br />
+Sending test email to your contact form address <a href="mailto:jon@jeanography.com">jon@jeanography.com</a>:<br />
+Unable to send test email. Exception message was: 334 UGFzc3dvcmQ6 &#8230;<br />
+Please check and double check your email and password. If in any doubt you can login to the web interface for your email address to confirm at either &#8216;mail.google.com/a/your_domain&#8217; or &#8216;gmail.com&#8217;.<br />
+Testing failed, please review the reported problems and if you need further help visit ASchroder.com to contact me.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-492">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-492" class="comment-date">
+				<time datetime="2009-09-17T13:34:19+00:00">September 17, 2009</time>			</a>
+		</div>
+				<div id="div-comment-492" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, the 334 error seems to be the one where you need to log in to the web interface to solve a captcha. Give that a try.</p>
+<p>Cheers,<br />
+Ashley</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-499">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/4dd01deadc2518fd5778878a9daa319e?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/4dd01deadc2518fd5778878a9daa319e?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Fredrik Sandgren</cite>			</div>
+			
+			<a href="index.html#comment-499" class="comment-date">
+				<time datetime="2009-09-24T13:44:15+00:00">September 24, 2009</time>			</a>
+		</div>
+				<div id="div-comment-499" class="comment-content">
+				<div class="comment-text">
+		<p>Hi,<br />
+GREAT App!<br />
+Really cool that you contribute like this!</p>
+<p>I got a problem as it seems anyway.<br />
+It seems to work for the testmail&#8230; (it did not set the sendersadress though)<br />
+But i cant get magneto to send email through your app&#8230;<br />
+Is there some setting i should change?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-500">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-500" class="comment-date">
+				<time datetime="2009-09-24T13:46:22+00:00">September 24, 2009</time>			</a>
+		</div>
+				<div id="div-comment-500" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, flick me an email ashley.schroder at gmail, I&#8217;ll get a few extra details from you and see if I can figure it out.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-510">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/4dd01deadc2518fd5778878a9daa319e?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/4dd01deadc2518fd5778878a9daa319e?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Fredrik Sandgren</cite>			</div>
+			
+			<a href="index.html#comment-510" class="comment-date">
+				<time datetime="2009-09-26T08:27:41+00:00">September 26, 2009</time>			</a>
+		</div>
+				<div id="div-comment-510" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Ashley and others,</p>
+<p>My misstake&#8230; i found a bug in a php file that was not related to your code!<br />
+So now it all works like a charm.<br />
+GJ Ashley!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-590">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/0eb9554e09e52892754962e09d304872?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/0eb9554e09e52892754962e09d304872?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ray</cite>			</div>
+			
+			<a href="index.html#comment-590" class="comment-date">
+				<time datetime="2009-10-14T17:44:21+00:00">October 14, 2009</time>			</a>
+		</div>
+				<div id="div-comment-590" class="comment-content">
+				<div class="comment-text">
+		<p>Any idea what these errors mean?</p>
+<p>Failed to connect to Host SMTP server. Reason: Failed to parse address &#8220;&#8221;(0)<br />
+This extension requires an outbound SMTP connection on your specified port.<br />
+Sending test email to your contact form address <a href="mailto:shop@markandersonprints.com">shop@markandersonprints.com</a>:<br />
+Unable to send test email. Exception message was: &#8221; does not match the expected structure for a DNS hostname, &#8221; does not appear to be a valid local network name&#8230;<br />
+Please check and double check your username and password.<br />
+Testing failed, please review the reported problems and if you need further help visit ASchroder.com to contact me.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-591">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-591" class="comment-date">
+				<time datetime="2009-10-14T17:51:29+00:00">October 14, 2009</time>			</a>
+		</div>
+				<div id="div-comment-591" class="comment-content">
+				<div class="comment-text">
+		<p>Have you saved before running the test? Looks like an empty SMTP hostname to me?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-592">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/0eb9554e09e52892754962e09d304872?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/0eb9554e09e52892754962e09d304872?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ray</cite>			</div>
+			
+			<a href="index.html#comment-592" class="comment-date">
+				<time datetime="2009-10-14T18:28:33+00:00">October 14, 2009</time>			</a>
+		</div>
+				<div id="div-comment-592" class="comment-content">
+				<div class="comment-text">
+		<p>Ashley,</p>
+<p>Yes that did it. I also had to be sure to include 25 as the port number and not leave it blank.</p>
+<p>Thanks!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-645">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/a3fc2761d281d35ca9ed0d39e5933fa2?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/a3fc2761d281d35ca9ed0d39e5933fa2?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://shop.itr.cn/' rel='external nofollow' class='url'>Rodolfo</a></cite>			</div>
+			
+			<a href="index.html#comment-645" class="comment-date">
+				<time datetime="2009-10-27T19:11:06+00:00">October 27, 2009</time>			</a>
+		</div>
+				<div id="div-comment-645" class="comment-content">
+				<div class="comment-text">
+		<p>I get an annoying 404, Page not found when I try to run the self test. The URL it tries to go is <a href="https://safe.itr.cn/index.php/admin/smtppro/index/index/" rel="nofollow">https://safe.itr.cn/index.php/admin/smtppro/index/index/</a>  .. any idea of what the probelm is?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-646">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-646" class="comment-date">
+				<time datetime="2009-10-27T19:13:43+00:00">October 27, 2009</time>			</a>
+		</div>
+				<div id="div-comment-646" class="comment-content">
+				<div class="comment-text">
+		<p>Hi,<br />
+Can you let me know your Magento version? Also have you logged out and back in since installing? Does the URL actually have more to it, after what you posted? Most recent versions of Magento will have a URL key too.<br />
+Cheers,<br />
+Ashley</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-648">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/845c2d5129b7dea40511ea6bf853f46c?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/845c2d5129b7dea40511ea6bf853f46c?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">yang</cite>			</div>
+			
+			<a href="index.html#comment-648" class="comment-date">
+				<time datetime="2009-10-27T23:17:04+00:00">October 27, 2009</time>			</a>
+		</div>
+				<div id="div-comment-648" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Ashley,</p>
+<p>Thank you so much for providing this cool tool for Magento. I&#8217;m currently working on a project on goDaddy. Manage to get smtp moving a bit, but stuck at this error message. </p>
+<p>ASchroder.com SMTP Pro Self-test results<br />
+Testing outbound connectivity to Server:<br />
+Connection to Host SMTP server successful.<br />
+Sending test email to your contact form address <a href="mailto:dreamaker.yang@gmail.com">dreamaker.yang@gmail.com</a>:<br />
+Unable to send test email. Exception message was: 502 unimplemented (#5.5.1) &#8230;</p>
+<p>Not very sure about the error message. can help me out? </p>
+<p>Thanks a million.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-650">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/845c2d5129b7dea40511ea6bf853f46c?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/845c2d5129b7dea40511ea6bf853f46c?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">yang</cite>			</div>
+			
+			<a href="index.html#comment-650" class="comment-date">
+				<time datetime="2009-10-27T23:57:32+00:00">October 27, 2009</time>			</a>
+		</div>
+				<div id="div-comment-650" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, sorry i have resolved the previous post issue. but end up with a new problem as below:</p>
+<p>ASchroder.com SMTP Pro Self-test results<br />
+Testing outbound connectivity to Server:<br />
+Connection to Host SMTP server successful.<br />
+Sending test email to your contact form address <a href="mailto:dreamaker.yang@gmail.com">dreamaker.yang@gmail.com</a>:<br />
+Unable to send test email. Exception message was: 554 The message was rejected because it contains prohibited virus or spam content &#8230;</p>
+<p>sigh. can help me on this?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-651">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-651" class="comment-date">
+				<time datetime="2009-10-28T00:14:06+00:00">October 28, 2009</time>			</a>
+		</div>
+				<div id="div-comment-651" class="comment-content">
+				<div class="comment-text">
+		<p>I&#8217;m not 100% sure to be honest, but I think it&#8217;s server related. Try and contact Go Daddy, explain that you&#8217;re trying to connect to Gmail&#8217;s SMTP server with your PHP application, I&#8217;m sure they&#8217;ll be able to help. Either way, please report back and let us know for future.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-652">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-652" class="comment-date">
+				<time datetime="2009-10-28T00:26:10+00:00">October 28, 2009</time>			</a>
+		</div>
+				<div id="div-comment-652" class="comment-content">
+				<div class="comment-text">
+		<p>What was the resolution? The suspense is killing me! Also your new error looks pretty self explanatory, I&#8217;m just not sure if it&#8217;s coming from Gmail or Godaddy. I think Go Daddy issue though, maybe check if they do some filtering on SMTP?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-659">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/845c2d5129b7dea40511ea6bf853f46c?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/845c2d5129b7dea40511ea6bf853f46c?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">yang</cite>			</div>
+			
+			<a href="index.html#comment-659" class="comment-date">
+				<time datetime="2009-10-28T19:40:25+00:00">October 28, 2009</time>			</a>
+		</div>
+				<div id="div-comment-659" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Ashley,</p>
+<p>The first issue was solved after a through search on the net for the exception message 502 unimplemented (#5.5.1). Turn out goDaddy doesn&#8217;t need to apply the username and password for the smtp server which i&#8217;m trying to connect. however i&#8217;m still stuck at the second issue. contacting goDaddy and waiting for their reply. will keep you updated too. Thanks!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-665">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/845c2d5129b7dea40511ea6bf853f46c?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/845c2d5129b7dea40511ea6bf853f46c?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">yang</cite>			</div>
+			
+			<a href="index.html#comment-665" class="comment-date">
+				<time datetime="2009-10-29T06:20:44+00:00">October 29, 2009</time>			</a>
+		</div>
+				<div id="div-comment-665" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Ashley,</p>
+<p>sorry have to trouble you again. what will be the Self test send out? goDaddy is asking what kind of message will be sending out through the smtp so they can better understand why the spam filter is blocking the self test mail. thank you very much!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-668">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-668" class="comment-date">
+				<time datetime="2009-10-29T11:15:30+00:00">October 29, 2009</time>			</a>
+		</div>
+				<div id="div-comment-668" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, it&#8217;s very simple plain text. It looks like this:<br />
+<img src="../../../../../cdn.aschroder.com/wp-content/uploads/2009/10/example-self-test-email.png" alt="An Example of the SMTP Pro/Google Apps/Gmail self test email sent by the ASchroder.com Magento Email extensions" /></p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-671">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/845c2d5129b7dea40511ea6bf853f46c?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/845c2d5129b7dea40511ea6bf853f46c?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">yang</cite>			</div>
+			
+			<a href="index.html#comment-671" class="comment-date">
+				<time datetime="2009-10-29T18:16:05+00:00">October 29, 2009</time>			</a>
+		</div>
+				<div id="div-comment-671" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Ashley,</p>
+<p>sorry we might have a small misunderstanding. 🙂 i&#8217;m testing the SMTP Pro Magento extension currently, not the Gmail extension. sorry may i trouble you to show me the testing message for SMTP pro magento extension? thanks!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-672">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-672" class="comment-date">
+				<time datetime="2009-10-29T18:18:10+00:00">October 29, 2009</time>			</a>
+		</div>
+				<div id="div-comment-672" class="comment-content">
+				<div class="comment-text">
+		<p>I&#8217;m quite lazy so it&#8217;s an identical message with &#8216;s/Google Apps/SMTP Pro/g&#8217;  basically 🙂 Certainly no advertising for medicine that would trip a spam detector!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-736">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/205f9a52726156984aac2938620590ee?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/205f9a52726156984aac2938620590ee?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.pledai.lt/' rel='external nofollow' class='url'>Indre</a></cite>			</div>
+			
+			<a href="index.html#comment-736" class="comment-date">
+				<time datetime="2009-12-03T08:40:52+00:00">December 3, 2009</time>			</a>
+		</div>
+				<div id="div-comment-736" class="comment-content">
+				<div class="comment-text">
+		<p>Hello,</p>
+<p>I have a very big problem, that emails are not going out from my e-shop (at the moment it is working as a catalog due to that reason:(((<br />
+I don&#8217;t know what to do, read all forums&#8230; tried everything.. today I risked to install you extension, tried to do the test and the result was the following:<br />
+ASchroder.com SMTP Pro Self-test results<br />
+Testing outbound connectivity to Server:<br />
+Failed to connect to Host SMTP server. Reason: ()<br />
+This extension requires an outbound SMTP connection on your specified port.<br />
+Sending test email to your contact form address <a href="mailto:info@pledai.lt">info@pledai.lt</a>:<br />
+Unable to send test email. Exception message was: &#8221; does not match the expected structure for a DNS hostname, &#8221; does not appear to be a valid local network name&#8230;<br />
+Please check and double check your username and password.<br />
+Testing failed, please review the reported problems and if you need further help visit ASchroder.com to contact me.</p>
+<p>Could you please explain me what did I do wrong and what does this note meen? the username and passoword in the test &#8211; what are these? if it is a password and username of the server then probably I don&#8217;t know it, cause I have rented the server (hosting service). </p>
+<p>Thank you in advance</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-738">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-738" class="comment-date">
+				<time datetime="2009-12-03T13:50:33+00:00">December 3, 2009</time>			</a>
+		</div>
+				<div id="div-comment-738" class="comment-content">
+				<div class="comment-text">
+		<p>That sort of looks like you haven&#8217;t saved the settings in the Magento admin before running the self test, please make sure you do that first and if you still have problems with it let me know.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-773">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/127b07d0109396c29c720bdb1469249a?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/127b07d0109396c29c720bdb1469249a?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Dennis</cite>			</div>
+			
+			<a href="index.html#comment-773" class="comment-date">
+				<time datetime="2009-12-22T02:03:49+00:00">December 22, 2009</time>			</a>
+		</div>
+				<div id="div-comment-773" class="comment-content">
+				<div class="comment-text">
+		<p>Hi&#8230; we have installed your extension and it works fine so far for all emails on Magento 1.3.2.4! From time to time we are encountering problems with our smtp server so that it is down for just a couple of minutes. We thought of what would happen if someone tries to use the contact form, makes a purchase or the store owner sends confirmation emails (invoice etc) during the downtime of the server when it is temporarily unavailable. We entered wrong connection data in your extension&#8217;s config to simulate a not working connection with the following result:<br />
+1. The contact form displays an error message on the screen informing the customer that there are technical problems and he/she should try again later.<br />
+2. When a purchase is completed it is displayed that everything is ok and an email was just send to the customer which was not the case due to wrong settings. Order information in backend displays that the customer was informed.<br />
+3. When sending an invoice, shipping or whatever confirmation the system does not display an error and behaves like everything worked out just fine.</p>
+<p>My question is what can we do to ensure that no email is getting lost when the smtp server is temporarily unavailable? Thx for your great work so far!!!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-775">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-775" class="comment-date">
+				<time datetime="2009-12-22T10:52:51+00:00">December 22, 2009</time>			</a>
+		</div>
+				<div id="div-comment-775" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, Thanks for the informative comment. Firstly, if you have times when your SMTP server is down, consider migrating to an always-up smtp server like smtp.gmail.com 🙂 But more generally, if the smtp server is down then the behavior of my extension is going to be the same as the default Magento, because it is only the transport that changes, not the logic around error handling and return values. It&#8217;s a much bigger job to start trying to change the error handling, because there&#8217;s so much more testing involved.<br />
+For example, if the order is made but the email send fails and throws an exception reporting that &#8211; the order code needs to handle that, and if it doesn&#8217;t then silly things (like the order not saving) might happen.  </p>
+<p>One thing the extension could do, is persist some queue of attempted emails that it retries periodically. I think that kind of change would take a bit of effort, but it&#8217;d be quite cool. I&#8217;ll add it to the proposed features list for the next version.</p>
+<p>Cheers,<br />
+Ashley</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-797">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/154262466017005bc3ecdfb0096db1e3?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/154262466017005bc3ecdfb0096db1e3?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Andi</cite>			</div>
+			
+			<a href="index.html#comment-797" class="comment-date">
+				<time datetime="2010-01-14T17:26:52+00:00">January 14, 2010</time>			</a>
+		</div>
+				<div id="div-comment-797" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Ashley.. Thank you for your efforts on this one &#8211; You mod has solved a really big issue here :o)</p>
+<p>Have noticed a rather problematic situation though&#8230; </p>
+<p>So far the following emails are sending fine&#8230;<br />
+1, Order Confirmations<br />
+2, Invoice Confirmations<br />
+3, Shipping Confirmation<br />
+4, Password Notifications</p>
+<p>But&#8230; None of the Newsletter Subscription emails are working at all&#8230;<br />
+1, Subscription Requests<br />
+2, Subscription Confirmations<br />
+3, Un-subscription Confirmations</p>
+<p>Double Opt-in can&#8217;t function without this either.</p>
+<p>We have not been able to test any newsletter batches as yet but are hoping to do so if the above can be tweaked??</p>
+<p>Thanks again for all your efforts on this It really is a fantastic mod!!</p>
+<p>Looking forward to hearing your initial thoughts<br />
+Andi</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-798">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/ff263d0fad1079fd83d3a62438cc6a3a?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/ff263d0fad1079fd83d3a62438cc6a3a?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Andi</cite>			</div>
+			
+			<a href="index.html#comment-798" class="comment-date">
+				<time datetime="2010-01-14T17:32:46+00:00">January 14, 2010</time>			</a>
+		</div>
+				<div id="div-comment-798" class="comment-content">
+				<div class="comment-text">
+		<p>😮</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-801">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-801" class="comment-date">
+				<time datetime="2010-01-17T11:27:35+00:00">January 17, 2010</time>			</a>
+		</div>
+				<div id="div-comment-801" class="comment-content">
+				<div class="comment-text">
+		<p>Sounds like an extension is clashing, do you have some sort of 3rd party plugin for email newsletter stuff?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-805">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/ff263d0fad1079fd83d3a62438cc6a3a?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/ff263d0fad1079fd83d3a62438cc6a3a?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Andi</cite>			</div>
+			
+			<a href="index.html#comment-805" class="comment-date">
+				<time datetime="2010-01-19T07:40:21+00:00">January 19, 2010</time>			</a>
+		</div>
+				<div id="div-comment-805" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Ashley,<br />
+Thanks for your reply.</p>
+<p>I thought that this may be the case at first but we have ‘Maison du Logiciel&#8217;s Extension Conflict extension’ installed and it is showing no compatibility conflicts with any of the following…</p>
+<p>/newsletter /template/Aschroder_SMTPPro_Model_Newsletter_Template<br />
+/email/Aschroder_SMTPPro_Model_Email<br />
+/email_template/Aschroder_SMTPPro_Model_Email_Template</p>
+<p>We currently don’t have any newsletter or email extensions / 3rd party plugin&#8217;s installed but I have combed through all of the functions that I thought may be causing this behavior but so far I have not found anything.</p>
+<p>The only extension that I thought may have been the culprit, if there was one, is ‘Mage-World.com FreeQuickContact extension’ but I am 100% sure it’s not.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		</ol><!-- .comment-list -->
+
+				<nav id="comment-nav-below" class="comment-navigation" role="navigation" aria-label="Comment Navigation Below">
+			<span class="screen-reader-text">Comment navigation</span>
+			<div class="nav-previous"></div>
+			<div class="nav-next"><a href="../comment-page-2/index.html#comments" >Newer Comments &rarr;</a></div>
+		</nav><!-- #comment-nav-below -->
+				<p class="no-comments">Comments are closed.</p>
+	
+</section><!-- #comments -->
+
+</div><!-- #post-## -->
+
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+		</div><!-- .col-full -->
+	</div><!-- #content -->
+
+	
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="col-full">
+
+					<div class="site-info">
+			&copy; ASchroder.com 2023						<br /> Storefront designed by <a href="http://www.woocommerce.com/" title="WooCommerce - The Best eCommerce Platform for WordPress" rel="author">WooCommerce</a>.					</div><!-- .site-info -->
+		
+		</div><!-- .col-full -->
+	</footer><!-- #colophon -->
+
+	
+</div><!-- #page -->
+
+<link rel='stylesheet' id='yarppRelatedCss-css'  href='../../../../wp-content/plugins/yet-another-related-posts-plugin/style/related101e.css?ver=4.8.15' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../wp-content/plugins/wp-syntax/js/wp-syntax4963.js?ver=1.1'></script>
+<script type='text/javascript' src='../../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/navigation.min11a8.js?ver=20120206'></script>
+<script type='text/javascript' src='../../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/skip-link-focus-fix.min08e0.js?ver=20130115'></script>
+<script type='text/javascript' src='../../../../../cdn.aschroder.com/wp-includes/js/wp-embed.min101e.js?ver=4.8.15'></script>
+
+</body>
+
+<!-- Mirrored from www.aschroder.com/2009/08/magento-smtp-pro-extension-free-smtp-support/comment-page-1/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:39:41 GMT -->
+</html>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:33:37 by W3 Total Cache -->

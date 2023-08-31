@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>Comments on: Structuring your Magento project for Engineering, not Hacking</title>
+	<atom:link href="http://www.aschroder.com/2010/07/structuring-your-magento-project-for-engineering-not-hacking/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.aschroder.com/2010/07/structuring-your-magento-project-for-engineering-not-hacking/</link>
+	<description>Notes on Web Development</description>
+	<lastBuildDate>Wed, 23 Dec 2020 09:25:05 +0000</lastBuildDate>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8.15</generator>
+	<item>
+		<title>By: Kalen Jordan</title>
+		<link>http://www.aschroder.com/2010/07/structuring-your-magento-project-for-engineering-not-hacking/comment-page-1/#comment-10250</link>
+		<dc:creator><![CDATA[Kalen Jordan]]></dc:creator>
+		<pubDate>Wed, 22 May 2013 12:30:49 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=879#comment-10250</guid>
+		<description><![CDATA[How did I not find this blog post until now.  This is fantastic.  Looks like it&#039;s been a few years since you originally wrote this.  Do you still use more or less the same approach?  
+
+I started off symlinking individual extensions (without modman), and that got a bit complicated, then moved towards a single repository for the entire project.  That&#039;s been nice, and it&#039;s always comforting knowing you can rollback the entire project in one `git checkout` if you need to.  But I&#039;m beginning to work on an extension that I need to deploy to multiple Magento instances, so I think it&#039;s time to go back to modman&#039;ing it up.
+
+Thanks!]]></description>
+		<content:encoded><![CDATA[<p>How did I not find this blog post until now.  This is fantastic.  Looks like it&#8217;s been a few years since you originally wrote this.  Do you still use more or less the same approach?  </p>
+<p>I started off symlinking individual extensions (without modman), and that got a bit complicated, then moved towards a single repository for the entire project.  That&#8217;s been nice, and it&#8217;s always comforting knowing you can rollback the entire project in one `git checkout` if you need to.  But I&#8217;m beginning to work on an extension that I need to deploy to multiple Magento instances, so I think it&#8217;s time to go back to modman&#8217;ing it up.</p>
+<p>Thanks!</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Ashley</title>
+		<link>http://www.aschroder.com/2010/07/structuring-your-magento-project-for-engineering-not-hacking/comment-page-1/#comment-2541</link>
+		<dc:creator><![CDATA[Ashley]]></dc:creator>
+		<pubDate>Sun, 21 Aug 2011 01:52:48 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=879#comment-2541</guid>
+		<description><![CDATA[Thanks Dane!]]></description>
+		<content:encoded><![CDATA[<p>Thanks Dane!</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Dane Lowe</title>
+		<link>http://www.aschroder.com/2010/07/structuring-your-magento-project-for-engineering-not-hacking/comment-page-1/#comment-2521</link>
+		<dc:creator><![CDATA[Dane Lowe]]></dc:creator>
+		<pubDate>Tue, 16 Aug 2011 06:09:15 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=879#comment-2521</guid>
+		<description><![CDATA[As much for my future reference as anything else
+
+This is a good line to delete all symlinks in a directory, which works well if you need to start from scratch on your modman setup, assuming of course that you haven&#039;t put any other symlinks in the magento installation
+
+find . -maxdepth 1 -type l -exec rm -f {} \;]]></description>
+		<content:encoded><![CDATA[<p>As much for my future reference as anything else</p>
+<p>This is a good line to delete all symlinks in a directory, which works well if you need to start from scratch on your modman setup, assuming of course that you haven&#8217;t put any other symlinks in the magento installation</p>
+<p>find . -maxdepth 1 -type l -exec rm -f {} \;</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Andrew</title>
+		<link>http://www.aschroder.com/2010/07/structuring-your-magento-project-for-engineering-not-hacking/comment-page-1/#comment-2480</link>
+		<dc:creator><![CDATA[Andrew]]></dc:creator>
+		<pubDate>Tue, 26 Jul 2011 12:31:33 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=879#comment-2480</guid>
+		<description><![CDATA[Ashley,
+
+Thanks for the reply!
+
+After a few days of research, I&#039;ve also come to the conclusion that there isn&#039;t an easy/elegant way to do this.  What I think I&#039;ll have to end up doing is developing the custom theme / code changes off the live server to integrate when stable as there aren&#039;t too many database changes involved and those that are can easily once the 2nd site is live.  
+
+Once I have a second, stable storefront up I can populate it with data (products, categories, etc) on the live site under a temporary test domain name, which will ensure that the data for both sites is reflected in the one live DB.
+
+Again, not perfect, but the least complicated solution I&#039;ve seen.....]]></description>
+		<content:encoded><![CDATA[<p>Ashley,</p>
+<p>Thanks for the reply!</p>
+<p>After a few days of research, I&#8217;ve also come to the conclusion that there isn&#8217;t an easy/elegant way to do this.  What I think I&#8217;ll have to end up doing is developing the custom theme / code changes off the live server to integrate when stable as there aren&#8217;t too many database changes involved and those that are can easily once the 2nd site is live.  </p>
+<p>Once I have a second, stable storefront up I can populate it with data (products, categories, etc) on the live site under a temporary test domain name, which will ensure that the data for both sites is reflected in the one live DB.</p>
+<p>Again, not perfect, but the least complicated solution I&#8217;ve seen&#8230;..</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Ashley</title>
+		<link>http://www.aschroder.com/2010/07/structuring-your-magento-project-for-engineering-not-hacking/comment-page-1/#comment-2466</link>
+		<dc:creator><![CDATA[Ashley]]></dc:creator>
+		<pubDate>Sat, 23 Jul 2011 10:19:36 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=879#comment-2466</guid>
+		<description><![CDATA[Hi, Andrew
+
+Thanks for the feedback. That&#039;s a tricky situation.
+
+Normally with new store&#039;s I&#039;d set up CMS blocks/pages via a module sql resource but in your case there&#039;d be a painfully large amount of configuration required.
+
+I don&#039;t have a really good solution to your problem, I cheated a bit when I added a wholesale substore to an existing live retail store. I actually configured it as a substore on the live site, but developed the template and code changes (installing Vinai&#039;s Customer activation module for example) through modman as normal.
+
+Maybe you could do a dump from core_config for the specific store, but there&#039;s lots of other settings to worry about too (i.e tax).
+
+If you come up with a solution that works well please let us know.]]></description>
+		<content:encoded><![CDATA[<p>Hi, Andrew</p>
+<p>Thanks for the feedback. That&#8217;s a tricky situation.</p>
+<p>Normally with new store&#8217;s I&#8217;d set up CMS blocks/pages via a module sql resource but in your case there&#8217;d be a painfully large amount of configuration required.</p>
+<p>I don&#8217;t have a really good solution to your problem, I cheated a bit when I added a wholesale substore to an existing live retail store. I actually configured it as a substore on the live site, but developed the template and code changes (installing Vinai&#8217;s Customer activation module for example) through modman as normal.</p>
+<p>Maybe you could do a dump from core_config for the specific store, but there&#8217;s lots of other settings to worry about too (i.e tax).</p>
+<p>If you come up with a solution that works well please let us know.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Andrew Y</title>
+		<link>http://www.aschroder.com/2010/07/structuring-your-magento-project-for-engineering-not-hacking/comment-page-1/#comment-2463</link>
+		<dc:creator><![CDATA[Andrew Y]]></dc:creator>
+		<pubDate>Thu, 21 Jul 2011 13:53:34 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=879#comment-2463</guid>
+		<description><![CDATA[Great article!  There is a lot in here I&#039;ll be incorporating into my development methods.  I&#039;m currently struggling with an issue related to a multi-store development/engineering process I hope you might have some advice on.  We have two unique e-commerce sites and are in the process of migrating the non-Magento site to the Magento site.  The final result will be two unique domains, but one admin and code base.
+
+However, I&#039;m not sure how to proceed given that one database supports both a live site and a development site.  As we develop the new Magento site offline, the live site&#039;s DB information is being changed.  Conversely, the information added on the development platform isn&#039;t reflected in the live site.  The problem is that two databases are constantly changing, and those changes need to be merged at launch of the second site.
+
+I&#039;ve considered developing the new Magento site on the live server under a development domain (in order to share a DB with the live site), as well as trying to merge both versions of the database when we&#039;re ready to go live with the second Magento domain.  However, both seem like poor and/or complex solutions.  Based on your experience, could you offer any recommendations for this situation?]]></description>
+		<content:encoded><![CDATA[<p>Great article!  There is a lot in here I&#8217;ll be incorporating into my development methods.  I&#8217;m currently struggling with an issue related to a multi-store development/engineering process I hope you might have some advice on.  We have two unique e-commerce sites and are in the process of migrating the non-Magento site to the Magento site.  The final result will be two unique domains, but one admin and code base.</p>
+<p>However, I&#8217;m not sure how to proceed given that one database supports both a live site and a development site.  As we develop the new Magento site offline, the live site&#8217;s DB information is being changed.  Conversely, the information added on the development platform isn&#8217;t reflected in the live site.  The problem is that two databases are constantly changing, and those changes need to be merged at launch of the second site.</p>
+<p>I&#8217;ve considered developing the new Magento site on the live server under a development domain (in order to share a DB with the live site), as well as trying to merge both versions of the database when we&#8217;re ready to go live with the second Magento domain.  However, both seem like poor and/or complex solutions.  Based on your experience, could you offer any recommendations for this situation?</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Ashley</title>
+		<link>http://www.aschroder.com/2010/07/structuring-your-magento-project-for-engineering-not-hacking/comment-page-1/#comment-1973</link>
+		<dc:creator><![CDATA[Ashley]]></dc:creator>
+		<pubDate>Wed, 17 Nov 2010 20:08:47 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=879#comment-1973</guid>
+		<description><![CDATA[@Steve Lorek - I need to look at Git don&#039;t I? All the cool kids seem to be using it! Thanks for stopping by and the tip, I think modman has support for other SCM&#039;s so it might be a quite easy switch.]]></description>
+		<content:encoded><![CDATA[<p>@Steve Lorek &#8211; I need to look at Git don&#8217;t I? All the cool kids seem to be using it! Thanks for stopping by and the tip, I think modman has support for other SCM&#8217;s so it might be a quite easy switch.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Steve Lorek</title>
+		<link>http://www.aschroder.com/2010/07/structuring-your-magento-project-for-engineering-not-hacking/comment-page-1/#comment-1972</link>
+		<dc:creator><![CDATA[Steve Lorek]]></dc:creator>
+		<pubDate>Wed, 17 Nov 2010 16:42:10 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=879#comment-1972</guid>
+		<description><![CDATA[This sounds quite similar to the way I was thinking, although i was thinking of using SVN externals rather than symlinks.
+
+You do address that and are correct in that you can&#039;t re-tag in Subversion - but this is a problem which Git overcomes. You can have a designated stable branch (typically called &#039;master&#039;), and you can tag within a branch if you so wish (so you might have stable-1.0 and stable 2.0 for different sites). Or jsut use the HEAD revision. Any unstable developments can be done in other branches - thus not polluting the stable branch.
+
+You would then set up a Git repo for each project and use submodules to pull in the Magento core and the various extensions you need, referencing the correct branches/tags.
+]]></description>
+		<content:encoded><![CDATA[<p>This sounds quite similar to the way I was thinking, although i was thinking of using SVN externals rather than symlinks.</p>
+<p>You do address that and are correct in that you can&#8217;t re-tag in Subversion &#8211; but this is a problem which Git overcomes. You can have a designated stable branch (typically called &#8216;master&#8217;), and you can tag within a branch if you so wish (so you might have stable-1.0 and stable 2.0 for different sites). Or jsut use the HEAD revision. Any unstable developments can be done in other branches &#8211; thus not polluting the stable branch.</p>
+<p>You would then set up a Git repo for each project and use submodules to pull in the Magento core and the various extensions you need, referencing the correct branches/tags.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Barry Keenan</title>
+		<link>http://www.aschroder.com/2010/07/structuring-your-magento-project-for-engineering-not-hacking/comment-page-1/#comment-1966</link>
+		<dc:creator><![CDATA[Barry Keenan]]></dc:creator>
+		<pubDate>Sun, 14 Nov 2010 00:15:38 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=879#comment-1966</guid>
+		<description><![CDATA[correction: ...Everything else I would add as *externals...]]></description>
+		<content:encoded><![CDATA[<p>correction: &#8230;Everything else I would add as *externals&#8230;</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Barry Keenan</title>
+		<link>http://www.aschroder.com/2010/07/structuring-your-magento-project-for-engineering-not-hacking/comment-page-1/#comment-1965</link>
+		<dc:creator><![CDATA[Barry Keenan]]></dc:creator>
+		<pubDate>Sun, 14 Nov 2010 00:13:22 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=879#comment-1965</guid>
+		<description><![CDATA[To the main Magento one. So I would add separate external entries for: app, downloader, errors, etc...
+
+Basically, I only want to check-in code for my theme and customisations to my own repo. Everything else (the core folders) I would add as extensions. As you say, I shouldn&#039;t be editing those anyway.]]></description>
+		<content:encoded><![CDATA[<p>To the main Magento one. So I would add separate external entries for: app, downloader, errors, etc&#8230;</p>
+<p>Basically, I only want to check-in code for my theme and customisations to my own repo. Everything else (the core folders) I would add as extensions. As you say, I shouldn&#8217;t be editing those anyway.</p>
+]]></content:encoded>
+	</item>
+</channel>
+</rss>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:20:17 by W3 Total Cache -->

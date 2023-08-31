@@ -1,0 +1,1137 @@
+<!doctype html>
+<html lang="en-US">
+
+<!-- Mirrored from www.aschroder.com/2010/08/improved-custom-magento-order-number-functionality-for-setstartordernumber-extension-v0-3/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:39:42 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="../../../xmlrpc.php">
+
+<title>Improved Custom Magento Order Number Functionality for SetStartOrderNumber extension | ASchroder.com</title>
+
+<!-- All in One SEO Pack 2.4.2 by Michael Torbert of Semper Fi Web Design[289,415] -->
+<meta name="description"  content="I got 100 downloads of my latest Magento extension to set custom starting order numbers, so here are the improvements I promised!" />
+
+<meta name="keywords"  content="magento,custom order number,set order number,extension" />
+
+<!-- /all in one seo pack -->
+<link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
+<link rel='dns-prefetch' href='http://s.w.org/' />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Feed" href="../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Comments Feed" href="../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Improved Custom Magento Order Number Functionality for SetStartOrderNumber extension &#8211; v0.3 Comments Feed" href="feed/index.html" />
+<!-- This site uses the Google Analytics by MonsterInsights plugin v6.2.4 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+<script type="text/javascript" data-cfasync="false">
+		var disableStr = 'ga-disable-UA-6477134-1';
+
+	/* Function to detect opted out users */
+	function __gaTrackerIsOptedOut() {
+		return document.cookie.indexOf(disableStr + '=true') > -1;
+	}
+
+	/* Disable tracking if the opt-out cookie exists. */
+	if ( __gaTrackerIsOptedOut() ) {
+		window[disableStr] = true;
+	}
+
+	/* Opt-out function */
+	function __gaTrackerOptout() {
+	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+	  window[disableStr] = true;
+	}
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','http://www.google-analytics.com/analytics.js','__gaTracker');
+
+	__gaTracker('create', 'UA-6477134-1', 'auto');
+	__gaTracker('set', 'forceSSL', true);
+	__gaTracker('send','pageview');
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/www.aschroder.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.15"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='yarppWidgetCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/widget101e.css?ver=4.8.15' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-syntax-css-css'  href='../../../wp-content/plugins/wp-syntax/css/wp-syntax4963.css?ver=1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-style-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/style5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<style id='storefront-style-inline-css' type='text/css'>
+
+			.main-navigation ul li a,
+			.site-title a,
+			ul.menu li a,
+			.site-branding h1 a,
+			.site-footer .storefront-handheld-footer-bar a:not(.button),
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				color: #333333;
+			}
+
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				border-color: #333333;
+			}
+
+			.main-navigation ul li a:hover,
+			.main-navigation ul li:hover > a,
+			.site-title a:hover,
+			a.cart-contents:hover,
+			.site-header-cart .widget_shopping_cart a:hover,
+			.site-header-cart:hover > li > a,
+			.site-header ul.menu li.current-menu-item > a {
+				color: #838383;
+			}
+
+			table th {
+				background-color: #f8f8f8;
+			}
+
+			table tbody td {
+				background-color: #fdfdfd;
+			}
+
+			table tbody tr:nth-child(2n) td,
+			fieldset,
+			fieldset legend {
+				background-color: #fbfbfb;
+			}
+
+			.site-header,
+			.secondary-navigation ul ul,
+			.main-navigation ul.menu > li.menu-item-has-children:after,
+			.secondary-navigation ul.menu ul,
+			.storefront-handheld-footer-bar,
+			.storefront-handheld-footer-bar ul li > a,
+			.storefront-handheld-footer-bar ul li.search .site-search,
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				background-color: #ffffff;
+			}
+
+			p.site-description,
+			.site-header,
+			.storefront-handheld-footer-bar {
+				color: #6d6d6d;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count,
+			button.menu-toggle:after,
+			button.menu-toggle:before,
+			button.menu-toggle span:before {
+				background-color: #333333;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				color: #ffffff;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				border-color: #ffffff;
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+				color: #333333;
+			}
+
+			.widget h1 {
+				border-bottom-color: #333333;
+			}
+
+			body,
+			.secondary-navigation a,
+			.onsale,
+			.pagination .page-numbers li .page-numbers:not(.current), .woocommerce-pagination .page-numbers li .page-numbers:not(.current) {
+				color: #6d6d6d;
+			}
+
+			.widget-area .widget a,
+			.hentry .entry-header .posted-on a,
+			.hentry .entry-header .byline a {
+				color: #9f9f9f;
+			}
+
+			a  {
+				color: #0228d1;
+			}
+
+			a:focus,
+			.button:focus,
+			.button.alt:focus,
+			.button.added_to_cart:focus,
+			.button.wc-forward:focus,
+			button:focus,
+			input[type="button"]:focus,
+			input[type="reset"]:focus,
+			input[type="submit"]:focus {
+				outline-color: #0228d1;
+			}
+
+			button, input[type="button"], input[type="reset"], input[type="submit"], .button, .added_to_cart, .widget a.button, .site-header-cart .widget_shopping_cart a.button {
+				background-color: #eeeeee;
+				border-color: #eeeeee;
+				color: #333333;
+			}
+
+			button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, .button:hover, .added_to_cart:hover, .widget a.button:hover, .site-header-cart .widget_shopping_cart a.button:hover {
+				background-color: #d5d5d5;
+				border-color: #d5d5d5;
+				color: #333333;
+			}
+
+			button.alt, input[type="button"].alt, input[type="reset"].alt, input[type="submit"].alt, .button.alt, .added_to_cart.alt, .widget-area .widget a.button.alt, .added_to_cart, .widget a.button.checkout {
+				background-color: #333333;
+				border-color: #333333;
+				color: #ffffff;
+			}
+
+			button.alt:hover, input[type="button"].alt:hover, input[type="reset"].alt:hover, input[type="submit"].alt:hover, .button.alt:hover, .added_to_cart.alt:hover, .widget-area .widget a.button.alt:hover, .added_to_cart:hover, .widget a.button.checkout:hover {
+				background-color: #1a1a1a;
+				border-color: #1a1a1a;
+				color: #ffffff;
+			}
+
+			.pagination .page-numbers li .page-numbers.current, .woocommerce-pagination .page-numbers li .page-numbers.current {
+				background-color: #e6e6e6;
+				color: #6d6d6d;
+			}
+
+			#comments .comment-list .comment-content .comment-text {
+				background-color: #f8f8f8;
+			}
+
+			.site-footer {
+				background-color: #f0f0f0;
+				color: #6d6d6d;
+			}
+
+			.site-footer a:not(.button) {
+				color: #333333;
+			}
+
+			.site-footer h1, .site-footer h2, .site-footer h3, .site-footer h4, .site-footer h5, .site-footer h6 {
+				color: #333333;
+			}
+
+			#order_review {
+				background-color: #ffffff;
+			}
+
+			#payment .payment_methods > li .payment_box,
+			#payment .place-order {
+				background-color: #fafafa;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice) {
+				background-color: #f5f5f5;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice):hover {
+				background-color: #f0f0f0;
+			}
+
+			@media screen and ( min-width: 768px ) {
+				.secondary-navigation ul.menu a:hover {
+					color: #868686;
+				}
+
+				.secondary-navigation ul.menu a {
+					color: #6d6d6d;
+				}
+
+				.site-header-cart .widget_shopping_cart,
+				.main-navigation ul.menu ul.sub-menu,
+				.main-navigation ul.nav-menu ul.children {
+					background-color: #f0f0f0;
+				}
+
+				.site-header-cart .widget_shopping_cart .buttons,
+				.site-header-cart .widget_shopping_cart .total {
+					background-color: #f5f5f5;
+				}
+
+				.site-header {
+					border-bottom-color: #f0f0f0;
+				}
+			}
+</style>
+<link rel='stylesheet' id='storefront-icons-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/sass/base/icons5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-fonts-css'  href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,600,700,900&amp;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jqueryb8ff.js?ver=1.12.4'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jquery-migrate.min330a.js?ver=1.4.1'></script>
+<link rel='https://api.w.org/' href='../../../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../xmlrpc0db0.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Magento and Google Analytics &#8211; Use &#8216;First Touch&#8217; Tracking To See How Your Customers First Visit Your Store' href='../magento-and-google-analytics-use-first-touch-tracking-to-see-how-your-customers-first-visit-your-store/index.html' />
+<link rel='next' title='Magento Backups: How To Ensure Your Data Is Safe with Magento Cloud Backup' href='../magento-backups-how-to-ensure-your-data-is-safe-with-magento-cloud-backup/index.html' />
+<meta name="generator" content="WordPress 4.8.15" />
+<link rel="canonical" href="index.html" />
+<link rel='shortlink' href='../../../index6b6d.html?p=968' />
+<link rel="alternate" type="application/json+oembed" href="../../../wp-json/oembed/1.0/embed4672.json?url=http%3A%2F%2Fwww.aschroder.com%2F2010%2F08%2Fimproved-custom-magento-order-number-functionality-for-setstartordernumber-extension-v0-3%2F" />
+<link rel="alternate" type="text/xml+oembed" href="../../../wp-json/oembed/1.0/embed30ff?url=http%3A%2F%2Fwww.aschroder.com%2F2010%2F08%2Fimproved-custom-magento-order-number-functionality-for-setstartordernumber-extension-v0-3%2F&amp;format=xml" />
+</head>
+
+<body class="post-template-default single single-post postid-968 single-format-standard no-wc-breadcrumb storefront-full-width-content right-sidebar">
+
+
+<div id="page" class="hfeed site">
+	
+	<header id="masthead" class="site-header" role="banner" style="">
+		<div class="col-full">
+
+					<a class="skip-link screen-reader-text" href="#site-navigation">Skip to navigation</a>
+		<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+				<div class="site-branding">
+			<div class="beta site-title"><a href="../../../index.html" rel="home">ASchroder.com</a></div><p class="site-description">Notes on Web Development</p>		</div>
+		<div class="storefront-primary-navigation">		<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="Primary Navigation">
+		<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><span>Menu</span></button>
+			<div class="primary-navigation"><ul id="menu-main-menu" class="menu"><li id="menu-item-1119" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li id="menu-item-1118" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li id="menu-item-1872" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div><div class="handheld-navigation"><ul id="menu-main-menu-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div>		</nav><!-- #site-navigation -->
+		</div>
+		</div>
+	</header><!-- #masthead -->
+
+	
+	<div id="content" class="site-content" tabindex="-1">
+		<div class="col-full">
+
+		
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+<div id="post-968" class="post-968 post type-post status-publish format-standard hentry category-magento category-set-start-order-number-extension tag-custom-order-number tag-magento">
+
+			<header class="entry-header">
+		<span class="posted-on">Posted on <a href="index.html" rel="bookmark"><time class="entry-date published updated" datetime="2010-08-11T03:10:35+00:00">August 11, 2010</time></a></span><h1 class="entry-title">Improved Custom Magento Order Number Functionality for SetStartOrderNumber extension &#8211; v0.3</h1>		</header><!-- .entry-header -->
+				<aside class="entry-meta">
+						<div class="author">
+				<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' /><div class="label">Written by</div><a href="../../../author/admin/index.html" title="Posts by Ashley" rel="author">Ashley</a>			</div>
+							<div class="cat-links">
+					<div class="label">Posted in</div><a href="../../../category/magento/index.html" rel="category tag">Magento</a>, <a href="../../../category/set-start-order-number-extension/index.html" rel="category tag">Set Start Order Number Extension</a>				</div>
+			
+							<div class="tags-links">
+					<div class="label">Tagged</div><a href="../../../tag/custom-order-number/index.html" rel="tag">custom order number</a>, <a href="../../../tag/magento/index.html" rel="tag">Magento</a>				</div>
+			
+		
+							<div class="comments-link">
+					<div class="label">Comments</div>					<span class="comments-link"><a href="index.html#comments">37 Comments</a></span>
+				</div>
+					</aside>
+				<div class="entry-content">
+		<p>Well, <a href="../../07/easily-set-a-custom-order-number-in-magento-with-my-free-setstartordernumber-extension/index.html#comment-1658">I said</a> if I got 100 downloads of my latest Magento extension to set custom starting order numbers I&#8217;d make some improvements to it, and sure enough it happened. So here are the improvements. Please note I did <strong>not</strong> actually do the one improvement I promised I&#8217;d do, but I did a bunch of others that I hope make up for my laziness. You can get the <a href="http://www.magentocommerce.com/magento-connect/ASchroder/extension/4088/aschroder_setstartordernumber">updated version on Magento connect</a> or <a href="../../../../cdn.aschroder.com/wp-content/uploads/2010/08/Aschroder_SetStartOrderNumber-0.3.gz">download it directly</a>.</p>
+<p>In version 0.3 you can now:</p>
+<ol>
+<li>Hopefully avoid the <a href="../../07/easily-set-a-custom-order-number-in-magento-with-my-free-setstartordernumber-extension/index.html#comment-1659">Update before Save fiasco</a></li>
+<li>Disable the padding on the order number, invoice number etc</li>
+<li>Disable the prefix so that your numbers are treated in their entirety by the increment logic (and possibly the padding logic)</li>
+<li>Set a custom increment amount to trick your <em>nosey competitors</em> into thinking you do 1000 orders a day!</li>
+</ol>
+<p>If you happen to be reading this JT, <a href="../../07/easily-set-a-custom-order-number-in-magento-with-my-free-setstartordernumber-extension/index.html#comment-1606">I skipped v0.2</a>, but I&#8217;ll circle back around for the cron increment functionality you suggested at 300 downloads, promise!</p>
+<p>As always please give this extension a try in a dev environment first, it&#8217;s still being actively developed and I consider it beta. Despite that I am using it myself on several production stores.</p>
+<div class='yarpp-related'>
+<p>You might also be interested in:<ol>
+<li><a href="../../07/latest-version-of-smtp-pro-finally-uploaded-to-magento-connect/index.html" rel="bookmark" title="Latest version of SMTP Pro Finally Uploaded to Magento Connect">Latest version of SMTP Pro Finally Uploaded to Magento Connect </a></li>
+<li><a href="../../../2011/03/magento-1-5-0-1-and-smtppro-1-4-2-now-working-free-gmailsmtp-ahoy/index.html" rel="bookmark" title="Magento 1.5.0.1 and SMTPPro 1.4.2 Now Working &#8211; Free Gmail/SMTP, ahoy!">Magento 1.5.0.1 and SMTPPro 1.4.2 Now Working &#8211; Free Gmail/SMTP, ahoy! </a></li>
+<li><a href="../../03/magento-smtp-gmail-and-google-apps-email-combined-extension-released-at-last/index.html" rel="bookmark" title="Magento SMTP, Gmail and Google Apps Email combined extension released (at last)">Magento SMTP, Gmail and Google Apps Email combined extension released (at last) </a></li>
+<li><a href="../../07/easily-set-a-custom-order-number-in-magento-with-my-free-setstartordernumber-extension/index.html" rel="bookmark" title="Easily Set a Custom Order Number in Magento With My Free SetStartOrderNumber Extension">Easily Set a Custom Order Number in Magento With My Free SetStartOrderNumber Extension </a></li>
+<li><a href="../../05/installing-a-magento-extension-manually-via-ftp-or-ssh/index.html" rel="bookmark" title="Installing a Magento Extension manually via FTP or SSH">Installing a Magento Extension manually via FTP or SSH </a></li>
+</ol></p>
+</div>
+		</div><!-- .entry-content -->
+		<nav id="post-navigation" class="navigation post-navigation" role="navigation" aria-label="Post Navigation"><span class="screen-reader-text">Post navigation</span><div class="nav-links"><div class="nav-previous"><a href="../magento-and-google-analytics-use-first-touch-tracking-to-see-how-your-customers-first-visit-your-store/index.html" rel="prev">Magento and Google Analytics &#8211; Use &#8216;First Touch&#8217; Tracking To See How Your Customers First Visit Your Store</a></div><div class="nav-next"><a href="../magento-backups-how-to-ensure-your-data-is-safe-with-magento-cloud-backup/index.html" rel="next">Magento Backups: How To Ensure Your Data Is Safe with Magento Cloud Backup</a></div></div></nav>
+<section id="comments" class="comments-area" aria-label="Post Comments">
+
+			<h2 class="comments-title">
+			37 thoughts on &ldquo;<span>Improved Custom Magento Order Number Functionality for SetStartOrderNumber extension &#8211; v0.3</span>&rdquo;		</h2>
+
+		
+		<ol class="comment-list">
+					<li class="comment even thread-even depth-1" id="comment-1706">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/76c95c8e802bdd03ff3532d7ea696dcd?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/76c95c8e802bdd03ff3532d7ea696dcd?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">J.T.</cite>			</div>
+			
+			<a href="index.html#comment-1706" class="comment-date">
+				<time datetime="2010-08-11T04:19:36+00:00">August 11, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1706" class="comment-content">
+				<div class="comment-text">
+		<p>*logs in to botnet to facilitate 200 more downloads*</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-1708">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-1708" class="comment-date">
+				<time datetime="2010-08-11T14:31:58+00:00">August 11, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1708" class="comment-content">
+				<div class="comment-text">
+		<p>Haha, I&#8217;ll know if there is unprecedented demand for the extension that you are behind it!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1712">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/c37dea93499cf89d22e2155223738ed4?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/c37dea93499cf89d22e2155223738ed4?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">John</cite>			</div>
+			
+			<a href="index.html#comment-1712" class="comment-date">
+				<time datetime="2010-08-12T04:57:58+00:00">August 12, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1712" class="comment-content">
+				<div class="comment-text">
+		<p>Can this extension be used on a store that already has a lot of orders or does it only work on a fresh install?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-1716">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-1716" class="comment-date">
+				<time datetime="2010-08-12T13:20:56+00:00">August 12, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1716" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, John &#8211; yes it can, but if you&#8217;re changing to use lower numbers than your current order numbers, you&#8217;ll have to toggle the <em>trust me I know what I&#8217;m doing</em> switch. It&#8217;s a safety mechanism, because if you end up with duplicate ID&#8217;s your customer service reps will hate you.</p>
+<p>It won&#8217;t update the old ones, but it will mean all future ones will use the new numbering scheme.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1723">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/02e93e4aaed02124b6b1b223015f9029?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/02e93e4aaed02124b6b1b223015f9029?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">JM</cite>			</div>
+			
+			<a href="index.html#comment-1723" class="comment-date">
+				<time datetime="2010-08-13T02:02:54+00:00">August 13, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1723" class="comment-content">
+				<div class="comment-text">
+		<p>Can this extension be used on a multistore installation?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-1724">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-1724" class="comment-date">
+				<time datetime="2010-08-13T03:35:12+00:00">August 13, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1724" class="comment-content">
+				<div class="comment-text">
+		<p>It should be OK &#8211; I haven&#8217;t tested it though, so suggest trying it in a dev environment first, please let me know how it goes?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1816">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/9f81bf937a6bd76de4d09ab671cd76e1?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/9f81bf937a6bd76de4d09ab671cd76e1?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.brildor.com/' rel='external nofollow' class='url'>oliver</a></cite>			</div>
+			
+			<a href="index.html#comment-1816" class="comment-date">
+				<time datetime="2010-09-07T01:50:44+00:00">September 7, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1816" class="comment-content">
+				<div class="comment-text">
+		<p>243 download !!!! Go GO</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1979">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo avatar-default' height='128' width='128' />			<cite class="fn"><a href='http://yoururl/' rel='external nofollow' class='url'>JH</a></cite>			</div>
+			
+			<a href="index.html#comment-1979" class="comment-date">
+				<time datetime="2010-11-21T08:24:37+00:00">November 21, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1979" class="comment-content">
+				<div class="comment-text">
+		<p>Using 1.4.1.1 and version 3 of the module.  New store so orders only at 100000108.  Disabled padding and prefix and set orders to 2500.  Saved and then ran update.  Getting error message that it is less than 100000108.  Does that mean I need to pick something greater than 100000108 or override for small er order number?</p>
+<p>Thanks and appreciate your contribution to the magento community.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1980">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='../../../index.html' rel='external nofollow' class='url'>Ashley</a></cite>			</div>
+			
+			<a href="index.html#comment-1980" class="comment-date">
+				<time datetime="2010-11-22T15:24:57+00:00">November 22, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1980" class="comment-content">
+				<div class="comment-text">
+		<p>@JH That should be fine if you override, unless you&#8217;re likely to get near 100 million orders. If you are, then you can hire a developer to fix it at around the 99 million order mark 🙂 Have fun!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2025">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/c9b29796e80541c4471742233e93dfc7?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/c9b29796e80541c4471742233e93dfc7?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://yoururl/' rel='external nofollow' class='url'>Giannis</a></cite>			</div>
+			
+			<a href="index.html#comment-2025" class="comment-date">
+				<time datetime="2010-12-17T08:03:30+00:00">December 17, 2010</time>			</a>
+		</div>
+				<div id="div-comment-2025" class="comment-content">
+				<div class="comment-text">
+		<p>If I was on that train with you the day you were coding this I would buy you a beer 😉 Thanks dude!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2047">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/97feea3648473996d282941320045e93?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/97feea3648473996d282941320045e93?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.jets24.com/' rel='external nofollow' class='url'>Chris</a></cite>			</div>
+			
+			<a href="index.html#comment-2047" class="comment-date">
+				<time datetime="2010-12-27T08:20:25+00:00">December 27, 2010</time>			</a>
+		</div>
+				<div id="div-comment-2047" class="comment-content">
+				<div class="comment-text">
+		<p>Hey Ashley,</p>
+<p>first of all: thanks for all the effort you put into this blog and all the coding. If I ever come to New Zealand, I&#8217;ll bring a casc of German beer for you 😉</p>
+<p>To the lecture at hands, I&#8217;m quite pissed by Magentos storeview behaviour with the invoice numbers. We need to have one number for the whole shop. So I tried your extension and it works fine for ID1 storeview (german). But the other storeviews come up with their own numbers. Did I do something wrong? I installed it, got to the backend config, used the standard configuration, disabled the padding and prefix, typed in the number 5016 (highest number), saved and updated. As I said: StoreView 1 = perfect, all other 3 StoreViews = different numbers. So first I slapped my monitor, second I wrote you this &#8220;cry for help&#8221;, and next thing I&#8217;m going to do is get some ice for my hand, monitors seem to be harder than hands&#8230;</p>
+<p>Thanks in advance!</p>
+<p>Regards<br />
+Chris</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2048">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/97feea3648473996d282941320045e93?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/97feea3648473996d282941320045e93?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.jets24.com/' rel='external nofollow' class='url'>Chris</a></cite>			</div>
+			
+			<a href="index.html#comment-2048" class="comment-date">
+				<time datetime="2010-12-27T09:16:20+00:00">December 27, 2010</time>			</a>
+		</div>
+				<div id="div-comment-2048" class="comment-content">
+				<div class="comment-text">
+		<p>Hi there, a short update on my problem: it is solved!<br />
+Unfortunately without your module, but maybe you can use this &#8220;workaround&#8221; for future releases:<br />
+1) BACKUP<br />
+2) Ensure you did 1)<br />
+3) go to your DB using PHPmyadmin and look for the table eav_entity_store<br />
+4) Add a new (or edit an existing) line:</p>
+<p>entity_type: 16 (which stands for the invoice)<br />
+store_id: 0 (pretend having a storeview ID=0,overrules all others)<br />
+increment_prefix: 0 (no prefix, 1 to have one)<br />
+increment_last_id: 5016 (the next invoice number you will have. It&#8217;ll automatically count up 5017, 5018&#8230;)</p>
+<p>5) Look for the table eav_entity_type</p>
+<p>6) Set value increment_per_store to 0 for entity_type_code 16 (invoice)</p>
+<p>7) smile</p>
+<p>This can be used for all other numbers (e.g. customer, order, &#8230;). Hope it helped.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-2058">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-2058" class="comment-date">
+				<time datetime="2011-01-05T01:01:13+00:00">January 5, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2058" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks for the update Chris, multi-store is an area that needs work with this extension. I&#8217;ll be looking at it just as soon as I can.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2117">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/44f2ae471b71816538a990445d7abeb7?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/44f2ae471b71816538a990445d7abeb7?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.jespro.com/' rel='external nofollow' class='url'>Dustin</a></cite>			</div>
+			
+			<a href="index.html#comment-2117" class="comment-date">
+				<time datetime="2011-02-01T07:32:44+00:00">February 1, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2117" class="comment-content">
+				<div class="comment-text">
+		<p>Hey Ashley, I&#8217;m running 1.4.2 in a brand new install and I&#8217;ve used Magento Connect to install your product. From reading the documentation I understand that it should show up under the &#8216;store&#8217; tab of Magento&#8217;s admin area but I&#8217;m not seeing it there at all, even after flusing all the caches. Any tips?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-2120">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-2120" class="comment-date">
+				<time datetime="2011-02-01T11:37:05+00:00">February 1, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2120" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, the configuration is under the Sales section &#8211; hope you get it working.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2298">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/30f6b0c86fa509bfe7f5f04d1916234c?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/30f6b0c86fa509bfe7f5f04d1916234c?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.pureherbalcure.com/' rel='external nofollow' class='url'>Sahil</a></cite>			</div>
+			
+			<a href="index.html#comment-2298" class="comment-date">
+				<time datetime="2011-05-13T00:29:29+00:00">May 13, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2298" class="comment-content">
+				<div class="comment-text">
+		<p>Would this work across multiple websites within magento? The problem is that each of the separate websites have their own starting number prefixes.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2379">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/30f6b0c86fa509bfe7f5f04d1916234c?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/30f6b0c86fa509bfe7f5f04d1916234c?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.pureherbalcure.com/' rel='external nofollow' class='url'>Sahil</a></cite>			</div>
+			
+			<a href="index.html#comment-2379" class="comment-date">
+				<time datetime="2011-06-15T03:02:07+00:00">June 15, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2379" class="comment-content">
+				<div class="comment-text">
+		<p>@Ashley &#8211; Works fine as long as it is a single store view. The moment you try to use this across multiple websites and store views, it does not work. Magento just seems to get the previous numbering schema from somewhere.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2407">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/a5d0fcecc433ee919dbbc195d61f7f0b?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/a5d0fcecc433ee919dbbc195d61f7f0b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Andrea</cite>			</div>
+			
+			<a href="index.html#comment-2407" class="comment-date">
+				<time datetime="2011-06-28T01:58:55+00:00">June 28, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2407" class="comment-content">
+				<div class="comment-text">
+		<p>@Ashley &#8211; You extension is great, but, unfortunately, I have the same problem reported by Sahil. We have a single website, multiple stores, and up to 3 views per store. Custom order number works just for store with ID = 1. Any suggestion about how to address this issue?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2445">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/95442031c575f934ebb1db1e2eff1da2?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/95442031c575f934ebb1db1e2eff1da2?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">carola</cite>			</div>
+			
+			<a href="index.html#comment-2445" class="comment-date">
+				<time datetime="2011-07-13T06:04:45+00:00">July 13, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2445" class="comment-content">
+				<div class="comment-text">
+		<p>Dear Ashley,</p>
+<p>thanks for your great work. But I have the same issue.<br />
+I set the numbering to 2011000001 &#8211; but&#8230; I now have numbers like 20000000, 3000000 and some 20110000. A bit mixed up.<br />
+(The shop is online right now&#8230;so I have a little emergency here).</p>
+<p>Do you have an idea or a quck&amp;dirty solution?</p>
+<p>Best regards and many thanks in advance<br />
+    Carola</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2498">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/1ca2dece93b7286de8f950546753489f?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/1ca2dece93b7286de8f950546753489f?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Simon</cite>			</div>
+			
+			<a href="index.html#comment-2498" class="comment-date">
+				<time datetime="2011-08-05T15:21:27+00:00">August 5, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2498" class="comment-content">
+				<div class="comment-text">
+		<p>Hi,</p>
+<p>I&#8217;ve used gladly your extension for a while and it has worked great on my 1.3.2.4 but now I must upgrade to 1.5 and was wondering if the extension would work with this version of Magento.</p>
+<p>thank you very much again for this great extension!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2565">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/59ed51a353bac0cc5b84eb47b86705c0?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/59ed51a353bac0cc5b84eb47b86705c0?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Justin</cite>			</div>
+			
+			<a href="index.html#comment-2565" class="comment-date">
+				<time datetime="2011-08-28T22:41:12+00:00">August 28, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2565" class="comment-content">
+				<div class="comment-text">
+		<p>How do I install this?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2636">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/c705f5cba1c996930409b7e9e1c7db8e?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/c705f5cba1c996930409b7e9e1c7db8e?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Phil</cite>			</div>
+			
+			<a href="index.html#comment-2636" class="comment-date">
+				<time datetime="2011-09-17T09:48:29+00:00">September 17, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2636" class="comment-content">
+				<div class="comment-text">
+		<p>Fantastic Extension!</p>
+<p>Any updates on multistore use?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2650">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/009e83093e289f1967a9f2f3468fbf88?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/009e83093e289f1967a9f2f3468fbf88?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Craig</cite>			</div>
+			
+			<a href="index.html#comment-2650" class="comment-date">
+				<time datetime="2011-09-20T14:06:15+00:00">September 20, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2650" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Ash, im currently using the extension its amazing, just what i needed.<br />
+Only thing is, whenever a customer clicks onto their order within their account it is still appearing as a lower default.</p>
+<p>E.g. I used the extension to go quite far up so the order number is &#8220;181497424&#8221; which is great.<br />
+Yet when a customer clicks on &#8220;view order&#8221; in their account i get the following<br />
+<a href="http://www.mywebsite.com/sales/order/view/order_id/6/" rel="nofollow">http://www.mywebsite.com/sales/order/view/order_id/6/</a></p>
+<p>Do you know of anything in order to solve this ? </p>
+<p>Been looking into it but cannot find anything at present.</p>
+<p>Regards,<br />
+Craig.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-2655">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-2655" class="comment-date">
+				<time datetime="2011-09-21T12:28:29+00:00">September 21, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2655" class="comment-content">
+				<div class="comment-text">
+		<p>@Craig &#8211; sorry mate but those id&#8217;s are used throughout magento in the urls. It&#8217;d be a pretty low level change to not use them. The id you see there is the entity id for the record in the database, not the &#8216;increment id&#8217;.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2656">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/009e83093e289f1967a9f2f3468fbf88?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/009e83093e289f1967a9f2f3468fbf88?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Craig</cite>			</div>
+			
+			<a href="index.html#comment-2656" class="comment-date">
+				<time datetime="2011-09-21T13:57:45+00:00">September 21, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2656" class="comment-content">
+				<div class="comment-text">
+		<p>@Ashley, but it would still be do-able ?<br />
+Just it looks very unprofessional in my opinion, i mean unless there&#8217;s a survey with for this then i&#8217;d still look at trying to do it.</p>
+<p>Sorry if that came across abnoxious in anyway i don&#8217;t mean for it to be 🙂</p>
+<p>Craig.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2682">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/4576ff0cb3ede199eed952b3ffaaca88?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/4576ff0cb3ede199eed952b3ffaaca88?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.inprint.fr/' rel='external nofollow' class='url'>Fred</a></cite>			</div>
+			
+			<a href="index.html#comment-2682" class="comment-date">
+				<time datetime="2011-10-11T11:48:28+00:00">October 11, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2682" class="comment-content">
+				<div class="comment-text">
+		<p>@Ashley<br />
+I&#8217;m just installed the extension. I&#8217;ve flushed the cash, logout &#8211; login, but I&#8217;ve not the extension in the sales menu. I&#8217;m in 1.5.0.1 version of Magento. DO you have an idea ?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2716">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/c9b29796e80541c4471742233e93dfc7?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/c9b29796e80541c4471742233e93dfc7?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Giannis</cite>			</div>
+			
+			<a href="index.html#comment-2716" class="comment-date">
+				<time datetime="2011-10-30T08:51:04+00:00">October 30, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2716" class="comment-content">
+				<div class="comment-text">
+		<p>I have a multi-view store too and @Chris update works! I did it for all entity types. Thanks a lot buddy.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2819">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/ac358312427f199221f410cd4eed92d0?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/ac358312427f199221f410cd4eed92d0?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Rony</cite>			</div>
+			
+			<a href="index.html#comment-2819" class="comment-date">
+				<time datetime="2011-12-28T17:54:32+00:00">December 28, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2819" class="comment-content">
+				<div class="comment-text">
+		<p>@Ashley<br />
+I&#8217;m wondering if it works in magento community 1.6.1??<br />
+Tks,</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2934">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/b0c8fe16ee31b8d202455d1a13b9d698?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/b0c8fe16ee31b8d202455d1a13b9d698?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Michelangelo</cite>			</div>
+			
+			<a href="index.html#comment-2934" class="comment-date">
+				<time datetime="2012-02-09T01:53:55+00:00">February 9, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2934" class="comment-content">
+				<div class="comment-text">
+		<p>Hi,</p>
+<p>is there a way to set a postfix in the invoice number eg: 0001/A 0002/A &#8230;</p>
+<p>thanks</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4788">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/bdd7db1cc3bd39d267e694c63a2e2b96?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/bdd7db1cc3bd39d267e694c63a2e2b96?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Philip</cite>			</div>
+			
+			<a href="index.html#comment-4788" class="comment-date">
+				<time datetime="2012-05-05T12:34:00+00:00">May 5, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4788" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Ashley,</p>
+<p>I ran this extension once to change the starting order number and it worked fine. My question is can I now disable and remove the module without any undesired effects?</p>
+<p>I figure I can since it all it did was change the increment_id and once that change is through this module doesn&#8217;t actively doing anything on the backend right? Just wanted to make sure.</p>
+<p>Thanks for this great extension!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-4790">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/774ae7bce6faf0f2227e163399b0809f?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/774ae7bce6faf0f2227e163399b0809f?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Thijs</cite>			</div>
+			
+			<a href="index.html#comment-4790" class="comment-date">
+				<time datetime="2012-05-07T07:38:22+00:00">May 7, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4790" class="comment-content">
+				<div class="comment-text">
+		<p>Hey,</p>
+<p>Is the extension compatible with 1.6.x?<br />
+It looks great!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4897">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/ea17b0600e32bd584f9b8fd5ea39debe?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/ea17b0600e32bd584f9b8fd5ea39debe?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://github/?' rel='external nofollow' class='url'>Jim O'Halloran</a></cite>			</div>
+			
+			<a href="index.html#comment-4897" class="comment-date">
+				<time datetime="2012-07-24T18:12:46+00:00">July 24, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4897" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Ashley,</p>
+<p>Is there any chance you&#8217;d consider putting this extension up on Github?  It would be great to be able to quickly install it via moddman.</p>
+<p>Jim.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-4942">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/78fd274d9336d3c5b13437ee18ce4056?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/78fd274d9336d3c5b13437ee18ce4056?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://unitedbmwonline.com/' rel='external nofollow' class='url'>Steve</a></cite>			</div>
+			
+			<a href="index.html#comment-4942" class="comment-date">
+				<time datetime="2012-08-13T07:59:52+00:00">August 13, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4942" class="comment-content">
+				<div class="comment-text">
+		<p>Ashley,</p>
+<p>Thank you for all your posts, you really help make making magento so much easier to tweak.</p>
+<p>Is this extension compatible with 1.7?</p>
+<p>Thanks,</p>
+<p>Steve</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4979">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/e6ed2a0df93342f4ffc5df0188cc29bc?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/e6ed2a0df93342f4ffc5df0188cc29bc?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://climbingholds.com/' rel='external nofollow' class='url'>Brad</a></cite>			</div>
+			
+			<a href="index.html#comment-4979" class="comment-date">
+				<time datetime="2012-09-04T13:25:11+00:00">September 4, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4979" class="comment-content">
+				<div class="comment-text">
+		<p>I use my site to manage orders submitted via a P.O. and I was wondering if this extension will allow me to custom input order numbers that are non-sequencial and varying in length. I would like the order number to reflect my customer&#8217;s PO #s, which don&#8217;t follow any set pattern. Basically, I want to custom input every order number. Thoughts?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-5225">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/f53d87e3e9cf60004a13c3a501d895a1?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/f53d87e3e9cf60004a13c3a501d895a1?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">todd</cite>			</div>
+			
+			<a href="index.html#comment-5225" class="comment-date">
+				<time datetime="2012-11-26T16:42:58+00:00">November 26, 2012</time>			</a>
+		</div>
+				<div id="div-comment-5225" class="comment-content">
+				<div class="comment-text">
+		<p>downloaded this from the link above and unziped files.  In what folders do the file need to be placed in?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-5255">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/5c05961e13c018e062aeaa7c38d3dfca?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/5c05961e13c018e062aeaa7c38d3dfca?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">David</cite>			</div>
+			
+			<a href="index.html#comment-5255" class="comment-date">
+				<time datetime="2012-11-29T10:46:50+00:00">November 29, 2012</time>			</a>
+		</div>
+				<div id="div-comment-5255" class="comment-content">
+				<div class="comment-text">
+		<p>todd, did you ever figure out how to install it? I&#8217;m wondering the same thing.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-5262">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/eba262d5b9b82b6ebe0140fdbf01c30c?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/eba262d5b9b82b6ebe0140fdbf01c30c?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://kingdom59.com/' rel='external nofollow' class='url'>alan parker</a></cite>			</div>
+			
+			<a href="index.html#comment-5262" class="comment-date">
+				<time datetime="2012-12-03T10:52:50+00:00">December 3, 2012</time>			</a>
+		</div>
+				<div id="div-comment-5262" class="comment-content">
+				<div class="comment-text">
+		<p>Can you use this to set as &#8220;K59000&#8230;. alpha at front of order#? Please advise.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		</ol><!-- .comment-list -->
+
+				<p class="no-comments">Comments are closed.</p>
+	
+</section><!-- #comments -->
+
+</div><!-- #post-## -->
+
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+		</div><!-- .col-full -->
+	</div><!-- #content -->
+
+	
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="col-full">
+
+					<div class="site-info">
+			&copy; ASchroder.com 2023						<br /> Storefront designed by <a href="http://www.woocommerce.com/" title="WooCommerce - The Best eCommerce Platform for WordPress" rel="author">WooCommerce</a>.					</div><!-- .site-info -->
+		
+		</div><!-- .col-full -->
+	</footer><!-- #colophon -->
+
+	
+</div><!-- #page -->
+
+<link rel='stylesheet' id='yarppRelatedCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/related101e.css?ver=4.8.15' type='text/css' media='all' />
+<script type='text/javascript' src='../../../wp-content/plugins/wp-syntax/js/wp-syntax4963.js?ver=1.1'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/navigation.min11a8.js?ver=20120206'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/skip-link-focus-fix.min08e0.js?ver=20130115'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/wp-embed.min101e.js?ver=4.8.15'></script>
+
+</body>
+
+<!-- Mirrored from www.aschroder.com/2010/08/improved-custom-magento-order-number-functionality-for-setstartordernumber-extension-v0-3/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:39:46 GMT -->
+</html>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:34:23 by W3 Total Cache -->

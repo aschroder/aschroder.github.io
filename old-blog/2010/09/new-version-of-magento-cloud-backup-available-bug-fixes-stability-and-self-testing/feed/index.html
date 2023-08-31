@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>Comments on: New Version of Magento Cloud Backup Available: bug fixes, stability and self testing.</title>
+	<atom:link href="http://www.aschroder.com/2010/09/new-version-of-magento-cloud-backup-available-bug-fixes-stability-and-self-testing/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.aschroder.com/2010/09/new-version-of-magento-cloud-backup-available-bug-fixes-stability-and-self-testing/</link>
+	<description>Notes on Web Development</description>
+	<lastBuildDate>Wed, 23 Dec 2020 09:25:05 +0000</lastBuildDate>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8.15</generator>
+	<item>
+		<title>By: Sahus Pilwal</title>
+		<link>http://www.aschroder.com/2010/09/new-version-of-magento-cloud-backup-available-bug-fixes-stability-and-self-testing/comment-page-1/#comment-2042</link>
+		<dc:creator><![CDATA[Sahus Pilwal]]></dc:creator>
+		<pubDate>Fri, 24 Dec 2010 02:15:33 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1150#comment-2042</guid>
+		<description><![CDATA[Hi Ashley,
+
+Thanks for the response I will private message your shortly, but to answer your questions on whether I would use this extension in production yet and whether 50 cents per GB is reasonable I would say a definite YES to both. In fact I&#039;m using it in production already, as it hasn&#039;t broken my clients store, the cloud backup works even though there are a few oddities. I downloaded one of the backups and all files/db were intact. I think this extension could be one of the most important extensions for any Magento Live store in the future. 
+
+As for other features, what else would anyone want other then a simple utility to backup their entire store offline with the ability to download and restore if need be. If Amazon&#039;s API permits, some sort of progress indicator for backing up to the cloud would be useful for large stores but other than that I think it&#039;s more than ready for production after bug fixes etc ;)]]></description>
+		<content:encoded><![CDATA[<p>Hi Ashley,</p>
+<p>Thanks for the response I will private message your shortly, but to answer your questions on whether I would use this extension in production yet and whether 50 cents per GB is reasonable I would say a definite YES to both. In fact I&#8217;m using it in production already, as it hasn&#8217;t broken my clients store, the cloud backup works even though there are a few oddities. I downloaded one of the backups and all files/db were intact. I think this extension could be one of the most important extensions for any Magento Live store in the future. </p>
+<p>As for other features, what else would anyone want other then a simple utility to backup their entire store offline with the ability to download and restore if need be. If Amazon&#8217;s API permits, some sort of progress indicator for backing up to the cloud would be useful for large stores but other than that I think it&#8217;s more than ready for production after bug fixes etc 😉</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Ashley</title>
+		<link>http://www.aschroder.com/2010/09/new-version-of-magento-cloud-backup-available-bug-fixes-stability-and-self-testing/comment-page-1/#comment-2041</link>
+		<dc:creator><![CDATA[Ashley]]></dc:creator>
+		<pubDate>Thu, 23 Dec 2010 21:28:15 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1150#comment-2041</guid>
+		<description><![CDATA[Hi, Sahus
+
+Firstly, thank you so much for trying the extension and reporting feedback so thoroughly.
+
+I&#039;ll flick you an email and we can work through these questions offline, but to answer a couple of your questions for the benefit of other users.
+
+2) The billing for our extension is handled by Amazon&#039;s AWS devpay web service. I&#039;m not sure if it&#039;s considered a feature or a limitation, but when software is using a devpay S3 bucket, it is &#039;quarantined&#039; from the users normal S3 buckets. That means that our devpay software cannot touch your existing buckets, and the devpay buckets cannot be touched by non-devpay applications (like the AWS console as you have observed).
+
+It&#039;s caused a lot of confusion for our users, so I&#039;m not really happy about it, but alas, who are we to tell Amazon they&#039;re doing it wrong.
+
+3) For the automatic backups to occur you will need to make sure cron is running on your webstore. If it is, and automatic backups are enabled, you should see a new backup in the offsite backups list everyday. If that&#039;s not happening and cron &lt;em&gt;is&lt;/em&gt; running then there&#039;s something not right. 
+
+I&#039;ll work through 3) and 1) the timestamp issue with you offline - expect an email soon.
+
+Lastly, when will it be out of beta? Obviously, we&#039;ll get these issues you have reported fixed up, and there are a few extra features I&#039;d like to add early 2011; fault tolerance, error detection, file system permission detection and cron detection - &lt;a href=&quot;http://www.aschroder.com/wp-content/uploads/2010/10/MagentoDeveloperConference-Oct-2010-Ashley-Schroder-aschroder.com.pdf&quot; rel=&quot;nofollow&quot;&gt;as described in my MDP presentation&lt;/a&gt;. Once I have those things in place, I think we&#039;d be ready to launch.
+
+I&#039;d be interested to hear your thoughts on the extension, would you use it in production yet? Are there features you think are missing? Is 50 cents per gig a fair price?]]></description>
+		<content:encoded><![CDATA[<p>Hi, Sahus</p>
+<p>Firstly, thank you so much for trying the extension and reporting feedback so thoroughly.</p>
+<p>I&#8217;ll flick you an email and we can work through these questions offline, but to answer a couple of your questions for the benefit of other users.</p>
+<p>2) The billing for our extension is handled by Amazon&#8217;s AWS devpay web service. I&#8217;m not sure if it&#8217;s considered a feature or a limitation, but when software is using a devpay S3 bucket, it is &#8216;quarantined&#8217; from the users normal S3 buckets. That means that our devpay software cannot touch your existing buckets, and the devpay buckets cannot be touched by non-devpay applications (like the AWS console as you have observed).</p>
+<p>It&#8217;s caused a lot of confusion for our users, so I&#8217;m not really happy about it, but alas, who are we to tell Amazon they&#8217;re doing it wrong.</p>
+<p>3) For the automatic backups to occur you will need to make sure cron is running on your webstore. If it is, and automatic backups are enabled, you should see a new backup in the offsite backups list everyday. If that&#8217;s not happening and cron <em>is</em> running then there&#8217;s something not right. </p>
+<p>I&#8217;ll work through 3) and 1) the timestamp issue with you offline &#8211; expect an email soon.</p>
+<p>Lastly, when will it be out of beta? Obviously, we&#8217;ll get these issues you have reported fixed up, and there are a few extra features I&#8217;d like to add early 2011; fault tolerance, error detection, file system permission detection and cron detection &#8211; <a href="http://cdn.aschroder.com/wp-content/uploads/2010/10/MagentoDeveloperConference-Oct-2010-Ashley-Schroder-aschroder.com.pdf" rel="nofollow">as described in my MDP presentation</a>. Once I have those things in place, I think we&#8217;d be ready to launch.</p>
+<p>I&#8217;d be interested to hear your thoughts on the extension, would you use it in production yet? Are there features you think are missing? Is 50 cents per gig a fair price?</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Sahus Pilwal</title>
+		<link>http://www.aschroder.com/2010/09/new-version-of-magento-cloud-backup-available-bug-fixes-stability-and-self-testing/comment-page-1/#comment-2039</link>
+		<dc:creator><![CDATA[Sahus Pilwal]]></dc:creator>
+		<pubDate>Thu, 23 Dec 2010 18:52:50 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1150#comment-2039</guid>
+		<description><![CDATA[Hi Ashley,
+
+Just wanted to say been using the Cloud Backup extension for a while now and noticed a few oddities. Which I note below:
+
+1. Weird dates are appearing in admin for backup dates to the cloud. See following image http://db.tt/5fn4GEc
+I did a backup today and it dated the creation date as 16th June 1989 what&#039;s that all about?
+
+2. When I login to the Amazon account which I registered for testing this extension under the AWS Management console &#062; S3 tab I don&#039;t see the Bucket I created. Any ideas where the actual bucket is?
+
+3. I selected YES to the Automatic Offsite backup option but again I don&#039;t see these backups in the admin or S3 tab? Is it really doing a backup?
+
+Other then that the extension works like a dream. I&#039;ve downloaded my backups without problems and all files are in order. Any feedback on these questions would be greatly appreciated. One final thing when do you think the software will come out of Beta?
+
+Cheers, Sahus]]></description>
+		<content:encoded><![CDATA[<p>Hi Ashley,</p>
+<p>Just wanted to say been using the Cloud Backup extension for a while now and noticed a few oddities. Which I note below:</p>
+<p>1. Weird dates are appearing in admin for backup dates to the cloud. See following image <a href="http://db.tt/5fn4GEc" rel="nofollow">http://db.tt/5fn4GEc</a><br />
+I did a backup today and it dated the creation date as 16th June 1989 what&#8217;s that all about?</p>
+<p>2. When I login to the Amazon account which I registered for testing this extension under the AWS Management console &gt; S3 tab I don&#8217;t see the Bucket I created. Any ideas where the actual bucket is?</p>
+<p>3. I selected YES to the Automatic Offsite backup option but again I don&#8217;t see these backups in the admin or S3 tab? Is it really doing a backup?</p>
+<p>Other then that the extension works like a dream. I&#8217;ve downloaded my backups without problems and all files are in order. Any feedback on these questions would be greatly appreciated. One final thing when do you think the software will come out of Beta?</p>
+<p>Cheers, Sahus</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Ashley</title>
+		<link>http://www.aschroder.com/2010/09/new-version-of-magento-cloud-backup-available-bug-fixes-stability-and-self-testing/comment-page-1/#comment-1981</link>
+		<dc:creator><![CDATA[Ashley]]></dc:creator>
+		<pubDate>Mon, 22 Nov 2010 23:35:39 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1150#comment-1981</guid>
+		<description><![CDATA[@israel How long have you been experiencing this error? Sometimes there is a delay from when you sign up to when you can activate, but not normally more than an hour or two.]]></description>
+		<content:encoded><![CDATA[<p>@israel How long have you been experiencing this error? Sometimes there is a delay from when you sign up to when you can activate, but not normally more than an hour or two.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: israel</title>
+		<link>http://www.aschroder.com/2010/09/new-version-of-magento-cloud-backup-available-bug-fixes-stability-and-self-testing/comment-page-1/#comment-1978</link>
+		<dc:creator><![CDATA[israel]]></dc:creator>
+		<pubDate>Sun, 21 Nov 2010 02:51:03 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1150#comment-1978</guid>
+		<description><![CDATA[Hello, I have a problem whit this extension. I put my Access Key ID and I get a error
+
+this message is this:
+
+Could not Activate Cloud Backup.Error: Cannot activate product. Reason: Activation failed. Solution: Please try again shortly and if problems persist contact support.]]></description>
+		<content:encoded><![CDATA[<p>Hello, I have a problem whit this extension. I put my Access Key ID and I get a error</p>
+<p>this message is this:</p>
+<p>Could not Activate Cloud Backup.Error: Cannot activate product. Reason: Activation failed. Solution: Please try again shortly and if problems persist contact support.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Sahus Pilwal</title>
+		<link>http://www.aschroder.com/2010/09/new-version-of-magento-cloud-backup-available-bug-fixes-stability-and-self-testing/comment-page-1/#comment-1935</link>
+		<dc:creator><![CDATA[Sahus Pilwal]]></dc:creator>
+		<pubDate>Fri, 22 Oct 2010 21:10:35 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1150#comment-1935</guid>
+		<description><![CDATA[Hi Ashley,
+
+That&#039;s correct all files and folders were inside of:
+
+/var/www/app/code/community/Aschroder/CloudBackup/lib
+
+However the folder Archive_Tar-1.3.7 had Archive inside of it instead of being in the root of the lib folder. I think something on the install went wrong which meant the folder was not unpacked correctly though I could be wrong. I have another Magento 1.4.1.1 install setup so might try it again and monitor how the install writes the relevant files.
+
+FYI I&#039;m running Ubuntu Lucid Lynx with Apache 2.2 + PHP 5.2.10 if that helps.
+]]></description>
+		<content:encoded><![CDATA[<p>Hi Ashley,</p>
+<p>That&#8217;s correct all files and folders were inside of:</p>
+<p>/var/www/app/code/community/Aschroder/CloudBackup/lib</p>
+<p>However the folder Archive_Tar-1.3.7 had Archive inside of it instead of being in the root of the lib folder. I think something on the install went wrong which meant the folder was not unpacked correctly though I could be wrong. I have another Magento 1.4.1.1 install setup so might try it again and monitor how the install writes the relevant files.</p>
+<p>FYI I&#8217;m running Ubuntu Lucid Lynx with Apache 2.2 + PHP 5.2.10 if that helps.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Ashley</title>
+		<link>http://www.aschroder.com/2010/09/new-version-of-magento-cloud-backup-available-bug-fixes-stability-and-self-testing/comment-page-1/#comment-1933</link>
+		<dc:creator><![CDATA[Ashley]]></dc:creator>
+		<pubDate>Fri, 22 Oct 2010 19:14:06 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1150#comment-1933</guid>
+		<description><![CDATA[Hi, Matt and Sahus
+
+Thanks to both of your for the error reports and the info/tips. Looking at your error Sahus - it looks like the path PHP is trying is: &lt;code&gt;/var/www/app/code/community/Aschroder/CloudBackup/lib/&lt;/code&gt;
+
+Is that correct, is that where the lib files originally were? If not then it&#039;s possible my technique to add the include path is not working on your Apache+PHP combo, and I&#039;ll need to test and find out why. Please let me know.
+
+Cheers,
+Ashley]]></description>
+		<content:encoded><![CDATA[<p>Hi, Matt and Sahus</p>
+<p>Thanks to both of your for the error reports and the info/tips. Looking at your error Sahus &#8211; it looks like the path PHP is trying is: <code>/var/www/app/code/community/Aschroder/CloudBackup/lib/</code></p>
+<p>Is that correct, is that where the lib files originally were? If not then it&#8217;s possible my technique to add the include path is not working on your Apache+PHP combo, and I&#8217;ll need to test and find out why. Please let me know.</p>
+<p>Cheers,<br />
+Ashley</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Sahus Pilwal</title>
+		<link>http://www.aschroder.com/2010/09/new-version-of-magento-cloud-backup-available-bug-fixes-stability-and-self-testing/comment-page-1/#comment-1932</link>
+		<dc:creator><![CDATA[Sahus Pilwal]]></dc:creator>
+		<pubDate>Fri, 22 Oct 2010 18:52:30 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1150#comment-1932</guid>
+		<description><![CDATA[Hi Matt, 
+
+Thanks for the response. I used your fix for the Archive Folder, tried the backup again which then showed me the error relating to pear.php as you described. Not sure whether you did the same as me to resolve but on line 43 of Tar.php I changed the following:
+
+From:
+
+require_once &#039;PEAR.php&#039;;
+
+To:
+
+require_once &#039;lib/PEAR/PEAR.php&#039;;
+
+That resolved it for me and now the backups work ;);)
+
+Thanks for your initial guidance, and please let me know if you find a fix for the include_path
+
+Cheers, Sahus]]></description>
+		<content:encoded><![CDATA[<p>Hi Matt, </p>
+<p>Thanks for the response. I used your fix for the Archive Folder, tried the backup again which then showed me the error relating to pear.php as you described. Not sure whether you did the same as me to resolve but on line 43 of Tar.php I changed the following:</p>
+<p>From:</p>
+<p>require_once &#8216;PEAR.php&#8217;;</p>
+<p>To:</p>
+<p>require_once &#8216;lib/PEAR/PEAR.php&#8217;;</p>
+<p>That resolved it for me and now the backups work ;);)</p>
+<p>Thanks for your initial guidance, and please let me know if you find a fix for the include_path</p>
+<p>Cheers, Sahus</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Matt Long</title>
+		<link>http://www.aschroder.com/2010/09/new-version-of-magento-cloud-backup-available-bug-fixes-stability-and-self-testing/comment-page-1/#comment-1931</link>
+		<dc:creator><![CDATA[Matt Long]]></dc:creator>
+		<pubDate>Fri, 22 Oct 2010 06:38:05 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1150#comment-1931</guid>
+		<description><![CDATA[Hi Sahus
+
+I had the same problem  on CE 1.4.1.1 with CloudBackup ver 0.2.3 (beta)
+
+It is a path problem
+
+You will find in /code/community/Aschroder/CloudBackup/lib/
+
+That there is a directory called &quot;Archive_Tar-1.3.7&quot; which has /Archive/archive.php folder/file inside it which is what require_once() is calling.
+
+I moved the Archive folder up one level to /lib and it worked
+
+I then had another similar problem with tar.php calling pear.php (/lib/pear/pear.php) with similar resolution.
+
+
+Please note these changes are temporary for me until I sort the real issue which is my include_path but hopefully will point you in right direction
+Double disclaimer: I&#039;m a beginner :)]]></description>
+		<content:encoded><![CDATA[<p>Hi Sahus</p>
+<p>I had the same problem  on CE 1.4.1.1 with CloudBackup ver 0.2.3 (beta)</p>
+<p>It is a path problem</p>
+<p>You will find in /code/community/Aschroder/CloudBackup/lib/</p>
+<p>That there is a directory called &#8220;Archive_Tar-1.3.7&#8221; which has /Archive/archive.php folder/file inside it which is what require_once() is calling.</p>
+<p>I moved the Archive folder up one level to /lib and it worked</p>
+<p>I then had another similar problem with tar.php calling pear.php (/lib/pear/pear.php) with similar resolution.</p>
+<p>Please note these changes are temporary for me until I sort the real issue which is my include_path but hopefully will point you in right direction<br />
+Double disclaimer: I&#8217;m a beginner 🙂</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: seema</title>
+		<link>http://www.aschroder.com/2010/09/new-version-of-magento-cloud-backup-available-bug-fixes-stability-and-self-testing/comment-page-1/#comment-1927</link>
+		<dc:creator><![CDATA[seema]]></dc:creator>
+		<pubDate>Thu, 21 Oct 2010 05:59:00 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1150#comment-1927</guid>
+		<description><![CDATA[thought there might be permission issues but the folder was chmod 777 all the way down to the Tar.php file which was set to 666 so I changed this to 777 and tried again. Still got the same error… Any ideas what it might be??? ]]></description>
+		<content:encoded><![CDATA[<p>thought there might be permission issues but the folder was chmod 777 all the way down to the Tar.php file which was set to 666 so I changed this to 777 and tried again. Still got the same error… Any ideas what it might be??? </p>
+]]></content:encoded>
+	</item>
+</channel>
+</rss>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:30:50 by W3 Total Cache -->

@@ -1,0 +1,851 @@
+<!doctype html>
+<html lang="en-US">
+
+<!-- Mirrored from www.aschroder.com/2009/12/a-super-simple-magento-store-monitoring-tool-powered-by-google-app-engine/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:23:18 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="../../../xmlrpc.php">
+
+<title>A super simple Magento store monitoring tool powered by Google App Engine | ASchroder.com</title>
+
+<!-- All in One SEO Pack 2.4.2 by Michael Torbert of Semper Fi Web Design[289,391] -->
+<meta name="description"  content="The application was made to monitor our webstores. This blog post will detail the site monitoring app, and my thoughts on the Google app engine platform." />
+
+<meta name="keywords"  content="magneto monitoring,website monitoring,google app engine,java,cloud computing" />
+
+<!-- /all in one seo pack -->
+<link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
+<link rel='dns-prefetch' href='http://s.w.org/' />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Feed" href="../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Comments Feed" href="../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; A super simple Magento store monitoring tool powered by Google App Engine Comments Feed" href="feed/index.html" />
+<!-- This site uses the Google Analytics by MonsterInsights plugin v6.2.4 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+<script type="text/javascript" data-cfasync="false">
+		var disableStr = 'ga-disable-UA-6477134-1';
+
+	/* Function to detect opted out users */
+	function __gaTrackerIsOptedOut() {
+		return document.cookie.indexOf(disableStr + '=true') > -1;
+	}
+
+	/* Disable tracking if the opt-out cookie exists. */
+	if ( __gaTrackerIsOptedOut() ) {
+		window[disableStr] = true;
+	}
+
+	/* Opt-out function */
+	function __gaTrackerOptout() {
+	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+	  window[disableStr] = true;
+	}
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','http://www.google-analytics.com/analytics.js','__gaTracker');
+
+	__gaTracker('create', 'UA-6477134-1', 'auto');
+	__gaTracker('set', 'forceSSL', true);
+	__gaTracker('send','pageview');
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/www.aschroder.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.15"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='yarppWidgetCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/widget101e.css?ver=4.8.15' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-syntax-css-css'  href='../../../wp-content/plugins/wp-syntax/css/wp-syntax4963.css?ver=1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-style-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/style5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<style id='storefront-style-inline-css' type='text/css'>
+
+			.main-navigation ul li a,
+			.site-title a,
+			ul.menu li a,
+			.site-branding h1 a,
+			.site-footer .storefront-handheld-footer-bar a:not(.button),
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				color: #333333;
+			}
+
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				border-color: #333333;
+			}
+
+			.main-navigation ul li a:hover,
+			.main-navigation ul li:hover > a,
+			.site-title a:hover,
+			a.cart-contents:hover,
+			.site-header-cart .widget_shopping_cart a:hover,
+			.site-header-cart:hover > li > a,
+			.site-header ul.menu li.current-menu-item > a {
+				color: #838383;
+			}
+
+			table th {
+				background-color: #f8f8f8;
+			}
+
+			table tbody td {
+				background-color: #fdfdfd;
+			}
+
+			table tbody tr:nth-child(2n) td,
+			fieldset,
+			fieldset legend {
+				background-color: #fbfbfb;
+			}
+
+			.site-header,
+			.secondary-navigation ul ul,
+			.main-navigation ul.menu > li.menu-item-has-children:after,
+			.secondary-navigation ul.menu ul,
+			.storefront-handheld-footer-bar,
+			.storefront-handheld-footer-bar ul li > a,
+			.storefront-handheld-footer-bar ul li.search .site-search,
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				background-color: #ffffff;
+			}
+
+			p.site-description,
+			.site-header,
+			.storefront-handheld-footer-bar {
+				color: #6d6d6d;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count,
+			button.menu-toggle:after,
+			button.menu-toggle:before,
+			button.menu-toggle span:before {
+				background-color: #333333;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				color: #ffffff;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				border-color: #ffffff;
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+				color: #333333;
+			}
+
+			.widget h1 {
+				border-bottom-color: #333333;
+			}
+
+			body,
+			.secondary-navigation a,
+			.onsale,
+			.pagination .page-numbers li .page-numbers:not(.current), .woocommerce-pagination .page-numbers li .page-numbers:not(.current) {
+				color: #6d6d6d;
+			}
+
+			.widget-area .widget a,
+			.hentry .entry-header .posted-on a,
+			.hentry .entry-header .byline a {
+				color: #9f9f9f;
+			}
+
+			a  {
+				color: #0228d1;
+			}
+
+			a:focus,
+			.button:focus,
+			.button.alt:focus,
+			.button.added_to_cart:focus,
+			.button.wc-forward:focus,
+			button:focus,
+			input[type="button"]:focus,
+			input[type="reset"]:focus,
+			input[type="submit"]:focus {
+				outline-color: #0228d1;
+			}
+
+			button, input[type="button"], input[type="reset"], input[type="submit"], .button, .added_to_cart, .widget a.button, .site-header-cart .widget_shopping_cart a.button {
+				background-color: #eeeeee;
+				border-color: #eeeeee;
+				color: #333333;
+			}
+
+			button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, .button:hover, .added_to_cart:hover, .widget a.button:hover, .site-header-cart .widget_shopping_cart a.button:hover {
+				background-color: #d5d5d5;
+				border-color: #d5d5d5;
+				color: #333333;
+			}
+
+			button.alt, input[type="button"].alt, input[type="reset"].alt, input[type="submit"].alt, .button.alt, .added_to_cart.alt, .widget-area .widget a.button.alt, .added_to_cart, .widget a.button.checkout {
+				background-color: #333333;
+				border-color: #333333;
+				color: #ffffff;
+			}
+
+			button.alt:hover, input[type="button"].alt:hover, input[type="reset"].alt:hover, input[type="submit"].alt:hover, .button.alt:hover, .added_to_cart.alt:hover, .widget-area .widget a.button.alt:hover, .added_to_cart:hover, .widget a.button.checkout:hover {
+				background-color: #1a1a1a;
+				border-color: #1a1a1a;
+				color: #ffffff;
+			}
+
+			.pagination .page-numbers li .page-numbers.current, .woocommerce-pagination .page-numbers li .page-numbers.current {
+				background-color: #e6e6e6;
+				color: #6d6d6d;
+			}
+
+			#comments .comment-list .comment-content .comment-text {
+				background-color: #f8f8f8;
+			}
+
+			.site-footer {
+				background-color: #f0f0f0;
+				color: #6d6d6d;
+			}
+
+			.site-footer a:not(.button) {
+				color: #333333;
+			}
+
+			.site-footer h1, .site-footer h2, .site-footer h3, .site-footer h4, .site-footer h5, .site-footer h6 {
+				color: #333333;
+			}
+
+			#order_review {
+				background-color: #ffffff;
+			}
+
+			#payment .payment_methods > li .payment_box,
+			#payment .place-order {
+				background-color: #fafafa;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice) {
+				background-color: #f5f5f5;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice):hover {
+				background-color: #f0f0f0;
+			}
+
+			@media screen and ( min-width: 768px ) {
+				.secondary-navigation ul.menu a:hover {
+					color: #868686;
+				}
+
+				.secondary-navigation ul.menu a {
+					color: #6d6d6d;
+				}
+
+				.site-header-cart .widget_shopping_cart,
+				.main-navigation ul.menu ul.sub-menu,
+				.main-navigation ul.nav-menu ul.children {
+					background-color: #f0f0f0;
+				}
+
+				.site-header-cart .widget_shopping_cart .buttons,
+				.site-header-cart .widget_shopping_cart .total {
+					background-color: #f5f5f5;
+				}
+
+				.site-header {
+					border-bottom-color: #f0f0f0;
+				}
+			}
+</style>
+<link rel='stylesheet' id='storefront-icons-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/sass/base/icons5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-fonts-css'  href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,600,700,900&amp;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jqueryb8ff.js?ver=1.12.4'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jquery-migrate.min330a.js?ver=1.4.1'></script>
+<link rel='https://api.w.org/' href='../../../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../xmlrpc0db0.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Pre-release: SMTP Pro / Magento Gmail &#038; Google Apps Email Beta testing (win a prize)' href='../../11/pre-release-smtp-pro-magento-gmail-google-apps-email-beta-testing-win-a-prize/index.html' />
+<link rel='next' title='Magento Events Explained and a few Gotchas avoided!' href='../../../2010/01/magento-events-explained-and-a-few-gotchas-avoided/index.html' />
+<meta name="generator" content="WordPress 4.8.15" />
+<link rel="canonical" href="index.html" />
+<link rel='shortlink' href='../../../indexe7fb.html?p=577' />
+<link rel="alternate" type="application/json+oembed" href="../../../wp-json/oembed/1.0/embed1b2a.json?url=http%3A%2F%2Fwww.aschroder.com%2F2009%2F12%2Fa-super-simple-magento-store-monitoring-tool-powered-by-google-app-engine%2F" />
+<link rel="alternate" type="text/xml+oembed" href="../../../wp-json/oembed/1.0/embed46c4?url=http%3A%2F%2Fwww.aschroder.com%2F2009%2F12%2Fa-super-simple-magento-store-monitoring-tool-powered-by-google-app-engine%2F&amp;format=xml" />
+</head>
+
+<body class="post-template-default single single-post postid-577 single-format-standard no-wc-breadcrumb storefront-full-width-content right-sidebar">
+
+
+<div id="page" class="hfeed site">
+	
+	<header id="masthead" class="site-header" role="banner" style="">
+		<div class="col-full">
+
+					<a class="skip-link screen-reader-text" href="#site-navigation">Skip to navigation</a>
+		<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+				<div class="site-branding">
+			<div class="beta site-title"><a href="../../../index.html" rel="home">ASchroder.com</a></div><p class="site-description">Notes on Web Development</p>		</div>
+		<div class="storefront-primary-navigation">		<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="Primary Navigation">
+		<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><span>Menu</span></button>
+			<div class="primary-navigation"><ul id="menu-main-menu" class="menu"><li id="menu-item-1119" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li id="menu-item-1118" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li id="menu-item-1872" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div><div class="handheld-navigation"><ul id="menu-main-menu-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div>		</nav><!-- #site-navigation -->
+		</div>
+		</div>
+	</header><!-- #masthead -->
+
+	
+	<div id="content" class="site-content" tabindex="-1">
+		<div class="col-full">
+
+		
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+<div id="post-577" class="post-577 post type-post status-publish format-standard hentry category-featured category-google-app-engine tag-cloud-computing tag-google-app-engine tag-java tag-magento-monitoring">
+
+			<header class="entry-header">
+		<span class="posted-on">Posted on <a href="index.html" rel="bookmark"><time class="entry-date published" datetime="2009-12-13T02:20:24+00:00">December 13, 2009</time> <time class="updated" datetime="2011-07-06T23:45:04+00:00">July 6, 2011</time></a></span><h1 class="entry-title">A super simple Magento store monitoring tool powered by Google App Engine</h1>		</header><!-- .entry-header -->
+				<aside class="entry-meta">
+						<div class="author">
+				<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' /><div class="label">Written by</div><a href="../../../author/admin/index.html" title="Posts by Ashley" rel="author">Ashley</a>			</div>
+							<div class="cat-links">
+					<div class="label">Posted in</div><a href="../../../category/featured/index.html" rel="category tag">Featured</a>, <a href="../../../category/google-app-engine/index.html" rel="category tag">Google App Engine</a>				</div>
+			
+							<div class="tags-links">
+					<div class="label">Tagged</div><a href="../../../tag/cloud-computing/index.html" rel="tag">cloud computing</a>, <a href="../../../tag/google-app-engine/index.html" rel="tag">Google App Engine</a>, <a href="../../../tag/java/index.html" rel="tag">java</a>, <a href="../../../tag/magento-monitoring/index.html" rel="tag">Magento monitoring</a>				</div>
+			
+		
+							<div class="comments-link">
+					<div class="label">Comments</div>					<span class="comments-link"><a href="index.html#comments">7 Comments</a></span>
+				</div>
+					</aside>
+				<div class="entry-content">
+		<p>I took a bit of a break for the usual Magento development last weekend and had a crack at making a <a href="../../../../monitor.aschroder.com/index.html">simple webstore monitoring app</a> using <a href="http://code.google.com/appengine/">Google App Engine</a>. The application was made to monitor our webstores from a reliable, US network &#8211; and who more reliable than Google? So this blog post will detail the <a href="../../../../monitor.aschroder.com/index.html">site monitoring app</a>, and my thoughts on the Google app engine platform. I&#8217;d also invite anyone to try my app and let me know any thoughts you have on it, or how I could improve it.</p>
+<p><strong>UPDATE July 2011:</strong> I have since created a much more fully features <a href="http://www.magespeedtest.com/">Magento monitoring tool called magespeedtest.com</a> &#8211; it checks speed and performance regularly and emails you if it differs from your preset tolerance. I won&#8217;t be adding new features to this monitor, it&#8217;s still free and I&#8217;ll keep it up and running for as long as it makes sense to, but any future development will be on <a href="http://www.magespeedtest.com/">MageSpeedTest.com</a>.</p>
+<p><span id="more-577"></span><br />
+I made the site monitor to be as simple as possible, and to be easily usable by anyone. It makes a simple HTTP GET request to each of the monitored sites every hour and emails the site admin to indicate if it is up or down, with a bit of helpful info if it&#8217;s down, and a time to make the request if up.</p>
+<figure id="attachment_579" style="width: 394px" class="wp-caption aligncenter"><a href="../../../../cdn.aschroder.com/wp-content/uploads/2009/12/Screen-shot-2009-12-13-at-10.29.56-PM.png"><img class="size-full wp-image-579" title="The whole website monitor - too simple" src="../../../../cdn.aschroder.com/wp-content/uploads/2009/12/Screen-shot-2009-12-13-at-10.29.56-PM.png" alt="The whole website monitor - too simple" width="394" height="285" srcset="http://cdn.aschroder.com/wp-content/uploads/2009/12/Screen-shot-2009-12-13-at-10.29.56-PM.png 394w, http://cdn.aschroder.com/wp-content/uploads/2009/12/Screen-shot-2009-12-13-at-10.29.56-PM-300x217.png 300w" sizes="(max-width: 394px) 100vw, 394px" /></a><figcaption class="wp-caption-text">The whole website monitor - too simple</figcaption></figure>
+<p>For my use case I just set up a gmail filter that auto-archives the UP emails, as I just want to be able to periodically check the site <em>is</em> being monitored, but only actually care when it reports it being down. If you wanted to get really flashy you could even auto-forward the <em>DOWN</em> emails to some SMS gateway so you get a text notification.</p>
+<p>Basically I&#8217;ll step through the way the app works below and comment on features of the app engine as I go.</p>
+<h3>Requesting a new monitor</h3>
+<p>The very small, very simple <a href="http://code.google.com/webtoolkit/">GWT frontend</a> just submits the site details to the backend for validation and processing. The logic for submitting the sites checks for a url, name and email. It then checks the site is not already being monitored and that the given email is not already pending verification &#8211; to avoid spammers abusing this app.</p>
+<p>The interesting part of that logic from the Google App Engine point of view is the queries to check for duplicates. You can see them below:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="java" style="font-family:monospace;"><span style="color: #666666; font-style: italic;">//...</span>
+PersistenceManager pm <span style="color: #339933;">=</span> PMF.<span style="color: #006633;">get</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>.<span style="color: #006633;">getPersistenceManager</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+Query query <span style="color: #339933;">=</span> pm.<span style="color: #006633;">newQuery</span><span style="color: #009900;">&#40;</span>Site.<span style="color: #000000; font-weight: bold;">class</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+query.<span style="color: #006633;">setFilter</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">&quot;siteUrl == urlParam&quot;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+query.<span style="color: #006633;">declareParameters</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">&quot;String urlParam&quot;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+<span style="color: #000000; font-weight: bold;">try</span> <span style="color: #009900;">&#123;</span>
+    List<span style="color: #339933;">&lt;</span>Site<span style="color: #339933;">&gt;</span> results <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>List<span style="color: #339933;">&lt;</span>Site<span style="color: #339933;">&gt;</span><span style="color: #009900;">&#41;</span> query.<span style="color: #006633;">execute</span><span style="color: #009900;">&#40;</span>url<span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+    <span style="color: #000000; font-weight: bold;">if</span> <span style="color: #009900;">&#40;</span>results.<span style="color: #006633;">iterator</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>.<span style="color: #006633;">hasNext</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+    	<span style="color: #000000; font-weight: bold;">return</span> <span style="color: #0000ff;">&quot;Somebody is already monitoring that site!&quot;</span><span style="color: #339933;">;</span>
+    <span style="color: #009900;">&#125;</span> <span style="color: #000000; font-weight: bold;">else</span> <span style="color: #009900;">&#123;</span>
+    <span style="color: #009900;">&#125;</span>
+<span style="color: #009900;">&#125;</span> <span style="color: #000000; font-weight: bold;">finally</span> <span style="color: #009900;">&#123;</span>
+    query.<span style="color: #006633;">closeAll</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<span style="color: #009900;">&#125;</span>
+&nbsp;
+query <span style="color: #339933;">=</span> pm.<span style="color: #006633;">newQuery</span><span style="color: #009900;">&#40;</span>Site.<span style="color: #000000; font-weight: bold;">class</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+query.<span style="color: #006633;">setFilter</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">&quot;adminEmail == emailParam &amp;&amp; emailVerified == null&quot;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+query.<span style="color: #006633;">declareParameters</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">&quot;String emailParam&quot;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+<span style="color: #000000; font-weight: bold;">try</span> <span style="color: #009900;">&#123;</span>
+    List<span style="color: #339933;">&lt;</span>Site<span style="color: #339933;">&gt;</span> results <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>List<span style="color: #339933;">&lt;</span>Site<span style="color: #339933;">&gt;</span><span style="color: #009900;">&#41;</span> query.<span style="color: #006633;">execute</span><span style="color: #009900;">&#40;</span>email<span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+    <span style="color: #000000; font-weight: bold;">if</span> <span style="color: #009900;">&#40;</span>results.<span style="color: #006633;">iterator</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>.<span style="color: #006633;">hasNext</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+    	<span style="color: #000000; font-weight: bold;">return</span> <span style="color: #0000ff;">&quot;You must verify your email address before trying to monitor anymore sites!&quot;</span><span style="color: #339933;">;</span>
+    <span style="color: #009900;">&#125;</span> <span style="color: #000000; font-weight: bold;">else</span> <span style="color: #009900;">&#123;</span>
+    <span style="color: #009900;">&#125;</span>
+<span style="color: #009900;">&#125;</span> <span style="color: #000000; font-weight: bold;">finally</span> <span style="color: #009900;">&#123;</span>
+    query.<span style="color: #006633;">closeAll</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<span style="color: #009900;">&#125;</span>
+<span style="color: #666666; font-style: italic;">//...</span></pre></td></tr></table><p class="theCode" style="display:none;">//...
+PersistenceManager pm = PMF.get().getPersistenceManager();
+
+Query query = pm.newQuery(Site.class);
+query.setFilter(&quot;siteUrl == urlParam&quot;);
+query.declareParameters(&quot;String urlParam&quot;);
+
+try {
+    List&lt;Site&gt; results = (List&lt;Site&gt;) query.execute(url);
+    if (results.iterator().hasNext()) {
+    	return &quot;Somebody is already monitoring that site!&quot;;
+    } else {
+    }
+} finally {
+    query.closeAll();
+}
+
+query = pm.newQuery(Site.class);
+query.setFilter(&quot;adminEmail == emailParam &amp;&amp; emailVerified == null&quot;);
+query.declareParameters(&quot;String emailParam&quot;);
+
+try {
+    List&lt;Site&gt; results = (List&lt;Site&gt;) query.execute(email);
+    if (results.iterator().hasNext()) {
+    	return &quot;You must verify your email address before trying to monitor anymore sites!&quot;;
+    } else {
+    }
+} finally {
+    query.closeAll();
+}
+//...</p></div>
+
+<p>For anyone looking to make an app in Google App Engine, I&#8217;d advise first reading and understanding the <a href="http://code.google.com/appengine/docs/java/datastore/queriesandindexes.html">limitations of the query engine</a> &#8211; make sure you allow for this when designing your data structures. It basically forces you to keep everything very simple, which in general is a good policy when developing any application.</p>
+<h3>Verifying a monitor</h3>
+<p>I&#8217;m using the <a href="http://code.google.com/appengine/docs/java/mail/">Google App Engine email service</a> to send out all of the emails, including the initial verification email.</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="java" style="font-family:monospace;">&nbsp;
+<span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">class</span> EmailManager <span style="color: #009900;">&#123;</span>
+&nbsp;
+	<span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">static</span> <span style="color: #000066; font-weight: bold;">boolean</span> sendVerifyEmail<span style="color: #009900;">&#40;</span>Site site<span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+&nbsp;
+		<span style="color: #003399;">String</span> msgBody <span style="color: #339933;">=</span> <span style="color: #0000ff;">&quot;Hi,&quot;</span> <span style="color: #339933;">+</span> <span style="color: #666666; font-style: italic;">//..</span>
+				<span style="color: #0000ff;">&quot;Kind regards,<span style="color: #000099; font-weight: bold;">\n</span>&quot;</span> <span style="color: #339933;">+</span>
+				<span style="color: #0000ff;">&quot;Ashley&quot;</span><span style="color: #339933;">;</span>
+&nbsp;
+		<span style="color: #003399;">String</span> subject <span style="color: #339933;">=</span> <span style="color: #0000ff;">&quot;Verify your site monitoring request&quot;</span><span style="color: #339933;">;</span>
+&nbsp;
+		<span style="color: #000000; font-weight: bold;">return</span> sendEmail<span style="color: #009900;">&#40;</span>site, msgBody, subject<span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+	<span style="color: #009900;">&#125;</span>
+&nbsp;
+<span style="color: #666666; font-style: italic;">//...</span>
+&nbsp;
+       <span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000000; font-weight: bold;">static</span> <span style="color: #000066; font-weight: bold;">boolean</span> sendEmail<span style="color: #009900;">&#40;</span>Site site, <span style="color: #003399;">String</span> msgBody, <span style="color: #003399;">String</span> subject<span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+&nbsp;
+		<span style="color: #003399;">Properties</span> props <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> <span style="color: #003399;">Properties</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+		Session session <span style="color: #339933;">=</span> Session.<span style="color: #006633;">getDefaultInstance</span><span style="color: #009900;">&#40;</span>props, <span style="color: #000066; font-weight: bold;">null</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+		<span style="color: #000000; font-weight: bold;">try</span> <span style="color: #009900;">&#123;</span>
+			Message msg <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> MimeMessage<span style="color: #009900;">&#40;</span>session<span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+			msg.<span style="color: #006633;">setFrom</span><span style="color: #009900;">&#40;</span><span style="color: #000000; font-weight: bold;">new</span> InternetAddress<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">&quot;name@email.com&quot;</span>, <span style="color: #0000ff;">&quot;Ashley, Site Monitoring&quot;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+			msg.<span style="color: #006633;">addRecipient</span><span style="color: #009900;">&#40;</span>Message.<span style="color: #006633;">RecipientType</span>.<span style="color: #006633;">TO</span>,
+					<span style="color: #000000; font-weight: bold;">new</span> InternetAddress<span style="color: #009900;">&#40;</span>site.<span style="color: #006633;">getAdminEmail</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>, site.<span style="color: #006633;">getAdminName</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+			msg.<span style="color: #006633;">setSubject</span><span style="color: #009900;">&#40;</span>subject<span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+			msg.<span style="color: #006633;">setText</span><span style="color: #009900;">&#40;</span>msgBody<span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+			Transport.<span style="color: #006633;">send</span><span style="color: #009900;">&#40;</span>msg<span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+			<span style="color: #003399;">System</span>.<span style="color: #006633;">out</span>.<span style="color: #006633;">println</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">&quot;Sent email...&quot;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+			<span style="color: #000000; font-weight: bold;">return</span> <span style="color: #000066; font-weight: bold;">true</span><span style="color: #339933;">;</span>
+<span style="color: #666666; font-style: italic;">//...</span></pre></td></tr></table><p class="theCode" style="display:none;">
+public class EmailManager {
+
+	public static boolean sendVerifyEmail(Site site) {
+
+		String msgBody = &quot;Hi,&quot; + //..
+				&quot;Kind regards,\n&quot; +
+				&quot;Ashley&quot;;
+		
+		String subject = &quot;Verify your site monitoring request&quot;;
+
+		return sendEmail(site, msgBody, subject);
+	}
+
+//...
+
+       private static boolean sendEmail(Site site, String msgBody, String subject) {
+		
+		Properties props = new Properties();
+		Session session = Session.getDefaultInstance(props, null);
+		
+		try {
+			Message msg = new MimeMessage(session);
+			msg.setFrom(new InternetAddress(&quot;name@email.com&quot;, &quot;Ashley, Site Monitoring&quot;));
+			msg.addRecipient(Message.RecipientType.TO,
+					new InternetAddress(site.getAdminEmail(), site.getAdminName()));
+			msg.setSubject(subject);
+			msg.setText(msgBody);
+			Transport.send(msg);
+			System.out.println(&quot;Sent email...&quot;);
+			return true;
+//...</p></div>
+
+<p>The service is easy to use, but the one gotcha I have found (at least on Mac OSX) is the email service does not log it&#8217;s messages in hosted/development mode (despite advertising otherwise!). So you have to assume the email service works, and then test it properly when you deploy the application the first time &#8211; that&#8217;s called <em>testing in prod</em>.</p>
+<h3>Stopping a monitor</h3>
+<p>To stop a monitor you simple follow the link in any of the emails you receive. I have created a separate servlet for handling these stop requests. </p>
+<a href="../../../../cdn.aschroder.com/wp-content/uploads/2009/12/Screen-shot-2009-12-13-at-10.56.04-PM.png"><img src="../../../../cdn.aschroder.com/wp-content/uploads/2009/12/Screen-shot-2009-12-13-at-10.56.04-PM.png" alt="You can stop the monitor service by following the link in any of the emails you receive." title="Stopping the monitor service"  class="size-medium wp-image-587" srcset="http://cdn.aschroder.com/wp-content/uploads/2009/12/Screen-shot-2009-12-13-at-10.56.04-PM.png 481w, http://cdn.aschroder.com/wp-content/uploads/2009/12/Screen-shot-2009-12-13-at-10.56.04-PM-300x29.png 300w" sizes="(max-width: 481px) 100vw, 481px" /></a>
+<p>This gives us a chance to show how to delete entities within the Google App Engine JDO framework. It will also give some insight into how I handle verification, and yes it&#8217;s not bullet proof!</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="java" style="font-family:monospace;"><span style="color: #000000; font-weight: bold;">private</span> <span style="color: #003399;">String</span> deleteSite<span style="color: #009900;">&#40;</span><span style="color: #003399;">String</span> id, <span style="color: #003399;">String</span> hash<span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+&nbsp;
+		PersistenceManager pm <span style="color: #339933;">=</span> PMF.<span style="color: #006633;">get</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>.<span style="color: #006633;">getPersistenceManager</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+		<span style="color: #003399;">String</span> msg <span style="color: #339933;">=</span> <span style="color: #0000ff;">&quot;&quot;</span><span style="color: #339933;">;</span>
+&nbsp;
+		<span style="color: #000000; font-weight: bold;">try</span> <span style="color: #009900;">&#123;</span>
+			Site site <span style="color: #339933;">=</span> pm.<span style="color: #006633;">getObjectById</span><span style="color: #009900;">&#40;</span>Site.<span style="color: #000000; font-weight: bold;">class</span>, <span style="color: #003399;">Long</span>.<span style="color: #006633;">valueOf</span><span style="color: #009900;">&#40;</span>id<span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+			<span style="color: #000000; font-weight: bold;">if</span> <span style="color: #009900;">&#40;</span>site <span style="color: #339933;">!=</span> <span style="color: #000066; font-weight: bold;">null</span> <span style="color: #339933;">&amp;&amp;</span> site.<span style="color: #006633;">hash</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>.<span style="color: #006633;">equals</span><span style="color: #009900;">&#40;</span>hash<span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+				pm.<span style="color: #006633;">deletePersistent</span><span style="color: #009900;">&#40;</span>site<span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+				msg <span style="color: #339933;">=</span> <span style="color: #0000ff;">&quot;Monitoring canceled&quot;</span><span style="color: #339933;">;</span>
+			<span style="color: #009900;">&#125;</span> <span style="color: #000000; font-weight: bold;">else</span> <span style="color: #009900;">&#123;</span>
+				msg <span style="color: #339933;">=</span> <span style="color: #0000ff;">&quot;Verification failed...&quot;</span><span style="color: #339933;">;</span>
+			<span style="color: #009900;">&#125;</span>
+&nbsp;
+		<span style="color: #009900;">&#125;</span> <span style="color: #000000; font-weight: bold;">finally</span> <span style="color: #009900;">&#123;</span>
+			pm.<span style="color: #006633;">close</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+		<span style="color: #009900;">&#125;</span>
+&nbsp;
+		<span style="color: #000000; font-weight: bold;">return</span> msg<span style="color: #339933;">;</span>
+&nbsp;
+	<span style="color: #009900;">&#125;</span></pre></td></tr></table><p class="theCode" style="display:none;">private String deleteSite(String id, String hash) {
+
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		String msg = &quot;&quot;;
+
+		try {
+			Site site = pm.getObjectById(Site.class, Long.valueOf(id));
+			
+			if (site != null &amp;&amp; site.hash().equals(hash)) {
+				pm.deletePersistent(site);
+				msg = &quot;Monitoring canceled&quot;;
+			} else {
+				msg = &quot;Verification failed...&quot;;
+			}
+
+		} finally {
+			pm.close();
+		}
+
+		return msg;
+
+	}</p></div>
+
+<p>There&#8217;s nothing too interesting to report on my experiences with this, it&#8217;s pretty much as simple as it looks, get the object, delete it. done.</p>
+<h3>Actually monitor the site</h3>
+<p>This is probably the most important part of the application, and in fairness I&#8217;m not convinced I have the best possible code here yet, but I&#8217;ll be continually improving it.</p>
+<p>This code uses the URL fetch service of the <a href="http://code.google.com/appengine/docs/java/urlfetch/">Google App Engine</a>. The service is very easy to use, which is a recurring theme you&#8217;ll be noticing in this review. Here&#8217;s a snippet:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="java" style="font-family:monospace;">&nbsp;
+   <span style="color: #003399;">URL</span> url <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> <span style="color: #003399;">URL</span><span style="color: #009900;">&#40;</span>site.<span style="color: #006633;">getSiteUrl</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+    URLFetchService urlFetchService <span style="color: #339933;">=</span> URLFetchServiceFactory.<span style="color: #006633;">getURLFetchService</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+    HTTPRequest request <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> HTTPRequest<span style="color: #009900;">&#40;</span>url,
+    		HTTPMethod.<span style="color: #006633;">GET</span>, 
+    		allowTruncate<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>.<span style="color: #006633;">followRedirects</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>.<span style="color: #006633;">setDeadline</span><span style="color: #009900;">&#40;</span>DEADLINE<span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+    <span style="color: #000066; font-weight: bold;">long</span> before <span style="color: #339933;">=</span> <span style="color: #003399;">System</span>.<span style="color: #006633;">currentTimeMillis</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+    HTTPResponse response <span style="color: #339933;">=</span> urlFetchService.<span style="color: #006633;">fetch</span><span style="color: #009900;">&#40;</span>request<span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+    <span style="color: #000066; font-weight: bold;">long</span> after <span style="color: #339933;">=</span> <span style="color: #003399;">System</span>.<span style="color: #006633;">currentTimeMillis</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+    <span style="color: #000000; font-weight: bold;">if</span> <span style="color: #009900;">&#40;</span>response.<span style="color: #006633;">getResponseCode</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">==</span> <span style="color: #cc66cc;">200</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+		EmailManager.<span style="color: #006633;">sendSiteUpEmail</span><span style="color: #009900;">&#40;</span>site, <span style="color: #003399;">String</span>.<span style="color: #006633;">valueOf</span><span style="color: #009900;">&#40;</span>after<span style="color: #339933;">-</span>before<span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+	<span style="color: #009900;">&#125;</span> <span style="color: #000000; font-weight: bold;">else</span> <span style="color: #009900;">&#123;</span>
+&nbsp;
+		<span style="color: #000000; font-weight: bold;">if</span> <span style="color: #009900;">&#40;</span>failCount <span style="color: #339933;">&lt;</span> TOLERANCE<span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+			checkSite<span style="color: #009900;">&#40;</span>id, <span style="color: #339933;">++</span>failCount<span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+		<span style="color: #009900;">&#125;</span> <span style="color: #000000; font-weight: bold;">else</span> <span style="color: #009900;">&#123;</span>
+			EmailManager.<span style="color: #006633;">sendSiteDownEmail</span><span style="color: #009900;">&#40;</span>site, 
+					<span style="color: #0000ff;">&quot;Response code: &quot;</span> <span style="color: #339933;">+</span> response.<span style="color: #006633;">getResponseCode</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+			site.<span style="color: #006633;">setUp</span><span style="color: #009900;">&#40;</span><span style="color: #000066; font-weight: bold;">false</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+		<span style="color: #009900;">&#125;</span>
+	<span style="color: #009900;">&#125;</span></pre></td></tr></table><p class="theCode" style="display:none;">
+   URL url = new URL(site.getSiteUrl());
+    URLFetchService urlFetchService = URLFetchServiceFactory.getURLFetchService();
+    HTTPRequest request = new HTTPRequest(url,
+    		HTTPMethod.GET, 
+    		allowTruncate().followRedirects().setDeadline(DEADLINE));
+    long before = System.currentTimeMillis();
+    HTTPResponse response = urlFetchService.fetch(request);
+    long after = System.currentTimeMillis();
+   
+    if (response.getResponseCode() == 200) {
+		EmailManager.sendSiteUpEmail(site, String.valueOf(after-before));
+	} else {
+		
+		if (failCount &lt; TOLERANCE) {
+			checkSite(id, ++failCount);
+		} else {
+			EmailManager.sendSiteDownEmail(site, 
+					&quot;Response code: &quot; + response.getResponseCode());
+			site.setUp(false);
+		}
+	}</p></div>
+
+<p>You&#8217;ll notice a couple of things here, 1) I&#8217;m recording how long the request takes, and conveniently including that in the <em>UP</em> email. 2) I&#8217;m allowing a threshold of failures because I found that either the App Engine, or my webserver was periodically timing out, but on manual inspection, everything was fine. So I now require the site to timeout several times in a row, in order to be considered <em>DOWN</em>.</p>
+<p>The other important thing to note is I am using the queue service to actually queue up the various monitoring tasks. So each hour the cron service his the monitor url &#8211; which in turn causes the monitoring jobs to be enqueued.</p>
+<p>So in a file called <code>cron.xml</code> I have this:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="xml" style="font-family:monospace;"><span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;cronentries<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+  <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;cron<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+    <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;url<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>/xxx/yyy<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/url<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+    <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;description<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>Enqueue the monitoring tasks for this hour<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/description<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+    <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;schedule<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>every 1 hours<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/schedule<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+  <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/cron<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/cronentries<span style="color: #000000; font-weight: bold;">&gt;</span></span></span></pre></td></tr></table><p class="theCode" style="display:none;">&lt;cronentries&gt;
+  &lt;cron&gt;
+    &lt;url&gt;/xxx/yyy&lt;/url&gt;
+    &lt;description&gt;Enqueue the monitoring tasks for this hour&lt;/description&gt;
+    &lt;schedule&gt;every 1 hours&lt;/schedule&gt;
+  &lt;/cron&gt;
+&lt;/cronentries&gt;</p></div>
+
+<p>and then I enqueue the tasks like this:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="java" style="font-family:monospace;">PersistenceManager pm <span style="color: #339933;">=</span> PMF.<span style="color: #006633;">get</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>.<span style="color: #006633;">getPersistenceManager</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+		Extent<span style="color: #339933;">&lt;</span>Site<span style="color: #339933;">&gt;</span> extent <span style="color: #339933;">=</span> pm.<span style="color: #006633;">getExtent</span><span style="color: #009900;">&#40;</span>Site.<span style="color: #000000; font-weight: bold;">class</span>, <span style="color: #000066; font-weight: bold;">false</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+		Queue queue <span style="color: #339933;">=</span> QueueFactory.<span style="color: #006633;">getDefaultQueue</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+		<span style="color: #000066; font-weight: bold;">int</span> i <span style="color: #339933;">=</span> <span style="color: #cc66cc;">0</span><span style="color: #339933;">;</span>
+&nbsp;
+&nbsp;
+		<span style="color: #000000; font-weight: bold;">for</span> <span style="color: #009900;">&#40;</span>Site site <span style="color: #339933;">:</span> extent<span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+			i<span style="color: #339933;">++;</span>
+&nbsp;
+			<span style="color: #000000; font-weight: bold;">if</span> <span style="color: #009900;">&#40;</span>site.<span style="color: #006633;">getEmailVerified</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">!=</span> <span style="color: #000066; font-weight: bold;">null</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+				queue.<span style="color: #006633;">add</span><span style="color: #009900;">&#40;</span>url<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">&quot;xxx&quot;</span><span style="color: #009900;">&#41;</span>
+						.<span style="color: #006633;">param</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">&quot;id&quot;</span>, <span style="color: #003399;">String</span>.<span style="color: #006633;">valueOf</span><span style="color: #009900;">&#40;</span>site.<span style="color: #006633;">getKey</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>.<span style="color: #006633;">getId</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span>
+						.<span style="color: #006633;">param</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">&quot;action&quot;</span>, <span style="color: #0000ff;">&quot;check&quot;</span><span style="color: #009900;">&#41;</span>
+						.<span style="color: #006633;">method</span><span style="color: #009900;">&#40;</span><span style="color: #003399;">Method</span>.<span style="color: #006633;">GET</span><span style="color: #009900;">&#41;</span>
+				<span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+			<span style="color: #009900;">&#125;</span>
+&nbsp;
+		<span style="color: #009900;">&#125;</span>
+		extent.<span style="color: #006633;">closeAll</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre></td></tr></table><p class="theCode" style="display:none;">PersistenceManager pm = PMF.get().getPersistenceManager();
+		Extent&lt;Site&gt; extent = pm.getExtent(Site.class, false);
+		Queue queue = QueueFactory.getDefaultQueue();
+		
+		int i = 0;
+		
+		
+		for (Site site : extent) {
+			i++;
+			
+			if (site.getEmailVerified() != null) {
+				queue.add(url(&quot;xxx&quot;)
+						.param(&quot;id&quot;, String.valueOf(site.getKey().getId()))
+						.param(&quot;action&quot;, &quot;check&quot;)
+						.method(Method.GET)
+				);
+			}
+			
+		}
+		extent.closeAll();</p></div>
+
+<p>Then over the course of the next hour they get taken off the queue and executed, which involves actually make the web request to the specified URL.</p>
+<p>So that&#8217;s it &#8211; how to build a simple website checker or Magento webstore monitor powered by the Google App Engine, in a few hours (OK, it took me more than a <em>few</em>, but it shouldn&#8217;t take you that long, now I&#8217;ve told you how to do it!). Or if you want to make my day, <a href="../../../../monitor.aschroder.com/index.html">go try the application</a> and suggest some features, or tell me what doesn&#8217;t work so well!</p>
+<h3>Next steps&#8230;</h3>
+<p>Well, I want to keep improving the monitor, I was thinking of several features:</p>
+<ol>
+<li>Adding detection of gzip/mod_deflate to help with optimising Magento</li>
+<li>Report the size of the response</li>
+<li>Include a graph of the response times over the last X days</li>
+<li>Keep an uptime calculation as a percentage and report that</li>
+<li>integrate with twitter or sms or some other instant messaging system</li>
+</ol>
+<p>Let me know if you have any thoughts.</p>
+<div class='yarpp-related'>
+<p>You might also be interested in:<ol>
+<li><a href="../../../2011/11/google-app-engine-billing-changes-and-my-website-monitoring-service/index.html" rel="bookmark" title="Google App Engine billing changes and my website monitoring service">Google App Engine billing changes and my website monitoring service </a></li>
+<li><a href="../../../2011/11/quick-update-on-site-monitor-and-google-app-engine-d-day/index.html" rel="bookmark" title="Quick update on Site Monitor and Google App Engine D-Day">Quick update on Site Monitor and Google App Engine D-Day </a></li>
+<li><a href="../../../2012/02/sending-apple-ios-notifications-via-urban-airship-on-google-app-engine/index.html" rel="bookmark" title="Sending Apple iOS Notifications via Urban Airship on Google App Engine">Sending Apple iOS Notifications via Urban Airship on Google App Engine </a></li>
+<li><a href="../../../2011/07/monitor-your-magento-store-with-magespeedtest-com/index.html" rel="bookmark" title="Monitor your Magento Store with MageSpeedTest.com">Monitor your Magento Store with MageSpeedTest.com </a></li>
+<li><a href="../../../2012/12/app-engine-java-mapreduce-example-bulk-deleting-entities/index.html" rel="bookmark" title="App Engine Java MapReduce Example: bulk deleting entities">App Engine Java MapReduce Example: bulk deleting entities </a></li>
+</ol></p>
+</div>
+		</div><!-- .entry-content -->
+		<nav id="post-navigation" class="navigation post-navigation" role="navigation" aria-label="Post Navigation"><span class="screen-reader-text">Post navigation</span><div class="nav-links"><div class="nav-previous"><a href="../../11/pre-release-smtp-pro-magento-gmail-google-apps-email-beta-testing-win-a-prize/index.html" rel="prev">Pre-release: SMTP Pro / Magento Gmail &#038; Google Apps Email Beta testing (win a prize)</a></div><div class="nav-next"><a href="../../../2010/01/magento-events-explained-and-a-few-gotchas-avoided/index.html" rel="next">Magento Events Explained and a few Gotchas avoided!</a></div></div></nav>
+<section id="comments" class="comments-area" aria-label="Post Comments">
+
+			<h2 class="comments-title">
+			7 thoughts on &ldquo;<span>A super simple Magento store monitoring tool powered by Google App Engine</span>&rdquo;		</h2>
+
+		
+		<ol class="comment-list">
+					<li class="comment even thread-even depth-1" id="comment-769">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/23351b66423667b19371aaca46b8b921?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/23351b66423667b19371aaca46b8b921?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://bradysewall.com/' rel='external nofollow' class='url'>Brady</a></cite>			</div>
+			
+			<a href="index.html#comment-769" class="comment-date">
+				<time datetime="2009-12-14T12:19:49+00:00">December 14, 2009</time>			</a>
+		</div>
+				<div id="div-comment-769" class="comment-content">
+				<div class="comment-text">
+		<p>Wow &#8211; what a great solution! Thank you so much for sharing this!</p>
+<p>One question I have &#8211; does this check if the Magento site is actually working, or just if the server is responding? I&#8217;ve had our site go down but show Magento&#8217;s error page, or even a MySQL max users database error, which doesn&#8217;t throw a &#8220;down&#8221; error on other monitoring services I&#8217;ve tried.</p>
+<p>Thanks!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-770">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-770" class="comment-date">
+				<time datetime="2009-12-14T12:51:04+00:00">December 14, 2009</time>			</a>
+		</div>
+				<div id="div-comment-770" class="comment-content">
+				<div class="comment-text">
+		<p>I think Magento&#8217;s error page sends a 500 error code, so my app will detect that, the database error may depend on what response code is sent. That said we could improve the monitor to actually do things like add to cart, or login as a test customer &#8211; to ensure actual functionality, not just responsiveness.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-776">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/fce9a7d30abed326f6fb15b20981443c?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/fce9a7d30abed326f6fb15b20981443c?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Josh</cite>			</div>
+			
+			<a href="index.html#comment-776" class="comment-date">
+				<time datetime="2009-12-25T12:42:17+00:00">December 25, 2009</time>			</a>
+		</div>
+				<div id="div-comment-776" class="comment-content">
+				<div class="comment-text">
+		<p>Why not use a service like pingdom. Simple, reliable, lots of features (charts, SMS/email alerts) 1 minute polling intervals.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-777">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-777" class="comment-date">
+				<time datetime="2009-12-26T21:22:37+00:00">December 26, 2009</time>			</a>
+		</div>
+				<div id="div-comment-777" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks for telling me about them, looks like a cool service, just too much of a cheapskate to pay for it!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-936">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/f3e1287f0b6ffabea9a356f24c1dde88?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/f3e1287f0b6ffabea9a356f24c1dde88?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.200tees.com/' rel='external nofollow' class='url'>Matt</a></cite>			</div>
+			
+			<a href="index.html#comment-936" class="comment-date">
+				<time datetime="2010-03-05T01:57:39+00:00">March 5, 2010</time>			</a>
+		</div>
+				<div id="div-comment-936" class="comment-content">
+				<div class="comment-text">
+		<p>Going to give this a go.</p>
+<p>I think this is genius and generous. </p>
+<p>Good man, thank you!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2571">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/64f80a196378d7e8c2cc19b87ed50a44?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/64f80a196378d7e8c2cc19b87ed50a44?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Tom</cite>			</div>
+			
+			<a href="index.html#comment-2571" class="comment-date">
+				<time datetime="2011-09-01T03:08:59+00:00">September 1, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2571" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Ashley, </p>
+<p>sounds like an interesting project to me.<br />
+I would like to try it out on our GAE account. Do you provide the source code for download somewhere?</p>
+<p>BR Tom</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-4685">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/ec987214d11ebca91568e4b425c3dabd?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/ec987214d11ebca91568e4b425c3dabd?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">leongpow</cite>			</div>
+			
+			<a href="index.html#comment-4685" class="comment-date">
+				<time datetime="2012-04-11T19:12:14+00:00">April 11, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4685" class="comment-content">
+				<div class="comment-text">
+		<p>query.setFilter(&#8220;adminEmail == emailParam &amp;&amp; emailVerified == null&#8221;);</p>
+<p>above line with null is work?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		</ol><!-- .comment-list -->
+
+				<p class="no-comments">Comments are closed.</p>
+	
+</section><!-- #comments -->
+
+</div><!-- #post-## -->
+
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+		</div><!-- .col-full -->
+	</div><!-- #content -->
+
+	
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="col-full">
+
+					<div class="site-info">
+			&copy; ASchroder.com 2023						<br /> Storefront designed by <a href="http://www.woocommerce.com/" title="WooCommerce - The Best eCommerce Platform for WordPress" rel="author">WooCommerce</a>.					</div><!-- .site-info -->
+		
+		</div><!-- .col-full -->
+	</footer><!-- #colophon -->
+
+	
+</div><!-- #page -->
+
+<link rel='stylesheet' id='yarppRelatedCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/related101e.css?ver=4.8.15' type='text/css' media='all' />
+<script type='text/javascript' src='../../../wp-content/plugins/wp-syntax/js/wp-syntax4963.js?ver=1.1'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/navigation.min11a8.js?ver=20120206'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/skip-link-focus-fix.min08e0.js?ver=20130115'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/wp-embed.min101e.js?ver=4.8.15'></script>
+
+</body>
+
+<!-- Mirrored from www.aschroder.com/2009/12/a-super-simple-magento-store-monitoring-tool-powered-by-google-app-engine/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:23:26 GMT -->
+</html>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:15:02 by W3 Total Cache -->

@@ -1,0 +1,610 @@
+<!doctype html>
+<html lang="en-US">
+
+<!-- Mirrored from www.aschroder.com/page/3/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:15:28 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="../../xmlrpc.php">
+
+<title>ASchroder.com - Notes on Ecommerce Web Development - Part 3</title>
+
+<!-- All in One SEO Pack 2.4.2 by Michael Torbert of Semper Fi Web Design[289,357] -->
+<meta name="blogcatalog" content="9BC9146578" /> 
+<META name="y_key" content="51c52b3fcbca0584">
+<meta name="msvalidate.01" content="9FC1F90C7A82AC5611E0B1DE11CFF76F" /><link rel='prev' href='../2/index.html' />
+<link rel='next' href='../4/index.html' />
+
+<!-- /all in one seo pack -->
+<link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
+<link rel='dns-prefetch' href='http://s.w.org/' />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Feed" href="../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Comments Feed" href="../../comments/feed/index.html" />
+<!-- This site uses the Google Analytics by MonsterInsights plugin v6.2.4 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+<script type="text/javascript" data-cfasync="false">
+		var disableStr = 'ga-disable-UA-6477134-1';
+
+	/* Function to detect opted out users */
+	function __gaTrackerIsOptedOut() {
+		return document.cookie.indexOf(disableStr + '=true') > -1;
+	}
+
+	/* Disable tracking if the opt-out cookie exists. */
+	if ( __gaTrackerIsOptedOut() ) {
+		window[disableStr] = true;
+	}
+
+	/* Opt-out function */
+	function __gaTrackerOptout() {
+	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+	  window[disableStr] = true;
+	}
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','http://www.google-analytics.com/analytics.js','__gaTracker');
+
+	__gaTracker('create', 'UA-6477134-1', 'auto');
+	__gaTracker('set', 'forceSSL', true);
+	__gaTracker('send','pageview');
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/www.aschroder.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.15"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='yarppWidgetCss-css'  href='../../wp-content/plugins/yet-another-related-posts-plugin/style/widget101e.css?ver=4.8.15' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-syntax-css-css'  href='../../wp-content/plugins/wp-syntax/css/wp-syntax4963.css?ver=1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-style-css'  href='../../../cdn.aschroder.com/wp-content/themes/storefront/style5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<style id='storefront-style-inline-css' type='text/css'>
+
+			.main-navigation ul li a,
+			.site-title a,
+			ul.menu li a,
+			.site-branding h1 a,
+			.site-footer .storefront-handheld-footer-bar a:not(.button),
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				color: #333333;
+			}
+
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				border-color: #333333;
+			}
+
+			.main-navigation ul li a:hover,
+			.main-navigation ul li:hover > a,
+			.site-title a:hover,
+			a.cart-contents:hover,
+			.site-header-cart .widget_shopping_cart a:hover,
+			.site-header-cart:hover > li > a,
+			.site-header ul.menu li.current-menu-item > a {
+				color: #838383;
+			}
+
+			table th {
+				background-color: #f8f8f8;
+			}
+
+			table tbody td {
+				background-color: #fdfdfd;
+			}
+
+			table tbody tr:nth-child(2n) td,
+			fieldset,
+			fieldset legend {
+				background-color: #fbfbfb;
+			}
+
+			.site-header,
+			.secondary-navigation ul ul,
+			.main-navigation ul.menu > li.menu-item-has-children:after,
+			.secondary-navigation ul.menu ul,
+			.storefront-handheld-footer-bar,
+			.storefront-handheld-footer-bar ul li > a,
+			.storefront-handheld-footer-bar ul li.search .site-search,
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				background-color: #ffffff;
+			}
+
+			p.site-description,
+			.site-header,
+			.storefront-handheld-footer-bar {
+				color: #6d6d6d;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count,
+			button.menu-toggle:after,
+			button.menu-toggle:before,
+			button.menu-toggle span:before {
+				background-color: #333333;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				color: #ffffff;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				border-color: #ffffff;
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+				color: #333333;
+			}
+
+			.widget h1 {
+				border-bottom-color: #333333;
+			}
+
+			body,
+			.secondary-navigation a,
+			.onsale,
+			.pagination .page-numbers li .page-numbers:not(.current), .woocommerce-pagination .page-numbers li .page-numbers:not(.current) {
+				color: #6d6d6d;
+			}
+
+			.widget-area .widget a,
+			.hentry .entry-header .posted-on a,
+			.hentry .entry-header .byline a {
+				color: #9f9f9f;
+			}
+
+			a  {
+				color: #0228d1;
+			}
+
+			a:focus,
+			.button:focus,
+			.button.alt:focus,
+			.button.added_to_cart:focus,
+			.button.wc-forward:focus,
+			button:focus,
+			input[type="button"]:focus,
+			input[type="reset"]:focus,
+			input[type="submit"]:focus {
+				outline-color: #0228d1;
+			}
+
+			button, input[type="button"], input[type="reset"], input[type="submit"], .button, .added_to_cart, .widget a.button, .site-header-cart .widget_shopping_cart a.button {
+				background-color: #eeeeee;
+				border-color: #eeeeee;
+				color: #333333;
+			}
+
+			button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, .button:hover, .added_to_cart:hover, .widget a.button:hover, .site-header-cart .widget_shopping_cart a.button:hover {
+				background-color: #d5d5d5;
+				border-color: #d5d5d5;
+				color: #333333;
+			}
+
+			button.alt, input[type="button"].alt, input[type="reset"].alt, input[type="submit"].alt, .button.alt, .added_to_cart.alt, .widget-area .widget a.button.alt, .added_to_cart, .widget a.button.checkout {
+				background-color: #333333;
+				border-color: #333333;
+				color: #ffffff;
+			}
+
+			button.alt:hover, input[type="button"].alt:hover, input[type="reset"].alt:hover, input[type="submit"].alt:hover, .button.alt:hover, .added_to_cart.alt:hover, .widget-area .widget a.button.alt:hover, .added_to_cart:hover, .widget a.button.checkout:hover {
+				background-color: #1a1a1a;
+				border-color: #1a1a1a;
+				color: #ffffff;
+			}
+
+			.pagination .page-numbers li .page-numbers.current, .woocommerce-pagination .page-numbers li .page-numbers.current {
+				background-color: #e6e6e6;
+				color: #6d6d6d;
+			}
+
+			#comments .comment-list .comment-content .comment-text {
+				background-color: #f8f8f8;
+			}
+
+			.site-footer {
+				background-color: #f0f0f0;
+				color: #6d6d6d;
+			}
+
+			.site-footer a:not(.button) {
+				color: #333333;
+			}
+
+			.site-footer h1, .site-footer h2, .site-footer h3, .site-footer h4, .site-footer h5, .site-footer h6 {
+				color: #333333;
+			}
+
+			#order_review {
+				background-color: #ffffff;
+			}
+
+			#payment .payment_methods > li .payment_box,
+			#payment .place-order {
+				background-color: #fafafa;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice) {
+				background-color: #f5f5f5;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice):hover {
+				background-color: #f0f0f0;
+			}
+
+			@media screen and ( min-width: 768px ) {
+				.secondary-navigation ul.menu a:hover {
+					color: #868686;
+				}
+
+				.secondary-navigation ul.menu a {
+					color: #6d6d6d;
+				}
+
+				.site-header-cart .widget_shopping_cart,
+				.main-navigation ul.menu ul.sub-menu,
+				.main-navigation ul.nav-menu ul.children {
+					background-color: #f0f0f0;
+				}
+
+				.site-header-cart .widget_shopping_cart .buttons,
+				.site-header-cart .widget_shopping_cart .total {
+					background-color: #f5f5f5;
+				}
+
+				.site-header {
+					border-bottom-color: #f0f0f0;
+				}
+			}
+</style>
+<link rel='stylesheet' id='storefront-icons-css'  href='../../../cdn.aschroder.com/wp-content/themes/storefront/assets/sass/base/icons5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-fonts-css'  href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,600,700,900&amp;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<script type='text/javascript' src='../../../cdn.aschroder.com/wp-includes/js/jquery/jqueryb8ff.js?ver=1.12.4'></script>
+<script type='text/javascript' src='../../../cdn.aschroder.com/wp-includes/js/jquery/jquery-migrate.min330a.js?ver=1.4.1'></script>
+<link rel='https://api.w.org/' href='../../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../xmlrpc0db0.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 4.8.15" />
+</head>
+
+<body class="home blog paged paged-3 no-wc-breadcrumb storefront-full-width-content right-sidebar">
+
+
+<div id="page" class="hfeed site">
+	
+	<header id="masthead" class="site-header" role="banner" style="">
+		<div class="col-full">
+
+					<a class="skip-link screen-reader-text" href="#site-navigation">Skip to navigation</a>
+		<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+				<div class="site-branding">
+			<h1 class="beta site-title"><a href="../../index.html" rel="home">ASchroder.com</a></h1><p class="site-description">Notes on Web Development</p>		</div>
+		<div class="storefront-primary-navigation">		<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="Primary Navigation">
+		<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><span>Menu</span></button>
+			<div class="primary-navigation"><ul id="menu-main-menu" class="menu"><li id="menu-item-1119" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-home menu-item-1119"><a href="../../index.html">Home</a></li>
+<li id="menu-item-1118" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../about/index.html">About</a></li>
+<li id="menu-item-1872" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../presentations/index.html">Presentations</a></li>
+</ul></div><div class="handheld-navigation"><ul id="menu-main-menu-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-home menu-item-1119"><a href="../../index.html">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../about/index.html">About</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../presentations/index.html">Presentations</a></li>
+</ul></div>		</nav><!-- #site-navigation -->
+		</div>
+		</div>
+	</header><!-- #masthead -->
+
+	
+	<div id="content" class="site-content" tabindex="-1">
+		<div class="col-full">
+
+		
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+<article id="post-2028" class="post-2028 post type-post status-publish format-standard hentry category-magento category-magento-installation category-php tag-clash tag-conflict tag-extensions tag-magento">
+
+			<header class="entry-header">
+		<span class="posted-on">Posted on <a href="../../2013/04/understanding-and-detecting-magento-extension-clashes-or-conflicts/index.html" rel="bookmark"><time class="entry-date published" datetime="2013-04-16T23:26:30+00:00">April 16, 2013</time> <time class="updated" datetime="2014-06-24T14:08:14+00:00">June 24, 2014</time></a></span><h2 class="alpha entry-title"><a href="../../2013/04/understanding-and-detecting-magento-extension-clashes-or-conflicts/index.html" rel="bookmark">Understanding and Detecting Magento Extension Clashes or Conflicts</a></h2>		</header><!-- .entry-header -->
+				<aside class="entry-meta">
+						<div class="author">
+				<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' /><div class="label">Written by</div><a href="../../author/admin/index.html" title="Posts by Ashley" rel="author">Ashley</a>			</div>
+							<div class="cat-links">
+					<div class="label">Posted in</div><a href="../../category/magento/index.html" rel="category tag">Magento</a>, <a href="../../category/magento-installation/index.html" rel="category tag">Magento Installation</a>, <a href="../../category/php/index.html" rel="category tag">PHP</a>				</div>
+			
+							<div class="tags-links">
+					<div class="label">Tagged</div><a href="../../tag/clash/index.html" rel="tag">clash</a>, <a href="../../tag/conflict/index.html" rel="tag">conflict</a>, <a href="../../tag/extensions/index.html" rel="tag">extensions</a>, <a href="../../tag/magento/index.html" rel="tag">Magento</a>				</div>
+			
+		
+							<div class="comments-link">
+					<div class="label">Comments</div>					<span class="comments-link"><a href="../../2013/04/understanding-and-detecting-magento-extension-clashes-or-conflicts/index.html#comments">3 Comments</a></span>
+				</div>
+					</aside>
+				<div class="entry-content">
+		<p>This article will give an overview of Magento extension clashes (sometimes called conflicts) and then run through a few ways you can find them in your installation.</p>
+<p>I get asked at least once a week a question like &#8216;<em>What is a Magento Extension Clash</em>&#8216; or &#8216;<em>How Do I Find Extensions that Conflict</em>&#8216;. So, if you&#8217;re reading this, you probably just asked me, and I probably just sent you a link to here. That was a bit meta-blog, sorry about that. On with the article.</p>
+<h3>What is a Clash?</h3>
+<p>Magento extensions can override core functionality using what&#8217;s called a class rewrite. That&#8217;s when your extensions configuration file tells the core of Magento to use your custom PHP class, instead of the core one. Typically the custom class will sub-class the core one, and only override the methods that need to be changed. Here&#8217;s an example of that, firstly showing a snippet of rewrite xml for a core model:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="xml" style="font-family:monospace;"><span style="color: #808080; font-style: italic;">&lt;!-- ... snip config.xml ... --&gt;</span>
+        <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;models<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+            <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;core<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+                <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;rewrite<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+                    <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;email<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>Aschroder_Email_Model_Email<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/email<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+                <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/rewrite<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+            <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/core<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+        <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/models<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+<span style="color: #808080; font-style: italic;">&lt;!-- ... snip config.xml ... --&gt;</span></pre></td></tr></table><p class="theCode" style="display:none;">&lt;!-- ... snip config.xml ... --&gt;
+        &lt;models&gt;
+            &lt;core&gt;
+                &lt;rewrite&gt;
+                    &lt;email&gt;Aschroder_Email_Model_Email&lt;/email&gt;
+                &lt;/rewrite&gt;
+            &lt;/core&gt;
+        &lt;/models&gt;
+&lt;!-- ... snip config.xml ... --&gt;</p></div>
+
+<p>And then the corresponding class, notice it overrides the core version:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="php" style="font-family:monospace;">&nbsp;
+<span style="color: #000000; font-weight: bold;">class</span> Aschroder_Email_Model_Email <span style="color: #000000; font-weight: bold;">extends</span> Mage_Core_Model_Email <span style="color: #009900;">&#123;</span>
+&nbsp;
+<span style="color: #666666; font-style: italic;">// only add methods here that override the ones we want to change in Mage_Core_Model_Email</span>
+&nbsp;
+<span style="color: #009900;">&#125;</span></pre></td></tr></table><p class="theCode" style="display:none;">
+class Aschroder_Email_Model_Email extends Mage_Core_Model_Email {
+
+// only add methods here that override the ones we want to change in Mage_Core_Model_Email
+
+}</p></div>
+
+<p>So that&#8217;d all be well and good if everyone only installed my email extension in their Magento store, but they don&#8217;t. They install PDF email attachments, email emoticons, email monkeys and <em>god knows what else</em>. So the rewrite that my extension needs to work, may very well not happen, because another extension rewrites the same class.</p>
+<p>The same sorts of things can happen all over Magento, and typically the bigger and more complex and extension is, the more rewrites it will need, and the bigger the <em>surface area</em> for conflicts and clashes.</p>
+<p>You might be thinking: &#8220;Gosh, it&#8217;d be great if Magento Connect ran some sort of <em>rudimentry</em> test for compatibility before installing extensions willy-nilly in Magento Stores&#8221; and if you are, that means you&#8217;re one of the Good Guys™.<br />
+ <a href="../../2013/04/understanding-and-detecting-magento-extension-clashes-or-conflicts/index.html#more-2028" class="more-link">Continue reading <span class="screen-reader-text">Understanding and Detecting Magento Extension Clashes or Conflicts</span></a></p>
+		</div><!-- .entry-content -->
+		
+</article><!-- #post-## -->
+
+<article id="post-1983" class="post-1983 post type-post status-publish format-standard hentry category-hosting category-php category-web-development tag-aws tag-cloud tag-ec2 tag-elastic-beanstalk tag-magento tag-php">
+
+			<header class="entry-header">
+		<span class="posted-on">Posted on <a href="../../2013/04/actually-running-magento-on-amazons-elastic-beanstalk-cloud-platform/index.html" rel="bookmark"><time class="entry-date published updated" datetime="2013-04-07T13:25:03+00:00">April 7, 2013</time></a></span><h2 class="alpha entry-title"><a href="../../2013/04/actually-running-magento-on-amazons-elastic-beanstalk-cloud-platform/index.html" rel="bookmark">Actually running Magento on Amazon&#8217;s Elastic Beanstalk Cloud platform</a></h2>		</header><!-- .entry-header -->
+				<aside class="entry-meta">
+						<div class="author">
+				<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' /><div class="label">Written by</div><a href="../../author/admin/index.html" title="Posts by Ashley" rel="author">Ashley</a>			</div>
+							<div class="cat-links">
+					<div class="label">Posted in</div><a href="../../category/hosting/index.html" rel="category tag">Hosting</a>, <a href="../../category/php/index.html" rel="category tag">PHP</a>, <a href="../../category/web-development/index.html" rel="category tag">Web Development</a>				</div>
+			
+							<div class="tags-links">
+					<div class="label">Tagged</div><a href="../../tag/aws/index.html" rel="tag">aws</a>, <a href="../../tag/cloud/index.html" rel="tag">cloud</a>, <a href="../../tag/ec2/index.html" rel="tag">ec2</a>, <a href="../../tag/elastic-beanstalk/index.html" rel="tag">elastic beanstalk</a>, <a href="../../tag/magento/index.html" rel="tag">Magento</a>, <a href="../../tag/php/index.html" rel="tag">PHP</a>				</div>
+			
+		
+							<div class="comments-link">
+					<div class="label">Comments</div>					<span class="comments-link"><a href="../../2013/04/actually-running-magento-on-amazons-elastic-beanstalk-cloud-platform/index.html#comments">2 Comments</a></span>
+				</div>
+					</aside>
+				<div class="entry-content">
+		<p>In my previous post I weighed up <a href="../../2013/04/magento-and-aws-elastic-beanstalk-the-scalability-silver-bullet/index.html">the benefits and limitations of Amazon&#8217;s Elastic Beanstalk hosting environment for Magento</a> and took a very vague look at the costs. In this post I will run through the actual setup of a very basic Magento install &#8216;<em>in the cloud</em>&#8216; and the process of deploying changes. The goal for this initial setup is to keep everything bone stock as possible, we want minimal maintenance effort and an automated environment.</p>
+<p><del datetime="2013-04-07T11:04:39+00:00">If we have some time at the end, we&#8217;ll do some stress testing of the platform to see how it handles customers.</del> Benchmarks will have to wait, <em>stay tuned</em>.</p>
+<h3>The Tools</h3>
+<p>For this tutorial we&#8217;ll be working in a linux environment. I used a small EC2 server with the AWS default Linux AMI as the setup box, it&#8217;s nice and fast being on the same network as the Beanstalk platform. Make sure you have the following installed.</p>
+<ul>
+<li><a href="http://aws.amazon.com/code/6752709412171743">AWS EB tools</a>, and the <a href="http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/usingCLI.html">getting started guide</a></li>
+<li>git, <code>sudo yum install git</code></li>
+<li>ruby, <code>sudo yum install ruby</code></li>
+<li>python 2.7, <code>sudo yum install python27</code> &#8211; this one is a bit of a pain on the AWS default Linux AMI, you&#8217;ll need to hack in explicit use of the 2.7 binary in the AWS scripts. Or, <em>heaven forbid</em>, set it up properly and compile from source&#8230;</li>
+</ul>
+<p>Once you have those in place, you should be ready to get Magento and the Beanstalk environment setup.<br />
+ <a href="../../2013/04/actually-running-magento-on-amazons-elastic-beanstalk-cloud-platform/index.html#more-1983" class="more-link">Continue reading <span class="screen-reader-text">Actually running Magento on Amazon&#8217;s Elastic Beanstalk Cloud platform</span></a></p>
+		</div><!-- .entry-content -->
+		
+</article><!-- #post-## -->
+
+<article id="post-1956" class="post-1956 post type-post status-publish format-standard hentry category-hosting category-magento category-web-development tag-aws tag-cluster tag-elastic-beanstalk tag-magento">
+
+			<header class="entry-header">
+		<span class="posted-on">Posted on <a href="../../2013/04/magento-and-aws-elastic-beanstalk-the-scalability-silver-bullet/index.html" rel="bookmark"><time class="entry-date published" datetime="2013-04-03T12:50:54+00:00">April 3, 2013</time> <time class="updated" datetime="2013-04-07T13:29:23+00:00">April 7, 2013</time></a></span><h2 class="alpha entry-title"><a href="../../2013/04/magento-and-aws-elastic-beanstalk-the-scalability-silver-bullet/index.html" rel="bookmark">Magento and AWS Elastic Beanstalk &#8211; The Scalability Silver Bullet?</a></h2>		</header><!-- .entry-header -->
+				<aside class="entry-meta">
+						<div class="author">
+				<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' /><div class="label">Written by</div><a href="../../author/admin/index.html" title="Posts by Ashley" rel="author">Ashley</a>			</div>
+							<div class="cat-links">
+					<div class="label">Posted in</div><a href="../../category/hosting/index.html" rel="category tag">Hosting</a>, <a href="../../category/magento/index.html" rel="category tag">Magento</a>, <a href="../../category/web-development/index.html" rel="category tag">Web Development</a>				</div>
+			
+							<div class="tags-links">
+					<div class="label">Tagged</div><a href="../../tag/aws/index.html" rel="tag">aws</a>, <a href="../../tag/cluster/index.html" rel="tag">cluster</a>, <a href="../../tag/elastic-beanstalk/index.html" rel="tag">elastic beanstalk</a>, <a href="../../tag/magento/index.html" rel="tag">Magento</a>				</div>
+			
+		
+							<div class="comments-link">
+					<div class="label">Comments</div>					<span class="comments-link"><a href="../../2013/04/magento-and-aws-elastic-beanstalk-the-scalability-silver-bullet/index.html#comments">3 Comments</a></span>
+				</div>
+					</aside>
+				<div class="entry-content">
+		<p>In this post I&#8217;m going to introduce <a href="http://aws.amazon.com/elasticbeanstalk/">Amazon&#8217;s Elastic Beanstalk</a> PHP environment as a platform for Magento. In particular I&#8217;ll cover the mechanics and economics of hosting Magento, along with it&#8217;s benefits and limitations as a platform. The goal here is to create an auto-pilot environment providing high availability and scalability.</p>
+<p>But first, the background. With <a href="http://www.world-wide-access.com/">World Wide Access</a>, we&#8217;ve always run our own EC2 instances, ELBs, database servers and memcached. We scale up the instance sizes or counts manually when required. When we started using AWS (<em>in 2008</em>) Elastic Beanstalk was not yet on the scene so we had no choice but to do it that way. But now we do have a choice and, thanks to some downtime in the last week, I&#8217;m prompted to gather some thoughts on a migration to a fully auto-pilot set-up. This post is my notes on Elastic Beanstalk and Magento <a href="http://aws.amazon.com/about-aws/whats-new/2012/03/20/php-and-git-deployment-for-aws-elastic-beanstalk/">with git for deployment</a>. I&#8217;ll add <a href="../../2013/04/actually-running-magento-on-amazons-elastic-beanstalk-cloud-platform/index.html">a more detailed setup guide and some benchmarks</a> in a future post &#8211; this one will be a bit more abstract, <em>so go make yourself a cuppa</em>.</p>
+<h3>About the Amazon&#8217;s Elastic Beanstalk</h3>
+<p>Beanstalk brings together various parts of Amazon&#8217;s infrastructure: AWS servers, scaling, load balancing and high availability, to give your applications an automated environment to run in with flexible server sizes and instance counts that make growing easy. You can do all the things Elastic Beanstalk does, by combining the separate parts yourself, but this is much easier, trust me.<br />
+ <a href="../../2013/04/magento-and-aws-elastic-beanstalk-the-scalability-silver-bullet/index.html#more-1956" class="more-link">Continue reading <span class="screen-reader-text">Magento and AWS Elastic Beanstalk &#8211; The Scalability Silver Bullet?</span></a></p>
+		</div><!-- .entry-content -->
+		
+</article><!-- #post-## -->
+
+<article id="post-1935" class="post-1935 post type-post status-publish format-standard hentry category-mac category-php category-web-development tag-cgi tag-homebrew tag-mac tag-osx tag-php">
+
+			<header class="entry-header">
+		<span class="posted-on">Posted on <a href="../../2013/03/setting-up-php-5-4-with-cgi-on-osx-mountain-lion-with-homebrew/index.html" rel="bookmark"><time class="entry-date published updated" datetime="2013-03-19T02:45:13+00:00">March 19, 2013</time></a></span><h2 class="alpha entry-title"><a href="../../2013/03/setting-up-php-5-4-with-cgi-on-osx-mountain-lion-with-homebrew/index.html" rel="bookmark">Setting up PHP 5.4 with CGI on OSX Mountain Lion with Homebrew</a></h2>		</header><!-- .entry-header -->
+				<aside class="entry-meta">
+						<div class="author">
+				<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' /><div class="label">Written by</div><a href="../../author/admin/index.html" title="Posts by Ashley" rel="author">Ashley</a>			</div>
+							<div class="cat-links">
+					<div class="label">Posted in</div><a href="../../category/mac/index.html" rel="category tag">Mac</a>, <a href="../../category/php/index.html" rel="category tag">PHP</a>, <a href="../../category/web-development/index.html" rel="category tag">Web Development</a>				</div>
+			
+							<div class="tags-links">
+					<div class="label">Tagged</div><a href="../../tag/cgi/index.html" rel="tag">cgi</a>, <a href="../../tag/homebrew/index.html" rel="tag">homebrew</a>, <a href="../../tag/mac/index.html" rel="tag">Mac</a>, <a href="../../tag/osx/index.html" rel="tag">osx</a>, <a href="../../tag/php/index.html" rel="tag">PHP</a>				</div>
+			
+		
+							<div class="comments-link">
+					<div class="label">Comments</div>					<span class="comments-link"><a href="../../2013/03/setting-up-php-5-4-with-cgi-on-osx-mountain-lion-with-homebrew/index.html#comments">4 Comments</a></span>
+				</div>
+					</aside>
+				<div class="entry-content">
+		<p>I&#8217;ve been <a href="../../2009/02/how-to-install-mamp-on-your-macbook/index.html">a long time MAMP user</a>, but I recently upgraded my laptop and decided to do a fresh install of everything, and a ground up re-configuration of all my dev environments (a fair bit of mucking about with PHP, Ruby, Java, Python and trying Go).</p>
+<p>After a short while researching it became clear the best tool for the job would be <a href="http://mxcl.github.com/homebrew/">Homebrew</a> &#8211; it gives you much more control of the environment than MAMP, without the Macports heartache.</p>
+<p>In this post I&#8217;ll run through using Homebrew on OSX Mountain Lion for a Mysql+PHP CGI setup &#8211; I&#8217;ll document adding a webserver to this stack in a later post, my immediate need is for a PHP CGI environment.</p>
+<p><strong>Setup Homebrew</strong></p>
+<p>Before you do any of this, go grab Xcode from the App Store. Hope you&#8217;re not on a 3G internet connection, it&#8217;s a 1.6GB install! Go grab a coffee while you wait. After that&#8217;s installed you&#8217;re also going to need to go to <i>Xcode > Preferences</i> and install the command-line tools, another 100+ MB install.</p>
+<p>The Homebrew install from their own site is just:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;">ruby <span style="color: #660033;">-e</span> <span style="color: #ff0000;">&quot;<span style="color: #007800;">$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)</span>&quot;</span></pre></td></tr></table><p class="theCode" style="display:none;">ruby -e &quot;$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)&quot;</p></div>
+
+<p><strong>Setup PHP</strong></p>
+<p>Homebrew uses the <code>tap</code> command to import more sources for install scripts. <em>See what they did there?</em> I use <a href="https://github.com/josegonzalez/homebrew-php">the homebrew-php project</a>, seems awesome &#8211; loads of support, docs and info on the project page, all going to plan you&#8217;ll just need these two commands below.</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;">brew tap josegonzalez<span style="color: #000000; font-weight: bold;">/</span>homebrew-php
+brew tap homebrew<span style="color: #000000; font-weight: bold;">/</span>dupes</pre></td></tr></table><p class="theCode" style="display:none;">brew tap josegonzalez/homebrew-php
+brew tap homebrew/dupes</p></div>
+
+<p>You can review all the options with the <code>brew options php54</code> command, if you want mysql and CGI, use the command below that I used.</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;">brew <span style="color: #c20cb9; font-weight: bold;">install</span> <span style="color: #660033;">--with-mysql</span> <span style="color: #660033;">--with-cgi</span> php54</pre></td></tr></table><p class="theCode" style="display:none;">brew install --with-mysql --with-cgi php54</p></div>
+
+<p>It&#8217;ll run through a bunch of downloading/compiling steps but the end result should be that you get the following test output:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #000000; font-weight: bold;">/</span>usr<span style="color: #000000; font-weight: bold;">/</span>local<span style="color: #000000; font-weight: bold;">/</span>bin<span style="color: #000000; font-weight: bold;">/</span>php-cgi <span style="color: #660033;">--version</span>
+PHP 5.4.12 <span style="color: #7a0874; font-weight: bold;">&#40;</span>cgi-fcgi<span style="color: #7a0874; font-weight: bold;">&#41;</span> <span style="color: #7a0874; font-weight: bold;">&#40;</span>built: Mar <span style="color: #000000;">19</span> <span style="color: #000000;">2013</span> <span style="color: #000000;">14</span>:<span style="color: #000000;">39</span>:<span style="color: #000000;">37</span><span style="color: #7a0874; font-weight: bold;">&#41;</span>
+Copyright <span style="color: #7a0874; font-weight: bold;">&#40;</span>c<span style="color: #7a0874; font-weight: bold;">&#41;</span> <span style="color: #000000;">1997</span>-<span style="color: #000000;">2013</span> The PHP Group
+Zend Engine v2.4.0, Copyright <span style="color: #7a0874; font-weight: bold;">&#40;</span>c<span style="color: #7a0874; font-weight: bold;">&#41;</span> <span style="color: #000000;">1998</span>-<span style="color: #000000;">2013</span> Zend Technologies</pre></td></tr></table><p class="theCode" style="display:none;">/usr/local/bin/php-cgi --version
+PHP 5.4.12 (cgi-fcgi) (built: Mar 19 2013 14:39:37)
+Copyright (c) 1997-2013 The PHP Group
+Zend Engine v2.4.0, Copyright (c) 1998-2013 Zend Technologies</p></div>
+
+<p><strong>Setup MySQL</strong></p>
+<p>It&#8217;s super easy, watch.</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;">brew <span style="color: #c20cb9; font-weight: bold;">install</span> mysql</pre></td></tr></table><p class="theCode" style="display:none;">brew install mysql</p></div>
+
+<p>Then just follow the instructions that get blurted out during the Homebrew install of mysql.</p>
+<p>Slight catch is, if your OSX is anything like mine you&#8217;ll need to run this first:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #c20cb9; font-weight: bold;">mkdir</span> <span style="color: #660033;">-p</span> <span style="color: #000000; font-weight: bold;">/</span>usr<span style="color: #000000; font-weight: bold;">/</span>local<span style="color: #000000; font-weight: bold;">/</span>var<span style="color: #000000; font-weight: bold;">/</span>mysql</pre></td></tr></table><p class="theCode" style="display:none;">mkdir -p /usr/local/var/mysql</p></div>
+
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #7a0874; font-weight: bold;">unset</span> TMPDIR
+mysql_install_db <span style="color: #660033;">--verbose</span> <span style="color: #660033;">--user</span>=<span style="color: #000000; font-weight: bold;">`</span><span style="color: #c20cb9; font-weight: bold;">whoami</span><span style="color: #000000; font-weight: bold;">`</span> <span style="color: #660033;">--basedir</span>=<span style="color: #ff0000;">&quot;<span style="color: #007800;">$(brew --prefix mysql)</span>&quot;</span> <span style="color: #660033;">--datadir</span>=<span style="color: #000000; font-weight: bold;">/</span>usr<span style="color: #000000; font-weight: bold;">/</span>local<span style="color: #000000; font-weight: bold;">/</span>var<span style="color: #000000; font-weight: bold;">/</span>mysql <span style="color: #660033;">--tmpdir</span>=<span style="color: #000000; font-weight: bold;">/</span>tmp</pre></td></tr></table><p class="theCode" style="display:none;">unset TMPDIR
+mysql_install_db --verbose --user=`whoami` --basedir=&quot;$(brew --prefix mysql)&quot; --datadir=/usr/local/var/mysql --tmpdir=/tmp</p></div>
+
+<p>I also got this warning:<br />
+<code>WARNING: Found existing config file /usr/local/opt/mysql/my.cnf on the system.</code> which you can safely fix with:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #666666; font-style: italic;">#backup existing</span>
+<span style="color: #c20cb9; font-weight: bold;">mv</span> <span style="color: #000000; font-weight: bold;">/</span>usr<span style="color: #000000; font-weight: bold;">/</span>local<span style="color: #000000; font-weight: bold;">/</span>opt<span style="color: #000000; font-weight: bold;">/</span>mysql<span style="color: #000000; font-weight: bold;">/</span>my.cnf <span style="color: #000000; font-weight: bold;">/</span>usr<span style="color: #000000; font-weight: bold;">/</span>local<span style="color: #000000; font-weight: bold;">/</span>opt<span style="color: #000000; font-weight: bold;">/</span>mysql<span style="color: #000000; font-weight: bold;">/</span>my.cnf.old
+<span style="color: #666666; font-style: italic;">#move new</span>
+<span style="color: #c20cb9; font-weight: bold;">mv</span> <span style="color: #000000; font-weight: bold;">/</span>usr<span style="color: #000000; font-weight: bold;">/</span>local<span style="color: #000000; font-weight: bold;">/</span>opt<span style="color: #000000; font-weight: bold;">/</span>mysql<span style="color: #000000; font-weight: bold;">/</span>my-new.cnf <span style="color: #000000; font-weight: bold;">/</span>usr<span style="color: #000000; font-weight: bold;">/</span>local<span style="color: #000000; font-weight: bold;">/</span>opt<span style="color: #000000; font-weight: bold;">/</span>mysql<span style="color: #000000; font-weight: bold;">/</span>my.cnf</pre></td></tr></table><p class="theCode" style="display:none;">#backup existing
+mv /usr/local/opt/mysql/my.cnf /usr/local/opt/mysql/my.cnf.old
+#move new
+mv /usr/local/opt/mysql/my-new.cnf /usr/local/opt/mysql/my.cnf</p></div>
+
+<p>There&#8217;s also a lot of good advice for securing your mysql install blurted out during the install process, <i>ignore it at your peril</i>. Test your handiwork by checking you can access the mysql commandline prompt:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;">mysql <span style="color: #660033;">-uroot</span>
+<span style="color: #666666; font-style: italic;"># or, with the password you set. You set one, right?</span>
+mysql <span style="color: #660033;">-uroot</span> <span style="color: #660033;">-p</span></pre></td></tr></table><p class="theCode" style="display:none;">mysql -uroot
+# or, with the password you set. You set one, right?
+mysql -uroot -p</p></div>
+
+<p><strong>Other Notes</strong></p>
+<p>I noticed that the Homebrew installed PHP didn&#8217;t seem to support <code>$_ENV</code> in scripts, instead the <code>$_SERVER</code> array seems to be used &#8211; the Macports PHP with CGI support did seem to work with <code>$_ENV</code>. It might be a subtle version difference, I&#8217;m actually not sure, and decided not to spend time trying to figure it out. Just update scripts that depend on $_ENV, to use $_SERVER. If someone knows what&#8217;s behind this, please share.</p>
+<p>So, that should be it, PHP with CGI support and MySQL installed and ready to rock. If I missed anything let me know.</p>
+		</div><!-- .entry-content -->
+		
+</article><!-- #post-## -->
+
+<article id="post-1899" class="post-1899 post type-post status-publish format-standard hentry category-google-app-engine category-web-development tag-app-engine tag-gql">
+
+			<header class="entry-header">
+		<span class="posted-on">Posted on <a href="../../2013/02/google-app-engine-gql-queries-in-the-datastore-viewer-console/index.html" rel="bookmark"><time class="entry-date published updated" datetime="2013-02-19T16:43:08+00:00">February 19, 2013</time></a></span><h2 class="alpha entry-title"><a href="../../2013/02/google-app-engine-gql-queries-in-the-datastore-viewer-console/index.html" rel="bookmark">Google App Engine GQL queries in the Datastore Viewer console</a></h2>		</header><!-- .entry-header -->
+				<aside class="entry-meta">
+						<div class="author">
+				<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' /><div class="label">Written by</div><a href="../../author/admin/index.html" title="Posts by Ashley" rel="author">Ashley</a>			</div>
+							<div class="cat-links">
+					<div class="label">Posted in</div><a href="../../category/google-app-engine/index.html" rel="category tag">Google App Engine</a>, <a href="../../category/web-development/index.html" rel="category tag">Web Development</a>				</div>
+			
+							<div class="tags-links">
+					<div class="label">Tagged</div><a href="../../tag/app-engine/index.html" rel="tag">app engine</a>, <a href="../../tag/gql/index.html" rel="tag">GQL</a>				</div>
+			
+		
+					</aside>
+				<div class="entry-content">
+		<p>I&#8217;m forever having to look up various types of obscure GQL syntax to use in the App Engine console. I thought I&#8217;d start a blog post where I note them down, for my own sake. I&#8217;ll update this as I go.</p>
+<h3>Look up entities by encoded key string</h3>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="sql" style="font-family:monospace;"><span style="color: #993333; font-weight: bold;">SELECT</span> <span style="color: #66cc66;">*</span> <span style="color: #993333; font-weight: bold;">FROM</span> EntityName <span style="color: #993333; font-weight: bold;">WHERE</span> __key__ <span style="color: #993333; font-weight: bold;">IS</span> <span style="color: #993333; font-weight: bold;">KEY</span><span style="color: #66cc66;">&#40;</span><span style="color: #ff0000;">'dkfjbILVUYFkfbaelIIUBkuafvKJ'</span><span style="color: #66cc66;">&#41;</span></pre></td></tr></table><p class="theCode" style="display:none;">SELECT * FROM EntityName where __key__ is KEY('dkfjbILVUYFkfbaelIIUBkuafvKJ')</p></div>
+
+<h3>Look up child entities by encoded key string</h3>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="sql" style="font-family:monospace;"><span style="color: #993333; font-weight: bold;">SELECT</span> <span style="color: #66cc66;">*</span> <span style="color: #993333; font-weight: bold;">FROM</span> EntityName <span style="color: #993333; font-weight: bold;">WHERE</span> ancestor <span style="color: #993333; font-weight: bold;">IS</span> <span style="color: #993333; font-weight: bold;">KEY</span><span style="color: #66cc66;">&#40;</span><span style="color: #ff0000;">'dkfjbILVUYFkfbaelIIUBkuafvKJ'</span><span style="color: #66cc66;">&#41;</span></pre></td></tr></table><p class="theCode" style="display:none;">SELECT * FROM EntityName where ancestor is KEY('dkfjbILVUYFkfbaelIIUBkuafvKJ')</p></div>
+
+<p>More to come, if you find one I&#8217;m missing let me know</p>
+		</div><!-- .entry-content -->
+		
+</article><!-- #post-## -->
+<nav id="post-navigation" class="navigation pagination" role="navigation" aria-label="Post Navigation"><span class="screen-reader-text">Posts navigation</span><div class="nav-links"><ul class='page-numbers'>
+	<li><a class="prev page-numbers" href="../2/index.html">Previous</a></li>
+	<li><a class='page-numbers' href='../../index.html'>1</a></li>
+	<li><a class='page-numbers' href='../2/index.html'>2</a></li>
+	<li><span class='page-numbers current'>3</span></li>
+	<li><a class='page-numbers' href='../4/index.html'>4</a></li>
+	<li><span class="page-numbers dots">&hellip;</span></li>
+	<li><a class='page-numbers' href='../30/index.html'>30</a></li>
+	<li><a class="next page-numbers" href="../4/index.html">Next</a></li>
+</ul>
+</div></nav>
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+		</div><!-- .col-full -->
+	</div><!-- #content -->
+
+	
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="col-full">
+
+					<div class="site-info">
+			&copy; ASchroder.com 2023						<br /> Storefront designed by <a href="http://www.woocommerce.com/" title="WooCommerce - The Best eCommerce Platform for WordPress" rel="author">WooCommerce</a>.					</div><!-- .site-info -->
+		
+		</div><!-- .col-full -->
+	</footer><!-- #colophon -->
+
+	
+</div><!-- #page -->
+
+<script type='text/javascript' src='../../wp-content/plugins/wp-syntax/js/wp-syntax4963.js?ver=1.1'></script>
+<script type='text/javascript' src='../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/navigation.min11a8.js?ver=20120206'></script>
+<script type='text/javascript' src='../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/skip-link-focus-fix.min08e0.js?ver=20130115'></script>
+<script type='text/javascript' src='../../../cdn.aschroder.com/wp-includes/js/wp-embed.min101e.js?ver=4.8.15'></script>
+
+</body>
+
+<!-- Mirrored from www.aschroder.com/page/3/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:15:28 GMT -->
+</html>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:12:04 by W3 Total Cache -->

@@ -1,0 +1,598 @@
+<!doctype html>
+<html lang="en-US">
+
+<!-- Mirrored from www.aschroder.com/2013/04/magento-and-aws-elastic-beanstalk-the-scalability-silver-bullet/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:29:04 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="../../../xmlrpc.php">
+
+<title>Magento and AWS Elastic Beanstalk - The Scalability Silver Bullet? | ASchroder.com</title>
+
+<!-- All in One SEO Pack 2.4.2 by Michael Torbert of Semper Fi Web Design[289,390] -->
+<meta name="description"  content="I&#039;ll cover the mechanics and economics of hosting Magento on Elastic Beanstalk, along with it&#039;s benefits and limitations as a platform." />
+
+<meta name="keywords"  content="aws,elastic beanstalk,magento,hosting,cluster" />
+
+<!-- /all in one seo pack -->
+<link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
+<link rel='dns-prefetch' href='http://s.w.org/' />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Feed" href="../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Comments Feed" href="../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Magento and AWS Elastic Beanstalk &#8211; The Scalability Silver Bullet? Comments Feed" href="feed/index.html" />
+<!-- This site uses the Google Analytics by MonsterInsights plugin v6.2.4 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+<script type="text/javascript" data-cfasync="false">
+		var disableStr = 'ga-disable-UA-6477134-1';
+
+	/* Function to detect opted out users */
+	function __gaTrackerIsOptedOut() {
+		return document.cookie.indexOf(disableStr + '=true') > -1;
+	}
+
+	/* Disable tracking if the opt-out cookie exists. */
+	if ( __gaTrackerIsOptedOut() ) {
+		window[disableStr] = true;
+	}
+
+	/* Opt-out function */
+	function __gaTrackerOptout() {
+	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+	  window[disableStr] = true;
+	}
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','http://www.google-analytics.com/analytics.js','__gaTracker');
+
+	__gaTracker('create', 'UA-6477134-1', 'auto');
+	__gaTracker('set', 'forceSSL', true);
+	__gaTracker('send','pageview');
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/www.aschroder.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.15"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='yarppWidgetCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/widget101e.css?ver=4.8.15' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-syntax-css-css'  href='../../../wp-content/plugins/wp-syntax/css/wp-syntax4963.css?ver=1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-style-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/style5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<style id='storefront-style-inline-css' type='text/css'>
+
+			.main-navigation ul li a,
+			.site-title a,
+			ul.menu li a,
+			.site-branding h1 a,
+			.site-footer .storefront-handheld-footer-bar a:not(.button),
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				color: #333333;
+			}
+
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				border-color: #333333;
+			}
+
+			.main-navigation ul li a:hover,
+			.main-navigation ul li:hover > a,
+			.site-title a:hover,
+			a.cart-contents:hover,
+			.site-header-cart .widget_shopping_cart a:hover,
+			.site-header-cart:hover > li > a,
+			.site-header ul.menu li.current-menu-item > a {
+				color: #838383;
+			}
+
+			table th {
+				background-color: #f8f8f8;
+			}
+
+			table tbody td {
+				background-color: #fdfdfd;
+			}
+
+			table tbody tr:nth-child(2n) td,
+			fieldset,
+			fieldset legend {
+				background-color: #fbfbfb;
+			}
+
+			.site-header,
+			.secondary-navigation ul ul,
+			.main-navigation ul.menu > li.menu-item-has-children:after,
+			.secondary-navigation ul.menu ul,
+			.storefront-handheld-footer-bar,
+			.storefront-handheld-footer-bar ul li > a,
+			.storefront-handheld-footer-bar ul li.search .site-search,
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				background-color: #ffffff;
+			}
+
+			p.site-description,
+			.site-header,
+			.storefront-handheld-footer-bar {
+				color: #6d6d6d;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count,
+			button.menu-toggle:after,
+			button.menu-toggle:before,
+			button.menu-toggle span:before {
+				background-color: #333333;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				color: #ffffff;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				border-color: #ffffff;
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+				color: #333333;
+			}
+
+			.widget h1 {
+				border-bottom-color: #333333;
+			}
+
+			body,
+			.secondary-navigation a,
+			.onsale,
+			.pagination .page-numbers li .page-numbers:not(.current), .woocommerce-pagination .page-numbers li .page-numbers:not(.current) {
+				color: #6d6d6d;
+			}
+
+			.widget-area .widget a,
+			.hentry .entry-header .posted-on a,
+			.hentry .entry-header .byline a {
+				color: #9f9f9f;
+			}
+
+			a  {
+				color: #0228d1;
+			}
+
+			a:focus,
+			.button:focus,
+			.button.alt:focus,
+			.button.added_to_cart:focus,
+			.button.wc-forward:focus,
+			button:focus,
+			input[type="button"]:focus,
+			input[type="reset"]:focus,
+			input[type="submit"]:focus {
+				outline-color: #0228d1;
+			}
+
+			button, input[type="button"], input[type="reset"], input[type="submit"], .button, .added_to_cart, .widget a.button, .site-header-cart .widget_shopping_cart a.button {
+				background-color: #eeeeee;
+				border-color: #eeeeee;
+				color: #333333;
+			}
+
+			button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, .button:hover, .added_to_cart:hover, .widget a.button:hover, .site-header-cart .widget_shopping_cart a.button:hover {
+				background-color: #d5d5d5;
+				border-color: #d5d5d5;
+				color: #333333;
+			}
+
+			button.alt, input[type="button"].alt, input[type="reset"].alt, input[type="submit"].alt, .button.alt, .added_to_cart.alt, .widget-area .widget a.button.alt, .added_to_cart, .widget a.button.checkout {
+				background-color: #333333;
+				border-color: #333333;
+				color: #ffffff;
+			}
+
+			button.alt:hover, input[type="button"].alt:hover, input[type="reset"].alt:hover, input[type="submit"].alt:hover, .button.alt:hover, .added_to_cart.alt:hover, .widget-area .widget a.button.alt:hover, .added_to_cart:hover, .widget a.button.checkout:hover {
+				background-color: #1a1a1a;
+				border-color: #1a1a1a;
+				color: #ffffff;
+			}
+
+			.pagination .page-numbers li .page-numbers.current, .woocommerce-pagination .page-numbers li .page-numbers.current {
+				background-color: #e6e6e6;
+				color: #6d6d6d;
+			}
+
+			#comments .comment-list .comment-content .comment-text {
+				background-color: #f8f8f8;
+			}
+
+			.site-footer {
+				background-color: #f0f0f0;
+				color: #6d6d6d;
+			}
+
+			.site-footer a:not(.button) {
+				color: #333333;
+			}
+
+			.site-footer h1, .site-footer h2, .site-footer h3, .site-footer h4, .site-footer h5, .site-footer h6 {
+				color: #333333;
+			}
+
+			#order_review {
+				background-color: #ffffff;
+			}
+
+			#payment .payment_methods > li .payment_box,
+			#payment .place-order {
+				background-color: #fafafa;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice) {
+				background-color: #f5f5f5;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice):hover {
+				background-color: #f0f0f0;
+			}
+
+			@media screen and ( min-width: 768px ) {
+				.secondary-navigation ul.menu a:hover {
+					color: #868686;
+				}
+
+				.secondary-navigation ul.menu a {
+					color: #6d6d6d;
+				}
+
+				.site-header-cart .widget_shopping_cart,
+				.main-navigation ul.menu ul.sub-menu,
+				.main-navigation ul.nav-menu ul.children {
+					background-color: #f0f0f0;
+				}
+
+				.site-header-cart .widget_shopping_cart .buttons,
+				.site-header-cart .widget_shopping_cart .total {
+					background-color: #f5f5f5;
+				}
+
+				.site-header {
+					border-bottom-color: #f0f0f0;
+				}
+			}
+</style>
+<link rel='stylesheet' id='storefront-icons-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/sass/base/icons5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-fonts-css'  href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,600,700,900&amp;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jqueryb8ff.js?ver=1.12.4'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jquery-migrate.min330a.js?ver=1.4.1'></script>
+<link rel='https://api.w.org/' href='../../../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../xmlrpc0db0.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Setting up PHP 5.4 with CGI on OSX Mountain Lion with Homebrew' href='../../03/setting-up-php-5-4-with-cgi-on-osx-mountain-lion-with-homebrew/index.html' />
+<link rel='next' title='Actually running Magento on Amazon&#8217;s Elastic Beanstalk Cloud platform' href='../actually-running-magento-on-amazons-elastic-beanstalk-cloud-platform/index.html' />
+<meta name="generator" content="WordPress 4.8.15" />
+<link rel="canonical" href="index.html" />
+<link rel='shortlink' href='../../../index1c43.html?p=1956' />
+<link rel="alternate" type="application/json+oembed" href="../../../wp-json/oembed/1.0/embed654a.json?url=http%3A%2F%2Fwww.aschroder.com%2F2013%2F04%2Fmagento-and-aws-elastic-beanstalk-the-scalability-silver-bullet%2F" />
+<link rel="alternate" type="text/xml+oembed" href="../../../wp-json/oembed/1.0/embed890e?url=http%3A%2F%2Fwww.aschroder.com%2F2013%2F04%2Fmagento-and-aws-elastic-beanstalk-the-scalability-silver-bullet%2F&amp;format=xml" />
+</head>
+
+<body class="post-template-default single single-post postid-1956 single-format-standard no-wc-breadcrumb storefront-full-width-content right-sidebar">
+
+
+<div id="page" class="hfeed site">
+	
+	<header id="masthead" class="site-header" role="banner" style="">
+		<div class="col-full">
+
+					<a class="skip-link screen-reader-text" href="#site-navigation">Skip to navigation</a>
+		<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+				<div class="site-branding">
+			<div class="beta site-title"><a href="../../../index.html" rel="home">ASchroder.com</a></div><p class="site-description">Notes on Web Development</p>		</div>
+		<div class="storefront-primary-navigation">		<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="Primary Navigation">
+		<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><span>Menu</span></button>
+			<div class="primary-navigation"><ul id="menu-main-menu" class="menu"><li id="menu-item-1119" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li id="menu-item-1118" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li id="menu-item-1872" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div><div class="handheld-navigation"><ul id="menu-main-menu-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div>		</nav><!-- #site-navigation -->
+		</div>
+		</div>
+	</header><!-- #masthead -->
+
+	
+	<div id="content" class="site-content" tabindex="-1">
+		<div class="col-full">
+
+		
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+<div id="post-1956" class="post-1956 post type-post status-publish format-standard hentry category-hosting category-magento category-web-development tag-aws tag-cluster tag-elastic-beanstalk tag-magento">
+
+			<header class="entry-header">
+		<span class="posted-on">Posted on <a href="index.html" rel="bookmark"><time class="entry-date published" datetime="2013-04-03T12:50:54+00:00">April 3, 2013</time> <time class="updated" datetime="2013-04-07T13:29:23+00:00">April 7, 2013</time></a></span><h1 class="entry-title">Magento and AWS Elastic Beanstalk &#8211; The Scalability Silver Bullet?</h1>		</header><!-- .entry-header -->
+				<aside class="entry-meta">
+						<div class="author">
+				<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' /><div class="label">Written by</div><a href="../../../author/admin/index.html" title="Posts by Ashley" rel="author">Ashley</a>			</div>
+							<div class="cat-links">
+					<div class="label">Posted in</div><a href="../../../category/hosting/index.html" rel="category tag">Hosting</a>, <a href="../../../category/magento/index.html" rel="category tag">Magento</a>, <a href="../../../category/web-development/index.html" rel="category tag">Web Development</a>				</div>
+			
+							<div class="tags-links">
+					<div class="label">Tagged</div><a href="../../../tag/aws/index.html" rel="tag">aws</a>, <a href="../../../tag/cluster/index.html" rel="tag">cluster</a>, <a href="../../../tag/elastic-beanstalk/index.html" rel="tag">elastic beanstalk</a>, <a href="../../../tag/magento/index.html" rel="tag">Magento</a>				</div>
+			
+		
+							<div class="comments-link">
+					<div class="label">Comments</div>					<span class="comments-link"><a href="index.html#comments">3 Comments</a></span>
+				</div>
+					</aside>
+				<div class="entry-content">
+		<p>In this post I&#8217;m going to introduce <a href="http://aws.amazon.com/elasticbeanstalk/">Amazon&#8217;s Elastic Beanstalk</a> PHP environment as a platform for Magento. In particular I&#8217;ll cover the mechanics and economics of hosting Magento, along with it&#8217;s benefits and limitations as a platform. The goal here is to create an auto-pilot environment providing high availability and scalability.</p>
+<p>But first, the background. With <a href="http://www.world-wide-access.com/">World Wide Access</a>, we&#8217;ve always run our own EC2 instances, ELBs, database servers and memcached. We scale up the instance sizes or counts manually when required. When we started using AWS (<em>in 2008</em>) Elastic Beanstalk was not yet on the scene so we had no choice but to do it that way. But now we do have a choice and, thanks to some downtime in the last week, I&#8217;m prompted to gather some thoughts on a migration to a fully auto-pilot set-up. This post is my notes on Elastic Beanstalk and Magento <a href="http://aws.amazon.com/about-aws/whats-new/2012/03/20/php-and-git-deployment-for-aws-elastic-beanstalk/">with git for deployment</a>. I&#8217;ll add <a href="../actually-running-magento-on-amazons-elastic-beanstalk-cloud-platform/index.html">a more detailed setup guide and some benchmarks</a> in a future post &#8211; this one will be a bit more abstract, <em>so go make yourself a cuppa</em>.</p>
+<h3>About the Amazon&#8217;s Elastic Beanstalk</h3>
+<p>Beanstalk brings together various parts of Amazon&#8217;s infrastructure: AWS servers, scaling, load balancing and high availability, to give your applications an automated environment to run in with flexible server sizes and instance counts that make growing easy. You can do all the things Elastic Beanstalk does, by combining the separate parts yourself, but this is much easier, trust me.<br />
+<span id="more-1956"></span><br />
+The <a href="http://en.wikipedia.org/wiki/Cloud_computing">case for </a>scalable environments (and cloud computing in general) is pretty well understood these days. But to reiterate, if you have 100 customers 95% of the time, and 1000 customers the day you send out your monthly newsletter, guess how much server capacity you have to pay for all month in a traditional hosting operation? That&#8217;s right, enough to handle 1000 customers. With cloud-based solutions, you can ramp up the number of servers when you need them, and stop paying for them when you don&#8217;t need them. It also means you can distribute your servers in several data centers (or <em>availability zones</em>), to reduce chances of an outage.</p>
+<p><strong>So this sounds great right, whats the catch?</strong></p>
+<p>Elastic Beanstalk forces you to build your app in a specific way, and adopt certain development practices. They&#8217;re actually good things to do, but if you&#8217;re not currently set-up to operate that way, it can be painful. The first is that to use Elastic Beanstalk effectively you need to use git for deployment, you should have version control anyway, but if you don&#8217;t this can be a burden. It also means you cannot make changes on the server directly &#8211; again, you shouldn&#8217;t do that, but it happens to the best of us. Using Elastic Beanstalk requires you to be very disciplined in your development. </p>
+<p>Elastic Beanstalk (or any cluster, really) also requires your application to not rely on the filesystem for data sharing between nodes &#8211; data can be shared in the database, and via Memcached and thankfully Magento is reasonably well setup to run with those limitations. Admittedly these limitations can be removed by using custom AMI&#8217;s, but I&#8217;m mainly interested in keeping this solution as low-contact as possible, and doing software upgrades on an AMI is not my idea of fun.</p>
+<p>Beanstalk also doesn&#8217;t hide the AWS complexity from you completely. You&#8217;ll need to manage backups, CDN, Memcached node discovery, Email sending (via a service, not your servers) and a bunch of other things outside the scope of this introductory post but worth bearing in mind.</p>
+<h3>Magento on the Beanstalk</h3>
+<p>In this section I&#8217;ll cover running Magento on Elastic Beanstalk, I won&#8217;t get into too much nitty gritty detail here, we&#8217;ll save that for a follow up post, this will just cover the higher level considerations. This is solely based on my initial experimenting with Beanstalk, so any input from others is totally welcome. </p>
+<p>My goal with this setup is to keep the environment and the Magento install as vanilla as possible so that the environment isn&#8217;t creating a maintenance burden in any way. The default AMI&#8217;s are managed by AWS, so they&#8217;re perfect candidates.</p>
+<p>In a normal Magento install, caching and sessions are handled by the filesystem, data is stored in the database and media such as product images are stored within the Magento installation (/media). This definitely won&#8217;t work on Beanstalk. Each instance is isolated, so they do not share disk &#8211; that means we need to do something about the cache, sessions and media.</p>
+<p>Caching and sessions can be shifted to a separate memcached server (or in high availability situations, a cluster of memcached servers) with the database server for slow second layer caching and tag support. For media, Magento&#8217;s built in ability to store media in the database and serve it from there allows us to push any backend media uploads into the database where they can be shared. Other media/template/theme changes will get deployed to the filesystem of each node via git, where they&#8217;ll be picked up by the CDN.</p>
+<p>Again depending on the store size, you can put these into a completely different database server. Also, once a CDN is in front of the store, the actual database should not be serving very many image requests, they&#8217;ll get served from edge locations of the network.</p>
+<p>There are other considerations here, such as using alternative caching methods (e.g Redis), front end page caching (e.g Varnish) and general store maintenance such scheduling and running cron, checking log files in a clustered environment and monitoring server health. That&#8217;s all outside the scope here, I&#8217;ll cover more details in a follow-up post.</p>
+<h3>Economics of the AWS Cloud for Magento</h3>
+<p>If you, or someone on your team, doesn&#8217;t have an opinion on <em>bash vs zsh</em> and <em>vi vs emacs</em> &#8211; don&#8217;t read any further in this section. In addition to paying for servers, which I&#8217;ll outline below, you&#8217;re going to need someone on staff to run this setup for you. If you don&#8217;t have someone to do that, or cannot access someone, stick with <a href="http://www.magespeedtest.com/">one of the expert Magento hosts</a>. This is not a one-click managed solution (<em>yet, though I&#8217;m sure Amazon is heading in that direction</em>) so you&#8217;ll need someone familiar with how it works, and how to diagnose issues and fix them on call.</p>
+<p>Still with me? OK, so how much will this cost you, on top of the expertise to run it? Let&#8217;s see. </p>
+<p>I&#8217;m going to run through 3 vague pricing scenarios, from very small store, to higher capacity cluster. I don&#8217;t have benchmarks to quantify these levels in this post, but will add them in a follow-up post. If my early findings are way way off base, I&#8217;ll update the below scenarios to reflect it. </p>
+<p>Please note these are back-of-an-envelope calculations, don&#8217;t mortgage the house on these numbers &#8211; do your own calculations and testing!</p>
+<p><strong>Frontend servers</strong></p>
+<p>These are <a href="http://aws.amazon.com/ec2/pricing/">the workhorses</a>, running the PHP code and generating the pages.</p>
+<table>
+<tr>
+<th></th>
+<th>Servers</th>
+<th>Monthly Cost</th>
+</tr>
+<tr>
+<td>Small</td>
+<td>1 small, 24&#215;7</td>
+<td>$45</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>1 medium, 24&#215;7 and +2 medium, 50% of month</td>
+<td>$210</td>
+</tr>
+<tr>
+<td>Large</td>
+<td>2 xlarge, 24&#215;7 and +4 xlarge 50% of month</td>
+<td>$1670</td>
+</tr>
+</table>
+<p><strong>Memcached server(s)</strong></p>
+<p>This varies by how much you <a href="http://aws.amazon.com/elasticache/pricing/">need to cache</a> and if you want redundancy.</p>
+<table>
+<tr>
+<th></th>
+<th>Servers</th>
+<th>Monthly Cost</th>
+</tr>
+<tr>
+<td>Small</td>
+<td>1 micro, 24&#215;7</td>
+<td>$16</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>2 small, 24&#215;7</td>
+<td>$108</td>
+</tr>
+<tr>
+<td>Large</td>
+<td>2 medium, 24&#215;7</td>
+<td>$223</td>
+</tr>
+</table>
+<p><strong>RDS server(s)</strong></p>
+<p>Magento can be unkind to a <a href="http://aws.amazon.com/rds/pricing/">database server</a>. As with memcached, depending on storage requirements and redundancy these will vary.</p>
+<table>
+<tr>
+<th></th>
+<th>Servers</th>
+<th>Monthly Cost</th>
+</tr>
+<tr>
+<td>Small</td>
+<td>1 small, 24&#215;7</td>
+<td>$65</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>1 medium, 24&#215;7</td>
+<td>$130</td>
+</tr>
+<tr>
+<td>Large</td>
+<td>1 xlarge, 24&#215;7</td>
+<td>$525</td>
+</tr>
+</table>
+<p><strong>Other items: Bandwidth for CDN and ELB, EBS storage, Amazon SES, extra servers for test environments&#8230;</strong></p>
+<p>I&#8217;m putting this section here as a reminder that it exists, but costs here will depend on your store. If I was plucking a number out of thin air, I&#8217;d say add 15% of your base monthly costs to buffer for these sorts of extras, this depends massively on your traffic profile and site content though.</p>
+<p><strong>Totals</strong></p>
+<p>Rough totals, <strong>not</strong> including 15% buffer from above.</p>
+<table>
+<tr>
+<th></th>
+<th>Monthly Cost</th>
+</tr>
+<tr>
+<td>Small</td>
+<td>$125</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>$450</td>
+</tr>
+<tr>
+<td>Large</td>
+<td>$2400</td>
+</tr>
+</table>
+<p>Without the benchmarks, it&#8217;s hard to know if that&#8217;s good value or not &#8211; certainly a good Magento host will be cheaper than $100/month for a small store, and it&#8217;d be fully managed and likely high performance. The anticipation is killing me!</p>
+<p><em>Notes:</em><br />
+1) It&#8217;s possible to reduce these costs by reserving instances &#8211; if you know you&#8217;ll need certain capacity for a specific amount of time. Use these as a guide only.<br />
+2) I&#8217;ve used US region pricing.<br />
+3) If you want more redundancy you&#8217;ll need to add extra servers/availability zones.<br />
+4) I&#8217;m ignoring frontend caching for now, we&#8217;ll look at that in the benchmark post later</p>
+<h3>(not really even) Benchmarks</h3>
+<p>In the process of setting up a test environment, I couldn&#8217;t resist doing a little performance testing &#8211; albeit on a very very small scale. I mainly wanted to test the auto-scaling thresholds worked, and the impact of the <em>gruntier</em> EC2 instance types. I&#8217;m not even going to allow myself to call these benchmarks. I ran siege against an (almost) empty vanilla Magento install on small cache and DB nodes.</p>
+<p>Here&#8217;s what I saw.</p>
+<p><code>3 Medium instances: 20 concurrent users 8.5 transactions/s @ 2.3s each</code></p>
+<p><code>2 XLarge instances: 20 concurrent users 15 transactions/s @ 1.3s each</code></p>
+<p>A big increase in performance from the bigger hardware. Can&#8217;t wait to fully test these scenarios. </p>
+<h3>Next up&#8230;</h3>
+<p>Phew! I&#8217;ll add <a href="../actually-running-magento-on-amazons-elastic-beanstalk-cloud-platform/index.html">a blog post outlining the basics of a Beanstalk setup and run some thorough benchmarks</a> against different server sizes/instance counts to get some idea of the flexibility and scalability of this solution.</p>
+<p>PS: If anyone wants to use a copy of their store as a guinea pig on this platform, let me know your product/order counts and if suitable, I&#8217;ll replicate it for testing.</p>
+<div class='yarpp-related'>
+<p>You might also be interested in:<ol>
+<li><a href="../actually-running-magento-on-amazons-elastic-beanstalk-cloud-platform/index.html" rel="bookmark" title="Actually running Magento on Amazon&#8217;s Elastic Beanstalk Cloud platform">Actually running Magento on Amazon&#8217;s Elastic Beanstalk Cloud platform </a></li>
+<li><a href="../../08/running-magento-on-digital-ocean-plus-some-benchmarks/index.html" rel="bookmark" title="Running Magento on Digital Ocean &#8211; A Review and Benchmarks">Running Magento on Digital Ocean &#8211; A Review and Benchmarks </a></li>
+<li><a href="../../../2011/02/magento-development-and-deployment-setting-up-a-modman-based-magento-project-on-magento-1-5/index.html" rel="bookmark" title="Magento Development and Deployment: Setting up a Modman based Magento project on Magento 1.5">Magento Development and Deployment: Setting up a Modman based Magento project on Magento 1.5 </a></li>
+<li><a href="../../../2009/05/nexcess-magento-hosting-review/index.html" rel="bookmark" title="Nexcess Magento SIP Hosting Review">Nexcess Magento SIP Hosting Review </a></li>
+<li><a href="../../../2011/05/magento-and-amazons-cloudfront-cdn-the-easy-way/index.html" rel="bookmark" title="Magento and Amazon&#8217;s CloudFront CDN &#8211; The Easy Way">Magento and Amazon&#8217;s CloudFront CDN &#8211; The Easy Way </a></li>
+</ol></p>
+</div>
+		</div><!-- .entry-content -->
+		<nav id="post-navigation" class="navigation post-navigation" role="navigation" aria-label="Post Navigation"><span class="screen-reader-text">Post navigation</span><div class="nav-links"><div class="nav-previous"><a href="../../03/setting-up-php-5-4-with-cgi-on-osx-mountain-lion-with-homebrew/index.html" rel="prev">Setting up PHP 5.4 with CGI on OSX Mountain Lion with Homebrew</a></div><div class="nav-next"><a href="../actually-running-magento-on-amazons-elastic-beanstalk-cloud-platform/index.html" rel="next">Actually running Magento on Amazon&#8217;s Elastic Beanstalk Cloud platform</a></div></div></nav>
+<section id="comments" class="comments-area" aria-label="Post Comments">
+
+			<h2 class="comments-title">
+			3 thoughts on &ldquo;<span>Magento and AWS Elastic Beanstalk &#8211; The Scalability Silver Bullet?</span>&rdquo;		</h2>
+
+		
+		<ol class="comment-list">
+					<li class="comment even thread-even depth-1" id="comment-9964">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/883b347fd42c7b4537a81434fb01f3e9?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/883b347fd42c7b4537a81434fb01f3e9?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">gondo</cite>			</div>
+			
+			<a href="index.html#comment-9964" class="comment-date">
+				<time datetime="2013-04-04T04:48:17+00:00">April 4, 2013</time>			</a>
+		</div>
+				<div id="div-comment-9964" class="comment-content">
+				<div class="comment-text">
+		<p>nice post<br />
+i would suggest you to add the timing to your estimate tables. i assume that 24&#215;7 means that prices are per week, im to lazy to check it, but the totals table doesn&#8217;t mention any time frame. also it would be more meaningful if the prices were per month.<br />
+personally what holds me back from using Beanstalk is that extra abstraction and not so many benefits.  f.e. if you want to run nginx on it, you have to do some crazy changes <a href="http://www.nczonline.net/blog/2012/09/14/replacing-apache-with-nginx-on-elastic-beanstalk/" rel="nofollow">http://www.nczonline.net/blog/2012/09/14/replacing-apache-with-nginx-on-elastic-beanstalk/</a><br />
+i prefer to set my instance manually and than replicate this setup to other nodes</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-10006">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-10006" class="comment-date">
+				<time datetime="2013-04-07T13:32:23+00:00">April 7, 2013</time>			</a>
+		</div>
+				<div id="div-comment-10006" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, Gondo</p>
+<p>Glad you liked it. I&#8217;ve updated to be clear that these are monthly costs, the 24&#215;7 referred to running them full time, as opposed to scaling them in and out. </p>
+<p>Re: running alternative stacks, like nginx, varnish etc &#8211; it&#8217;s definitely possible to hand build and use your own AMI &#8211; I just wanted this setup to be very vanilla, so that it can benefit from the work AWS does keeping their AMI&#8217;s up to date. I don&#8217;t want to have to fiddle around with AMI&#8217;s every time a security patch comes out, which is my interest in Beanstalk being an auto-pilot environment.</p>
+<p>We currently run our servers as you do, manually with custom stacks, but I think there&#8217;s merit in removing some of the overhead, even if it sacrifices flexibility.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-10056">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/0f4cedbc5d4a0689dedbe7d977600709?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/0f4cedbc5d4a0689dedbe7d977600709?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Mauro</cite>			</div>
+			
+			<a href="index.html#comment-10056" class="comment-date">
+				<time datetime="2013-04-13T06:10:42+00:00">April 13, 2013</time>			</a>
+		</div>
+				<div id="div-comment-10056" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Aschroder,<br />
+Know that amazon buyed Scalarium (amazon OpsWorks) and its in beta theres is an interesting path for scale Magento on amazon clouds.  Its a free service and have some nice features like use Chef on it. Magentos Chef recipe includin modman, varnish, vhost configurations etc. So when you sclae it can configure an lamp with magento  an you can you modman to sync your store on it.<br />
+At this moment it big limitation is that you can not use yor own AMIs and ITs AMIs are based only in Amazon Linux and Ubunto 12.4 LTS (I prefer CentOS/Red Hat linux  in production, since RHEL have 5+2 LTS and Ubuntos lts are only 18 months). The alternative like Scalar and RightScale.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		</ol><!-- .comment-list -->
+
+				<p class="no-comments">Comments are closed.</p>
+	
+</section><!-- #comments -->
+
+</div><!-- #post-## -->
+
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+		</div><!-- .col-full -->
+	</div><!-- #content -->
+
+	
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="col-full">
+
+					<div class="site-info">
+			&copy; ASchroder.com 2023						<br /> Storefront designed by <a href="http://www.woocommerce.com/" title="WooCommerce - The Best eCommerce Platform for WordPress" rel="author">WooCommerce</a>.					</div><!-- .site-info -->
+		
+		</div><!-- .col-full -->
+	</footer><!-- #colophon -->
+
+	
+</div><!-- #page -->
+
+<link rel='stylesheet' id='yarppRelatedCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/related101e.css?ver=4.8.15' type='text/css' media='all' />
+<script type='text/javascript' src='../../../wp-content/plugins/wp-syntax/js/wp-syntax4963.js?ver=1.1'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/navigation.min11a8.js?ver=20120206'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/skip-link-focus-fix.min08e0.js?ver=20130115'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/wp-embed.min101e.js?ver=4.8.15'></script>
+
+</body>
+
+<!-- Mirrored from www.aschroder.com/2013/04/magento-and-aws-elastic-beanstalk-the-scalability-silver-bullet/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:29:08 GMT -->
+</html>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:19:02 by W3 Total Cache -->

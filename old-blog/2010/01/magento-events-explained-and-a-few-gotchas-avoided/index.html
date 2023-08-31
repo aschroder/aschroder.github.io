@@ -1,0 +1,844 @@
+<!doctype html>
+<html lang="en-US">
+
+<!-- Mirrored from www.aschroder.com/2010/01/magento-events-explained-and-a-few-gotchas-avoided/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:31:53 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="../../../xmlrpc.php">
+
+<title>Magento Events Explained and a few Gotchas avoided!  | ASchroder.com</title>
+
+<!-- All in One SEO Pack 2.4.2 by Michael Torbert of Semper Fi Web Design[289,370] -->
+<meta name="description"  content="This post is about the Magento Event system - a full explanation of how events and observers work and some issues I had with Magento and Google Checkout fixed." />
+
+<meta name="keywords"  content="magento,event,observer,google checkout" />
+
+<!-- /all in one seo pack -->
+<link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
+<link rel='dns-prefetch' href='http://s.w.org/' />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Feed" href="../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Comments Feed" href="../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Magento Events Explained and a few Gotchas avoided! Comments Feed" href="feed/index.html" />
+<!-- This site uses the Google Analytics by MonsterInsights plugin v6.2.4 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+<script type="text/javascript" data-cfasync="false">
+		var disableStr = 'ga-disable-UA-6477134-1';
+
+	/* Function to detect opted out users */
+	function __gaTrackerIsOptedOut() {
+		return document.cookie.indexOf(disableStr + '=true') > -1;
+	}
+
+	/* Disable tracking if the opt-out cookie exists. */
+	if ( __gaTrackerIsOptedOut() ) {
+		window[disableStr] = true;
+	}
+
+	/* Opt-out function */
+	function __gaTrackerOptout() {
+	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+	  window[disableStr] = true;
+	}
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','http://www.google-analytics.com/analytics.js','__gaTracker');
+
+	__gaTracker('create', 'UA-6477134-1', 'auto');
+	__gaTracker('set', 'forceSSL', true);
+	__gaTracker('send','pageview');
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/www.aschroder.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.15"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='yarppWidgetCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/widget101e.css?ver=4.8.15' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-syntax-css-css'  href='../../../wp-content/plugins/wp-syntax/css/wp-syntax4963.css?ver=1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-style-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/style5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<style id='storefront-style-inline-css' type='text/css'>
+
+			.main-navigation ul li a,
+			.site-title a,
+			ul.menu li a,
+			.site-branding h1 a,
+			.site-footer .storefront-handheld-footer-bar a:not(.button),
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				color: #333333;
+			}
+
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				border-color: #333333;
+			}
+
+			.main-navigation ul li a:hover,
+			.main-navigation ul li:hover > a,
+			.site-title a:hover,
+			a.cart-contents:hover,
+			.site-header-cart .widget_shopping_cart a:hover,
+			.site-header-cart:hover > li > a,
+			.site-header ul.menu li.current-menu-item > a {
+				color: #838383;
+			}
+
+			table th {
+				background-color: #f8f8f8;
+			}
+
+			table tbody td {
+				background-color: #fdfdfd;
+			}
+
+			table tbody tr:nth-child(2n) td,
+			fieldset,
+			fieldset legend {
+				background-color: #fbfbfb;
+			}
+
+			.site-header,
+			.secondary-navigation ul ul,
+			.main-navigation ul.menu > li.menu-item-has-children:after,
+			.secondary-navigation ul.menu ul,
+			.storefront-handheld-footer-bar,
+			.storefront-handheld-footer-bar ul li > a,
+			.storefront-handheld-footer-bar ul li.search .site-search,
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				background-color: #ffffff;
+			}
+
+			p.site-description,
+			.site-header,
+			.storefront-handheld-footer-bar {
+				color: #6d6d6d;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count,
+			button.menu-toggle:after,
+			button.menu-toggle:before,
+			button.menu-toggle span:before {
+				background-color: #333333;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				color: #ffffff;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				border-color: #ffffff;
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+				color: #333333;
+			}
+
+			.widget h1 {
+				border-bottom-color: #333333;
+			}
+
+			body,
+			.secondary-navigation a,
+			.onsale,
+			.pagination .page-numbers li .page-numbers:not(.current), .woocommerce-pagination .page-numbers li .page-numbers:not(.current) {
+				color: #6d6d6d;
+			}
+
+			.widget-area .widget a,
+			.hentry .entry-header .posted-on a,
+			.hentry .entry-header .byline a {
+				color: #9f9f9f;
+			}
+
+			a  {
+				color: #0228d1;
+			}
+
+			a:focus,
+			.button:focus,
+			.button.alt:focus,
+			.button.added_to_cart:focus,
+			.button.wc-forward:focus,
+			button:focus,
+			input[type="button"]:focus,
+			input[type="reset"]:focus,
+			input[type="submit"]:focus {
+				outline-color: #0228d1;
+			}
+
+			button, input[type="button"], input[type="reset"], input[type="submit"], .button, .added_to_cart, .widget a.button, .site-header-cart .widget_shopping_cart a.button {
+				background-color: #eeeeee;
+				border-color: #eeeeee;
+				color: #333333;
+			}
+
+			button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, .button:hover, .added_to_cart:hover, .widget a.button:hover, .site-header-cart .widget_shopping_cart a.button:hover {
+				background-color: #d5d5d5;
+				border-color: #d5d5d5;
+				color: #333333;
+			}
+
+			button.alt, input[type="button"].alt, input[type="reset"].alt, input[type="submit"].alt, .button.alt, .added_to_cart.alt, .widget-area .widget a.button.alt, .added_to_cart, .widget a.button.checkout {
+				background-color: #333333;
+				border-color: #333333;
+				color: #ffffff;
+			}
+
+			button.alt:hover, input[type="button"].alt:hover, input[type="reset"].alt:hover, input[type="submit"].alt:hover, .button.alt:hover, .added_to_cart.alt:hover, .widget-area .widget a.button.alt:hover, .added_to_cart:hover, .widget a.button.checkout:hover {
+				background-color: #1a1a1a;
+				border-color: #1a1a1a;
+				color: #ffffff;
+			}
+
+			.pagination .page-numbers li .page-numbers.current, .woocommerce-pagination .page-numbers li .page-numbers.current {
+				background-color: #e6e6e6;
+				color: #6d6d6d;
+			}
+
+			#comments .comment-list .comment-content .comment-text {
+				background-color: #f8f8f8;
+			}
+
+			.site-footer {
+				background-color: #f0f0f0;
+				color: #6d6d6d;
+			}
+
+			.site-footer a:not(.button) {
+				color: #333333;
+			}
+
+			.site-footer h1, .site-footer h2, .site-footer h3, .site-footer h4, .site-footer h5, .site-footer h6 {
+				color: #333333;
+			}
+
+			#order_review {
+				background-color: #ffffff;
+			}
+
+			#payment .payment_methods > li .payment_box,
+			#payment .place-order {
+				background-color: #fafafa;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice) {
+				background-color: #f5f5f5;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice):hover {
+				background-color: #f0f0f0;
+			}
+
+			@media screen and ( min-width: 768px ) {
+				.secondary-navigation ul.menu a:hover {
+					color: #868686;
+				}
+
+				.secondary-navigation ul.menu a {
+					color: #6d6d6d;
+				}
+
+				.site-header-cart .widget_shopping_cart,
+				.main-navigation ul.menu ul.sub-menu,
+				.main-navigation ul.nav-menu ul.children {
+					background-color: #f0f0f0;
+				}
+
+				.site-header-cart .widget_shopping_cart .buttons,
+				.site-header-cart .widget_shopping_cart .total {
+					background-color: #f5f5f5;
+				}
+
+				.site-header {
+					border-bottom-color: #f0f0f0;
+				}
+			}
+</style>
+<link rel='stylesheet' id='storefront-icons-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/sass/base/icons5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-fonts-css'  href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,600,700,900&amp;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jqueryb8ff.js?ver=1.12.4'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jquery-migrate.min330a.js?ver=1.4.1'></script>
+<link rel='https://api.w.org/' href='../../../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../xmlrpc0db0.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='A super simple Magento store monitoring tool powered by Google App Engine' href='../../../2009/12/a-super-simple-magento-store-monitoring-tool-powered-by-google-app-engine/index.html' />
+<link rel='next' title='Sitemap Submit &#8211; Magento Extension to Submit your Google Sitemap' href='../sitemap-submit-magento-extension-to-submit-your-google-sitemap/index.html' />
+<meta name="generator" content="WordPress 4.8.15" />
+<link rel="canonical" href="index.html" />
+<link rel='shortlink' href='../../../index424e.html?p=598' />
+<link rel="alternate" type="application/json+oembed" href="../../../wp-json/oembed/1.0/embeda3ab.json?url=http%3A%2F%2Fwww.aschroder.com%2F2010%2F01%2Fmagento-events-explained-and-a-few-gotchas-avoided%2F" />
+<link rel="alternate" type="text/xml+oembed" href="../../../wp-json/oembed/1.0/embed27a3?url=http%3A%2F%2Fwww.aschroder.com%2F2010%2F01%2Fmagento-events-explained-and-a-few-gotchas-avoided%2F&amp;format=xml" />
+</head>
+
+<body class="post-template-default single single-post postid-598 single-format-standard no-wc-breadcrumb storefront-full-width-content right-sidebar">
+
+
+<div id="page" class="hfeed site">
+	
+	<header id="masthead" class="site-header" role="banner" style="">
+		<div class="col-full">
+
+					<a class="skip-link screen-reader-text" href="#site-navigation">Skip to navigation</a>
+		<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+				<div class="site-branding">
+			<div class="beta site-title"><a href="../../../index.html" rel="home">ASchroder.com</a></div><p class="site-description">Notes on Web Development</p>		</div>
+		<div class="storefront-primary-navigation">		<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="Primary Navigation">
+		<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><span>Menu</span></button>
+			<div class="primary-navigation"><ul id="menu-main-menu" class="menu"><li id="menu-item-1119" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li id="menu-item-1118" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li id="menu-item-1872" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div><div class="handheld-navigation"><ul id="menu-main-menu-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div>		</nav><!-- #site-navigation -->
+		</div>
+		</div>
+	</header><!-- #masthead -->
+
+	
+	<div id="content" class="site-content" tabindex="-1">
+		<div class="col-full">
+
+		
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+<div id="post-598" class="post-598 post type-post status-publish format-standard hentry category-google-checkout category-magento category-php tag-events tag-google-checkout tag-java tag-magento tag-observers">
+
+			<header class="entry-header">
+		<span class="posted-on">Posted on <a href="index.html" rel="bookmark"><time class="entry-date published" datetime="2010-01-23T23:22:56+00:00">January 23, 2010</time> <time class="updated" datetime="2010-02-27T23:59:26+00:00">February 27, 2010</time></a></span><h1 class="entry-title">Magento Events Explained and a few Gotchas avoided!</h1>		</header><!-- .entry-header -->
+				<aside class="entry-meta">
+						<div class="author">
+				<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' /><div class="label">Written by</div><a href="../../../author/admin/index.html" title="Posts by Ashley" rel="author">Ashley</a>			</div>
+							<div class="cat-links">
+					<div class="label">Posted in</div><a href="../../../category/google-checkout/index.html" rel="category tag">Google Checkout</a>, <a href="../../../category/magento/index.html" rel="category tag">Magento</a>, <a href="../../../category/php/index.html" rel="category tag">PHP</a>				</div>
+			
+							<div class="tags-links">
+					<div class="label">Tagged</div><a href="../../../tag/events/index.html" rel="tag">events</a>, <a href="../../../tag/google-checkout/index.html" rel="tag">Google Checkout</a>, <a href="../../../tag/java/index.html" rel="tag">java</a>, <a href="../../../tag/magento/index.html" rel="tag">Magento</a>, <a href="../../../tag/observers/index.html" rel="tag">observers</a>				</div>
+			
+		
+							<div class="comments-link">
+					<div class="label">Comments</div>					<span class="comments-link"><a href="index.html#comments">12 Comments</a></span>
+				</div>
+					</aside>
+				<div class="entry-content">
+		<p>This post is about the Magento Event system &#8211; a full explanation of how it works and a couple of issues I had with it resolved. Hope it is a help for people wrestling with the Magento event dispatch mechanism. </p>
+<p>My particular situation was this: when automatically fetching tracking details from our carriers via a Magento cron job, the resulting Google Checkout Magento event did not fire, so the end customer was not receiving the notification properly &#8211; even though the &#8216;shipment&#8217; object within Magento was correctly displaying the tracking details.<br />
+<span id="more-598"></span><br />
+So a great deal of debugg<del datetime="2010-01-24T06:09:51+00:00">ery</del>ing and I eventually found that it was because not all config &#8216;areas&#8217; are loaded on all requests. Namely the events that are loaded when accessing the admin area are not the same as those that are loaded when cron runs. So the event that fires when you update a shipment from the admin has different config areas loaded than the one that fires if you update a shipment from some PHP code run during the cron process.</p>
+<p>Before discussing the problem I had and how it was solved, let&#8217;s dig a little deeper into events in Magento &#8211; I&#8217;ll start with a summary of the event mechanism in general. </p>
+<h2>The Magento Event Mechanism</h2>
+<p>The Magento event framework is really a great idea and I think it works well in general. It&#8217;s sort of like <a href="http://codex.wordpress.org/Plugin_API">WordPress hooks</a> in a lot of ways (it&#8217;s the same basic pattern) except that the binding is done within xml (reminds me a little of <a href="http://en.wikipedia.org/wiki/Spring_Framework">Spring</a> in Java, before <a href="http://code.google.com/p/google-guice/">Guice</a> came along and saved me from XML-Hell!) </p>
+<p>Basically the event firing/dispatching process is made up of X steps.</p>
+<h3>The Magento code fires (dispatches) an Event</h3>
+<p>This will look something like this in the code:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="php" style="font-family:monospace;">Mage<span style="color: #339933;">::</span><span style="color: #004000;">dispatchEvent</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'admin_session_user_login_success'</span><span style="color: #339933;">,</span> <span style="color: #990000;">array</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'user'</span><span style="color: #339933;">=&gt;</span><span style="color: #000088;">$user</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre></td></tr></table><p class="theCode" style="display:none;">Mage::dispatchEvent('admin_session_user_login_success', array('user'=&gt;$user));</p></div>
+
+<p>It is important to note though that the actual number of events being fired is <strong>way</strong> higher than just the number of times you see that code within Magento. Magento <del datetime="2010-01-24T06:09:51+00:00">fires</del> dispatches (old habits die hard, I&#8217;ll use both interchangeably from here on out) loads of implicit events too, for example here is a snippet from the base class of all Magento Objects <code>Mage_Core_Model_Abstract</code></p>
+<p>In this snippet we see how every time a model is saved, two protected functions are called; <code>_beforeSave</code> and <code>_afterSave</code>. This is important because during these methods events are fired.</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="php" style="font-family:monospace;"> <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> save<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+    <span style="color: #009900;">&#123;</span>
+        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span>_getResource<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">beginTransaction</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+        try <span style="color: #009900;">&#123;</span>
+            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span>_beforeSave<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+            <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span>_dataSaveAllowed<span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+                <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span>_getResource<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">save</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+                <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span>_afterSave<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+            <span style="color: #009900;">&#125;</span>
+            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span>_getResource<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">commit</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+        <span style="color: #009900;">&#125;</span>
+        catch <span style="color: #009900;">&#40;</span>Exception <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#123;</span>
+            <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span>_getResource<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">rollBack</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+            <span style="color: #b1b100;">throw</span> <span style="color: #000088;">$e</span><span style="color: #339933;">;</span>
+        <span style="color: #009900;">&#125;</span>
+        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">;</span>
+    <span style="color: #009900;">&#125;</span></pre></td></tr></table><p class="theCode" style="display:none;"> public function save()
+    {
+        $this-&gt;_getResource()-&gt;beginTransaction();
+        try {
+            $this-&gt;_beforeSave();
+            if ($this-&gt;_dataSaveAllowed) {
+                $this-&gt;_getResource()-&gt;save($this);
+                $this-&gt;_afterSave();
+            }
+            $this-&gt;_getResource()-&gt;commit();
+        }
+        catch (Exception $e){
+            $this-&gt;_getResource()-&gt;rollBack();
+            throw $e;
+        }
+        return $this;
+    }</p></div>
+
+<p>This snippet shows two events being fired. Notice that there is a generic event and then a dynamic one where the name of the event is built based on the object being saved. This allows you to actually listen for very explicit events like &#8220;after a shipment is saved&#8221; or &#8220;before a customer is saved&#8221; as well as general ones like &#8220;before object any saved&#8221;- the possibilities are <em>limitless</em>. I would like to experiment using the before load and after save to implement memcaching for Magento &#8211; anyone interested in collaborating should <a href="../../../about/%23contact.html">contact me</a>.</p>
+<p>The other thing to notice is that objects can be passed in to an event dispatch which then in turn get passed on to the listeners. The way to pass these is through an associative array. The keys become the names of the fields on the observer object &#8211; I&#8217;ll show you that later.</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="php" style="font-family:monospace;">    <span style="color: #000000; font-weight: bold;">protected</span> <span style="color: #000000; font-weight: bold;">function</span> _beforeSave<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+    <span style="color: #009900;">&#123;</span>
+        Mage<span style="color: #339933;">::</span><span style="color: #004000;">dispatchEvent</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'model_save_before'</span><span style="color: #339933;">,</span> <span style="color: #990000;">array</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'object'</span><span style="color: #339933;">=&gt;</span><span style="color: #000088;">$this</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+        Mage<span style="color: #339933;">::</span><span style="color: #004000;">dispatchEvent</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span>_eventPrefix<span style="color: #339933;">.</span><span style="color: #0000ff;">'_save_before'</span><span style="color: #339933;">,</span> <span style="color: #990000;">array</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span>_eventObject<span style="color: #339933;">=&gt;</span><span style="color: #000088;">$this</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$this</span><span style="color: #339933;">;</span>
+    <span style="color: #009900;">&#125;</span></pre></td></tr></table><p class="theCode" style="display:none;">    protected function _beforeSave()
+    {
+        Mage::dispatchEvent('model_save_before', array('object'=&gt;$this));
+        Mage::dispatchEvent($this-&gt;_eventPrefix.'_save_before', array($this-&gt;_eventObject=&gt;$this));
+        return $this;
+    }</p></div>
+
+<p>You can see that each event is actually constructed based on the object being saved. So if we were saving a <code>Mage_Catalog_Model_Product</code> then the event will have:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="php" style="font-family:monospace;"> <span style="color: #000000; font-weight: bold;">protected</span> <span style="color: #000088;">$_eventPrefix</span>      <span style="color: #339933;">=</span> <span style="color: #0000ff;">'catalog_product'</span><span style="color: #339933;">;</span>
+ <span style="color: #000000; font-weight: bold;">protected</span> <span style="color: #000088;">$_eventObject</span>      <span style="color: #339933;">=</span> <span style="color: #0000ff;">'product'</span><span style="color: #339933;">;</span></pre></td></tr></table><p class="theCode" style="display:none;"> protected $_eventPrefix      = 'catalog_product';
+ protected $_eventObject      = 'product';</p></div>
+
+<p>So that is how we fire events, there are 100&#8217;s explicitly littered throughout the Magento core code and 1000&#8217;s more implicitly fired by actions like saving and loading objects. If you don&#8217;t believe me, try putting a <code>Mage::log()</code> statment in the <code>dispatchEvent</code> function. You can fire events yourself in your own modules too, just use the <code>dispatchEvent()</code> function like the Magento developers do.</p>
+<h3>Binding a function to an event</h3>
+<p>The next step is to actually configure Magento to call your function when a particular event is fired. This is handled in the config.xml file as shown in the snippet below &#8211; which in this example is listening to <code>admin_session_user_login_success</code>. You can place this event block inside any of the config &#8216;areas&#8217; &#8211; but it is important to think carefully about which one, as I will show you shortly, if you use <code>admin</code> or <code>adminhtml</code> instead of <code>global</code> &#8211; then you will restrict the circumstances under which your observer is bound to the event.</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="xml" style="font-family:monospace;">        <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;events<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+	      <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;admin_session_user_login_success<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+	        <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;observers<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+	          <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;some_descriptive_phrase_for_your_listener<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+	            <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;type<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>singleton<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/type<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+	            <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;class<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>model_base/class_name<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/class<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+	            <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;method<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>function_name<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/method<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+	          <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/some_descriptive_phrase_for_your_listener<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+	        <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/observers<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+	      <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/admin_session_user_login_success<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+    	<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/events<span style="color: #000000; font-weight: bold;">&gt;</span></span></span></pre></td></tr></table><p class="theCode" style="display:none;">        &lt;events&gt;
+	      &lt;admin_session_user_login_success&gt;
+	        &lt;observers&gt;
+	          &lt;some_descriptive_phrase_for_your_listener&gt;
+	            &lt;type&gt;singleton&lt;/type&gt;
+	            &lt;class&gt;model_base/class_name&lt;/class&gt;
+	            &lt;method&gt;function_name&lt;/method&gt;
+	          &lt;/some_descriptive_phrase_for_your_listener&gt;
+	        &lt;/observers&gt;
+	      &lt;/admin_session_user_login_success&gt;
+    	&lt;/events&gt;</p></div>
+
+<h3>Implementing the observer</h3>
+<p>Right so if you get this far you just need to actually implement the function that will get called, and correctly access any data that has been passed along within the event. That&#8217;s what I&#8217;ll show you in this next snippet.</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="php" style="font-family:monospace;">&nbsp;
+<span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> salesOrderShipmentTrackSaveAfter<span style="color: #009900;">&#40;</span>Varien_Event_Observer <span style="color: #000088;">$observer</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+&nbsp;
+        <span style="color: #000088;">$track</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$observer</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getEvent</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getTrack</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+        <span style="color: #000088;">$order</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$track</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getShipment</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getOrder</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+        <span style="color: #000088;">$order</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getShippingMethod</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+        <span style="color: #666666; font-style: italic;">// ...</span>
+    <span style="color: #009900;">&#125;</span></pre></td></tr></table><p class="theCode" style="display:none;">
+public function salesOrderShipmentTrackSaveAfter(Varien_Event_Observer $observer) {
+    	
+        $track = $observer-&gt;getEvent()-&gt;getTrack();
+
+        $order = $track-&gt;getShipment()-&gt;getOrder();
+
+        $order-&gt;getShippingMethod();
+        // ...
+    }</p></div>
+
+<p>The $observer object get&#8217;s populated with variables that can be accessed via get&#8217;s and set&#8217;s courtesy of Magento&#8217;s use of the magic <code>__get</code> and <code>__set</code> &#8211; a feature which for me, the jury is still out on. The names of the variables are the keys of the associative array passed in when the event was fired (you were paying attention to that part right?) so the <code>getTrack()</code> function here can be called on the event because the array passed to the event looked like <code>array('track'=>$track)</code>.</p>
+<h2>Why is my Observer not firing &#8211; Config areas in Magento</h2>
+<p>Right so that&#8217;s my little intro to events and observers in Magento out of the way, now to my problem and how I solved it. </p>
+<p>The problem was that my event <em>was</em> firing but my observer was not being called. It was being called if I saved the object through the browser, but not if I ran my test harness on the command line. Weird. So after a lot of rummaging through code I found the problem was because the area of the config that bound my observer to the event, was not being loaded when the code was called on the command line &#8211; but was when it was called from the Admin controller. So on investigating why I found this code in the base Adminhtml controller (<code>Mage_Adminhtml_Controller_Action</code>):</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="php" style="font-family:monospace;">&nbsp;
+ <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> preDispatch<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+    <span style="color: #009900;">&#123;</span>
+        Mage<span style="color: #339933;">::</span><span style="color: #004000;">getDesign</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setArea</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'adminhtml'</span><span style="color: #009900;">&#41;</span>
+            <span style="color: #339933;">-&gt;</span><span style="color: #004000;">setPackageName</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span>Mage<span style="color: #339933;">::</span><span style="color: #004000;">getConfig</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getNode</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'stores/admin/design/package/name'</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span>
+            <span style="color: #339933;">-&gt;</span><span style="color: #004000;">setTheme</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#40;</span>string<span style="color: #009900;">&#41;</span>Mage<span style="color: #339933;">::</span><span style="color: #004000;">getConfig</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getNode</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'stores/admin/design/theme/default'</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+        <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getLayout</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setArea</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'adminhtml'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+        Mage<span style="color: #339933;">::</span><span style="color: #004000;">dispatchEvent</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'adminhtml_controller_action_predispatch_start'</span><span style="color: #339933;">,</span> <span style="color: #990000;">array</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+        parent<span style="color: #339933;">::</span><span style="color: #004000;">preDispatch</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre></td></tr></table><p class="theCode" style="display:none;">
+ public function preDispatch()
+    {
+        Mage::getDesign()-&gt;setArea('adminhtml')
+            -&gt;setPackageName((string)Mage::getConfig()-&gt;getNode('stores/admin/design/package/name'))
+            -&gt;setTheme((string)Mage::getConfig()-&gt;getNode('stores/admin/design/theme/default'));
+
+        $this-&gt;getLayout()-&gt;setArea('adminhtml');
+
+        Mage::dispatchEvent('adminhtml_controller_action_predispatch_start', array());
+        parent::preDispatch();</p></div>
+
+<p>And of course in the parent I find:</p>
+<pre lang="php
+  Mage::app()->loadArea($this->getLayout()->getArea());
+</pre>
+<p>So every single Adminhtml request, will load the adminhtml config (<em>naturally</em>) and if your event is bound only in the adminhtml config section, then requests which do not load that area, will not bind that observer. That&#8217;s a problem if you want to automatically batch update your Google Checkout shipments from your external fulfillment centers. </p>
+<p>So the fix is a) move the config to global, so it is bound everywhere, or b) have your cron job &#8216;pretend&#8217; to be loading from an adminhtml request. I went for option b) because I hate to change core Magento config files, even if I think they are probably wrong &#8211; it just means more to fix when upgrading, and I dislike doing that.</p>
+<p>So the grand finale &#8211; if you want to load other areas of the config (and even specific parts) during testing or cron processing (or any command line processing too for that matter) then do on of these commands:</p>
+<pre lang="php
+// Load just the event part
+Mage::app()->loadAreaPart('adminhtml', Mage_Core_Model_App_Area::PART_EVENTS);
+Mage::app()->loadAreaPart(Mage_Core_Model_App_Area::AREA_GLOBAL, 
+                                                        Mage_Core_Model_App_Area::PART_EVENTS);
+Mage::app()->loadAreaPart(Mage_Core_Model_App_Area::AREA_FRONTEND, 
+                                                        Mage_Core_Model_App_Area::PART_EVENTS);
+Mage::app()->loadAreaPart(Mage_Core_Model_App_Area::AREA_ADMIN, 
+                                                        Mage_Core_Model_App_Area::PART_EVENTS);
+//Load all parts of the config
+Mage::app()->loadArea('adminhtml');
+Mage::app()->loadArea(Mage_Core_Model_App_Area::AREA_FRONTEND);
+// etc...
+
+</pre>
+<p><strong>Note:</strong> I don&#8217;t know why there is no constant for adminhtml in Magento &#8211; but there isn&#8217;t at the moment.</p>
+<p>Anyway to conclude I hope this little explanation of Magento events has been helpful to some of you, and if you have to run any commandline/cron Magento code I hope this helps you to ensure you are loading the right config file areas/parts. If anyone is interested in trying to use the events to deal with some basic memcaching of objects in a bid to speed up magento, please let me know.</p>
+<div class='yarpp-related'>
+<p>You might also be interested in:<ol>
+<li><a href="../sitemap-submit-magento-extension-to-submit-your-google-sitemap/index.html" rel="bookmark" title="Sitemap Submit &#8211; Magento Extension to Submit your Google Sitemap">Sitemap Submit &#8211; Magento Extension to Submit your Google Sitemap </a></li>
+<li><a href="../../06/new-smtp-pro-magento-email-extension-released/index.html" rel="bookmark" title="New SMTP Pro Magento Email extension released">New SMTP Pro Magento Email extension released </a></li>
+<li><a href="../../07/easily-set-a-custom-order-number-in-magento-with-my-free-setstartordernumber-extension/index.html" rel="bookmark" title="Easily Set a Custom Order Number in Magento With My Free SetStartOrderNumber Extension">Easily Set a Custom Order Number in Magento With My Free SetStartOrderNumber Extension </a></li>
+<li><a href="../../../2009/04/how-to-bulk-enable-products-when-google-checkout-is-disabled-in-magento/index.html" rel="bookmark" title="How to Bulk Enable Products when Google Checkout is Disabled in Magento">How to Bulk Enable Products when Google Checkout is Disabled in Magento </a></li>
+<li><a href="../../04/new-magento-smtp-features-email-logging-and-email-sending-events/index.html" rel="bookmark" title="New Magento SMTP features: Email logging and email sending events">New Magento SMTP features: Email logging and email sending events </a></li>
+</ol></p>
+</div>
+		</div><!-- .entry-content -->
+		<nav id="post-navigation" class="navigation post-navigation" role="navigation" aria-label="Post Navigation"><span class="screen-reader-text">Post navigation</span><div class="nav-links"><div class="nav-previous"><a href="../../../2009/12/a-super-simple-magento-store-monitoring-tool-powered-by-google-app-engine/index.html" rel="prev">A super simple Magento store monitoring tool powered by Google App Engine</a></div><div class="nav-next"><a href="../sitemap-submit-magento-extension-to-submit-your-google-sitemap/index.html" rel="next">Sitemap Submit &#8211; Magento Extension to Submit your Google Sitemap</a></div></div></nav>
+<section id="comments" class="comments-area" aria-label="Post Comments">
+
+			<h2 class="comments-title">
+			12 thoughts on &ldquo;<span>Magento Events Explained and a few Gotchas avoided!</span>&rdquo;		</h2>
+
+		
+		<ol class="comment-list">
+					<li class="comment even thread-even depth-1" id="comment-1287">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/4be8e15278bab5920899bffeebeea0ff?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/4be8e15278bab5920899bffeebeea0ff?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.gogodigital.co.uk/' rel='external nofollow' class='url'>Matt Dixon</a></cite>			</div>
+			
+			<a href="index.html#comment-1287" class="comment-date">
+				<time datetime="2010-04-28T14:12:56+00:00">April 28, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1287" class="comment-content">
+				<div class="comment-text">
+		<p>Hi,</p>
+<p>Is it possible to stop the parent method from running from within an event method? or to pass data to the parent event?</p>
+<p>Ie. I want to use checkout_cart_update_items_before to check a reserved quantity db field (changing the update quantity if not available) &#8211; is that possible or should I just override the core class instead?</p>
+<p>Your help would be much appreciated!<br />
+Matt</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-1288">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-1288" class="comment-date">
+				<time datetime="2010-04-28T14:50:01+00:00">April 28, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1288" class="comment-content">
+				<div class="comment-text">
+		<p>Looking at where that event is fired I&#8217;d say you can manipulate the <code>$data</code> variable in your observer and in doing so control what the parent method then does with the qty updating.<br />
+<code>        Mage::dispatchEvent('checkout_cart_update_items_before', array('cart'=>$this, 'info'=>$data));</code></p>
+<p>For example, the code looks for a qty in the itemInfo, <code>$itemInfo['qty']</code> in your observer you could check if the requested new qty is allowable, and if it is not, set it to the old value, which you could get the same way the cart object does;  <code>$item = $this->getQuote()->getItemById($itemId);</code> except $this would be your observer, so you&#8217;d want to call that function on the cart parameter to the observer. Does that make sense?</p>
+<p>You could even set a session message in your observer like &#8220;<em>Sorry the requested quantity of that product is not available</em>&#8221; to be friendly to your users.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1392">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/acf93279ad98c7df6fddf5187da3adfd?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/acf93279ad98c7df6fddf5187da3adfd?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">xer0x</cite>			</div>
+			
+			<a href="index.html#comment-1392" class="comment-date">
+				<time datetime="2010-06-02T12:40:20+00:00">June 2, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1392" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks this helped a ton</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1462">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/9186f035a3cdb503292773284c7989ed?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/9186f035a3cdb503292773284c7989ed?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.cellyeah.com/' rel='external nofollow' class='url'>Jamaal</a></cite>			</div>
+			
+			<a href="index.html#comment-1462" class="comment-date">
+				<time datetime="2010-06-25T23:02:14+00:00">June 25, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1462" class="comment-content">
+				<div class="comment-text">
+		<p>I&#8217;m still so confused about this.  I am trying to get checkout_onepage_controller_success_action to work when someone checks out I need to send some SOAP data to someone else.  However it never fires!  </p>
+<p>I&#8217;ve RTFM&#8217;ed so many times and can&#8217;t figure out what&#8217;s wrong.  </p>
+<p>[root@VO12044 etc]# cat config.xml</p>
+<p>                0.1.0</p>
+<p>                MyCompany_MyModule_Helper</p>
+<p>            &lt;!&#8211;  &#8211;&gt;</p>
+<p>                        model<br />
+                        MyCompany_MyModule_Helper_MyFunction<br />
+                        setMyFuction</p>
+<p><!-- /app/code/local/MyCompany/MyModule/etc/config.xml --></p>
+<p>in app/code/local/MyCompany/MyModule/Helper</p>
+<p>[root@VO12044 Helper]# cat MyFunction.php<br />
+getEvent()-&gt;getOrder();<br />
+     foreach ($order-&gt;getAllItems() as $item) {<br />
+        $fname = ($_SERVER[&#8216;DOCUMENT_ROOT&#8217;].&#8217;orders.txt&#8217;);<br />
+        $fhandle = fopen($fname,&#8221;a&#8221;);<br />
+        fwrite($fhandle,$item);<br />
+        fwrite($fhandle,&#8221;BLAH&#8221;);<br />
+        fclose($fhandle);<br />
+        //echo $order-&gt;getStatus();<br />
+        //echo $content;</p>
+<p>        }</p>
+<p>        //$event = $observer-&gt;getEvent();<br />
+        //$order = $event-&gt;getOrder();<br />
+        //$customer = $event-&gt;getCustomer();</p>
+<p>        //file_put_contents($_SERVER[&#8216;DOCUMENT_ROOT&#8217;].&#8217;/_db_backups/array.txt&#8217;, serialize(base64_encode($order)));<br />
+        //return;<br />
+    }<br />
+}<br />
+// <!-- /app/code/local/MyCompany/MyModule/Helper/MyFunction.php --></p>
+<p>I can&#8217;t figure out what im doing wrong.   HALP! </p>
+<p><a href="mailto:jamaal@cellyeah.com">jamaal@cellyeah.com</a></p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-1466">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-1466" class="comment-date">
+				<time datetime="2010-06-26T15:59:25+00:00">June 26, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1466" class="comment-content">
+				<div class="comment-text">
+		<p>The comment had all your formatting stripped &#8211; flick me an email and I&#8217;ll run an eye over that config.xml &#8211; the php code you pasted in doesn&#8217;t look quite right either, but that may be related to the comment formatting.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1467">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/9186f035a3cdb503292773284c7989ed?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/9186f035a3cdb503292773284c7989ed?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.cellyeah.com/' rel='external nofollow' class='url'>Jamaal</a></cite>			</div>
+			
+			<a href="index.html#comment-1467" class="comment-date">
+				<time datetime="2010-06-26T20:14:04+00:00">June 26, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1467" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks Ashley, just sent you an email! </p>
+<p>-jamaal</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1962">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/8fe85fcbf3f5f6000311a8cec2497ab3?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/8fe85fcbf3f5f6000311a8cec2497ab3?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://yoururl/' rel='external nofollow' class='url'>philippe</a></cite>			</div>
+			
+			<a href="index.html#comment-1962" class="comment-date">
+				<time datetime="2010-11-13T09:17:33+00:00">November 13, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1962" class="comment-content">
+				<div class="comment-text">
+		<p>Same problem here. Using magento 1.4.1.1 and &#8220;checkout_onepage_controller_success_action&#8221; never seems to fire. Done debugging until the app() function call in Mage.php, but can&#8217;t find the problem</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2917">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/90e0570d64853b3d7e8b0c1182c802c4?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/90e0570d64853b3d7e8b0c1182c802c4?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Michael C.</cite>			</div>
+			
+			<a href="index.html#comment-2917" class="comment-date">
+				<time datetime="2012-02-02T13:17:37+00:00">February 2, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2917" class="comment-content">
+				<div class="comment-text">
+		<p>Ashley,</p>
+<p>You completely forgot to mention the part about the &#8220;config area.&#8221;  You talked about your observer&#8217;s callback not getting called in command-line context; then you pointed out some code in the parent.  But you never said anything else.  Can you provide working sample snippets showing your final config.xml and observer class?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2918">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='../../../index.html' rel='external nofollow' class='url'>Ashley</a></cite>			</div>
+			
+			<a href="index.html#comment-2918" class="comment-date">
+				<time datetime="2012-02-02T14:05:03+00:00">February 2, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2918" class="comment-content">
+				<div class="comment-text">
+		<p>Troll much? Did you read the section of the article titled:<br />
+&#8220;Why is my Observer not firing – Config areas in Magento&#8221;</p>
+<p>The code is in that section:<br />
+Mage::app()-&gt;loadArea();</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2996">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/517b0d8c331d8636229eaf2b76ae9e07?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/517b0d8c331d8636229eaf2b76ae9e07?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.ruiwant.com/' rel='external nofollow' class='url'>Magento</a></cite>			</div>
+			
+			<a href="index.html#comment-2996" class="comment-date">
+				<time datetime="2012-02-24T00:09:18+00:00">February 24, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2996" class="comment-content">
+				<div class="comment-text">
+		<p>Hello，Ashley. Thanks for your great post! I have a question here, I searched magento app folder for &#8220;checkout_submit_all_after&#8221; event, it was fired in lots of places in Magento Core code. As I know, Magento just run one time of the same event in one request. So why I can still use this event in my own module in local code?</p>
+<p>Sorry for my pool English 🙂 Thanks in advanced.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-3558">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/fcd48d4e557a5842ba8d50edce6ba92e?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/fcd48d4e557a5842ba8d50edce6ba92e?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">prat</cite>			</div>
+			
+			<a href="index.html#comment-3558" class="comment-date">
+				<time datetime="2012-03-13T11:44:31+00:00">March 13, 2012</time>			</a>
+		</div>
+				<div id="div-comment-3558" class="comment-content">
+				<div class="comment-text">
+		<p>HI Ashley,<br />
+ It’s really very informative &amp; useful article. I wanted to know more about event-observer model of Magento.<br />
+ Currently I am focussing on sales order placement event. I have created one custom table in Magento that contains different sales order related columns(like increment id from sales_flat_order, item_name,sku from sales_flat_order_item etc.). I connected to mysql database through PHP. I join these table to form a single query &amp; put this query which fetches &amp; inserts data into custom table.<br />
+ Now my ultimate aim is once customer places order, this php file must get called so that all data fetched through that query get inserted into custom table…<br />
+ So how event-observer model I can use for the same…do u have any sample code for the same…<br />
+ Plz guide me…</p>
+<p>Regards,<br />
+ Prat</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-9794">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/1fd65f78203f30cd8664adb4a4bfbe5a?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/1fd65f78203f30cd8664adb4a4bfbe5a?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Humayun</cite>			</div>
+			
+			<a href="index.html#comment-9794" class="comment-date">
+				<time datetime="2013-03-12T15:22:24+00:00">March 12, 2013</time>			</a>
+		</div>
+				<div id="div-comment-9794" class="comment-content">
+				<div class="comment-text">
+		<p>Cool post!<br />
+I have a weird situation. I am trying to hook on to sales_order_save_after event but it won&#8217;t work. To debug this I am doing Mage::log in Mage.php to see what events are firing. Suprirsing, its on printing &#8216;resource_get_tablename&#8217; and &#8216;core_collection_abstract_load_before&#8217; and &#8216;after&#8217; few times (24 lines altogether) and nothing else. To make it more confusing, when I save a product (by going Manage Products) its prints all big list of all the events (its suppose to). Any idea how to debug this? I want to send an email out on sales_order_save_after event.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		</ol><!-- .comment-list -->
+
+				<p class="no-comments">Comments are closed.</p>
+	
+</section><!-- #comments -->
+
+</div><!-- #post-## -->
+
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+		</div><!-- .col-full -->
+	</div><!-- #content -->
+
+	
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="col-full">
+
+					<div class="site-info">
+			&copy; ASchroder.com 2023						<br /> Storefront designed by <a href="http://www.woocommerce.com/" title="WooCommerce - The Best eCommerce Platform for WordPress" rel="author">WooCommerce</a>.					</div><!-- .site-info -->
+		
+		</div><!-- .col-full -->
+	</footer><!-- #colophon -->
+
+	
+</div><!-- #page -->
+
+<link rel='stylesheet' id='yarppRelatedCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/related101e.css?ver=4.8.15' type='text/css' media='all' />
+<script type='text/javascript' src='../../../wp-content/plugins/wp-syntax/js/wp-syntax4963.js?ver=1.1'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/navigation.min11a8.js?ver=20120206'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/skip-link-focus-fix.min08e0.js?ver=20130115'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/wp-embed.min101e.js?ver=4.8.15'></script>
+
+</body>
+
+<!-- Mirrored from www.aschroder.com/2010/01/magento-events-explained-and-a-few-gotchas-avoided/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:31:55 GMT -->
+</html>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 13:35:10 by W3 Total Cache -->

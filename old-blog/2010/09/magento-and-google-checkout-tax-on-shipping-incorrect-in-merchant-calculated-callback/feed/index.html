@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>Comments on: Magento and Google Checkout: Tax on Shipping incorrect in Merchant Calculated callback</title>
+	<atom:link href="http://www.aschroder.com/2010/09/magento-and-google-checkout-tax-on-shipping-incorrect-in-merchant-calculated-callback/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.aschroder.com/2010/09/magento-and-google-checkout-tax-on-shipping-incorrect-in-merchant-calculated-callback/</link>
+	<description>Notes on Web Development</description>
+	<lastBuildDate>Wed, 23 Dec 2020 09:25:05 +0000</lastBuildDate>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8.15</generator>
+	<item>
+		<title>By: Tom B. Taker</title>
+		<link>http://www.aschroder.com/2010/09/magento-and-google-checkout-tax-on-shipping-incorrect-in-merchant-calculated-callback/comment-page-1/#comment-4749</link>
+		<dc:creator><![CDATA[Tom B. Taker]]></dc:creator>
+		<pubDate>Tue, 17 Apr 2012 18:06:23 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1098#comment-4749</guid>
+		<description><![CDATA[Man, I just &lt;em&gt;love&lt;/em&gt; those graphs! Truly! So much so I almost want to steal them. :)
+
+I agree with your conclusions. Magento CE, as open source, is not sufficiently supported by Magento or the so-called &quot;community&quot; where help is very intermittent but can occasionally be found. So I pretty much have to figure out most things for myself.
+
+Because those graphs are so cool, I&#039;m going to read as much of your blog as I possibly can.]]></description>
+		<content:encoded><![CDATA[<p>Man, I just <em>love</em> those graphs! Truly! So much so I almost want to steal them. 🙂</p>
+<p>I agree with your conclusions. Magento CE, as open source, is not sufficiently supported by Magento or the so-called &#8220;community&#8221; where help is very intermittent but can occasionally be found. So I pretty much have to figure out most things for myself.</p>
+<p>Because those graphs are so cool, I&#8217;m going to read as much of your blog as I possibly can.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Ashley</title>
+		<link>http://www.aschroder.com/2010/09/magento-and-google-checkout-tax-on-shipping-incorrect-in-merchant-calculated-callback/comment-page-1/#comment-1851</link>
+		<dc:creator><![CDATA[Ashley]]></dc:creator>
+		<pubDate>Mon, 13 Sep 2010 08:58:47 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1098#comment-1851</guid>
+		<description><![CDATA[Thanks Jeff - I see the fix is the same as mine, except I had some possibly spurious setShippingAmount() calls. I&#039;ll take some small comfort in that...]]></description>
+		<content:encoded><![CDATA[<p>Thanks Jeff &#8211; I see the fix is the same as mine, except I had some possibly spurious setShippingAmount() calls. I&#8217;ll take some small comfort in that&#8230;</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Jeff</title>
+		<link>http://www.aschroder.com/2010/09/magento-and-google-checkout-tax-on-shipping-incorrect-in-merchant-calculated-callback/comment-page-1/#comment-1842</link>
+		<dc:creator><![CDATA[Jeff]]></dc:creator>
+		<pubDate>Sat, 11 Sep 2010 20:15:36 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1098#comment-1842</guid>
+		<description><![CDATA[Here are the release notes for that version of Magento with the fix: http://svn.magentocommerce.com/source/branches/1.4-trunk/RELEASE_NOTES.txt
+
+And download it like this: &quot;svn checkout http://svn.magentocommerce.com/source/branches/1.4-trunk&quot;]]></description>
+		<content:encoded><![CDATA[<p>Here are the release notes for that version of Magento with the fix: <a href="http://svn.magentocommerce.com/source/branches/1.4-trunk/RELEASE_NOTES.txt" rel="nofollow">http://svn.magentocommerce.com/source/branches/1.4-trunk/RELEASE_NOTES.txt</a></p>
+<p>And download it like this: &#8220;svn checkout <a href="http://svn.magentocommerce.com/source/branches/1.4-trunk" rel="nofollow">http://svn.magentocommerce.com/source/branches/1.4-trunk</a>&#8220;</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Ashley</title>
+		<link>http://www.aschroder.com/2010/09/magento-and-google-checkout-tax-on-shipping-incorrect-in-merchant-calculated-callback/comment-page-1/#comment-1831</link>
+		<dc:creator><![CDATA[Ashley]]></dc:creator>
+		<pubDate>Thu, 09 Sep 2010 18:47:48 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1098#comment-1831</guid>
+		<description><![CDATA[Hah! So many feelings...
+
+&lt;img src=&quot;http://chart.apis.google.com/chart?cht=p3&amp;chs=375x100&amp;chd=t:26,4,25,15,10,20&amp;chco=53241E,9D1D0C,E67D6F,A38783,523430,cccccc&amp;chl=Embarrassment&#124;Disbelief&#124;Remorse&#124;Frustration&#124;Anger&#124;Disappointment&quot; alt=&quot;Feelings...&quot; /&gt;
+
+Thanks for pointing it out, at least now I can check my fix is at least close to the core fix. I couldn&#039;t find any mention of 1.4.x-devel-79607 or &quot;Fixed Google Chekout: Discount for shipping amount doesn’t apply&quot; on Google - where did you see that? I think my next train project should be to make it index-able by Google.]]></description>
+		<content:encoded><![CDATA[<p>Hah! So many feelings&#8230;</p>
+<p><img src="http://chart.apis.google.com/chart?cht=p3&#038;chs=375x100&#038;chd=t:26,4,25,15,10,20&#038;chco=53241E,9D1D0C,E67D6F,A38783,523430,cccccc&#038;chl=Embarrassment|Disbelief|Remorse|Frustration|Anger|Disappointment" alt="Feelings..." /></p>
+<p>Thanks for pointing it out, at least now I can check my fix is at least close to the core fix. I couldn&#8217;t find any mention of 1.4.x-devel-79607 or &#8220;Fixed Google Chekout: Discount for shipping amount doesn’t apply&#8221; on Google &#8211; where did you see that? I think my next train project should be to make it index-able by Google.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: loopion</title>
+		<link>http://www.aschroder.com/2010/09/magento-and-google-checkout-tax-on-shipping-incorrect-in-merchant-calculated-callback/comment-page-1/#comment-1829</link>
+		<dc:creator><![CDATA[loopion]]></dc:creator>
+		<pubDate>Thu, 09 Sep 2010 14:16:15 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1098#comment-1829</guid>
+		<description><![CDATA[It&#039;s fixed on the dev 1.4.x-devel-79607
+
+
+* Fixed Google Chekout: Discount for shipping amount doesn&#039;t apply
+** onepage checkout recalculates shipping charges after setting the payment method (not solved yet in multishipping)
+** added warning about Carrier Calculated Shipping in Google Checkout system configuration
+** GC API callback now sets the payment method to quote on requests
+
+;-)]]></description>
+		<content:encoded><![CDATA[<p>It&#8217;s fixed on the dev 1.4.x-devel-79607</p>
+<p>* Fixed Google Chekout: Discount for shipping amount doesn&#8217;t apply<br />
+** onepage checkout recalculates shipping charges after setting the payment method (not solved yet in multishipping)<br />
+** added warning about Carrier Calculated Shipping in Google Checkout system configuration<br />
+** GC API callback now sets the payment method to quote on requests</p>
+<p>😉</p>
+]]></content:encoded>
+	</item>
+</channel>
+</rss>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk (Requested URI is rejected)
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:38:07 by W3 Total Cache -->

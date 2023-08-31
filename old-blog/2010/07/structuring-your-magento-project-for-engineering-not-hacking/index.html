@@ -1,0 +1,849 @@
+<!doctype html>
+<html lang="en-US">
+
+<!-- Mirrored from www.aschroder.com/2010/07/structuring-your-magento-project-for-engineering-not-hacking/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:19:54 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="../../../xmlrpc.php">
+
+<title>Structuring your Magento project for Engineering, not Hacking | ASchroder.com</title>
+
+<!-- All in One SEO Pack 2.4.2 by Michael Torbert of Semper Fi Web Design[289,379] -->
+<meta name="description"  content="This is a blog post about how I structure my Magento store development - it provides several benefits in repeatability, minimized duplication of effort and" />
+
+<meta name="keywords"  content="magento,project,development,structure,engineering,modman" />
+
+<!-- /all in one seo pack -->
+<link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
+<link rel='dns-prefetch' href='http://s.w.org/' />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Feed" href="../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Comments Feed" href="../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Structuring your Magento project for Engineering, not Hacking Comments Feed" href="feed/index.html" />
+<!-- This site uses the Google Analytics by MonsterInsights plugin v6.2.4 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+<script type="text/javascript" data-cfasync="false">
+		var disableStr = 'ga-disable-UA-6477134-1';
+
+	/* Function to detect opted out users */
+	function __gaTrackerIsOptedOut() {
+		return document.cookie.indexOf(disableStr + '=true') > -1;
+	}
+
+	/* Disable tracking if the opt-out cookie exists. */
+	if ( __gaTrackerIsOptedOut() ) {
+		window[disableStr] = true;
+	}
+
+	/* Opt-out function */
+	function __gaTrackerOptout() {
+	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+	  window[disableStr] = true;
+	}
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','http://www.google-analytics.com/analytics.js','__gaTracker');
+
+	__gaTracker('create', 'UA-6477134-1', 'auto');
+	__gaTracker('set', 'forceSSL', true);
+	__gaTracker('send','pageview');
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/www.aschroder.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.15"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='yarppWidgetCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/widget101e.css?ver=4.8.15' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-syntax-css-css'  href='../../../wp-content/plugins/wp-syntax/css/wp-syntax4963.css?ver=1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-style-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/style5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<style id='storefront-style-inline-css' type='text/css'>
+
+			.main-navigation ul li a,
+			.site-title a,
+			ul.menu li a,
+			.site-branding h1 a,
+			.site-footer .storefront-handheld-footer-bar a:not(.button),
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				color: #333333;
+			}
+
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				border-color: #333333;
+			}
+
+			.main-navigation ul li a:hover,
+			.main-navigation ul li:hover > a,
+			.site-title a:hover,
+			a.cart-contents:hover,
+			.site-header-cart .widget_shopping_cart a:hover,
+			.site-header-cart:hover > li > a,
+			.site-header ul.menu li.current-menu-item > a {
+				color: #838383;
+			}
+
+			table th {
+				background-color: #f8f8f8;
+			}
+
+			table tbody td {
+				background-color: #fdfdfd;
+			}
+
+			table tbody tr:nth-child(2n) td,
+			fieldset,
+			fieldset legend {
+				background-color: #fbfbfb;
+			}
+
+			.site-header,
+			.secondary-navigation ul ul,
+			.main-navigation ul.menu > li.menu-item-has-children:after,
+			.secondary-navigation ul.menu ul,
+			.storefront-handheld-footer-bar,
+			.storefront-handheld-footer-bar ul li > a,
+			.storefront-handheld-footer-bar ul li.search .site-search,
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				background-color: #ffffff;
+			}
+
+			p.site-description,
+			.site-header,
+			.storefront-handheld-footer-bar {
+				color: #6d6d6d;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count,
+			button.menu-toggle:after,
+			button.menu-toggle:before,
+			button.menu-toggle span:before {
+				background-color: #333333;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				color: #ffffff;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				border-color: #ffffff;
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+				color: #333333;
+			}
+
+			.widget h1 {
+				border-bottom-color: #333333;
+			}
+
+			body,
+			.secondary-navigation a,
+			.onsale,
+			.pagination .page-numbers li .page-numbers:not(.current), .woocommerce-pagination .page-numbers li .page-numbers:not(.current) {
+				color: #6d6d6d;
+			}
+
+			.widget-area .widget a,
+			.hentry .entry-header .posted-on a,
+			.hentry .entry-header .byline a {
+				color: #9f9f9f;
+			}
+
+			a  {
+				color: #0228d1;
+			}
+
+			a:focus,
+			.button:focus,
+			.button.alt:focus,
+			.button.added_to_cart:focus,
+			.button.wc-forward:focus,
+			button:focus,
+			input[type="button"]:focus,
+			input[type="reset"]:focus,
+			input[type="submit"]:focus {
+				outline-color: #0228d1;
+			}
+
+			button, input[type="button"], input[type="reset"], input[type="submit"], .button, .added_to_cart, .widget a.button, .site-header-cart .widget_shopping_cart a.button {
+				background-color: #eeeeee;
+				border-color: #eeeeee;
+				color: #333333;
+			}
+
+			button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, .button:hover, .added_to_cart:hover, .widget a.button:hover, .site-header-cart .widget_shopping_cart a.button:hover {
+				background-color: #d5d5d5;
+				border-color: #d5d5d5;
+				color: #333333;
+			}
+
+			button.alt, input[type="button"].alt, input[type="reset"].alt, input[type="submit"].alt, .button.alt, .added_to_cart.alt, .widget-area .widget a.button.alt, .added_to_cart, .widget a.button.checkout {
+				background-color: #333333;
+				border-color: #333333;
+				color: #ffffff;
+			}
+
+			button.alt:hover, input[type="button"].alt:hover, input[type="reset"].alt:hover, input[type="submit"].alt:hover, .button.alt:hover, .added_to_cart.alt:hover, .widget-area .widget a.button.alt:hover, .added_to_cart:hover, .widget a.button.checkout:hover {
+				background-color: #1a1a1a;
+				border-color: #1a1a1a;
+				color: #ffffff;
+			}
+
+			.pagination .page-numbers li .page-numbers.current, .woocommerce-pagination .page-numbers li .page-numbers.current {
+				background-color: #e6e6e6;
+				color: #6d6d6d;
+			}
+
+			#comments .comment-list .comment-content .comment-text {
+				background-color: #f8f8f8;
+			}
+
+			.site-footer {
+				background-color: #f0f0f0;
+				color: #6d6d6d;
+			}
+
+			.site-footer a:not(.button) {
+				color: #333333;
+			}
+
+			.site-footer h1, .site-footer h2, .site-footer h3, .site-footer h4, .site-footer h5, .site-footer h6 {
+				color: #333333;
+			}
+
+			#order_review {
+				background-color: #ffffff;
+			}
+
+			#payment .payment_methods > li .payment_box,
+			#payment .place-order {
+				background-color: #fafafa;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice) {
+				background-color: #f5f5f5;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice):hover {
+				background-color: #f0f0f0;
+			}
+
+			@media screen and ( min-width: 768px ) {
+				.secondary-navigation ul.menu a:hover {
+					color: #868686;
+				}
+
+				.secondary-navigation ul.menu a {
+					color: #6d6d6d;
+				}
+
+				.site-header-cart .widget_shopping_cart,
+				.main-navigation ul.menu ul.sub-menu,
+				.main-navigation ul.nav-menu ul.children {
+					background-color: #f0f0f0;
+				}
+
+				.site-header-cart .widget_shopping_cart .buttons,
+				.site-header-cart .widget_shopping_cart .total {
+					background-color: #f5f5f5;
+				}
+
+				.site-header {
+					border-bottom-color: #f0f0f0;
+				}
+			}
+</style>
+<link rel='stylesheet' id='storefront-icons-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/sass/base/icons5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-fonts-css'  href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,600,700,900&amp;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jqueryb8ff.js?ver=1.12.4'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jquery-migrate.min330a.js?ver=1.4.1'></script>
+<link rel='https://api.w.org/' href='../../../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../xmlrpc0db0.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='WordPress: Blank page after posting comments and Akismet' href='../../06/wordpress-blank-page-after-posting-comments-and-akismet/index.html' />
+<link rel='next' title='Why are my Magento products not showing up?!' href='../why-are-my-magento-products-not-showing-up/index.html' />
+<meta name="generator" content="WordPress 4.8.15" />
+<link rel="canonical" href="index.html" />
+<link rel='shortlink' href='../../../index14d6.html?p=879' />
+<link rel="alternate" type="application/json+oembed" href="../../../wp-json/oembed/1.0/embedccce.json?url=http%3A%2F%2Fwww.aschroder.com%2F2010%2F07%2Fstructuring-your-magento-project-for-engineering-not-hacking%2F" />
+<link rel="alternate" type="text/xml+oembed" href="../../../wp-json/oembed/1.0/embedf988?url=http%3A%2F%2Fwww.aschroder.com%2F2010%2F07%2Fstructuring-your-magento-project-for-engineering-not-hacking%2F&amp;format=xml" />
+</head>
+
+<body class="post-template-default single single-post postid-879 single-format-standard no-wc-breadcrumb storefront-full-width-content right-sidebar">
+
+
+<div id="page" class="hfeed site">
+	
+	<header id="masthead" class="site-header" role="banner" style="">
+		<div class="col-full">
+
+					<a class="skip-link screen-reader-text" href="#site-navigation">Skip to navigation</a>
+		<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+				<div class="site-branding">
+			<div class="beta site-title"><a href="../../../index.html" rel="home">ASchroder.com</a></div><p class="site-description">Notes on Web Development</p>		</div>
+		<div class="storefront-primary-navigation">		<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="Primary Navigation">
+		<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><span>Menu</span></button>
+			<div class="primary-navigation"><ul id="menu-main-menu" class="menu"><li id="menu-item-1119" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li id="menu-item-1118" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li id="menu-item-1872" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div><div class="handheld-navigation"><ul id="menu-main-menu-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div>		</nav><!-- #site-navigation -->
+		</div>
+		</div>
+	</header><!-- #masthead -->
+
+	
+	<div id="content" class="site-content" tabindex="-1">
+		<div class="col-full">
+
+		
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+<div id="post-879" class="post-879 post type-post status-publish format-standard hentry category-magento category-web-development tag-development tag-engineering tag-magento tag-modman tag-project tag-structure">
+
+			<header class="entry-header">
+		<span class="posted-on">Posted on <a href="index.html" rel="bookmark"><time class="entry-date published" datetime="2010-07-07T20:06:55+00:00">July 7, 2010</time> <time class="updated" datetime="2010-07-08T01:10:28+00:00">July 8, 2010</time></a></span><h1 class="entry-title">Structuring your Magento project for Engineering, not Hacking</h1>		</header><!-- .entry-header -->
+				<aside class="entry-meta">
+						<div class="author">
+				<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' /><div class="label">Written by</div><a href="../../../author/admin/index.html" title="Posts by Ashley" rel="author">Ashley</a>			</div>
+							<div class="cat-links">
+					<div class="label">Posted in</div><a href="../../../category/magento/index.html" rel="category tag">Magento</a>, <a href="../../../category/web-development/index.html" rel="category tag">Web Development</a>				</div>
+			
+							<div class="tags-links">
+					<div class="label">Tagged</div><a href="../../../tag/development/index.html" rel="tag">development</a>, <a href="../../../tag/engineering/index.html" rel="tag">engineering</a>, <a href="../../../tag/magento/index.html" rel="tag">Magento</a>, <a href="../../../tag/modman/index.html" rel="tag">modman</a>, <a href="../../../tag/project/index.html" rel="tag">project</a>, <a href="../../../tag/structure/index.html" rel="tag">structure</a>				</div>
+			
+		
+							<div class="comments-link">
+					<div class="label">Comments</div>					<span class="comments-link"><a href="index.html#comments">19 Comments</a></span>
+				</div>
+					</aside>
+				<div class="entry-content">
+		<p>This is a blog post about how I structure my Magento store development, and how that has been made easier thanks to the efforts of <a href="http://colin.mollenhour.com/">Colin Mollenhour</a> and his script <a href="http://code.google.com/p/module-manager/">modman</a>. Hopefully after reading this, you&#8217;re all inspired to go set up a similar project structure, because it gives a repeatable, hopefully less <em>upgrade ruined</em> Magento experience. Certainly if you&#8217;re not inspired, I&#8217;d like to hear about how you are structuring your  projects &#8211; the more talk of this, the better the overall quality of Magento stores in the wild, I hope.<br />
+<span id="more-879"></span></p>
+<h3>History</h3>
+<p>Over the last nearly 2 years I&#8217;ve tried numerous project structures to make developing multiple Magento stores less painful. My background before getting in to ecommerce development has been in web development for large (think 100+ developer) web projects, and small, agile ones (2-10 developers). I know and appreciate how important project structure is for both teamwork, and rapid, predictable development. I thought it&#8217;d be illustrative to briefly plot my path through failed attempts at getting a workable Magento project structure. Begining with&#8230;</p>
+<p><strong>Not structuring your store at all</strong><br />
+The first attempt at this was the &#8216;no-structure&#8217; <del>approach</del> mistake &#8211; being exposed to only WordPress and Drupal PHP apps (and being of the opinion that all PHP scripts were just a little hackish), I thought that I&#8217;d be fine just installing Magento and getting started. I was for about 1 month, until I upgraded…</p>
+<p>The reality is Magento is a lot more complicated than other popular PHP apps, and if you plan on actually <em>engineering</em> it, rather than just hacking it, you should structure it for that. </p>
+<p>Sadly, it&#8217;s a very easy situation for a beginner at Magento to sort of <em>fall in to</em> &#8211; especially as most shared hosts will install Magento for you and basically set you up for some heartache when you go to upgrade, especially if you cut corners when customizing.</p>
+<p><strong>The whole store in version control structure</strong><br />
+I&#8217;ve also tried having an entire Magento store checked-in to version control. This works OK, but doesn&#8217;t lend itself to sharing the same customizing effort across multiple stores (repeating bug fix and improvement effort), which at <a href="http://world-wide-access.com/">World Wide Access</a> is a factor I&#8217;ve quickly realized we need to consider as we add more suppliers and product ranges. </p>
+<p>Along side this approach I tried maintaining a &#8216;vendor branch&#8217; which is <a href="http://www.magentocommerce.com/wiki/groups/174/changing_and_customizing_magento_code">described here</a>. It&#8217;s a lot of work, and it turns out still causes problems when you try to upgrade &#8211; the best approach, I have found, is just to do all customizing as extensions.</p>
+<p>I want to be clear here that I am talking about separate stores as in completely independent Magento installations, we create webstores for our suppliers, each is separate &#8211; with different inventory, and customers, so the Magento sub-store is not suitable for our purposes. </p>
+<p>This is quite different to the Magento feature of websites, stores and store views. This allows you to create similar stores all contained within the same installation. If you use sub-stores in a single installation, then they all share the same code, extensions etc. On a personal note, the few times I have used this feature, I have been burned by parts of the code that incorrectly handle the store-scope, or extensions that do not properly use the store code &#8211; I&#8217;ve been <a href="../../../2009/05/using-gmail-or-google-apps-email-with-magento/index.html#comment-1366">guilty of it myself</a>, actually.</p>
+<p><strong>Symlinking extensions into vanilla Magento installs</strong><br />
+Fast-forward to about 6 months ago, and I had changed my development technique considerably. I started developing all my customizations exclusively as extensions, and all store specific stuff only within a package (and themes within it). These changes would be <a href="http://en.wikipedia.org/wiki/Symbolic_link">symlinked</a> in to the Magento store on an <em>as needed</em> basis.</p>
+<p>This meant the underlying Magento install was no longer part of my project, it just existed, and had to be installed, in order for the stores to function. This is <em>very tenuously</em> analogous to an app server and web app in the Java world I used to know and love (what have I become!). One difference between the two is that Sun doesn&#8217;t hose their API in some obscure way every point release, but Varien will get there &#8211; I&#8217;m sure.</p>
+<p>Anyway, when set up this way each Magento store symlinks to the various components it needs from the repository. So if a store needs automatic inventory updates from Warehouse A, then I simply symlink in that extension, if some other store needs inventory from Warehouse B, then I symlink the Warehouse B extension. This can be seen in the diagram below (thanks to Google docs):</p>
+<p><a href="../../../../cdn.aschroder.com/wp-content/uploads/2010/07/magento-store-symlinking.png"><img src="../../../../cdn.aschroder.com/wp-content/uploads/2010/07/magento-store-symlinking.png" alt="Diagram showing Magento stores symlinkin to extensions" title="magento-store-symlinking" width="563" height="304" class="aligncenter size-full wp-image-893" srcset="http://cdn.aschroder.com/wp-content/uploads/2010/07/magento-store-symlinking.png 563w, http://cdn.aschroder.com/wp-content/uploads/2010/07/magento-store-symlinking-300x161.png 300w" sizes="(max-width: 563px) 100vw, 563px" /></a></p>
+<p>Now, if you need both warehouses, you symlink in the warehouse manager extension, and it will handle that for you. This allows me to develop each extension as a separate self-contained project, and share that effort easily between multiple stores. It drives you to create more generic solutions to customizations, so that they can be easily applied to different stores.</p>
+<p>The diagram is slightly simplified in that I actually keep the production versions outside the code repository, on our server. In this way, when you&#8217;re ready to release a new and improved version of the Warehouse A extension, you can simply export and re-link like in this example:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;"> <span style="color: #c20cb9; font-weight: bold;">svn <span style="color: #7a0874; font-weight: bold;">export</span></span> ..<span style="color: #000000; font-weight: bold;">/</span>working<span style="color: #000000; font-weight: bold;">/</span>WarehouseA WarehouseA.<span style="color: #000000; font-weight: bold;">`</span><span style="color: #c20cb9; font-weight: bold;">date</span> +<span style="color: #ff0000;">&quot;%m-%d-%y&quot;</span><span style="color: #000000; font-weight: bold;">`</span>
+ <span style="color: #c20cb9; font-weight: bold;">ln</span> <span style="color: #660033;">-nfs</span> WarehouseA.<span style="color: #000000; font-weight: bold;">`</span><span style="color: #c20cb9; font-weight: bold;">date</span> +<span style="color: #ff0000;">&quot;%m-%d-%y&quot;</span><span style="color: #000000; font-weight: bold;">`</span>  WarehouseA</pre></td></tr></table><p class="theCode" style="display:none;"> svn export ../working/WarehouseA WarehouseA.`date +&quot;%m-%d-%y&quot;`
+ ln -nfs WarehouseA.`date +&quot;%m-%d-%y&quot;`  WarehouseA</p></div>
+
+<p>Now all stores pointing to the production symlink for Warehouse A will get the new one when they next refresh their cache &#8211; which you can script too if you want to force them to update all at once. In addition, development stores can point to a development working copy of the extension for testing too.</p>
+<p>In the same way each store would point to it&#8217;s version of a theme and package project, which is versioned in the same way. You can release a production version of these the same was as I describe above for extensions.</p>
+<p>This worked pretty well and up until about a month ago it was where I was up to in terms of maintaining sets of common customizations across multiple stores. In fact the detail of how it works and the benefits in terms of genericty was to form part my presentation at the <a href="http://www.magentocommerce.com/magento-developers-paradise/">Magento Developers Paradise</a> conference in April &#8211; which is now in October, <a href="../../04/magento-developer-conference-vs-volcanic-ash/index.html">thanks to the volcano in Iceland</a>.</p>
+<p>One of the things that pained me a little was the constant adding of symlinks everywhere throughout the store structure (For example in <code>app/code/community</code>,  <code>etc/modules</code>, <code>skin</code>, <code>app/design</code> etc ). Thankfully this has lately been made easier by a script called modman.</p>
+<p><strong>Using Modman</strong><br />
+Enter Colin&#8217;s brilliant <a href="http://code.google.com/p/module-manager/">modman</a> script. It&#8217;s like he knew exactly a tool that would make my life easier, and made it available for everyone!</p>
+<h3>Using Modman for Magento</h3>
+<p>Modman automates the creation of my symlinks from within a nested SVN working copy hidden away in the root of a Magento store. It can do a <a href="http://code.google.com/p/module-manager/wiki/Tutorial">lot of other cool stuff too</a>, mind you, but for me the primary benefit is the notion of a store specific set of symlinks &#8211; the mapping of which is itself kept in version control and maintained automatically.</p>
+<p>I was going to put a big modman tutorial here &#8211; but this post is already very long, and Colin has documented the script well. Unless I hear otherwise I&#8217;ll assume you can all follow his instructions clearly. What I will do though, is prepare a <em>from scratch</em> Magento project setup guide as my next blog post &#8211; some time mid-2011 at this rate!</p>
+<p>In any case you should download and try it yourself &#8211; you can get a free source code repository from a <a href="http://www.lmgtfy.com/?q=free+svn+repository">number of places online</a>.</p>
+<h3>The Benefits of Structuring your Magento Development project</h3>
+<p>There are a few benefits worth noting to this approach:</p>
+<ul>
+<li>Repeatability &#038; Team work: All changes to Magento are made on the basis that they will be operating on a vanilla Magento install. Multiple developers can set up the environment easily, and will expect the same results, every time.</li>
+<li>Reusing code &#038; minimizing effort and duplication &#8211; if you fix a bug in your custom extension, you only need to fix it in one place, then the changes propagate to all stores using it.</li>
+<li>Genericty becomes more valuable: You strive to create custom extensions that will have use for all your stores. You get by-products of customization you can sell (or give away).</li>
+</ul>
+<p>In addition, the modman script has saved me a great deal of time, and given an added element of repeatability to the development and deployment of each store. I think using it will make the whole process of setting up a structured Magento development project a lot easier. As a result I&#8217;d like to see more stores adopting a similar approach to Magento development &#8211; so hopefully an end-to-end tutorial will help with that.</p>
+<h3>Outstanding issues</h3>
+<p>One thing I&#8217;m not convinced of yet is the use of externals in SVN to allow each store to &#8216;point&#8217; to it&#8217;s required extensions. What I want to achieve is for the external to point to the equivalent of my &#8216;production version&#8217; of the extension. The problem is you can&#8217;t have a tag in SVN called &#8216;production&#8217; and keep re-tagging your HEAD revision to production each time you&#8217;re ready to release. Instead I have to move the current production release to a .date version and copy the new one in. Mildy annoying &#8211; not a big problem though.</p>
+<p>This is shown in a contrived little example graphically:<br />
+<figure id="attachment_887" style="width: 238px" class="wp-caption aligncenter"><a href="../../../../cdn.aschroder.com/wp-content/uploads/2010/07/make-way-for-new-release.png"><img src="../../../../cdn.aschroder.com/wp-content/uploads/2010/07/make-way-for-new-release.png" alt="" title="make-way-for-new-release" width="238" height="99" class="size-full wp-image-887" /></a><figcaption class="wp-caption-text">Rename the current production release to an archived version</figcaption></figure></p>
+<figure id="attachment_886" style="width: 425px" class="wp-caption aligncenter"><a href="../../../../cdn.aschroder.com/wp-content/uploads/2010/07/commit-the-change.png"><img src="../../../../cdn.aschroder.com/wp-content/uploads/2010/07/commit-the-change.png" alt="" title="commit the change" width="425" height="111" class="size-full wp-image-886" srcset="http://cdn.aschroder.com/wp-content/uploads/2010/07/commit-the-change.png 425w, http://cdn.aschroder.com/wp-content/uploads/2010/07/commit-the-change-300x78.png 300w" sizes="(max-width: 425px) 100vw, 425px" /></a><figcaption class="wp-caption-text">Commit the change</figcaption></figure>
+<figure id="attachment_885" style="width: 205px" class="wp-caption aligncenter"><a href="../../../../cdn.aschroder.com/wp-content/uploads/2010/07/New-prod-release.png"><img src="../../../../cdn.aschroder.com/wp-content/uploads/2010/07/New-prod-release.png" alt="" title="New-prod-release" width="205" height="58" class="size-full wp-image-885" /></a><figcaption class="wp-caption-text">Copy in the new production release</figcaption></figure>
+<p>I&#8217;d love to hear from anyone with a better solution to this part of the structure, maybe I could check in symlinks, but I&#8217;m not sure how that would work within the context of modman projects.</p>
+<h3>Conclusion</h3>
+<p>I&#8217;ve tried to provide some background for my Magento development process, how it&#8217;s evolved and why it&#8217;s arrived to where it is today. I covered how it works now and explained the benefits I get from it, and the still unresolved issues I found with it. It&#8217;s a summary of what I&#8217;m doing for Multi-Magento store development, where all customizations are via extensions and frontend packages. I&#8217;d really love to hear from other developers who are solving these problems, particularly those doing it better ways! So please, don&#8217;t be shy.</p>
+<p><strong>PS:</strong> One other thing, if you are using the script on Mac OSX &#8211; be careful something in the script doesn&#8217;t seem to like the broken symlinks detection. I had to make a couple of changes, which mean that old symlinks won&#8217;t get cleaned up on Mac OSX &#8211; not a big deal.</p>
+<p>I just changed the <code>find -L $root -type l -delete</code> command (in two places) to:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;">    <span style="color: #666666; font-style: italic;">#The echo out this command and run it manually if you have to.</span>
+    <span style="color: #7a0874; font-weight: bold;">echo</span> <span style="color: #ff0000;">&quot;find -L <span style="color: #007800;">$root</span> -type l -delete&quot;</span></pre></td></tr></table><p class="theCode" style="display:none;">    #The echo out this command and run it manually if you have to.
+    echo &quot;find -L $root -type l -delete&quot;</p></div>
+
+<div class='yarpp-related'>
+<p>You might also be interested in:<ol>
+<li><a href="../../../2012/07/using-git-submodules-and-import-with-modman-for-magento/index.html" rel="bookmark" title="Using Git submodules and @import with Modman for Magento">Using Git submodules and @import with Modman for Magento </a></li>
+<li><a href="../../../2011/01/downloading-a-magento-connect-extension-manually-before-installing-it/index.html" rel="bookmark" title="Downloading a Magento Connect Extension manually before installing it">Downloading a Magento Connect Extension manually before installing it </a></li>
+<li><a href="../../../2011/01/new-version-of-smtp-pro-released-support-for-magento-1-4-2-and-several-bug-fixes/index.html" rel="bookmark" title="New Version of SMTP Pro now supports Magento 1.4.2 and has fewer bugs">New Version of SMTP Pro now supports Magento 1.4.2 and has fewer bugs </a></li>
+<li><a href="../../../2011/02/magento-imagine-2011-presentation-notes-and-links-engineering-your-magento-store/index.html" rel="bookmark" title="Magento Imagine 2011 Presentation Notes and Links: Engineering your Magento Store">Magento Imagine 2011 Presentation Notes and Links: Engineering your Magento Store </a></li>
+<li><a href="../../../2011/02/magento-development-and-deployment-setting-up-a-modman-based-magento-project-on-magento-1-5/index.html" rel="bookmark" title="Magento Development and Deployment: Setting up a Modman based Magento project on Magento 1.5">Magento Development and Deployment: Setting up a Modman based Magento project on Magento 1.5 </a></li>
+</ol></p>
+</div>
+		</div><!-- .entry-content -->
+		<nav id="post-navigation" class="navigation post-navigation" role="navigation" aria-label="Post Navigation"><span class="screen-reader-text">Post navigation</span><div class="nav-links"><div class="nav-previous"><a href="../../06/wordpress-blank-page-after-posting-comments-and-akismet/index.html" rel="prev">WordPress: Blank page after posting comments and Akismet</a></div><div class="nav-next"><a href="../why-are-my-magento-products-not-showing-up/index.html" rel="next">Why are my Magento products not showing up?!</a></div></div></nav>
+<section id="comments" class="comments-area" aria-label="Post Comments">
+
+			<h2 class="comments-title">
+			19 thoughts on &ldquo;<span>Structuring your Magento project for Engineering, not Hacking</span>&rdquo;		</h2>
+
+		
+		<ol class="comment-list">
+					<li class="comment even thread-even depth-1" id="comment-1505">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/76c95c8e802bdd03ff3532d7ea696dcd?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/76c95c8e802bdd03ff3532d7ea696dcd?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">J.T.</cite>			</div>
+			
+			<a href="index.html#comment-1505" class="comment-date">
+				<time datetime="2010-07-08T00:09:40+00:00">July 8, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1505" class="comment-content">
+				<div class="comment-text">
+		<p>Slightly confused reading this&#8230;</p>
+<p>When you speak of multiple stores, do you mean multiple installations of Magento? In your diagram, Store A is a full separate/vanilla code base compared to Store B, on the same server?</p>
+<p>With one installation, we have multiple websites/stores/shops already and one custom modules is available to all of them by default.</p>
+<p>The fact one Mage install can do multiple websites which can do multiple stores each which can do multiple store views each has always, at least semantically, been a source of confusion. I think this otherwise great blog post could do with a little clearing up in this department so we&#8217;re all on the same wavelength.</p>
+<p>As far as my structure goes, I&#8217;m also still trying different strategies. Currently getting a VMware based routine going but will (also) try this ModMan system. Thanks for the heads-up!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-1506">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-1506" class="comment-date">
+				<time datetime="2010-07-08T00:50:23+00:00">July 8, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1506" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks for the feedback Johan, re: stores in magento vs separate store installations &#8211; I&#8217;ll do a pass over and clarify, it is confusing. </p>
+<p>Re: Using Virtual Machines &#8211; I know Kristof (<a href="http://www.fooman.co.nz/" rel="nofollow">FOOMAN</a>) uses them too, I&#8217;ll see if I can&#8217;t lure him over here to offer his thoughts on it. So you&#8217;re using a fresh VM as a place to develop/test, or you deploy to a VM, for production?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1508">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/d94b4acdb7da8fbcbda22079799cdd51?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/d94b4acdb7da8fbcbda22079799cdd51?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://colin.mollenhour.com/' rel='external nofollow' class='url'>Colin</a></cite>			</div>
+			
+			<a href="index.html#comment-1508" class="comment-date">
+				<time datetime="2010-07-08T14:37:16+00:00">July 8, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1508" class="comment-content">
+				<div class="comment-text">
+		<p>Ashley, I&#8217;m glad you find modman useful and thanks for mentioning it on your blog.</p>
+<p>On the production issue I don&#8217;t know if I fully understand the issue, but it seems like you could use the typical trunk/tags methodology here.. E.g.:<br />
+-Production<br />
+&#8211;Paypaltweak<br />
+-Development<br />
+&#8211;Paypaltweak<br />
+-Tags<br />
+&#8211;Paypaltweak<br />
+&#8212;07-08-10</p>
+<p>svn copy Production/Paypaltweak to Development/Paypaltweak<br />
+svn copy Production/Paypaltweak to Tags/Paypaltweak/07-08-10<br />
+hack on Development/Paypaltweak until satisfied<br />
+reintegrate/merge Development/Paypaltweak to Production/Paypaltweak<br />
+modman Paypaltweak update</p>
+<p>FYI, I also use VMs for development. My desktop is a Windows machine but I run VirtualBox with a Linux guest which runs the database server and a web server and hosts the code, then I hack on the code via my Windows-based IDE over Samba (nfs or ssh+fuse would work on Mac). For IDEs that do code completion I keep a copy of Magento core code on the Windows filesystem and include that code in my project (rather than include it from the VM which is too slow).</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1509">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/a2a325861bb411c92d20386aaf2122dd?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/a2a325861bb411c92d20386aaf2122dd?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://store.fooman.co.nz/extensions' rel='external nofollow' class='url'>Kristof, Fooman</a></cite>			</div>
+			
+			<a href="index.html#comment-1509" class="comment-date">
+				<time datetime="2010-07-09T04:39:05+00:00">July 9, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1509" class="comment-content">
+				<div class="comment-text">
+		<p>As mentioned by Ashley I am also using VMs (Virtualbox) but just for development. Initially my main motivation for using them was to easily rollback upgrades (files + db) by taking snapshots of the whole VM. This works quite well if you are only hosting 1 project on each VM. </p>
+<p>I am using VMs for hosting all my local projects, 1 vanilla Magento install with sample for each extension. Currently my main focus has shifted to automation and repeatibility. Fabric works a treat to (python-) script stuff you do over and over again via SSH: <a href="http://docs.fabfile.org/0.9.1/" rel="nofollow">http://docs.fabfile.org/0.9.1/</a> (and you can ssh into your vm)</p>
+<p>I think in the end it will come down to two different ways of structuring projects. One for developing extensions (just holding the extension code) and one for developing/maintaining complete stores.</p>
+<p>What has been working really well for me so far for extension development has been to keep only the structure of the extension in my project folder. My IDE (Netbeans) can automatically copy the files to a second location after each save. Essentially allowing me to keep one &#8220;clean&#8221; folder to package and version control and the second one inside a Magento install for immediate testing of results.</p>
+<p>I will put up a post over at MageBase once I have found better words to describe it.</p>
+<p>If I understood one of your motivations correctly you want to be able to deploy to all your stores at once since they all link to the same &#8220;production ready&#8221; code. One problem I see with this is that unfortunately some extensions require different code depending on which version of Magento you are running. This in turn will then require you to keep all your stores in sync version wise and you&#8217;ll also need to update all of them at the same time. Or alternatively version the symlinks</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1790">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/66932369789169ca107934853f1a81b8?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/66932369789169ca107934853f1a81b8?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.ultimatetshirts.com/' rel='external nofollow' class='url'>Jeff</a></cite>			</div>
+			
+			<a href="index.html#comment-1790" class="comment-date">
+				<time datetime="2010-08-31T23:08:07+00:00">August 31, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1790" class="comment-content">
+				<div class="comment-text">
+		<p>This is an excellent post and a good introduction to the benefits of symlinking with Magento. How soon can we expect a follow up?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-1791">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-1791" class="comment-date">
+				<time datetime="2010-09-01T02:10:28+00:00">September 1, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1791" class="comment-content">
+				<div class="comment-text">
+		<p>Soon! stay tuned, I have about 3 blog posts in my drafts, exciting times ahead.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1941">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/76c95c8e802bdd03ff3532d7ea696dcd?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/76c95c8e802bdd03ff3532d7ea696dcd?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://yoururl/' rel='external nofollow' class='url'>J.T.</a></cite>			</div>
+			
+			<a href="index.html#comment-1941" class="comment-date">
+				<time datetime="2010-10-25T05:19:36+00:00">October 25, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1941" class="comment-content">
+				<div class="comment-text">
+		<p>Any of you familiar with Hudson in combination with SVN? Apparently this  allows even finer configuration, monitoring and scale better too. </p>
+<p><a href="http://wiki.hudson-ci.org/display/HUDSON/Subversion+Plugin" rel="nofollow">http://wiki.hudson-ci.org/display/HUDSON/Subversion+Plugin</a></p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1960">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/2b704c25b8dea376aa50012af08f560d?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/2b704c25b8dea376aa50012af08f560d?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.gingerleprechaun.com/' rel='external nofollow' class='url'>Barry Keenan</a></cite>			</div>
+			
+			<a href="index.html#comment-1960" class="comment-date">
+				<time datetime="2010-11-12T19:45:58+00:00">November 12, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1960" class="comment-content">
+				<div class="comment-text">
+		<p>Have you tried just adding all the core folders as svn:externals? This is what I do for new SilverStripe projects and I&#8217;d love to do something similarly simple with Magento.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-1963">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-1963" class="comment-date">
+				<time datetime="2010-11-13T11:33:21+00:00">November 13, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1963" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, Barry thanks for stopping by. Question: svn:external pointing to a repo you control, or to the main Magento one? If it&#8217;s to a repo you control, then maybe that could work. The number of directories that you _should_ change is quite low though, so it might be less work to bring the customizations into a standard Magento install.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1965">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/2b704c25b8dea376aa50012af08f560d?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/2b704c25b8dea376aa50012af08f560d?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.gingerleprechaun.com/' rel='external nofollow' class='url'>Barry Keenan</a></cite>			</div>
+			
+			<a href="index.html#comment-1965" class="comment-date">
+				<time datetime="2010-11-13T16:13:22+00:00">November 13, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1965" class="comment-content">
+				<div class="comment-text">
+		<p>To the main Magento one. So I would add separate external entries for: app, downloader, errors, etc&#8230;</p>
+<p>Basically, I only want to check-in code for my theme and customisations to my own repo. Everything else (the core folders) I would add as extensions. As you say, I shouldn&#8217;t be editing those anyway.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1966">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/2b704c25b8dea376aa50012af08f560d?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/2b704c25b8dea376aa50012af08f560d?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.gingerleprechaun.com/' rel='external nofollow' class='url'>Barry Keenan</a></cite>			</div>
+			
+			<a href="index.html#comment-1966" class="comment-date">
+				<time datetime="2010-11-13T16:15:38+00:00">November 13, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1966" class="comment-content">
+				<div class="comment-text">
+		<p>correction: &#8230;Everything else I would add as *externals&#8230;</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1972">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/53662c56ad0b8abfd9376098898f070c?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/53662c56ad0b8abfd9376098898f070c?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://stevelorek.com/' rel='external nofollow' class='url'>Steve Lorek</a></cite>			</div>
+			
+			<a href="index.html#comment-1972" class="comment-date">
+				<time datetime="2010-11-17T08:42:10+00:00">November 17, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1972" class="comment-content">
+				<div class="comment-text">
+		<p>This sounds quite similar to the way I was thinking, although i was thinking of using SVN externals rather than symlinks.</p>
+<p>You do address that and are correct in that you can&#8217;t re-tag in Subversion &#8211; but this is a problem which Git overcomes. You can have a designated stable branch (typically called &#8216;master&#8217;), and you can tag within a branch if you so wish (so you might have stable-1.0 and stable 2.0 for different sites). Or jsut use the HEAD revision. Any unstable developments can be done in other branches &#8211; thus not polluting the stable branch.</p>
+<p>You would then set up a Git repo for each project and use submodules to pull in the Magento core and the various extensions you need, referencing the correct branches/tags.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1973">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='../../../index.html' rel='external nofollow' class='url'>Ashley</a></cite>			</div>
+			
+			<a href="index.html#comment-1973" class="comment-date">
+				<time datetime="2010-11-17T12:08:47+00:00">November 17, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1973" class="comment-content">
+				<div class="comment-text">
+		<p>@Steve Lorek &#8211; I need to look at Git don&#8217;t I? All the cool kids seem to be using it! Thanks for stopping by and the tip, I think modman has support for other SCM&#8217;s so it might be a quite easy switch.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2463">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/27531e15eeed6992b506f4ee3b2a874b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/27531e15eeed6992b506f4ee3b2a874b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Andrew Y</cite>			</div>
+			
+			<a href="index.html#comment-2463" class="comment-date">
+				<time datetime="2011-07-21T05:53:34+00:00">July 21, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2463" class="comment-content">
+				<div class="comment-text">
+		<p>Great article!  There is a lot in here I&#8217;ll be incorporating into my development methods.  I&#8217;m currently struggling with an issue related to a multi-store development/engineering process I hope you might have some advice on.  We have two unique e-commerce sites and are in the process of migrating the non-Magento site to the Magento site.  The final result will be two unique domains, but one admin and code base.</p>
+<p>However, I&#8217;m not sure how to proceed given that one database supports both a live site and a development site.  As we develop the new Magento site offline, the live site&#8217;s DB information is being changed.  Conversely, the information added on the development platform isn&#8217;t reflected in the live site.  The problem is that two databases are constantly changing, and those changes need to be merged at launch of the second site.</p>
+<p>I&#8217;ve considered developing the new Magento site on the live server under a development domain (in order to share a DB with the live site), as well as trying to merge both versions of the database when we&#8217;re ready to go live with the second Magento domain.  However, both seem like poor and/or complex solutions.  Based on your experience, could you offer any recommendations for this situation?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2466">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='../../../index.html' rel='external nofollow' class='url'>Ashley</a></cite>			</div>
+			
+			<a href="index.html#comment-2466" class="comment-date">
+				<time datetime="2011-07-23T02:19:36+00:00">July 23, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2466" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, Andrew</p>
+<p>Thanks for the feedback. That&#8217;s a tricky situation.</p>
+<p>Normally with new store&#8217;s I&#8217;d set up CMS blocks/pages via a module sql resource but in your case there&#8217;d be a painfully large amount of configuration required.</p>
+<p>I don&#8217;t have a really good solution to your problem, I cheated a bit when I added a wholesale substore to an existing live retail store. I actually configured it as a substore on the live site, but developed the template and code changes (installing Vinai&#8217;s Customer activation module for example) through modman as normal.</p>
+<p>Maybe you could do a dump from core_config for the specific store, but there&#8217;s lots of other settings to worry about too (i.e tax).</p>
+<p>If you come up with a solution that works well please let us know.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2480">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/27531e15eeed6992b506f4ee3b2a874b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/27531e15eeed6992b506f4ee3b2a874b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Andrew</cite>			</div>
+			
+			<a href="index.html#comment-2480" class="comment-date">
+				<time datetime="2011-07-26T04:31:33+00:00">July 26, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2480" class="comment-content">
+				<div class="comment-text">
+		<p>Ashley,</p>
+<p>Thanks for the reply!</p>
+<p>After a few days of research, I&#8217;ve also come to the conclusion that there isn&#8217;t an easy/elegant way to do this.  What I think I&#8217;ll have to end up doing is developing the custom theme / code changes off the live server to integrate when stable as there aren&#8217;t too many database changes involved and those that are can easily once the 2nd site is live.  </p>
+<p>Once I have a second, stable storefront up I can populate it with data (products, categories, etc) on the live site under a temporary test domain name, which will ensure that the data for both sites is reflected in the one live DB.</p>
+<p>Again, not perfect, but the least complicated solution I&#8217;ve seen&#8230;..</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2521">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/d98e2bd02e60b3d4d7f86518e6d191ff?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/d98e2bd02e60b3d4d7f86518e6d191ff?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://avidonline.co.nz/' rel='external nofollow' class='url'>Dane Lowe</a></cite>			</div>
+			
+			<a href="index.html#comment-2521" class="comment-date">
+				<time datetime="2011-08-15T22:09:15+00:00">August 15, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2521" class="comment-content">
+				<div class="comment-text">
+		<p>As much for my future reference as anything else</p>
+<p>This is a good line to delete all symlinks in a directory, which works well if you need to start from scratch on your modman setup, assuming of course that you haven&#8217;t put any other symlinks in the magento installation</p>
+<p>find . -maxdepth 1 -type l -exec rm -f {} \;</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-2541">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-2541" class="comment-date">
+				<time datetime="2011-08-20T17:52:48+00:00">August 20, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2541" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks Dane!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-10250">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/c92556123177bd35a5d59c1dc7045720?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/c92556123177bd35a5d59c1dc7045720?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Kalen Jordan</cite>			</div>
+			
+			<a href="index.html#comment-10250" class="comment-date">
+				<time datetime="2013-05-22T04:30:49+00:00">May 22, 2013</time>			</a>
+		</div>
+				<div id="div-comment-10250" class="comment-content">
+				<div class="comment-text">
+		<p>How did I not find this blog post until now.  This is fantastic.  Looks like it&#8217;s been a few years since you originally wrote this.  Do you still use more or less the same approach?  </p>
+<p>I started off symlinking individual extensions (without modman), and that got a bit complicated, then moved towards a single repository for the entire project.  That&#8217;s been nice, and it&#8217;s always comforting knowing you can rollback the entire project in one `git checkout` if you need to.  But I&#8217;m beginning to work on an extension that I need to deploy to multiple Magento instances, so I think it&#8217;s time to go back to modman&#8217;ing it up.</p>
+<p>Thanks!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		</ol><!-- .comment-list -->
+
+				<p class="no-comments">Comments are closed.</p>
+	
+</section><!-- #comments -->
+
+</div><!-- #post-## -->
+
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+		</div><!-- .col-full -->
+	</div><!-- #content -->
+
+	
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="col-full">
+
+					<div class="site-info">
+			&copy; ASchroder.com 2023						<br /> Storefront designed by <a href="http://www.woocommerce.com/" title="WooCommerce - The Best eCommerce Platform for WordPress" rel="author">WooCommerce</a>.					</div><!-- .site-info -->
+		
+		</div><!-- .col-full -->
+	</footer><!-- #colophon -->
+
+	
+</div><!-- #page -->
+
+<link rel='stylesheet' id='yarppRelatedCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/related101e.css?ver=4.8.15' type='text/css' media='all' />
+<script type='text/javascript' src='../../../wp-content/plugins/wp-syntax/js/wp-syntax4963.js?ver=1.1'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/navigation.min11a8.js?ver=20120206'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/skip-link-focus-fix.min08e0.js?ver=20130115'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/wp-embed.min101e.js?ver=4.8.15'></script>
+
+</body>
+
+<!-- Mirrored from www.aschroder.com/2010/07/structuring-your-magento-project-for-engineering-not-hacking/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:20:12 GMT -->
+</html>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:12:42 by W3 Total Cache -->

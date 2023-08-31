@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>Comments on: Magento and AWS Elastic Beanstalk &#8211; The Scalability Silver Bullet?</title>
+	<atom:link href="http://www.aschroder.com/2013/04/magento-and-aws-elastic-beanstalk-the-scalability-silver-bullet/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.aschroder.com/2013/04/magento-and-aws-elastic-beanstalk-the-scalability-silver-bullet/</link>
+	<description>Notes on Web Development</description>
+	<lastBuildDate>Wed, 23 Dec 2020 09:25:05 +0000</lastBuildDate>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8.15</generator>
+	<item>
+		<title>By: Mauro</title>
+		<link>http://www.aschroder.com/2013/04/magento-and-aws-elastic-beanstalk-the-scalability-silver-bullet/comment-page-1/#comment-10056</link>
+		<dc:creator><![CDATA[Mauro]]></dc:creator>
+		<pubDate>Sat, 13 Apr 2013 14:10:42 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1956#comment-10056</guid>
+		<description><![CDATA[Hi Aschroder,
+Know that amazon buyed Scalarium (amazon OpsWorks) and its in beta theres is an interesting path for scale Magento on amazon clouds.  Its a free service and have some nice features like use Chef on it. Magentos Chef recipe includin modman, varnish, vhost configurations etc. So when you sclae it can configure an lamp with magento  an you can you modman to sync your store on it. 
+At this moment it big limitation is that you can not use yor own AMIs and ITs AMIs are based only in Amazon Linux and Ubunto 12.4 LTS (I prefer CentOS/Red Hat linux  in production, since RHEL have 5+2 LTS and Ubuntos lts are only 18 months). The alternative like Scalar and RightScale.]]></description>
+		<content:encoded><![CDATA[<p>Hi Aschroder,<br />
+Know that amazon buyed Scalarium (amazon OpsWorks) and its in beta theres is an interesting path for scale Magento on amazon clouds.  Its a free service and have some nice features like use Chef on it. Magentos Chef recipe includin modman, varnish, vhost configurations etc. So when you sclae it can configure an lamp with magento  an you can you modman to sync your store on it.<br />
+At this moment it big limitation is that you can not use yor own AMIs and ITs AMIs are based only in Amazon Linux and Ubunto 12.4 LTS (I prefer CentOS/Red Hat linux  in production, since RHEL have 5+2 LTS and Ubuntos lts are only 18 months). The alternative like Scalar and RightScale.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Ashley</title>
+		<link>http://www.aschroder.com/2013/04/magento-and-aws-elastic-beanstalk-the-scalability-silver-bullet/comment-page-1/#comment-10006</link>
+		<dc:creator><![CDATA[Ashley]]></dc:creator>
+		<pubDate>Sun, 07 Apr 2013 21:32:23 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1956#comment-10006</guid>
+		<description><![CDATA[Hi, Gondo
+
+Glad you liked it. I&#039;ve updated to be clear that these are monthly costs, the 24x7 referred to running them full time, as opposed to scaling them in and out. 
+
+Re: running alternative stacks, like nginx, varnish etc - it&#039;s definitely possible to hand build and use your own AMI - I just wanted this setup to be very vanilla, so that it can benefit from the work AWS does keeping their AMI&#039;s up to date. I don&#039;t want to have to fiddle around with AMI&#039;s every time a security patch comes out, which is my interest in Beanstalk being an auto-pilot environment.
+
+We currently run our servers as you do, manually with custom stacks, but I think there&#039;s merit in removing some of the overhead, even if it sacrifices flexibility.]]></description>
+		<content:encoded><![CDATA[<p>Hi, Gondo</p>
+<p>Glad you liked it. I&#8217;ve updated to be clear that these are monthly costs, the 24&#215;7 referred to running them full time, as opposed to scaling them in and out. </p>
+<p>Re: running alternative stacks, like nginx, varnish etc &#8211; it&#8217;s definitely possible to hand build and use your own AMI &#8211; I just wanted this setup to be very vanilla, so that it can benefit from the work AWS does keeping their AMI&#8217;s up to date. I don&#8217;t want to have to fiddle around with AMI&#8217;s every time a security patch comes out, which is my interest in Beanstalk being an auto-pilot environment.</p>
+<p>We currently run our servers as you do, manually with custom stacks, but I think there&#8217;s merit in removing some of the overhead, even if it sacrifices flexibility.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: gondo</title>
+		<link>http://www.aschroder.com/2013/04/magento-and-aws-elastic-beanstalk-the-scalability-silver-bullet/comment-page-1/#comment-9964</link>
+		<dc:creator><![CDATA[gondo]]></dc:creator>
+		<pubDate>Thu, 04 Apr 2013 12:48:17 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1956#comment-9964</guid>
+		<description><![CDATA[nice post
+i would suggest you to add the timing to your estimate tables. i assume that 24x7 means that prices are per week, im to lazy to check it, but the totals table doesn&#039;t mention any time frame. also it would be more meaningful if the prices were per month.
+personally what holds me back from using Beanstalk is that extra abstraction and not so many benefits.  f.e. if you want to run nginx on it, you have to do some crazy changes http://www.nczonline.net/blog/2012/09/14/replacing-apache-with-nginx-on-elastic-beanstalk/
+i prefer to set my instance manually and than replicate this setup to other nodes]]></description>
+		<content:encoded><![CDATA[<p>nice post<br />
+i would suggest you to add the timing to your estimate tables. i assume that 24&#215;7 means that prices are per week, im to lazy to check it, but the totals table doesn&#8217;t mention any time frame. also it would be more meaningful if the prices were per month.<br />
+personally what holds me back from using Beanstalk is that extra abstraction and not so many benefits.  f.e. if you want to run nginx on it, you have to do some crazy changes <a href="http://www.nczonline.net/blog/2012/09/14/replacing-apache-with-nginx-on-elastic-beanstalk/" rel="nofollow">http://www.nczonline.net/blog/2012/09/14/replacing-apache-with-nginx-on-elastic-beanstalk/</a><br />
+i prefer to set my instance manually and than replicate this setup to other nodes</p>
+]]></content:encoded>
+	</item>
+</channel>
+</rss>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:29:10 by W3 Total Cache -->

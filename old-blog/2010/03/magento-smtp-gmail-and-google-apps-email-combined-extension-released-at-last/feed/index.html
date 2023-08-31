@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>Comments on: Magento SMTP, Gmail and Google Apps Email combined extension released (at last)</title>
+	<atom:link href="http://www.aschroder.com/2010/03/magento-smtp-gmail-and-google-apps-email-combined-extension-released-at-last/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.aschroder.com/2010/03/magento-smtp-gmail-and-google-apps-email-combined-extension-released-at-last/</link>
+	<description>Notes on Web Development</description>
+	<lastBuildDate>Wed, 23 Dec 2020 09:25:05 +0000</lastBuildDate>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8.15</generator>
+	<item>
+		<title>By: Erin</title>
+		<link>http://www.aschroder.com/2010/03/magento-smtp-gmail-and-google-apps-email-combined-extension-released-at-last/comment-page-2/#comment-5271</link>
+		<dc:creator><![CDATA[Erin]]></dc:creator>
+		<pubDate>Mon, 10 Dec 2012 21:50:58 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=716#comment-5271</guid>
+		<description><![CDATA[I installed the extension and it works great for built-in email functions!
+
+I have a custom built module that sends mail... which of course isn&#039;t working.  is there a way for me to hook into your extension&#039;s email send method?  Please advise,
+
+Thank you!
+
+Erin]]></description>
+		<content:encoded><![CDATA[<p>I installed the extension and it works great for built-in email functions!</p>
+<p>I have a custom built module that sends mail&#8230; which of course isn&#8217;t working.  is there a way for me to hook into your extension&#8217;s email send method?  Please advise,</p>
+<p>Thank you!</p>
+<p>Erin</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: monlone</title>
+		<link>http://www.aschroder.com/2010/03/magento-smtp-gmail-and-google-apps-email-combined-extension-released-at-last/comment-page-2/#comment-4940</link>
+		<dc:creator><![CDATA[monlone]]></dc:creator>
+		<pubDate>Sat, 11 Aug 2012 00:41:31 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=716#comment-4940</guid>
+		<description><![CDATA[hi,
+Ashley.i have solved my problem by send mail through host.i use the google MX and the hostmonster MX.and thank you very much!]]></description>
+		<content:encoded><![CDATA[<p>hi,<br />
+Ashley.i have solved my problem by send mail through host.i use the google MX and the hostmonster MX.and thank you very much!</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: monlone</title>
+		<link>http://www.aschroder.com/2010/03/magento-smtp-gmail-and-google-apps-email-combined-extension-released-at-last/comment-page-2/#comment-4877</link>
+		<dc:creator><![CDATA[monlone]]></dc:creator>
+		<pubDate>Fri, 13 Jul 2012 07:18:34 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=716#comment-4877</guid>
+		<description><![CDATA[Hi Ashley,
+
+First of all, thanks to you for your SMTP tool.
+I have a problem above all and I don’t passed the test.
+I have this configuration:
+
+----SMTP Pro Email General Settings
+
+Choose extension option :Google Apps/Gmail
+Development Mode options :Development Mode Disabled
+Log all messages :YES
+
+----SMTP Pro Email Google Apps/Gmail Settings
+Email Address:info@adorepearls.com	
+Password:*******
+
+----SMTP Pro Email SMTP Settings
+
+Authentication : login	
+Username : info@adorepearls.com	
+Password :******	
+Host : smtp.gmail.com
+Port : 465
+SSL Security : SSL TLS
+
+The result of the test is:
+ASchroder.com SMTP Pro Self-test results
+Testing outbound connectivity to Server:
+Using Google Apps/Gmail configuration options
+Failed to connect to SMTP server. Reason: Connection timed out(110)
+This extension requires an outbound SMTP connection on port: 587
+Sending test email to your contact form address help@AdorePearls.com:
+Unable to send test email. Exception message was: Connection timed out...
+Please check and double check your username and password.
+Contact Form test email did not use SMTPPro to send.
+Testing failed, please review the reported problems and if you need further help visit ASchroder.com to contact me.
+
+If I change the following parameters to:
+Port: 465
+SSL security: NO SSL
+
+The result of the test is:
+ASchroder.com SMTP Pro Self-test results
+Testing outbound connectivity to Server:
+Using Google Apps/Gmail configuration options
+Failed to connect to SMTP server. Reason: Connection timed out(110)
+This extension requires an outbound SMTP connection on port: 587
+Sending test email to your contact form address help@AdorePearls.com:
+Unable to send test email. Exception message was: Connection timed out...
+Please check and double check your username and password.
+Contact Form test email did not use SMTPPro to send.
+Testing failed, please review the reported problems and if you need further help visit ASchroder.com to contact me.
+
+
+If I change the following parameters to:
+Port: 465
+SSL security: SSL TSL
+The result of the test is:
+
+ASchroder.com SMTP Pro Self-test results
+Testing outbound connectivity to Server:
+Using SMTP configuration options
+Failed to connect to SMTP server. Reason: Connection timed out(110)
+This extension requires an outbound SMTP connection on port: 587
+Sending test email to your contact form address help@AdorePearls.com:
+Unable to send test email. Exception message was: Connection timed out...
+Please check and double check your username and password.
+Contact Form test email did not use SMTPPro to send.
+Testing failed, please review the reported problems and if you need further help visit ASchroder.com to contact me.
+
+If I change the following parameters to:
+----SMTP Pro Email General Settings
+Choose extension option :Google Apps/Gmail
+Development Mode options :Development Mode Disabled
+Log all messages :YES
+The result of the test is:
+
+ASchroder.com SMTP Pro Self-test results
+Testing outbound connectivity to Server:
+Using SMTP configuration options
+Failed to connect to SMTP server. Reason: Connection timed out(110)
+This extension requires an outbound SMTP connection on port: 465
+Sending test email to your contact form address help@AdorePearls.com:
+Unable to send test email. Exception message was: Connection timed out...
+Please check and double check your username and password.
+Contact Form test email did not use SMTPPro to send.
+Testing failed, please review the reported problems and if you need further help visit ASchroder.com to contact me.
+
+
+----Other step:
+When I try to telnet to gmail with the next command in the prompt system:
+telnet smtp.gmail.com 25, I have the conection and get some words below:
+220 mx.google.com ESMTP jz4sm5452449pbc.17
+
+telnet smtp.gmail.com 465, I have the conection and get nothing;
+
+telnet smtp.gmail.com 587, I can not connect to it:
+
+C:\Documents and Settings\jacklee.li&#062;telnet smtp.gmail.com 587
+Connecting to smtp.gmail.com ... can not open connection to the host, on port 587: Connect failed
+
+and there is nothing in the email log.
+
+Do you have any idea?
+
+Thank you very much
+Best regards]]></description>
+		<content:encoded><![CDATA[<p>Hi Ashley,</p>
+<p>First of all, thanks to you for your SMTP tool.<br />
+I have a problem above all and I don’t passed the test.<br />
+I have this configuration:</p>
+<p>&#8212;-SMTP Pro Email General Settings</p>
+<p>Choose extension option :Google Apps/Gmail<br />
+Development Mode options :Development Mode Disabled<br />
+Log all messages :YES</p>
+<p>&#8212;-SMTP Pro Email Google Apps/Gmail Settings<br />
+Email Address:info@adorepearls.com<br />
+Password:*******</p>
+<p>&#8212;-SMTP Pro Email SMTP Settings</p>
+<p>Authentication : login<br />
+Username : <a href="mailto:info@adorepearls.com">info@adorepearls.com</a><br />
+Password :******<br />
+Host : smtp.gmail.com<br />
+Port : 465<br />
+SSL Security : SSL TLS</p>
+<p>The result of the test is:<br />
+ASchroder.com SMTP Pro Self-test results<br />
+Testing outbound connectivity to Server:<br />
+Using Google Apps/Gmail configuration options<br />
+Failed to connect to SMTP server. Reason: Connection timed out(110)<br />
+This extension requires an outbound SMTP connection on port: 587<br />
+Sending test email to your contact form address <a href="mailto:help@AdorePearls.com">help@AdorePearls.com</a>:<br />
+Unable to send test email. Exception message was: Connection timed out&#8230;<br />
+Please check and double check your username and password.<br />
+Contact Form test email did not use SMTPPro to send.<br />
+Testing failed, please review the reported problems and if you need further help visit ASchroder.com to contact me.</p>
+<p>If I change the following parameters to:<br />
+Port: 465<br />
+SSL security: NO SSL</p>
+<p>The result of the test is:<br />
+ASchroder.com SMTP Pro Self-test results<br />
+Testing outbound connectivity to Server:<br />
+Using Google Apps/Gmail configuration options<br />
+Failed to connect to SMTP server. Reason: Connection timed out(110)<br />
+This extension requires an outbound SMTP connection on port: 587<br />
+Sending test email to your contact form address <a href="mailto:help@AdorePearls.com">help@AdorePearls.com</a>:<br />
+Unable to send test email. Exception message was: Connection timed out&#8230;<br />
+Please check and double check your username and password.<br />
+Contact Form test email did not use SMTPPro to send.<br />
+Testing failed, please review the reported problems and if you need further help visit ASchroder.com to contact me.</p>
+<p>If I change the following parameters to:<br />
+Port: 465<br />
+SSL security: SSL TSL<br />
+The result of the test is:</p>
+<p>ASchroder.com SMTP Pro Self-test results<br />
+Testing outbound connectivity to Server:<br />
+Using SMTP configuration options<br />
+Failed to connect to SMTP server. Reason: Connection timed out(110)<br />
+This extension requires an outbound SMTP connection on port: 587<br />
+Sending test email to your contact form address <a href="mailto:help@AdorePearls.com">help@AdorePearls.com</a>:<br />
+Unable to send test email. Exception message was: Connection timed out&#8230;<br />
+Please check and double check your username and password.<br />
+Contact Form test email did not use SMTPPro to send.<br />
+Testing failed, please review the reported problems and if you need further help visit ASchroder.com to contact me.</p>
+<p>If I change the following parameters to:<br />
+&#8212;-SMTP Pro Email General Settings<br />
+Choose extension option :Google Apps/Gmail<br />
+Development Mode options :Development Mode Disabled<br />
+Log all messages :YES<br />
+The result of the test is:</p>
+<p>ASchroder.com SMTP Pro Self-test results<br />
+Testing outbound connectivity to Server:<br />
+Using SMTP configuration options<br />
+Failed to connect to SMTP server. Reason: Connection timed out(110)<br />
+This extension requires an outbound SMTP connection on port: 465<br />
+Sending test email to your contact form address <a href="mailto:help@AdorePearls.com">help@AdorePearls.com</a>:<br />
+Unable to send test email. Exception message was: Connection timed out&#8230;<br />
+Please check and double check your username and password.<br />
+Contact Form test email did not use SMTPPro to send.<br />
+Testing failed, please review the reported problems and if you need further help visit ASchroder.com to contact me.</p>
+<p>&#8212;-Other step:<br />
+When I try to telnet to gmail with the next command in the prompt system:<br />
+telnet smtp.gmail.com 25, I have the conection and get some words below:<br />
+220 mx.google.com ESMTP jz4sm5452449pbc.17</p>
+<p>telnet smtp.gmail.com 465, I have the conection and get nothing;</p>
+<p>telnet smtp.gmail.com 587, I can not connect to it:</p>
+<p>C:\Documents and Settings\jacklee.li&gt;telnet smtp.gmail.com 587<br />
+Connecting to smtp.gmail.com &#8230; can not open connection to the host, on port 587: Connect failed</p>
+<p>and there is nothing in the email log.</p>
+<p>Do you have any idea?</p>
+<p>Thank you very much<br />
+Best regards</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Ashley</title>
+		<link>http://www.aschroder.com/2010/03/magento-smtp-gmail-and-google-apps-email-combined-extension-released-at-last/comment-page-2/#comment-3547</link>
+		<dc:creator><![CDATA[Ashley]]></dc:creator>
+		<pubDate>Tue, 13 Mar 2012 07:22:56 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=716#comment-3547</guid>
+		<description><![CDATA[Hi, logging can be turned off globally in the Magento developer settings. you cannot turn it off just for SMTP Pro, though in production you shouldn&#039;t enable logging unless you need to.
+
+If you really want to stop the logging in SMTP, you could just find and comment the Mage::log() lines.]]></description>
+		<content:encoded><![CDATA[<p>Hi, logging can be turned off globally in the Magento developer settings. you cannot turn it off just for SMTP Pro, though in production you shouldn&#8217;t enable logging unless you need to.</p>
+<p>If you really want to stop the logging in SMTP, you could just find and comment the Mage::log() lines.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Ivar Voets</title>
+		<link>http://www.aschroder.com/2010/03/magento-smtp-gmail-and-google-apps-email-combined-extension-released-at-last/comment-page-2/#comment-3354</link>
+		<dc:creator><![CDATA[Ivar Voets]]></dc:creator>
+		<pubDate>Tue, 06 Mar 2012 16:12:33 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=716#comment-3354</guid>
+		<description><![CDATA[I&#039;m using the SMTPPro on my Magento 1.6.0 installation.
+It really works great! 
+It solves the Magento SMTP bug as sending Mail as apchache@ ...
+
+But although it is working great, SMTPpro still reports the DEBUG(7) logs in the Magento Systemlog. 
+Can I turn this logging off?? it&#039;s really messing up my log with a lot of unnecessary lines of log entries that say, &quot;No problems, it works great&quot;. I only want to see real errors in my system log...
+
+Thanx in Advance...]]></description>
+		<content:encoded><![CDATA[<p>I&#8217;m using the SMTPPro on my Magento 1.6.0 installation.<br />
+It really works great!<br />
+It solves the Magento SMTP bug as sending Mail as apchache@ &#8230;</p>
+<p>But although it is working great, SMTPpro still reports the DEBUG(7) logs in the Magento Systemlog.<br />
+Can I turn this logging off?? it&#8217;s really messing up my log with a lot of unnecessary lines of log entries that say, &#8220;No problems, it works great&#8221;. I only want to see real errors in my system log&#8230;</p>
+<p>Thanx in Advance&#8230;</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Dmitry</title>
+		<link>http://www.aschroder.com/2010/03/magento-smtp-gmail-and-google-apps-email-combined-extension-released-at-last/comment-page-2/#comment-2986</link>
+		<dc:creator><![CDATA[Dmitry]]></dc:creator>
+		<pubDate>Wed, 22 Feb 2012 13:22:47 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=716#comment-2986</guid>
+		<description><![CDATA[Trying to make it work and getting this message when running the test: 
+ASchroder.com SMTP Pro Self-test results
+Testing outbound connectivity to Server:
+Using Google Apps/Gmail configuration options
+Failed to connect to SMTP server. Reason: Connection timed out(110)
+This extension requires an outbound SMTP connection on port: 587
+Sending test email to your contact form address d.lambrianov@gmail.com:
+Unable to send test email. Exception message was: Connection timed out...
+Please check and double check your username and password.
+Contact Form test email did not use SMTPPro to send.
+Testing failed, please review the reported problems and if you need further help visit ASchroder.com to contact me.
+
+The setup is this:
+Choose extension option: Google Apps/Gmail
+Use Store Email Addresses for Reply-to: No
+Development Mode options: Development Mode Disabled
+
+Gmail setup:
+Email address: d.lambrianov@gmail.com
+PW: xxxxxx]]></description>
+		<content:encoded><![CDATA[<p>Trying to make it work and getting this message when running the test:<br />
+ASchroder.com SMTP Pro Self-test results<br />
+Testing outbound connectivity to Server:<br />
+Using Google Apps/Gmail configuration options<br />
+Failed to connect to SMTP server. Reason: Connection timed out(110)<br />
+This extension requires an outbound SMTP connection on port: 587<br />
+Sending test email to your contact form address <a href="mailto:d.lambrianov@gmail.com">d.lambrianov@gmail.com</a>:<br />
+Unable to send test email. Exception message was: Connection timed out&#8230;<br />
+Please check and double check your username and password.<br />
+Contact Form test email did not use SMTPPro to send.<br />
+Testing failed, please review the reported problems and if you need further help visit ASchroder.com to contact me.</p>
+<p>The setup is this:<br />
+Choose extension option: Google Apps/Gmail<br />
+Use Store Email Addresses for Reply-to: No<br />
+Development Mode options: Development Mode Disabled</p>
+<p>Gmail setup:<br />
+Email address: <a href="mailto:d.lambrianov@gmail.com">d.lambrianov@gmail.com</a><br />
+PW: xxxxxx</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Marshall</title>
+		<link>http://www.aschroder.com/2010/03/magento-smtp-gmail-and-google-apps-email-combined-extension-released-at-last/comment-page-2/#comment-2717</link>
+		<dc:creator><![CDATA[Marshall]]></dc:creator>
+		<pubDate>Sun, 30 Oct 2011 23:18:17 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=716#comment-2717</guid>
+		<description><![CDATA[I just installed this and it seems to be working perfectly locally!]]></description>
+		<content:encoded><![CDATA[<p>I just installed this and it seems to be working perfectly locally!</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Brad</title>
+		<link>http://www.aschroder.com/2010/03/magento-smtp-gmail-and-google-apps-email-combined-extension-released-at-last/comment-page-2/#comment-2669</link>
+		<dc:creator><![CDATA[Brad]]></dc:creator>
+		<pubDate>Fri, 30 Sep 2011 20:11:13 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=716#comment-2669</guid>
+		<description><![CDATA[Man, that really isn&#039;t working. Please let me know a good way to get you the sample code...]]></description>
+		<content:encoded><![CDATA[<p>Man, that really isn&#8217;t working. Please let me know a good way to get you the sample code&#8230;</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Brad</title>
+		<link>http://www.aschroder.com/2010/03/magento-smtp-gmail-and-google-apps-email-combined-extension-released-at-last/comment-page-2/#comment-2668</link>
+		<dc:creator><![CDATA[Brad]]></dc:creator>
+		<pubDate>Fri, 30 Sep 2011 20:09:35 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=716#comment-2668</guid>
+		<description><![CDATA[It didn&#039;t display my code. Perhaps the form is interpreting HTML. Here it is again:
+
+I have this code in the page layout –&#062; Layout Update XML section:
+&quot; 
+
+ 
+  
+&quot;
+
+I looked at the code and in the contacts.phtml file I see this code which I think is the submit button:
+&quot;&#060;button type=&#034;submit&#034; title=&#034;__(&#039;Submit&#039;) ?&#062;&quot; class=&quot;button&quot;&#062;__(&#039;Submit&#039;) ?&#062;&quot;]]></description>
+		<content:encoded><![CDATA[<p>It didn&#8217;t display my code. Perhaps the form is interpreting HTML. Here it is again:</p>
+<p>I have this code in the page layout –&gt; Layout Update XML section:<br />
+&#8221; </p>
+<p>&#8221;</p>
+<p>I looked at the code and in the contacts.phtml file I see this code which I think is the submit button:<br />
+&#8220;&lt;button type=&quot;submit&quot; title=&quot;__(&#8216;Submit&#8217;) ?&gt;&#8221; class=&#8221;button&#8221;&gt;__(&#8216;Submit&#8217;) ?&gt;&#8221;</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Brad</title>
+		<link>http://www.aschroder.com/2010/03/magento-smtp-gmail-and-google-apps-email-combined-extension-released-at-last/comment-page-2/#comment-2667</link>
+		<dc:creator><![CDATA[Brad]]></dc:creator>
+		<pubDate>Fri, 30 Sep 2011 20:07:04 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=716#comment-2667</guid>
+		<description><![CDATA[First, great extension! I have tested using the built in self test as well as a new customer creation and I am getting both emails! The issue I am having is when I submit a contact form.
+
+What I have is a contact form put on a static CMS page. I am also using reCAPTCHA to prevent spam. I have this code in the page layout --&#062; Layout Update XML section:
+
+ 
+
+ 
+  
+
+
+The form appears on the page and appears to be &#039;working&#039;. I fill in the fields and type the captcha and hit &quot;Submit&quot; button. The page refreshes and I now see the empty contact form. The problem is, I never get the contact email.
+
+I looked at the code and in the contacts.phtml file I see this code which I think is the submit button:
+
+&#060;button type=&#034;submit&#034; title=&#034;__(&#039;Submit&#039;) ?&#062;&quot; class=&quot;button&quot;&#062;__(&#039;Submit&#039;) ?&#062;
+
+My question is, you comment that if they aren&#039;t using the Magento default send the extension won&#039;t work. Can you tell from the above code what I have going on?
+
+Thanks,
+Brad]]></description>
+		<content:encoded><![CDATA[<p>First, great extension! I have tested using the built in self test as well as a new customer creation and I am getting both emails! The issue I am having is when I submit a contact form.</p>
+<p>What I have is a contact form put on a static CMS page. I am also using reCAPTCHA to prevent spam. I have this code in the page layout &#8211;&gt; Layout Update XML section:</p>
+<p>The form appears on the page and appears to be &#8216;working&#8217;. I fill in the fields and type the captcha and hit &#8220;Submit&#8221; button. The page refreshes and I now see the empty contact form. The problem is, I never get the contact email.</p>
+<p>I looked at the code and in the contacts.phtml file I see this code which I think is the submit button:</p>
+<p>&lt;button type=&quot;submit&quot; title=&quot;__(&#8216;Submit&#8217;) ?&gt;&#8221; class=&#8221;button&#8221;&gt;__(&#8216;Submit&#8217;) ?&gt;</p>
+<p>My question is, you comment that if they aren&#8217;t using the Magento default send the extension won&#8217;t work. Can you tell from the above code what I have going on?</p>
+<p>Thanks,<br />
+Brad</p>
+]]></content:encoded>
+	</item>
+</channel>
+</rss>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:27:00 by W3 Total Cache -->

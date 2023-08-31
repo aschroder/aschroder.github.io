@@ -1,0 +1,703 @@
+<!doctype html>
+<html lang="en-US">
+
+<!-- Mirrored from www.aschroder.com/2009/04/how-to-bulk-enable-products-when-google-checkout-is-disabled-in-magento/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:34:13 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="../../../xmlrpc.php">
+
+<title>How to Bulk Enable Products when Google Checkout is disabled in Magento | ASchroder.com</title>
+
+<!-- All in One SEO Pack 2.4.2 by Michael Torbert of Semper Fi Web Design[289,389] -->
+<meta name="description"  content="If your Magento products are all disabled for Google Checkout then this is a technique to bulk update them without having to use the administration interface." />
+
+<meta name="keywords"  content="magento,google checkout,disabled,php,bulk update" />
+
+<!-- /all in one seo pack -->
+<link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
+<link rel='dns-prefetch' href='http://s.w.org/' />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Feed" href="../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Comments Feed" href="../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; How to Bulk Enable Products when Google Checkout is Disabled in Magento Comments Feed" href="feed/index.html" />
+<!-- This site uses the Google Analytics by MonsterInsights plugin v6.2.4 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+<script type="text/javascript" data-cfasync="false">
+		var disableStr = 'ga-disable-UA-6477134-1';
+
+	/* Function to detect opted out users */
+	function __gaTrackerIsOptedOut() {
+		return document.cookie.indexOf(disableStr + '=true') > -1;
+	}
+
+	/* Disable tracking if the opt-out cookie exists. */
+	if ( __gaTrackerIsOptedOut() ) {
+		window[disableStr] = true;
+	}
+
+	/* Opt-out function */
+	function __gaTrackerOptout() {
+	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+	  window[disableStr] = true;
+	}
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','http://www.google-analytics.com/analytics.js','__gaTracker');
+
+	__gaTracker('create', 'UA-6477134-1', 'auto');
+	__gaTracker('set', 'forceSSL', true);
+	__gaTracker('send','pageview');
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/www.aschroder.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.15"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='yarppWidgetCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/widget101e.css?ver=4.8.15' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-syntax-css-css'  href='../../../wp-content/plugins/wp-syntax/css/wp-syntax4963.css?ver=1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-style-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/style5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<style id='storefront-style-inline-css' type='text/css'>
+
+			.main-navigation ul li a,
+			.site-title a,
+			ul.menu li a,
+			.site-branding h1 a,
+			.site-footer .storefront-handheld-footer-bar a:not(.button),
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				color: #333333;
+			}
+
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				border-color: #333333;
+			}
+
+			.main-navigation ul li a:hover,
+			.main-navigation ul li:hover > a,
+			.site-title a:hover,
+			a.cart-contents:hover,
+			.site-header-cart .widget_shopping_cart a:hover,
+			.site-header-cart:hover > li > a,
+			.site-header ul.menu li.current-menu-item > a {
+				color: #838383;
+			}
+
+			table th {
+				background-color: #f8f8f8;
+			}
+
+			table tbody td {
+				background-color: #fdfdfd;
+			}
+
+			table tbody tr:nth-child(2n) td,
+			fieldset,
+			fieldset legend {
+				background-color: #fbfbfb;
+			}
+
+			.site-header,
+			.secondary-navigation ul ul,
+			.main-navigation ul.menu > li.menu-item-has-children:after,
+			.secondary-navigation ul.menu ul,
+			.storefront-handheld-footer-bar,
+			.storefront-handheld-footer-bar ul li > a,
+			.storefront-handheld-footer-bar ul li.search .site-search,
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				background-color: #ffffff;
+			}
+
+			p.site-description,
+			.site-header,
+			.storefront-handheld-footer-bar {
+				color: #6d6d6d;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count,
+			button.menu-toggle:after,
+			button.menu-toggle:before,
+			button.menu-toggle span:before {
+				background-color: #333333;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				color: #ffffff;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				border-color: #ffffff;
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+				color: #333333;
+			}
+
+			.widget h1 {
+				border-bottom-color: #333333;
+			}
+
+			body,
+			.secondary-navigation a,
+			.onsale,
+			.pagination .page-numbers li .page-numbers:not(.current), .woocommerce-pagination .page-numbers li .page-numbers:not(.current) {
+				color: #6d6d6d;
+			}
+
+			.widget-area .widget a,
+			.hentry .entry-header .posted-on a,
+			.hentry .entry-header .byline a {
+				color: #9f9f9f;
+			}
+
+			a  {
+				color: #0228d1;
+			}
+
+			a:focus,
+			.button:focus,
+			.button.alt:focus,
+			.button.added_to_cart:focus,
+			.button.wc-forward:focus,
+			button:focus,
+			input[type="button"]:focus,
+			input[type="reset"]:focus,
+			input[type="submit"]:focus {
+				outline-color: #0228d1;
+			}
+
+			button, input[type="button"], input[type="reset"], input[type="submit"], .button, .added_to_cart, .widget a.button, .site-header-cart .widget_shopping_cart a.button {
+				background-color: #eeeeee;
+				border-color: #eeeeee;
+				color: #333333;
+			}
+
+			button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, .button:hover, .added_to_cart:hover, .widget a.button:hover, .site-header-cart .widget_shopping_cart a.button:hover {
+				background-color: #d5d5d5;
+				border-color: #d5d5d5;
+				color: #333333;
+			}
+
+			button.alt, input[type="button"].alt, input[type="reset"].alt, input[type="submit"].alt, .button.alt, .added_to_cart.alt, .widget-area .widget a.button.alt, .added_to_cart, .widget a.button.checkout {
+				background-color: #333333;
+				border-color: #333333;
+				color: #ffffff;
+			}
+
+			button.alt:hover, input[type="button"].alt:hover, input[type="reset"].alt:hover, input[type="submit"].alt:hover, .button.alt:hover, .added_to_cart.alt:hover, .widget-area .widget a.button.alt:hover, .added_to_cart:hover, .widget a.button.checkout:hover {
+				background-color: #1a1a1a;
+				border-color: #1a1a1a;
+				color: #ffffff;
+			}
+
+			.pagination .page-numbers li .page-numbers.current, .woocommerce-pagination .page-numbers li .page-numbers.current {
+				background-color: #e6e6e6;
+				color: #6d6d6d;
+			}
+
+			#comments .comment-list .comment-content .comment-text {
+				background-color: #f8f8f8;
+			}
+
+			.site-footer {
+				background-color: #f0f0f0;
+				color: #6d6d6d;
+			}
+
+			.site-footer a:not(.button) {
+				color: #333333;
+			}
+
+			.site-footer h1, .site-footer h2, .site-footer h3, .site-footer h4, .site-footer h5, .site-footer h6 {
+				color: #333333;
+			}
+
+			#order_review {
+				background-color: #ffffff;
+			}
+
+			#payment .payment_methods > li .payment_box,
+			#payment .place-order {
+				background-color: #fafafa;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice) {
+				background-color: #f5f5f5;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice):hover {
+				background-color: #f0f0f0;
+			}
+
+			@media screen and ( min-width: 768px ) {
+				.secondary-navigation ul.menu a:hover {
+					color: #868686;
+				}
+
+				.secondary-navigation ul.menu a {
+					color: #6d6d6d;
+				}
+
+				.site-header-cart .widget_shopping_cart,
+				.main-navigation ul.menu ul.sub-menu,
+				.main-navigation ul.nav-menu ul.children {
+					background-color: #f0f0f0;
+				}
+
+				.site-header-cart .widget_shopping_cart .buttons,
+				.site-header-cart .widget_shopping_cart .total {
+					background-color: #f5f5f5;
+				}
+
+				.site-header {
+					border-bottom-color: #f0f0f0;
+				}
+			}
+</style>
+<link rel='stylesheet' id='storefront-icons-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/sass/base/icons5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-fonts-css'  href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,600,700,900&amp;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jqueryb8ff.js?ver=1.12.4'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jquery-migrate.min330a.js?ver=1.4.1'></script>
+<link rel='https://api.w.org/' href='../../../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../xmlrpc0db0.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Whoops: Magento supports PHP 5.2.0 or newer' href='../whoops-magento-supports-php-520-or-newer/index.html' />
+<link rel='next' title='Free Magento Hosting Competition' href='../free-magento-hosting-competition/index.html' />
+<meta name="generator" content="WordPress 4.8.15" />
+<link rel="canonical" href="index.html" />
+<link rel='shortlink' href='../../../indexc2ef.html?p=342' />
+<link rel="alternate" type="application/json+oembed" href="../../../wp-json/oembed/1.0/embedc0aa.json?url=http%3A%2F%2Fwww.aschroder.com%2F2009%2F04%2Fhow-to-bulk-enable-products-when-google-checkout-is-disabled-in-magento%2F" />
+<link rel="alternate" type="text/xml+oembed" href="../../../wp-json/oembed/1.0/embed41d4?url=http%3A%2F%2Fwww.aschroder.com%2F2009%2F04%2Fhow-to-bulk-enable-products-when-google-checkout-is-disabled-in-magento%2F&amp;format=xml" />
+</head>
+
+<body class="post-template-default single single-post postid-342 single-format-standard no-wc-breadcrumb storefront-full-width-content right-sidebar">
+
+
+<div id="page" class="hfeed site">
+	
+	<header id="masthead" class="site-header" role="banner" style="">
+		<div class="col-full">
+
+					<a class="skip-link screen-reader-text" href="#site-navigation">Skip to navigation</a>
+		<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+				<div class="site-branding">
+			<div class="beta site-title"><a href="../../../index.html" rel="home">ASchroder.com</a></div><p class="site-description">Notes on Web Development</p>		</div>
+		<div class="storefront-primary-navigation">		<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="Primary Navigation">
+		<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><span>Menu</span></button>
+			<div class="primary-navigation"><ul id="menu-main-menu" class="menu"><li id="menu-item-1119" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li id="menu-item-1118" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li id="menu-item-1872" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div><div class="handheld-navigation"><ul id="menu-main-menu-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div>		</nav><!-- #site-navigation -->
+		</div>
+		</div>
+	</header><!-- #masthead -->
+
+	
+	<div id="content" class="site-content" tabindex="-1">
+		<div class="col-full">
+
+		
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+<div id="post-342" class="post-342 post type-post status-publish format-standard hentry category-magento category-magento-installation category-mysql category-php category-services">
+
+			<header class="entry-header">
+		<span class="posted-on">Posted on <a href="index.html" rel="bookmark"><time class="entry-date published" datetime="2009-04-18T22:32:41+00:00">April 18, 2009</time> <time class="updated" datetime="2009-04-18T22:45:48+00:00">April 18, 2009</time></a></span><h1 class="entry-title">How to Bulk Enable Products when Google Checkout is Disabled in Magento</h1>		</header><!-- .entry-header -->
+				<aside class="entry-meta">
+						<div class="author">
+				<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' /><div class="label">Written by</div><a href="../../../author/admin/index.html" title="Posts by Ashley" rel="author">Ashley</a>			</div>
+							<div class="cat-links">
+					<div class="label">Posted in</div><a href="../../../category/magento/index.html" rel="category tag">Magento</a>, <a href="../../../category/magento-installation/index.html" rel="category tag">Magento Installation</a>, <a href="../../../category/mysql/index.html" rel="category tag">Mysql</a>, <a href="../../../category/php/index.html" rel="category tag">PHP</a>, <a href="../../../category/services/index.html" rel="category tag">Services</a>				</div>
+			
+			
+		
+							<div class="comments-link">
+					<div class="label">Comments</div>					<span class="comments-link"><a href="index.html#comments">9 Comments</a></span>
+				</div>
+					</aside>
+				<div class="entry-content">
+		<p>Magento allows you to disable Google checkout functionality for each product. Under certain situations though (when upgrading from 1.2 to 1.3 for example), the state of your products eligibility for sale through Google Checkout changes. </p>
+<p>If you find yourself unable to sell products through Google checkout you can <a href="../../02/google-checkout-disabled-not-available-with-these-items/index.html">easily enable Google Checkout for your products through the Magento admin interface</a>. However if you have many hundreds or thousands of products going through each one is not an option. </p>
+<p>Here is a solution that will allow you to set the state of all your products to enabled for Google Checkout, quickly and easily. Testing has been limited to my own development installation, so as always backup your data before running anything.</p>
+<p><span id="more-342"></span></p>
+<p>In our 1.2 Magento databse the EAV attribute is called <code>disable_googlecheckout</code> but in Magento 1.3 it is called <code>enable_googlecheckout</code>. You&#8217;ll need to know which version you are working on before proceeding with the steps below. To check run the following SQL query and take note of the <code>attribute_code</code> and <code>attribute_id</code>:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="sql" style="font-family:monospace;"><span style="color: #993333; font-weight: bold;">SELECT</span> <span style="color: #66cc66;">*</span> <span style="color: #993333; font-weight: bold;">FROM</span> eav_attribute <span style="color: #993333; font-weight: bold;">WHERE</span> attribute_code <span style="color: #993333; font-weight: bold;">LIKE</span> <span style="color: #ff0000;">&quot;%google%&quot;</span>\G</pre></td></tr></table><p class="theCode" style="display:none;">select * from eav_attribute where attribute_code like &quot;%google%&quot;\G</p></div>
+
+<p>You could run an SQL query at this point to update(or insert if it is missing) a value of each row in the <code>catalog_product_entity_int</code> table where the <code>attribute_id</code> is the value you see in the above query. It may be that the SQL method is required for <strong>really</strong> big inventories, and if that is the case then someone please comment and let me know.</p>
+<p>I have quickly written a little PHP <del datetime="2009-04-19T05:54:55+00:00">solution</del> <del datetime="2009-04-19T05:54:55+00:00">quick fix</del> hack that will update the Google Checkout enabled state for your products in Magento. I think this will be an easier to use solution for most people out there, simply drop the file into the root of your Magento store and either browse to it or run it on the command line.</p>
+<p>The code to make the change is this:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="php" style="font-family:monospace;">      <span style="color: #000000; font-weight: bold;">&lt;?php</span>
+&nbsp;
+<span style="color: #666666; font-style: italic;">/*
+ * Quick little file to set all of your products to enabled for Google checkout.
+ * Run it in the root of your Magento directory.
+ *
+ * Author: Ashley Schroder (ashley.schroder (at) gmail.com)
+ * More information see aschroder.com
+ *
+ */</span>
+&nbsp;
+        <span style="color: #990000;">set_time_limit</span><span style="color: #009900;">&#40;</span><span style="color: #cc66cc;">0</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+        <span style="color: #b1b100;">require_once</span> <span style="color: #0000ff;">'app/Mage.php'</span><span style="color: #339933;">;</span>
+        Mage<span style="color: #339933;">::</span><span style="color: #004000;">app</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'default'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+        try<span style="color: #009900;">&#123;</span>
+                <span style="color: #000088;">$products</span> <span style="color: #339933;">=</span> Mage<span style="color: #339933;">::</span><span style="color: #004000;">getModel</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'catalog/product'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getCollection</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+                <span style="color: #000088;">$prodIds</span><span style="color: #339933;">=</span><span style="color: #000088;">$products</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getAllIds</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+                <span style="color: #000088;">$product</span> <span style="color: #339933;">=</span> Mage<span style="color: #339933;">::</span><span style="color: #004000;">getModel</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'catalog/product'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+                <span style="color: #000088;">$count</span> <span style="color: #339933;">=</span> <span style="color: #cc66cc;">0</span><span style="color: #339933;">;</span>
+&nbsp;
+                <span style="color: #b1b100;">foreach</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$prodIds</span> <span style="color: #b1b100;">as</span> <span style="color: #000088;">$productId</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+&nbsp;
+                    <span style="color: #000088;">$product</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">load</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$productId</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+                    <span style="color: #000088;">$product</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setEnableGooglecheckout</span><span style="color: #009900;">&#40;</span><span style="color: #009900; font-weight: bold;">false</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+                    <span style="color: #000088;">$product</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">save</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+                    <span style="color: #000088;">$count</span><span style="color: #339933;">++;</span>
+                <span style="color: #009900;">&#125;</span>
+                <span style="color: #b1b100;">echo</span> <span style="color: #0000ff;">&quot;Update complete. &quot;</span><span style="color: #339933;">.</span> <span style="color: #000088;">$count</span><span style="color: #339933;">.</span><span style="color: #0000ff;">&quot; records saved.&quot;</span><span style="color: #339933;">;</span>
+&nbsp;
+        <span style="color: #009900;">&#125;</span>
+        catch<span style="color: #009900;">&#40;</span>Exception <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#123;</span>
+                <span style="color: #990000;">die</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getMessage</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+        <span style="color: #009900;">&#125;</span>
+<span style="color: #000000; font-weight: bold;">?&gt;</span></pre></td></tr></table><p class="theCode" style="display:none;">      &lt;?php
+
+/*
+ * Quick little file to set all of your products to enabled for Google checkout.
+ * Run it in the root of your Magento directory.
+ *
+ * Author: Ashley Schroder (ashley.schroder (at) gmail.com)
+ * More information see aschroder.com
+ *
+ */
+
+        set_time_limit(0);
+        require_once 'app/Mage.php';
+        Mage::app('default');
+
+        try{
+                $products = Mage::getModel('catalog/product')-&gt;getCollection();
+                $prodIds=$products-&gt;getAllIds();
+
+                $product = Mage::getModel('catalog/product');
+                $count = 0;
+
+                foreach($prodIds as $productId) {
+
+                    $product-&gt;load($productId);
+                    $product-&gt;setEnableGooglecheckout(false);
+                    $product-&gt;save();
+                    $count++;
+                }
+                echo &quot;Update complete. &quot;. $count.&quot; records saved.&quot;;
+
+        }
+        catch(Exception $e){
+                die($e-&gt;getMessage());
+        }
+?&gt;</p></div>
+
+<p>Create a file called say &#8216;undisable-google-checkout.php&#8217; and place the code into it. Simply FTP, SCP or otherwise transfer it to the root directory of your Magento installation. You can run it by browsing to the script via yourstore.com/undisable-google-checkout.php or run it on the command-line as per the example below:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;">php <span style="color: #660033;">-f</span> undisable-google-checkout.php</pre></td></tr></table><p class="theCode" style="display:none;">php -f undisable-google-checkout.php</p></div>
+
+<p>One thing to note &#8211; it will only work for v1.3 currently, if you want this on version 1.2 of Magento then you will need to change this line:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="php" style="font-family:monospace;"><span style="color: #000088;">$product</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setEnableGooglecheckout</span><span style="color: #009900;">&#40;</span><span style="color: #009900; font-weight: bold;">true</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre></td></tr></table><p class="theCode" style="display:none;">$product-&gt;setEnableGooglecheckout(true);</p></div>
+
+<p>to this one because the attribute is named differently before Magento version 1.3:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="php" style="font-family:monospace;"><span style="color: #000088;">$product</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setDisableGooglecheckout</span><span style="color: #009900;">&#40;</span><span style="color: #009900; font-weight: bold;">false</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre></td></tr></table><p class="theCode" style="display:none;">$product-&gt;setDisableGooglecheckout(false);</p></div>
+
+<p>I&#8217;m really keen to hear feedback on this because a) I have only tested it quickly on my database with a handful of products in it, and b) I don&#8217;t normally write little php files like this to make these sorts of changes, but thought I&#8217;d give it a try as a way to allow others to fix their Magento Google Checkout quickly without having to run DB queries themselves.</p>
+<div class='yarpp-related'>
+<p>You might also be interested in:<ol>
+<li><a href="../../02/google-checkout-disabled-not-available-with-these-items/index.html" rel="bookmark" title="Google Checkout disabled &#8211; Not available with these items">Google Checkout disabled &#8211; Not available with these items </a></li>
+<li><a href="../../../2008/12/magento-117-google-checkout-and-free-shipping-part-2/index.html" rel="bookmark" title="Magento 1.1.7 Google Checkout and Free Shipping (part 2)">Magento 1.1.7 Google Checkout and Free Shipping (part 2) </a></li>
+<li><a href="../../02/3-quick-methods-to-diagnose-problems-between-magento-and-google-checkout/index.html" rel="bookmark" title="3 Quick Methods To Diagnose Communication Problems between Magento and Google Checkout">3 Quick Methods To Diagnose Communication Problems between Magento and Google Checkout </a></li>
+<li><a href="../../../2010/09/magento-and-google-checkout-tax-on-shipping-incorrect-in-merchant-calculated-callback/index.html" rel="bookmark" title="Magento and Google Checkout: Tax on Shipping incorrect in Merchant Calculated callback">Magento and Google Checkout: Tax on Shipping incorrect in Merchant Calculated callback </a></li>
+<li><a href="../../../2011/01/magento-1-4-2-and-google-checkout-debugging-weight-based-table-rate-issues/index.html" rel="bookmark" title="Magento 1.4.2 and Google Checkout &#8211; Debugging weight-based table rate issues">Magento 1.4.2 and Google Checkout &#8211; Debugging weight-based table rate issues </a></li>
+</ol></p>
+</div>
+		</div><!-- .entry-content -->
+		<nav id="post-navigation" class="navigation post-navigation" role="navigation" aria-label="Post Navigation"><span class="screen-reader-text">Post navigation</span><div class="nav-links"><div class="nav-previous"><a href="../whoops-magento-supports-php-520-or-newer/index.html" rel="prev">Whoops: Magento supports PHP 5.2.0 or newer</a></div><div class="nav-next"><a href="../free-magento-hosting-competition/index.html" rel="next">Free Magento Hosting Competition</a></div></div></nav>
+<section id="comments" class="comments-area" aria-label="Post Comments">
+
+			<h2 class="comments-title">
+			9 thoughts on &ldquo;<span>How to Bulk Enable Products when Google Checkout is Disabled in Magento</span>&rdquo;		</h2>
+
+		
+		<ol class="comment-list">
+					<li class="comment even thread-even depth-1" id="comment-323">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/927946caad6cb709bae0759327d7ac13?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/927946caad6cb709bae0759327d7ac13?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.clubwearnation.com/' rel='external nofollow' class='url'>Matt</a></cite>			</div>
+			
+			<a href="index.html#comment-323" class="comment-date">
+				<time datetime="2009-06-21T19:14:09+00:00">June 21, 2009</time>			</a>
+		</div>
+				<div id="div-comment-323" class="comment-content">
+				<div class="comment-text">
+		<p>I found I had to change the script to this for it to work with the most recent version of magento (1.3.2.1)</p>
+<p>setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);</p>
+<p>              $products = Mage::getModel(&#8216;catalog/product&#8217;)-&gt;getCollection();<br />
+                $prodIds=$products-&gt;getAllIds();</p>
+<p>                $product = Mage::getModel(&#8216;catalog/product&#8217;);</p>
+<p>                $count = 0;<br />
+                foreach($prodIds as $productId) {</p>
+<p>                    $product-&gt;load($productId);<br />
+                    $product-&gt;setEnableGooglecheckout(true);<br />
+                    $product-&gt;save();<br />
+                    $count++;<br />
+                }<br />
+                echo &#8220;Update complete. &#8220;. $count.&#8221; records saved.&#8221;;<br />
+?&gt;</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-822">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/8867f35f50246985278f4a9bc3478093?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/8867f35f50246985278f4a9bc3478093?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.protectedindustries.com/' rel='external nofollow' class='url'>John Kinsella</a></cite>			</div>
+			
+			<a href="index.html#comment-822" class="comment-date">
+				<time datetime="2010-01-27T23:46:51+00:00">January 27, 2010</time>			</a>
+		</div>
+				<div id="div-comment-822" class="comment-content">
+				<div class="comment-text">
+		<p>Guys &#8211; thanks for the help on this one&#8230;just updated a client from 1.1.8 to 1.3.2.4 and suddenly saw all the Google checkout buttons greyed. :/</p>
+<p>Anyways, had to tweak Ashley&#8217;s script slightly, what worked follows:</p>
+<p>set_time_limit(0);<br />
+require_once &#8216;app/Mage.php&#8217;;<br />
+Mage::app(&#8216;default&#8217;);</p>
+<p>try{<br />
+Mage::app()-&gt;setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);<br />
+$products = Mage::getModel(&#8216;catalog/product&#8217;)-&gt;getCollection();<br />
+$prodIds=$products-&gt;getAllIds();</p>
+<p>$product = Mage::getModel(&#8216;catalog/product&#8217;);<br />
+$count = 0;</p>
+<p>foreach($prodIds as $productId) {<br />
+$product-&gt;load($productId);<br />
+$product-&gt;setEnableGooglecheckout(true);<br />
+$product-&gt;save();<br />
+$count++;<br />
+}<br />
+echo &#8220;Update complete. &#8220;. $count.&#8221; records saved.&#8221;;<br />
+}<br />
+catch(Exception $e){<br />
+die($e-&gt;getMessage());<br />
+}</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1102">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/f4d1a40ad16a38f894b4b21b10d4fb3d?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/f4d1a40ad16a38f894b4b21b10d4fb3d?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.techatcost.com/' rel='external nofollow' class='url'>Brian Fritton</a></cite>			</div>
+			
+			<a href="index.html#comment-1102" class="comment-date">
+				<time datetime="2010-03-25T21:30:43+00:00">March 25, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1102" class="comment-content">
+				<div class="comment-text">
+		<p>This is odd: I&#8217;m getting an Abstract error.</p>
+<p>Warning: Invalid argument supplied for foreach() in /app/code/core/Mage/Eav/Model/Entity/Abstract.php on line 970</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-1104">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-1104" class="comment-date">
+				<time datetime="2010-03-25T21:49:37+00:00">March 25, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1104" class="comment-content">
+				<div class="comment-text">
+		<p>That is odd&#8230; what version of Magento are you on?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2100">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/72238d1041c09651fba0e165a4b5da6f?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/72238d1041c09651fba0e165a4b5da6f?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.quenzel.com/' rel='external nofollow' class='url'>Eric Rodgers</a></cite>			</div>
+			
+			<a href="index.html#comment-2100" class="comment-date">
+				<time datetime="2011-01-24T12:13:09+00:00">January 24, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2100" class="comment-content">
+				<div class="comment-text">
+		<p>Does anyone know how to do this with magento 1.4? I tried using johns script, but the browser just kept processing and never ended up doing anything.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2270">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/7fac1daa5d7ecb900447f47aa322fd8d?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/7fac1daa5d7ecb900447f47aa322fd8d?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://liveuk.co.uk/' rel='external nofollow' class='url'>Mike</a></cite>			</div>
+			
+			<a href="index.html#comment-2270" class="comment-date">
+				<time datetime="2011-04-23T05:15:42+00:00">April 23, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2270" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, Big thanks, BIG</p>
+<p>Can we set the var to tax to enable all to one tax class or disable or enable for all products ?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2443">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/8e43f0cf004f101b32053ce0ce9bcba1?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/8e43f0cf004f101b32053ce0ce9bcba1?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Moiz Ahmed</cite>			</div>
+			
+			<a href="index.html#comment-2443" class="comment-date">
+				<time datetime="2011-07-11T00:41:00+00:00">July 11, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2443" class="comment-content">
+				<div class="comment-text">
+		<p>Can you please update the script for 1.4.1 ?<br />
+Thanks!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2938">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/9ca2b5a34626ead0b6e5aff126cd5a49?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/9ca2b5a34626ead0b6e5aff126cd5a49?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://shop.itmanx.com/' rel='external nofollow' class='url'>Christian</a></cite>			</div>
+			
+			<a href="index.html#comment-2938" class="comment-date">
+				<time datetime="2012-02-11T10:03:19+00:00">February 11, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2938" class="comment-content">
+				<div class="comment-text">
+		<p>Direct SQL</p>
+<p>UPDATE catalog_product_entity_int SET `value`=1 WHERE attribute_id=(SELECT attribute_id FROM eav_attribute WHERE attribute_code LIKE &#8216;enable_googlecheckout&#8217;); #114</p>
+<p>SELECT * FROM `itmanx_magento`.`catalog_product_entity_int`<br />
+LEFT JOIN eav_attribute USING (attribute_id)<br />
+WHERE attribute_code LIKE &#8216;enable_googlecheckout&#8217;</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2939">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/9ca2b5a34626ead0b6e5aff126cd5a49?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/9ca2b5a34626ead0b6e5aff126cd5a49?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://shop.itmanx.com/' rel='external nofollow' class='url'>Christian</a></cite>			</div>
+			
+			<a href="index.html#comment-2939" class="comment-date">
+				<time datetime="2012-02-11T10:05:56+00:00">February 11, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2939" class="comment-content">
+				<div class="comment-text">
+		<p>opps, i left our  table name in there. you need to replace itmanx_magento with your own table name or remove it all together (including the dot)</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		</ol><!-- .comment-list -->
+
+				<p class="no-comments">Comments are closed.</p>
+	
+</section><!-- #comments -->
+
+</div><!-- #post-## -->
+
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+		</div><!-- .col-full -->
+	</div><!-- #content -->
+
+	
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="col-full">
+
+					<div class="site-info">
+			&copy; ASchroder.com 2023						<br /> Storefront designed by <a href="http://www.woocommerce.com/" title="WooCommerce - The Best eCommerce Platform for WordPress" rel="author">WooCommerce</a>.					</div><!-- .site-info -->
+		
+		</div><!-- .col-full -->
+	</footer><!-- #colophon -->
+
+	
+</div><!-- #page -->
+
+<link rel='stylesheet' id='yarppRelatedCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/related101e.css?ver=4.8.15' type='text/css' media='all' />
+<script type='text/javascript' src='../../../wp-content/plugins/wp-syntax/js/wp-syntax4963.js?ver=1.1'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/navigation.min11a8.js?ver=20120206'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/skip-link-focus-fix.min08e0.js?ver=20130115'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/wp-embed.min101e.js?ver=4.8.15'></script>
+
+</body>
+
+<!-- Mirrored from www.aschroder.com/2009/04/how-to-bulk-enable-products-when-google-checkout-is-disabled-in-magento/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:34:15 GMT -->
+</html>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk (Requested URI is rejected)
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:23:12 by W3 Total Cache -->

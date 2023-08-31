@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en-US">
+
+<!-- Mirrored from www.aschroder.com/2011/03/magento-google-site-maps-and-my-magento-speed-test/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:31:22 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="../../../xmlrpc.php">
+
+<title>Magento, Google XML Sitemaps and my Magento Speed Test | ASchroder.com</title>
+
+<!-- All in One SEO Pack 2.4.2 by Michael Torbert of Semper Fi Web Design[289,372] -->
+<meta name="description"  content="People find creative ways to muck up their sitemap.xml, and so the test then runs on no urls, and thus - no results. Here are some tips to check for problems" />
+
+<meta name="keywords"  content="magento,sitemap.xml,magento speed test" />
+
+<!-- /all in one seo pack -->
+<link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
+<link rel='dns-prefetch' href='http://s.w.org/' />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Feed" href="../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Comments Feed" href="../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Magento, Google XML Sitemaps and my Magento Speed Test Comments Feed" href="feed/index.html" />
+<!-- This site uses the Google Analytics by MonsterInsights plugin v6.2.4 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+<script type="text/javascript" data-cfasync="false">
+		var disableStr = 'ga-disable-UA-6477134-1';
+
+	/* Function to detect opted out users */
+	function __gaTrackerIsOptedOut() {
+		return document.cookie.indexOf(disableStr + '=true') > -1;
+	}
+
+	/* Disable tracking if the opt-out cookie exists. */
+	if ( __gaTrackerIsOptedOut() ) {
+		window[disableStr] = true;
+	}
+
+	/* Opt-out function */
+	function __gaTrackerOptout() {
+	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+	  window[disableStr] = true;
+	}
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','http://www.google-analytics.com/analytics.js','__gaTracker');
+
+	__gaTracker('create', 'UA-6477134-1', 'auto');
+	__gaTracker('set', 'forceSSL', true);
+	__gaTracker('send','pageview');
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/www.aschroder.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.15"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='yarppWidgetCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/widget101e.css?ver=4.8.15' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-syntax-css-css'  href='../../../wp-content/plugins/wp-syntax/css/wp-syntax4963.css?ver=1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-style-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/style5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<style id='storefront-style-inline-css' type='text/css'>
+
+			.main-navigation ul li a,
+			.site-title a,
+			ul.menu li a,
+			.site-branding h1 a,
+			.site-footer .storefront-handheld-footer-bar a:not(.button),
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				color: #333333;
+			}
+
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				border-color: #333333;
+			}
+
+			.main-navigation ul li a:hover,
+			.main-navigation ul li:hover > a,
+			.site-title a:hover,
+			a.cart-contents:hover,
+			.site-header-cart .widget_shopping_cart a:hover,
+			.site-header-cart:hover > li > a,
+			.site-header ul.menu li.current-menu-item > a {
+				color: #838383;
+			}
+
+			table th {
+				background-color: #f8f8f8;
+			}
+
+			table tbody td {
+				background-color: #fdfdfd;
+			}
+
+			table tbody tr:nth-child(2n) td,
+			fieldset,
+			fieldset legend {
+				background-color: #fbfbfb;
+			}
+
+			.site-header,
+			.secondary-navigation ul ul,
+			.main-navigation ul.menu > li.menu-item-has-children:after,
+			.secondary-navigation ul.menu ul,
+			.storefront-handheld-footer-bar,
+			.storefront-handheld-footer-bar ul li > a,
+			.storefront-handheld-footer-bar ul li.search .site-search,
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				background-color: #ffffff;
+			}
+
+			p.site-description,
+			.site-header,
+			.storefront-handheld-footer-bar {
+				color: #6d6d6d;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count,
+			button.menu-toggle:after,
+			button.menu-toggle:before,
+			button.menu-toggle span:before {
+				background-color: #333333;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				color: #ffffff;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				border-color: #ffffff;
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+				color: #333333;
+			}
+
+			.widget h1 {
+				border-bottom-color: #333333;
+			}
+
+			body,
+			.secondary-navigation a,
+			.onsale,
+			.pagination .page-numbers li .page-numbers:not(.current), .woocommerce-pagination .page-numbers li .page-numbers:not(.current) {
+				color: #6d6d6d;
+			}
+
+			.widget-area .widget a,
+			.hentry .entry-header .posted-on a,
+			.hentry .entry-header .byline a {
+				color: #9f9f9f;
+			}
+
+			a  {
+				color: #0228d1;
+			}
+
+			a:focus,
+			.button:focus,
+			.button.alt:focus,
+			.button.added_to_cart:focus,
+			.button.wc-forward:focus,
+			button:focus,
+			input[type="button"]:focus,
+			input[type="reset"]:focus,
+			input[type="submit"]:focus {
+				outline-color: #0228d1;
+			}
+
+			button, input[type="button"], input[type="reset"], input[type="submit"], .button, .added_to_cart, .widget a.button, .site-header-cart .widget_shopping_cart a.button {
+				background-color: #eeeeee;
+				border-color: #eeeeee;
+				color: #333333;
+			}
+
+			button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, .button:hover, .added_to_cart:hover, .widget a.button:hover, .site-header-cart .widget_shopping_cart a.button:hover {
+				background-color: #d5d5d5;
+				border-color: #d5d5d5;
+				color: #333333;
+			}
+
+			button.alt, input[type="button"].alt, input[type="reset"].alt, input[type="submit"].alt, .button.alt, .added_to_cart.alt, .widget-area .widget a.button.alt, .added_to_cart, .widget a.button.checkout {
+				background-color: #333333;
+				border-color: #333333;
+				color: #ffffff;
+			}
+
+			button.alt:hover, input[type="button"].alt:hover, input[type="reset"].alt:hover, input[type="submit"].alt:hover, .button.alt:hover, .added_to_cart.alt:hover, .widget-area .widget a.button.alt:hover, .added_to_cart:hover, .widget a.button.checkout:hover {
+				background-color: #1a1a1a;
+				border-color: #1a1a1a;
+				color: #ffffff;
+			}
+
+			.pagination .page-numbers li .page-numbers.current, .woocommerce-pagination .page-numbers li .page-numbers.current {
+				background-color: #e6e6e6;
+				color: #6d6d6d;
+			}
+
+			#comments .comment-list .comment-content .comment-text {
+				background-color: #f8f8f8;
+			}
+
+			.site-footer {
+				background-color: #f0f0f0;
+				color: #6d6d6d;
+			}
+
+			.site-footer a:not(.button) {
+				color: #333333;
+			}
+
+			.site-footer h1, .site-footer h2, .site-footer h3, .site-footer h4, .site-footer h5, .site-footer h6 {
+				color: #333333;
+			}
+
+			#order_review {
+				background-color: #ffffff;
+			}
+
+			#payment .payment_methods > li .payment_box,
+			#payment .place-order {
+				background-color: #fafafa;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice) {
+				background-color: #f5f5f5;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice):hover {
+				background-color: #f0f0f0;
+			}
+
+			@media screen and ( min-width: 768px ) {
+				.secondary-navigation ul.menu a:hover {
+					color: #868686;
+				}
+
+				.secondary-navigation ul.menu a {
+					color: #6d6d6d;
+				}
+
+				.site-header-cart .widget_shopping_cart,
+				.main-navigation ul.menu ul.sub-menu,
+				.main-navigation ul.nav-menu ul.children {
+					background-color: #f0f0f0;
+				}
+
+				.site-header-cart .widget_shopping_cart .buttons,
+				.site-header-cart .widget_shopping_cart .total {
+					background-color: #f5f5f5;
+				}
+
+				.site-header {
+					border-bottom-color: #f0f0f0;
+				}
+			}
+</style>
+<link rel='stylesheet' id='storefront-icons-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/sass/base/icons5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-fonts-css'  href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,600,700,900&amp;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jqueryb8ff.js?ver=1.12.4'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jquery-migrate.min330a.js?ver=1.4.1'></script>
+<link rel='https://api.w.org/' href='../../../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../xmlrpc0db0.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Introducing MageSpeedTest.com V2 &#8211; Performance test Magento from 4 different countries' href='../introducing-magespeedtest-com-v2-performance-test-magento-from-4-different-countries/index.html' />
+<link rel='next' title='Cloud Backup Case study: Detecting if Magento cron is running in your extensions' href='../../04/cloud-backup-case-study-detecting-if-magento-cron-is-running-in-your-extensions/index.html' />
+<meta name="generator" content="WordPress 4.8.15" />
+<link rel="canonical" href="index.html" />
+<link rel='shortlink' href='../../../indexd699.html?p=1449' />
+<link rel="alternate" type="application/json+oembed" href="../../../wp-json/oembed/1.0/embededb2.json?url=http%3A%2F%2Fwww.aschroder.com%2F2011%2F03%2Fmagento-google-site-maps-and-my-magento-speed-test%2F" />
+<link rel="alternate" type="text/xml+oembed" href="../../../wp-json/oembed/1.0/embedfc37?url=http%3A%2F%2Fwww.aschroder.com%2F2011%2F03%2Fmagento-google-site-maps-and-my-magento-speed-test%2F&amp;format=xml" />
+</head>
+
+<body class="post-template-default single single-post postid-1449 single-format-standard no-wc-breadcrumb storefront-full-width-content right-sidebar">
+
+
+<div id="page" class="hfeed site">
+	
+	<header id="masthead" class="site-header" role="banner" style="">
+		<div class="col-full">
+
+					<a class="skip-link screen-reader-text" href="#site-navigation">Skip to navigation</a>
+		<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+				<div class="site-branding">
+			<div class="beta site-title"><a href="../../../index.html" rel="home">ASchroder.com</a></div><p class="site-description">Notes on Web Development</p>		</div>
+		<div class="storefront-primary-navigation">		<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="Primary Navigation">
+		<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><span>Menu</span></button>
+			<div class="primary-navigation"><ul id="menu-main-menu" class="menu"><li id="menu-item-1119" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li id="menu-item-1118" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li id="menu-item-1872" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div><div class="handheld-navigation"><ul id="menu-main-menu-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div>		</nav><!-- #site-navigation -->
+		</div>
+		</div>
+	</header><!-- #masthead -->
+
+	
+	<div id="content" class="site-content" tabindex="-1">
+		<div class="col-full">
+
+		
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+<div id="post-1449" class="post-1449 post type-post status-publish format-standard hentry category-magento category-magento-speed-test-2 category-web-development tag-magento tag-magento-speed-test tag-sitemap-xml">
+
+			<header class="entry-header">
+		<span class="posted-on">Posted on <a href="index.html" rel="bookmark"><time class="entry-date published" datetime="2011-03-31T02:46:55+00:00">March 31, 2011</time> <time class="updated" datetime="2011-03-31T02:49:41+00:00">March 31, 2011</time></a></span><h1 class="entry-title">Magento, Google XML Sitemaps and my Magento Speed Test</h1>		</header><!-- .entry-header -->
+				<aside class="entry-meta">
+						<div class="author">
+				<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' /><div class="label">Written by</div><a href="../../../author/admin/index.html" title="Posts by Ashley" rel="author">Ashley</a>			</div>
+							<div class="cat-links">
+					<div class="label">Posted in</div><a href="../../../category/magento/index.html" rel="category tag">Magento</a>, <a href="../../../category/magento-speed-test-2/index.html" rel="category tag">Magento Speed Test</a>, <a href="../../../category/web-development/index.html" rel="category tag">Web Development</a>				</div>
+			
+							<div class="tags-links">
+					<div class="label">Tagged</div><a href="../../../tag/magento/index.html" rel="tag">Magento</a>, <a href="../../../tag/magento-speed-test/index.html" rel="tag">magento speed test</a>, <a href="../../../tag/sitemap-xml/index.html" rel="tag">sitemap.xml</a>				</div>
+			
+		
+							<div class="comments-link">
+					<div class="label">Comments</div>					<span class="comments-link"><a href="index.html#comments">2 Comments</a></span>
+				</div>
+					</aside>
+				<div class="entry-content">
+		<p>My Magento performance testing tool <a href="http://www.magespeedtest.com/">Magento Speed Test</a> uses a <a href="http://en.wikipedia.org/wiki/Sitemaps">Google sitemap.xml</a> to determine which urls should be tested. Having only just <a href="../introducing-magespeedtest-com-v2-performance-test-magento-from-4-different-countries/index.html">released the latest version</a> I have been keeping an eye on the testing over the last few days and have noticed a few tests that never got results. This sometimes happens because of a mistake by me, but more often it&#8217;s because people find creative ways to muck up their sitemap.xml, and so the test then runs on no urls, and thus &#8211; no results. Here are some tips to check for problems.</p>
+<p>After I <a href="https://twitter.com/aschroder/status/53044549320314880">sighed publicly</a> about the various issues with sitemaps I was seeing a few <a href="https://twitter.com/chrisedmo/status/53046880833249280">internet</a> friends <a href="https://twitter.com/ceckoslab/status/53079712397934593">asked for</a> some <a href="https://twitter.com/fuquit/status/53123492496949248">more information</a>, so here is a guide to a good sitemap.xml for performance testing Magento &#8211; I&#8217;ll do my best to keep updating this as I find more issues.<br />
+<span id="more-1449"></span></p>
+<h3>Sitemap issues</h3>
+<p>Like any <a href="http://programming-motherfucker.com/">diligent programmer</a> I had a rather simple set of tests for my sitemap checking functionality, without boring you with the details it looked a little like this:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="java" style="font-family:monospace;">@Test
+<span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000066; font-weight: bold;">void</span> testNoSitemap <span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+&nbsp;
+	<span style="color: #000000; font-weight: bold;">try</span> <span style="color: #009900;">&#123;</span>
+		SiegeUtils.<span style="color: #006633;">checkSitemap</span><span style="color: #009900;">&#40;</span>TEST_DOMAIN_WITH_NO_SITEMAP<span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+		fail<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+	<span style="color: #009900;">&#125;</span> <span style="color: #000000; font-weight: bold;">catch</span> <span style="color: #009900;">&#40;</span><span style="color: #003399;">IllegalArgumentException</span> ex<span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+		<span style="color: #666666; font-style: italic;">//passed</span>
+	<span style="color: #009900;">&#125;</span>
+<span style="color: #009900;">&#125;</span></pre></td></tr></table><p class="theCode" style="display:none;">@Test
+public void testNoSitemap () {
+	
+	try {
+		SiegeUtils.checkSitemap(TEST_DOMAIN_WITH_NO_SITEMAP);
+		fail();
+	} catch (IllegalArgumentException ex) {
+		//passed
+	}
+}</p></div>
+
+<p>You can imagine I had another one or two for a site that did have a sitemap, and I stupidly thought that was the end of it, no more ways it could fall over, there&#8217;s either a sitemap, <em>or not</em>, right? <strong>wrong</strong>, apparently.</p>
+<p>So here&#8217;s a little checklist that you can run through to see if your sitemap is going to be test friendly:</p>
+<h4>1) Does it exist at all?</h4>
+<p>You need to actually generate one, go to Magento&#8217;s admin menu: Catalog -> Google Sitemap. Then if you do not already see one in the list, click add sitemap &#8211; call it <code>sitemap.xml</code> and put in <code>/</code> as the path. (if you run a mutli-store Magento from sub-directories, this is a little more complex, but I have a hunch you&#8217;ll know what I mean). Once you have saved and generated a site map it should now be available at:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;">http:<span style="color: #000000; font-weight: bold;">//</span>www.yourdomain.com<span style="color: #000000; font-weight: bold;">/</span>sitemap.xml</pre></td></tr></table><p class="theCode" style="display:none;">http://www.yourdomain.com/sitemap.xml</p></div>
+
+<h4>2) If not, do you handle 404&#8217;s correctly?</h4>
+<p>This was a real tricky one &#8211; when a sitemap does not exist in 1) above, you&#8217;re <a href="http://en.wikipedia.org/wiki/HTTP_404">supposed to send a 404 response</a> code, right? I think magento does this by default, so I&#8217;m not sure how this person got it wrong, but the <code>/sitemap.xml</code> was just rendering the homepage as though it was the correct page.</p>
+<p>My test assumed if it got a 200 response code, there was a sitemap, so I had to now change it to check that the actual file contents <em>look like a sitemap</em> in order to weed out these incorrect response codes.</p>
+<p>It&#8217;s really really good practice not to mess with 404 handling in Magento, if a file doesn&#8217;t exist, actually send a 404 and render a humorous file not found page &#8211; <em>it might go viral</em>.</p>
+<h4>3) Are you redirecting cleanly?</h4>
+<p>This one is not so much just a sitemap tip as a general tip of the internet. If you <a href="http://stackoverflow.com/questions/234723/generic-htaccess-redirect-www-to-non-www">got the memo about keeping all your traffic on one domain</a> (either you.com or www.you.com) that&#8217;s great. But there are ways to do that nicely, and ways to really not do it nicely. So if you have a sitemap at <code>/sitemap.xml</code> but then redirect you.com/sitemap.xml to simply www.you.com (without preserving the path) then things will break. Not just sitemaps, but lots of your urls. So you should check that you&#8217;re keeping paths when you do the redirect.</p>
+<p>That&#8217;s about it for tips right now &#8211; I&#8217;ll add more as I come across them. </p>
+<p><strong>Note: </strong>There is something going wrong with certain sub-directory sitemaps  &#8211; I shall fix that up in the next few days and report back here when I do (so you should <a href="../../../feed/index.html">subscribe</a>!).</p>
+<h3>Submitting changes in your sitemap.xml to Google automatically</h3>
+<p>Not related to testing as such, but quite by chance I wrote <a href="http://www.magentocommerce.com/magento-connect/ASchroder/extension/2816/aschroder.com-sitemap-submit">a sitemap submission extension for Magento</a> ages ago, well before thinking up a web-based Magento performance testing tool. It&#8217;s relevant though because it can be set to automatically submit your sitemap to Google, Bing, and others. It&#8217;s a little out of date, so stay tuned for a newer release, but if you&#8217;re not on a bleeding edge Magento version, it should be fine.</p>
+<p>I still suggest you <a href="https://www.google.com/webmasters/tools/">submit your sitemap to Webmaster tools</a> or it&#8217;s equivalent for each search engine, so that you can get some insight and metrics for how your site is looking to the search engines. But for pinging Google when there&#8217;s new products, it&#8217;ll do the trick.</p>
+<p>That&#8217;s about it for now &#8211; check your sitemap.xml, submit it and look for crawl errors in webmaster tools are my top tips &#8211; I&#8217;ll update this with any new issues I spot over the next few months. Let me know if I missed anything and I&#8217;ll add it here.</p>
+<div class='yarpp-related'>
+<p>You might also be interested in:<ol>
+<li><a href="../../../2010/12/making-a-site-map-for-magento/index.html" rel="bookmark" title="Making a sitemap.xml for Magento">Making a sitemap.xml for Magento </a></li>
+<li><a href="../../../2012/02/new-look-for-magento-speed-test-thanks-to-twitter-bootstrap/index.html" rel="bookmark" title="New Look for Magento Speed Test, Thanks to Twitter Bootstrap.">New Look for Magento Speed Test, Thanks to Twitter Bootstrap. </a></li>
+<li><a href="../../../2010/12/magespeedtest-com-with-siege-performance-testing-magento-made-easy/index.html" rel="bookmark" title="MageSpeedTest.com with Siege &#8211; Performance Testing Magento Made Easy">MageSpeedTest.com with Siege &#8211; Performance Testing Magento Made Easy </a></li>
+<li><a href="../../../2010/12/laying-siege-to-magento-performance-testing-your-magento-webstores/index.html" rel="bookmark" title="Laying Siege to Magento: Performance testing your Magento webstores">Laying Siege to Magento: Performance testing your Magento webstores </a></li>
+<li><a href="../../08/sitemap-indexes-now-supported-on-magespeedtest-com/index.html" rel="bookmark" title="Sitemap Indexes now supported on MageSpeedTest.com">Sitemap Indexes now supported on MageSpeedTest.com </a></li>
+</ol></p>
+</div>
+		</div><!-- .entry-content -->
+		<nav id="post-navigation" class="navigation post-navigation" role="navigation" aria-label="Post Navigation"><span class="screen-reader-text">Post navigation</span><div class="nav-links"><div class="nav-previous"><a href="../introducing-magespeedtest-com-v2-performance-test-magento-from-4-different-countries/index.html" rel="prev">Introducing MageSpeedTest.com V2 &#8211; Performance test Magento from 4 different countries</a></div><div class="nav-next"><a href="../../04/cloud-backup-case-study-detecting-if-magento-cron-is-running-in-your-extensions/index.html" rel="next">Cloud Backup Case study: Detecting if Magento cron is running in your extensions</a></div></div></nav>
+<section id="comments" class="comments-area" aria-label="Post Comments">
+
+			<h2 class="comments-title">
+			2 thoughts on &ldquo;<span>Magento, Google XML Sitemaps and my Magento Speed Test</span>&rdquo;		</h2>
+
+		
+		<ol class="comment-list">
+					<li class="comment even thread-even depth-1" id="comment-2305">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/c211701bfb2a25f90f4e05bba3fc7f12?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/c211701bfb2a25f90f4e05bba3fc7f12?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://testenv/' rel='external nofollow' class='url'>dustin</a></cite>			</div>
+			
+			<a href="index.html#comment-2305" class="comment-date">
+				<time datetime="2011-05-16T07:35:31+00:00">May 16, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2305" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Schroder,</p>
+<p>This is an excellent article. I am facing an issue would like to know if you have any suggestions. </p>
+<p>We are building a multi-store (3 stores with each having one english store-view). Now if i have an URL of a product (say <a href="http://www.abc.com/audi-q5" rel="nofollow">http://www.abc.com/audi-q5</a>) which belongs to car-stores which works well if i am already in the car store. But now if i click on some other stores lets say toy-store and then paste the url <a href="http://www.abc.com/audi-q5" rel="nofollow">http://www.abc.com/audi-q5</a> i am getting &#8216;page not found error&#8217;. But now if i switch to the &#8216;car-store&#8217; and then paste this url it works fine. Now google-sitemaps are facing this same issue. For all the products in my default store (toy-store) it is able to find the page. but now when it tries to evaluate all other products in other stores like the car-store it gets the &#8216;page not found error&#8217;. </p>
+<p>now can you please advise me how to resolve this issue?</p>
+<p>thanks,<br />
+dustin.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-2306">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-2306" class="comment-date">
+				<time datetime="2011-05-16T13:18:44+00:00">May 16, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2306" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, Dustin &#8211; It&#8217;s only tenuously related to sitemaps but&#8230; oh well. Sounds like a complicated Magento multi-store setup you have there. I&#8217;d start by checking the base url for each store, it sounds like your browser is getting the store cookie set, but the stores all seem to share the same base url, which means that some of the urls will not exist in the different stores.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		</ol><!-- .comment-list -->
+
+				<p class="no-comments">Comments are closed.</p>
+	
+</section><!-- #comments -->
+
+</div><!-- #post-## -->
+
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+		</div><!-- .col-full -->
+	</div><!-- #content -->
+
+	
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="col-full">
+
+					<div class="site-info">
+			&copy; ASchroder.com 2023						<br /> Storefront designed by <a href="http://www.woocommerce.com/" title="WooCommerce - The Best eCommerce Platform for WordPress" rel="author">WooCommerce</a>.					</div><!-- .site-info -->
+		
+		</div><!-- .col-full -->
+	</footer><!-- #colophon -->
+
+	
+</div><!-- #page -->
+
+<link rel='stylesheet' id='yarppRelatedCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/related101e.css?ver=4.8.15' type='text/css' media='all' />
+<script type='text/javascript' src='../../../wp-content/plugins/wp-syntax/js/wp-syntax4963.js?ver=1.1'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/navigation.min11a8.js?ver=20120206'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/skip-link-focus-fix.min08e0.js?ver=20130115'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/wp-embed.min101e.js?ver=4.8.15'></script>
+
+</body>
+
+<!-- Mirrored from www.aschroder.com/2011/03/magento-google-site-maps-and-my-magento-speed-test/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:31:24 GMT -->
+</html>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:20:26 by W3 Total Cache -->

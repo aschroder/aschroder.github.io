@@ -1,0 +1,1407 @@
+<!doctype html>
+<html lang="en-US">
+
+<!-- Mirrored from www.aschroder.com/2010/07/why-are-my-magento-products-not-showing-up/comment-page-1/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:40:00 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="../../../../xmlrpc.php">
+
+<title>Why are my Magento products not showing up? | ASchroder.com</title>
+
+<!-- All in One SEO Pack 2.4.2 by Michael Torbert of Semper Fi Web Design[289,362] -->
+<meta name="description"  content="I got caught out with a weird issue where Magento products in a category just disappeared - existed if you navigated to their URL, but not shown in categories." />
+
+<meta name="keywords"  content="magento products,not displaying,troubleshooting" />
+
+<!-- /all in one seo pack -->
+<link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
+<link rel='dns-prefetch' href='http://s.w.org/' />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Feed" href="../../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Comments Feed" href="../../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Why are my Magento products not showing up?! Comments Feed" href="../feed/index.html" />
+<!-- This site uses the Google Analytics by MonsterInsights plugin v6.2.4 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+<script type="text/javascript" data-cfasync="false">
+		var disableStr = 'ga-disable-UA-6477134-1';
+
+	/* Function to detect opted out users */
+	function __gaTrackerIsOptedOut() {
+		return document.cookie.indexOf(disableStr + '=true') > -1;
+	}
+
+	/* Disable tracking if the opt-out cookie exists. */
+	if ( __gaTrackerIsOptedOut() ) {
+		window[disableStr] = true;
+	}
+
+	/* Opt-out function */
+	function __gaTrackerOptout() {
+	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+	  window[disableStr] = true;
+	}
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','http://www.google-analytics.com/analytics.js','__gaTracker');
+
+	__gaTracker('create', 'UA-6477134-1', 'auto');
+	__gaTracker('set', 'forceSSL', true);
+	__gaTracker('send','pageview');
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/www.aschroder.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.15"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='yarppWidgetCss-css'  href='../../../../wp-content/plugins/yet-another-related-posts-plugin/style/widget101e.css?ver=4.8.15' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-syntax-css-css'  href='../../../../wp-content/plugins/wp-syntax/css/wp-syntax4963.css?ver=1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-style-css'  href='../../../../../cdn.aschroder.com/wp-content/themes/storefront/style5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<style id='storefront-style-inline-css' type='text/css'>
+
+			.main-navigation ul li a,
+			.site-title a,
+			ul.menu li a,
+			.site-branding h1 a,
+			.site-footer .storefront-handheld-footer-bar a:not(.button),
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				color: #333333;
+			}
+
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				border-color: #333333;
+			}
+
+			.main-navigation ul li a:hover,
+			.main-navigation ul li:hover > a,
+			.site-title a:hover,
+			a.cart-contents:hover,
+			.site-header-cart .widget_shopping_cart a:hover,
+			.site-header-cart:hover > li > a,
+			.site-header ul.menu li.current-menu-item > a {
+				color: #838383;
+			}
+
+			table th {
+				background-color: #f8f8f8;
+			}
+
+			table tbody td {
+				background-color: #fdfdfd;
+			}
+
+			table tbody tr:nth-child(2n) td,
+			fieldset,
+			fieldset legend {
+				background-color: #fbfbfb;
+			}
+
+			.site-header,
+			.secondary-navigation ul ul,
+			.main-navigation ul.menu > li.menu-item-has-children:after,
+			.secondary-navigation ul.menu ul,
+			.storefront-handheld-footer-bar,
+			.storefront-handheld-footer-bar ul li > a,
+			.storefront-handheld-footer-bar ul li.search .site-search,
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				background-color: #ffffff;
+			}
+
+			p.site-description,
+			.site-header,
+			.storefront-handheld-footer-bar {
+				color: #6d6d6d;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count,
+			button.menu-toggle:after,
+			button.menu-toggle:before,
+			button.menu-toggle span:before {
+				background-color: #333333;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				color: #ffffff;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				border-color: #ffffff;
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+				color: #333333;
+			}
+
+			.widget h1 {
+				border-bottom-color: #333333;
+			}
+
+			body,
+			.secondary-navigation a,
+			.onsale,
+			.pagination .page-numbers li .page-numbers:not(.current), .woocommerce-pagination .page-numbers li .page-numbers:not(.current) {
+				color: #6d6d6d;
+			}
+
+			.widget-area .widget a,
+			.hentry .entry-header .posted-on a,
+			.hentry .entry-header .byline a {
+				color: #9f9f9f;
+			}
+
+			a  {
+				color: #0228d1;
+			}
+
+			a:focus,
+			.button:focus,
+			.button.alt:focus,
+			.button.added_to_cart:focus,
+			.button.wc-forward:focus,
+			button:focus,
+			input[type="button"]:focus,
+			input[type="reset"]:focus,
+			input[type="submit"]:focus {
+				outline-color: #0228d1;
+			}
+
+			button, input[type="button"], input[type="reset"], input[type="submit"], .button, .added_to_cart, .widget a.button, .site-header-cart .widget_shopping_cart a.button {
+				background-color: #eeeeee;
+				border-color: #eeeeee;
+				color: #333333;
+			}
+
+			button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, .button:hover, .added_to_cart:hover, .widget a.button:hover, .site-header-cart .widget_shopping_cart a.button:hover {
+				background-color: #d5d5d5;
+				border-color: #d5d5d5;
+				color: #333333;
+			}
+
+			button.alt, input[type="button"].alt, input[type="reset"].alt, input[type="submit"].alt, .button.alt, .added_to_cart.alt, .widget-area .widget a.button.alt, .added_to_cart, .widget a.button.checkout {
+				background-color: #333333;
+				border-color: #333333;
+				color: #ffffff;
+			}
+
+			button.alt:hover, input[type="button"].alt:hover, input[type="reset"].alt:hover, input[type="submit"].alt:hover, .button.alt:hover, .added_to_cart.alt:hover, .widget-area .widget a.button.alt:hover, .added_to_cart:hover, .widget a.button.checkout:hover {
+				background-color: #1a1a1a;
+				border-color: #1a1a1a;
+				color: #ffffff;
+			}
+
+			.pagination .page-numbers li .page-numbers.current, .woocommerce-pagination .page-numbers li .page-numbers.current {
+				background-color: #e6e6e6;
+				color: #6d6d6d;
+			}
+
+			#comments .comment-list .comment-content .comment-text {
+				background-color: #f8f8f8;
+			}
+
+			.site-footer {
+				background-color: #f0f0f0;
+				color: #6d6d6d;
+			}
+
+			.site-footer a:not(.button) {
+				color: #333333;
+			}
+
+			.site-footer h1, .site-footer h2, .site-footer h3, .site-footer h4, .site-footer h5, .site-footer h6 {
+				color: #333333;
+			}
+
+			#order_review {
+				background-color: #ffffff;
+			}
+
+			#payment .payment_methods > li .payment_box,
+			#payment .place-order {
+				background-color: #fafafa;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice) {
+				background-color: #f5f5f5;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice):hover {
+				background-color: #f0f0f0;
+			}
+
+			@media screen and ( min-width: 768px ) {
+				.secondary-navigation ul.menu a:hover {
+					color: #868686;
+				}
+
+				.secondary-navigation ul.menu a {
+					color: #6d6d6d;
+				}
+
+				.site-header-cart .widget_shopping_cart,
+				.main-navigation ul.menu ul.sub-menu,
+				.main-navigation ul.nav-menu ul.children {
+					background-color: #f0f0f0;
+				}
+
+				.site-header-cart .widget_shopping_cart .buttons,
+				.site-header-cart .widget_shopping_cart .total {
+					background-color: #f5f5f5;
+				}
+
+				.site-header {
+					border-bottom-color: #f0f0f0;
+				}
+			}
+</style>
+<link rel='stylesheet' id='storefront-icons-css'  href='../../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/sass/base/icons5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-fonts-css'  href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,600,700,900&amp;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../../cdn.aschroder.com/wp-includes/js/jquery/jqueryb8ff.js?ver=1.12.4'></script>
+<script type='text/javascript' src='../../../../../cdn.aschroder.com/wp-includes/js/jquery/jquery-migrate.min330a.js?ver=1.4.1'></script>
+<link rel='https://api.w.org/' href='../../../../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../../xmlrpc0db0.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Structuring your Magento project for Engineering, not Hacking' href='../../structuring-your-magento-project-for-engineering-not-hacking/index.html' />
+<link rel='next' title='Easily Set a Custom Order Number in Magento With My Free SetStartOrderNumber Extension' href='../../easily-set-a-custom-order-number-in-magento-with-my-free-setstartordernumber-extension/index.html' />
+<meta name="generator" content="WordPress 4.8.15" />
+<link rel="canonical" href="index.html#comments" />
+<link rel='shortlink' href='../../../../indexc0cd.html?p=904' />
+<link rel="alternate" type="application/json+oembed" href="../../../../wp-json/oembed/1.0/embed99f1.json?url=http%3A%2F%2Fwww.aschroder.com%2F2010%2F07%2Fwhy-are-my-magento-products-not-showing-up%2F" />
+<link rel="alternate" type="text/xml+oembed" href="../../../../wp-json/oembed/1.0/embedc628?url=http%3A%2F%2Fwww.aschroder.com%2F2010%2F07%2Fwhy-are-my-magento-products-not-showing-up%2F&amp;format=xml" />
+</head>
+
+<body class="post-template-default single single-post postid-904 single-format-standard no-wc-breadcrumb storefront-full-width-content right-sidebar">
+
+
+<div id="page" class="hfeed site">
+	
+	<header id="masthead" class="site-header" role="banner" style="">
+		<div class="col-full">
+
+					<a class="skip-link screen-reader-text" href="#site-navigation">Skip to navigation</a>
+		<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+				<div class="site-branding">
+			<div class="beta site-title"><a href="../../../../index.html" rel="home">ASchroder.com</a></div><p class="site-description">Notes on Web Development</p>		</div>
+		<div class="storefront-primary-navigation">		<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="Primary Navigation">
+		<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><span>Menu</span></button>
+			<div class="primary-navigation"><ul id="menu-main-menu" class="menu"><li id="menu-item-1119" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../../index.html">Home</a></li>
+<li id="menu-item-1118" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../../about/index.html">About</a></li>
+<li id="menu-item-1872" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../../presentations/index.html">Presentations</a></li>
+</ul></div><div class="handheld-navigation"><ul id="menu-main-menu-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../../index.html">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../../about/index.html">About</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../../presentations/index.html">Presentations</a></li>
+</ul></div>		</nav><!-- #site-navigation -->
+		</div>
+		</div>
+	</header><!-- #masthead -->
+
+	
+	<div id="content" class="site-content" tabindex="-1">
+		<div class="col-full">
+
+		
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+<div id="post-904" class="post-904 post type-post status-publish format-standard hentry category-magento category-web-development tag-magento-products tag-not-displaying tag-troubleshooting">
+
+			<header class="entry-header">
+		<span class="posted-on">Posted on <a href="../index.html" rel="bookmark"><time class="entry-date published" datetime="2010-07-14T17:00:40+00:00">July 14, 2010</time> <time class="updated" datetime="2010-07-15T00:21:50+00:00">July 15, 2010</time></a></span><h1 class="entry-title">Why are my Magento products not showing up?!</h1>		</header><!-- .entry-header -->
+				<aside class="entry-meta">
+						<div class="author">
+				<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' /><div class="label">Written by</div><a href="../../../../author/admin/index.html" title="Posts by Ashley" rel="author">Ashley</a>			</div>
+							<div class="cat-links">
+					<div class="label">Posted in</div><a href="../../../../category/magento/index.html" rel="category tag">Magento</a>, <a href="../../../../category/web-development/index.html" rel="category tag">Web Development</a>				</div>
+			
+							<div class="tags-links">
+					<div class="label">Tagged</div><a href="../../../../tag/magento-products/index.html" rel="tag">magento products</a>, <a href="../../../../tag/not-displaying/index.html" rel="tag">not displaying</a>, <a href="../../../../tag/troubleshooting/index.html" rel="tag">troubleshooting</a>				</div>
+			
+		
+							<div class="comments-link">
+					<div class="label">Comments</div>					<span class="comments-link"><a href="../index.html#comments">126 Comments</a></span>
+				</div>
+					</aside>
+				<div class="entry-content">
+		<p>This is a just a quickie &#8211; got caught out with a weird issue yesterday where the Magento products in a particular category just disappeared &#8211; they still existed if you navigated directly to their URL, but they would not show in their categories (though the Manage Categories screen in the Magento admin still showed those products <em>in</em> their correct category).</p>
+<p>These things <strong>always</strong> happen at inopportune times, I was right about to start a pre-go-live review of a site, and was left with one category completely devoid of products, <em>thanks for making me look like an egg, Magento</em>!<br />
+<span id="more-904"></span><br />
+It prompted me to begin a sequence of steps I have found myself often taking to diagnose why products do not appear on the Magento frontend like I expect them to. I thought it might be worth documenting those steps I take and things I check to find out what is preventing a product to show up. Ironically yesterday, I got to the end of my usual list and the products <em>still</em> didn&#8217;t show up! So I now have one other thing to suggest you try when products appear to inexplicably stop displaying. </p>
+<p>Here we go with my top things to check for when your products don&#8217;t show up:</p>
+<p><strong>Are the products In Stock?</strong><br />
+I know it sounds obvious but when you&#8217;re adding a quick test product, it&#8217;s easy to miss this field, trust me. Make sure it&#8217;s set to In Stock as shown below:</p>
+<p><a href="../../../../../cdn.aschroder.com/wp-content/uploads/2010/07/instock.png"><img src="../../../../../cdn.aschroder.com/wp-content/uploads/2010/07/instock.png" alt="Product in stock" title="Product in stock" width="589" height="50" class="aligncenter size-full wp-image-914" srcset="http://cdn.aschroder.com/wp-content/uploads/2010/07/instock.png 589w, http://cdn.aschroder.com/wp-content/uploads/2010/07/instock-300x25.png 300w" sizes="(max-width: 589px) 100vw, 589px" /></a></p>
+<p>You can also set up the inventory configuration to <em>Display out of stock products</em>, which sort of negates this one if it is set to Yes:</p>
+<p><a href="../../../../../cdn.aschroder.com/wp-content/uploads/2010/07/config-inventory.png"><img src="../../../../../cdn.aschroder.com/wp-content/uploads/2010/07/config-inventory.png" alt="Confugure inventory to show out of stock" title="Confugure inventory to show out of stock" width="556"  class="aligncenter size-full wp-image-911" srcset="http://cdn.aschroder.com/wp-content/uploads/2010/07/config-inventory.png 656w, http://cdn.aschroder.com/wp-content/uploads/2010/07/config-inventory-300x104.png 300w" sizes="(max-width: 656px) 100vw, 656px" /></a></p>
+<p><strong>Are the products Enabled?</strong></p>
+<p>Again another easy one to miss when adding a product manually, not so easy to stuff up if you use bulk product imports though. Interestingly the fix I eventually found below involved this attribute.</p>
+<p><a href="../../../../../cdn.aschroder.com/wp-content/uploads/2010/07/status.png"><img src="../../../../../cdn.aschroder.com/wp-content/uploads/2010/07/status.png" alt="Enabled status" title="Enabled status" width="536" height="46" class="aligncenter size-full wp-image-916" srcset="http://cdn.aschroder.com/wp-content/uploads/2010/07/status.png 536w, http://cdn.aschroder.com/wp-content/uploads/2010/07/status-300x25.png 300w" sizes="(max-width: 536px) 100vw, 536px" /></a></p>
+<p><strong>Are the products Visible?</strong></p>
+<p>In some merchandising situations you want your simple products to be invisible and only show the parent products. However if you do want your product to be visible make sure you set it where applicable in this field.</p>
+<p><a href="../../../../../cdn.aschroder.com/wp-content/uploads/2010/07/visibility.png"><img src="../../../../../cdn.aschroder.com/wp-content/uploads/2010/07/visibility.png" alt="Check the visibility" title="Check the visibility" width="505" height="40" class="aligncenter size-full wp-image-915" srcset="http://cdn.aschroder.com/wp-content/uploads/2010/07/visibility.png 505w, http://cdn.aschroder.com/wp-content/uploads/2010/07/visibility-300x23.png 300w, http://cdn.aschroder.com/wp-content/uploads/2010/07/visibility-500x40.png 500w" sizes="(max-width: 505px) 100vw, 505px" /></a></p>
+<p><strong>Are any associated products in stock? </strong></p>
+<p>If you have a complex product like a bundled or configurable product, at least one of the simple products that comprise it must be in stock and enabled (almost a bit of a recursion on this list, eh?!). A well behaved configurable will have an associated products tab that looks a bit like this:</p>
+<p><a href="../../../../../cdn.aschroder.com/wp-content/uploads/2010/07/associated-products.png"><img src="../../../../../cdn.aschroder.com/wp-content/uploads/2010/07/associated-products.png" alt="Check Associated Products" title="Check Associated Products" width="550" class="aligncenter size-full wp-image-913" srcset="http://cdn.aschroder.com/wp-content/uploads/2010/07/associated-products.png 714w, http://cdn.aschroder.com/wp-content/uploads/2010/07/associated-products-300x163.png 300w" sizes="(max-width: 714px) 100vw, 714px" /></a></p>
+<p><strong>Are the products in the expected category?</strong></p>
+<p>More of a sanity check than anything, but the individual product should be reporting it belongs to the correct category like this:</p>
+<p><a href="../../../../../cdn.aschroder.com/wp-content/uploads/2010/07/expected-category.png"><img src="../../../../../cdn.aschroder.com/wp-content/uploads/2010/07/expected-category.png" alt="Expected Category" title="Expected Category" width="245" height="221" class="aligncenter size-full wp-image-912" /></a></p>
+<p><strong>Are your Caches and Indexes out of date?</strong><br />
+It never hurts to clear/reindex these when you&#8217;re scratching your head, it&#8217;s getting pretty desperate if you&#8217;re still with me to here!</p>
+<p>Access these options in the System -> Cache Management and System -> Index Management menus.</p>
+<p><a href="../../../../../cdn.aschroder.com/wp-content/uploads/2010/07/caches.png"><img src="../../../../../cdn.aschroder.com/wp-content/uploads/2010/07/caches.png" alt="Clear your Cache" title="Clear your Cache" width="393" height="54" class="aligncenter size-full wp-image-910" srcset="http://cdn.aschroder.com/wp-content/uploads/2010/07/caches.png 393w, http://cdn.aschroder.com/wp-content/uploads/2010/07/caches-300x41.png 300w" sizes="(max-width: 393px) 100vw, 393px" /></a></p>
+<p><a href="../../../../../cdn.aschroder.com/wp-content/uploads/2010/07/indexes.png"><img src="../../../../../cdn.aschroder.com/wp-content/uploads/2010/07/indexes.png" alt="Reindex" title="Reindex" width="261" height="288" class="aligncenter size-full wp-image-909" /></a></p>
+<p><strong>Have you run out of other things to try?</strong><br />
+And lastly &#8211; the weird situation I had yesterday where the products were visible when navigating directly, but not when looking at their category page (and oddly it only affected one category). I suspect this must be to do with an index table not being correct, or a cache, but I tried re-indexing and refreshing the cache to no avail, so I can&#8217;t pin it on this for sure.</p>
+<p>Anyway, all it took to have the products re-associate with their category was to bulk disable them and then bulk re-enable them. Strange eh? I had tested a bulk attribute change earlier and that didn&#8217;t fix them, so it wasn&#8217;t just any attribute change, but particularly the status. I just wish I knew <em>why</em> that fixed them &#8211; but I didn&#8217;t have time to investigate further, or even try to replicate the issue. So for now It&#8217;s a &#8216;solar flare&#8217; problem&#8230;</p>
+<p>Got through all of these and still no luck? Let me know. Also I&#8217;d appreciate any feedback on other tips or suggestions people may have on this, always good to add another possible fix to my list. </p>
+<div class='yarpp-related'>
+<p>You might also be interested in:<ol>
+<li><a href="../../../../2009/03/top-3-solutions-when-your-magento-categories-are-not-displaying/index.html" rel="bookmark" title="Top 3 Solutions when your Magento Categories are not displaying">Top 3 Solutions when your Magento Categories are not displaying </a></li>
+<li><a href="../../../../2009/01/magento-full-text-search-fails-after-upgrading-from-earlier-versions/index.html" rel="bookmark" title="Magento 1.2.0.1 Full Text Search fails after upgrading from earlier versions">Magento 1.2.0.1 Full Text Search fails after upgrading from earlier versions </a></li>
+<li><a href="../../../../2009/10/3-easy-steps-to-add-products-to-the-magento-home-page-or-any-cms-page/index.html" rel="bookmark" title="3 easy steps to add products to the Magento Home Page (or any CMS page)">3 easy steps to add products to the Magento Home Page (or any CMS page) </a></li>
+<li><a href="../../../../2009/04/how-to-bulk-enable-products-when-google-checkout-is-disabled-in-magento/index.html" rel="bookmark" title="How to Bulk Enable Products when Google Checkout is Disabled in Magento">How to Bulk Enable Products when Google Checkout is Disabled in Magento </a></li>
+<li><a href="../../../10/magento-product-audit-extension-monitor-and-record-changes-to-your-products/index.html" rel="bookmark" title="Magento Product Audit Extension &#8211; Monitor and Record Changes to your Products">Magento Product Audit Extension &#8211; Monitor and Record Changes to your Products </a></li>
+</ol></p>
+</div>
+		</div><!-- .entry-content -->
+		<nav id="post-navigation" class="navigation post-navigation" role="navigation" aria-label="Post Navigation"><span class="screen-reader-text">Post navigation</span><div class="nav-links"><div class="nav-previous"><a href="../../structuring-your-magento-project-for-engineering-not-hacking/index.html" rel="prev">Structuring your Magento project for Engineering, not Hacking</a></div><div class="nav-next"><a href="../../easily-set-a-custom-order-number-in-magento-with-my-free-setstartordernumber-extension/index.html" rel="next">Easily Set a Custom Order Number in Magento With My Free SetStartOrderNumber Extension</a></div></div></nav>
+<section id="comments" class="comments-area" aria-label="Post Comments">
+
+			<h2 class="comments-title">
+			126 thoughts on &ldquo;<span>Why are my Magento products not showing up?!</span>&rdquo;		</h2>
+
+				<nav id="comment-nav-above" class="comment-navigation" role="navigation" aria-label="Comment Navigation Above">
+			<span class="screen-reader-text">Comment navigation</span>
+			<div class="nav-previous"></div>
+			<div class="nav-next"><a href="../comment-page-2/index.html#comments" >Newer Comments &rarr;</a></div>
+		</nav><!-- #comment-nav-above -->
+		
+		<ol class="comment-list">
+					<li class="comment even thread-even depth-1" id="comment-1624">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/5cc542a3958bac079cd5d5dd118a70bf?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/5cc542a3958bac079cd5d5dd118a70bf?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">heera</cite>			</div>
+			
+			<a href="index.html#comment-1624" class="comment-date">
+				<time datetime="2010-07-28T06:51:52+00:00">July 28, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1624" class="comment-content">
+				<div class="comment-text">
+		<p>thanks&#8230;&#8230;&#8230;&#8230;&#8230;&#8230;&#8230;&#8230;&#8230;.</p>
+<p>thank u very much  ..</p>
+<p>ur solution is really great&#8230;&#8230;&#8230;.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1701">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/6306928a2e87d1e0c56abd9a209083ee?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/6306928a2e87d1e0c56abd9a209083ee?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">pip</cite>			</div>
+			
+			<a href="index.html#comment-1701" class="comment-date">
+				<time datetime="2010-08-10T03:48:57+00:00">August 10, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1701" class="comment-content">
+				<div class="comment-text">
+		<p>Although magento is a powerful piece of e commerce software,  it is pretty stupid at times. </p>
+<p>Disabling and enabling products fixed my problem of products not showing up</p>
+<p>Thanks  a lot.  🙂</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1742">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/327058dfc5cf3e65e994972cc2bd749e?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/327058dfc5cf3e65e994972cc2bd749e?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">baye mor</cite>			</div>
+			
+			<a href="index.html#comment-1742" class="comment-date">
+				<time datetime="2010-08-18T00:55:14+00:00">August 18, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1742" class="comment-content">
+				<div class="comment-text">
+		<p>Checking if the product was in stock solved my problem.<br />
+Thanks a lot !</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1789">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/4f6527dd7817f1a36c27522d00b4556b?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/4f6527dd7817f1a36c27522d00b4556b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.piotrkrzyzek.com/' rel='external nofollow' class='url'>Piotr Krzyzek</a></cite>			</div>
+			
+			<a href="index.html#comment-1789" class="comment-date">
+				<time datetime="2010-08-31T06:11:04+00:00">August 31, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1789" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks for the write up! I&#8217;ve been tearing my hair out completely (well, what&#8217;s left of it) trying to figure out why the heck things weren&#8217;t showing up in my ebook category! GRAR!</p>
+<p>Before reading your (very) indepth article I tried most of what you said. I didn&#8217;t know that the indexes and caches could be redone though. I way really hoping that would clear things up, buy sadly it didn&#8217;t. </p>
+<p>Though I did finally find a solution, if anyone is interested. It&#8217;s a little $5 plugin which cleared everything right up for me. woot!</p>
+<p>It&#8217;s at: <a href="http://shop.masteringmagento.com/products/catalog-visibility" rel="nofollow">http://shop.masteringmagento.com/products/catalog-visibility</a> (not an affiliate link)</p>
+<p>hope it solves the issue for you like it did for me (after hours and hours of trying to figure it out).</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1813">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/26c6453a1abb3894cf20b2da520c1388?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/26c6453a1abb3894cf20b2da520c1388?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Steve Daly</cite>			</div>
+			
+			<a href="index.html#comment-1813" class="comment-date">
+				<time datetime="2010-09-06T15:32:17+00:00">September 6, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1813" class="comment-content">
+				<div class="comment-text">
+		<p>Found this article and my problem was the very first step! FML.</p>
+<p>Thanks for the articles.  Just found your site and will bookmark/subscribe.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1888">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo avatar-default' height='128' width='128' />			<cite class="fn"><a href='http://yoururl/' rel='external nofollow' class='url'>BMWMaX</a></cite>			</div>
+			
+			<a href="index.html#comment-1888" class="comment-date">
+				<time datetime="2010-09-26T06:09:23+00:00">September 26, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1888" class="comment-content">
+				<div class="comment-text">
+		<p>Here also the first option solved it </p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1904">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo avatar-default' height='128' width='128' />			<cite class="fn"><a href='http://yoururl/' rel='external nofollow' class='url'>Josiah</a></cite>			</div>
+			
+			<a href="index.html#comment-1904" class="comment-date">
+				<time datetime="2010-10-02T18:06:04+00:00">October 2, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1904" class="comment-content">
+				<div class="comment-text">
+		<p>Perfect the steps are very helpful</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1926">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo avatar-default' height='128' width='128' />			<cite class="fn"><a href='http://yoururl/' rel='external nofollow' class='url'>iain</a></cite>			</div>
+			
+			<a href="index.html#comment-1926" class="comment-date">
+				<time datetime="2010-10-20T03:10:15+00:00">October 20, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1926" class="comment-content">
+				<div class="comment-text">
+		<p>Lifesaver. Just spent a couple of bemused hours trying to work out why products were not displaying. &#8216;Out of stock&#8217; was the embarassingly simple answer.  </p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1929">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo avatar-default' height='128' width='128' />			<cite class="fn"><a href='http://yoururl/' rel='external nofollow' class='url'>Nils</a></cite>			</div>
+			
+			<a href="index.html#comment-1929" class="comment-date">
+				<time datetime="2010-10-21T09:22:30+00:00">October 21, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1929" class="comment-content">
+				<div class="comment-text">
+		<p>nice write up, but none of the tips helped me. Instead I overlooked something very simple: the newly created category was set to display static blocks only instead of products! maybe someone else doesn&#8217;t think about something this obvious, like me&#8230;</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1951">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/9b7556867a74ea14e39a578a9c2ee366?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/9b7556867a74ea14e39a578a9c2ee366?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.designsinblue.com/' rel='external nofollow' class='url'>bluehawk</a></cite>			</div>
+			
+			<a href="index.html#comment-1951" class="comment-date">
+				<time datetime="2010-11-02T17:35:00+00:00">November 2, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1951" class="comment-content">
+				<div class="comment-text">
+		<p>New to magento on an emergency basis&#8230;  Stock availablity &#8211; maybe obvious if you are familiar with Magento admin&#8230;  thanks a ton for the writeup!  saved me countless more hours of hair pulling (2 installs and too much code monkeying)</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1956">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/d14771a47f239d881bdb36028547800f?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/d14771a47f239d881bdb36028547800f?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://yoururl/' rel='external nofollow' class='url'>Manu Torres</a></cite>			</div>
+			
+			<a href="index.html#comment-1956" class="comment-date">
+				<time datetime="2010-11-06T12:03:16+00:00">November 6, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1956" class="comment-content">
+				<div class="comment-text">
+		<p>Wow, I was about to jump out thru the window because my products were not showing up. I&#8217;ll wait for another issue (hope you had written about that too! 😉</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1974">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/8220d7d30c8233d6086efb9ca30da171?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/8220d7d30c8233d6086efb9ca30da171?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://yoururl/' rel='external nofollow' class='url'>Rex</a></cite>			</div>
+			
+			<a href="index.html#comment-1974" class="comment-date">
+				<time datetime="2010-11-17T22:58:57+00:00">November 17, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1974" class="comment-content">
+				<div class="comment-text">
+		<p>You should open a suicide hotline! I fiinally set up my first Magento site, added my first new product, and everything went kablooey! Your bulk disable/enable technique did the trick. Thank you!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2017">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/a678f6d63b0a82218533b713b0f04f40?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/a678f6d63b0a82218533b713b0f04f40?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://yoururl/' rel='external nofollow' class='url'>Christof</a></cite>			</div>
+			
+			<a href="index.html#comment-2017" class="comment-date">
+				<time datetime="2010-12-16T00:24:19+00:00">December 16, 2010</time>			</a>
+		</div>
+				<div id="div-comment-2017" class="comment-content">
+				<div class="comment-text">
+		<p>That was amazing! I just spent hours meticulously going through all my product/attribute fields trying to work out what I&#8217;d done wrong. Turns out when I disabled them and then enabled them again&#8230; hey presto&#8230; They&#8217;re showing up now. Thanks a heap.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2040">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/d27c7b8e3aafb6255614e6a9283255a4?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/d27c7b8e3aafb6255614e6a9283255a4?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://yoururl/' rel='external nofollow' class='url'>laurent</a></cite>			</div>
+			
+			<a href="index.html#comment-2040" class="comment-date">
+				<time datetime="2010-12-23T12:22:52+00:00">December 23, 2010</time>			</a>
+		</div>
+				<div id="div-comment-2040" class="comment-content">
+				<div class="comment-text">
+		<p>Man, thank you very much!<br />
+The weird last step helped me very well!!<br />
+Strange bug, isn&#8217;t it?<br />
+😉</p>
+<p>Happy Chrismas!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2052">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/d47ac0b726d605d77af187644c8d2af6?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/d47ac0b726d605d77af187644c8d2af6?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://yoururl/' rel='external nofollow' class='url'>Khurram</a></cite>			</div>
+			
+			<a href="index.html#comment-2052" class="comment-date">
+				<time datetime="2010-12-29T15:06:15+00:00">December 29, 2010</time>			</a>
+		</div>
+				<div id="div-comment-2052" class="comment-content">
+				<div class="comment-text">
+		<p>My God.i have had tried everything except this last one before reading this&#8230;got my problem solved..very well done!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2089">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo avatar-default' height='128' width='128' />			<cite class="fn"><a href='http://yoururl/' rel='external nofollow' class='url'>Ben</a></cite>			</div>
+			
+			<a href="index.html#comment-2089" class="comment-date">
+				<time datetime="2011-01-17T04:34:42+00:00">January 17, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2089" class="comment-content">
+				<div class="comment-text">
+		<p>Hi</p>
+<p>The Magento Connect extension disappearance issue is really annoying but there is a quick fix: log in to your account, go to your extensions section, disable your extension and then enable it back which will make the extension again visible rather than to wait for the Magento Connnect system to refresh itself.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2097">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo avatar-default' height='128' width='128' />			<cite class="fn"><a href='http://yoururl/' rel='external nofollow' class='url'>Natasha</a></cite>			</div>
+			
+			<a href="index.html#comment-2097" class="comment-date">
+				<time datetime="2011-01-20T15:38:23+00:00">January 20, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2097" class="comment-content">
+				<div class="comment-text">
+		<p>Wow, it did fixed my problem. Thanks.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2098">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo avatar-default' height='128' width='128' />			<cite class="fn"><a href='http://yoururl/' rel='external nofollow' class='url'>Boris</a></cite>			</div>
+			
+			<a href="index.html#comment-2098" class="comment-date">
+				<time datetime="2011-01-21T05:57:47+00:00">January 21, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2098" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks a alot, it helped!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2101">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/0d4a811835a3cee03eb901615d456b0f?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/0d4a811835a3cee03eb901615d456b0f?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.webcitz.com/' rel='external nofollow' class='url'>David</a></cite>			</div>
+			
+			<a href="index.html#comment-2101" class="comment-date">
+				<time datetime="2011-01-24T19:43:20+00:00">January 24, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2101" class="comment-content">
+				<div class="comment-text">
+		<p>This was a godsend &#8211; thanks for the post! I shared it on a magento forum post already.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2155">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/55056bc51131d25f04060b17302cdedd?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/55056bc51131d25f04060b17302cdedd?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://yoururl/' rel='external nofollow' class='url'>Deekay</a></cite>			</div>
+			
+			<a href="index.html#comment-2155" class="comment-date">
+				<time datetime="2011-02-20T20:38:40+00:00">February 20, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2155" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks Ashley for addressing this issue. Just to add to Ashley&#8217;s tips before reindexing go to /var/locks/ and delete all the .lock files. </p>
+<p>The steps I took to fix a similar issue is as follows: </p>
+<p>1). Disassociate products from the Categories<br />
+2). Go to /var/locks/ and delete all the lock files<br />
+3). Reindex the tables<br />
+4). Re-associate products to the Categories<br />
+5). Go to /var/locks/ and delete all the lock files<br />
+6). Reindex for the last time!</p>
+<p>And pray that it works!.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2156">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/bdfe0ba6156c70d53ffbb5dad74a772c?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/bdfe0ba6156c70d53ffbb5dad74a772c?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.mattlong.co.nz/' rel='external nofollow' class='url'>Matt Long</a></cite>			</div>
+			
+			<a href="index.html#comment-2156" class="comment-date">
+				<time datetime="2011-02-21T05:55:47+00:00">February 21, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2156" class="comment-content">
+				<div class="comment-text">
+		<p>One more tip:<br />
+Q. Is the product assigned / enabled to the correct Website ?</p>
+<p>In &#8216;Manage Products&#8217; tick the product, then on right hand side Actions / Update Attributes (Submit)</p>
+<p>On Websites tab on left, enable / disable from appropriate site</p>
+<p>Do it in bulk if that is applicable.</p>
+<p>I have also been using the handy $5 tool that @Piotr Krzyzek mentioned and it is a lifesaver.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2208">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo avatar-default' height='128' width='128' />			<cite class="fn"><a href='http://yoururl/' rel='external nofollow' class='url'>June</a></cite>			</div>
+			
+			<a href="index.html#comment-2208" class="comment-date">
+				<time datetime="2011-03-22T13:30:34+00:00">March 22, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2208" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks! I&#8217;m new to magento and your tips worked.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2231">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/c1cb9e0fe61c52a28a18a2887de6b96b?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/c1cb9e0fe61c52a28a18a2887de6b96b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.sabrinacreations.it/' rel='external nofollow' class='url'>Sabrinacreations</a></cite>			</div>
+			
+			<a href="index.html#comment-2231" class="comment-date">
+				<time datetime="2011-03-30T05:30:02+00:00">March 30, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2231" class="comment-content">
+				<div class="comment-text">
+		<p>Hello everyone,<br />
+I installed Magento (ver. 1.5.0.1) and it worked for a month but now when I press on products gives me the error message.<br />
+I have already emptied the cache and reindex but unfortunately the site does not work.<br />
+Yesterday I changed the name to the main page from “Home page” to “Sabrinacretions Megastore” but today I reinsert the name “Home page”.<br />
+I also launched the attachment in the root to export the products to a price comparison site<br />
+Maybe is this change that created the error?<br />
+Can anyone help me? red face<br />
+The problem is visible in this link pressing on products.<br />
+<a href="http://www.sabrinacreations.it/" rel="nofollow">http://www.sabrinacreations.it</a><br />
+thanks<br />
+Sabrinacretions </p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2307">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/ec72cca1ba54d7e26835457364e934e8?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/ec72cca1ba54d7e26835457364e934e8?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.bbgun-shop.co.uk/' rel='external nofollow' class='url'>Paul</a></cite>			</div>
+			
+			<a href="index.html#comment-2307" class="comment-date">
+				<time datetime="2011-05-16T14:55:27+00:00">May 16, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2307" class="comment-content">
+				<div class="comment-text">
+		<p>We had been carrying out modifications to products on our sites, however the changes were not taking place on the physical websites. The reason, quite simple we had been modifying products under the wrong store front. So, as another potential tip for products not appearing &#8211; check you are making amendments in the correct store. ie. default or website or Store etc.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2316">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/f62b23e076dbd435303f350c72f816d7?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/f62b23e076dbd435303f350c72f816d7?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://yoururl/' rel='external nofollow' class='url'>Howard</a></cite>			</div>
+			
+			<a href="index.html#comment-2316" class="comment-date">
+				<time datetime="2011-05-18T19:29:04+00:00">May 18, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2316" class="comment-content">
+				<div class="comment-text">
+		<p>Magento ver 1.4.11<br />
+I tried pretty much all the steps above but still no luck.<br />
+The first time I did a configurable product, it showed up on the page with a dropdown list of my 3 simple products but then when I was trying to reproduce it with proper names. It&#8217;s not showing up anymore.<br />
+After that, I fresh installed magento just to see if there is any mistake I made during creating the configurable product, but apparently not.</p>
+<p>I&#8217;m out of solutions at this point, hope to see if there is anyone ran into the same situation before.</p>
+<p>Thanks</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2355">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/a3df3c7cd797f9737f780071896b9ef0?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/a3df3c7cd797f9737f780071896b9ef0?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">james</cite>			</div>
+			
+			<a href="index.html#comment-2355" class="comment-date">
+				<time datetime="2011-06-08T04:13:50+00:00">June 8, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2355" class="comment-content">
+				<div class="comment-text">
+		<p>Did the same things today &#8211; thanks for the disable/enable suggestion &#8211; I hadn&#8217;t thought of that</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2369">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/f411d92f4be3afa21728be90e8e20236?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/f411d92f4be3afa21728be90e8e20236?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">xg</cite>			</div>
+			
+			<a href="index.html#comment-2369" class="comment-date">
+				<time datetime="2011-06-11T07:41:29+00:00">June 11, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2369" class="comment-content">
+				<div class="comment-text">
+		<p>thanks!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2390">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/961a0a7d9bdc6296a517545924cc44e6?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/961a0a7d9bdc6296a517545924cc44e6?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.kamicode.com/' rel='external nofollow' class='url'>kamidan</a></cite>			</div>
+			
+			<a href="index.html#comment-2390" class="comment-date">
+				<time datetime="2011-06-22T08:04:47+00:00">June 22, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2390" class="comment-content">
+				<div class="comment-text">
+		<p>There is also one thing to check!</p>
+<p>After a huge import, no products were visible on the production server, and all the verification on the checklist above were done.</p>
+<p>However on the staging server with the same import, the products were visible.</p>
+<p>In the import we did not specify value for the &#8220;product_websites&#8221; field. This worked fine on the staging server because there was only one STORE VIEW, but on the production server there was multiple (for the localization).</p>
+<p>The fix has been done in the import by specifying that field during the import.</p>
+<p>Also, when you have multiple store view, there is a new tab that appears on the left menu in the product edit form, in the backend: WEBSITES.</p>
+<p>You have to always make sure the website box is checked.</p>
+<p>*using Magento 1.5.1</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2392">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/8b2a612b27eed2b3a9f8e6a977e3a226?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/8b2a612b27eed2b3a9f8e6a977e3a226?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.webii.net/blog/' rel='external nofollow' class='url'>Jac Sinex</a></cite>			</div>
+			
+			<a href="index.html#comment-2392" class="comment-date">
+				<time datetime="2011-06-23T14:33:23+00:00">June 23, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2392" class="comment-content">
+				<div class="comment-text">
+		<p>Thank you very much for this post. Your very last solution of changing the status back and forth is what did the trick. This was an issue on a list of All Products we created, when for some crazy reason only 380 of the 500 products would show on the list. After I started disabling and enabling the missing guys they magically appeared. Yipee!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2395">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/1a95253b0b94427740bfd4353b20216a?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/1a95253b0b94427740bfd4353b20216a?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">tarun prajapat</cite>			</div>
+			
+			<a href="index.html#comment-2395" class="comment-date">
+				<time datetime="2011-06-25T03:39:39+00:00">June 25, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2395" class="comment-content">
+				<div class="comment-text">
+		<p>thanxxx !!!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2413">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/72bb08619f84dd9f414bab8a266324fc?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/72bb08619f84dd9f414bab8a266324fc?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Thangaraj</cite>			</div>
+			
+			<a href="index.html#comment-2413" class="comment-date">
+				<time datetime="2011-06-29T23:36:51+00:00">June 29, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2413" class="comment-content">
+				<div class="comment-text">
+		<p>Thank you very much&#8230;&#8230;&#8230;..</p>
+<p>Really You are great&#8230;&#8230;&#8230;&#8230;.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2459">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/793d27fa60fdfeac8059e98986f19765?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/793d27fa60fdfeac8059e98986f19765?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.markttweet.nl/' rel='external nofollow' class='url'>Kevin</a></cite>			</div>
+			
+			<a href="index.html#comment-2459" class="comment-date">
+				<time datetime="2011-07-20T04:01:54+00:00">July 20, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2459" class="comment-content">
+				<div class="comment-text">
+		<p>Hah, thanks a bunch 🙂 I forgot the damned In Stock option &gt;.&lt;</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2566">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/38f5555993c657d9f911945e90fecd09?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/38f5555993c657d9f911945e90fecd09?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.carlpotts.eu/' rel='external nofollow' class='url'>Carl Potts</a></cite>			</div>
+			
+			<a href="index.html#comment-2566" class="comment-date">
+				<time datetime="2011-08-29T03:39:56+00:00">August 29, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2566" class="comment-content">
+				<div class="comment-text">
+		<p>Sorted out my problem, thank you Ashley 🙂</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2619">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/fb17be49dbd9bd1ef267532b9f71f608?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/fb17be49dbd9bd1ef267532b9f71f608?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Marsha</cite>			</div>
+			
+			<a href="index.html#comment-2619" class="comment-date">
+				<time datetime="2011-09-13T12:15:10+00:00">September 13, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2619" class="comment-content">
+				<div class="comment-text">
+		<p>Thank you!!! We changed information in our configuration-&gt;design-&gt;Miscellaneous HTML and all our products &#8220;disappeared.&#8221; I still don&#8217;t know the &#8220;why&#8221; or &#8220;how&#8221; to this problem, but disabling/enabling all the products did the trick. If you ever have the time, I&#8217;m interested in reading an article explaining this &#8216;solar flare&#8217; problem.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2685">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/9f7694601e941946f00f6e7b85657e92?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/9f7694601e941946f00f6e7b85657e92?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Michelle</cite>			</div>
+			
+			<a href="index.html#comment-2685" class="comment-date">
+				<time datetime="2011-10-12T13:04:28+00:00">October 12, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2685" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Ashley,</p>
+<p>Your post has been a great help! I&#8217;m wondering if you have pin down the reason why the products would disappear sometimes. My problem is that I would import products via the Magento import function in the admin panel. The products would then show up fine at first on the front-end. Then after a few days, they would suddenly disappear. They are there if you navigate to their URLs, but they will not show up if you navigate through the category menu. If you know why this is happening, it would be a great help for me.</p>
+<p>Thanks!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2725">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/0d06441efc0baadc4fbc60409e59ccbc?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/0d06441efc0baadc4fbc60409e59ccbc?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.britishhardwoods.co.uk/' rel='external nofollow' class='url'>British Hardwoods</a></cite>			</div>
+			
+			<a href="index.html#comment-2725" class="comment-date">
+				<time datetime="2011-11-02T06:39:45+00:00">November 2, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2725" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Ashley,<br />
+Thank you for this post, I went through all the steps to double check and then I saw that last bit about disabling. I had to disable the product/s and then re-enable it for it to appear. Magento&#8217;s quirks can quickly send you around the bend! Would you happen to know how to import images once they&#8217;ve been uploaded into the /media/import folder?<br />
+Thank you again!<br />
+Jo</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2728">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/51e85309111138235660ba6a3d9bba1d?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/51e85309111138235660ba6a3d9bba1d?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Gyla Kovats</cite>			</div>
+			
+			<a href="index.html#comment-2728" class="comment-date">
+				<time datetime="2011-11-04T01:31:12+00:00">November 4, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2728" class="comment-content">
+				<div class="comment-text">
+		<p>Hi<br />
+I have created multiple store views for multiple languages, and my products were not showing up, only in the default view. I have disabled and enabled the products and they showed up. I have to remark, that i have added the new store views AFTER i added the products, so probably the new store views didn&#8217;t know about the old products. It works fine now 🙂 Thanks for the hint, it got me on the right path!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2731">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/f8c49c6d6929d0d8d1c16a9e1ee5f4a4?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/f8c49c6d6929d0d8d1c16a9e1ee5f4a4?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Rose Satya</cite>			</div>
+			
+			<a href="index.html#comment-2731" class="comment-date">
+				<time datetime="2011-11-04T15:51:30+00:00">November 4, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2731" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks for the article. </p>
+<p>In my case some of the products were not showing up on front end and others were. Issue was i have same products assigned to 2 different stores. Though the products were enabled at the default level, they were disabled at the store level.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2732">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/f80c9e96b068f1d53bad99fe61173fe5?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/f80c9e96b068f1d53bad99fe61173fe5?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ryan</cite>			</div>
+			
+			<a href="index.html#comment-2732" class="comment-date">
+				<time datetime="2011-11-05T10:13:55+00:00">November 5, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2732" class="comment-content">
+				<div class="comment-text">
+		<p>For me, the problem is due to some product not generated in flat catalog product. I don&#8217;t know why some product is not in there. I tried reindexing and recacheing many time to rebuild the catalog but the product is just not being created in the flat catalog. Do you have any idea Aschroder?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2765">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/1c39bacb0519e6cd0934fcfe48bbb72f?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/1c39bacb0519e6cd0934fcfe48bbb72f?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.tsfardeo.net/' rel='external nofollow' class='url'>Michal</a></cite>			</div>
+			
+			<a href="index.html#comment-2765" class="comment-date">
+				<time datetime="2011-11-30T02:19:56+00:00">November 30, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2765" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks for the eye-opener! This time my problem was out of your checklist&#8217;s scope &#8211; however I know one day it will come in handy, so I bookmarked it anyway. In the mean time I wrote in my blog about yet another reason why my new configurable product won&#8217;t show up on my category page. Magento is the new quiet murderer &#8211; taking the lead from heart-diseases!!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2780">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/e85d7ee28b94f2e6888e540e7cc8aae2?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/e85d7ee28b94f2e6888e540e7cc8aae2?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">tinny77</cite>			</div>
+			
+			<a href="index.html#comment-2780" class="comment-date">
+				<time datetime="2011-12-02T05:39:21+00:00">December 2, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2780" class="comment-content">
+				<div class="comment-text">
+		<p>Thank you very much for this page.<br />
+My products were set as &#8220;not available&#8221;</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2789">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/5ca0108c16f49f360cc6191d2a5cdae0?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/5ca0108c16f49f360cc6191d2a5cdae0?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">highwaykind</cite>			</div>
+			
+			<a href="index.html#comment-2789" class="comment-date">
+				<time datetime="2011-12-06T02:41:50+00:00">December 6, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2789" class="comment-content">
+				<div class="comment-text">
+		<p>Manage Products &#8211; Website Tab and check the box for which website you want the product to show up on fixed it for me (why that isn&#8217;t enabled by default with only one website in the store I don&#8217;t know..)</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2823">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/a7ae54a65a981b41df11983a1daacf17?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/a7ae54a65a981b41df11983a1daacf17?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.squal.nl/' rel='external nofollow' class='url'>Anneke</a></cite>			</div>
+			
+			<a href="index.html#comment-2823" class="comment-date">
+				<time datetime="2012-01-02T01:55:29+00:00">January 2, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2823" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, thanks a lot for this, of course the solution turned out to be the last one 😉 But this saved me a lot of time.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2842">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/4ec862f6ecaea58c0093ca579422642d?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/4ec862f6ecaea58c0093ca579422642d?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">hendrik</cite>			</div>
+			
+			<a href="index.html#comment-2842" class="comment-date">
+				<time datetime="2012-01-09T18:51:32+00:00">January 9, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2842" class="comment-content">
+				<div class="comment-text">
+		<p>Nothing working for me. Anymore. I&#8217;ve made some changes that required to empty the cache and the first 2 times during those edits, changing the status of products and re-indexing helped. Now, nothing seems to make the products show up in the category page anymore. A search for the products turns out proper results, just the category page has n products. Does anybody have other ideas? 🙁</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2843">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/4a972d7cf6c58258782e3e1f03251cd7?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/4a972d7cf6c58258782e3e1f03251cd7?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.scottnicholas.com/' rel='external nofollow' class='url'>Scott</a></cite>			</div>
+			
+			<a href="index.html#comment-2843" class="comment-date">
+				<time datetime="2012-01-09T20:00:57+00:00">January 9, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2843" class="comment-content">
+				<div class="comment-text">
+		<p>Thank you for your help, this was a very helpfull well laid out help.</p>
+<p>Regards Scott</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2857">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/494b19127acc554f1a700b9805df6e1f?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/494b19127acc554f1a700b9805df6e1f?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.farmerpost.com/' rel='external nofollow' class='url'>vithu</a></cite>			</div>
+			
+			<a href="index.html#comment-2857" class="comment-date">
+				<time datetime="2012-01-15T10:15:26+00:00">January 15, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2857" class="comment-content">
+				<div class="comment-text">
+		<p>I am very thankful to you.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2875">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/f50a42580d656b383186bbc4a86278af?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/f50a42580d656b383186bbc4a86278af?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">David</cite>			</div>
+			
+			<a href="index.html#comment-2875" class="comment-date">
+				<time datetime="2012-01-20T09:36:12+00:00">January 20, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2875" class="comment-content">
+				<div class="comment-text">
+		<p>For when all else fails -this does the trick for upgrades from 1.3x</p>
+<p><a href="http://www.learnmagento.org/magento-bug-fixes/there-are-no-products-matching-the-selection-magento-fix/" rel="nofollow">http://www.learnmagento.org/magento-bug-fixes/there-are-no-products-matching-the-selection-magento-fix/</a></p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2915">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/135b715f9ec5f0f9661b06924c1dd714?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/135b715f9ec5f0f9661b06924c1dd714?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://air-proxy.org/' rel='external nofollow' class='url'>Air Proxy</a></cite>			</div>
+			
+			<a href="index.html#comment-2915" class="comment-date">
+				<time datetime="2012-02-01T19:23:27+00:00">February 1, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2915" class="comment-content">
+				<div class="comment-text">
+		<p>First i use all step above. But product not show in frontpage and i add this code {{block type=&#8221;catalog/product_list&#8221; category_id=&#8221;999&#8243; template=&#8221;catalog/product/list.phtml&#8221;}} CMS&gt;Pages&gt;Home. It work fine. 🙂</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2956">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/20098e90ce8bbb6374e416c1f26dd7e3?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/20098e90ce8bbb6374e416c1f26dd7e3?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.385i.com/' rel='external nofollow' class='url'>Iain Forbes</a></cite>			</div>
+			
+			<a href="index.html#comment-2956" class="comment-date">
+				<time datetime="2012-02-16T06:06:37+00:00">February 16, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2956" class="comment-content">
+				<div class="comment-text">
+		<p>Wise words. They should be carved in stone and judiciously read before any demo.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2983">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/fa09b13168120a02a246c8e2a060a4c4?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/fa09b13168120a02a246c8e2a060a4c4?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.schoolofuniforms.com/' rel='external nofollow' class='url'>Maarten</a></cite>			</div>
+			
+			<a href="index.html#comment-2983" class="comment-date">
+				<time datetime="2012-02-21T22:04:47+00:00">February 21, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2983" class="comment-content">
+				<div class="comment-text">
+		<p>Was pulling my hair out&#8230; followed all these steps and still nothing. Finally figured out that one other thing to check is whether the correct store is checked!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		</ol><!-- .comment-list -->
+
+				<nav id="comment-nav-below" class="comment-navigation" role="navigation" aria-label="Comment Navigation Below">
+			<span class="screen-reader-text">Comment navigation</span>
+			<div class="nav-previous"></div>
+			<div class="nav-next"><a href="../comment-page-2/index.html#comments" >Newer Comments &rarr;</a></div>
+		</nav><!-- #comment-nav-below -->
+				<p class="no-comments">Comments are closed.</p>
+	
+</section><!-- #comments -->
+
+</div><!-- #post-## -->
+
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+		</div><!-- .col-full -->
+	</div><!-- #content -->
+
+	
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="col-full">
+
+					<div class="site-info">
+			&copy; ASchroder.com 2023						<br /> Storefront designed by <a href="http://www.woocommerce.com/" title="WooCommerce - The Best eCommerce Platform for WordPress" rel="author">WooCommerce</a>.					</div><!-- .site-info -->
+		
+		</div><!-- .col-full -->
+	</footer><!-- #colophon -->
+
+	
+</div><!-- #page -->
+
+<link rel='stylesheet' id='yarppRelatedCss-css'  href='../../../../wp-content/plugins/yet-another-related-posts-plugin/style/related101e.css?ver=4.8.15' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../wp-content/plugins/wp-syntax/js/wp-syntax4963.js?ver=1.1'></script>
+<script type='text/javascript' src='../../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/navigation.min11a8.js?ver=20120206'></script>
+<script type='text/javascript' src='../../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/skip-link-focus-fix.min08e0.js?ver=20130115'></script>
+<script type='text/javascript' src='../../../../../cdn.aschroder.com/wp-includes/js/wp-embed.min101e.js?ver=4.8.15'></script>
+
+</body>
+
+<!-- Mirrored from www.aschroder.com/2010/07/why-are-my-magento-products-not-showing-up/comment-page-1/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:40:00 GMT -->
+</html>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:39:09 by W3 Total Cache -->

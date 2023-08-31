@@ -1,0 +1,799 @@
+<!doctype html>
+<html lang="en-US">
+
+<!-- Mirrored from www.aschroder.com/2010/08/magento-backups-how-to-ensure-your-data-is-safe-with-magento-cloud-backup/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:34:21 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="../../../xmlrpc.php">
+
+<title>Magento Backups: How To Ensure Your Data Is Safe with Magento Cloud Backup | ASchroder.com</title>
+
+<!-- All in One SEO Pack 2.4.2 by Michael Torbert of Semper Fi Web Design[289,392] -->
+<meta name="description"  content="This is a post about Magento backups, how you can do them by default in Magento and how a new extension called Cloud Backup will make them automatically and" />
+
+<meta name="keywords"  content="magento backup,offsite backup,cloud backup,magento disaster recovery" />
+
+<!-- /all in one seo pack -->
+<link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
+<link rel='dns-prefetch' href='http://s.w.org/' />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Feed" href="../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Comments Feed" href="../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Magento Backups: How To Ensure Your Data Is Safe with Magento Cloud Backup Comments Feed" href="feed/index.html" />
+<!-- This site uses the Google Analytics by MonsterInsights plugin v6.2.4 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+<script type="text/javascript" data-cfasync="false">
+		var disableStr = 'ga-disable-UA-6477134-1';
+
+	/* Function to detect opted out users */
+	function __gaTrackerIsOptedOut() {
+		return document.cookie.indexOf(disableStr + '=true') > -1;
+	}
+
+	/* Disable tracking if the opt-out cookie exists. */
+	if ( __gaTrackerIsOptedOut() ) {
+		window[disableStr] = true;
+	}
+
+	/* Opt-out function */
+	function __gaTrackerOptout() {
+	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+	  window[disableStr] = true;
+	}
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','http://www.google-analytics.com/analytics.js','__gaTracker');
+
+	__gaTracker('create', 'UA-6477134-1', 'auto');
+	__gaTracker('set', 'forceSSL', true);
+	__gaTracker('send','pageview');
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/www.aschroder.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.15"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='yarppWidgetCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/widget101e.css?ver=4.8.15' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-syntax-css-css'  href='../../../wp-content/plugins/wp-syntax/css/wp-syntax4963.css?ver=1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-style-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/style5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<style id='storefront-style-inline-css' type='text/css'>
+
+			.main-navigation ul li a,
+			.site-title a,
+			ul.menu li a,
+			.site-branding h1 a,
+			.site-footer .storefront-handheld-footer-bar a:not(.button),
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				color: #333333;
+			}
+
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				border-color: #333333;
+			}
+
+			.main-navigation ul li a:hover,
+			.main-navigation ul li:hover > a,
+			.site-title a:hover,
+			a.cart-contents:hover,
+			.site-header-cart .widget_shopping_cart a:hover,
+			.site-header-cart:hover > li > a,
+			.site-header ul.menu li.current-menu-item > a {
+				color: #838383;
+			}
+
+			table th {
+				background-color: #f8f8f8;
+			}
+
+			table tbody td {
+				background-color: #fdfdfd;
+			}
+
+			table tbody tr:nth-child(2n) td,
+			fieldset,
+			fieldset legend {
+				background-color: #fbfbfb;
+			}
+
+			.site-header,
+			.secondary-navigation ul ul,
+			.main-navigation ul.menu > li.menu-item-has-children:after,
+			.secondary-navigation ul.menu ul,
+			.storefront-handheld-footer-bar,
+			.storefront-handheld-footer-bar ul li > a,
+			.storefront-handheld-footer-bar ul li.search .site-search,
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				background-color: #ffffff;
+			}
+
+			p.site-description,
+			.site-header,
+			.storefront-handheld-footer-bar {
+				color: #6d6d6d;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count,
+			button.menu-toggle:after,
+			button.menu-toggle:before,
+			button.menu-toggle span:before {
+				background-color: #333333;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				color: #ffffff;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				border-color: #ffffff;
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+				color: #333333;
+			}
+
+			.widget h1 {
+				border-bottom-color: #333333;
+			}
+
+			body,
+			.secondary-navigation a,
+			.onsale,
+			.pagination .page-numbers li .page-numbers:not(.current), .woocommerce-pagination .page-numbers li .page-numbers:not(.current) {
+				color: #6d6d6d;
+			}
+
+			.widget-area .widget a,
+			.hentry .entry-header .posted-on a,
+			.hentry .entry-header .byline a {
+				color: #9f9f9f;
+			}
+
+			a  {
+				color: #0228d1;
+			}
+
+			a:focus,
+			.button:focus,
+			.button.alt:focus,
+			.button.added_to_cart:focus,
+			.button.wc-forward:focus,
+			button:focus,
+			input[type="button"]:focus,
+			input[type="reset"]:focus,
+			input[type="submit"]:focus {
+				outline-color: #0228d1;
+			}
+
+			button, input[type="button"], input[type="reset"], input[type="submit"], .button, .added_to_cart, .widget a.button, .site-header-cart .widget_shopping_cart a.button {
+				background-color: #eeeeee;
+				border-color: #eeeeee;
+				color: #333333;
+			}
+
+			button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, .button:hover, .added_to_cart:hover, .widget a.button:hover, .site-header-cart .widget_shopping_cart a.button:hover {
+				background-color: #d5d5d5;
+				border-color: #d5d5d5;
+				color: #333333;
+			}
+
+			button.alt, input[type="button"].alt, input[type="reset"].alt, input[type="submit"].alt, .button.alt, .added_to_cart.alt, .widget-area .widget a.button.alt, .added_to_cart, .widget a.button.checkout {
+				background-color: #333333;
+				border-color: #333333;
+				color: #ffffff;
+			}
+
+			button.alt:hover, input[type="button"].alt:hover, input[type="reset"].alt:hover, input[type="submit"].alt:hover, .button.alt:hover, .added_to_cart.alt:hover, .widget-area .widget a.button.alt:hover, .added_to_cart:hover, .widget a.button.checkout:hover {
+				background-color: #1a1a1a;
+				border-color: #1a1a1a;
+				color: #ffffff;
+			}
+
+			.pagination .page-numbers li .page-numbers.current, .woocommerce-pagination .page-numbers li .page-numbers.current {
+				background-color: #e6e6e6;
+				color: #6d6d6d;
+			}
+
+			#comments .comment-list .comment-content .comment-text {
+				background-color: #f8f8f8;
+			}
+
+			.site-footer {
+				background-color: #f0f0f0;
+				color: #6d6d6d;
+			}
+
+			.site-footer a:not(.button) {
+				color: #333333;
+			}
+
+			.site-footer h1, .site-footer h2, .site-footer h3, .site-footer h4, .site-footer h5, .site-footer h6 {
+				color: #333333;
+			}
+
+			#order_review {
+				background-color: #ffffff;
+			}
+
+			#payment .payment_methods > li .payment_box,
+			#payment .place-order {
+				background-color: #fafafa;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice) {
+				background-color: #f5f5f5;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice):hover {
+				background-color: #f0f0f0;
+			}
+
+			@media screen and ( min-width: 768px ) {
+				.secondary-navigation ul.menu a:hover {
+					color: #868686;
+				}
+
+				.secondary-navigation ul.menu a {
+					color: #6d6d6d;
+				}
+
+				.site-header-cart .widget_shopping_cart,
+				.main-navigation ul.menu ul.sub-menu,
+				.main-navigation ul.nav-menu ul.children {
+					background-color: #f0f0f0;
+				}
+
+				.site-header-cart .widget_shopping_cart .buttons,
+				.site-header-cart .widget_shopping_cart .total {
+					background-color: #f5f5f5;
+				}
+
+				.site-header {
+					border-bottom-color: #f0f0f0;
+				}
+			}
+</style>
+<link rel='stylesheet' id='storefront-icons-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/sass/base/icons5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-fonts-css'  href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,600,700,900&amp;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jqueryb8ff.js?ver=1.12.4'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jquery-migrate.min330a.js?ver=1.4.1'></script>
+<link rel='https://api.w.org/' href='../../../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../xmlrpc0db0.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Improved Custom Magento Order Number Functionality for SetStartOrderNumber extension &#8211; v0.3' href='../improved-custom-magento-order-number-functionality-for-setstartordernumber-extension-v0-3/index.html' />
+<link rel='next' title='TweetBeeper.com &#8211; A Free Email to Direct Message Service (and Email to SMS too)' href='../tweetbeeper-com-a-free-email-to-direct-message-service-and-email-to-sms-too/index.html' />
+<meta name="generator" content="WordPress 4.8.15" />
+<link rel="canonical" href="index.html" />
+<link rel='shortlink' href='../../../index895e.html?p=790' />
+<link rel="alternate" type="application/json+oembed" href="../../../wp-json/oembed/1.0/embededd1.json?url=http%3A%2F%2Fwww.aschroder.com%2F2010%2F08%2Fmagento-backups-how-to-ensure-your-data-is-safe-with-magento-cloud-backup%2F" />
+<link rel="alternate" type="text/xml+oembed" href="../../../wp-json/oembed/1.0/embed9da6?url=http%3A%2F%2Fwww.aschroder.com%2F2010%2F08%2Fmagento-backups-how-to-ensure-your-data-is-safe-with-magento-cloud-backup%2F&amp;format=xml" />
+</head>
+
+<body class="post-template-default single single-post postid-790 single-format-standard no-wc-breadcrumb storefront-full-width-content right-sidebar">
+
+
+<div id="page" class="hfeed site">
+	
+	<header id="masthead" class="site-header" role="banner" style="">
+		<div class="col-full">
+
+					<a class="skip-link screen-reader-text" href="#site-navigation">Skip to navigation</a>
+		<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+				<div class="site-branding">
+			<div class="beta site-title"><a href="../../../index.html" rel="home">ASchroder.com</a></div><p class="site-description">Notes on Web Development</p>		</div>
+		<div class="storefront-primary-navigation">		<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="Primary Navigation">
+		<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><span>Menu</span></button>
+			<div class="primary-navigation"><ul id="menu-main-menu" class="menu"><li id="menu-item-1119" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li id="menu-item-1118" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li id="menu-item-1872" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div><div class="handheld-navigation"><ul id="menu-main-menu-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div>		</nav><!-- #site-navigation -->
+		</div>
+		</div>
+	</header><!-- #masthead -->
+
+	
+	<div id="content" class="site-content" tabindex="-1">
+		<div class="col-full">
+
+		
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+<div id="post-790" class="post-790 post type-post status-publish format-standard hentry category-cloud-backup category-magento category-web-development tag-cloud-backup tag-magento-backup tag-offsite-backups">
+
+			<header class="entry-header">
+		<span class="posted-on">Posted on <a href="index.html" rel="bookmark"><time class="entry-date published" datetime="2010-08-12T02:41:00+00:00">August 12, 2010</time> <time class="updated" datetime="2010-08-30T00:55:15+00:00">August 30, 2010</time></a></span><h1 class="entry-title">Magento Backups: How To Ensure Your Data Is Safe with Magento Cloud Backup</h1>		</header><!-- .entry-header -->
+				<aside class="entry-meta">
+						<div class="author">
+				<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' /><div class="label">Written by</div><a href="../../../author/admin/index.html" title="Posts by Ashley" rel="author">Ashley</a>			</div>
+							<div class="cat-links">
+					<div class="label">Posted in</div><a href="../../../category/cloud-backup/index.html" rel="category tag">Cloud Backup</a>, <a href="../../../category/magento/index.html" rel="category tag">Magento</a>, <a href="../../../category/web-development/index.html" rel="category tag">Web Development</a>				</div>
+			
+							<div class="tags-links">
+					<div class="label">Tagged</div><a href="../../../tag/cloud-backup/index.html" rel="tag">Cloud Backup</a>, <a href="../../../tag/magento-backup/index.html" rel="tag">magento backup</a>, <a href="../../../tag/offsite-backups/index.html" rel="tag">offsite backups</a>				</div>
+			
+		
+							<div class="comments-link">
+					<div class="label">Comments</div>					<span class="comments-link"><a href="index.html#comments">17 Comments</a></span>
+				</div>
+					</aside>
+				<div class="entry-content">
+		<p>This is a blog post about Magento backups, how you can do them by default in Magento and how a new extension I have made called Cloud Backup will help to make them automatically and send them offsite to Amazon&#8217;s S3 storage service &#8211; increasing the chance you&#8217;ll have a recent backup if (<em>when</em>) bad things happen to your store or server. I&#8217;d like your help beta testing this new extension, and this post will hopefully convince you why that&#8217;s mutually beneficial for us. The extension is <del datetime="2010-08-30T08:54:18+00:00">still pending</del> <a href="http://www.magentocommerce.com/magento-connect/ASchroder/extension/3932/aschroder_cloudbackup">on Magento Connect</a> so give it a whirl, I&#8217;ll update this post with the link shortly, or for those that are <em>particularly keen</em> to test it, you can <a href="../../../../cdn.aschroder.com/wp-content/uploads/2010/08/Aschroder_CloudBackup-0.1.4.gz">download the release directly</a> and <a href="../../05/installing-a-magento-extension-manually-via-ftp-or-ssh/index.html">install it manually</a>.<br />
+<span id="more-790"></span><br />
+Making a backup of your Magento Store is an important part of the admin duties for a store owner, without a backup you would be at risk if your <a href="http://blog.hostgator.com/2010/03/18/10-ways-your-web-host-sucks/#comment-13897">web host failed</a>, went <em><a href="http://news.cnet.com/2100-1033-273628.html">belly up</a></em> or <a href="http://www.sitepoint.com/forums/showthread.php?p=1594821">disappeared off the face of the earth</a>. More importantly, some countries require you <em>by law</em> to keep accounting records for several years, for example in New Zealand it&#8217;s 7 years! So if that data gets lost, or corrupted by your web host, you have a real problem not just because your store is hosed.</p>
+<p>For those of you that didn&#8217;t know already, as well as making <a href="http://www.magentocommerce.com/magento-connect/ASchroder/extension/1865/aschroder.com-smtp-pro">the best email extension for Magento</a>, I also have a fairly busy day job over at <a href="http://world-wide-access.com/">World Wide Access</a>. We run a number of web stores where we export and sell New Zealand products into the US and UK markets. Solving this data security problem became a challenge for us and our solution, I think, is one that others may find valuable too. So we have bundled it up as an extension, and are making it available to others.</p>
+<p>Our solution is full-store snapshot backup combined with the cloud data storage service provided by Amazon called <a href="http://aws.amazon.com/s3/">S3</a>. This combination allows automated off-site backups to a very reliable, highly available data storage service off-site. So if your web host screws up, or simply goes bankrupt and has their servers repossessed you have a safe, secure backup waiting if you need it. Sound good? We think so too.</p>
+<p>The extension is very much still in beta, I have a number of features still in development, but I thought it&#8217;d be good to invite some other developers and store owners to begin trying it out, for free (to a reasonable limit!) so that I can get some feedback on the functionality as it stands. So if you are reading this, you are cordially invited to participate in our beta program.</p>
+<p><a name="builtin"></p>
+<h3>How Magento Backups Work</h3>
+<p></a></p>
+<p>The built-in backups provided by Magento are fairly laborious, you have to manually create them, then download them to your computer, and then hope that your local computer is more safe than your server. Here are the steps involved:</p>
+<p><strong>1. Navigate to the built-in Backup Tool</strong><br />
+You can find the functionality tucked away in the System->Tools menu as shown below:</p>
+<p><img src="../../../../cdn.aschroder.com/wp-content/uploads/2010/05/go-to-backups.png" alt="Go to the built-in backup screen in the Magento admin" title="Go to the built-in backup screen in the Magento admin" width="312" height="183" class="aligncenter size-full wp-image-992" srcset="http://cdn.aschroder.com/wp-content/uploads/2010/05/go-to-backups.png 312w, http://cdn.aschroder.com/wp-content/uploads/2010/05/go-to-backups-300x175.png 300w" sizes="(max-width: 312px) 100vw, 312px" /></p>
+<p><strong>2. Create the DB Backup</strong><br />
+Once you click the &#8216;Create backup&#8217; button you&#8217;ll get a new entry in the list that represents your backup.</p>
+<p><img src="../../../../cdn.aschroder.com/wp-content/uploads/2010/05/the-list-of-backups.png" alt="The list of Backups that have been made" title="The list of Backups that have been made" width="564" height="215" class="aligncenter size-full wp-image-990" srcset="http://cdn.aschroder.com/wp-content/uploads/2010/05/the-list-of-backups.png 564w, http://cdn.aschroder.com/wp-content/uploads/2010/05/the-list-of-backups-300x114.png 300w" sizes="(max-width: 564px) 100vw, 564px" /></p>
+<p><strong>3. Download the Backup to your local computer.</strong><br />
+Once you have the backup, it&#8217;s highly recommended to download it to you own computer, or store it somewhere other than where it is put by default.</p>
+<p><img src="../../../../cdn.aschroder.com/wp-content/uploads/2010/05/download-locally.png" alt="Always download your backups locally" title="Always download your backups locally" width="449" height="201" class="aligncenter size-full wp-image-991" srcset="http://cdn.aschroder.com/wp-content/uploads/2010/05/download-locally.png 449w, http://cdn.aschroder.com/wp-content/uploads/2010/05/download-locally-300x134.png 300w" sizes="(max-width: 449px) 100vw, 449px" /></p>
+<p>If you do not download the backups locally, then they sit on the same server as your Magento store (and probably the same server as your database) which means if you lose one, you lose both. Not really useful at all.</p>
+<h3>Limitations of the built-in Backups</h3>
+<p>Aside from not being automatic, or offsite backups &#8211; one important thing to note is these are Database backups only, so if you have made customizations to your template, spent hours uploading product inventory photos, or have your own translations and email templates, these are <strong>not</strong> backed up by default. </p>
+<h3>How Our Magento Cloud Backups Work</h3>
+<p>Our new Cloud Backup extension offers several benefits over the default backup solution.</p>
+<ul>
+<li><strong>Automated</strong> &#8211; Cloud Backup can be set to run daily (and in the future even more or less frequently to ensure you have the right level of data safety for your business.</li>
+<li><strong>Complete</strong> &#8211; The backups we send offsite contain the entire database, but also all of the files within your Magento installation, so that if required you can rebuild everything from scratch quickly and easily.</li>
+<li><strong>Viewable</strong> &#8211; Just being told a backup is &#8216;<em>safe and sound</em>&#8216; doesn&#8217;t really put my mind at ease. I prefer to actually <em>see</em> my backups. That&#8217;s why we have a bucket browser built in to the Magento admin interface.</li>
+<li><strong>Downloadable</strong> &#8211; In addition to being stored in <a href="http://aws.amazon.com/s3/#protecting">enterprise data centers with very low  failure rates</a>, you can elect to download any given backup to your own computer.</li>
+<li><strong>Direct relationship with Amazon</strong> &#8211; I&#8217;m not a big fan of putting myself in between a store manager with a crashed server and their backup, that&#8217;s why we have set up the extension to work directly with Amazon, you pay Amazon for the storage and the backups are sent directly to Amazon, not us &#8211; hell hath no fury like a store owner scorned!</li>
+</ul>
+<h3>Features In The Pipeline</h3>
+<p>One of the other reasons we are running the Magento Cloud Backup beta program, is to determine which of the next round of features should make it in to the production product. Some of the ideas we have, that beta testers will be brain-picked about are:</p>
+<ul>
+<li><strong>Backup Encryption</strong> &#8211; to ensure your data is even more secure, the risk of course is that you forget the key, then your backups are worthless.</li>
+<li><strong>Recovery</strong> &#8211; allow your backups to be &#8216;hot swapped&#8217; onto a running Magento store, either for real-live disaster recovery, or just development and testing purposes.</li>
+</ul>
+<p>Interested yet? Then get the extension and let us know what you think.</p>
+<h4>Not convinced? Here&#8217;s the <em>why sign up</em> blurb&#8230;</h4>
+<ul>
+<li>Cheap beta program &#8211; first GB free, then only 50 cents per GB-month after that</li>
+<li>Free support for install and debugging</li>
+<li>Free upgrades and eventually discounted access to the paid application</li>
+</ul>
+<p>The extension is still pending on Magento Connect, I&#8217;ll update this post with the link shortly, in the meantime you can <a href="../../../../cdn.aschroder.com/wp-content/uploads/2010/08/Aschroder_CloudBackup-0.1.4.gz">download the release directly</a> and <a href="../../05/installing-a-magento-extension-manually-via-ftp-or-ssh/index.html">install it manually</a> to test it out.</p>
+<div class='yarpp-related'>
+<p>You might also be interested in:<ol>
+<li><a href="../../09/new-in-cloud-backup-platform-independent-magento-backups/index.html" rel="bookmark" title="New in Cloud Backup: Platform Independent Magento Backups">New in Cloud Backup: Platform Independent Magento Backups </a></li>
+<li><a href="../../09/new-version-of-magento-cloud-backup-available-bug-fixes-stability-and-self-testing/index.html" rel="bookmark" title="New Version of Magento Cloud Backup Available: bug fixes, stability and self testing.">New Version of Magento Cloud Backup Available: bug fixes, stability and self testing. </a></li>
+<li><a href="../magento-backup-extension-cloud-backup-its-finally-approved/index.html" rel="bookmark" title="Magento Backup extension: Cloud Backup &#8211; it&#8217;s finally approved!">Magento Backup extension: Cloud Backup &#8211; it&#8217;s finally approved! </a></li>
+<li><a href="../../../2011/10/magento-cloud-backup-0-3-rc-new-features-and-an-end-to-the-beta-program-in-sight/index.html" rel="bookmark" title="Magento Cloud Backup 0.3 RC &#8211; new features and an end to the beta program in sight">Magento Cloud Backup 0.3 RC &#8211; new features and an end to the beta program in sight </a></li>
+<li><a href="../../../2011/04/cloud-backup-case-study-detecting-if-magento-cron-is-running-in-your-extensions/index.html" rel="bookmark" title="Cloud Backup Case study: Detecting if Magento cron is running in your extensions">Cloud Backup Case study: Detecting if Magento cron is running in your extensions </a></li>
+</ol></p>
+</div>
+		</div><!-- .entry-content -->
+		<nav id="post-navigation" class="navigation post-navigation" role="navigation" aria-label="Post Navigation"><span class="screen-reader-text">Post navigation</span><div class="nav-links"><div class="nav-previous"><a href="../improved-custom-magento-order-number-functionality-for-setstartordernumber-extension-v0-3/index.html" rel="prev">Improved Custom Magento Order Number Functionality for SetStartOrderNumber extension &#8211; v0.3</a></div><div class="nav-next"><a href="../tweetbeeper-com-a-free-email-to-direct-message-service-and-email-to-sms-too/index.html" rel="next">TweetBeeper.com &#8211; A Free Email to Direct Message Service (and Email to SMS too)</a></div></div></nav>
+<section id="comments" class="comments-area" aria-label="Post Comments">
+
+			<h2 class="comments-title">
+			17 thoughts on &ldquo;<span>Magento Backups: How To Ensure Your Data Is Safe with Magento Cloud Backup</span>&rdquo;		</h2>
+
+		
+		<ol class="comment-list">
+					<li class="comment even thread-even depth-1" id="comment-1722">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/f3159ae68849d16cf3ebd25c4d898893?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/f3159ae68849d16cf3ebd25c4d898893?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Dave</cite>			</div>
+			
+			<a href="index.html#comment-1722" class="comment-date">
+				<time datetime="2010-08-13T01:11:16+00:00">August 13, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1722" class="comment-content">
+				<div class="comment-text">
+		<p>What a great concept!<br />
+Backups have always bern a pain, and it&#8217;s the ability to recover from failure that&#8217;s the key. Years ago I had to pick up the pieces and reconstruct a major database after two disk failures in a disk array over a holiday period and the &#8216;backups&#8217; being done by the otherwise-capable sysadmin turned out to be useless. Yes they were routinely stored offsite but the tapes were blank and he&#8217;d never tested a recovery process. He had a nervous breakdown, poor guy, a company of several thousand employees suddenly had no revenue, but that didn&#8217;t help get the systems back up and running. It&#8217;s an experience I hope never repeat.<br />
+So hot recovery gets my vote. What better way to be able to test your backups than to b able to recover any one of them to a test instance?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1797">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/e93481e81caba127904ec5fb5b87626e?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/e93481e81caba127904ec5fb5b87626e?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.eshopcool.com/' rel='external nofollow' class='url'>Cool Moov</a></cite>			</div>
+			
+			<a href="index.html#comment-1797" class="comment-date">
+				<time datetime="2010-09-02T06:06:30+00:00">September 2, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1797" class="comment-content">
+				<div class="comment-text">
+		<p>I will be interested in beta testing. The most important thing in a backup process is the recovery process. your backup is as good as you can restore it. I already have an S3 account and I am doing the backup manually: zipping up the app file and the database file and ftp them to my computer then transferring them to S3. Pretty laborious process.</p>
+<p>For recovery, the database files cannot be imported as such, I have to open the file and add some stuff to avoid issues with constraint keys. then I am good.</p>
+<p>So if you can automate the whole process this is gold</p>
+<p>So what features are available on the beta version?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-1798">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-1798" class="comment-date">
+				<time datetime="2010-09-02T18:16:11+00:00">September 2, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1798" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, Cool Moov &#8211; thanks for the feedback, that manual process is <strong>exactly</strong> what we are trying to eliminate by creating this extension. The problem with backups is it&#8217;s not until something goes wrong that you remember to do them!</p>
+<p>As for restoring, that&#8217;s not a feature _yet_ but I assure you it&#8217;s the very next feature to be added. The tricky thing is that restoring a running Magento <em>from the Magento you&#8217;re overwriting</em> is both dangerous and tricky. But we can handle it!</p>
+<p>The beta will automate your backup process, daily &#8211; and in a later version we&#8217;ll allow more/less frequent automatic backups. You can also view, delete, download and manage your backup buckets and files from within Magento. We&#8217;ll be continuing to improve the extension over the next month or two, so please get in to the beta program and have your say on features and functionality.</p>
+<p>Cheers,<br />
+Ashley</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2349">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/23351b66423667b19371aaca46b8b921?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/23351b66423667b19371aaca46b8b921?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://bradysewall.com/' rel='external nofollow' class='url'>Brady</a></cite>			</div>
+			
+			<a href="index.html#comment-2349" class="comment-date">
+				<time datetime="2011-06-06T17:19:53+00:00">June 6, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2349" class="comment-content">
+				<div class="comment-text">
+		<p>Great theory for an extension, however I am a little confused. I installed the extension on our Magento 1.3.2.4 setup through Magento Connect. When I run the Offline Backups, it errors out saying I need to enter a code on the extension setup page. I can&#8217;t seem to find the extension setup page anywhere. Can you please point me in the right direction?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-2360">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-2360" class="comment-date">
+				<time datetime="2011-06-08T15:35:57+00:00">June 8, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2360" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, Brady &#8211; we&#8217;ve been in contact via email I think this problem is all sorted now.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2497">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/333d4712402f764cf090733db085af1a?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/333d4712402f764cf090733db085af1a?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Prabu Rajasekaran</cite>			</div>
+			
+			<a href="index.html#comment-2497" class="comment-date">
+				<time datetime="2011-08-04T04:43:44+00:00">August 4, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2497" class="comment-content">
+				<div class="comment-text">
+		<p>Ashley, </p>
+<p>I installed the extension using FTP. Here&#8217;s what I got: </p>
+<p>Error: Cannot activate product.<br />
+				Reason: No Activation Key configured.<br />
+				Solution: Please input an activation key in order to use the offsite backup functionality.</p>
+<p>How to escape out of it?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-2502">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-2502" class="comment-date">
+				<time datetime="2011-08-08T14:11:19+00:00">August 8, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2502" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, Prabu &#8211; did you sign up for an account through Amazon and input your activation key?</p>
+<p>After entering a fresh activation key, go to the offsite backups section in the Tools menu and try running a manual backup. That&#8217;s a good way to test if the activation has worked.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2824">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/694ac54347c5c423dcae13b03bf846aa?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/694ac54347c5c423dcae13b03bf846aa?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.lovemane.co.uk/' rel='external nofollow' class='url'>Pat</a></cite>			</div>
+			
+			<a href="index.html#comment-2824" class="comment-date">
+				<time datetime="2012-01-02T10:36:01+00:00">January 2, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2824" class="comment-content">
+				<div class="comment-text">
+		<p>Great stuff!</p>
+<p>I already use the SMTP extension, and this new one looks promising&#8230; I have installed it and can&#8217;t wait for the new features to be added!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2828">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/694ac54347c5c423dcae13b03bf846aa?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/694ac54347c5c423dcae13b03bf846aa?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.lovemane.co.uk/' rel='external nofollow' class='url'>Pat</a></cite>			</div>
+			
+			<a href="index.html#comment-2828" class="comment-date">
+				<time datetime="2012-01-03T08:22:05+00:00">January 3, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2828" class="comment-content">
+				<div class="comment-text">
+		<p>Hello,</p>
+<p>I get This error when i go to system &gt; tools &gt; offsite backups  </p>
+<p>Error: It looks like your Magento cron job is not currently running. In order to create backups automatically you need cron configured. There is a guide to configuring cron here. Please contact us for more information or if this message is wrong.  </p>
+<p>System &gt; Config &gt; System &gt; Cron:<br />
+15<br />
+20<br />
+15<br />
+10<br />
+60<br />
+600  </p>
+<p>any ideas?  </p>
+<p>Regards</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4155">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/ed64842b3c73ef764fbd2d51cc2aa21a?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/ed64842b3c73ef764fbd2d51cc2aa21a?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Sander</cite>			</div>
+			
+			<a href="index.html#comment-4155" class="comment-date">
+				<time datetime="2012-04-03T23:19:39+00:00">April 3, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4155" class="comment-content">
+				<div class="comment-text">
+		<p>Looks very good, for sure gonna give it a try. One stupid question I have is the hosting bandwidth of the server. When I schedule a full backup every night, let&#8217;s say 400 mb isn&#8217;t that gonna kill my hosting bandwith?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-4886">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/2976b8fba9ccf280bee3b1e6f5606b58?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/2976b8fba9ccf280bee3b1e6f5606b58?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.parfumerie.nl/' rel='external nofollow' class='url'>Hugo</a></cite>			</div>
+			
+			<a href="index.html#comment-4886" class="comment-date">
+				<time datetime="2012-07-18T14:21:28+00:00">July 18, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4886" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks for this awesome extension. At this time i`m trying it out! Hope for further development of this extension.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-5037">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/9142d8f3e89a7ef8d2b73710af62fc26?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/9142d8f3e89a7ef8d2b73710af62fc26?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Bruce</cite>			</div>
+			
+			<a href="index.html#comment-5037" class="comment-date">
+				<time datetime="2012-10-04T03:56:35+00:00">October 4, 2012</time>			</a>
+		</div>
+				<div id="div-comment-5037" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Ashley,</p>
+<p>I&#8217;m looking for a Magento extension just like this one for backups.</p>
+<p>Just a question about your charging model. You say the first GB is free and then 50c/GB/mth after that. Does the 50c/GB/mth include the S3 storage? (Or do I supply my own S3 acct?)</p>
+<p>Cheers, Bruce.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-5038">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='../../../index.html' rel='external nofollow' class='url'>Ashley</a></cite>			</div>
+			
+			<a href="index.html#comment-5038" class="comment-date">
+				<time datetime="2012-10-04T19:57:54+00:00">October 4, 2012</time>			</a>
+		</div>
+				<div id="div-comment-5038" class="comment-content">
+				<div class="comment-text">
+		<p>Hi,</p>
+<p>We use Amazon&#8217;s DevPay &#8211; so you pay us, we pay them. No need for your own S3 account.</p>
+<p>Cheers,<br />
+Ashley</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-5042">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/9142d8f3e89a7ef8d2b73710af62fc26?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/9142d8f3e89a7ef8d2b73710af62fc26?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Bruce McKinnon</cite>			</div>
+			
+			<a href="index.html#comment-5042" class="comment-date">
+				<time datetime="2012-10-07T20:51:37+00:00">October 7, 2012</time>			</a>
+		</div>
+				<div id="div-comment-5042" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Ashley, Thanks for the fast reply. It sounds all good.</p>
+<p>I grabbed myself an activation key, installed the extension and tried to create my first backup.</p>
+<p>Unfortunately I see a &#8216;500 Internal Server &#8211; This request takes too long to process, it is timed out by the server. If it should not be timed out, please contact administrator of this web site to increase &#8216;Connection Timeout&#8217; after approx 2mins.</p>
+<p>I had a look at my .htaccess (I&#8217;m using VPS.NET cloud hosting) and found &#8220;php_value max_execution_time 18000&#8221;.</p>
+<p>I also had a look in the /var/backups folder and it looks like the &#8216;cloudbackup-xxx.gz&#8217; files are being created.</p>
+<p>Not really sure where to look further. Also, I am seeing the same Cron error that &#8216;Pat&#8217; is. Is there any docos that show how to set up a cron job to run the extension?</p>
+<p>Thanks a lot, Bruce.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-5272">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/61f93f8cb6588cba9acfa0e29c3b9137?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/61f93f8cb6588cba9acfa0e29c3b9137?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Rishu</cite>			</div>
+			
+			<a href="index.html#comment-5272" class="comment-date">
+				<time datetime="2012-12-11T01:30:56+00:00">December 11, 2012</time>			</a>
+		</div>
+				<div id="div-comment-5272" class="comment-content">
+				<div class="comment-text">
+		<p>Hello,<br />
+i am trying to take system backup from admin panel of my website but all the time it shows me internal server error &amp; also it changes the permissions set on the cpanel. Please help me for that.<br />
+Thanks</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-7569">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/00afea3aa7a23e7dba3c411374eaf6be?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/00afea3aa7a23e7dba3c411374eaf6be?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.izibackup.com/' rel='external nofollow' class='url'>cloud backup</a></cite>			</div>
+			
+			<a href="index.html#comment-7569" class="comment-date">
+				<time datetime="2013-01-18T08:55:07+00:00">January 18, 2013</time>			</a>
+		</div>
+				<div id="div-comment-7569" class="comment-content">
+				<div class="comment-text">
+		<p>Hi there very cool site!! Guy .. Excellent .. Superb .. I&#8217;ll bookmark your site and take the feeds additionally</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-10286">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/c52089e0a716ca77b015cefd34c6b0fa?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/c52089e0a716ca77b015cefd34c6b0fa?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.nitish.info/' rel='external nofollow' class='url'>nitish</a></cite>			</div>
+			
+			<a href="index.html#comment-10286" class="comment-date">
+				<time datetime="2013-05-31T22:15:59+00:00">May 31, 2013</time>			</a>
+		</div>
+				<div id="div-comment-10286" class="comment-content">
+				<div class="comment-text">
+		<p>Hi how i move media folder to another server or S3, my requirement is i want to run magento with 3 server, because our traffic is heavy , so please suggest ho i do that</p>
+<p>Regards<br />
+Nitish</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		</ol><!-- .comment-list -->
+
+				<p class="no-comments">Comments are closed.</p>
+	
+</section><!-- #comments -->
+
+</div><!-- #post-## -->
+
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+		</div><!-- .col-full -->
+	</div><!-- #content -->
+
+	
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="col-full">
+
+					<div class="site-info">
+			&copy; ASchroder.com 2023						<br /> Storefront designed by <a href="http://www.woocommerce.com/" title="WooCommerce - The Best eCommerce Platform for WordPress" rel="author">WooCommerce</a>.					</div><!-- .site-info -->
+		
+		</div><!-- .col-full -->
+	</footer><!-- #colophon -->
+
+	
+</div><!-- #page -->
+
+<link rel='stylesheet' id='yarppRelatedCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/related101e.css?ver=4.8.15' type='text/css' media='all' />
+<script type='text/javascript' src='../../../wp-content/plugins/wp-syntax/js/wp-syntax4963.js?ver=1.1'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/navigation.min11a8.js?ver=20120206'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/skip-link-focus-fix.min08e0.js?ver=20130115'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/wp-embed.min101e.js?ver=4.8.15'></script>
+
+</body>
+
+<!-- Mirrored from www.aschroder.com/2010/08/magento-backups-how-to-ensure-your-data-is-safe-with-magento-cloud-backup/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:34:32 GMT -->
+</html>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:23:31 by W3 Total Cache -->

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>Comments on: MageSpeedTest.com with Siege &#8211; Performance Testing Magento Made Easy</title>
+	<atom:link href="http://www.aschroder.com/2010/12/magespeedtest-com-with-siege-performance-testing-magento-made-easy/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.aschroder.com/2010/12/magespeedtest-com-with-siege-performance-testing-magento-made-easy/</link>
+	<description>Notes on Web Development</description>
+	<lastBuildDate>Wed, 23 Dec 2020 09:25:05 +0000</lastBuildDate>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8.15</generator>
+	<item>
+		<title>By: Ashley</title>
+		<link>http://www.aschroder.com/2010/12/magespeedtest-com-with-siege-performance-testing-magento-made-easy/comment-page-1/#comment-2059</link>
+		<dc:creator><![CDATA[Ashley]]></dc:creator>
+		<pubDate>Wed, 05 Jan 2011 09:04:14 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1280#comment-2059</guid>
+		<description><![CDATA[Hi, J.T. Happy New Year to you too! 
+
+That&#039;s a good idea having the file dictate the thresholds. It could also have:
+
+NotifyEmail a@b.com
+NotifyThreshold 10 
+
+So that it emails a@b.com if 10 tests have been run or something (logging the IP that initiated them). 
+I need to clone myself...]]></description>
+		<content:encoded><![CDATA[<p>Hi, J.T. Happy New Year to you too! </p>
+<p>That&#8217;s a good idea having the file dictate the thresholds. It could also have:</p>
+<p>NotifyEmail <a href="mailto:a@b.com">a@b.com</a><br />
+NotifyThreshold 10 </p>
+<p>So that it emails <a href="mailto:a@b.com">a@b.com</a> if 10 tests have been run or something (logging the IP that initiated them).<br />
+I need to clone myself&#8230;</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: J.T.</title>
+		<link>http://www.aschroder.com/2010/12/magespeedtest-com-with-siege-performance-testing-magento-made-easy/comment-page-1/#comment-2054</link>
+		<dc:creator><![CDATA[J.T.]]></dc:creator>
+		<pubDate>Tue, 04 Jan 2011 10:33:48 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1280#comment-2054</guid>
+		<description><![CDATA[Perhaps the HTML verification file could contain the actual number of tests, or the time frame, you allow. 
+
+Or a simple XML file:
+
+AllowFrom DateTime
+AllowTo DateTime
+AllowTestsPerHour 10
+
+But that&#039;s making it quite elaborate already. The default behaviour could simply be as you have it now with some optional advanced functionality for us nerds. 
+
+The performance versus hosting fees is a neat though potentially depressing idea. If sub one sec response and over 20 transactions is possible, I sure have my work cut out!
+
+Happy 2011 by the way!]]></description>
+		<content:encoded><![CDATA[<p>Perhaps the HTML verification file could contain the actual number of tests, or the time frame, you allow. </p>
+<p>Or a simple XML file:</p>
+<p>AllowFrom DateTime<br />
+AllowTo DateTime<br />
+AllowTestsPerHour 10</p>
+<p>But that&#8217;s making it quite elaborate already. The default behaviour could simply be as you have it now with some optional advanced functionality for us nerds. </p>
+<p>The performance versus hosting fees is a neat though potentially depressing idea. If sub one sec response and over 20 transactions is possible, I sure have my work cut out!</p>
+<p>Happy 2011 by the way!</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Ashley</title>
+		<link>http://www.aschroder.com/2010/12/magespeedtest-com-with-siege-performance-testing-magento-made-easy/comment-page-1/#comment-2032</link>
+		<dc:creator><![CDATA[Ashley]]></dc:creator>
+		<pubDate>Mon, 20 Dec 2010 20:40:12 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1280#comment-2032</guid>
+		<description><![CDATA[@J.T. Good idea to shorten up the 10 minute delay. The Google style &#039;place an html file in the root of your store&#039; approach is probably the best.
+
+The kicker is that once that file is there, anyone could initiate a test against you. I could make the file contents email specific - which would give a little security by obscurity. So the file contents+domain+email must all match in order to do unlimited tests.
+
+Maybe the correctly coded html file could be what is sold in a bid to make money from this little experiment!
+
+I&#039;ll have a tinker with it this week, but definitely will take your feedback on board.
+
+@Paul - Good question, it&#039;s a little bit hard to mark a single test as good or bad - if you&#039;re paying $20/month then the definition of good is very different to if you are paying $500/month.
+
+Here&#039;s the best one I&#039;ve seen, one to strive for. I won&#039;t say who it&#039;s from but they shared it with me via Skype yesterday. I&#039;m sure when they are ready, they&#039;ll publish their results.
+
+&lt;pre&gt;
+Response time:		        0.68 secs
+Transaction rate:	       24.80 trans/sec
+&lt;/pre&gt;
+
+This is an enterprise solution though, you&#039;ll struggle to get performance like that for $50/month!
+
+How about when people elect to publish their results they can optionally include how much they are paying for the hosting. That way I could do some sort of graph that shows price/performance and then others can see where they sit on the graph.
+
+I&#039;ll add it to the feature ideas list - it&#039;d be good to put results in context.
+
+Good ideas guys, please keep them coming.]]></description>
+		<content:encoded><![CDATA[<p>@J.T. Good idea to shorten up the 10 minute delay. The Google style &#8216;place an html file in the root of your store&#8217; approach is probably the best.</p>
+<p>The kicker is that once that file is there, anyone could initiate a test against you. I could make the file contents email specific &#8211; which would give a little security by obscurity. So the file contents+domain+email must all match in order to do unlimited tests.</p>
+<p>Maybe the correctly coded html file could be what is sold in a bid to make money from this little experiment!</p>
+<p>I&#8217;ll have a tinker with it this week, but definitely will take your feedback on board.</p>
+<p>@Paul &#8211; Good question, it&#8217;s a little bit hard to mark a single test as good or bad &#8211; if you&#8217;re paying $20/month then the definition of good is very different to if you are paying $500/month.</p>
+<p>Here&#8217;s the best one I&#8217;ve seen, one to strive for. I won&#8217;t say who it&#8217;s from but they shared it with me via Skype yesterday. I&#8217;m sure when they are ready, they&#8217;ll publish their results.</p>
+<pre>
+Response time:		        0.68 secs
+Transaction rate:	       24.80 trans/sec
+</pre>
+<p>This is an enterprise solution though, you&#8217;ll struggle to get performance like that for $50/month!</p>
+<p>How about when people elect to publish their results they can optionally include how much they are paying for the hosting. That way I could do some sort of graph that shows price/performance and then others can see where they sit on the graph.</p>
+<p>I&#8217;ll add it to the feature ideas list &#8211; it&#8217;d be good to put results in context.</p>
+<p>Good ideas guys, please keep them coming.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Paul</title>
+		<link>http://www.aschroder.com/2010/12/magespeedtest-com-with-siege-performance-testing-magento-made-easy/comment-page-1/#comment-2031</link>
+		<dc:creator><![CDATA[Paul]]></dc:creator>
+		<pubDate>Mon, 20 Dec 2010 13:57:59 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1280#comment-2031</guid>
+		<description><![CDATA[Are there any guidelines or recommendations as to what is acceptable?
+Perhaps you could rate the results good bad or ugly when they are published.  ]]></description>
+		<content:encoded><![CDATA[<p>Are there any guidelines or recommendations as to what is acceptable?<br />
+Perhaps you could rate the results good bad or ugly when they are published.  </p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: J.T.</title>
+		<link>http://www.aschroder.com/2010/12/magespeedtest-com-with-siege-performance-testing-magento-made-easy/comment-page-1/#comment-2029</link>
+		<dc:creator><![CDATA[J.T.]]></dc:creator>
+		<pubDate>Mon, 20 Dec 2010 10:47:32 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1280#comment-2029</guid>
+		<description><![CDATA[Used it, like it! 
+
+Apart from the fact I got terrible results, which will ruin my Christmas holiday as a perfectionist just can&#039;t tolerate crap server performance. 
+
+A third party testing tool that doesn&#039;t need setting up is great as performance testing otherwise can be difficult to get going.  
+
+And when this is out of beta, you can expect reliable testing, that is the same every time.   
+
+So nice tool indeed, thanks for making it available! I&#039;d even pay a one-off fee to lower the 10 minute delay. As I now need to test some 100 combinations of server tweaks and speed tools, I&#039;ll end up with a lot of waiting for the 10 minutes to pass.  
+
+I understand it&#039;s to avoid DOS attacks of sorts so perhaps you can do something like Google Webmaster Tools and have us upload a unique html file or meta tag value to proof the server is ours, and then it allows more heavy testing. 
+
+Anyway, I always want more more more, don&#039;t mean to be ungrateful! :) ]]></description>
+		<content:encoded><![CDATA[<p>Used it, like it! </p>
+<p>Apart from the fact I got terrible results, which will ruin my Christmas holiday as a perfectionist just can&#8217;t tolerate crap server performance. </p>
+<p>A third party testing tool that doesn&#8217;t need setting up is great as performance testing otherwise can be difficult to get going.  </p>
+<p>And when this is out of beta, you can expect reliable testing, that is the same every time.   </p>
+<p>So nice tool indeed, thanks for making it available! I&#8217;d even pay a one-off fee to lower the 10 minute delay. As I now need to test some 100 combinations of server tweaks and speed tools, I&#8217;ll end up with a lot of waiting for the 10 minutes to pass.  </p>
+<p>I understand it&#8217;s to avoid DOS attacks of sorts so perhaps you can do something like Google Webmaster Tools and have us upload a unique html file or meta tag value to proof the server is ours, and then it allows more heavy testing. </p>
+<p>Anyway, I always want more more more, don&#8217;t mean to be ungrateful! 🙂 </p>
+]]></content:encoded>
+	</item>
+</channel>
+</rss>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:21:39 by W3 Total Cache -->

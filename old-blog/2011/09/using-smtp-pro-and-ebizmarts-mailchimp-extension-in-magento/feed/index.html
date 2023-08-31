@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>Comments on: Using SMTP Pro and Ebizmarts&#8217; MailChimp extension in Magento</title>
+	<atom:link href="http://www.aschroder.com/2011/09/using-smtp-pro-and-ebizmarts-mailchimp-extension-in-magento/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.aschroder.com/2011/09/using-smtp-pro-and-ebizmarts-mailchimp-extension-in-magento/</link>
+	<description>Notes on Web Development</description>
+	<lastBuildDate>Wed, 23 Dec 2020 09:25:05 +0000</lastBuildDate>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8.15</generator>
+	<item>
+		<title>By: Johan</title>
+		<link>http://www.aschroder.com/2011/09/using-smtp-pro-and-ebizmarts-mailchimp-extension-in-magento/comment-page-1/#comment-9944</link>
+		<dc:creator><![CDATA[Johan]]></dc:creator>
+		<pubDate>Mon, 01 Apr 2013 14:44:52 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1587#comment-9944</guid>
+		<description><![CDATA[Hi Viktor, Ashley, 
+
+  We&#039;re running the Ebizmarts MageMonkey integration with mailchimp and have followed the instructions in http://www.aschroder.com/2011/09/using-smtp-pro-and-ebizmarts-mailchimp-extension-in-magento/, flushing the cache afterwards. 
+
+ I just thought I&#039;d let you know that with the version of the MageMonkey plugin we&#039;re using (1.0.19, old version) there seems to be two locations where the config.xml has to be changed. 
+
+ The first is in /app/code/community/Ebizmarts/MageMonkey/etc and the second is in /app/code/community/Ebizmarts/Mandrill/etc. In both config.xml there is an email-related override. 
+
+ Not sure how this applies to later versions of the MageMonkey plugin.]]></description>
+		<content:encoded><![CDATA[<p>Hi Viktor, Ashley, </p>
+<p>  We&#8217;re running the Ebizmarts MageMonkey integration with mailchimp and have followed the instructions in <a href="http://www.aschroder.com/2011/09/using-smtp-pro-and-ebizmarts-mailchimp-extension-in-magento/" rel="nofollow">http://www.aschroder.com/2011/09/using-smtp-pro-and-ebizmarts-mailchimp-extension-in-magento/</a>, flushing the cache afterwards. </p>
+<p> I just thought I&#8217;d let you know that with the version of the MageMonkey plugin we&#8217;re using (1.0.19, old version) there seems to be two locations where the config.xml has to be changed. </p>
+<p> The first is in /app/code/community/Ebizmarts/MageMonkey/etc and the second is in /app/code/community/Ebizmarts/Mandrill/etc. In both config.xml there is an email-related override. </p>
+<p> Not sure how this applies to later versions of the MageMonkey plugin.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Viktor</title>
+		<link>http://www.aschroder.com/2011/09/using-smtp-pro-and-ebizmarts-mailchimp-extension-in-magento/comment-page-1/#comment-5258</link>
+		<dc:creator><![CDATA[Viktor]]></dc:creator>
+		<pubDate>Fri, 30 Nov 2012 11:34:43 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1587#comment-5258</guid>
+		<description><![CDATA[Ashley
+
+Could you please advise if there is any clash with aschroder smtp pro extension and MailChimp extension?
+
+I use Ebizmarts_MageMonkey 1.0.22
+
+I&#039;ve read through the following posts, BUT
+
+http://www.aschroder.com/2011/06/smtp-pro-with-magento-a-sort-of-user-guide/comment-page-1/#comments
+http://www.aschroder.com/2011/09/using-smtp-pro-and-ebizmarts-mailchimp-extension-in-magento/
+
+
+
+
+this folder does not exist
+code/local/Ebizmarts/Mailchimp/etc/config.xml
+
+
+Instead I&#039;ve got
+app/code/community/Ebizmarts/MageMonkey/etc/config.xml
+
+and it does not have
+
+    
+        Ebizmarts_Mailchimp_Model_Email_Template
+    
+
+
+Please advise, 
+
+Thanks!]]></description>
+		<content:encoded><![CDATA[<p>Ashley</p>
+<p>Could you please advise if there is any clash with aschroder smtp pro extension and MailChimp extension?</p>
+<p>I use Ebizmarts_MageMonkey 1.0.22</p>
+<p>I&#8217;ve read through the following posts, BUT</p>
+<p><a href="http://www.aschroder.com/2011/06/smtp-pro-with-magento-a-sort-of-user-guide/comment-page-1/#comments" rel="nofollow">http://www.aschroder.com/2011/06/smtp-pro-with-magento-a-sort-of-user-guide/comment-page-1/#comments</a><br />
+<a href="http://www.aschroder.com/2011/09/using-smtp-pro-and-ebizmarts-mailchimp-extension-in-magento/" rel="nofollow">http://www.aschroder.com/2011/09/using-smtp-pro-and-ebizmarts-mailchimp-extension-in-magento/</a></p>
+<p>this folder does not exist<br />
+code/local/Ebizmarts/Mailchimp/etc/config.xml</p>
+<p>Instead I&#8217;ve got<br />
+app/code/community/Ebizmarts/MageMonkey/etc/config.xml</p>
+<p>and it does not have</p>
+<p>        Ebizmarts_Mailchimp_Model_Email_Template</p>
+<p>Please advise, </p>
+<p>Thanks!</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Ashley</title>
+		<link>http://www.aschroder.com/2011/09/using-smtp-pro-and-ebizmarts-mailchimp-extension-in-magento/comment-page-1/#comment-5087</link>
+		<dc:creator><![CDATA[Ashley]]></dc:creator>
+		<pubDate>Mon, 29 Oct 2012 09:31:37 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1587#comment-5087</guid>
+		<description><![CDATA[The core alerts or some 3rd party? If 3rd party, they might be sending emails weirdly.]]></description>
+		<content:encoded><![CDATA[<p>The core alerts or some 3rd party? If 3rd party, they might be sending emails weirdly.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Richard</title>
+		<link>http://www.aschroder.com/2011/09/using-smtp-pro-and-ebizmarts-mailchimp-extension-in-magento/comment-page-1/#comment-5081</link>
+		<dc:creator><![CDATA[Richard]]></dc:creator>
+		<pubDate>Fri, 26 Oct 2012 22:50:39 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1587#comment-5081</guid>
+		<description><![CDATA[Hi Ashley,
+
+Our company just switched to Magento.  We&#039;ve been using SMTP Pro and it works great, but I&#039;ve not been able to get Magento product alerts to send out emails.  I&#039;m wondering if there&#039;s an issue there?]]></description>
+		<content:encoded><![CDATA[<p>Hi Ashley,</p>
+<p>Our company just switched to Magento.  We&#8217;ve been using SMTP Pro and it works great, but I&#8217;ve not been able to get Magento product alerts to send out emails.  I&#8217;m wondering if there&#8217;s an issue there?</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: pradeep</title>
+		<link>http://www.aschroder.com/2011/09/using-smtp-pro-and-ebizmarts-mailchimp-extension-in-magento/comment-page-1/#comment-4981</link>
+		<dc:creator><![CDATA[pradeep]]></dc:creator>
+		<pubDate>Thu, 06 Sep 2012 07:10:52 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1587#comment-4981</guid>
+		<description><![CDATA[Hi,
+
+I have to send one custom email so how to do it in mailchimp
+
+i installed mailchimp in magneto but i have to send custom email !! before that i create one email template from magento back end of id 3 no i have to send that mail through mail chimp how to do that?
+it will automatically done or i have to do some thing 
+please help me]]></description>
+		<content:encoded><![CDATA[<p>Hi,</p>
+<p>I have to send one custom email so how to do it in mailchimp</p>
+<p>i installed mailchimp in magneto but i have to send custom email !! before that i create one email template from magento back end of id 3 no i have to send that mail through mail chimp how to do that?<br />
+it will automatically done or i have to do some thing<br />
+please help me</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Javi</title>
+		<link>http://www.aschroder.com/2011/09/using-smtp-pro-and-ebizmarts-mailchimp-extension-in-magento/comment-page-1/#comment-4759</link>
+		<dc:creator><![CDATA[Javi]]></dc:creator>
+		<pubDate>Mon, 23 Apr 2012 16:32:02 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1587#comment-4759</guid>
+		<description><![CDATA[Hi Ashley
+
+My problem is that evil had changed contact_form.html
+
+He believed that the problem was MailChimp, but the problem was a bad configuration contact_form.html
+
+Sorry for bothering
+
+Thank you for your extensions!
+
+Javi]]></description>
+		<content:encoded><![CDATA[<p>Hi Ashley</p>
+<p>My problem is that evil had changed contact_form.html</p>
+<p>He believed that the problem was MailChimp, but the problem was a bad configuration contact_form.html</p>
+<p>Sorry for bothering</p>
+<p>Thank you for your extensions!</p>
+<p>Javi</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Javier</title>
+		<link>http://www.aschroder.com/2011/09/using-smtp-pro-and-ebizmarts-mailchimp-extension-in-magento/comment-page-1/#comment-4756</link>
+		<dc:creator><![CDATA[Javier]]></dc:creator>
+		<pubDate>Sun, 22 Apr 2012 21:36:02 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1587#comment-4756</guid>
+		<description><![CDATA[Hello Ashley, Thanks to the fix the bug now I can send email order.
+But I can not send email contact !!
+Before everything was ok
+But after installing &quot;Ebizmarts_MageMonkey&quot; I can not send emails to contact
+http://www.dieltron.com/contacts/
+
+Can you help?
+thanks
+Javi]]></description>
+		<content:encoded><![CDATA[<p>Hello Ashley, Thanks to the fix the bug now I can send email order.<br />
+But I can not send email contact !!<br />
+Before everything was ok<br />
+But after installing &#8220;Ebizmarts_MageMonkey&#8221; I can not send emails to contact<br />
+<a href="http://www.dieltron.com/contacts/" rel="nofollow">http://www.dieltron.com/contacts/</a></p>
+<p>Can you help?<br />
+thanks<br />
+Javi</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Andrea</title>
+		<link>http://www.aschroder.com/2011/09/using-smtp-pro-and-ebizmarts-mailchimp-extension-in-magento/comment-page-1/#comment-2657</link>
+		<dc:creator><![CDATA[Andrea]]></dc:creator>
+		<pubDate>Thu, 22 Sep 2011 09:25:21 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1587#comment-2657</guid>
+		<description><![CDATA[Hi Ashley,
+I&#039;m running my sit on magento 1.5.1 and I use mailchimp only for newsletter  integration.
+I did remove the override, hoever I still get this result:
+
+ASchroder.com SMTP Pro Self-test results
+Testing outbound connectivity to Server:
+Using Google Apps/Gmail configuration options
+Connection to Host SMTP server successful.
+Sending test email to your contact form address www.mielepietrangeli.com:
+Unable to send test email. Exception message was: 5.1.2 We weren&#039;t able to find the recipient domain. Please check for any 5.1.2 spelling errors, and make sure you didn&#039;t enter any spaces, periods, 5.1.2 or other punctuation after the recipient&#039;s email address. p2sm10598109wbo.17 ...
+Please check and double check your username and password.
+Contact Form test email did not use SMTPPro to send.
+Testing failed, please review the reported problems and if you need further help visit ASchroder.com to contact me.
+
+Where&#039;s the problem?
+Thank you
+Andrea]]></description>
+		<content:encoded><![CDATA[<p>Hi Ashley,<br />
+I&#8217;m running my sit on magento 1.5.1 and I use mailchimp only for newsletter  integration.<br />
+I did remove the override, hoever I still get this result:</p>
+<p>ASchroder.com SMTP Pro Self-test results<br />
+Testing outbound connectivity to Server:<br />
+Using Google Apps/Gmail configuration options<br />
+Connection to Host SMTP server successful.<br />
+Sending test email to your contact form address <a href="http://www.mielepietrangeli.com" rel="nofollow">http://www.mielepietrangeli.com</a>:<br />
+Unable to send test email. Exception message was: 5.1.2 We weren&#8217;t able to find the recipient domain. Please check for any 5.1.2 spelling errors, and make sure you didn&#8217;t enter any spaces, periods, 5.1.2 or other punctuation after the recipient&#8217;s email address. p2sm10598109wbo.17 &#8230;<br />
+Please check and double check your username and password.<br />
+Contact Form test email did not use SMTPPro to send.<br />
+Testing failed, please review the reported problems and if you need further help visit ASchroder.com to contact me.</p>
+<p>Where&#8217;s the problem?<br />
+Thank you<br />
+Andrea</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Ashley</title>
+		<link>http://www.aschroder.com/2011/09/using-smtp-pro-and-ebizmarts-mailchimp-extension-in-magento/comment-page-1/#comment-2645</link>
+		<dc:creator><![CDATA[Ashley]]></dc:creator>
+		<pubDate>Tue, 20 Sep 2011 11:29:24 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1587#comment-2645</guid>
+		<description><![CDATA[Hi, Yes that&#039;s right, if you;re not sending transactional store emails via Mailchimp&#039;s STS, you can safely remove the override.]]></description>
+		<content:encoded><![CDATA[<p>Hi, Yes that&#8217;s right, if you;re not sending transactional store emails via Mailchimp&#8217;s STS, you can safely remove the override.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Arush</title>
+		<link>http://www.aschroder.com/2011/09/using-smtp-pro-and-ebizmarts-mailchimp-extension-in-magento/comment-page-1/#comment-2641</link>
+		<dc:creator><![CDATA[Arush]]></dc:creator>
+		<pubDate>Mon, 19 Sep 2011 21:43:59 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1587#comment-2641</guid>
+		<description><![CDATA[Thanks for this one, been wondering why the two don&#039;t play nice.]]></description>
+		<content:encoded><![CDATA[<p>Thanks for this one, been wondering why the two don&#8217;t play nice.</p>
+]]></content:encoded>
+	</item>
+</channel>
+</rss>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:22:36 by W3 Total Cache -->

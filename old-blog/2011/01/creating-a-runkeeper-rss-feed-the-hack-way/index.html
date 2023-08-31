@@ -1,0 +1,771 @@
+<!doctype html>
+<html lang="en-US">
+
+<!-- Mirrored from www.aschroder.com/2011/01/creating-a-runkeeper-rss-feed-the-hack-way/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:39:10 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="../../../xmlrpc.php">
+
+<title>Creating a Runkeeper RSS Feed - the hack way. | ASchroder.com</title>
+
+<!-- All in One SEO Pack 2.4.2 by Michael Torbert of Semper Fi Web Design[289,369] -->
+<meta name="description"  content="here&#039;s a really trashy little hack to get an activity rss feed until the good folks at Runkeeper make one for you." />
+
+<meta name="keywords"  content="runkeeper,rss feed,feed43,hack" />
+
+<!-- /all in one seo pack -->
+<link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
+<link rel='dns-prefetch' href='http://s.w.org/' />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Feed" href="../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Comments Feed" href="../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Creating a Runkeeper RSS Feed &#8211; the hack way. Comments Feed" href="feed/index.html" />
+<!-- This site uses the Google Analytics by MonsterInsights plugin v6.2.4 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+<script type="text/javascript" data-cfasync="false">
+		var disableStr = 'ga-disable-UA-6477134-1';
+
+	/* Function to detect opted out users */
+	function __gaTrackerIsOptedOut() {
+		return document.cookie.indexOf(disableStr + '=true') > -1;
+	}
+
+	/* Disable tracking if the opt-out cookie exists. */
+	if ( __gaTrackerIsOptedOut() ) {
+		window[disableStr] = true;
+	}
+
+	/* Opt-out function */
+	function __gaTrackerOptout() {
+	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+	  window[disableStr] = true;
+	}
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','http://www.google-analytics.com/analytics.js','__gaTracker');
+
+	__gaTracker('create', 'UA-6477134-1', 'auto');
+	__gaTracker('set', 'forceSSL', true);
+	__gaTracker('send','pageview');
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/www.aschroder.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.15"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='yarppWidgetCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/widget101e.css?ver=4.8.15' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-syntax-css-css'  href='../../../wp-content/plugins/wp-syntax/css/wp-syntax4963.css?ver=1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-style-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/style5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<style id='storefront-style-inline-css' type='text/css'>
+
+			.main-navigation ul li a,
+			.site-title a,
+			ul.menu li a,
+			.site-branding h1 a,
+			.site-footer .storefront-handheld-footer-bar a:not(.button),
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				color: #333333;
+			}
+
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				border-color: #333333;
+			}
+
+			.main-navigation ul li a:hover,
+			.main-navigation ul li:hover > a,
+			.site-title a:hover,
+			a.cart-contents:hover,
+			.site-header-cart .widget_shopping_cart a:hover,
+			.site-header-cart:hover > li > a,
+			.site-header ul.menu li.current-menu-item > a {
+				color: #838383;
+			}
+
+			table th {
+				background-color: #f8f8f8;
+			}
+
+			table tbody td {
+				background-color: #fdfdfd;
+			}
+
+			table tbody tr:nth-child(2n) td,
+			fieldset,
+			fieldset legend {
+				background-color: #fbfbfb;
+			}
+
+			.site-header,
+			.secondary-navigation ul ul,
+			.main-navigation ul.menu > li.menu-item-has-children:after,
+			.secondary-navigation ul.menu ul,
+			.storefront-handheld-footer-bar,
+			.storefront-handheld-footer-bar ul li > a,
+			.storefront-handheld-footer-bar ul li.search .site-search,
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				background-color: #ffffff;
+			}
+
+			p.site-description,
+			.site-header,
+			.storefront-handheld-footer-bar {
+				color: #6d6d6d;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count,
+			button.menu-toggle:after,
+			button.menu-toggle:before,
+			button.menu-toggle span:before {
+				background-color: #333333;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				color: #ffffff;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				border-color: #ffffff;
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+				color: #333333;
+			}
+
+			.widget h1 {
+				border-bottom-color: #333333;
+			}
+
+			body,
+			.secondary-navigation a,
+			.onsale,
+			.pagination .page-numbers li .page-numbers:not(.current), .woocommerce-pagination .page-numbers li .page-numbers:not(.current) {
+				color: #6d6d6d;
+			}
+
+			.widget-area .widget a,
+			.hentry .entry-header .posted-on a,
+			.hentry .entry-header .byline a {
+				color: #9f9f9f;
+			}
+
+			a  {
+				color: #0228d1;
+			}
+
+			a:focus,
+			.button:focus,
+			.button.alt:focus,
+			.button.added_to_cart:focus,
+			.button.wc-forward:focus,
+			button:focus,
+			input[type="button"]:focus,
+			input[type="reset"]:focus,
+			input[type="submit"]:focus {
+				outline-color: #0228d1;
+			}
+
+			button, input[type="button"], input[type="reset"], input[type="submit"], .button, .added_to_cart, .widget a.button, .site-header-cart .widget_shopping_cart a.button {
+				background-color: #eeeeee;
+				border-color: #eeeeee;
+				color: #333333;
+			}
+
+			button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, .button:hover, .added_to_cart:hover, .widget a.button:hover, .site-header-cart .widget_shopping_cart a.button:hover {
+				background-color: #d5d5d5;
+				border-color: #d5d5d5;
+				color: #333333;
+			}
+
+			button.alt, input[type="button"].alt, input[type="reset"].alt, input[type="submit"].alt, .button.alt, .added_to_cart.alt, .widget-area .widget a.button.alt, .added_to_cart, .widget a.button.checkout {
+				background-color: #333333;
+				border-color: #333333;
+				color: #ffffff;
+			}
+
+			button.alt:hover, input[type="button"].alt:hover, input[type="reset"].alt:hover, input[type="submit"].alt:hover, .button.alt:hover, .added_to_cart.alt:hover, .widget-area .widget a.button.alt:hover, .added_to_cart:hover, .widget a.button.checkout:hover {
+				background-color: #1a1a1a;
+				border-color: #1a1a1a;
+				color: #ffffff;
+			}
+
+			.pagination .page-numbers li .page-numbers.current, .woocommerce-pagination .page-numbers li .page-numbers.current {
+				background-color: #e6e6e6;
+				color: #6d6d6d;
+			}
+
+			#comments .comment-list .comment-content .comment-text {
+				background-color: #f8f8f8;
+			}
+
+			.site-footer {
+				background-color: #f0f0f0;
+				color: #6d6d6d;
+			}
+
+			.site-footer a:not(.button) {
+				color: #333333;
+			}
+
+			.site-footer h1, .site-footer h2, .site-footer h3, .site-footer h4, .site-footer h5, .site-footer h6 {
+				color: #333333;
+			}
+
+			#order_review {
+				background-color: #ffffff;
+			}
+
+			#payment .payment_methods > li .payment_box,
+			#payment .place-order {
+				background-color: #fafafa;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice) {
+				background-color: #f5f5f5;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice):hover {
+				background-color: #f0f0f0;
+			}
+
+			@media screen and ( min-width: 768px ) {
+				.secondary-navigation ul.menu a:hover {
+					color: #868686;
+				}
+
+				.secondary-navigation ul.menu a {
+					color: #6d6d6d;
+				}
+
+				.site-header-cart .widget_shopping_cart,
+				.main-navigation ul.menu ul.sub-menu,
+				.main-navigation ul.nav-menu ul.children {
+					background-color: #f0f0f0;
+				}
+
+				.site-header-cart .widget_shopping_cart .buttons,
+				.site-header-cart .widget_shopping_cart .total {
+					background-color: #f5f5f5;
+				}
+
+				.site-header {
+					border-bottom-color: #f0f0f0;
+				}
+			}
+</style>
+<link rel='stylesheet' id='storefront-icons-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/sass/base/icons5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-fonts-css'  href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,600,700,900&amp;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jqueryb8ff.js?ver=1.12.4'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jquery-migrate.min330a.js?ver=1.4.1'></script>
+<link rel='https://api.w.org/' href='../../../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../xmlrpc0db0.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Magento 1.4.2 and Google Checkout &#8211; Debugging weight-based table rate issues' href='../magento-1-4-2-and-google-checkout-debugging-weight-based-table-rate-issues/index.html' />
+<link rel='next' title='A Recipe to avoid having your Twitter, Facebook,  CompuGlobalHyperMegaNet account stolen at an Airport or Conference' href='../../02/a-recipe-to-avoid-having-your-twitter-facebook-compuglobalhypermeganet-account-stolen-at-an-airport-or-conference/index.html' />
+<meta name="generator" content="WordPress 4.8.15" />
+<link rel="canonical" href="index.html" />
+<link rel='shortlink' href='../../../indexc918.html?p=1344' />
+<link rel="alternate" type="application/json+oembed" href="../../../wp-json/oembed/1.0/embede6b7.json?url=http%3A%2F%2Fwww.aschroder.com%2F2011%2F01%2Fcreating-a-runkeeper-rss-feed-the-hack-way%2F" />
+<link rel="alternate" type="text/xml+oembed" href="../../../wp-json/oembed/1.0/embed6e05?url=http%3A%2F%2Fwww.aschroder.com%2F2011%2F01%2Fcreating-a-runkeeper-rss-feed-the-hack-way%2F&amp;format=xml" />
+</head>
+
+<body class="post-template-default single single-post postid-1344 single-format-standard no-wc-breadcrumb storefront-full-width-content right-sidebar">
+
+
+<div id="page" class="hfeed site">
+	
+	<header id="masthead" class="site-header" role="banner" style="">
+		<div class="col-full">
+
+					<a class="skip-link screen-reader-text" href="#site-navigation">Skip to navigation</a>
+		<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+				<div class="site-branding">
+			<div class="beta site-title"><a href="../../../index.html" rel="home">ASchroder.com</a></div><p class="site-description">Notes on Web Development</p>		</div>
+		<div class="storefront-primary-navigation">		<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="Primary Navigation">
+		<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><span>Menu</span></button>
+			<div class="primary-navigation"><ul id="menu-main-menu" class="menu"><li id="menu-item-1119" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li id="menu-item-1118" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li id="menu-item-1872" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div><div class="handheld-navigation"><ul id="menu-main-menu-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div>		</nav><!-- #site-navigation -->
+		</div>
+		</div>
+	</header><!-- #masthead -->
+
+	
+	<div id="content" class="site-content" tabindex="-1">
+		<div class="col-full">
+
+		
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+<div id="post-1344" class="post-1344 post type-post status-publish format-standard hentry category-web-development tag-feed43 tag-hack tag-rss-feed tag-runkeeper">
+
+			<header class="entry-header">
+		<span class="posted-on">Posted on <a href="index.html" rel="bookmark"><time class="entry-date published" datetime="2011-01-25T03:35:04+00:00">January 25, 2011</time> <time class="updated" datetime="2011-01-25T03:38:51+00:00">January 25, 2011</time></a></span><h1 class="entry-title">Creating a Runkeeper RSS Feed &#8211; the hack way.</h1>		</header><!-- .entry-header -->
+				<aside class="entry-meta">
+						<div class="author">
+				<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' /><div class="label">Written by</div><a href="../../../author/admin/index.html" title="Posts by Ashley" rel="author">Ashley</a>			</div>
+							<div class="cat-links">
+					<div class="label">Posted in</div><a href="../../../category/web-development/index.html" rel="category tag">Web Development</a>				</div>
+			
+							<div class="tags-links">
+					<div class="label">Tagged</div><a href="../../../tag/feed43/index.html" rel="tag">feed43</a>, <a href="../../../tag/hack/index.html" rel="tag">hack</a>, <a href="../../../tag/rss-feed/index.html" rel="tag">rss feed</a>, <a href="../../../tag/runkeeper/index.html" rel="tag">runkeeper</a>				</div>
+			
+		
+							<div class="comments-link">
+					<div class="label">Comments</div>					<span class="comments-link"><a href="index.html#comments">17 Comments</a></span>
+				</div>
+					</aside>
+				<div class="entry-content">
+		<p>I&#8217;ve started using <a href="http://runkeeper.com/">RunKeeper</a> since getting a <a href="../2010-tick-bring-on-2011/index.html">GPS tracker for my running</a>. I wanted an RSS feed along with <a href="http://support.runkeeper.com/discussions/suggestions/251-rss-feed-of-activities">plenty of others</a>, so here&#8217;s a really trashy little hack to get one, until the good folks at Runkeeper make one for you.</p>
+<p>This requires a free service called <a href="http://www.feed43.com/">Feed43</a> &#8211; it&#8217;s just the first such <em>html to rss</em> service I found, so it may not be the best, I&#8217;d be open to suggestions of better ones. I thought it made the sometimes annoying process of scraping HTML quite painless.</p>
+<p><span id="more-1344"></span><br />
+Here&#8217;s the steps and simple regex&#8217;s I used to grab out my actvities:</p>
+<p><strong>Step One</strong></p>
+<p>Enter your profile URL, mine is <a href="http://runkeeper.com/user/aschroder/profile">http://runkeeper.com/user/aschroder/profile</a>.</p>
+<p><img style="max-width:800px;" src="../../../../cdn.aschroder.com/wp-content/uploads/2011/01/step1.jpg" alt="Step 1 enter your profile url" title="Step 1 enter your profile url" width="700" height="670" class="aligncenter size-full wp-image-1347" srcset="http://cdn.aschroder.com/wp-content/uploads/2011/01/step1.jpg 700w, http://cdn.aschroder.com/wp-content/uploads/2011/01/step1-300x287.jpg 300w" sizes="(max-width: 700px) 100vw, 700px" /></p>
+<p><strong>Step Two</strong></p>
+<p>Now define your patterns, here&#8217;s what I used:</p>
+<p>Global Search Pattern</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="html" style="font-family:monospace;">&lt;div id=&quot;feedItemsOuterContainer&quot;&gt;{%}</pre></td></tr></table><p class="theCode" style="display:none;">&lt;div id=&quot;feedItemsOuterContainer&quot;&gt;{%}</p></div>
+
+<p>Item (repeatable) Search Pattern</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="html" style="font-family:monospace;">&lt;div class=&quot;detailBox&quot;&gt;{*}&lt;div class=&quot;mainText&quot;&gt;{*}&lt;a class=&quot;usernameLink&quot; href=&quot;{%}&quot;&gt;{%}&lt;/a&gt;{%}&lt;/div&gt;{*}&lt;div class=&quot;detailText&quot;&gt;{%}&lt;/div&gt;</pre></td></tr></table><p class="theCode" style="display:none;">&lt;div class=&quot;detailBox&quot;&gt;{*}&lt;div class=&quot;mainText&quot;&gt;{*}&lt;a class=&quot;usernameLink&quot; href=&quot;{%}&quot;&gt;{%}&lt;/a&gt;{%}&lt;/div&gt;{*}&lt;div class=&quot;detailText&quot;&gt;{%}&lt;/div&gt;</p></div>
+
+<p>Here&#8217;s how it looks:<br />
+<img style="max-width:800px;" src="../../../../cdn.aschroder.com/wp-content/uploads/2011/01/step2.jpg" alt="Step 2 enter patterns" title="Step 2 enter patterns"  class="aligncenter size-full wp-image-1347" /></p>
+<p>You should see some items extracted.</p>
+<p><strong>Step Three</strong></p>
+<p>Setup the feed with these values:</p>
+<p>Item Title Template</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="html" style="font-family:monospace;">{%3}</pre></td></tr></table><p class="theCode" style="display:none;">{%3}</p></div>
+
+<p>Item Link Template</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="html" style="font-family:monospace;">{%1}</pre></td></tr></table><p class="theCode" style="display:none;">{%1}</p></div>
+
+<p>Item Content Template</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="html" style="font-family:monospace;">&lt;strong&gt;{%3}&lt;/strong&gt;
+&lt;p&gt;Notes: {%4} &lt;/p&gt;</pre></td></tr></table><p class="theCode" style="display:none;">&lt;strong&gt;{%3}&lt;/strong&gt;
+&lt;p&gt;Notes: {%4} &lt;/p&gt;</p></div>
+
+<p>As shown below:<br />
+<img style="max-width:800px;" src="../../../../cdn.aschroder.com/wp-content/uploads/2011/01/step3.jpg" alt="Step 3 setup template" title="Step 3 setup template"  class="aligncenter size-full wp-image-1347" /></p>
+<p>The preview should look like this:<br />
+<img style="max-width:800px;" src="../../../../cdn.aschroder.com/wp-content/uploads/2011/01/step3-preview.png" alt="Step 3 setup template preview" title="Step 3 setup template preview"  class="aligncenter size-full wp-image-1347" /></p>
+<p><strong>Step Four (optional but recommended)</strong></p>
+<p>You can tweak settings like passwords and feed names too:</p>
+<p><img style="max-width:800px;" src="../../../../cdn.aschroder.com/wp-content/uploads/2011/01/step4.png" alt="Step 4 settings" title="Step 4 settings"  class="aligncenter size-full wp-image-1347" /></p>
+<p>And here is <a href="http://www.feed43.com/aschroder-activities.xml">the finished product</a>, a nice simple RSS feed for my running. Now to update my about page&#8230;</p>
+<p>Have fun. Please let me know if you have any trouble with this or can offer any tips.</p>
+<div class='yarpp-related'>
+<p>You might also be interested in:<ol>
+<li><a href="../../../2009/10/3-easy-steps-to-add-products-to-the-magento-home-page-or-any-cms-page/index.html" rel="bookmark" title="3 easy steps to add products to the Magento Home Page (or any CMS page)">3 easy steps to add products to the Magento Home Page (or any CMS page) </a></li>
+<li><a href="../../../2010/08/tweetbeeper-com-a-free-email-to-direct-message-service-and-email-to-sms-too/index.html" rel="bookmark" title="TweetBeeper.com &#8211; A Free Email to Direct Message Service (and Email to SMS too)">TweetBeeper.com &#8211; A Free Email to Direct Message Service (and Email to SMS too) </a></li>
+<li><a href="../../11/google-app-engine-billing-changes-and-my-website-monitoring-service/index.html" rel="bookmark" title="Google App Engine billing changes and my website monitoring service">Google App Engine billing changes and my website monitoring service </a></li>
+<li><a href="../../../2010/09/10-steps-to-magento-ecommerce-on-a-small-budget/index.html" rel="bookmark" title="10 Steps to Magento Ecommerce on a (small) Budget">10 Steps to Magento Ecommerce on a (small) Budget </a></li>
+<li><a href="../../07/monitor-your-magento-store-with-magespeedtest-com/index.html" rel="bookmark" title="Monitor your Magento Store with MageSpeedTest.com">Monitor your Magento Store with MageSpeedTest.com </a></li>
+</ol></p>
+</div>
+		</div><!-- .entry-content -->
+		<nav id="post-navigation" class="navigation post-navigation" role="navigation" aria-label="Post Navigation"><span class="screen-reader-text">Post navigation</span><div class="nav-links"><div class="nav-previous"><a href="../magento-1-4-2-and-google-checkout-debugging-weight-based-table-rate-issues/index.html" rel="prev">Magento 1.4.2 and Google Checkout &#8211; Debugging weight-based table rate issues</a></div><div class="nav-next"><a href="../../02/a-recipe-to-avoid-having-your-twitter-facebook-compuglobalhypermeganet-account-stolen-at-an-airport-or-conference/index.html" rel="next">A Recipe to avoid having your Twitter, Facebook,  CompuGlobalHyperMegaNet account stolen at an Airport or Conference</a></div></div></nav>
+<section id="comments" class="comments-area" aria-label="Post Comments">
+
+			<h2 class="comments-title">
+			17 thoughts on &ldquo;<span>Creating a Runkeeper RSS Feed &#8211; the hack way.</span>&rdquo;		</h2>
+
+		
+		<ol class="comment-list">
+					<li class="comment even thread-even depth-1" id="comment-2102">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/76c95c8e802bdd03ff3532d7ea696dcd?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/76c95c8e802bdd03ff3532d7ea696dcd?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://yoururl/' rel='external nofollow' class='url'>J.T.</a></cite>			</div>
+			
+			<a href="index.html#comment-2102" class="comment-date">
+				<time datetime="2011-01-25T04:36:38+00:00">January 25, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2102" class="comment-content">
+				<div class="comment-text">
+		<p>Quote: Completed a 1.56 km. running activity.<br />
+Notes: The old hungover crawl to get the car you couldn&#8217;t drive home run. Unquote.</p>
+<p>As a Dutchman, may I suggest the contraption with two wheels and pedals, commonly referred to as &#8220;bicycle&#8221; for such short trips. It does wonders for your green credentials and the law tends to not mind when you operate it drunk and disorderly. </p>
+<p>Re the RSS, that&#8217;s very nifty. Now mash it up with Yahoo Pipes to add the whether conditions at that time and that location and we can all see whether you wuss out on rainy days&#8230; Or turn it in to GeoRSS/KML&#8230; Endless possibilities, no time&#8230;</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2103">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-2103" class="comment-date">
+				<time datetime="2011-01-25T11:41:54+00:00">January 25, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2103" class="comment-content">
+				<div class="comment-text">
+		<p>@J.T Heh I took that one out before publishing this post, deciding it ruined my pace record. Looks like it hung around! Thanks for drawing attention to it 🙂 I haven&#8217;t biked since I was a kid, I think I&#8217;d get run over.</p>
+<p>And yes, there are a number of cool things that could be done with RSS mashups. I&#8217;m working on some functionality to produce multi-sales-channel order RSS feeds, now wouldn&#8217;t adding weather information to those be interesting, maybe more people shop online when it&#8217;s raining.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2104">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/76c95c8e802bdd03ff3532d7ea696dcd?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/76c95c8e802bdd03ff3532d7ea696dcd?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://yoururl/' rel='external nofollow' class='url'>J.T.</a></cite>			</div>
+			
+			<a href="index.html#comment-2104" class="comment-date">
+				<time datetime="2011-01-25T15:27:38+00:00">January 25, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2104" class="comment-content">
+				<div class="comment-text">
+		<p>There is in fact a Mage module that takes the visitor&#8217;s location (or shop?) and looks at the weather. You can define variables to set sales, say umbrella&#8217;s 20% off when it rains, suncream multi buy discount when it&#8217;s hot etc. Doesn&#8217;t apply to our niche but still a funny idea, keeps things fresh too.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2110">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/8767f58509e55e49cf5be1d0fb5cba33?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/8767f58509e55e49cf5be1d0fb5cba33?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://guyrunning.com/' rel='external nofollow' class='url'>Jeff</a></cite>			</div>
+			
+			<a href="index.html#comment-2110" class="comment-date">
+				<time datetime="2011-01-27T06:16:46+00:00">January 27, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2110" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks for this great tip! I am still shocked that Runkeeper doesn&#8217;t provide a RSS feed for users, so this solution is the next best thing. Thanks for figuring this out and providing very clear directions on how to do it.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2111">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/51a15ce32ea5529badd34eae7a54dc9c?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/51a15ce32ea5529badd34eae7a54dc9c?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://marcoluciano.com/' rel='external nofollow' class='url'>emzo</a></cite>			</div>
+			
+			<a href="index.html#comment-2111" class="comment-date">
+				<time datetime="2011-01-30T02:24:10+00:00">January 30, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2111" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks for your Workaround! I´m having issues with the feed and you could probably help me: The feed is just getting 6 activities (out of 77): Some are visible &#8220;just me&#8221;, some are for &#8220;street team&#8221;, some are &#8220;public&#8221;. Don´t know how to make the feed get all activities.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-2113">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-2113" class="comment-date">
+				<time datetime="2011-01-30T11:52:29+00:00">January 30, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2113" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, Ezmo &#8211; the RSS feed will be based only on the HTML the public sees on your profile page, so if it only shows the last X activities, and not all of those are visible publicly, then you&#8217;ll only get a limited number of activities in the feed. As new public activities pop up, the feed should update.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2158">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/ec102583f27a8e299e48d1897141b24d?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/ec102583f27a8e299e48d1897141b24d?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.waynezim.com/' rel='external nofollow' class='url'>Wayne Zimmerman</a></cite>			</div>
+			
+			<a href="index.html#comment-2158" class="comment-date">
+				<time datetime="2011-02-22T20:13:50+00:00">February 22, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2158" class="comment-content">
+				<div class="comment-text">
+		<p>Great post, this makes a perfect RSS feed to keep the lifestream on my blog up to date with all the items I post to RunKeeper. Also, I can see how Feed43 will be my new best friend as I use it to integrate more online services to my blog that don&#8217;t provide RSS feeds by default. Thanks Again!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2327">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/d2afaff396eabc7470eaf89b32f63f94?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/d2afaff396eabc7470eaf89b32f63f94?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://truckingwanderlust.blogspot.com/' rel='external nofollow' class='url'>Obie</a></cite>			</div>
+			
+			<a href="index.html#comment-2327" class="comment-date">
+				<time datetime="2011-05-26T19:23:18+00:00">May 26, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2327" class="comment-content">
+				<div class="comment-text">
+		<p>Awesome article. It allowed me to add the Runkeeper info to my Trucking Blog. HUGE help as I was banging my head trying to find a Blogger Plugin for the service. Good work!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2680">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/721af8e3801d63332019f94c2e0b7a86?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/721af8e3801d63332019f94c2e0b7a86?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://absoblogginlutely.net/' rel='external nofollow' class='url'>Andy Helsby</a></cite>			</div>
+			
+			<a href="index.html#comment-2680" class="comment-date">
+				<time datetime="2011-10-08T10:44:10+00:00">October 8, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2680" class="comment-content">
+				<div class="comment-text">
+		<p>Great tip &#8211; thanks for this. I&#8217;ve been able to update my lifestream and local running club&#8217;s profile page with my run information thanks to this information.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2947">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/721af8e3801d63332019f94c2e0b7a86?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/721af8e3801d63332019f94c2e0b7a86?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://wotb.absoblogginlutely.net/' rel='external nofollow' class='url'>Andy Helsby</a></cite>			</div>
+			
+			<a href="index.html#comment-2947" class="comment-date">
+				<time datetime="2012-02-14T10:19:40+00:00">February 14, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2947" class="comment-content">
+				<div class="comment-text">
+		<p>It looks like they&#8217;ve changed the source code for their page.<br />
+I had to use the newItemsStatusContainer instead of feedItemsOuterContaine</p>
+<p>The Search pattern had to be usernameLinkNoSpace instead of usernameLink. I also added {*}{%} to the search pattern to give me the date/time for the activity. This then allowed me to have {%3} {%5} as the Item Title Template.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2948">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/721af8e3801d63332019f94c2e0b7a86?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/721af8e3801d63332019f94c2e0b7a86?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://wotb.absoblogginlutely.net/' rel='external nofollow' class='url'>Andy Helsby</a></cite>			</div>
+			
+			<a href="index.html#comment-2948" class="comment-date">
+				<time datetime="2012-02-14T10:21:03+00:00">February 14, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2948" class="comment-content">
+				<div class="comment-text">
+		<p>make that {*}&lt;div class=&#8221;postedTimeStamp&#8221;&gt;{%}&lt;/div&gt; to the search pattern to give me the date/time for the activity. This then allowed me to have {%3} {%5} as the Item Title Template.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-2950">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-2950" class="comment-date">
+				<time datetime="2012-02-14T12:37:28+00:00">February 14, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2950" class="comment-content">
+				<div class="comment-text">
+		<p>Awesome thanks for the updates Andy!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-4811">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/0c266ff11fcc228bd46401d6c124d25a?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/0c266ff11fcc228bd46401d6c124d25a?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.vittorio.tk/' rel='external nofollow' class='url'>Vittorio</a></cite>			</div>
+			
+			<a href="index.html#comment-4811" class="comment-date">
+				<time datetime="2012-05-16T05:10:15+00:00">May 16, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4811" class="comment-content">
+				<div class="comment-text">
+		<p>I used this values:</p>
+<p>Global Search Pattern =<br />
+{%}</p>
+<p>Item (repeatable) Search Pattern =<br />
+data-link='{%}&#8217;&gt;{*}{*}{*}{*}{%}{*}postedTimeStamp&#8221;&gt;{%}</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4918">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/4592711303d7ec7b9f538a034e6d2251?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/4592711303d7ec7b9f538a034e6d2251?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://thelifedesignproject.com/' rel='external nofollow' class='url'>Rob</a></cite>			</div>
+			
+			<a href="index.html#comment-4918" class="comment-date">
+				<time datetime="2012-07-29T11:00:54+00:00">July 29, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4918" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, </p>
+<p>trying to get this working but with their updated source code I can&#8217;t seem to put it together, could andy or ashley help update the instructions for the current source code?</p>
+<p>I wish they&#8217;d just add this capability already!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-5062">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/eaa38062e9b0d011099aa9e9bdda188f?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/eaa38062e9b0d011099aa9e9bdda188f?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">webhex</cite>			</div>
+			
+			<a href="index.html#comment-5062" class="comment-date">
+				<time datetime="2012-10-19T13:28:08+00:00">October 19, 2012</time>			</a>
+		</div>
+				<div id="div-comment-5062" class="comment-content">
+				<div class="comment-text">
+		<p>Hi there,<br />
+I tried and failed too, sadly. I tried Andy Helsby&#8217;s suggestions and vittorios.  I want to use the RSS feed on a page for someone who&#8217;s raising money for charity. Do you think I&#8217;m not doing it right or are their suggestions not working anymore either? Thanks for any response.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-5268">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/0c266ff11fcc228bd46401d6c124d25a?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/0c266ff11fcc228bd46401d6c124d25a?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.vittorio.tk/' rel='external nofollow' class='url'>Vittorio</a></cite>			</div>
+			
+			<a href="index.html#comment-5268" class="comment-date">
+				<time datetime="2012-12-08T07:01:22+00:00">December 8, 2012</time>			</a>
+		</div>
+				<div id="div-comment-5268" class="comment-content">
+				<div class="comment-text">
+		<p>I think they changed something&#8230; it doesn&#8217;t work anymore&#8230;</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-5269">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/0c266ff11fcc228bd46401d6c124d25a?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/0c266ff11fcc228bd46401d6c124d25a?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.vittorio.tk/' rel='external nofollow' class='url'>Vittorio</a></cite>			</div>
+			
+			<a href="index.html#comment-5269" class="comment-date">
+				<time datetime="2012-12-08T07:15:58+00:00">December 8, 2012</time>			</a>
+		</div>
+				<div id="div-comment-5269" class="comment-content">
+				<div class="comment-text">
+		<p>I found the solution: replace the Feed Link with <a href="http://runkeeper.com/moreFeed?count=9&amp;page=1&amp;feedOwnerUrl=vittoriop77" rel="nofollow">http://runkeeper.com/moreFeed?count=9&#038;page=1&#038;feedOwnerUrl=vittoriop77</a>  (obviously replace vittoriop77 with your own profile name) </p>
+<p>Extraction Rule is<br />
+{*}{*}{*}{*}{%}{*}postedTimeStamp&#8221;&gt;{%}</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		</ol><!-- .comment-list -->
+
+				<p class="no-comments">Comments are closed.</p>
+	
+</section><!-- #comments -->
+
+</div><!-- #post-## -->
+
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+		</div><!-- .col-full -->
+	</div><!-- #content -->
+
+	
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="col-full">
+
+					<div class="site-info">
+			&copy; ASchroder.com 2023						<br /> Storefront designed by <a href="http://www.woocommerce.com/" title="WooCommerce - The Best eCommerce Platform for WordPress" rel="author">WooCommerce</a>.					</div><!-- .site-info -->
+		
+		</div><!-- .col-full -->
+	</footer><!-- #colophon -->
+
+	
+</div><!-- #page -->
+
+<link rel='stylesheet' id='yarppRelatedCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/related101e.css?ver=4.8.15' type='text/css' media='all' />
+<script type='text/javascript' src='../../../wp-content/plugins/wp-syntax/js/wp-syntax4963.js?ver=1.1'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/navigation.min11a8.js?ver=20120206'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/skip-link-focus-fix.min08e0.js?ver=20130115'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/wp-embed.min101e.js?ver=4.8.15'></script>
+
+</body>
+
+<!-- Mirrored from www.aschroder.com/2011/01/creating-a-runkeeper-rss-feed-the-hack-way/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:39:27 GMT -->
+</html>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:31:31 by W3 Total Cache -->

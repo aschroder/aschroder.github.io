@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>Comments on: Introduction to the Magento REST APIs with oAuth in Version 1.7</title>
+	<atom:link href="http://www.aschroder.com/2012/04/introduction-to-the-magento-rest-apis-with-oauth-in-version-1-7/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.aschroder.com/2012/04/introduction-to-the-magento-rest-apis-with-oauth-in-version-1-7/</link>
+	<description>Notes on Web Development</description>
+	<lastBuildDate>Wed, 23 Dec 2020 09:25:05 +0000</lastBuildDate>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8.15</generator>
+	<item>
+		<title>By: karen baker</title>
+		<link>http://www.aschroder.com/2012/04/introduction-to-the-magento-rest-apis-with-oauth-in-version-1-7/comment-page-1/#comment-10216</link>
+		<dc:creator><![CDATA[karen baker]]></dc:creator>
+		<pubDate>Mon, 13 May 2013 22:56:29 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1738#comment-10216</guid>
+		<description><![CDATA[I found issues with using curl due to the requirement for Authorization: oAuth in the header and problems with the signature showing as invalid. I used the script here: http://stackoverflow.com/questions/15541952/create-product-using-oauth-curl and works fine after the authorisation has been done. Also repeated here:
+
+&#060;?php
+
+
+$nonce = substr(md5(uniqid(&#039;nonce_&#039;, true)),0,16);
+$temprealm=&#034;http://www.localhost.com/magento/api/rest/products&#034;;
+$realm=urlencode($temprealm);
+$oauth_version=&#034;1.0&#034;;
+$oauth_signature_method=&#034;HMAC-SHA1&#034;;
+$oauth_consumer_key=&#034;ngn4vt1vxw8asd5viximgr0hbc2rbvcd&#034;;
+$oauth_access_token=&#034;9zsfaxfdwktcuxhqa3w5pk88fut61my2&#034;;
+$oauth_method=&#034;GET&#034;;
+$oauth_timestamp=time();
+$algo=&#034;sha1&#034;;
+$key=&#034;xyvhm65nwr12939y0g0t288seqhzm780&#038;c5ajpmrxyuvxlron7o1dk07sbl8zgy5a&#034;; //consumer secret &#038; token secret //Both are used in generate signature
+$data=&#034;oauth_consumer_key=&#034;.$oauth_consumer_key.&#034;&#038;oauth_nonce=&#034;.$nonce.&#034;&#038;oauth_signature_method=&#034;.$oauth_signature_method.&#034;&#038;oauth_timestamp=&#034;.$oauth_timestamp.&#034;&#038;oauth_token=&#034;.$oauth_access_token.&#034;&#038;oauth_version=&#034;.$oauth_version;
+
+$send_data=$oauth_method.&#034;&#038;&#034;.$realm.&#034;&#038;&#034;.urlencode($data);
+$sign=hash_hmac($algo,$send_data,$key,1); // consumer key and token secrat used here
+$fin_sign=base64_encode($sign);
+$curl = curl_init();
+
+
+
+curl_setopt($curl,CURLOPT_HTTPHEADER,array(&#039;Authorization : OAuth realm=&#039;.$realm.&#039;, oauth_version=&#034;1.0&#034;, oauth_signature_method=&#034;HMAC-SHA1&#034;, oauth_nonce=&#034;&#039;.$nonce.&#039;&#034;, oauth_timestamp=&#034;&#039;.$oauth_timestamp.&#039;&#034;, oauth_consumer_key=&#039;.$oauth_consumer_key.&#039;, oauth_token=&#039;.$oauth_access_token.&#039;, oauth_signature=&#034;&#039;.$fin_sign.&#039;&#034;&#039;));
+
+curl_setopt ($curl, CURLOPT_URL,$temprealm);
+$xml=curl_exec($curl);]]></description>
+		<content:encoded><![CDATA[<p>I found issues with using curl due to the requirement for Authorization: oAuth in the header and problems with the signature showing as invalid. I used the script here: <a href="http://stackoverflow.com/questions/15541952/create-product-using-oauth-curl" rel="nofollow">http://stackoverflow.com/questions/15541952/create-product-using-oauth-curl</a> and works fine after the authorisation has been done. Also repeated here:</p>
+<p>&lt;?php</p>
+<p>$nonce = substr(md5(uniqid(&#039;nonce_&#039;, true)),0,16);<br />
+$temprealm=&quot;<a href="http://www.localhost.com/magento/api/rest/products&#038;quot" rel="nofollow">http://www.localhost.com/magento/api/rest/products&#038;quot</a>;;<br />
+$realm=urlencode($temprealm);<br />
+$oauth_version=&quot;1.0&quot;;<br />
+$oauth_signature_method=&quot;HMAC-SHA1&quot;;<br />
+$oauth_consumer_key=&quot;ngn4vt1vxw8asd5viximgr0hbc2rbvcd&quot;;<br />
+$oauth_access_token=&quot;9zsfaxfdwktcuxhqa3w5pk88fut61my2&quot;;<br />
+$oauth_method=&quot;GET&quot;;<br />
+$oauth_timestamp=time();<br />
+$algo=&quot;sha1&quot;;<br />
+$key=&quot;xyvhm65nwr12939y0g0t288seqhzm780&amp;c5ajpmrxyuvxlron7o1dk07sbl8zgy5a&quot;; //consumer secret &amp; token secret //Both are used in generate signature<br />
+$data=&quot;oauth_consumer_key=&quot;.$oauth_consumer_key.&quot;&amp;oauth_nonce=&quot;.$nonce.&quot;&amp;oauth_signature_method=&quot;.$oauth_signature_method.&quot;&amp;oauth_timestamp=&quot;.$oauth_timestamp.&quot;&amp;oauth_token=&quot;.$oauth_access_token.&quot;&amp;oauth_version=&quot;.$oauth_version;</p>
+<p>$send_data=$oauth_method.&quot;&amp;&quot;.$realm.&quot;&amp;&quot;.urlencode($data);<br />
+$sign=hash_hmac($algo,$send_data,$key,1); // consumer key and token secrat used here<br />
+$fin_sign=base64_encode($sign);<br />
+$curl = curl_init();</p>
+<p>curl_setopt($curl,CURLOPT_HTTPHEADER,array(&#039;Authorization : OAuth realm=&#039;.$realm.&#039;, oauth_version=&quot;1.0&quot;, oauth_signature_method=&quot;HMAC-SHA1&quot;, oauth_nonce=&quot;&#039;.$nonce.&#039;&quot;, oauth_timestamp=&quot;&#039;.$oauth_timestamp.&#039;&quot;, oauth_consumer_key=&#039;.$oauth_consumer_key.&#039;, oauth_token=&#039;.$oauth_access_token.&#039;, oauth_signature=&quot;&#039;.$fin_sign.&#039;&quot;&#039;));</p>
+<p>curl_setopt ($curl, CURLOPT_URL,$temprealm);<br />
+$xml=curl_exec($curl);</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Pleased</title>
+		<link>http://www.aschroder.com/2012/04/introduction-to-the-magento-rest-apis-with-oauth-in-version-1-7/comment-page-1/#comment-10069</link>
+		<dc:creator><![CDATA[Pleased]]></dc:creator>
+		<pubDate>Wed, 17 Apr 2013 14:10:45 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1738#comment-10069</guid>
+		<description><![CDATA[Thank you. This is the most useful post I have come accross related to Magento REST API for 1.7.]]></description>
+		<content:encoded><![CDATA[<p>Thank you. This is the most useful post I have come accross related to Magento REST API for 1.7.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Aaron</title>
+		<link>http://www.aschroder.com/2012/04/introduction-to-the-magento-rest-apis-with-oauth-in-version-1-7/comment-page-1/#comment-9696</link>
+		<dc:creator><![CDATA[Aaron]]></dc:creator>
+		<pubDate>Fri, 15 Feb 2013 22:19:57 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1738#comment-9696</guid>
+		<description><![CDATA[Anybody know how to get the a configurable products associated simple products (and options for the configurable) via the api?]]></description>
+		<content:encoded><![CDATA[<p>Anybody know how to get the a configurable products associated simple products (and options for the configurable) via the api?</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Roger North-Row</title>
+		<link>http://www.aschroder.com/2012/04/introduction-to-the-magento-rest-apis-with-oauth-in-version-1-7/comment-page-1/#comment-7438</link>
+		<dc:creator><![CDATA[Roger North-Row]]></dc:creator>
+		<pubDate>Thu, 17 Jan 2013 17:52:15 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1738#comment-7438</guid>
+		<description><![CDATA[SOLVED: port is stripped from hostname by the underlying Zend signature creation utility and therefore the signatures no longer match.
+
+I did exactly the same but without port 10001 (and instead port 80) and it now works.
+
+Had to dig deep to find the answer :-)]]></description>
+		<content:encoded><![CDATA[<p>SOLVED: port is stripped from hostname by the underlying Zend signature creation utility and therefore the signatures no longer match.</p>
+<p>I did exactly the same but without port 10001 (and instead port 80) and it now works.</p>
+<p>Had to dig deep to find the answer 🙂</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Roger North-Row</title>
+		<link>http://www.aschroder.com/2012/04/introduction-to-the-magento-rest-apis-with-oauth-in-version-1-7/comment-page-1/#comment-7407</link>
+		<dc:creator><![CDATA[Roger North-Row]]></dc:creator>
+		<pubDate>Thu, 17 Jan 2013 12:20:36 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1738#comment-7407</guid>
+		<description><![CDATA[Magento 1.7.0.2 fresh install
+OAuth for Ruby 0.4.7
+
+Set up REST consumer key and secret as below through Admin plus permissions. Can&#039;t get past initiate/auth!
+I can see that the signatures do not match if I print out the one generated by Magento in app/code/core/Mage/Oauth/Model/Server.php line 545. Am I doing something silly?
+
+$ oauth --verbose --query-string --consumer-key dbyf8fm41rc3m6r7ubfz02esx6hfei99 --consumer-secret ey4r833r35z08jpfek1rzga5gmk3oitz --access-token-url http://magento.north-row.com:10001/oauth/token --authorize-url http://magento.north-row.com:10001/admin/oauth_authorize --request-token-url http://magento.north-row.com:10001/oauth/initiate authorize
+A problem occurred while attempting to authorize:
+401 Authorization Required
+oauth_problem=signature_invalid&#038;debug_sbs=TVXjIJdJWQDCsRyir4PCaXeqYK4=]]></description>
+		<content:encoded><![CDATA[<p>Magento 1.7.0.2 fresh install<br />
+OAuth for Ruby 0.4.7</p>
+<p>Set up REST consumer key and secret as below through Admin plus permissions. Can&#8217;t get past initiate/auth!<br />
+I can see that the signatures do not match if I print out the one generated by Magento in app/code/core/Mage/Oauth/Model/Server.php line 545. Am I doing something silly?</p>
+<p>$ oauth &#8211;verbose &#8211;query-string &#8211;consumer-key dbyf8fm41rc3m6r7ubfz02esx6hfei99 &#8211;consumer-secret ey4r833r35z08jpfek1rzga5gmk3oitz &#8211;access-token-url <a href="http://magento.north-row.com:10001/oauth/token" rel="nofollow">http://magento.north-row.com:10001/oauth/token</a> &#8211;authorize-url <a href="http://magento.north-row.com:10001/admin/oauth_authorize" rel="nofollow">http://magento.north-row.com:10001/admin/oauth_authorize</a> &#8211;request-token-url <a href="http://magento.north-row.com:10001/oauth/initiate" rel="nofollow">http://magento.north-row.com:10001/oauth/initiate</a> authorize<br />
+A problem occurred while attempting to authorize:<br />
+401 Authorization Required<br />
+oauth_problem=signature_invalid&amp;debug_sbs=TVXjIJdJWQDCsRyir4PCaXeqYK4=</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Shraddha</title>
+		<link>http://www.aschroder.com/2012/04/introduction-to-the-magento-rest-apis-with-oauth-in-version-1-7/comment-page-1/#comment-5906</link>
+		<dc:creator><![CDATA[Shraddha]]></dc:creator>
+		<pubDate>Fri, 04 Jan 2013 07:37:27 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1738#comment-5906</guid>
+		<description><![CDATA[Is there a way to pass login credentials from code instead of entering credentials everytime in the popup for login authorization in Magento REST API?]]></description>
+		<content:encoded><![CDATA[<p>Is there a way to pass login credentials from code instead of entering credentials everytime in the popup for login authorization in Magento REST API?</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Ashley</title>
+		<link>http://www.aschroder.com/2012/04/introduction-to-the-magento-rest-apis-with-oauth-in-version-1-7/comment-page-1/#comment-5287</link>
+		<dc:creator><![CDATA[Ashley]]></dc:creator>
+		<pubDate>Wed, 19 Dec 2012 03:27:55 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1738#comment-5287</guid>
+		<description><![CDATA[Thanks for the continued follow ups on this Kalen, I think there&#039;s not too many devs really pushing this functionality in the wild yet so it&#039;s really good to have some real world feedback to go alongside the tutorial.  
+
+Can you share what you&#039;re working on or your use case?]]></description>
+		<content:encoded><![CDATA[<p>Thanks for the continued follow ups on this Kalen, I think there&#8217;s not too many devs really pushing this functionality in the wild yet so it&#8217;s really good to have some real world feedback to go alongside the tutorial.  </p>
+<p>Can you share what you&#8217;re working on or your use case?</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Kalen</title>
+		<link>http://www.aschroder.com/2012/04/introduction-to-the-magento-rest-apis-with-oauth-in-version-1-7/comment-page-1/#comment-5285</link>
+		<dc:creator><![CDATA[Kalen]]></dc:creator>
+		<pubDate>Wed, 19 Dec 2012 00:23:32 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1738#comment-5285</guid>
+		<description><![CDATA[Want to throw up another weird thing I&#039;m noticing.  If I don&#039;t specify the --method as a parameter to the oauth command, it defaults to &quot;post&quot;.  Actually at one point it was defaulting to &quot;get&quot;.  At any rate, the request method is case sensitive.  Unless I specify --method GET (all caps), I get an invalid signature response.
+
+Noticed that because I popped over to this oauth validation tool:
+http://quonos.nl/oauthTester/
+
+Which will tell you that the method is case sensitive if you paste in the Signature Base String.]]></description>
+		<content:encoded><![CDATA[<p>Want to throw up another weird thing I&#8217;m noticing.  If I don&#8217;t specify the &#8211;method as a parameter to the oauth command, it defaults to &#8220;post&#8221;.  Actually at one point it was defaulting to &#8220;get&#8221;.  At any rate, the request method is case sensitive.  Unless I specify &#8211;method GET (all caps), I get an invalid signature response.</p>
+<p>Noticed that because I popped over to this oauth validation tool:<br />
+<a href="http://quonos.nl/oauthTester/" rel="nofollow">http://quonos.nl/oauthTester/</a></p>
+<p>Which will tell you that the method is case sensitive if you paste in the Signature Base String.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Kalen</title>
+		<link>http://www.aschroder.com/2012/04/introduction-to-the-magento-rest-apis-with-oauth-in-version-1-7/comment-page-1/#comment-5090</link>
+		<dc:creator><![CDATA[Kalen]]></dc:creator>
+		<pubDate>Mon, 29 Oct 2012 19:17:14 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1738#comment-5090</guid>
+		<description><![CDATA[Figured it out.  It doesn&#039;t seem to accept the OAuth parameters as query string parameters.  I tried sending them as HTTP headers instead and it&#039;s going through.
+
+For example: (new keys, etc. b/c I set this up on a new install to be safe :) )
+
+Authorization:OAuth realm=&quot;http://m.dev/&quot;,oauth_consumer_key=&quot;0npq6crnxe0vo3iuwrdeg2x31pxjy91n&quot;,oauth_token=&quot;03mbcsplycit0uy77f0fk8sl23amkmk3&quot;,oauth_nonce=&quot;LsSLJpBZ6Xp1zQ6CkAnG2MDYYkHMQhSVOwgU3T7Jw&quot;,oauth_signature_method=&quot;HMAC-SHA1&quot;,oauth_timestamp=&quot;1351537874&quot;,oauth_version=&quot;1.0&quot;,oauth_signature=&quot;VPIVV0wltKt7LHJC2UDVVMUj5i0%3D&quot;]]></description>
+		<content:encoded><![CDATA[<p>Figured it out.  It doesn&#8217;t seem to accept the OAuth parameters as query string parameters.  I tried sending them as HTTP headers instead and it&#8217;s going through.</p>
+<p>For example: (new keys, etc. b/c I set this up on a new install to be safe 🙂 )</p>
+<p>Authorization:OAuth realm=&#8221;http://m.dev/&#8221;,oauth_consumer_key=&#8221;0npq6crnxe0vo3iuwrdeg2x31pxjy91n&#8221;,oauth_token=&#8221;03mbcsplycit0uy77f0fk8sl23amkmk3&#8243;,oauth_nonce=&#8221;LsSLJpBZ6Xp1zQ6CkAnG2MDYYkHMQhSVOwgU3T7Jw&#8221;,oauth_signature_method=&#8221;HMAC-SHA1&#8243;,oauth_timestamp=&#8221;1351537874&#8243;,oauth_version=&#8221;1.0&#8243;,oauth_signature=&#8221;VPIVV0wltKt7LHJC2UDVVMUj5i0%3D&#8221;</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Kalen</title>
+		<link>http://www.aschroder.com/2012/04/introduction-to-the-magento-rest-apis-with-oauth-in-version-1-7/comment-page-1/#comment-5089</link>
+		<dc:creator><![CDATA[Kalen]]></dc:creator>
+		<pubDate>Mon, 29 Oct 2012 18:32:29 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1738#comment-5089</guid>
+		<description><![CDATA[Hey Ashley!
+
+Thanks for the sweet article - you&#039;ve laid it all out beautifully.  I&#039;m hitting a weird access denied snag.
+
+1. Using the ruby oauth client.
+
+2. REST Role - Created a new REST Role (&quot;Admin Consumer&quot;).  Initially gave it access to *all* resources, when that didn&#039;t work, changed it to custom, selecting all checkboxes.  
+
+Initially, under Role Users, it didn&#039;t show any.  When I started hitting access denied issues, I went in here and searched for my admin user (username: &#039;admin&#039;) and assigned them to the role.  
+
+3. REST Attributes - not totally clear to me still how the attribute set is getting associated to the role or consumer, but I&#039;ve set attributes to all for both Admin and Customer User Types.  As with role, I tried &quot;all&quot; as well as Custom with all checkboxes checked.
+
+4. Consumer - created.
+
+5. Got the oauth tokens using the command-line call to the oauth ruby client.  Only difference is that I used the /admin/oAuth_authorize endpoint.  The oauth flow went through just fine, got the verification token, got the the copy-pastable request URI from the oauth debug call.
+
+But I get access denied when I make the call to get products
+
+Request:
+curl http://m.dev/mc1700/api/rest/products?oauth_consumer_key=klr6t0h7egq7xwqbzqj1tjn0dt2dhb0g&#038;oauth_nonce=oh7GQNO5exzZn1PkUJUjmr9zJyAEsvd7DUkhj0W4dgU&#038;oauth_signature=niJ07g3c8MhA6BLqvYIyy6cM3c0%3D&#038;oauth_signature_method=HMAC-SHA1&#038;oauth_timestamp=1351533398&#038;oauth_token=i35hybaai3wraexr3fzly7vxtjg83463&#038;oauth_version=1.0
+
+Response:
+{&quot;messages&quot;:{&quot;error&quot;:[{&quot;code&quot;:403,&quot;message&quot;:&quot;Access denied&quot;}]}}
+
+I&#039;m gonna start debugging the Mage_Api2 module to see where it&#039;s breaking, but thought I&#039;d throw this comment up here in case you had any ideas!
+
+Thanks again for the awesome article!]]></description>
+		<content:encoded><![CDATA[<p>Hey Ashley!</p>
+<p>Thanks for the sweet article &#8211; you&#8217;ve laid it all out beautifully.  I&#8217;m hitting a weird access denied snag.</p>
+<p>1. Using the ruby oauth client.</p>
+<p>2. REST Role &#8211; Created a new REST Role (&#8220;Admin Consumer&#8221;).  Initially gave it access to *all* resources, when that didn&#8217;t work, changed it to custom, selecting all checkboxes.  </p>
+<p>Initially, under Role Users, it didn&#8217;t show any.  When I started hitting access denied issues, I went in here and searched for my admin user (username: &#8216;admin&#8217;) and assigned them to the role.  </p>
+<p>3. REST Attributes &#8211; not totally clear to me still how the attribute set is getting associated to the role or consumer, but I&#8217;ve set attributes to all for both Admin and Customer User Types.  As with role, I tried &#8220;all&#8221; as well as Custom with all checkboxes checked.</p>
+<p>4. Consumer &#8211; created.</p>
+<p>5. Got the oauth tokens using the command-line call to the oauth ruby client.  Only difference is that I used the /admin/oAuth_authorize endpoint.  The oauth flow went through just fine, got the verification token, got the the copy-pastable request URI from the oauth debug call.</p>
+<p>But I get access denied when I make the call to get products</p>
+<p>Request:<br />
+curl <a href="http://m.dev/mc1700/api/rest/products?oauth_consumer_key=klr6t0h7egq7xwqbzqj1tjn0dt2dhb0g&#038;oauth_nonce=oh7GQNO5exzZn1PkUJUjmr9zJyAEsvd7DUkhj0W4dgU&#038;oauth_signature=niJ07g3c8MhA6BLqvYIyy6cM3c0%3D&#038;oauth_signature_method=HMAC-SHA1&#038;oauth_timestamp=1351533398&#038;oauth_token=i35hybaai3wraexr3fzly7vxtjg83463&#038;oauth_version=1.0" rel="nofollow">http://m.dev/mc1700/api/rest/products?oauth_consumer_key=klr6t0h7egq7xwqbzqj1tjn0dt2dhb0g&#038;oauth_nonce=oh7GQNO5exzZn1PkUJUjmr9zJyAEsvd7DUkhj0W4dgU&#038;oauth_signature=niJ07g3c8MhA6BLqvYIyy6cM3c0%3D&#038;oauth_signature_method=HMAC-SHA1&#038;oauth_timestamp=1351533398&#038;oauth_token=i35hybaai3wraexr3fzly7vxtjg83463&#038;oauth_version=1.0</a></p>
+<p>Response:<br />
+{&#8220;messages&#8221;:{&#8220;error&#8221;:[{&#8220;code&#8221;:403,&#8221;message&#8221;:&#8221;Access denied&#8221;}]}}</p>
+<p>I&#8217;m gonna start debugging the Mage_Api2 module to see where it&#8217;s breaking, but thought I&#8217;d throw this comment up here in case you had any ideas!</p>
+<p>Thanks again for the awesome article!</p>
+]]></content:encoded>
+	</item>
+</channel>
+</rss>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:20:04 by W3 Total Cache -->

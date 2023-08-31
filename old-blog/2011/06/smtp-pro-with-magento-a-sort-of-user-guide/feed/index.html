@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>Comments on: SMTP Pro with Magento: A sort-of user guide.</title>
+	<atom:link href="http://www.aschroder.com/2011/06/smtp-pro-with-magento-a-sort-of-user-guide/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.aschroder.com/2011/06/smtp-pro-with-magento-a-sort-of-user-guide/</link>
+	<description>Notes on Web Development</description>
+	<lastBuildDate>Wed, 23 Dec 2020 09:25:05 +0000</lastBuildDate>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8.15</generator>
+	<item>
+		<title>By: lay</title>
+		<link>http://www.aschroder.com/2011/06/smtp-pro-with-magento-a-sort-of-user-guide/comment-page-2/#comment-10321</link>
+		<dc:creator><![CDATA[lay]]></dc:creator>
+		<pubDate>Mon, 10 Jun 2013 12:33:19 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1547#comment-10321</guid>
+		<description><![CDATA[Hi i&#039;ve got this error 
+
+Unable to send test email. Exception message was: Could not read from mail.lamercollections.co.id...
+
+anyone can help me?]]></description>
+		<content:encoded><![CDATA[<p>Hi i&#8217;ve got this error </p>
+<p>Unable to send test email. Exception message was: Could not read from mail.lamercollections.co.id&#8230;</p>
+<p>anyone can help me?</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: ChrisD</title>
+		<link>http://www.aschroder.com/2011/06/smtp-pro-with-magento-a-sort-of-user-guide/comment-page-2/#comment-10247</link>
+		<dc:creator><![CDATA[ChrisD]]></dc:creator>
+		<pubDate>Wed, 22 May 2013 00:11:56 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1547#comment-10247</guid>
+		<description><![CDATA[Hey everyone.
+
+I&#039;d been experiencing the &quot;Subject set twice&quot; exception when using SMTPPro in conjunction with a Google Apps mailbox.
+
+The issue was very confusing for me because it was intermittent. Sometimes everything worked fine then I&#039;d experience periods where I&#039;d get the exception.
+
+I was clicking the &quot;Run Self Test&quot; button periodically. Mails were sending fine... until I eventually received  a message saying that I&#039;d hit the send limit for my Google Apps mailbox.
+
+Turns out there&#039;s a limit of 2000 emails per rolling 24 hour period per Google Apps mailbox. Oh.
+
+The rolling 24 period of the limit explained the intermittent nature of my problem. Mail sending would be refused based on what had happened in the previous 24 hours at the time of sending.
+
+So I changed to a different email delivery mechanism that doesn&#039;t have the same sending limitations (Amazon SES) . Problem solved.
+
+Ashley, the &quot;Subject set twice&quot; exception is somewhat confusing in the situation where an SMTP connection is refused (or whatever it is that is actually happening under the hood in the situation that I experienced).
+
+It would be nice if SMTPPro could generate a more meaningful exception in this situation. Just saying :-)]]></description>
+		<content:encoded><![CDATA[<p>Hey everyone.</p>
+<p>I&#8217;d been experiencing the &#8220;Subject set twice&#8221; exception when using SMTPPro in conjunction with a Google Apps mailbox.</p>
+<p>The issue was very confusing for me because it was intermittent. Sometimes everything worked fine then I&#8217;d experience periods where I&#8217;d get the exception.</p>
+<p>I was clicking the &#8220;Run Self Test&#8221; button periodically. Mails were sending fine&#8230; until I eventually received  a message saying that I&#8217;d hit the send limit for my Google Apps mailbox.</p>
+<p>Turns out there&#8217;s a limit of 2000 emails per rolling 24 hour period per Google Apps mailbox. Oh.</p>
+<p>The rolling 24 period of the limit explained the intermittent nature of my problem. Mail sending would be refused based on what had happened in the previous 24 hours at the time of sending.</p>
+<p>So I changed to a different email delivery mechanism that doesn&#8217;t have the same sending limitations (Amazon SES) . Problem solved.</p>
+<p>Ashley, the &#8220;Subject set twice&#8221; exception is somewhat confusing in the situation where an SMTP connection is refused (or whatever it is that is actually happening under the hood in the situation that I experienced).</p>
+<p>It would be nice if SMTPPro could generate a more meaningful exception in this situation. Just saying 🙂</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Casa da Hotelaria</title>
+		<link>http://www.aschroder.com/2011/06/smtp-pro-with-magento-a-sort-of-user-guide/comment-page-2/#comment-10152</link>
+		<dc:creator><![CDATA[Casa da Hotelaria]]></dc:creator>
+		<pubDate>Mon, 29 Apr 2013 10:54:13 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1547#comment-10152</guid>
+		<description><![CDATA[To everyone that might go through the comments and have the same issue I did - it was not a problem with magento, or any change in Google Apps smtp.
+
+In my case it was the hosting provider that blocked port 587, for no reason at all... so after opening a ticket, the problem was solved.
+
+Hope it helps others...]]></description>
+		<content:encoded><![CDATA[<p>To everyone that might go through the comments and have the same issue I did &#8211; it was not a problem with magento, or any change in Google Apps smtp.</p>
+<p>In my case it was the hosting provider that blocked port 587, for no reason at all&#8230; so after opening a ticket, the problem was solved.</p>
+<p>Hope it helps others&#8230;</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Casa da Hotelaria</title>
+		<link>http://www.aschroder.com/2011/06/smtp-pro-with-magento-a-sort-of-user-guide/comment-page-2/#comment-10097</link>
+		<dc:creator><![CDATA[Casa da Hotelaria]]></dc:creator>
+		<pubDate>Sat, 20 Apr 2013 20:39:07 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1547#comment-10097</guid>
+		<description><![CDATA[Hi Ashley, I just got almost the same problem as Kit, since last week.
+
+Testing outbound connectivity to Server:
+Using Google Apps/Gmail configuration options
+Failed to connect to SMTP server. Reason: Network is unreachable(101)
+This extension requires an outbound SMTP connection on port: 587
+Sending test email to your contact form address XXXXXXXX
+Unable to send test email. Exception message was: Network is unreachable...
+Please check and double check your username and password.
+Contact Form test email did not use SMTPPro to send.
+Testing failed, please review the reported problems and if you need further help visit ASchroder.com to contact me.
+
+Before, for more than one year, all worked fine - and no change was done whatsoever on the magento install (Magento 1.4.1.0).
+
+Any ideas?
+
+Thanks a lot]]></description>
+		<content:encoded><![CDATA[<p>Hi Ashley, I just got almost the same problem as Kit, since last week.</p>
+<p>Testing outbound connectivity to Server:<br />
+Using Google Apps/Gmail configuration options<br />
+Failed to connect to SMTP server. Reason: Network is unreachable(101)<br />
+This extension requires an outbound SMTP connection on port: 587<br />
+Sending test email to your contact form address XXXXXXXX<br />
+Unable to send test email. Exception message was: Network is unreachable&#8230;<br />
+Please check and double check your username and password.<br />
+Contact Form test email did not use SMTPPro to send.<br />
+Testing failed, please review the reported problems and if you need further help visit ASchroder.com to contact me.</p>
+<p>Before, for more than one year, all worked fine &#8211; and no change was done whatsoever on the magento install (Magento 1.4.1.0).</p>
+<p>Any ideas?</p>
+<p>Thanks a lot</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Kit</title>
+		<link>http://www.aschroder.com/2011/06/smtp-pro-with-magento-a-sort-of-user-guide/comment-page-2/#comment-10062</link>
+		<dc:creator><![CDATA[Kit]]></dc:creator>
+		<pubDate>Mon, 15 Apr 2013 17:05:28 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1547#comment-10062</guid>
+		<description><![CDATA[Testing outbound connectivity to Server:
+Using Google Apps/Gmail configuration options
+Failed to connect to SMTP server. Reason: Connection timed out(110)
+This extension requires an outbound SMTP connection on port: 587
+Sending test email to your contact form address website@xxx.com:
+Unable to send test email. Exception message was: Connection timed out...
+Please check and double check your username and password.
+Contact Form test email did not use SMTPPro to send.
+
+Thoughts?]]></description>
+		<content:encoded><![CDATA[<p>Testing outbound connectivity to Server:<br />
+Using Google Apps/Gmail configuration options<br />
+Failed to connect to SMTP server. Reason: Connection timed out(110)<br />
+This extension requires an outbound SMTP connection on port: 587<br />
+Sending test email to your contact form address <a href="mailto:website@xxx.com">website@xxx.com</a>:<br />
+Unable to send test email. Exception message was: Connection timed out&#8230;<br />
+Please check and double check your username and password.<br />
+Contact Form test email did not use SMTPPro to send.</p>
+<p>Thoughts?</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Ashok Sharam</title>
+		<link>http://www.aschroder.com/2011/06/smtp-pro-with-magento-a-sort-of-user-guide/comment-page-2/#comment-10048</link>
+		<dc:creator><![CDATA[Ashok Sharam]]></dc:creator>
+		<pubDate>Thu, 11 Apr 2013 14:09:02 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1547#comment-10048</guid>
+		<description><![CDATA[Hi Ashley, 
+I have got problem with when I test the smtp connection
+
+&quot;ASchroder.com SMTP Pro Self-test results
+Testing outbound connectivity to Server:
+Using SMTP configuration options
+Connection to Host SMTP server successful.
+Sending test email to your contact form address *************@**************.com:
+Test email was sent successfully.
+Contact Form test email did not use SMTPPro to send.
+Testing failed, please review the reported problems and if you need further help visit ASchroder.com to contact me.
+&quot;
+
+Plz help me, how can I resolve this issue......
+Thanks]]></description>
+		<content:encoded><![CDATA[<p>Hi Ashley,<br />
+I have got problem with when I test the smtp connection</p>
+<p>&#8220;ASchroder.com SMTP Pro Self-test results<br />
+Testing outbound connectivity to Server:<br />
+Using SMTP configuration options<br />
+Connection to Host SMTP server successful.<br />
+Sending test email to your contact form address *************@**************.com:<br />
+Test email was sent successfully.<br />
+Contact Form test email did not use SMTPPro to send.<br />
+Testing failed, please review the reported problems and if you need further help visit ASchroder.com to contact me.<br />
+&#8221;</p>
+<p>Plz help me, how can I resolve this issue&#8230;&#8230;<br />
+Thanks</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: John</title>
+		<link>http://www.aschroder.com/2011/06/smtp-pro-with-magento-a-sort-of-user-guide/comment-page-2/#comment-10013</link>
+		<dc:creator><![CDATA[John]]></dc:creator>
+		<pubDate>Mon, 08 Apr 2013 08:32:26 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1547#comment-10013</guid>
+		<description><![CDATA[Ashley
+
+For some reason, the extension works on my local server but not my hosting. Is there a possible reason for this?
+
+Thank you]]></description>
+		<content:encoded><![CDATA[<p>Ashley</p>
+<p>For some reason, the extension works on my local server but not my hosting. Is there a possible reason for this?</p>
+<p>Thank you</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Felipe</title>
+		<link>http://www.aschroder.com/2011/06/smtp-pro-with-magento-a-sort-of-user-guide/comment-page-2/#comment-9894</link>
+		<dc:creator><![CDATA[Felipe]]></dc:creator>
+		<pubDate>Sun, 24 Mar 2013 09:09:51 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1547#comment-9894</guid>
+		<description><![CDATA[Am I correct in noticing that this extension does not work with Community Ediont 1.7.* ?
+
+Any plans of making it available there?]]></description>
+		<content:encoded><![CDATA[<p>Am I correct in noticing that this extension does not work with Community Ediont 1.7.* ?</p>
+<p>Any plans of making it available there?</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: fishbowl</title>
+		<link>http://www.aschroder.com/2011/06/smtp-pro-with-magento-a-sort-of-user-guide/comment-page-2/#comment-9708</link>
+		<dc:creator><![CDATA[fishbowl]]></dc:creator>
+		<pubDate>Fri, 22 Feb 2013 10:43:17 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1547#comment-9708</guid>
+		<description><![CDATA[I can confirm the issue lifepro is describing. A custom e-mail template for the contact form will trigger an error on the test results, while the actual contact form test mail is arriving just fine. Looks like a false negative. I am on 1.7 CE. 
+
+Question: do you (or anyone) have any idea why Gmail does not use the reply-to field when replying to a received contact form?
+
+Also: great extension, thanks!]]></description>
+		<content:encoded><![CDATA[<p>I can confirm the issue lifepro is describing. A custom e-mail template for the contact form will trigger an error on the test results, while the actual contact form test mail is arriving just fine. Looks like a false negative. I am on 1.7 CE. </p>
+<p>Question: do you (or anyone) have any idea why Gmail does not use the reply-to field when replying to a received contact form?</p>
+<p>Also: great extension, thanks!</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: lifepro</title>
+		<link>http://www.aschroder.com/2011/06/smtp-pro-with-magento-a-sort-of-user-guide/comment-page-2/#comment-7093</link>
+		<dc:creator><![CDATA[lifepro]]></dc:creator>
+		<pubDate>Mon, 14 Jan 2013 14:45:13 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1547#comment-7093</guid>
+		<description><![CDATA[Hi Ashley, I&#039;m not sure if this is a bug, but it can solve this annoying error message:
+
+-------------------------------------------------------------------------------------
+Test email was sent successfully.
+Contact Form test email did not use SMTPPro to send.
+-------------------------------------------------------------------------------------
+
+In Admin, go System-&#062;Configuration-&#062;Contacts-&#062;Email Template -&#062;Choose &quot;Contact Form(Default Template xx)&quot;-&#062;Save Config
+
+Run self-test again,if you see GREEN message,switch the Email Template back to the template you have custom created under Transactional Emails.If you run self-test again, RED message will appear,but you can safely ignore it. Unidentified bug?
+
+Took me 1 whole long day to identify this issue :(]]></description>
+		<content:encoded><![CDATA[<p>Hi Ashley, I&#8217;m not sure if this is a bug, but it can solve this annoying error message:</p>
+<p>&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;-<br />
+Test email was sent successfully.<br />
+Contact Form test email did not use SMTPPro to send.<br />
+&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;-</p>
+<p>In Admin, go System-&gt;Configuration-&gt;Contacts-&gt;Email Template -&gt;Choose &#8220;Contact Form(Default Template xx)&#8221;-&gt;Save Config</p>
+<p>Run self-test again,if you see GREEN message,switch the Email Template back to the template you have custom created under Transactional Emails.If you run self-test again, RED message will appear,but you can safely ignore it. Unidentified bug?</p>
+<p>Took me 1 whole long day to identify this issue 🙁</p>
+]]></content:encoded>
+	</item>
+</channel>
+</rss>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:22:10 by W3 Total Cache -->

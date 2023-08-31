@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="en-US">
+
+<!-- Mirrored from www.aschroder.com/2010/02/mailchimp-magento-how-to-get-autoresponders-working-with-the-api/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:33:52 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="../../../xmlrpc.php">
+
+<title>Mailchimp + Magento: How to get autoresponders working with the API | ASchroder.com</title>
+
+<!-- All in One SEO Pack 2.4.2 by Michael Torbert of Semper Fi Web Design[289,385] -->
+<meta name="description"  content="A little 2 step how-to on Mailchimp and Magento autoresponders using the existing extension. They don&#039;t work if you use the API, unless you use this workaround." />
+
+<meta name="keywords"  content="magento,mailchimp,autoresponder,fix" />
+
+<!-- /all in one seo pack -->
+<link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
+<link rel='dns-prefetch' href='http://s.w.org/' />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Feed" href="../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Comments Feed" href="../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Mailchimp + Magento: How to get autoresponders working with the API Comments Feed" href="feed/index.html" />
+<!-- This site uses the Google Analytics by MonsterInsights plugin v6.2.4 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+<script type="text/javascript" data-cfasync="false">
+		var disableStr = 'ga-disable-UA-6477134-1';
+
+	/* Function to detect opted out users */
+	function __gaTrackerIsOptedOut() {
+		return document.cookie.indexOf(disableStr + '=true') > -1;
+	}
+
+	/* Disable tracking if the opt-out cookie exists. */
+	if ( __gaTrackerIsOptedOut() ) {
+		window[disableStr] = true;
+	}
+
+	/* Opt-out function */
+	function __gaTrackerOptout() {
+	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+	  window[disableStr] = true;
+	}
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','http://www.google-analytics.com/analytics.js','__gaTracker');
+
+	__gaTracker('create', 'UA-6477134-1', 'auto');
+	__gaTracker('set', 'forceSSL', true);
+	__gaTracker('send','pageview');
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/www.aschroder.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.15"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='yarppWidgetCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/widget101e.css?ver=4.8.15' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-syntax-css-css'  href='../../../wp-content/plugins/wp-syntax/css/wp-syntax4963.css?ver=1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-style-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/style5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<style id='storefront-style-inline-css' type='text/css'>
+
+			.main-navigation ul li a,
+			.site-title a,
+			ul.menu li a,
+			.site-branding h1 a,
+			.site-footer .storefront-handheld-footer-bar a:not(.button),
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				color: #333333;
+			}
+
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				border-color: #333333;
+			}
+
+			.main-navigation ul li a:hover,
+			.main-navigation ul li:hover > a,
+			.site-title a:hover,
+			a.cart-contents:hover,
+			.site-header-cart .widget_shopping_cart a:hover,
+			.site-header-cart:hover > li > a,
+			.site-header ul.menu li.current-menu-item > a {
+				color: #838383;
+			}
+
+			table th {
+				background-color: #f8f8f8;
+			}
+
+			table tbody td {
+				background-color: #fdfdfd;
+			}
+
+			table tbody tr:nth-child(2n) td,
+			fieldset,
+			fieldset legend {
+				background-color: #fbfbfb;
+			}
+
+			.site-header,
+			.secondary-navigation ul ul,
+			.main-navigation ul.menu > li.menu-item-has-children:after,
+			.secondary-navigation ul.menu ul,
+			.storefront-handheld-footer-bar,
+			.storefront-handheld-footer-bar ul li > a,
+			.storefront-handheld-footer-bar ul li.search .site-search,
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				background-color: #ffffff;
+			}
+
+			p.site-description,
+			.site-header,
+			.storefront-handheld-footer-bar {
+				color: #6d6d6d;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count,
+			button.menu-toggle:after,
+			button.menu-toggle:before,
+			button.menu-toggle span:before {
+				background-color: #333333;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				color: #ffffff;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				border-color: #ffffff;
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+				color: #333333;
+			}
+
+			.widget h1 {
+				border-bottom-color: #333333;
+			}
+
+			body,
+			.secondary-navigation a,
+			.onsale,
+			.pagination .page-numbers li .page-numbers:not(.current), .woocommerce-pagination .page-numbers li .page-numbers:not(.current) {
+				color: #6d6d6d;
+			}
+
+			.widget-area .widget a,
+			.hentry .entry-header .posted-on a,
+			.hentry .entry-header .byline a {
+				color: #9f9f9f;
+			}
+
+			a  {
+				color: #0228d1;
+			}
+
+			a:focus,
+			.button:focus,
+			.button.alt:focus,
+			.button.added_to_cart:focus,
+			.button.wc-forward:focus,
+			button:focus,
+			input[type="button"]:focus,
+			input[type="reset"]:focus,
+			input[type="submit"]:focus {
+				outline-color: #0228d1;
+			}
+
+			button, input[type="button"], input[type="reset"], input[type="submit"], .button, .added_to_cart, .widget a.button, .site-header-cart .widget_shopping_cart a.button {
+				background-color: #eeeeee;
+				border-color: #eeeeee;
+				color: #333333;
+			}
+
+			button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, .button:hover, .added_to_cart:hover, .widget a.button:hover, .site-header-cart .widget_shopping_cart a.button:hover {
+				background-color: #d5d5d5;
+				border-color: #d5d5d5;
+				color: #333333;
+			}
+
+			button.alt, input[type="button"].alt, input[type="reset"].alt, input[type="submit"].alt, .button.alt, .added_to_cart.alt, .widget-area .widget a.button.alt, .added_to_cart, .widget a.button.checkout {
+				background-color: #333333;
+				border-color: #333333;
+				color: #ffffff;
+			}
+
+			button.alt:hover, input[type="button"].alt:hover, input[type="reset"].alt:hover, input[type="submit"].alt:hover, .button.alt:hover, .added_to_cart.alt:hover, .widget-area .widget a.button.alt:hover, .added_to_cart:hover, .widget a.button.checkout:hover {
+				background-color: #1a1a1a;
+				border-color: #1a1a1a;
+				color: #ffffff;
+			}
+
+			.pagination .page-numbers li .page-numbers.current, .woocommerce-pagination .page-numbers li .page-numbers.current {
+				background-color: #e6e6e6;
+				color: #6d6d6d;
+			}
+
+			#comments .comment-list .comment-content .comment-text {
+				background-color: #f8f8f8;
+			}
+
+			.site-footer {
+				background-color: #f0f0f0;
+				color: #6d6d6d;
+			}
+
+			.site-footer a:not(.button) {
+				color: #333333;
+			}
+
+			.site-footer h1, .site-footer h2, .site-footer h3, .site-footer h4, .site-footer h5, .site-footer h6 {
+				color: #333333;
+			}
+
+			#order_review {
+				background-color: #ffffff;
+			}
+
+			#payment .payment_methods > li .payment_box,
+			#payment .place-order {
+				background-color: #fafafa;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice) {
+				background-color: #f5f5f5;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice):hover {
+				background-color: #f0f0f0;
+			}
+
+			@media screen and ( min-width: 768px ) {
+				.secondary-navigation ul.menu a:hover {
+					color: #868686;
+				}
+
+				.secondary-navigation ul.menu a {
+					color: #6d6d6d;
+				}
+
+				.site-header-cart .widget_shopping_cart,
+				.main-navigation ul.menu ul.sub-menu,
+				.main-navigation ul.nav-menu ul.children {
+					background-color: #f0f0f0;
+				}
+
+				.site-header-cart .widget_shopping_cart .buttons,
+				.site-header-cart .widget_shopping_cart .total {
+					background-color: #f5f5f5;
+				}
+
+				.site-header {
+					border-bottom-color: #f0f0f0;
+				}
+			}
+</style>
+<link rel='stylesheet' id='storefront-icons-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/sass/base/icons5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-fonts-css'  href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,600,700,900&amp;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jqueryb8ff.js?ver=1.12.4'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jquery-migrate.min330a.js?ver=1.4.1'></script>
+<link rel='https://api.w.org/' href='../../../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../xmlrpc0db0.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Sitemap Submit &#8211; Magento Extension to Submit your Google Sitemap' href='../../01/sitemap-submit-magento-extension-to-submit-your-google-sitemap/index.html' />
+<link rel='next' title='A new ASchroder.com for 2010 or, why I haven&#8217;t written anything for a couple of weeks&#8230;' href='../a-new-aschroder-com-for-2010-or-why-i-havent-written-anything-for-a-couple-of-weeks/index.html' />
+<meta name="generator" content="WordPress 4.8.15" />
+<link rel="canonical" href="index.html" />
+<link rel='shortlink' href='../../../index5024.html?p=623' />
+<link rel="alternate" type="application/json+oembed" href="../../../wp-json/oembed/1.0/embedc5ca.json?url=http%3A%2F%2Fwww.aschroder.com%2F2010%2F02%2Fmailchimp-magento-how-to-get-autoresponders-working-with-the-api%2F" />
+<link rel="alternate" type="text/xml+oembed" href="../../../wp-json/oembed/1.0/embedf2e6?url=http%3A%2F%2Fwww.aschroder.com%2F2010%2F02%2Fmailchimp-magento-how-to-get-autoresponders-working-with-the-api%2F&amp;format=xml" />
+</head>
+
+<body class="post-template-default single single-post postid-623 single-format-standard no-wc-breadcrumb storefront-full-width-content right-sidebar">
+
+
+<div id="page" class="hfeed site">
+	
+	<header id="masthead" class="site-header" role="banner" style="">
+		<div class="col-full">
+
+					<a class="skip-link screen-reader-text" href="#site-navigation">Skip to navigation</a>
+		<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+				<div class="site-branding">
+			<div class="beta site-title"><a href="../../../index.html" rel="home">ASchroder.com</a></div><p class="site-description">Notes on Web Development</p>		</div>
+		<div class="storefront-primary-navigation">		<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="Primary Navigation">
+		<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><span>Menu</span></button>
+			<div class="primary-navigation"><ul id="menu-main-menu" class="menu"><li id="menu-item-1119" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li id="menu-item-1118" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li id="menu-item-1872" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div><div class="handheld-navigation"><ul id="menu-main-menu-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div>		</nav><!-- #site-navigation -->
+		</div>
+		</div>
+	</header><!-- #masthead -->
+
+	
+	<div id="content" class="site-content" tabindex="-1">
+		<div class="col-full">
+
+		
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+<div id="post-623" class="post-623 post type-post status-publish format-standard hentry category-magento category-php category-web-development tag-autoresponder tag-magento tag-mailchimp">
+
+			<header class="entry-header">
+		<span class="posted-on">Posted on <a href="index.html" rel="bookmark"><time class="entry-date published" datetime="2010-02-01T19:50:50+00:00">February 1, 2010</time> <time class="updated" datetime="2010-02-27T23:58:46+00:00">February 27, 2010</time></a></span><h1 class="entry-title">Mailchimp + Magento: How to get autoresponders working with the API</h1>		</header><!-- .entry-header -->
+				<aside class="entry-meta">
+						<div class="author">
+				<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' /><div class="label">Written by</div><a href="../../../author/admin/index.html" title="Posts by Ashley" rel="author">Ashley</a>			</div>
+							<div class="cat-links">
+					<div class="label">Posted in</div><a href="../../../category/magento/index.html" rel="category tag">Magento</a>, <a href="../../../category/php/index.html" rel="category tag">PHP</a>, <a href="../../../category/web-development/index.html" rel="category tag">Web Development</a>				</div>
+			
+							<div class="tags-links">
+					<div class="label">Tagged</div><a href="../../../tag/autoresponder/index.html" rel="tag">autoresponder</a>, <a href="../../../tag/magento/index.html" rel="tag">Magento</a>, <a href="../../../tag/mailchimp/index.html" rel="tag">mailchimp</a>				</div>
+			
+		
+							<div class="comments-link">
+					<div class="label">Comments</div>					<span class="comments-link"><a href="index.html#comments">10 Comments</a></span>
+				</div>
+					</aside>
+				<div class="entry-content">
+		<p>Just a quick little how-to on Mailchimp and Magento using the <a href="http://www.magentocommerce.com/extension/1208/ebizmarts-mail-chimp-module">existing extension by Ebizmarts</a>. We want to be able to send customers who sign up for the newsletter through the Magento store a little thank you gift (discount code) X days after signing up using Mailchimp&#8217;s excellent autoresponders. This is supported by Mailchimp, <strong>but</strong> requires double opt-in <em>or</em> the following little 2 step work-around with the Mailchimp API.<br />
+<span id="more-623"></span><br />
+For this I&#8217;ll assume you have got as far as the Mailchimp list being populated when a Magento customer subscribes, and removed when they unsubscribe. This will require a little modification to the Magento and Mailchimp integration, so only proceed if you&#8217;re comfortable with that.</p>
+<h3>Step 1: Configure your Mailchimp list to have a pseudo sign up date</h3>
+<p>This is mentioned in the <a href="http://server.iad.liveperson.net/hc/s-31286565/cmd/kbresource/kb-4068014298866307552/view_question!PAGETYPE?sq=date%2bfield&amp;sf=101113&amp;sg=1&amp;st=288584&amp;documentid=359122&amp;action=view">Mailchimp support section</a>, but I&#8217;ll quickly add my notes here for completeness.</p>
+<p>Go into the lists section and select the forms link for the particular list you are adding emails to from within Magento. From the forms page you can add a new date field that looks something like this:</p>
+<figure id="attachment_626" style="width: 374px" class="wp-caption aligncenter"><a href="../../../../cdn.aschroder.com/wp-content/uploads/2010/02/field-settings.png"><img src="../../../../cdn.aschroder.com/wp-content/uploads/2010/02/field-settings.png" alt="Field Settings for a new sign on date field" title="Field Settings" width="374" height="469" class="size-full wp-image-626" srcset="http://cdn.aschroder.com/wp-content/uploads/2010/02/field-settings.png 374w, http://cdn.aschroder.com/wp-content/uploads/2010/02/field-settings-239x300.png 239w" sizes="(max-width: 374px) 100vw, 374px" /></a><figcaption class="wp-caption-text">Field Settings for a new sign on date field</figcaption></figure>
+<p>Note that whatever you choose for the <code>field tag</code> e.g. <code>SIGNON</code> on this screen needs to match what you use in the code change I&#8217;ll show you in step 2. What a perfect segue&#8230;.</p>
+<h3>Step 2: Modify the Mailchimp extension (ever so slightly)</h3>
+<p>The code change is very minor, and assumes you always want to add this Merge var &#8211; so it&#8217;s not very elegant. In fact it&#8217;s arguably a hack, but I haven&#8217;t posted one of those for a while so here goes. Modify the file <code>app/code/local/Ebizmarts/Mailchimp/Model/Mailchimp/Mailchimp.php</code> around line 114 so that it looks like this:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="php" style="font-family:monospace;"><span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getXMLSubscribeConfig</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'opt-in'</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">!=</span> <span style="color: #0000ff;">''</span> <span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+	<span style="color: #000088;">$merge_vars</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'OPTINIP'</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getXMLSubscribeConfig</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'opt-in'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<span style="color: #009900;">&#125;</span>
+<span style="color: #666666; font-style: italic;">// Add this line - be sure you match 'SIGNON' here with the code you chose in Mailchimp...</span>
+<span style="color: #000088;">$merge_vars</span><span style="color: #009900;">&#91;</span><span style="color: #0000ff;">'SIGNON'</span><span style="color: #009900;">&#93;</span> <span style="color: #339933;">=</span> <span style="color: #990000;">date</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">&quot;Y-m-d&quot;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span> <span style="color: #666666; font-style: italic;">// today's date</span>
+try <span style="color: #009900;">&#123;</span>
+	<span style="color: #000088;">$apikey</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getXMLGeneralConfig</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'apikey'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre></td></tr></table><p class="theCode" style="display:none;">if ( $this-&gt;getXMLSubscribeConfig('opt-in') != '' ) {
+	$merge_vars['OPTINIP'] = $this-&gt;getXMLSubscribeConfig('opt-in');
+}
+// Add this line - be sure you match 'SIGNON' here with the code you chose in Mailchimp...
+$merge_vars['SIGNON'] = date(&quot;Y-m-d&quot;); // today's date
+try {
+	$apikey = $this-&gt;getXMLGeneralConfig('apikey');</p></div>
+
+<p>Right so with that change, your Mailchimp list will now get a new variable populated which can in turn be used as a date for the autoresponders within Mailchimp like so: </p>
+<figure id="attachment_625" style="width: 300px" class="wp-caption aligncenter"><a href="../../../../cdn.aschroder.com/wp-content/uploads/2010/02/autoresponder-settings.png"><img src="../../../../cdn.aschroder.com/wp-content/uploads/2010/02/autoresponder-settings-300x60.png" alt="Set the autoresponder to use the new date you added in Step 1." title="Autoresponder Settings" width="300" height="60" class="size-medium wp-image-625" srcset="http://cdn.aschroder.com/wp-content/uploads/2010/02/autoresponder-settings-300x60.png 300w, http://cdn.aschroder.com/wp-content/uploads/2010/02/autoresponder-settings.png 589w" sizes="(max-width: 300px) 100vw, 300px" /></a><figcaption class="wp-caption-text">Set the autoresponder to use the new date you added in Step 1.</figcaption></figure>
+<p>Interestingly this same approach can be used to add all sorts of useful information gained from Magento into your Mailchimp list e.g. Source of visit CPC/Organic etc.</p>
+<p><strong>Note:</strong> this code change will go away if you upgrade the Mailchimp extension &#8211; maybe someone will make this part of the extension so that it is less prone to being hosed by upgrades. Until then, beware.</p>
+<div class='yarpp-related'>
+<p>You might also be interested in:<ol>
+<li><a href="../../../2009/05/magento-error-it-is-not-safe-to-rely-on-the-systems-timezone-settings/index.html" rel="bookmark" title="Magento Error: It is not safe to rely on the system&#8217;s timezone settings">Magento Error: It is not safe to rely on the system&#8217;s timezone settings </a></li>
+<li><a href="../../../2013/04/understanding-and-detecting-magento-extension-clashes-or-conflicts/index.html" rel="bookmark" title="Understanding and Detecting Magento Extension Clashes or Conflicts">Understanding and Detecting Magento Extension Clashes or Conflicts </a></li>
+<li><a href="../../../2009/07/removing-the-compare-function-in-magento-the-easy-way/index.html" rel="bookmark" title="Removing the Compare function in Magento, the easy way">Removing the Compare function in Magento, the easy way </a></li>
+<li><a href="../../../2011/09/using-smtp-pro-and-ebizmarts-mailchimp-extension-in-magento/index.html" rel="bookmark" title="Using SMTP Pro and Ebizmarts&#8217; MailChimp extension in Magento">Using SMTP Pro and Ebizmarts&#8217; MailChimp extension in Magento </a></li>
+<li><a href="../../../2011/03/magento-1-5-0-1-and-smtppro-1-4-2-now-working-free-gmailsmtp-ahoy/index.html" rel="bookmark" title="Magento 1.5.0.1 and SMTPPro 1.4.2 Now Working &#8211; Free Gmail/SMTP, ahoy!">Magento 1.5.0.1 and SMTPPro 1.4.2 Now Working &#8211; Free Gmail/SMTP, ahoy! </a></li>
+</ol></p>
+</div>
+		</div><!-- .entry-content -->
+		<nav id="post-navigation" class="navigation post-navigation" role="navigation" aria-label="Post Navigation"><span class="screen-reader-text">Post navigation</span><div class="nav-links"><div class="nav-previous"><a href="../../01/sitemap-submit-magento-extension-to-submit-your-google-sitemap/index.html" rel="prev">Sitemap Submit &#8211; Magento Extension to Submit your Google Sitemap</a></div><div class="nav-next"><a href="../a-new-aschroder-com-for-2010-or-why-i-havent-written-anything-for-a-couple-of-weeks/index.html" rel="next">A new ASchroder.com for 2010 or, why I haven&#8217;t written anything for a couple of weeks&#8230;</a></div></div></nav>
+<section id="comments" class="comments-area" aria-label="Post Comments">
+
+			<h2 class="comments-title">
+			10 thoughts on &ldquo;<span>Mailchimp + Magento: How to get autoresponders working with the API</span>&rdquo;		</h2>
+
+		
+		<ol class="comment-list">
+					<li class="comment even thread-even depth-1" id="comment-880">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/275982d8e04ee0d27a19871d1109ee6d?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/275982d8e04ee0d27a19871d1109ee6d?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">jon</cite>			</div>
+			
+			<a href="index.html#comment-880" class="comment-date">
+				<time datetime="2010-02-24T19:04:28+00:00">February 24, 2010</time>			</a>
+		</div>
+				<div id="div-comment-880" class="comment-content">
+				<div class="comment-text">
+		<p>I have been using campaign monitor&#8230;.got it working but it seems a bit limited&#8230;have not tried it yet with 1.4&#8230;mainly i am using it because its pay per use&#8230;is MChimp way way better?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-881">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-881" class="comment-date">
+				<time datetime="2010-02-24T19:59:37+00:00">February 24, 2010</time>			</a>
+		</div>
+				<div id="div-comment-881" class="comment-content">
+				<div class="comment-text">
+		<p>Tough call on the Campaign monitor vs Mailchimp. I think there is a pay-per-use account for Mailchimp too &#8211; I haven&#8217;t used Campaign monitor, but do recommend Mailchimp to people. We use it for email marketing for several of the suppliers we represent in the US and have no complaints about the reliability or reporting they offer.(they should send me a t-shirt shouldn&#8217;t they&#8230;).</p>
+<p>I will be adding more autoresponder support for Magento in the future, particularly around soliciting product reviews/order feedback from customers 1-2 weeks after the order ships. Does Campaign monitor offer anything like that?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1002">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/e9057404ddd72152c4460ada6ea8760e?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/e9057404ddd72152c4460ada6ea8760e?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.helmat.ro/' rel='external nofollow' class='url'>Bob</a></cite>			</div>
+			
+			<a href="index.html#comment-1002" class="comment-date">
+				<time datetime="2010-03-12T01:47:12+00:00">March 12, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1002" class="comment-content">
+				<div class="comment-text">
+		<p>That feature would be great. Soliciting a feedback from customers after 1-2 weeks would be a cool feature.</p>
+<p>Looking forward to find out more about it 🙂</p>
+<p>Regards and keep the good work.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1294">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/15252720b11fe12b1e2e31f5b5e74889?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/15252720b11fe12b1e2e31f5b5e74889?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://twitter.com/phluxor' rel='external nofollow' class='url'>Robert</a></cite>			</div>
+			
+			<a href="index.html#comment-1294" class="comment-date">
+				<time datetime="2010-04-29T22:21:27+00:00">April 29, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1294" class="comment-content">
+				<div class="comment-text">
+		<p>Hey Ashley,</p>
+<p>used your hint here and extended the extension to add a config param to insert the field tag. While at it, I also added the ability to select a grouping that the subscriber should be put into if a groups have been created for the list.</p>
+<p>Good if you want to segment subscribers that use a join form on the store or blog&#8230;</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1954">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/89ec97ae41c229e988295db53ce3804d?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/89ec97ae41c229e988295db53ce3804d?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://yoururl/' rel='external nofollow' class='url'>Sebastian</a></cite>			</div>
+			
+			<a href="index.html#comment-1954" class="comment-date">
+				<time datetime="2010-11-03T08:50:57+00:00">November 3, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1954" class="comment-content">
+				<div class="comment-text">
+		<p>Ashley,</p>
+<p>Great blog you have here, I&#8217;m using you&#8217;re smtp pro extension and when looking for a Magento Mailchimp Autoresponder issue I ended up here again 🙂 I have the autoresponder working thanks to your little hack! So thanks a lot.</p>
+<p>I was just wondering how you solved the issue that when a user UNsubscribes in Mailchimp it still subscribed in Magento, do you have a script that handles this via the Webhook? Love to hear your thoughts on this. Best Regards from Spain!  </p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-1958">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-1958" class="comment-date">
+				<time datetime="2010-11-06T20:07:06+00:00">November 6, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1958" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks Sebastian, I don&#8217;t have a really good solution for that, other than the list in Magento is sort of arbitrary in the scheme of things. The mailchimp solution makes the list Magento keeps internally redundant &#8211; I don&#8217;t use it for anything once mailchimp is hooked up.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2011">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/0551158e4fe4424709ff1c40843687fa?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/0551158e4fe4424709ff1c40843687fa?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.merchantguru.com/' rel='external nofollow' class='url'>Joe Fletcher</a></cite>			</div>
+			
+			<a href="index.html#comment-2011" class="comment-date">
+				<time datetime="2010-12-14T11:18:35+00:00">December 14, 2010</time>			</a>
+		</div>
+				<div id="div-comment-2011" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Ashley,</p>
+<p>Whoa! Love the new Comment View as I type this!</p>
+<p>Curious, did you ever create the order auto responders for soliciting product reviews and feedback X days after an order? Surprisingly, I haven&#8217;t found anything like that for Magento yet. Still looking&#8230;</p>
+<p>Joe</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2012">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='../../../index.html' rel='external nofollow' class='url'>Ashley</a></cite>			</div>
+			
+			<a href="index.html#comment-2012" class="comment-date">
+				<time datetime="2010-12-14T12:05:38+00:00">December 14, 2010</time>			</a>
+		</div>
+				<div id="div-comment-2012" class="comment-content">
+				<div class="comment-text">
+		<p>@Joe Fletcher Hi Joe, I did create the autoresponders. I wrote up a bit post about them actually over here: <a href="http://www.world-wide-access.com/2010/11/24/a-case-study-in-automated-post-sale-ecommerce-customer-communication/" rel="nofollow">http://www.world-wide-access.com/2010/11/24/a-case-study-in-automated-post-sale-ecommerce-customer-communication/</a></p>
+<p>We have kept the functionality in-house for the time being, but I&#8217;m always open to the idea of releasing it.</p>
+<p>Also, thanks for the feedback on the comments. I&#8217;m not sold on it personally &#8211; but I don&#8217;t have time to rework it just at the moment.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2013">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/0551158e4fe4424709ff1c40843687fa?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/0551158e4fe4424709ff1c40843687fa?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.merchantguru.com/' rel='external nofollow' class='url'>Joe Fletcher</a></cite>			</div>
+			
+			<a href="index.html#comment-2013" class="comment-date">
+				<time datetime="2010-12-14T12:39:21+00:00">December 14, 2010</time>			</a>
+		</div>
+				<div id="div-comment-2013" class="comment-content">
+				<div class="comment-text">
+		<p>@Ashley Very cool you got that set up and looks like the results were just what you wanted.</p>
+<p>If you decide to release it, I&#8217;d consider setting it up. I have a client who&#8217;s thinking about doing this now, but I&#8217;m sure others can &amp; would use this.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2273">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/c80659e68432d7b7df3fd940c3e968aa?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/c80659e68432d7b7df3fd940c3e968aa?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://ebizmarts.com/' rel='external nofollow' class='url'>Ignacio</a></cite>			</div>
+			
+			<a href="index.html#comment-2273" class="comment-date">
+				<time datetime="2011-04-28T05:47:12+00:00">April 28, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2273" class="comment-content">
+				<div class="comment-text">
+		<p>Hi there,</p>
+<p>We have recently released a free full featured MailChimp extension for Magento.<br />
+It supports sending additional fields as merge fields, ECommerce360 integration, multiple lists and interests groups, bulk sync, etc&#8230;</p>
+<p>You can find it here <a href="http://www.magentocommerce.com/magento-connect/ebizmarts/extension/1208/ebizmarts-mail-chimp-module" rel="nofollow">http://www.magentocommerce.com/magento-connect/ebizmarts/extension/1208/ebizmarts-mail-chimp-module</a></p>
+<p>Enjoy it, Eep, Eep!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		</ol><!-- .comment-list -->
+
+				<p class="no-comments">Comments are closed.</p>
+	
+</section><!-- #comments -->
+
+</div><!-- #post-## -->
+
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+		</div><!-- .col-full -->
+	</div><!-- #content -->
+
+	
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="col-full">
+
+					<div class="site-info">
+			&copy; ASchroder.com 2023						<br /> Storefront designed by <a href="http://www.woocommerce.com/" title="WooCommerce - The Best eCommerce Platform for WordPress" rel="author">WooCommerce</a>.					</div><!-- .site-info -->
+		
+		</div><!-- .col-full -->
+	</footer><!-- #colophon -->
+
+	
+</div><!-- #page -->
+
+<link rel='stylesheet' id='yarppRelatedCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/related101e.css?ver=4.8.15' type='text/css' media='all' />
+<script type='text/javascript' src='../../../wp-content/plugins/wp-syntax/js/wp-syntax4963.js?ver=1.1'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/navigation.min11a8.js?ver=20120206'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/skip-link-focus-fix.min08e0.js?ver=20130115'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/wp-embed.min101e.js?ver=4.8.15'></script>
+
+</body>
+
+<!-- Mirrored from www.aschroder.com/2010/02/mailchimp-magento-how-to-get-autoresponders-working-with-the-api/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:34:00 GMT -->
+</html>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:22:39 by W3 Total Cache -->

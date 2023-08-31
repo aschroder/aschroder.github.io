@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>Comments on: Actually running Magento on Amazon&#8217;s Elastic Beanstalk Cloud platform</title>
+	<atom:link href="http://www.aschroder.com/2013/04/actually-running-magento-on-amazons-elastic-beanstalk-cloud-platform/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.aschroder.com/2013/04/actually-running-magento-on-amazons-elastic-beanstalk-cloud-platform/</link>
+	<description>Notes on Web Development</description>
+	<lastBuildDate>Wed, 23 Dec 2020 09:25:05 +0000</lastBuildDate>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8.15</generator>
+	<item>
+		<title>By: Scott</title>
+		<link>http://www.aschroder.com/2013/04/actually-running-magento-on-amazons-elastic-beanstalk-cloud-platform/comment-page-1/#comment-10289</link>
+		<dc:creator><![CDATA[Scott]]></dc:creator>
+		<pubDate>Sun, 02 Jun 2013 22:30:06 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1983#comment-10289</guid>
+		<description><![CDATA[I&#039;d be very interested in a follow-up to this post. I&#039;m curious how to get the RDS credentials into the local.xml config file since the typical way to do this without checking your secrets into git is to use environment variables, but since magento reads these in via XML, I&#039;m afraid we&#039;d have to write some sort of custom script to download the xml file from an S3 bucket, make sure those files are secure and then provide the access credentials to the ec2 instance so it can fetch the file and copy it to the proper location upon deployment. I&#039;m thinking you could set this up using a configuration file (inside a .elastibeanstalk/environment.config file) that would use the &quot;sources&quot; or &quot;files&quot; config options to do this automatically...]]></description>
+		<content:encoded><![CDATA[<p>I&#8217;d be very interested in a follow-up to this post. I&#8217;m curious how to get the RDS credentials into the local.xml config file since the typical way to do this without checking your secrets into git is to use environment variables, but since magento reads these in via XML, I&#8217;m afraid we&#8217;d have to write some sort of custom script to download the xml file from an S3 bucket, make sure those files are secure and then provide the access credentials to the ec2 instance so it can fetch the file and copy it to the proper location upon deployment. I&#8217;m thinking you could set this up using a configuration file (inside a .elastibeanstalk/environment.config file) that would use the &#8220;sources&#8221; or &#8220;files&#8221; config options to do this automatically&#8230;</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Xandi</title>
+		<link>http://www.aschroder.com/2013/04/actually-running-magento-on-amazons-elastic-beanstalk-cloud-platform/comment-page-1/#comment-10088</link>
+		<dc:creator><![CDATA[Xandi]]></dc:creator>
+		<pubDate>Thu, 18 Apr 2013 22:00:56 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1983#comment-10088</guid>
+		<description><![CDATA[Thank you for this great post.
+I&#039;m hope your blogging further about the amazon cloud.
+
+I&#039;m looking forward to test our magento installation on a elastic beanstalk.]]></description>
+		<content:encoded><![CDATA[<p>Thank you for this great post.<br />
+I&#8217;m hope your blogging further about the amazon cloud.</p>
+<p>I&#8217;m looking forward to test our magento installation on a elastic beanstalk.</p>
+]]></content:encoded>
+	</item>
+</channel>
+</rss>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:28:07 by W3 Total Cache -->

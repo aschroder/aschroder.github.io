@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en-US">
+
+<!-- Mirrored from www.aschroder.com/2013/10/using-google-docs-for-user-guides-and-documentation-in-build-scripts/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:15:36 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="../../../xmlrpc.php">
+
+<title>Using Google Docs for User Guides and Documentation in Build Scripts | ASchroder.com</title>
+
+<!-- All in One SEO Pack 2.4.2 by Michael Torbert of Semper Fi Web Design[289,386] -->
+<meta name="description"  content="I spent considerable effort writing the user guide for MageSend and have been happy with the results. I think of a well written user guide as the fence-at-the" />
+
+<!-- /all in one seo pack -->
+<link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
+<link rel='dns-prefetch' href='http://s.w.org/' />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Feed" href="../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Comments Feed" href="../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Using Google Docs for User Guides and Documentation in Build Scripts Comments Feed" href="feed/index.html" />
+<!-- This site uses the Google Analytics by MonsterInsights plugin v6.2.4 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+<script type="text/javascript" data-cfasync="false">
+		var disableStr = 'ga-disable-UA-6477134-1';
+
+	/* Function to detect opted out users */
+	function __gaTrackerIsOptedOut() {
+		return document.cookie.indexOf(disableStr + '=true') > -1;
+	}
+
+	/* Disable tracking if the opt-out cookie exists. */
+	if ( __gaTrackerIsOptedOut() ) {
+		window[disableStr] = true;
+	}
+
+	/* Opt-out function */
+	function __gaTrackerOptout() {
+	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+	  window[disableStr] = true;
+	}
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','http://www.google-analytics.com/analytics.js','__gaTracker');
+
+	__gaTracker('create', 'UA-6477134-1', 'auto');
+	__gaTracker('set', 'forceSSL', true);
+	__gaTracker('send','pageview');
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/www.aschroder.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.15"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='yarppWidgetCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/widget101e.css?ver=4.8.15' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-syntax-css-css'  href='../../../wp-content/plugins/wp-syntax/css/wp-syntax4963.css?ver=1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-style-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/style5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<style id='storefront-style-inline-css' type='text/css'>
+
+			.main-navigation ul li a,
+			.site-title a,
+			ul.menu li a,
+			.site-branding h1 a,
+			.site-footer .storefront-handheld-footer-bar a:not(.button),
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				color: #333333;
+			}
+
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				border-color: #333333;
+			}
+
+			.main-navigation ul li a:hover,
+			.main-navigation ul li:hover > a,
+			.site-title a:hover,
+			a.cart-contents:hover,
+			.site-header-cart .widget_shopping_cart a:hover,
+			.site-header-cart:hover > li > a,
+			.site-header ul.menu li.current-menu-item > a {
+				color: #838383;
+			}
+
+			table th {
+				background-color: #f8f8f8;
+			}
+
+			table tbody td {
+				background-color: #fdfdfd;
+			}
+
+			table tbody tr:nth-child(2n) td,
+			fieldset,
+			fieldset legend {
+				background-color: #fbfbfb;
+			}
+
+			.site-header,
+			.secondary-navigation ul ul,
+			.main-navigation ul.menu > li.menu-item-has-children:after,
+			.secondary-navigation ul.menu ul,
+			.storefront-handheld-footer-bar,
+			.storefront-handheld-footer-bar ul li > a,
+			.storefront-handheld-footer-bar ul li.search .site-search,
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				background-color: #ffffff;
+			}
+
+			p.site-description,
+			.site-header,
+			.storefront-handheld-footer-bar {
+				color: #6d6d6d;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count,
+			button.menu-toggle:after,
+			button.menu-toggle:before,
+			button.menu-toggle span:before {
+				background-color: #333333;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				color: #ffffff;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				border-color: #ffffff;
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+				color: #333333;
+			}
+
+			.widget h1 {
+				border-bottom-color: #333333;
+			}
+
+			body,
+			.secondary-navigation a,
+			.onsale,
+			.pagination .page-numbers li .page-numbers:not(.current), .woocommerce-pagination .page-numbers li .page-numbers:not(.current) {
+				color: #6d6d6d;
+			}
+
+			.widget-area .widget a,
+			.hentry .entry-header .posted-on a,
+			.hentry .entry-header .byline a {
+				color: #9f9f9f;
+			}
+
+			a  {
+				color: #0228d1;
+			}
+
+			a:focus,
+			.button:focus,
+			.button.alt:focus,
+			.button.added_to_cart:focus,
+			.button.wc-forward:focus,
+			button:focus,
+			input[type="button"]:focus,
+			input[type="reset"]:focus,
+			input[type="submit"]:focus {
+				outline-color: #0228d1;
+			}
+
+			button, input[type="button"], input[type="reset"], input[type="submit"], .button, .added_to_cart, .widget a.button, .site-header-cart .widget_shopping_cart a.button {
+				background-color: #eeeeee;
+				border-color: #eeeeee;
+				color: #333333;
+			}
+
+			button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, .button:hover, .added_to_cart:hover, .widget a.button:hover, .site-header-cart .widget_shopping_cart a.button:hover {
+				background-color: #d5d5d5;
+				border-color: #d5d5d5;
+				color: #333333;
+			}
+
+			button.alt, input[type="button"].alt, input[type="reset"].alt, input[type="submit"].alt, .button.alt, .added_to_cart.alt, .widget-area .widget a.button.alt, .added_to_cart, .widget a.button.checkout {
+				background-color: #333333;
+				border-color: #333333;
+				color: #ffffff;
+			}
+
+			button.alt:hover, input[type="button"].alt:hover, input[type="reset"].alt:hover, input[type="submit"].alt:hover, .button.alt:hover, .added_to_cart.alt:hover, .widget-area .widget a.button.alt:hover, .added_to_cart:hover, .widget a.button.checkout:hover {
+				background-color: #1a1a1a;
+				border-color: #1a1a1a;
+				color: #ffffff;
+			}
+
+			.pagination .page-numbers li .page-numbers.current, .woocommerce-pagination .page-numbers li .page-numbers.current {
+				background-color: #e6e6e6;
+				color: #6d6d6d;
+			}
+
+			#comments .comment-list .comment-content .comment-text {
+				background-color: #f8f8f8;
+			}
+
+			.site-footer {
+				background-color: #f0f0f0;
+				color: #6d6d6d;
+			}
+
+			.site-footer a:not(.button) {
+				color: #333333;
+			}
+
+			.site-footer h1, .site-footer h2, .site-footer h3, .site-footer h4, .site-footer h5, .site-footer h6 {
+				color: #333333;
+			}
+
+			#order_review {
+				background-color: #ffffff;
+			}
+
+			#payment .payment_methods > li .payment_box,
+			#payment .place-order {
+				background-color: #fafafa;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice) {
+				background-color: #f5f5f5;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice):hover {
+				background-color: #f0f0f0;
+			}
+
+			@media screen and ( min-width: 768px ) {
+				.secondary-navigation ul.menu a:hover {
+					color: #868686;
+				}
+
+				.secondary-navigation ul.menu a {
+					color: #6d6d6d;
+				}
+
+				.site-header-cart .widget_shopping_cart,
+				.main-navigation ul.menu ul.sub-menu,
+				.main-navigation ul.nav-menu ul.children {
+					background-color: #f0f0f0;
+				}
+
+				.site-header-cart .widget_shopping_cart .buttons,
+				.site-header-cart .widget_shopping_cart .total {
+					background-color: #f5f5f5;
+				}
+
+				.site-header {
+					border-bottom-color: #f0f0f0;
+				}
+			}
+</style>
+<link rel='stylesheet' id='storefront-icons-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/sass/base/icons5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-fonts-css'  href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,600,700,900&amp;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jqueryb8ff.js?ver=1.12.4'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jquery-migrate.min330a.js?ver=1.4.1'></script>
+<link rel='https://api.w.org/' href='../../../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../xmlrpc0db0.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Running Magento on Digital Ocean &#8211; A Review and Benchmarks' href='../../08/running-magento-on-digital-ocean-plus-some-benchmarks/index.html' />
+<link rel='next' title='Accessing the Xero API for Public Applications in Java' href='../../12/accessing-the-xero-api-for-public-applications-in-java/index.html' />
+<meta name="generator" content="WordPress 4.8.15" />
+<link rel="canonical" href="index.html" />
+<link rel='shortlink' href='../../../index1311.html?p=2207' />
+<link rel="alternate" type="application/json+oembed" href="../../../wp-json/oembed/1.0/embed1c2c.json?url=http%3A%2F%2Fwww.aschroder.com%2F2013%2F10%2Fusing-google-docs-for-user-guides-and-documentation-in-build-scripts%2F" />
+<link rel="alternate" type="text/xml+oembed" href="../../../wp-json/oembed/1.0/embedcd92?url=http%3A%2F%2Fwww.aschroder.com%2F2013%2F10%2Fusing-google-docs-for-user-guides-and-documentation-in-build-scripts%2F&amp;format=xml" />
+</head>
+
+<body class="post-template-default single single-post postid-2207 single-format-standard no-wc-breadcrumb storefront-full-width-content right-sidebar">
+
+
+<div id="page" class="hfeed site">
+	
+	<header id="masthead" class="site-header" role="banner" style="">
+		<div class="col-full">
+
+					<a class="skip-link screen-reader-text" href="#site-navigation">Skip to navigation</a>
+		<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+				<div class="site-branding">
+			<div class="beta site-title"><a href="../../../index.html" rel="home">ASchroder.com</a></div><p class="site-description">Notes on Web Development</p>		</div>
+		<div class="storefront-primary-navigation">		<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="Primary Navigation">
+		<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><span>Menu</span></button>
+			<div class="primary-navigation"><ul id="menu-main-menu" class="menu"><li id="menu-item-1119" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li id="menu-item-1118" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li id="menu-item-1872" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div><div class="handheld-navigation"><ul id="menu-main-menu-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div>		</nav><!-- #site-navigation -->
+		</div>
+		</div>
+	</header><!-- #masthead -->
+
+	
+	<div id="content" class="site-content" tabindex="-1">
+		<div class="col-full">
+
+		
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+<div id="post-2207" class="post-2207 post type-post status-publish format-standard hentry category-extensions-2 category-magento category-projects tag-google-docs tag-magento tag-scripting">
+
+			<header class="entry-header">
+		<span class="posted-on">Posted on <a href="index.html" rel="bookmark"><time class="entry-date published" datetime="2013-10-14T14:08:57+00:00">October 14, 2013</time> <time class="updated" datetime="2013-10-14T14:56:14+00:00">October 14, 2013</time></a></span><h1 class="entry-title">Using Google Docs for User Guides and Documentation in Build Scripts</h1>		</header><!-- .entry-header -->
+				<aside class="entry-meta">
+						<div class="author">
+				<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' /><div class="label">Written by</div><a href="../../../author/admin/index.html" title="Posts by Ashley" rel="author">Ashley</a>			</div>
+							<div class="cat-links">
+					<div class="label">Posted in</div><a href="../../../category/extensions-2/index.html" rel="category tag">Extensions</a>, <a href="../../../category/magento/index.html" rel="category tag">Magento</a>, <a href="../../../category/projects/index.html" rel="category tag">Projects</a>				</div>
+			
+							<div class="tags-links">
+					<div class="label">Tagged</div><a href="../../../tag/google-docs/index.html" rel="tag">google docs</a>, <a href="../../../tag/magento/index.html" rel="tag">Magento</a>, <a href="../../../tag/scripting/index.html" rel="tag">scripting</a>				</div>
+			
+		
+							<div class="comments-link">
+					<div class="label">Comments</div>					<span class="comments-link"><a href="index.html#comments">2 Comments</a></span>
+				</div>
+					</aside>
+				<div class="entry-content">
+		<p>I spent considerable effort writing the <a href="../../../product/magesend-magento-email/index.html">user guide for MageSend</a> and have been happy with the results. I think of a well written user guide as the <em>fence-at-the-top-of-the-cliff</em> that prevents the support email burden <em>ambulance-at-the-bottom</em>. It&#8217;s been a <a href="http://www.magentocommerce.com/magento-connect/magesend-email-with-amazon-ses.html">source of fairly regular positive feedback</a> from customers, so I wanted to share how I created it, and how I ensure it&#8217;s seamlessly integrated with the packaging process by build script. In this post I will run through how I use Google Docs as a documentation tool for my premium MageSend email extension, and take advantage of the publish URLs in build scripts to ensure the latest version of the User Guide is packaged in both PDF and HTML format with each release. I will say I only have one premium extension (<em>currently</em>) and am relatively new to this game, so it&#8217;s entirely possible there&#8217;s much better ways to do this, in fact if someone has some better suggestions I&#8217;d love to hear them! </p>
+<p><img src="../../../../cdn.aschroder.com/wp-content/uploads/2013/10/Screen-Shot-2013-10-15-at-9.52.06-AM.png" alt="MageSend Documentation" width="500" class="aligncenter size-medium wp-image-2208" srcset="http://cdn.aschroder.com/wp-content/uploads/2013/10/Screen-Shot-2013-10-15-at-9.52.06-AM.png 1414w, http://cdn.aschroder.com/wp-content/uploads/2013/10/Screen-Shot-2013-10-15-at-9.52.06-AM-275x300.png 275w, http://cdn.aschroder.com/wp-content/uploads/2013/10/Screen-Shot-2013-10-15-at-9.52.06-AM-938x1024.png 938w" sizes="(max-width: 1414px) 100vw, 1414px" /></p>
+<h3>Writing Software Documentation in Google Docs</h3>
+<p>In order to even go down this route you have to be comfortable using Google Docs for writing technical documentation. I&#8217;ve been using Google Docs for as long as I can remember, when weighing options like <a href="http://daringfireball.net/projects/markdown/">markdown</a>, plain-html or <a href="http://www.latex-project.org/">Latex</a> I had no hesitation with Google and understood the limitations, and advantages of Goole Docs, summarised below.</p>
+<ul>
+<li>+ Collaborative editing, e.g graphics designers can add logos and screenshots into the same document as you edit the words</li>
+<li>+ Always saved, revision history available for change tracking</li>
+<li>+ Simple UI for editing documents, provided you keep your style very simple.</li>
+<li>&#8211; You have to get into bed with Google &#8211; it&#8217;s not a complete lock-in though, you can export plain (<em>but ugly</em>) HTML.</li>
+<li>&#8211; Annoying <a href="https://productforums.google.com/forum/#!topic/docs/gXsXq3zz7ak%5B1-25-true%5D">export bug</a> with published docs <a href="http://webapps.stackexchange.com/questions/44638/google-docs-table-of-contents-links-are-wrong-in-pdf">table of contents linking to the web version</a>.</li>
+</ul>
+<p>So it&#8217;s a simple, easy to use document editing tool, with a number of modern features for collaboration and exporting, but a few annoying bugs, and slight pangs of vendor lock-in.<br />
+<span id="more-2207"></span></p>
+<h3>Publishing your Google Doc</h3>
+<p>The UI for Google Docs is in a constant state of flux, as of writing this the publish dialog looks like this:</p>
+<p><img src="../../../../cdn.aschroder.com/wp-content/uploads/2013/10/Screen-Shot-2013-10-15-at-10.06.31-AM.png" alt="Publish Google Docs dialog" width="500" class="aligncenter size-medium wp-image-2211" srcset="http://cdn.aschroder.com/wp-content/uploads/2013/10/Screen-Shot-2013-10-15-at-10.06.31-AM.png 1194w, http://cdn.aschroder.com/wp-content/uploads/2013/10/Screen-Shot-2013-10-15-at-10.06.31-AM-300x243.png 300w, http://cdn.aschroder.com/wp-content/uploads/2013/10/Screen-Shot-2013-10-15-at-10.06.31-AM-1024x831.png 1024w" sizes="(max-width: 1194px) 100vw, 1194px" /></p>
+<p>It&#8217;s actually missing all the various export options in the UI (they <em>used</em> to be there) but thankfully all the URL&#8217;s still work so it&#8217;s easy to create them based on the normal published URL. Take your publish URL which should look like this:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="html" style="font-family:monospace;">https://docs.google.com/document/d/jkfalebflszkebflzsbfljzs/pub</pre></td></tr></table><p class="theCode" style="display:none;">https://docs.google.com/document/d/jkfalebflszkebflzsbfljzs/pub</p></div>
+
+<p>And simply add this fragment <code>/export?format=pdf</code> instead of <code>/pub</code> at the end of the URL. Like this for pdf, and obviously use html not pdf for the html export:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="html" style="font-family:monospace;">https://docs.google.com/document/d/jkfalebflszkebflzsbfljzs/export?format=pdf</pre></td></tr></table><p class="theCode" style="display:none;">https://docs.google.com/document/d/jkfalebflszkebflzsbfljzs/export?format=pdf</p></div>
+
+<p>You can test these work by accessing them from the command-line with curl like so:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;">curl <span style="color: #ff0000;">&quot;https://docs.google.com/document/d/jkfalebflszkebflzsbfljzs/export?format=pdf&quot;</span> <span style="color: #000000; font-weight: bold;">&gt;</span> Your-Setup-Guide.pdf</pre></td></tr></table><p class="theCode" style="display:none;">curl &quot;https://docs.google.com/document/d/jkfalebflszkebflzsbfljzs/export?format=pdf&quot; &gt; Your-Setup-Guide.pdf</p></div>
+
+<h3>Scripting your Google Doc into release packages</h3>
+<p>So, given the published export format URLs, it should be fairly easy to see how this can then be used in your build/package scripts.</p>
+<p>In my own script I create a <code>code.zip</code> file that is the zipped up contents of the extension, which will expand into the correct locations in the Magento base directory. I then package up the <code>code.zip</code>, along with the <code>.pdf</code> and <code>.html</code> versions of the user guide docs into a release package zip that includes the <code>README</code> and release notes.</p>
+<p>The good thing about these URLs is they can be used easily from bash scripts, ant scripts or even <em>ruby-flavor-of-the-month</em> build tool scripts. It&#8217;s a flexible approach to automatically including the latest docs in every release.</p>
+<p>And that&#8217;s it, now you have a simple online documentation, that will automatically be fetched and added to your release package every time you generate a new release. I think another area of possible improvement for release packaging would be to pull a list of the closed issues from Github for the given release milestone, so that your release notes are also automatically updated during the release process.</p>
+<p>I also <a href="https://twitter.com/magentogirl/status/389846818143498241">noticed Kimberly (@magentogirl)</a> asking about Magento Connect compatible packages, it would be a worthwhile addition to script creating those for premium extensions too. If other extension developers have better/different approaches to this whole aspect of extension management, I&#8217;d really like to hear them!</p>
+<div class='yarpp-related'>
+<p>You might also be interested in:<ol>
+<li><a href="../../../2012/09/improving-magento-importexport-module-with-better-file-format-and-google-docs-integration/index.html" rel="bookmark" title="Improving Magento ImportExport module with Better file format and Google Docs integration">Improving Magento ImportExport module with Better file format and Google Docs integration </a></li>
+<li><a href="../../../2009/08/google-apps-email-gmail-magento-extension-v05-released/index.html" rel="bookmark" title="Google Apps Email/Gmail Magento Extension v0.5 released">Google Apps Email/Gmail Magento Extension v0.5 released </a></li>
+<li><a href="../../../2009/05/using-gmail-or-google-apps-email-with-magento/index.html" rel="bookmark" title="Using Gmail or Google Apps email with Magento">Using Gmail or Google Apps email with Magento </a></li>
+<li><a href="../../../2009/08/magento-google-base-error-expected-response-code-200-got-403-service-forbidden-account-not-registered-for-google-base/index.html" rel="bookmark" title="Magento Google Base error: Expected response code 200, got 403 Service forbidden: Account not registered for Google Base">Magento Google Base error: Expected response code 200, got 403 Service forbidden: Account not registered for Google Base </a></li>
+<li><a href="../../../2011/06/smtp-pro-with-magento-a-sort-of-user-guide/index.html" rel="bookmark" title="SMTP Pro with Magento: A sort-of user guide.">SMTP Pro with Magento: A sort-of user guide. </a></li>
+</ol></p>
+</div>
+		</div><!-- .entry-content -->
+		<nav id="post-navigation" class="navigation post-navigation" role="navigation" aria-label="Post Navigation"><span class="screen-reader-text">Post navigation</span><div class="nav-links"><div class="nav-previous"><a href="../../08/running-magento-on-digital-ocean-plus-some-benchmarks/index.html" rel="prev">Running Magento on Digital Ocean &#8211; A Review and Benchmarks</a></div><div class="nav-next"><a href="../../12/accessing-the-xero-api-for-public-applications-in-java/index.html" rel="next">Accessing the Xero API for Public Applications in Java</a></div></div></nav>
+<section id="comments" class="comments-area" aria-label="Post Comments">
+
+			<h2 class="comments-title">
+			2 thoughts on &ldquo;<span>Using Google Docs for User Guides and Documentation in Build Scripts</span>&rdquo;		</h2>
+
+		
+		<ol class="comment-list">
+					<li class="comment even thread-even depth-1" id="comment-33429">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/10be275c4a1ae6a27b12efc11badf05e?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/10be275c4a1ae6a27b12efc11badf05e?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://thebc.co/' rel='external nofollow' class='url'>Matt Sells</a></cite>			</div>
+			
+			<a href="index.html#comment-33429" class="comment-date">
+				<time datetime="2013-11-05T22:14:48+00:00">November 5, 2013</time>			</a>
+		</div>
+				<div id="div-comment-33429" class="comment-content">
+				<div class="comment-text">
+		<p>Excellent post Ashley! Nice to be back here again reading your articles.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-34786">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/236bf7aeab04bd318630d70ec078bf00?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/236bf7aeab04bd318630d70ec078bf00?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.magelynx.com/' rel='external nofollow' class='url'>Rob</a></cite>			</div>
+			
+			<a href="index.html#comment-34786" class="comment-date">
+				<time datetime="2013-11-12T19:41:35+00:00">November 12, 2013</time>			</a>
+		</div>
+				<div id="div-comment-34786" class="comment-content">
+				<div class="comment-text">
+		<p>That&#8217;s so simple and so great!<br />
+Whole Google Doc is a real treasury for those who looking to automate collaborative task like this.</p>
+<p>Thanks for sharing this. Ashley, do you maybe have a quick hint where to start on making the same with private access docs through command line? I mean curl/wget + google authorize or something like that.</p>
+<p>Thanks,<br />
+Rob</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		</ol><!-- .comment-list -->
+
+				<p class="no-comments">Comments are closed.</p>
+	
+</section><!-- #comments -->
+
+</div><!-- #post-## -->
+
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+		</div><!-- .col-full -->
+	</div><!-- #content -->
+
+	
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="col-full">
+
+					<div class="site-info">
+			&copy; ASchroder.com 2023						<br /> Storefront designed by <a href="http://www.woocommerce.com/" title="WooCommerce - The Best eCommerce Platform for WordPress" rel="author">WooCommerce</a>.					</div><!-- .site-info -->
+		
+		</div><!-- .col-full -->
+	</footer><!-- #colophon -->
+
+	
+</div><!-- #page -->
+
+<link rel='stylesheet' id='yarppRelatedCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/related101e.css?ver=4.8.15' type='text/css' media='all' />
+<script type='text/javascript' src='../../../wp-content/plugins/wp-syntax/js/wp-syntax4963.js?ver=1.1'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/navigation.min11a8.js?ver=20120206'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/skip-link-focus-fix.min08e0.js?ver=20130115'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/wp-embed.min101e.js?ver=4.8.15'></script>
+
+</body>
+
+<!-- Mirrored from www.aschroder.com/2013/10/using-google-docs-for-user-guides-and-documentation-in-build-scripts/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:15:41 GMT -->
+</html>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:12:09 by W3 Total Cache -->

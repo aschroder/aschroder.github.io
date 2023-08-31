@@ -1,0 +1,1376 @@
+<!doctype html>
+<html lang="en-US">
+
+<!-- Mirrored from www.aschroder.com/2011/05/magento-and-amazons-cloudfront-cdn-the-easy-way/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:38:40 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="../../../xmlrpc.php">
+
+<title>Magento and Amazon&#039;s CloudFront - The Easy Way | ASchroder.com</title>
+
+<!-- All in One SEO Pack 2.4.2 by Michael Torbert of Semper Fi Web Design[289,380] -->
+<meta name="description"  content="In this post I will cover a simple way to configure Magento to use the Amazon CloudFront CDN service and to create a CloudFront distrubution that mirrors the" />
+
+<meta name="keywords"  content="magento,cdn,cloudfront,amazon" />
+
+<!-- /all in one seo pack -->
+<link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
+<link rel='dns-prefetch' href='http://s.w.org/' />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Feed" href="../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Comments Feed" href="../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Magento and Amazon&#8217;s CloudFront CDN &#8211; The Easy Way Comments Feed" href="feed/index.html" />
+<!-- This site uses the Google Analytics by MonsterInsights plugin v6.2.4 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+<script type="text/javascript" data-cfasync="false">
+		var disableStr = 'ga-disable-UA-6477134-1';
+
+	/* Function to detect opted out users */
+	function __gaTrackerIsOptedOut() {
+		return document.cookie.indexOf(disableStr + '=true') > -1;
+	}
+
+	/* Disable tracking if the opt-out cookie exists. */
+	if ( __gaTrackerIsOptedOut() ) {
+		window[disableStr] = true;
+	}
+
+	/* Opt-out function */
+	function __gaTrackerOptout() {
+	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+	  window[disableStr] = true;
+	}
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','http://www.google-analytics.com/analytics.js','__gaTracker');
+
+	__gaTracker('create', 'UA-6477134-1', 'auto');
+	__gaTracker('set', 'forceSSL', true);
+	__gaTracker('send','pageview');
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/www.aschroder.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.15"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='yarppWidgetCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/widget101e.css?ver=4.8.15' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-syntax-css-css'  href='../../../wp-content/plugins/wp-syntax/css/wp-syntax4963.css?ver=1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-style-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/style5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<style id='storefront-style-inline-css' type='text/css'>
+
+			.main-navigation ul li a,
+			.site-title a,
+			ul.menu li a,
+			.site-branding h1 a,
+			.site-footer .storefront-handheld-footer-bar a:not(.button),
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				color: #333333;
+			}
+
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				border-color: #333333;
+			}
+
+			.main-navigation ul li a:hover,
+			.main-navigation ul li:hover > a,
+			.site-title a:hover,
+			a.cart-contents:hover,
+			.site-header-cart .widget_shopping_cart a:hover,
+			.site-header-cart:hover > li > a,
+			.site-header ul.menu li.current-menu-item > a {
+				color: #838383;
+			}
+
+			table th {
+				background-color: #f8f8f8;
+			}
+
+			table tbody td {
+				background-color: #fdfdfd;
+			}
+
+			table tbody tr:nth-child(2n) td,
+			fieldset,
+			fieldset legend {
+				background-color: #fbfbfb;
+			}
+
+			.site-header,
+			.secondary-navigation ul ul,
+			.main-navigation ul.menu > li.menu-item-has-children:after,
+			.secondary-navigation ul.menu ul,
+			.storefront-handheld-footer-bar,
+			.storefront-handheld-footer-bar ul li > a,
+			.storefront-handheld-footer-bar ul li.search .site-search,
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				background-color: #ffffff;
+			}
+
+			p.site-description,
+			.site-header,
+			.storefront-handheld-footer-bar {
+				color: #6d6d6d;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count,
+			button.menu-toggle:after,
+			button.menu-toggle:before,
+			button.menu-toggle span:before {
+				background-color: #333333;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				color: #ffffff;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				border-color: #ffffff;
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+				color: #333333;
+			}
+
+			.widget h1 {
+				border-bottom-color: #333333;
+			}
+
+			body,
+			.secondary-navigation a,
+			.onsale,
+			.pagination .page-numbers li .page-numbers:not(.current), .woocommerce-pagination .page-numbers li .page-numbers:not(.current) {
+				color: #6d6d6d;
+			}
+
+			.widget-area .widget a,
+			.hentry .entry-header .posted-on a,
+			.hentry .entry-header .byline a {
+				color: #9f9f9f;
+			}
+
+			a  {
+				color: #0228d1;
+			}
+
+			a:focus,
+			.button:focus,
+			.button.alt:focus,
+			.button.added_to_cart:focus,
+			.button.wc-forward:focus,
+			button:focus,
+			input[type="button"]:focus,
+			input[type="reset"]:focus,
+			input[type="submit"]:focus {
+				outline-color: #0228d1;
+			}
+
+			button, input[type="button"], input[type="reset"], input[type="submit"], .button, .added_to_cart, .widget a.button, .site-header-cart .widget_shopping_cart a.button {
+				background-color: #eeeeee;
+				border-color: #eeeeee;
+				color: #333333;
+			}
+
+			button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, .button:hover, .added_to_cart:hover, .widget a.button:hover, .site-header-cart .widget_shopping_cart a.button:hover {
+				background-color: #d5d5d5;
+				border-color: #d5d5d5;
+				color: #333333;
+			}
+
+			button.alt, input[type="button"].alt, input[type="reset"].alt, input[type="submit"].alt, .button.alt, .added_to_cart.alt, .widget-area .widget a.button.alt, .added_to_cart, .widget a.button.checkout {
+				background-color: #333333;
+				border-color: #333333;
+				color: #ffffff;
+			}
+
+			button.alt:hover, input[type="button"].alt:hover, input[type="reset"].alt:hover, input[type="submit"].alt:hover, .button.alt:hover, .added_to_cart.alt:hover, .widget-area .widget a.button.alt:hover, .added_to_cart:hover, .widget a.button.checkout:hover {
+				background-color: #1a1a1a;
+				border-color: #1a1a1a;
+				color: #ffffff;
+			}
+
+			.pagination .page-numbers li .page-numbers.current, .woocommerce-pagination .page-numbers li .page-numbers.current {
+				background-color: #e6e6e6;
+				color: #6d6d6d;
+			}
+
+			#comments .comment-list .comment-content .comment-text {
+				background-color: #f8f8f8;
+			}
+
+			.site-footer {
+				background-color: #f0f0f0;
+				color: #6d6d6d;
+			}
+
+			.site-footer a:not(.button) {
+				color: #333333;
+			}
+
+			.site-footer h1, .site-footer h2, .site-footer h3, .site-footer h4, .site-footer h5, .site-footer h6 {
+				color: #333333;
+			}
+
+			#order_review {
+				background-color: #ffffff;
+			}
+
+			#payment .payment_methods > li .payment_box,
+			#payment .place-order {
+				background-color: #fafafa;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice) {
+				background-color: #f5f5f5;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice):hover {
+				background-color: #f0f0f0;
+			}
+
+			@media screen and ( min-width: 768px ) {
+				.secondary-navigation ul.menu a:hover {
+					color: #868686;
+				}
+
+				.secondary-navigation ul.menu a {
+					color: #6d6d6d;
+				}
+
+				.site-header-cart .widget_shopping_cart,
+				.main-navigation ul.menu ul.sub-menu,
+				.main-navigation ul.nav-menu ul.children {
+					background-color: #f0f0f0;
+				}
+
+				.site-header-cart .widget_shopping_cart .buttons,
+				.site-header-cart .widget_shopping_cart .total {
+					background-color: #f5f5f5;
+				}
+
+				.site-header {
+					border-bottom-color: #f0f0f0;
+				}
+			}
+</style>
+<link rel='stylesheet' id='storefront-icons-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/sass/base/icons5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-fonts-css'  href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,600,700,900&amp;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jqueryb8ff.js?ver=1.12.4'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jquery-migrate.min330a.js?ver=1.4.1'></script>
+<link rel='https://api.w.org/' href='../../../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../xmlrpc0db0.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='On working from Pukekohe' href='../../04/on-working-from-pukekohe/index.html' />
+<link rel='next' title='Export New Zealand Finalist: World Wide Access, and I&#8217;m on the FM!' href='../../06/export-new-zealand-finalist-world-wide-access-and-im-on-the-fm/index.html' />
+<meta name="generator" content="WordPress 4.8.15" />
+<link rel="canonical" href="index.html" />
+<link rel='shortlink' href='../../../indexd9ef.html?p=1472' />
+<link rel="alternate" type="application/json+oembed" href="../../../wp-json/oembed/1.0/embed32f5.json?url=http%3A%2F%2Fwww.aschroder.com%2F2011%2F05%2Fmagento-and-amazons-cloudfront-cdn-the-easy-way%2F" />
+<link rel="alternate" type="text/xml+oembed" href="../../../wp-json/oembed/1.0/embed6314?url=http%3A%2F%2Fwww.aschroder.com%2F2011%2F05%2Fmagento-and-amazons-cloudfront-cdn-the-easy-way%2F&amp;format=xml" />
+</head>
+
+<body class="post-template-default single single-post postid-1472 single-format-standard no-wc-breadcrumb storefront-full-width-content right-sidebar">
+
+
+<div id="page" class="hfeed site">
+	
+	<header id="masthead" class="site-header" role="banner" style="">
+		<div class="col-full">
+
+					<a class="skip-link screen-reader-text" href="#site-navigation">Skip to navigation</a>
+		<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+				<div class="site-branding">
+			<div class="beta site-title"><a href="../../../index.html" rel="home">ASchroder.com</a></div><p class="site-description">Notes on Web Development</p>		</div>
+		<div class="storefront-primary-navigation">		<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="Primary Navigation">
+		<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><span>Menu</span></button>
+			<div class="primary-navigation"><ul id="menu-main-menu" class="menu"><li id="menu-item-1119" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li id="menu-item-1118" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li id="menu-item-1872" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div><div class="handheld-navigation"><ul id="menu-main-menu-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div>		</nav><!-- #site-navigation -->
+		</div>
+		</div>
+	</header><!-- #masthead -->
+
+	
+	<div id="content" class="site-content" tabindex="-1">
+		<div class="col-full">
+
+		
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+<div id="post-1472" class="post-1472 post type-post status-publish format-standard hentry category-magento category-web-development tag-amazon tag-cdn tag-cloudfront tag-magento">
+
+			<header class="entry-header">
+		<span class="posted-on">Posted on <a href="index.html" rel="bookmark"><time class="entry-date published" datetime="2011-05-02T03:48:48+00:00">May 2, 2011</time> <time class="updated" datetime="2011-05-02T04:01:20+00:00">May 2, 2011</time></a></span><h1 class="entry-title">Magento and Amazon&#8217;s CloudFront CDN &#8211; The Easy Way</h1>		</header><!-- .entry-header -->
+				<aside class="entry-meta">
+						<div class="author">
+				<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' /><div class="label">Written by</div><a href="../../../author/admin/index.html" title="Posts by Ashley" rel="author">Ashley</a>			</div>
+							<div class="cat-links">
+					<div class="label">Posted in</div><a href="../../../category/magento/index.html" rel="category tag">Magento</a>, <a href="../../../category/web-development/index.html" rel="category tag">Web Development</a>				</div>
+			
+							<div class="tags-links">
+					<div class="label">Tagged</div><a href="../../../tag/amazon/index.html" rel="tag">amazon</a>, <a href="../../../tag/cdn/index.html" rel="tag">cdn</a>, <a href="../../../tag/cloudfront/index.html" rel="tag">cloudfront</a>, <a href="../../../tag/magento/index.html" rel="tag">Magento</a>				</div>
+			
+		
+							<div class="comments-link">
+					<div class="label">Comments</div>					<span class="comments-link"><a href="index.html#comments">46 Comments</a></span>
+				</div>
+					</aside>
+				<div class="entry-content">
+		<p>In this post I will cover a simple way to configure Magento to use the <a href="http://aws.amazon.com/cloudfront/">Amazon CloudFront CDN</a> service and to create a CloudFront distrubution that mirrors the static files in your site. This method relies on the <a href="http://aws.amazon.com/about-aws/whats-new/2010/11/09/cloudfront-adds-support-for-custom-origins-and-sla/">custom origin functionality</a> announced late last year when CloudFront came out of beta. But first, a little background. </p>
+<p>A CDN (<a href="http://en.wikipedia.org/wiki/Content_delivery_network">content distribution network</a>) is a network of servers that puts your files and content closer to the user requesting them, and thus they can get the quicker. Using a CDN has a nice side effect of offloading some work from your own server too &#8211; which if you use Apache means less processes on your server for each customer.</p>
+<p>When Amazon first announced CloudFront I got very excited about the prospect of writing an extension to automatically sync a Magento store&#8217;s media with an S3 bucket, to enable this simple, affordable CDN solution. Alas, it turned out to be quite hairy dealing with the subtle race conditions that can occur when first accessing a specific media file that may not be available on the CDN yet.</p>
+<p>With the introduction of custom origin functionality there is no situation where the CDN won&#8217;t have the file. If the CDN doesn&#8217;t have the file, it gets it from the underlying source server, if it already has it, it serves it. This means the first request for a file will be a bit slower, but after that it&#8217;ll be quick.</p>
+<p>So to make a CloudFront distribution work in Magento it only takes two steps.<br />
+<span id="more-1472"></span></p>
+<h3>Step 1: Create the CloudFront distribution</h3>
+<p>You can do this on the command line with the aws tools, or through the Amazon AWS console. Let&#8217;s take pictures of the console, <em>it&#8217;s getting late</em>.</p>
+<p>First <a href="https://console.aws.amazon.com/ec2/login!doLogin">login to the console</a>, and select the <a href="https://console.aws.amazon.com/cloudfront/">CloudFront tab</a>. Click the Create Distribution button as shown.</p>
+<p><img src="../../../../cdn.aschroder.com/wp-content/uploads/2011/05/create-distribution.png" alt="Create a cloudfront distribution" title="create-distribution" width="372" height="80" class="aligncenter size-full wp-image-1475" srcset="http://cdn.aschroder.com/wp-content/uploads/2011/05/create-distribution.png 372w, http://cdn.aschroder.com/wp-content/uploads/2011/05/create-distribution-300x64.png 300w" sizes="(max-width: 372px) 100vw, 372px" /></p>
+<p>The dialog box that pops up will guide you through the creation process. There&#8217;s not much to it.</p>
+<p><img src="../../../../cdn.aschroder.com/wp-content/uploads/2011/05/specify-custom-origin2.png" alt="Specify Custom Origin" title="specify-custom-origin" width="497" height="359" class="aligncenter size-full wp-image-1480" srcset="http://cdn.aschroder.com/wp-content/uploads/2011/05/specify-custom-origin2.png 497w, http://cdn.aschroder.com/wp-content/uploads/2011/05/specify-custom-origin2-300x216.png 300w" sizes="(max-width: 497px) 100vw, 497px" /></p>
+<p>Specify a custom origin and then enter the current domain name of your site as the origin. The option to match the viewer is not required, it makes little difference either way as far as I&#8217;m aware. </p>
+<p>In the next step you will probably want HTTPS and HTTP, and it&#8217;s a chance to add the CNAME in advance (if you think you want a CNAME, read the next section first). If you&#8217;re unsure don&#8217;t worry you can edit it later.</p>
+<p><img src="../../../../cdn.aschroder.com/wp-content/uploads/2011/05/choose-https-and-specify-cname.png" alt="Choose HTTPS, and optionally a CNAME" title="choose-https-and-specify-cname" width="518" height="415" class="aligncenter size-full wp-image-1477" srcset="http://cdn.aschroder.com/wp-content/uploads/2011/05/choose-https-and-specify-cname.png 518w, http://cdn.aschroder.com/wp-content/uploads/2011/05/choose-https-and-specify-cname-300x240.png 300w" sizes="(max-width: 518px) 100vw, 518px" /></p>
+<p>Review your configuration and save the distribution, it can take 10 minutes or so to become available, you can test it by going to the url for  your store logo (something) like this <code>http://d56xhwfHe9rhq4.cloudfront.net/skin/frontend/package/theme/images/logo.gif</code>. You should see your logo.</p>
+<h3>Step 2: Configure Magento to use it</h3>
+<p>Base url&#8217;s can be a major pain in modern web apps, but Magento has a pretty solid framework for them that makes adding a CDN very easy.</p>
+<p>Navigate to <code>System -> Configuration -> Web</code> and specify your distribution URL from step 1 as the Base Skin URL and Base Media URL in the Unsecure section.</p>
+<p>The URL&#8217;s for skin and media should look something like this, don&#8217;t forget the trailing slash:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="html" style="font-family:monospace;">http://d56xhwfHe9rhq4.cloudfront.net/skin/
+http://d56xhwfHe9rhq4.cloudfront.net/media/</pre></td></tr></table><p class="theCode" style="display:none;">http://d56xhwfHe9rhq4.cloudfront.net/skin/
+http://d56xhwfHe9rhq4.cloudfront.net/media/</p></div>
+
+<p><em>Note: You can add this in the Secure section too if you want to, just make sure you specified HTTPS in your CloudFront distribution when you created it. Also cloudfront doesn&#8217;t do custom SSL certificates, so if you do the CNAME step below, you won&#8217;t also be able to do HTTPS connections with it. I&#8217;m sure Amazon&#8217;ll be working on this, they have it for the <a href="http://aws.amazon.com/elasticloadbalancing/">elastic load balancer already</a>.</em></p>
+<h3>Extra for experts: CNAME the distribution</h3>
+<p>So the only bummer about what we have so far is the name of the server the files are coming from, it looks a bit dumb if the user sees it in the browser status bar, or looks at the source. We can mask it with a <a href="http://en.wikipedia.org/wiki/CNAME_record">CNAME</a>, for example we can map content.yourdomain.com to the CloudFront distribution you created. I won&#8217;t cover creating a CNAME here, it&#8217;s <a href="http://www.google.com/support/a/bin/answer.py?answer=47283">well documented in a number of places</a> and your host or domain registrar will be able to point you to a suitable guide.</p>
+<p>Once you have the CNAME setup <em>and</em> it has propgated around the internet, you can safely update the base url&#8217;s in your Magento configuration to point to your nice tidy CNAME domain, like content.yourdomain.com. Only put them in the Unsecure section though, as Cloudfront cannot serve HTTPS content from custom CNAME&#8217;s <em>yet</em>.</p>
+<h3>Javascript and the Same Origin Policy</h3>
+<p>Javascript files are mostly static too, just like css, skin and meda files. This means that we can serve them from a CDN. There&#8217;s a catch though. Magento&#8217;s own admin section has a little note about javascript loading from a subdomain. I understand this is a reference to the <a href="http://en.wikipedia.org/wiki/Same_origin_policy">same origin policy that browsers use to protect you from malicious javascript</a> from other domains.</p>
+<p>Javascript loaded by a <code>script</code> tag should be fine either way, but I haven&#8217;t tested it extensively and wouldn&#8217;t suggest you use a CloudFront distribution or a CNAME&#8217;d subdomain as your javascript base url on a production Magento store unless you had tested it first. If anyone has more information about this please let me know.</p>
+<h3>What about updating the files when they change?</h3>
+<p>Good question! Files will expire from the network based on the <a href="http://docs.amazonwebservices.com/AmazonCloudFront/latest/DeveloperGuide/index.html?Expiration.html">expiry specified when they were retrieved</a>. I&#8217;m assuming in a production webstore these things won&#8217;t be changing too often, a CDN setup wouldn&#8217;t be good for a store whose product images or logo change frequently for example.</p>
+<p>If you really need a file to change quickly then you can either revert to not using the CDN (i.e undo step 2 above) or you can <a href="http://docs.amazonwebservices.com/AmazonCloudFront/latest/DeveloperGuide/index.html?Invalidation.html">issue an invalidation request</a>. This doesn&#8217;t have a UI yet, so to do it you need to be comfortable with some scripting. Issuing an invalidation request for all files in a particular theme, or all media files from the Magento admin would be a simple but quite useful extension, I think.</p>
+<p>So that&#8217;s it, putting your Magento static files onto a enterprise quality CDN like CloudFront is easy and fun!</p>
+<div class='yarpp-related'>
+<p>You might also be interested in:<ol>
+<li><a href="../../../2009/05/magento-javascript-404-breaks-admin-menu-solved/index.html" rel="bookmark" title="Magento javascript 404 breaks Admin menu&#8230;solved!">Magento javascript 404 breaks Admin menu&#8230;solved! </a></li>
+<li><a href="../../../2010/08/magento-and-google-analytics-use-first-touch-tracking-to-see-how-your-customers-first-visit-your-store/index.html" rel="bookmark" title="Magento and Google Analytics &#8211; Use &#8216;First Touch&#8217; Tracking To See How Your Customers First Visit Your Store">Magento and Google Analytics &#8211; Use &#8216;First Touch&#8217; Tracking To See How Your Customers First Visit Your Store </a></li>
+<li><a href="../../../2010/05/installing-a-magento-extension-manually-via-ftp-or-ssh/index.html" rel="bookmark" title="Installing a Magento Extension manually via FTP or SSH">Installing a Magento Extension manually via FTP or SSH </a></li>
+<li><a href="../../02/magento-imagine-2011-presentation-notes-and-links-engineering-your-magento-store/index.html" rel="bookmark" title="Magento Imagine 2011 Presentation Notes and Links: Engineering your Magento Store">Magento Imagine 2011 Presentation Notes and Links: Engineering your Magento Store </a></li>
+<li><a href="../../../2010/02/mailchimp-magento-how-to-get-autoresponders-working-with-the-api/index.html" rel="bookmark" title="Mailchimp + Magento: How to get autoresponders working with the API">Mailchimp + Magento: How to get autoresponders working with the API </a></li>
+</ol></p>
+</div>
+		</div><!-- .entry-content -->
+		<nav id="post-navigation" class="navigation post-navigation" role="navigation" aria-label="Post Navigation"><span class="screen-reader-text">Post navigation</span><div class="nav-links"><div class="nav-previous"><a href="../../04/on-working-from-pukekohe/index.html" rel="prev">On working from Pukekohe</a></div><div class="nav-next"><a href="../../06/export-new-zealand-finalist-world-wide-access-and-im-on-the-fm/index.html" rel="next">Export New Zealand Finalist: World Wide Access, and I&#8217;m on the FM!</a></div></div></nav>
+<section id="comments" class="comments-area" aria-label="Post Comments">
+
+			<h2 class="comments-title">
+			46 thoughts on &ldquo;<span>Magento and Amazon&#8217;s CloudFront CDN &#8211; The Easy Way</span>&rdquo;		</h2>
+
+		
+		<ol class="comment-list">
+					<li class="comment even thread-even depth-1" id="comment-2277">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/c80659e68432d7b7df3fd940c3e968aa?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/c80659e68432d7b7df3fd940c3e968aa?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://ebizmarts.com/' rel='external nofollow' class='url'>Ignacio</a></cite>			</div>
+			
+			<a href="index.html#comment-2277" class="comment-date">
+				<time datetime="2011-05-02T05:10:37+00:00">May 2, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2277" class="comment-content">
+				<div class="comment-text">
+		<p>Couple this with the (awesome) One Pica&#8217;s CDN extension and your store will literally fly 🙂 <a href="http://www.magentocommerce.com/magento-connect/One+Pica/extension/1279/one-pica-image-cdn" rel="nofollow">http://www.magentocommerce.com/magento-connect/One+Pica/extension/1279/one-pica-image-cdn</a></p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-2278">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-2278" class="comment-date">
+				<time datetime="2011-05-02T14:38:37+00:00">May 2, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2278" class="comment-content">
+				<div class="comment-text">
+		<p>Can you elaborate on that a little Ignacio, doesn&#8217;t the extension do the same as what I am proposing can be done here without one?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2279">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/c80659e68432d7b7df3fd940c3e968aa?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/c80659e68432d7b7df3fd940c3e968aa?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://ebizmarts.com/' rel='external nofollow' class='url'>Ignacio</a></cite>			</div>
+			
+			<a href="index.html#comment-2279" class="comment-date">
+				<time datetime="2011-05-02T16:30:23+00:00">May 2, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2279" class="comment-content">
+				<div class="comment-text">
+		<p>Ashley,</p>
+<p>From One Pica&#8217;s CDN extension description:<br />
+&#8220;&#8230;The extension automatically distributes category and properly-sized product images to a CDN when they are referenced in the Magento templates. This code extends the functionality of category and product image getUrl() to determine the existence of the file on the CDN, push the image to the correct location if it isn&#8217;t found, and return the CDN-specific URL&#8230;&#8221;</p>
+<p>So, your article covers the skin and media files, One Pica&#8217;s CDN stuff covers products and categories images, and it works great, we have used it in tens of sites with great results, it works seamlessly integrated into Magento, good stuff.</p>
+<p>Cheers!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-2280">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-2280" class="comment-date">
+				<time datetime="2011-05-02T16:39:27+00:00">May 2, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2280" class="comment-content">
+				<div class="comment-text">
+		<p>I think with CloudFront custom origin&#8217;s you&#8217;ll get this functionality too?</p>
+<p>All the product and category images are located under <code>media/catalog</code> and all references to media files are aimed at the CloudFront distribution with this setup.</p>
+<p>When CloudFront is missing a file it simply fetches it, so for example on a product page it may request:<br />
+<code>cdn.domain.com/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/n/o/nooskimouse01.2.jpg</code></p>
+<p>Which if cloud front does not have it will get and cache from:<br />
+ <code>www.domain.com/media/catalog/product/cache/3/image/9df78eab33525d08d6e5fb8d27136e95/n/o/nooskimouse01.2.jpg</code></p>
+<p>So I think it&#8217;s covered, I may have missed something though?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2283">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/c80659e68432d7b7df3fd940c3e968aa?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/c80659e68432d7b7df3fd940c3e968aa?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://ebizmarts.com/' rel='external nofollow' class='url'>Ignacio</a></cite>			</div>
+			
+			<a href="index.html#comment-2283" class="comment-date">
+				<time datetime="2011-05-03T03:05:17+00:00">May 3, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2283" class="comment-content">
+				<div class="comment-text">
+		<p>@Ashely,</p>
+<p>Well, that&#8217;s a partial solution for products and categories since you&#8217;ll be getting a lot of image links back to your site unless you frequently upload new images. </p>
+<p>One Pica&#8217;s CDN extension is integrated with Magento in a way that it&#8217;ll upload any image resource that has not been uploaded yet, and even better, it uses Magento&#8217;s cache features to re-upload stuff when you clear image&#8217;s cache.</p>
+<p>In short words, once installed and setup properly, you don&#8217;t have to worry about manually uploading products or images, the extension will do the nasty job on demand and in background.</p>
+<p>Cheers!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2284">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/c37dea93499cf89d22e2155223738ed4?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/c37dea93499cf89d22e2155223738ed4?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.stratashops.com/' rel='external nofollow' class='url'>John</a></cite>			</div>
+			
+			<a href="index.html#comment-2284" class="comment-date">
+				<time datetime="2011-05-03T04:54:49+00:00">May 3, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2284" class="comment-content">
+				<div class="comment-text">
+		<p>I think this article is a much more efficient way of setting up a CDN. My experience with the One Pica CDN extension has not been good. We have had a lot of compatibility issues and problems with really customized themes. Setting up what is outlined in this article doesn&#8217;t require any extension and works really well for a production site. We don&#8217;t use Amazon (it was too slow), we use Edgecast setup the exact same way.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2288">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/a8ed3ad201a99a7142168fce7ba2b938?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/a8ed3ad201a99a7142168fce7ba2b938?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.evogue.co.uk/' rel='external nofollow' class='url'>ldn_tech_exec</a></cite>			</div>
+			
+			<a href="index.html#comment-2288" class="comment-date">
+				<time datetime="2011-05-09T08:15:17+00:00">May 9, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2288" class="comment-content">
+				<div class="comment-text">
+		<p>@Ignacio @Ashley would we be able to use OnePica for the catalog images and this method for all else in the media folder (excluding catalog) ?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-2289">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-2289" class="comment-date">
+				<time datetime="2011-05-09T13:10:32+00:00">May 9, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2289" class="comment-content">
+				<div class="comment-text">
+		<p>I&#8217;m still not 100% convinced you need to do anything special for the catalog images, in the test store I set up, catalog images were being served over the CDN as expected&#8230;</p>
+<p>The invalidation/expiry may be an issue &#8211; in which case a more robust method of handling what content is and is not in the CDN network would be useful.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2291">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/a8ed3ad201a99a7142168fce7ba2b938?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/a8ed3ad201a99a7142168fce7ba2b938?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.evogue.co.uk/' rel='external nofollow' class='url'>ldn_tech_exec</a></cite>			</div>
+			
+			<a href="index.html#comment-2291" class="comment-date">
+				<time datetime="2011-05-10T02:03:06+00:00">May 10, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2291" class="comment-content">
+				<div class="comment-text">
+		<p>Tried OnePica, can&#8217;t get it to work on CloudFront&#8230; maybe we&#8217;re doing something wrong &#8211; could do with an example. </p>
+<p>@Ashley your method works, but are you sure caching is an issue?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2292">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/993c470a82202ee08ecc074c0342ddbe?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/993c470a82202ee08ecc074c0342ddbe?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.dpbe-com.com/' rel='external nofollow' class='url'>Billy Ryan</a></cite>			</div>
+			
+			<a href="index.html#comment-2292" class="comment-date">
+				<time datetime="2011-05-10T09:47:12+00:00">May 10, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2292" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Ashley, would this also serve as a site backup?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2337">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/a8cf71cc5773a169f7c8ba87d8876495?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/a8cf71cc5773a169f7c8ba87d8876495?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">dbcn</cite>			</div>
+			
+			<a href="index.html#comment-2337" class="comment-date">
+				<time datetime="2011-06-02T06:58:51+00:00">June 2, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2337" class="comment-content">
+				<div class="comment-text">
+		<p>I&#8217;m confused &#8211; does that mean you need to view the page, and then upload the source image to the cdn with the random cache path that magento generates? That seems like a pain.</p>
+<p>Since cloudfront is caching the image anyway, why can&#8217;t Magento just pick the image straight out of the cdn?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2342">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='../../../index.html' rel='external nofollow' class='url'>Ashley</a></cite>			</div>
+			
+			<a href="index.html#comment-2342" class="comment-date">
+				<time datetime="2011-06-02T15:22:35+00:00">June 2, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2342" class="comment-content">
+				<div class="comment-text">
+		<p>@dbcn &#8211; no, Cloudfront pulls the file when it realizes it does not have it.</p>
+<p>So Magento renders a page for a say &#8216;product A&#8217; and when it writes out the url for the image it might be src=&#8221;www.domain.com/cache-key/image.png&#8221;. So normally your browser then requests <a href="http://www.domain.com/cache-key/image.png" rel="nofollow">http://www.domain.com/cache-key/image.png</a>, gets the image and renders it.</p>
+<p>This change tells Magento to write out a different url, so instead of <a href="http://www.domain.com/" rel="nofollow">http://www.domain.com</a> it is cdn.domain.com. So now when that url is requested by your browser, it is requesting it from Cloudfront. If Cloudfront already has the file, it will serve it fast from an edge location. If it doesn&#8217;t have the image it will fetch it from <a href="http://www.domain.com/" rel="nofollow">http://www.domain.com</a> (being the Cloudfront origin you defined when you set it up) and that&#8217;s where Magento would _normally_ serve the image up from. Hope that explains it?</p>
+<p>@Billy &#8211; no, I mean a lot of files are mirrored on the Amazon servers as a result of using this technique, but you cannot really access them in the event of a data loss. What you need is <a href="../../04/cloud-backup-case-study-detecting-if-magento-cron-is-running-in-your-extensions/index.html" rel="nofollow">Cloud Backup</a>.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2375">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/30f6b0c86fa509bfe7f5f04d1916234c?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/30f6b0c86fa509bfe7f5f04d1916234c?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://sahil.primecrest.com/' rel='external nofollow' class='url'>Sahil</a></cite>			</div>
+			
+			<a href="index.html#comment-2375" class="comment-date">
+				<time datetime="2011-06-12T23:08:05+00:00">June 12, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2375" class="comment-content">
+				<div class="comment-text">
+		<p>@Ashley &#8211; Javascript works just fine. My entire static content is being served via CloudFront now. Working great on my store located at: <a href="http://www.pureherbalcure.com/" rel="nofollow">http://www.PureHerbalCure.com</a></p>
+<p>@Ignacio &#8211; Extension is way to complicated to do something that can be done in a simpler way as Ashley has demonstrated here. I did install the extension on a test store, scratched my head and forgot about it a while later. 🙂</p>
+<p>@ldn_tech_exec &#8211; Yes, caching is an issue with this. Specially when you move onto SSL during checkout. I have caching disabled on my store for this reason. The downside is that http requests on CloudFront increase tremendously.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2415">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/ec72cca1ba54d7e26835457364e934e8?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/ec72cca1ba54d7e26835457364e934e8?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.carphunter.org.uk/' rel='external nofollow' class='url'>UK Fishing</a></cite>			</div>
+			
+			<a href="index.html#comment-2415" class="comment-date">
+				<time datetime="2011-06-30T15:07:41+00:00">June 30, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2415" class="comment-content">
+				<div class="comment-text">
+		<p>I was actually brushing up on the SMTP Pro until I read the CDN headline. After spending several days trying to get One PICA to work with RackSpace I finally gave up! I hope they can iron out all the bugs (as they claim they already have) and I will be back in there testing it again if they do. </p>
+<p>So, when Ashley throws a headline referring S3 setup it&#8217;s got to be worth the read and it is. The benefits of a CDN make it an absolute must especially when Google has ear marked page load speed as an important factor in it&#8217;s page ranking (along side all those other important factors).</p>
+<p>I haven&#8217;t tested One PICA&#8217;s performance in the S3 environment, as I am hosting on a Rackspace Cloud Server and wanted to keep everything in-house so-to-speak. Still I have setup an Amazon account as standby just because I like to cover all the bases.</p>
+<p>Ashley&#8217;s (sorry to talk about you in the third person Ashley &#8211; I know your listening) setup with Skin and Media URL&#8217;s is for all intense purposes how I assumed the setup should be as standard for any CDN ie. simple! In fact I guess what all us none-developers are looking for is a plug-n-play extension that just works rather than having to learn php modules, Apache, pear and all those shenanigans like bug fixes. </p>
+<p>Before I go off and have a play with the rather splendid SMTP Pro I just wanted to say, RackSpace keeps getting a kickin for not being able to host magento on Cloud Servers but this is all nonsense. I currently have seven stores running on one server using less than 1.5gb or ram and it handles all Apache processes quite nicely (especially after a bit of database tweaking). Getting the CDN to work would just mean faster sites &#8211; and we all love speed don&#8217;t we!!!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2418">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/284aa207ef853b49fb59fcb765bebd05?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/284aa207ef853b49fb59fcb765bebd05?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://mynameisgabe.com/' rel='external nofollow' class='url'>Gabe</a></cite>			</div>
+			
+			<a href="index.html#comment-2418" class="comment-date">
+				<time datetime="2011-07-01T10:02:15+00:00">July 1, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2418" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks for the article!</p>
+<p>I tried doing this myself before reading and I&#8217;ve experienced a side effect while trying to use a CDN (cloudfront) by changing the URL&#8217;s in the default magento config &#8211; when I try to upload images for products (or any other images, probably), the javascript doesn&#8217;t execute.  I don&#8217;t see any errors, nothing.  I click on &#8220;Browse Files&#8221;, I choose the file I want to upload, and it&#8217;s as if I did nothing.  The little ajax progress bar never appears.</p>
+<p>Has anyone experienced this?</p>
+<p>I&#8217;m not running on https, but I am using a cname pointing to cloudfront.  I thought that might be better for cross-domain javascript execution.</p>
+<p>I think what may be happening is that the ajax is executing and trying to post directly to the CDN instead of my web server and failing silently.  If that is the case, how do you work around this?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-2419">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-2419" class="comment-date">
+				<time datetime="2011-07-01T19:38:32+00:00">July 1, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2419" class="comment-content">
+				<div class="comment-text">
+		<p>I know what you mean <em>UK Fishing</em> the other CDN extensions just seemed to make things harder than it felt like they needed to be. This solution seems pretty easy, though <a href="comment-page-1/index.html#comment-2418" rel="nofollow">Gabe has pointed out there could be some weaknesses</a> with it.</p>
+<p>Gabe, I haven&#8217;t tested that &#8211; but I think javascript is mostly OK, certainly I&#8217;ve had good feedback about it. It might actually be flash-based uploading that Magento does in that part of the admin? I&#8217;m not a big <del datetime="2011-07-02T03:33:53+00:00">fan</del> user of flash so I&#8217;m not sure how they do their security model. You could try disabling flash and see if Magento falls back to a plain HTML upload? (just as a test).</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2420">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/88989188d30c7b35573d2382e9876676?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/88989188d30c7b35573d2382e9876676?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Chris</cite>			</div>
+			
+			<a href="index.html#comment-2420" class="comment-date">
+				<time datetime="2011-07-01T21:05:53+00:00">July 1, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2420" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks Ashley for your excellent simplification of the how to implement a CDN with Magento. </p>
+<p>I sell large downloads which from time to time get updated&#8230;when I update one of these files, besides replacing the download file on my regular server, do I need to do anything to ensure that the Cloudfront version gets updated too, rather than continuing to serve its cached version?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2422">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/284aa207ef853b49fb59fcb765bebd05?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/284aa207ef853b49fb59fcb765bebd05?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://mynameisgabe.com/' rel='external nofollow' class='url'>Gabe</a></cite>			</div>
+			
+			<a href="index.html#comment-2422" class="comment-date">
+				<time datetime="2011-07-02T08:51:31+00:00">July 2, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2422" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Ashley &#8211; Thanks for the idea of turning off the flash.  I bet you anything that was the issue.</p>
+<p>I worked around the issue by putting the admin in a completely separate magento website, which does not use CDN urls.  Works like a charm.  =)  And since admin traffic should be pretty limited, I&#8217;m not worried about serving it&#8217;s assets through CDN.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2428">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/284aa207ef853b49fb59fcb765bebd05?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/284aa207ef853b49fb59fcb765bebd05?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://mynameisgabe.com/' rel='external nofollow' class='url'>Gabe</a></cite>			</div>
+			
+			<a href="index.html#comment-2428" class="comment-date">
+				<time datetime="2011-07-04T13:35:21+00:00">July 4, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2428" class="comment-content">
+				<div class="comment-text">
+		<p>Ashley &#8211; what do you use for cache busting cloudfront? Since appending timestamps to the end of url&#8217;s don&#8217;t work, I&#8217;ve seen others mention using dynamic asset paths handled by mod_rewrite and mapped back to the correct path name.  Might be a handy extension to put together.  Would need to have some way of telling magento to switch out media urls when you change css/js files.  Maybe just an option you update in the config panel that sets the dynamic part of the url.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-2429">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-2429" class="comment-date">
+				<time datetime="2011-07-05T12:47:11+00:00">July 5, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2429" class="comment-content">
+				<div class="comment-text">
+		<p>Good question Gabe. I&#8217;m currently only using it on sites where the static content is largely fixed (like my blog) and a couple of smaller webstores.</p>
+<p>I think the ideal would be a Magento admin UI to invalidate the content, but a simple approach is just to change the path as you suggest.</p>
+<p>Correct me if I am wrong (I haven&#8217;t tested this) but if you configure Magento to serve media from <code>cdn.you.com/abc/</code> and then later change it to <code>cdn.you.com/def/</code> then the cloudfront will see <em>all</em> images and content as new (i. a new path).</p>
+<p>So then you just need a symlink in the root of your store pointing to the real media location.</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #c20cb9; font-weight: bold;">ln</span> <span style="color: #660033;">-s</span> media abc
+<span style="color: #666666; font-style: italic;">#some time later when you release some new files</span>
+<span style="color: #c20cb9; font-weight: bold;">ln</span> <span style="color: #660033;">-s</span> media def</pre></td></tr></table><p class="theCode" style="display:none;">ln -s media abc
+#some time later when you release some new files
+ln -s media def</p></div>
+
+<p>If this works you could even use your version release number as the abc?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2446">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/ec72cca1ba54d7e26835457364e934e8?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/ec72cca1ba54d7e26835457364e934e8?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.bgun-shop.co.uk/' rel='external nofollow' class='url'>UK Fishing</a></cite>			</div>
+			
+			<a href="index.html#comment-2446" class="comment-date">
+				<time datetime="2011-07-13T12:36:04+00:00">July 13, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2446" class="comment-content">
+				<div class="comment-text">
+		<p>Gabe,</p>
+<p>&#8220;I tried doing this myself before reading and I’ve experienced a side effect while trying to use a CDN (cloudfront) by changing the URL’s in the default magento config – when I try to upload images for products (or any other images, probably), the javascript doesn’t execute. I don’t see any errors, nothing. I click on “Browse Files”, I choose the file I want to upload, and it’s as if I did nothing. The little ajax progress bar never appears.</p>
+<p>Has anyone experienced this?&#8221;</p>
+<p>Yes, currently going through this nightmare, exactly the same issues you experienced. After racking my brains all day (and night) I just can&#8217;t figure it out. Going to try disabling the One PICA extension and clear the cache to see if things return to normal.</p>
+<p>If you try to upload a larger file it runs through the uploading process but still results in the red box and remove button.</p>
+<p>Ashley Wan Kenobi your our only hope!!!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2447">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/ec72cca1ba54d7e26835457364e934e8?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/ec72cca1ba54d7e26835457364e934e8?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.bgun-shop.co.uk/' rel='external nofollow' class='url'>UK Fishing</a></cite>			</div>
+			
+			<a href="index.html#comment-2447" class="comment-date">
+				<time datetime="2011-07-13T13:46:19+00:00">July 13, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2447" class="comment-content">
+				<div class="comment-text">
+		<p>He&#8217;s back!!!</p>
+<p>I thought I would test disabling Flash as Ashley advised, this results in the disappearance of the Browse and Upload buttons.</p>
+<p>I agree with Gabe &#8220;I think what may be happening is that the ajax is executing and trying to post directly to the CDN instead of my web server and failing silently. If that is the case, how do you work around this?&#8221;</p>
+<p>Using One PICA CDN didn&#8217;t throw any problems directly (none that I was aware of anyhoo) and I was still able to upload images. Then changed the unsecure media URL to my Rackspace CDN URL to see if there was any more gains to be had, . As I listed new products I reverted back to the correct media URL {{unsecure}}media/ cleared cache &#8212; problems uploading images &#8220;No Flash loader&#8221;.</p>
+<p>Thankfully, I have backed up but before going down this route however I would like to crack this issue (don&#8217;t like defeat). But I can&#8217;t seem to get magento to look upon the media folder as a standard setup, like Gabe says it is almost as though it still thinks the upload is going the CDN route. How can I convince it otherwise &#8211; Flush Catalog Images Cache, Disable One PICA, Symlinks, pray to the baby Jesus!</p>
+<p>I&#8217;m off again&#8230;</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-2449">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-2449" class="comment-date">
+				<time datetime="2011-07-13T14:21:41+00:00">July 13, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2449" class="comment-content">
+				<div class="comment-text">
+		<p>Hi team, I&#8217;m flat out today so I can&#8217;t offer much help, but I just had a quick look at the uploader code &#8211; the flash code gets passed an endpoint where it sends the data. If that is the CDN url not the store base url then it&#8217;ll be trying to send the data to cloudfront (which it can&#8217;t do).</p>
+<p>You can see the url being passed in the html of the product edit page (inspect it with firebug).</p>
+<p>There&#8217;s a CDATA block that looks to have all the config, and what appears to be the url where flash will send the data.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2688">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/4f7bd5521ab5e27b418f693905cec111?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/4f7bd5521ab5e27b418f693905cec111?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Hendrikus</cite>			</div>
+			
+			<a href="index.html#comment-2688" class="comment-date">
+				<time datetime="2011-10-17T04:01:31+00:00">October 17, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2688" class="comment-content">
+				<div class="comment-text">
+		<p>@UK Fishing: did you manage to solve it? This could do the trick to force the backend to use the &#8220;local&#8221; files:</p>
+<p>Change the website scope in the System&gt;Config&gt;Web section of the admin to your frontend store, untick the &#8220;Use Website&#8221; checkbox and set the &#8220;Base Media URL&#8221; to the CDN. Change the scope back to &#8220;Default Config&#8221; and set the &#8220;Base Media URL&#8221; to {{unsecure_base_url}}media/<br />
+Adapted from: <a href="http://stackoverflow.com/questions/6657420/possible-javascript-issue-when-hosting-skin-files-on-cdn" rel="nofollow">http://stackoverflow.com/questions/6657420/possible-javascript-issue-when-hosting-skin-files-on-cdn</a></p>
+<p>@Ashley: did you had some feedback on using js files from a CDN?<br />
+If I google a bit about this, it seems fairly common practice to serve magento&#8217;s js files from a cdn with or without using a CNAME.</p>
+<p>Thanks!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2696">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/1136cfb867ad76755cfa45ad08457dd8?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/1136cfb867ad76755cfa45ad08457dd8?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://pakdoz.wordpress.com/' rel='external nofollow' class='url'>Pakdoz</a></cite>			</div>
+			
+			<a href="index.html#comment-2696" class="comment-date">
+				<time datetime="2011-10-22T07:52:01+00:00">October 22, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2696" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks Ashley, your tutorial is very helpful! I always find alternative solution before I decide to use plugin/extensions.<br />
+Some extensions are suck!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2919">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/f0bff29ba2822650fffc92cf9567abca?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/f0bff29ba2822650fffc92cf9567abca?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Jonas</cite>			</div>
+			
+			<a href="index.html#comment-2919" class="comment-date">
+				<time datetime="2012-02-02T14:59:38+00:00">February 2, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2919" class="comment-content">
+				<div class="comment-text">
+		<p>Very nice Ashley!  I&#8217;m currently using Pica CDN with decent results, I&#8217;m most likely going to switch to your suggestion as the benefits of js/css on cloudfront are really appealing.</p>
+<p>This may be a bit off topic, but I bet you&#8217;d have a lot of interested parties in a Magento AWS mirroring set up.  Let me know if this would be of interest to you.</p>
+<p>Thanks,<br />
+Jonas</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-4770">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/eac717c631c2f5448c0d6898a99bb602?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/eac717c631c2f5448c0d6898a99bb602?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">David</cite>			</div>
+			
+			<a href="index.html#comment-4770" class="comment-date">
+				<time datetime="2012-04-28T07:02:12+00:00">April 28, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4770" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks for this great article! Let me ask you a question:</p>
+<p>Our site is not kind of beta stage.However, we&#8217;re uploading/changing new static content regularly and it&#8217;s like a process will not be ending soon. Changing the product images with the new ones such as uploading high quality thumbnails instead of old ones, making some design changes if needed.</p>
+<p>As you also know, Amazon Cloudfront has 24 hours caching expiry so: do we need to use some kind of purge tool developed by 3rd party sources? <a href="https://chrome.google.com/webstore/detail/gadbenpggeagjgnameagcpjnjdlckkpb/reviews" rel="nofollow">https://chrome.google.com/webstore/detail/gadbenpggeagjgnameagcpjnjdlckkpb/reviews</a></p>
+<p>We don&#8217;t know if the users using Amazon CDN , is aware of this tool, if they do , we need to get some feedback from them if the extension is working well or not.</p>
+<p>Thanks,<br />
+David</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4776">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/4e5b6b0118be1c4adaaddbc98b5062c9?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/4e5b6b0118be1c4adaaddbc98b5062c9?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">jonas</cite>			</div>
+			
+			<a href="index.html#comment-4776" class="comment-date">
+				<time datetime="2012-05-01T07:18:03+00:00">May 1, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4776" class="comment-content">
+				<div class="comment-text">
+		<p>super duper bummer that no one has written a plug-in for mage like this&#8230;</p>
+<p>RTMP Streaming Video Player allows you to quickly implement RTMP streaming video on your site for Flowplayer and JWPlayer. Supports all popular RTMP streaming services (Cloudfront, Adobe, Wowza, etc.). </p>
+<p>The commercial version also supports RTMP Streaming Video Player allows you to quickly implement RTMP streaming video on your site for Flowplayer and JWPlayer. Supports all popular RTMP streaming services (Cloudfront, Adobe, Wowza, etc.). The commercial version also supports Cloudfront private distribution streaming with authenticated (expiring) url&#8217;s. . </p>
+<p>&#8212;</p>
+<p>what i mean is Cloudfront private distribution streaming with authenticated (expiring) url&#8217;s. . protect any content </p>
+<p>as usual, what is trivial in wordpress is not available in mage</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-4777">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/4e5b6b0118be1c4adaaddbc98b5062c9?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/4e5b6b0118be1c4adaaddbc98b5062c9?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">jonas</cite>			</div>
+			
+			<a href="index.html#comment-4777" class="comment-date">
+				<time datetime="2012-05-01T07:24:33+00:00">May 1, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4777" class="comment-content">
+				<div class="comment-text">
+		<p>oh by the way, this is a cool approach to offloading media. I am currently doing it through my host (its included in the hosting package)dont know which would be &#8220;faster / better&#8221;</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4826">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/956125030b216f4d83d0205bef388285?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/956125030b216f4d83d0205bef388285?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Michael</cite>			</div>
+			
+			<a href="index.html#comment-4826" class="comment-date">
+				<time datetime="2012-05-25T17:11:18+00:00">May 25, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4826" class="comment-content">
+				<div class="comment-text">
+		<p>This tutorial is over a year old. Nevertheless, it worked like a charm. Got me up and running in a snap! Now all my images pull from Amazon&#8217;s CDN. Next step, edgecast!</p>
+<p>Thank you for the great tutorial Ashley!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-4830">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/8f966468d8c3406628baa418a7517fab?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/8f966468d8c3406628baa418a7517fab?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.musstard.com/' rel='external nofollow' class='url'>gondo</a></cite>			</div>
+			
+			<a href="index.html#comment-4830" class="comment-date">
+				<time datetime="2012-05-28T01:20:25+00:00">May 28, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4830" class="comment-content">
+				<div class="comment-text">
+		<p>hi<br />
+it was extremely easy to follow your tutorial and set magento to use cloudfront.<br />
+i&#8217;ve set cdn1 subdomain via CNAME but problem what i face now is, that the whole site is actually available on this subdomain what is not good for SEO purposes &#8211; duplicate content.<br />
+is there any way how to restrict content on cloudfront? so it loads just images and javascript but not actual html or php files?<br />
+ta</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4851">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/ebd06bcd6fe3686e35fbe8a3f563e530?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/ebd06bcd6fe3686e35fbe8a3f563e530?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Kate</cite>			</div>
+			
+			<a href="index.html#comment-4851" class="comment-date">
+				<time datetime="2012-06-23T15:04:47+00:00">June 23, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4851" class="comment-content">
+				<div class="comment-text">
+		<p>Sorry if this is a silly question but when it came to creating your CNAME, what did you put in the points to field? </p>
+<p>Thanks!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-4867">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/ebd06bcd6fe3686e35fbe8a3f563e530?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/ebd06bcd6fe3686e35fbe8a3f563e530?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Kate</cite>			</div>
+			
+			<a href="index.html#comment-4867" class="comment-date">
+				<time datetime="2012-07-05T17:50:02+00:00">July 5, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4867" class="comment-content">
+				<div class="comment-text">
+		<p>It was a dumb question and I figured this out =)</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4872">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/eee09809959912a5981b72e8fbed1ac8?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/eee09809959912a5981b72e8fbed1ac8?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Brett</cite>			</div>
+			
+			<a href="index.html#comment-4872" class="comment-date">
+				<time datetime="2012-07-08T21:05:09+00:00">July 8, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4872" class="comment-content">
+				<div class="comment-text">
+		<p>Amazon&#8217;s UI has changed a bit, but this tutorial still works perfectly. Getting it set up with CNAMES took just a few minutes. Thanks a lot 🙂</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-4875">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/6641216eac308eb68b52fc9cd43525cf?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/6641216eac308eb68b52fc9cd43525cf?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://leonstafford.com/' rel='external nofollow' class='url'>Leon Stafford</a></cite>			</div>
+			
+			<a href="index.html#comment-4875" class="comment-date">
+				<time datetime="2012-07-11T09:07:06+00:00">July 11, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4875" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks for this. </p>
+<p>New to Magento and have a dog of a site I&#8217;m taking over, so trying to squeeze each bit of performance out.</p>
+<p>Setup media.domain.com as origin (subdomain pointed to domain.com/media) and cdn.domain.com as CNAME. Actual implementation took all of 5mins after reading through your guide. Had setup Edgecast via MediaTemple before for WordPress, but somehow my mind easily gets confused over the order of pulling between origin, host and all the subdomain redirects 😛</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4949">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/b320de487ee66000cb0b5bafd0127ddf?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/b320de487ee66000cb0b5bafd0127ddf?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Gordon Knoppe</cite>			</div>
+			
+			<a href="index.html#comment-4949" class="comment-date">
+				<time datetime="2012-08-16T21:11:13+00:00">August 16, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4949" class="comment-content">
+				<div class="comment-text">
+		<p>Great article for getting started with Cloudfront and Magento.  After setting this up it didn&#8217;t take long to realize how great Cloudfront is for CDN but that the invalidation was painful.  Later, after reading up on html5boilerplate and their solution for using &#8220;cache busting&#8221; with far-future expires headers it dawned on me that the same applied to CDN and a module would easily handle this in Magento.</p>
+<p>Boilerplate article: <a href="https://github.com/h5bp/html5-boilerplate/wiki/cachebusting" rel="nofollow">https://github.com/h5bp/html5-boilerplate/wiki/cachebusting</a></p>
+<p>My module, Magento Cachebuster: <a href="https://github.com/gknoppe-guidance/magento-cachebuster" rel="nofollow">https://github.com/gknoppe-guidance/magento-cachebuster</a></p>
+<p>Hope it helps everyone</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-4975">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/b0cb3bec522606ac779bcfe821bea5e0?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/b0cb3bec522606ac779bcfe821bea5e0?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.daijoubu.ws/' rel='external nofollow' class='url'>Raphael Suzuki</a></cite>			</div>
+			
+			<a href="index.html#comment-4975" class="comment-date">
+				<time datetime="2012-09-01T15:02:51+00:00">September 1, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4975" class="comment-content">
+				<div class="comment-text">
+		<p>Well, this method won&#8217;t invalidate OnePica extension at all, since it is aimed primarly at S3 and other CDNs without custom origin pull support (CloudFront support is relatively new).</p>
+<p>Otherwise great article, Ashley, as always!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-9670">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/56aa4cdf6746570adf8b7caf7754762c?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/56aa4cdf6746570adf8b7caf7754762c?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.naturkost.com/' rel='external nofollow' class='url'>Jan (naturkost.com)</a></cite>			</div>
+			
+			<a href="index.html#comment-9670" class="comment-date">
+				<time datetime="2013-02-04T15:21:43+00:00">February 4, 2013</time>			</a>
+		</div>
+				<div id="div-comment-9670" class="comment-content">
+				<div class="comment-text">
+		<p>Great post, thank you.</p>
+<p>But instead of the original domain (as origin for the static files) like <a href="http://www.domain.tld/" rel="nofollow">http://www.domain.tld</a> I recommend setting up an own host for just that purpose, e.g. cdn-origin.domain.tld and to configure the host in a way that only the directories /media, /skin and /js can be accessed.</p>
+<p>This will prevent your setup from producing duplicate content.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-9685">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/b4654703d91165cfcb3472a32cc42a5f?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/b4654703d91165cfcb3472a32cc42a5f?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.nmediasystems.com/' rel='external nofollow' class='url'>Serge</a></cite>			</div>
+			
+			<a href="index.html#comment-9685" class="comment-date">
+				<time datetime="2013-02-11T02:56:11+00:00">February 11, 2013</time>			</a>
+		</div>
+				<div id="div-comment-9685" class="comment-content">
+				<div class="comment-text">
+		<p>I would also suggest to have a look at GoGrid cdn which is edgecast reseller and it is so much faster than Amazon cloud front!<br />
+<a href="http://blog.ryankearney.com/2009/12/comparing-cdn-performance-part-2/" rel="nofollow">http://blog.ryankearney.com/2009/12/comparing-cdn-performance-part-2/</a></p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-10140">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/c8ecea9a6b56a96284d48d604811fec5?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/c8ecea9a6b56a96284d48d604811fec5?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://wysada.com/' rel='external nofollow' class='url'>Azzam</a></cite>			</div>
+			
+			<a href="index.html#comment-10140" class="comment-date">
+				<time datetime="2013-04-27T12:12:51+00:00">April 27, 2013</time>			</a>
+		</div>
+				<div id="div-comment-10140" class="comment-content">
+				<div class="comment-text">
+		<p>@Jan,</p>
+<p>I agree with you, that is definitely a smarter way of doing it. But, what about the https?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-10238">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/c92556123177bd35a5d59c1dc7045720?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/c92556123177bd35a5d59c1dc7045720?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Kalen Jordan</cite>			</div>
+			
+			<a href="index.html#comment-10238" class="comment-date">
+				<time datetime="2013-05-20T12:55:55+00:00">May 20, 2013</time>			</a>
+		</div>
+				<div id="div-comment-10238" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks Ashley!  Great resource here.  I know a few people in the comments asked about a module to help with the cache-busting.  I recently stumbled onto this module by Guidance:<br />
+<a href="https://github.com/gknoppe-guidance/magento-cachebuster" rel="nofollow">https://github.com/gknoppe-guidance/magento-cachebuster</a></p>
+<p>I&#8217;m checking it out myself now.  Haven&#8217;t deployed it yet.  I think the only thing that I&#8217;m wondering is what the performance hit looks like.  The way that it works is that it observes controller_action_postdispatch, parses and replaces the HTML using regular expressions.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-10239">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='../../../index.html' rel='external nofollow' class='url'>ashley</a></cite>			</div>
+			
+			<a href="index.html#comment-10239" class="comment-date">
+				<time datetime="2013-05-20T13:29:17+00:00">May 20, 2013</time>			</a>
+		</div>
+				<div id="div-comment-10239" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Kalen, thanks for the feedback.</p>
+<p>I have seen that extension and agree that it seems like quite a lot of overhead.</p>
+<p>I think a better way would be to change the .htaccess to treat a certain type of subdirectory in the path as not being there.</p>
+<p>For example:</p>
+<p><a href="http://www.yourstore.com/content-2013-05-21/skin" rel="nofollow">http://www.yourstore.com/content-2013-05-21/skin</a><br />
+<a href="http://www.yourstore.com/content-2013-05-21/js" rel="nofollow">http://www.yourstore.com/content-2013-05-21/js</a><br />
+&#8230;</p>
+<p>So those just get mapped to the underlying skin and js directories.</p>
+<p>This way the extension could simply change the base url to the new date (or whatever pattern you like, maybe unix timestamps) to cause a full invalidation of all static assets. Then Magento&#8217;s built in URL functionality should &#8216;just work&#8217;, right?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-10246">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/5443cdbaa889350cff1705aff033532e?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/5443cdbaa889350cff1705aff033532e?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Raul</cite>			</div>
+			
+			<a href="index.html#comment-10246" class="comment-date">
+				<time datetime="2013-05-21T13:54:03+00:00">May 21, 2013</time>			</a>
+		</div>
+				<div id="div-comment-10246" class="comment-content">
+				<div class="comment-text">
+		<p>This solution is compelling,<br />
+However, what happens if I have a hosting with limited space and only want to host original images and send all derivative ones (thumbnails, feature images, etc) to Amazon S3.</p>
+<p>Do you think in this case, the extension would help us saving space by always uploading it to S3 and not caching the images in our hosting, right now we keep running out of space every week and we need to clean the cache to avoid this problem.</p>
+<p>Thanks</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-10248">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-10248" class="comment-date">
+				<time datetime="2013-05-21T18:10:51+00:00">May 21, 2013</time>			</a>
+		</div>
+				<div id="div-comment-10248" class="comment-content">
+				<div class="comment-text">
+		<p>@Raul Who&#8217;s your host? Flickr just announced they&#8217;re giving away 1TB of image storage, seems like hosts need to lift their storage game!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-10285">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/c92556123177bd35a5d59c1dc7045720?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/c92556123177bd35a5d59c1dc7045720?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Kalen</cite>			</div>
+			
+			<a href="index.html#comment-10285" class="comment-date">
+				<time datetime="2013-05-31T13:53:01+00:00">May 31, 2013</time>			</a>
+		</div>
+				<div id="div-comment-10285" class="comment-content">
+				<div class="comment-text">
+		<p>Definitely re: the invalidation approach.  I think I&#8217;ll go that route.</p>
+<p>Have you done any analysis on the difference in page load speeds with cloudfront?  Or maybe there are generic non-Magento-specific ones out there.</p>
+<p>I just did some comparison against my current host and at one point both were being served up in about 100ms.  Then a few minutes later my host was at around 400ms and cloudfront was still around 100ms.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-10366">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/c92556123177bd35a5d59c1dc7045720?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/c92556123177bd35a5d59c1dc7045720?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Kalen</cite>			</div>
+			
+			<a href="index.html#comment-10366" class="comment-date">
+				<time datetime="2013-06-20T08:02:31+00:00">June 20, 2013</time>			</a>
+		</div>
+				<div id="div-comment-10366" class="comment-content">
+				<div class="comment-text">
+		<p>Implemented a little MageRun command to refresh skin and JS url&#8217;s:<br />
+<a href="https://github.com/kalenjordan/magerun-addons/blob/master/README.md#bust-frontend-browser-caches" rel="nofollow">https://github.com/kalenjordan/magerun-addons/blob/master/README.md#bust-frontend-browser-caches</a></p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		</ol><!-- .comment-list -->
+
+				<p class="no-comments">Comments are closed.</p>
+	
+</section><!-- #comments -->
+
+</div><!-- #post-## -->
+
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+		</div><!-- .col-full -->
+	</div><!-- #content -->
+
+	
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="col-full">
+
+					<div class="site-info">
+			&copy; ASchroder.com 2023						<br /> Storefront designed by <a href="http://www.woocommerce.com/" title="WooCommerce - The Best eCommerce Platform for WordPress" rel="author">WooCommerce</a>.					</div><!-- .site-info -->
+		
+		</div><!-- .col-full -->
+	</footer><!-- #colophon -->
+
+	
+</div><!-- #page -->
+
+<link rel='stylesheet' id='yarppRelatedCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/related101e.css?ver=4.8.15' type='text/css' media='all' />
+<script type='text/javascript' src='../../../wp-content/plugins/wp-syntax/js/wp-syntax4963.js?ver=1.1'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/navigation.min11a8.js?ver=20120206'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/skip-link-focus-fix.min08e0.js?ver=20130115'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/wp-embed.min101e.js?ver=4.8.15'></script>
+
+</body>
+
+<!-- Mirrored from www.aschroder.com/2011/05/magento-and-amazons-cloudfront-cdn-the-easy-way/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:38:47 GMT -->
+</html>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:28:57 by W3 Total Cache -->

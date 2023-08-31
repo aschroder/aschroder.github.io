@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>Comments on: Creating a Runkeeper RSS Feed &#8211; the hack way.</title>
+	<atom:link href="http://www.aschroder.com/2011/01/creating-a-runkeeper-rss-feed-the-hack-way/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.aschroder.com/2011/01/creating-a-runkeeper-rss-feed-the-hack-way/</link>
+	<description>Notes on Web Development</description>
+	<lastBuildDate>Wed, 23 Dec 2020 09:25:05 +0000</lastBuildDate>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8.15</generator>
+	<item>
+		<title>By: Vittorio</title>
+		<link>http://www.aschroder.com/2011/01/creating-a-runkeeper-rss-feed-the-hack-way/comment-page-1/#comment-5269</link>
+		<dc:creator><![CDATA[Vittorio]]></dc:creator>
+		<pubDate>Sat, 08 Dec 2012 15:15:58 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1344#comment-5269</guid>
+		<description><![CDATA[I found the solution: replace the Feed Link with http://runkeeper.com/moreFeed?count=9&#038;page=1&#038;feedOwnerUrl=vittoriop77  (obviously replace vittoriop77 with your own profile name) 
+
+Extraction Rule is 
+{*}{*}{*}{*}&lt;/a&gt;{%}{*}postedTimeStamp&quot;&#062;{%}]]></description>
+		<content:encoded><![CDATA[<p>I found the solution: replace the Feed Link with <a href="http://runkeeper.com/moreFeed?count=9&#038;page=1&#038;feedOwnerUrl=vittoriop77" rel="nofollow">http://runkeeper.com/moreFeed?count=9&#038;page=1&#038;feedOwnerUrl=vittoriop77</a>  (obviously replace vittoriop77 with your own profile name) </p>
+<p>Extraction Rule is<br />
+{*}{*}{*}{*}{%}{*}postedTimeStamp&#8221;&gt;{%}</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Vittorio</title>
+		<link>http://www.aschroder.com/2011/01/creating-a-runkeeper-rss-feed-the-hack-way/comment-page-1/#comment-5268</link>
+		<dc:creator><![CDATA[Vittorio]]></dc:creator>
+		<pubDate>Sat, 08 Dec 2012 15:01:22 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1344#comment-5268</guid>
+		<description><![CDATA[I think they changed something... it doesn&#039;t work anymore...]]></description>
+		<content:encoded><![CDATA[<p>I think they changed something&#8230; it doesn&#8217;t work anymore&#8230;</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: webhex</title>
+		<link>http://www.aschroder.com/2011/01/creating-a-runkeeper-rss-feed-the-hack-way/comment-page-1/#comment-5062</link>
+		<dc:creator><![CDATA[webhex]]></dc:creator>
+		<pubDate>Fri, 19 Oct 2012 21:28:08 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1344#comment-5062</guid>
+		<description><![CDATA[Hi there,
+I tried and failed too, sadly. I tried Andy Helsby&#039;s suggestions and vittorios.  I want to use the RSS feed on a page for someone who&#039;s raising money for charity. Do you think I&#039;m not doing it right or are their suggestions not working anymore either? Thanks for any response.]]></description>
+		<content:encoded><![CDATA[<p>Hi there,<br />
+I tried and failed too, sadly. I tried Andy Helsby&#8217;s suggestions and vittorios.  I want to use the RSS feed on a page for someone who&#8217;s raising money for charity. Do you think I&#8217;m not doing it right or are their suggestions not working anymore either? Thanks for any response.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Rob</title>
+		<link>http://www.aschroder.com/2011/01/creating-a-runkeeper-rss-feed-the-hack-way/comment-page-1/#comment-4918</link>
+		<dc:creator><![CDATA[Rob]]></dc:creator>
+		<pubDate>Sun, 29 Jul 2012 19:00:54 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1344#comment-4918</guid>
+		<description><![CDATA[Hi, 
+
+trying to get this working but with their updated source code I can&#039;t seem to put it together, could andy or ashley help update the instructions for the current source code?
+
+I wish they&#039;d just add this capability already!]]></description>
+		<content:encoded><![CDATA[<p>Hi, </p>
+<p>trying to get this working but with their updated source code I can&#8217;t seem to put it together, could andy or ashley help update the instructions for the current source code?</p>
+<p>I wish they&#8217;d just add this capability already!</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Vittorio</title>
+		<link>http://www.aschroder.com/2011/01/creating-a-runkeeper-rss-feed-the-hack-way/comment-page-1/#comment-4811</link>
+		<dc:creator><![CDATA[Vittorio]]></dc:creator>
+		<pubDate>Wed, 16 May 2012 13:10:15 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1344#comment-4811</guid>
+		<description><![CDATA[I used this values:
+
+Global Search Pattern = 
+{%}
+
+Item (repeatable) Search Pattern =
+data-link=&#039;{%}&#039;&#062;{*}{*}{*}{*}&lt;/a&gt;{%}{*}postedTimeStamp&quot;&#062;{%}]]></description>
+		<content:encoded><![CDATA[<p>I used this values:</p>
+<p>Global Search Pattern =<br />
+{%}</p>
+<p>Item (repeatable) Search Pattern =<br />
+data-link='{%}&#8217;&gt;{*}{*}{*}{*}{%}{*}postedTimeStamp&#8221;&gt;{%}</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Ashley</title>
+		<link>http://www.aschroder.com/2011/01/creating-a-runkeeper-rss-feed-the-hack-way/comment-page-1/#comment-2950</link>
+		<dc:creator><![CDATA[Ashley]]></dc:creator>
+		<pubDate>Tue, 14 Feb 2012 20:37:28 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1344#comment-2950</guid>
+		<description><![CDATA[Awesome thanks for the updates Andy!]]></description>
+		<content:encoded><![CDATA[<p>Awesome thanks for the updates Andy!</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Andy Helsby</title>
+		<link>http://www.aschroder.com/2011/01/creating-a-runkeeper-rss-feed-the-hack-way/comment-page-1/#comment-2948</link>
+		<dc:creator><![CDATA[Andy Helsby]]></dc:creator>
+		<pubDate>Tue, 14 Feb 2012 18:21:03 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1344#comment-2948</guid>
+		<description><![CDATA[make that {*}&#060;div class=&quot;postedTimeStamp&quot;&#062;{%}&#060;/div&#062; to the search pattern to give me the date/time for the activity. This then allowed me to have {%3} {%5} as the Item Title Template.]]></description>
+		<content:encoded><![CDATA[<p>make that {*}&lt;div class=&#8221;postedTimeStamp&#8221;&gt;{%}&lt;/div&gt; to the search pattern to give me the date/time for the activity. This then allowed me to have {%3} {%5} as the Item Title Template.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Andy Helsby</title>
+		<link>http://www.aschroder.com/2011/01/creating-a-runkeeper-rss-feed-the-hack-way/comment-page-1/#comment-2947</link>
+		<dc:creator><![CDATA[Andy Helsby]]></dc:creator>
+		<pubDate>Tue, 14 Feb 2012 18:19:40 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1344#comment-2947</guid>
+		<description><![CDATA[It looks like they&#039;ve changed the source code for their page.
+I had to use the newItemsStatusContainer instead of feedItemsOuterContaine
+
+The Search pattern had to be usernameLinkNoSpace instead of usernameLink. I also added {*}{%} to the search pattern to give me the date/time for the activity. This then allowed me to have {%3} {%5} as the Item Title Template.]]></description>
+		<content:encoded><![CDATA[<p>It looks like they&#8217;ve changed the source code for their page.<br />
+I had to use the newItemsStatusContainer instead of feedItemsOuterContaine</p>
+<p>The Search pattern had to be usernameLinkNoSpace instead of usernameLink. I also added {*}{%} to the search pattern to give me the date/time for the activity. This then allowed me to have {%3} {%5} as the Item Title Template.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Andy Helsby</title>
+		<link>http://www.aschroder.com/2011/01/creating-a-runkeeper-rss-feed-the-hack-way/comment-page-1/#comment-2680</link>
+		<dc:creator><![CDATA[Andy Helsby]]></dc:creator>
+		<pubDate>Sat, 08 Oct 2011 18:44:10 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1344#comment-2680</guid>
+		<description><![CDATA[Great tip - thanks for this. I&#039;ve been able to update my lifestream and local running club&#039;s profile page with my run information thanks to this information.]]></description>
+		<content:encoded><![CDATA[<p>Great tip &#8211; thanks for this. I&#8217;ve been able to update my lifestream and local running club&#8217;s profile page with my run information thanks to this information.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Obie</title>
+		<link>http://www.aschroder.com/2011/01/creating-a-runkeeper-rss-feed-the-hack-way/comment-page-1/#comment-2327</link>
+		<dc:creator><![CDATA[Obie]]></dc:creator>
+		<pubDate>Fri, 27 May 2011 03:23:18 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1344#comment-2327</guid>
+		<description><![CDATA[Awesome article. It allowed me to add the Runkeeper info to my Trucking Blog. HUGE help as I was banging my head trying to find a Blogger Plugin for the service. Good work!]]></description>
+		<content:encoded><![CDATA[<p>Awesome article. It allowed me to add the Runkeeper info to my Trucking Blog. HUGE help as I was banging my head trying to find a Blogger Plugin for the service. Good work!</p>
+]]></content:encoded>
+	</item>
+</channel>
+</rss>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:39:12 by W3 Total Cache -->

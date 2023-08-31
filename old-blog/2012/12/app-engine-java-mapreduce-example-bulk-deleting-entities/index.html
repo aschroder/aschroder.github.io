@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="en-US">
+
+<!-- Mirrored from www.aschroder.com/2012/12/app-engine-java-mapreduce-example-bulk-deleting-entities/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:20:42 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="../../../xmlrpc.php">
+
+<title>App Engine Java MapReduce Example: bulk deleting entities | ASchroder.com</title>
+
+<!-- All in One SEO Pack 2.4.2 by Michael Torbert of Semper Fi Web Design[289,375] -->
+<meta name="description"  content="Getting started with Java App Engine Map Reduce to delete bulk entities." />
+
+<!-- /all in one seo pack -->
+<link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
+<link rel='dns-prefetch' href='http://s.w.org/' />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Feed" href="../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Comments Feed" href="../../../comments/feed/index.html" />
+<!-- This site uses the Google Analytics by MonsterInsights plugin v6.2.4 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+<script type="text/javascript" data-cfasync="false">
+		var disableStr = 'ga-disable-UA-6477134-1';
+
+	/* Function to detect opted out users */
+	function __gaTrackerIsOptedOut() {
+		return document.cookie.indexOf(disableStr + '=true') > -1;
+	}
+
+	/* Disable tracking if the opt-out cookie exists. */
+	if ( __gaTrackerIsOptedOut() ) {
+		window[disableStr] = true;
+	}
+
+	/* Opt-out function */
+	function __gaTrackerOptout() {
+	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+	  window[disableStr] = true;
+	}
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','http://www.google-analytics.com/analytics.js','__gaTracker');
+
+	__gaTracker('create', 'UA-6477134-1', 'auto');
+	__gaTracker('set', 'forceSSL', true);
+	__gaTracker('send','pageview');
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/www.aschroder.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.15"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='yarppWidgetCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/widget101e.css?ver=4.8.15' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-syntax-css-css'  href='../../../wp-content/plugins/wp-syntax/css/wp-syntax4963.css?ver=1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-style-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/style5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<style id='storefront-style-inline-css' type='text/css'>
+
+			.main-navigation ul li a,
+			.site-title a,
+			ul.menu li a,
+			.site-branding h1 a,
+			.site-footer .storefront-handheld-footer-bar a:not(.button),
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				color: #333333;
+			}
+
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				border-color: #333333;
+			}
+
+			.main-navigation ul li a:hover,
+			.main-navigation ul li:hover > a,
+			.site-title a:hover,
+			a.cart-contents:hover,
+			.site-header-cart .widget_shopping_cart a:hover,
+			.site-header-cart:hover > li > a,
+			.site-header ul.menu li.current-menu-item > a {
+				color: #838383;
+			}
+
+			table th {
+				background-color: #f8f8f8;
+			}
+
+			table tbody td {
+				background-color: #fdfdfd;
+			}
+
+			table tbody tr:nth-child(2n) td,
+			fieldset,
+			fieldset legend {
+				background-color: #fbfbfb;
+			}
+
+			.site-header,
+			.secondary-navigation ul ul,
+			.main-navigation ul.menu > li.menu-item-has-children:after,
+			.secondary-navigation ul.menu ul,
+			.storefront-handheld-footer-bar,
+			.storefront-handheld-footer-bar ul li > a,
+			.storefront-handheld-footer-bar ul li.search .site-search,
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				background-color: #ffffff;
+			}
+
+			p.site-description,
+			.site-header,
+			.storefront-handheld-footer-bar {
+				color: #6d6d6d;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count,
+			button.menu-toggle:after,
+			button.menu-toggle:before,
+			button.menu-toggle span:before {
+				background-color: #333333;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				color: #ffffff;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				border-color: #ffffff;
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+				color: #333333;
+			}
+
+			.widget h1 {
+				border-bottom-color: #333333;
+			}
+
+			body,
+			.secondary-navigation a,
+			.onsale,
+			.pagination .page-numbers li .page-numbers:not(.current), .woocommerce-pagination .page-numbers li .page-numbers:not(.current) {
+				color: #6d6d6d;
+			}
+
+			.widget-area .widget a,
+			.hentry .entry-header .posted-on a,
+			.hentry .entry-header .byline a {
+				color: #9f9f9f;
+			}
+
+			a  {
+				color: #0228d1;
+			}
+
+			a:focus,
+			.button:focus,
+			.button.alt:focus,
+			.button.added_to_cart:focus,
+			.button.wc-forward:focus,
+			button:focus,
+			input[type="button"]:focus,
+			input[type="reset"]:focus,
+			input[type="submit"]:focus {
+				outline-color: #0228d1;
+			}
+
+			button, input[type="button"], input[type="reset"], input[type="submit"], .button, .added_to_cart, .widget a.button, .site-header-cart .widget_shopping_cart a.button {
+				background-color: #eeeeee;
+				border-color: #eeeeee;
+				color: #333333;
+			}
+
+			button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, .button:hover, .added_to_cart:hover, .widget a.button:hover, .site-header-cart .widget_shopping_cart a.button:hover {
+				background-color: #d5d5d5;
+				border-color: #d5d5d5;
+				color: #333333;
+			}
+
+			button.alt, input[type="button"].alt, input[type="reset"].alt, input[type="submit"].alt, .button.alt, .added_to_cart.alt, .widget-area .widget a.button.alt, .added_to_cart, .widget a.button.checkout {
+				background-color: #333333;
+				border-color: #333333;
+				color: #ffffff;
+			}
+
+			button.alt:hover, input[type="button"].alt:hover, input[type="reset"].alt:hover, input[type="submit"].alt:hover, .button.alt:hover, .added_to_cart.alt:hover, .widget-area .widget a.button.alt:hover, .added_to_cart:hover, .widget a.button.checkout:hover {
+				background-color: #1a1a1a;
+				border-color: #1a1a1a;
+				color: #ffffff;
+			}
+
+			.pagination .page-numbers li .page-numbers.current, .woocommerce-pagination .page-numbers li .page-numbers.current {
+				background-color: #e6e6e6;
+				color: #6d6d6d;
+			}
+
+			#comments .comment-list .comment-content .comment-text {
+				background-color: #f8f8f8;
+			}
+
+			.site-footer {
+				background-color: #f0f0f0;
+				color: #6d6d6d;
+			}
+
+			.site-footer a:not(.button) {
+				color: #333333;
+			}
+
+			.site-footer h1, .site-footer h2, .site-footer h3, .site-footer h4, .site-footer h5, .site-footer h6 {
+				color: #333333;
+			}
+
+			#order_review {
+				background-color: #ffffff;
+			}
+
+			#payment .payment_methods > li .payment_box,
+			#payment .place-order {
+				background-color: #fafafa;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice) {
+				background-color: #f5f5f5;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice):hover {
+				background-color: #f0f0f0;
+			}
+
+			@media screen and ( min-width: 768px ) {
+				.secondary-navigation ul.menu a:hover {
+					color: #868686;
+				}
+
+				.secondary-navigation ul.menu a {
+					color: #6d6d6d;
+				}
+
+				.site-header-cart .widget_shopping_cart,
+				.main-navigation ul.menu ul.sub-menu,
+				.main-navigation ul.nav-menu ul.children {
+					background-color: #f0f0f0;
+				}
+
+				.site-header-cart .widget_shopping_cart .buttons,
+				.site-header-cart .widget_shopping_cart .total {
+					background-color: #f5f5f5;
+				}
+
+				.site-header {
+					border-bottom-color: #f0f0f0;
+				}
+			}
+</style>
+<link rel='stylesheet' id='storefront-icons-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/sass/base/icons5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-fonts-css'  href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,600,700,900&amp;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jqueryb8ff.js?ver=1.12.4'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jquery-migrate.min330a.js?ver=1.4.1'></script>
+<link rel='https://api.w.org/' href='../../../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../xmlrpc0db0.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='We won the Deloitte Fast 50 Rising Star!' href='../../10/we-won-the-deloitte-fast-50-rising-star/index.html' />
+<link rel='next' title='What if money were no object?' href='../what-if-money-were-no-object/index.html' />
+<meta name="generator" content="WordPress 4.8.15" />
+<link rel="canonical" href="index.html" />
+<link rel='shortlink' href='../../../index9bac.html?p=1873' />
+<link rel="alternate" type="application/json+oembed" href="../../../wp-json/oembed/1.0/embedc480.json?url=http%3A%2F%2Fwww.aschroder.com%2F2012%2F12%2Fapp-engine-java-mapreduce-example-bulk-deleting-entities%2F" />
+<link rel="alternate" type="text/xml+oembed" href="../../../wp-json/oembed/1.0/embedd330?url=http%3A%2F%2Fwww.aschroder.com%2F2012%2F12%2Fapp-engine-java-mapreduce-example-bulk-deleting-entities%2F&amp;format=xml" />
+</head>
+
+<body class="post-template-default single single-post postid-1873 single-format-standard no-wc-breadcrumb storefront-full-width-content right-sidebar">
+
+
+<div id="page" class="hfeed site">
+	
+	<header id="masthead" class="site-header" role="banner" style="">
+		<div class="col-full">
+
+					<a class="skip-link screen-reader-text" href="#site-navigation">Skip to navigation</a>
+		<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+				<div class="site-branding">
+			<div class="beta site-title"><a href="../../../index.html" rel="home">ASchroder.com</a></div><p class="site-description">Notes on Web Development</p>		</div>
+		<div class="storefront-primary-navigation">		<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="Primary Navigation">
+		<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><span>Menu</span></button>
+			<div class="primary-navigation"><ul id="menu-main-menu" class="menu"><li id="menu-item-1119" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li id="menu-item-1118" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li id="menu-item-1872" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div><div class="handheld-navigation"><ul id="menu-main-menu-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div>		</nav><!-- #site-navigation -->
+		</div>
+		</div>
+	</header><!-- #masthead -->
+
+	
+	<div id="content" class="site-content" tabindex="-1">
+		<div class="col-full">
+
+		
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+<div id="post-1873" class="post-1873 post type-post status-publish format-standard hentry category-google-app-engine category-java-development category-web-development tag-app-engine tag-datastore tag-java tag-map-reduce">
+
+			<header class="entry-header">
+		<span class="posted-on">Posted on <a href="index.html" rel="bookmark"><time class="entry-date published" datetime="2012-12-18T12:49:22+00:00">December 18, 2012</time> <time class="updated" datetime="2013-01-01T16:14:27+00:00">January 1, 2013</time></a></span><h1 class="entry-title">App Engine Java MapReduce Example: bulk deleting entities</h1>		</header><!-- .entry-header -->
+				<aside class="entry-meta">
+						<div class="author">
+				<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' /><div class="label">Written by</div><a href="../../../author/admin/index.html" title="Posts by Ashley" rel="author">Ashley</a>			</div>
+							<div class="cat-links">
+					<div class="label">Posted in</div><a href="../../../category/google-app-engine/index.html" rel="category tag">Google App Engine</a>, <a href="../../../category/java-development/index.html" rel="category tag">Java Development</a>, <a href="../../../category/web-development/index.html" rel="category tag">Web Development</a>				</div>
+			
+							<div class="tags-links">
+					<div class="label">Tagged</div><a href="../../../tag/app-engine/index.html" rel="tag">app engine</a>, <a href="../../../tag/datastore/index.html" rel="tag">datastore</a>, <a href="../../../tag/java/index.html" rel="tag">java</a>, <a href="../../../tag/map-reduce/index.html" rel="tag">map reduce</a>				</div>
+			
+		
+					</aside>
+				<div class="entry-content">
+		<p>As you may know, we run our <a href="http://www.orderpipe.com/">OrderPipe ecommerce dashboard</a> on Google&#8217;s <a href="https://developers.google.com/appengine/docs/java/">App Engine</a> &#8211; I&#8217;m a big fan of the platform, but it has some traps for new (<em>and old</em>) players. A recent issue required us to bulk delete entities on App Engine, and for that it seemed the best tool for the job was the <a href="http://code.google.com/p/appengine-mapreduce/">&#8216;Mapper&#8217; part of Map Reduce</a>. It was a good experience learning <strong>a)</strong> how it works and <strong>b)</strong> applying it, I thought I&#8217;d document a full Map Reduce example, because the worked examples I found were all based on an older version of the library.</p>
+<h3>Background</h3>
+<p>You might be interested to read a bit about why I had to use Map Reduce &#8211; <em>it was my own fault</em>. A subtle bug in a recent release caused an additional Account to be created under certain situations &#8211; it made it past our staging server, because that certain situation happened infrequently enough to not cause an issue, but once it got to production, where we have many thousands of orders arriving daily, we started seeing a lot of zombie accounts being created. My first thought was we were being attacked, but alas, it wasn&#8217;t an attack, just a bug! The nett result, we were left with 10&#8217;s of thousands of unwanted entities.</p>
+<h3>The Problem</h3>
+<p>In App Engine, the datastore is highly scalable, but it&#8217;s not relational, you can&#8217;t just run a simple query to delete all rows in a table with a particular <code>created</code> timestamp. There are simple tools to blindly delete <em>all</em> entities of a type, but not entities that meet a particular condition, and more importantly, not related entities that also meet a particular condition. That&#8217;s where Map Reduce comes in, basically we shard the entities and create multiple parallel workers to break the collection into smaller parts and process through them quickly.  This seems like an inefficient approach until you consider scaling beyond a single database server, or even a single database cluster.<br />
+<span id="more-1873"></span></p>
+<h3>The Solution</h3>
+<p>I found the best introduction to this whole area of App Engine and highly scalable datastore operations is <a href="http://ikaisays.com/2010/07/09/using-the-java-mapper-framework-for-app-engine/">Ikai&#8217;s post on the Mapper from a couple of years ago</a>. It&#8217;d have been perfect for this situation except there&#8217;s recently been a new version of the App Engine Map Reduce library for Java, and the examples in Ikai&#8217;s post are no longer representative, though still very informative.</p>
+<p>The steps to get something similar working in the new library are:</p>
+<h4>1) Get library</h4>
+<p>The library is <a href="http://code.google.com/p/appengine-mapreduce/wiki/GettingStartedInJava">easy to setup</a>, grab it from SVN, use ant to build it and drop the library and it&#8217;s dependencies into your project. The process after this is not so well documented, the getting started guide alludes to the bundled example, and to setting up a servlet for job control. It&#8217;d be nice if the docs fleshed this out a bit more, but it&#8217;s enough to get you started.</p>
+<h4>2) Create your Mapper Job</h4>
+<p>Using the <a href="http://code.google.com/p/appengine-mapreduce/source/browse/trunk/java/example/com/google/appengine/demos/mapreduce/entitycount/CountMapper.java">sample app as a guide</a>, and the older examples Ikai gives, you can build your first simple Mapper, here&#8217;s a cut down version of the one I used to do our bulk conditional delete.</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="java" style="font-family:monospace;">&nbsp;
+<span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">class</span> CleanAccountsMapper <span style="color: #000000; font-weight: bold;">extends</span> Mapper<span style="color: #339933;">&lt;</span><span style="color: #003399;">Entity</span>, <span style="color: #003399;">Void</span>, Void<span style="color: #339933;">&gt;</span> <span style="color: #009900;">&#123;</span> 
+&nbsp;
+	<span style="color: #000000; font-weight: bold;">private</span> <span style="color: #000000; font-weight: bold;">transient</span> DatastoreMutationPool pool<span style="color: #339933;">;</span>
+&nbsp;
+	@Override 
+	<span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000066; font-weight: bold;">void</span> beginShard<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+		<span style="color: #666666; font-style: italic;">// Ikai gives examples of using the pool for </span>
+		<span style="color: #666666; font-style: italic;">// better parallel datastore operations</span>
+		<span style="color: #000000; font-weight: bold;">this</span>.<span style="color: #006633;">pool</span> <span style="color: #339933;">=</span> DatastoreMutationPool.<span style="color: #006633;">forWorker</span><span style="color: #009900;">&#40;</span><span style="color: #000000; font-weight: bold;">this</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+		<span style="color: #666666; font-style: italic;">// You could optionally use the normal datastore like this</span>
+		<span style="color: #666666; font-style: italic;">// this.datastore = </span>
+		<span style="color: #666666; font-style: italic;">//        DatastoreServiceFactory.getDatastoreService();</span>
+	<span style="color: #009900;">&#125;</span>
+&nbsp;
+	@Override
+	<span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000066; font-weight: bold;">void</span> map<span style="color: #009900;">&#40;</span><span style="color: #003399;">Entity</span> value<span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+&nbsp;
+		<span style="color: #666666; font-style: italic;">// During my testing, some of our workers </span>
+		<span style="color: #666666; font-style: italic;">// died with NullPointer's on this field, </span>
+		<span style="color: #666666; font-style: italic;">// as if in some circumstances it goes away. </span>
+		<span style="color: #666666; font-style: italic;">// This ensures we always have it.</span>
+&nbsp;
+		<span style="color: #000000; font-weight: bold;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #000000; font-weight: bold;">this</span>.<span style="color: #006633;">pool</span> <span style="color: #339933;">==</span> <span style="color: #000066; font-weight: bold;">null</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+			<span style="color: #000000; font-weight: bold;">this</span>.<span style="color: #006633;">pool</span> <span style="color: #339933;">=</span> 
+		          DatastoreMutationPool.<span style="color: #006633;">forWorker</span><span style="color: #009900;">&#40;</span><span style="color: #000000; font-weight: bold;">this</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+		<span style="color: #009900;">&#125;</span>
+&nbsp;
+		<span style="color: #666666; font-style: italic;">// Slightly paranoid check we have an account</span>
+		<span style="color: #000000; font-weight: bold;">if</span> <span style="color: #009900;">&#40;</span>value.<span style="color: #006633;">getKind</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>.<span style="color: #006633;">equals</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">&quot;Account&quot;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+			<span style="color: #666666; font-style: italic;">// Logic goes here to determine </span>
+			<span style="color: #666666; font-style: italic;">// if the account should be deleted</span>
+			<span style="color: #000000; font-weight: bold;">if</span> <span style="color: #009900;">&#40;</span>itShouldBeDeleted<span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+			    pool.<span style="color: #006633;">delete</span><span style="color: #009900;">&#40;</span>value.<span style="color: #006633;">getKey</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+			<span style="color: #009900;">&#125;</span>
+			<span style="color: #666666; font-style: italic;">// You could create/update/count here too</span>
+		<span style="color: #009900;">&#125;</span>
+	<span style="color: #009900;">&#125;</span>
+<span style="color: #009900;">&#125;</span></pre></td></tr></table><p class="theCode" style="display:none;">
+public class CleanAccountsMapper extends Mapper&lt;Entity, Void, Void&gt; { 
+
+	private transient DatastoreMutationPool pool;
+
+	@Override 
+	public void beginShard() {
+		// Ikai gives examples of using the pool for 
+		// better parallel datastore operations
+		this.pool = DatastoreMutationPool.forWorker(this);
+		// You could optionally use the normal datastore like this
+		// this.datastore = 
+		//        DatastoreServiceFactory.getDatastoreService();
+	}
+
+	@Override
+	public void map(Entity value) {
+		
+		// During my testing, some of our workers 
+		// died with NullPointer's on this field, 
+		// as if in some circumstances it goes away. 
+		// This ensures we always have it.
+
+		if (this.pool == null) {
+			this.pool = 
+		          DatastoreMutationPool.forWorker(this);
+		}
+		
+		// Slightly paranoid check we have an account
+		if (value.getKind().equals(&quot;Account&quot;)) {
+			// Logic goes here to determine 
+			// if the account should be deleted
+			if (itShouldBeDeleted) {
+			    pool.delete(value.getKey());
+			}
+			// You could create/update/count here too
+		}
+	}
+}</p></div>
+
+<h4>3) Run your Mapper</h4>
+<p>Now that we have a Mapper, let&#8217;s see how we can initiate the job from a servlet. We use Spring MVC, so this example is from a controller action, but it can be kicked off from anywhere.</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="java" style="font-family:monospace;">@Controller
+@RequestMapping<span style="color: #009900;">&#40;</span>value <span style="color: #339933;">=</span> <span style="color: #0000ff;">&quot;/map&quot;</span><span style="color: #009900;">&#41;</span>
+<span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">class</span> MapReduceController <span style="color: #009900;">&#123;</span>
+&nbsp;
+	@RequestMapping<span style="color: #009900;">&#40;</span>value<span style="color: #339933;">=</span><span style="color: #0000ff;">&quot;cleanAccounts&quot;</span>, method <span style="color: #339933;">=</span> RequestMethod.<span style="color: #006633;">GET</span><span style="color: #009900;">&#41;</span>
+	@ResponseBody
+	<span style="color: #000000; font-weight: bold;">public</span> <span style="color: #003399;">String</span> cleanAccounts<span style="color: #009900;">&#40;</span>Model model<span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+&nbsp;
+		<span style="color: #666666; font-style: italic;">// These settings are covered in step 4) below</span>
+		MapReduceSettings settings <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> MapReduceSettings<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+		.<span style="color: #006633;">setWorkerQueueName</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">&quot;mrworker&quot;</span><span style="color: #009900;">&#41;</span>
+		.<span style="color: #006633;">setControllerQueueName</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">&quot;mrcontroller&quot;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+		<span style="color: #003399;">String</span> jobId <span style="color: #339933;">=</span> MapReduceJob.<span style="color: #006633;">start</span><span style="color: #009900;">&#40;</span>
+			MapReduceSpecification.<span style="color: #006633;">of</span><span style="color: #009900;">&#40;</span>
+				<span style="color: #0000ff;">&quot;Clean Accounts&quot;</span>,
+				<span style="color: #666666; font-style: italic;">// shard count 50</span>
+				<span style="color: #000000; font-weight: bold;">new</span> DatastoreInput<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">&quot;Account&quot;</span>, <span style="color: #cc66cc;">50</span><span style="color: #009900;">&#41;</span>,
+				<span style="color: #000000; font-weight: bold;">new</span> CleanAccountsMapper<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>,
+				Marshallers.<span style="color: #006633;">getVoidMarshaller</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>,
+				Marshallers.<span style="color: #006633;">getVoidMarshaller</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>,
+				NoReducer.<span style="color: #339933;">&lt;</span><span style="color: #003399;">Void</span>, <span style="color: #003399;">Void</span>, Void<span style="color: #339933;">&gt;</span>create<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>,
+				NoOutput.<span style="color: #339933;">&lt;</span><span style="color: #003399;">Void</span>, Void<span style="color: #339933;">&gt;</span>create<span style="color: #009900;">&#40;</span><span style="color: #cc66cc;">1</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span>,
+				settings<span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>	
+		<span style="color: #666666; font-style: italic;">// jobId is used to monitor, see step 5) below</span>
+		<span style="color: #000000; font-weight: bold;">return</span> <span style="color: #0000ff;">&quot;Job ID: &quot;</span> <span style="color: #339933;">+</span> jobId<span style="color: #339933;">;</span> 
+	<span style="color: #009900;">&#125;</span>
+<span style="color: #009900;">&#125;</span></pre></td></tr></table><p class="theCode" style="display:none;">@Controller
+@RequestMapping(value = &quot;/map&quot;)
+public class MapReduceController {
+
+	@RequestMapping(value=&quot;cleanAccounts&quot;, method = RequestMethod.GET)
+	@ResponseBody
+	public String cleanAccounts(Model model) {
+
+		// These settings are covered in step 4) below
+		MapReduceSettings settings = new MapReduceSettings()
+		.setWorkerQueueName(&quot;mrworker&quot;)
+		.setControllerQueueName(&quot;mrcontroller&quot;);
+
+		String jobId = MapReduceJob.start(
+			MapReduceSpecification.of(
+				&quot;Clean Accounts&quot;,
+				// shard count 50
+				new DatastoreInput(&quot;Account&quot;, 50),
+				new CleanAccountsMapper(),
+				Marshallers.getVoidMarshaller(),
+				Marshallers.getVoidMarshaller(),
+				NoReducer.&lt;Void, Void, Void&gt;create(),
+				NoOutput.&lt;Void, Void&gt;create(1)),
+				settings);	
+		// jobId is used to monitor, see step 5) below
+		return &quot;Job ID: &quot; + jobId; 
+	}
+}</p></div>
+
+<p>The steps here are actually pretty simple, the main controlling inputs are the two task queues, and the shard count. I&#8217;ll cover the config in step <strong>4)</strong> below.</p>
+<h4>4) Configure Your Job</h4>
+<p>In the old version of the API it looks like you configured your jobs in a <code>mapreduce.xml</code> file, and then initiated them from the admin console. The new version is not quite setup that way, so the jobs are initiated programatically, and configured in the code itself and by way of task queue configuration and shard count.</p>
+<p>The shard count controls how many shards will be processed, and how big they&#8217;ll be. If you have 100,000 <code>Account</code> entities and 50 shards, then each shard will be working through roughly 2000 entities, I say roughly because the sharding process is not exact, if you want an appreciation for how clever the folks behind this tech are, check out <a href="http://code.google.com/p/appengine-mapreduce/wiki/ScatterPropertyImplementation">this explanation of how they scatter entities to get even shards</a>.</p>
+<p>The worker queue and the controller queue are also inputs to the job &#8211; during my testing, the one that made the biggest impact on the job execution is the worker queue. I experimented a little with different settings. If you have 50 workers/shards &#8211; then there&#8217;ll be 50 tasks in the worker queue. Each time a worker task runs it processes a portion of the entities in it&#8217;s shard. If you configure the queue to run more tasks per minute, or more tasks concurrently you can effectively control the rate at which entities are processed. I started mine with a very slow rate and concurrency so that I could monitor the costs &#8211; I didn&#8217;t want to kick off a job and have it blow our App budget in 10 minutes! Here&#8217;s the settings in my queue.xml file:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="xml" style="font-family:monospace;"><span style="color: #808080; font-style: italic;">&lt;!-- This queue controls the rate at which a Map Reduce job will be worked. --&gt;</span>
+<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;queue<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+	<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;name<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>mrworker<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/name<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+	<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;max-concurrent-requests<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>10<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/max-concurrent-requests<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+	<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;rate<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>10/m<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/rate<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/queue<span style="color: #000000; font-weight: bold;">&gt;</span></span></span></pre></td></tr></table><p class="theCode" style="display:none;">&lt;!-- This queue controls the rate at which a Map Reduce job will be worked. --&gt;
+&lt;queue&gt;
+	&lt;name&gt;mrworker&lt;/name&gt;
+	&lt;max-concurrent-requests&gt;10&lt;/max-concurrent-requests&gt;
+	&lt;rate&gt;10/m&lt;/rate&gt;
+&lt;/queue&gt;</p></div>
+
+<p>If you had a big job to do and were happy to pay for it all to be done quickly, you could bump up the rate and concurrency. If you wanted to do a task much more slowly, you can simply lower the rate/concurrency. This way if you had a very big, non urgent job you could spread it over days or weeks to maximize the free quota of reads/writes.</p>
+<h4>5) Monitor Job Progress</h4>
+<p>Once you&#8217;ve started your job, you will get a Job ID. This is used to view the status of the job (the current API doesn&#8217;t handle listing all jobs yet, but it&#8217;s likely coming soon) so you have to manually go to the URL for your job, something like <code>http://yourapp.com/_ah/pipeline/status.html?root=Job-ID-Here</code>. At this page you&#8217;ll see a break down of the job &#8211; if you&#8217;re just doing a Mapper job, like in my example, the other steps won&#8217;t actually do anything, but you do get to see a cool graph of the shards being worked. I&#8217;m bummed because I forgot to take a screenshot of our big job in progress, you&#8217;ll just have to wait and see how it looks when you run yours.</p>
+<p>Hopefully this blog post will help other developers in the same position as me, with a simple few steps and background to getting started with the new version of Java Map Reduce. If you have any feedback or questions, please let me know.</p>
+<div class='yarpp-related'>
+<p>You might also be interested in:<ol>
+<li><a href="../../../2011/12/java-app-engine-integration-testing-with-spring-mvc-and-openpersistencemanagerinviewfilter/index.html" rel="bookmark" title="Java App Engine integration testing with Spring MVC and OpenPersistenceManagerInViewFilter">Java App Engine integration testing with Spring MVC and OpenPersistenceManagerInViewFilter </a></li>
+<li><a href="../../02/sending-apple-ios-notifications-via-urban-airship-on-google-app-engine/index.html" rel="bookmark" title="Sending Apple iOS Notifications via Urban Airship on Google App Engine">Sending Apple iOS Notifications via Urban Airship on Google App Engine </a></li>
+<li><a href="../../../2013/02/google-app-engine-gql-queries-in-the-datastore-viewer-console/index.html" rel="bookmark" title="Google App Engine GQL queries in the Datastore Viewer console">Google App Engine GQL queries in the Datastore Viewer console </a></li>
+<li><a href="../../../2013/12/accessing-the-xero-api-for-public-applications-in-java/index.html" rel="bookmark" title="Accessing the Xero API for Public Applications in Java">Accessing the Xero API for Public Applications in Java </a></li>
+<li><a href="../../../2009/12/a-super-simple-magento-store-monitoring-tool-powered-by-google-app-engine/index.html" rel="bookmark" title="A super simple Magento store monitoring tool powered by Google App Engine">A super simple Magento store monitoring tool powered by Google App Engine </a></li>
+</ol></p>
+</div>
+		</div><!-- .entry-content -->
+		<nav id="post-navigation" class="navigation post-navigation" role="navigation" aria-label="Post Navigation"><span class="screen-reader-text">Post navigation</span><div class="nav-links"><div class="nav-previous"><a href="../../10/we-won-the-deloitte-fast-50-rising-star/index.html" rel="prev">We won the Deloitte Fast 50 Rising Star!</a></div><div class="nav-next"><a href="../what-if-money-were-no-object/index.html" rel="next">What if money were no object?</a></div></div></nav>
+</div><!-- #post-## -->
+
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+		</div><!-- .col-full -->
+	</div><!-- #content -->
+
+	
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="col-full">
+
+					<div class="site-info">
+			&copy; ASchroder.com 2023						<br /> Storefront designed by <a href="http://www.woocommerce.com/" title="WooCommerce - The Best eCommerce Platform for WordPress" rel="author">WooCommerce</a>.					</div><!-- .site-info -->
+		
+		</div><!-- .col-full -->
+	</footer><!-- #colophon -->
+
+	
+</div><!-- #page -->
+
+<link rel='stylesheet' id='yarppRelatedCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/related101e.css?ver=4.8.15' type='text/css' media='all' />
+<script type='text/javascript' src='../../../wp-content/plugins/wp-syntax/js/wp-syntax4963.js?ver=1.1'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/navigation.min11a8.js?ver=20120206'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/skip-link-focus-fix.min08e0.js?ver=20130115'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/wp-embed.min101e.js?ver=4.8.15'></script>
+
+</body>
+
+<!-- Mirrored from www.aschroder.com/2012/12/app-engine-java-mapreduce-example-bulk-deleting-entities/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:20:44 GMT -->
+</html>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:13:08 by W3 Total Cache -->

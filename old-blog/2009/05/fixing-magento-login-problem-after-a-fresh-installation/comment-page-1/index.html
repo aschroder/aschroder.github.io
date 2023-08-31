@@ -1,0 +1,1446 @@
+<!doctype html>
+<html lang="en-US">
+
+<!-- Mirrored from www.aschroder.com/2009/05/fixing-magento-login-problem-after-a-fresh-installation/comment-page-1/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:39:10 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="../../../../xmlrpc.php">
+
+<title>Fixing Magento Login Problem after a Fresh Installation | ASchroder.com</title>
+
+<!-- All in One SEO Pack 2.4.2 by Michael Torbert of Semper Fi Web Design[289,373] -->
+<meta name="description"  content="Here are two quick solutions to the Magento login problem where Magento admin keeps requesting a login, even after you have provided the correct credentials." />
+
+<meta name="keywords"  content="magento,login,redirect,cookie,solution" />
+
+<!-- /all in one seo pack -->
+<link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
+<link rel='dns-prefetch' href='http://s.w.org/' />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Feed" href="../../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Comments Feed" href="../../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Fixing Magento Login Problem after a Fresh Installation Comments Feed" href="../feed/index.html" />
+<!-- This site uses the Google Analytics by MonsterInsights plugin v6.2.4 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+<script type="text/javascript" data-cfasync="false">
+		var disableStr = 'ga-disable-UA-6477134-1';
+
+	/* Function to detect opted out users */
+	function __gaTrackerIsOptedOut() {
+		return document.cookie.indexOf(disableStr + '=true') > -1;
+	}
+
+	/* Disable tracking if the opt-out cookie exists. */
+	if ( __gaTrackerIsOptedOut() ) {
+		window[disableStr] = true;
+	}
+
+	/* Opt-out function */
+	function __gaTrackerOptout() {
+	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+	  window[disableStr] = true;
+	}
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','http://www.google-analytics.com/analytics.js','__gaTracker');
+
+	__gaTracker('create', 'UA-6477134-1', 'auto');
+	__gaTracker('set', 'forceSSL', true);
+	__gaTracker('send','pageview');
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/www.aschroder.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.15"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='yarppWidgetCss-css'  href='../../../../wp-content/plugins/yet-another-related-posts-plugin/style/widget101e.css?ver=4.8.15' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-syntax-css-css'  href='../../../../wp-content/plugins/wp-syntax/css/wp-syntax4963.css?ver=1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-style-css'  href='../../../../../cdn.aschroder.com/wp-content/themes/storefront/style5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<style id='storefront-style-inline-css' type='text/css'>
+
+			.main-navigation ul li a,
+			.site-title a,
+			ul.menu li a,
+			.site-branding h1 a,
+			.site-footer .storefront-handheld-footer-bar a:not(.button),
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				color: #333333;
+			}
+
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				border-color: #333333;
+			}
+
+			.main-navigation ul li a:hover,
+			.main-navigation ul li:hover > a,
+			.site-title a:hover,
+			a.cart-contents:hover,
+			.site-header-cart .widget_shopping_cart a:hover,
+			.site-header-cart:hover > li > a,
+			.site-header ul.menu li.current-menu-item > a {
+				color: #838383;
+			}
+
+			table th {
+				background-color: #f8f8f8;
+			}
+
+			table tbody td {
+				background-color: #fdfdfd;
+			}
+
+			table tbody tr:nth-child(2n) td,
+			fieldset,
+			fieldset legend {
+				background-color: #fbfbfb;
+			}
+
+			.site-header,
+			.secondary-navigation ul ul,
+			.main-navigation ul.menu > li.menu-item-has-children:after,
+			.secondary-navigation ul.menu ul,
+			.storefront-handheld-footer-bar,
+			.storefront-handheld-footer-bar ul li > a,
+			.storefront-handheld-footer-bar ul li.search .site-search,
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				background-color: #ffffff;
+			}
+
+			p.site-description,
+			.site-header,
+			.storefront-handheld-footer-bar {
+				color: #6d6d6d;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count,
+			button.menu-toggle:after,
+			button.menu-toggle:before,
+			button.menu-toggle span:before {
+				background-color: #333333;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				color: #ffffff;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				border-color: #ffffff;
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+				color: #333333;
+			}
+
+			.widget h1 {
+				border-bottom-color: #333333;
+			}
+
+			body,
+			.secondary-navigation a,
+			.onsale,
+			.pagination .page-numbers li .page-numbers:not(.current), .woocommerce-pagination .page-numbers li .page-numbers:not(.current) {
+				color: #6d6d6d;
+			}
+
+			.widget-area .widget a,
+			.hentry .entry-header .posted-on a,
+			.hentry .entry-header .byline a {
+				color: #9f9f9f;
+			}
+
+			a  {
+				color: #0228d1;
+			}
+
+			a:focus,
+			.button:focus,
+			.button.alt:focus,
+			.button.added_to_cart:focus,
+			.button.wc-forward:focus,
+			button:focus,
+			input[type="button"]:focus,
+			input[type="reset"]:focus,
+			input[type="submit"]:focus {
+				outline-color: #0228d1;
+			}
+
+			button, input[type="button"], input[type="reset"], input[type="submit"], .button, .added_to_cart, .widget a.button, .site-header-cart .widget_shopping_cart a.button {
+				background-color: #eeeeee;
+				border-color: #eeeeee;
+				color: #333333;
+			}
+
+			button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, .button:hover, .added_to_cart:hover, .widget a.button:hover, .site-header-cart .widget_shopping_cart a.button:hover {
+				background-color: #d5d5d5;
+				border-color: #d5d5d5;
+				color: #333333;
+			}
+
+			button.alt, input[type="button"].alt, input[type="reset"].alt, input[type="submit"].alt, .button.alt, .added_to_cart.alt, .widget-area .widget a.button.alt, .added_to_cart, .widget a.button.checkout {
+				background-color: #333333;
+				border-color: #333333;
+				color: #ffffff;
+			}
+
+			button.alt:hover, input[type="button"].alt:hover, input[type="reset"].alt:hover, input[type="submit"].alt:hover, .button.alt:hover, .added_to_cart.alt:hover, .widget-area .widget a.button.alt:hover, .added_to_cart:hover, .widget a.button.checkout:hover {
+				background-color: #1a1a1a;
+				border-color: #1a1a1a;
+				color: #ffffff;
+			}
+
+			.pagination .page-numbers li .page-numbers.current, .woocommerce-pagination .page-numbers li .page-numbers.current {
+				background-color: #e6e6e6;
+				color: #6d6d6d;
+			}
+
+			#comments .comment-list .comment-content .comment-text {
+				background-color: #f8f8f8;
+			}
+
+			.site-footer {
+				background-color: #f0f0f0;
+				color: #6d6d6d;
+			}
+
+			.site-footer a:not(.button) {
+				color: #333333;
+			}
+
+			.site-footer h1, .site-footer h2, .site-footer h3, .site-footer h4, .site-footer h5, .site-footer h6 {
+				color: #333333;
+			}
+
+			#order_review {
+				background-color: #ffffff;
+			}
+
+			#payment .payment_methods > li .payment_box,
+			#payment .place-order {
+				background-color: #fafafa;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice) {
+				background-color: #f5f5f5;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice):hover {
+				background-color: #f0f0f0;
+			}
+
+			@media screen and ( min-width: 768px ) {
+				.secondary-navigation ul.menu a:hover {
+					color: #868686;
+				}
+
+				.secondary-navigation ul.menu a {
+					color: #6d6d6d;
+				}
+
+				.site-header-cart .widget_shopping_cart,
+				.main-navigation ul.menu ul.sub-menu,
+				.main-navigation ul.nav-menu ul.children {
+					background-color: #f0f0f0;
+				}
+
+				.site-header-cart .widget_shopping_cart .buttons,
+				.site-header-cart .widget_shopping_cart .total {
+					background-color: #f5f5f5;
+				}
+
+				.site-header {
+					border-bottom-color: #f0f0f0;
+				}
+			}
+</style>
+<link rel='stylesheet' id='storefront-icons-css'  href='../../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/sass/base/icons5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-fonts-css'  href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,600,700,900&amp;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../../cdn.aschroder.com/wp-includes/js/jquery/jqueryb8ff.js?ver=1.12.4'></script>
+<script type='text/javascript' src='../../../../../cdn.aschroder.com/wp-includes/js/jquery/jquery-migrate.min330a.js?ver=1.4.1'></script>
+<link rel='https://api.w.org/' href='../../../../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../../xmlrpc0db0.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Magento Error: It is not safe to rely on the system&#8217;s timezone settings' href='../../magento-error-it-is-not-safe-to-rely-on-the-systems-timezone-settings/index.html' />
+<link rel='next' title='Magento javascript 404 breaks Admin menu&#8230;solved!' href='../../magento-javascript-404-breaks-admin-menu-solved/index.html' />
+<meta name="generator" content="WordPress 4.8.15" />
+<link rel="canonical" href="index.html#comments" />
+<link rel='shortlink' href='../../../../index64d4.html?p=391' />
+<link rel="alternate" type="application/json+oembed" href="../../../../wp-json/oembed/1.0/embed3187.json?url=http%3A%2F%2Fwww.aschroder.com%2F2009%2F05%2Ffixing-magento-login-problem-after-a-fresh-installation%2F" />
+<link rel="alternate" type="text/xml+oembed" href="../../../../wp-json/oembed/1.0/embed36e7?url=http%3A%2F%2Fwww.aschroder.com%2F2009%2F05%2Ffixing-magento-login-problem-after-a-fresh-installation%2F&amp;format=xml" />
+</head>
+
+<body class="post-template-default single single-post postid-391 single-format-standard no-wc-breadcrumb storefront-full-width-content right-sidebar">
+
+
+<div id="page" class="hfeed site">
+	
+	<header id="masthead" class="site-header" role="banner" style="">
+		<div class="col-full">
+
+					<a class="skip-link screen-reader-text" href="#site-navigation">Skip to navigation</a>
+		<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+				<div class="site-branding">
+			<div class="beta site-title"><a href="../../../../index.html" rel="home">ASchroder.com</a></div><p class="site-description">Notes on Web Development</p>		</div>
+		<div class="storefront-primary-navigation">		<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="Primary Navigation">
+		<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><span>Menu</span></button>
+			<div class="primary-navigation"><ul id="menu-main-menu" class="menu"><li id="menu-item-1119" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../../index.html">Home</a></li>
+<li id="menu-item-1118" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../../about/index.html">About</a></li>
+<li id="menu-item-1872" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../../presentations/index.html">Presentations</a></li>
+</ul></div><div class="handheld-navigation"><ul id="menu-main-menu-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../../index.html">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../../about/index.html">About</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../../presentations/index.html">Presentations</a></li>
+</ul></div>		</nav><!-- #site-navigation -->
+		</div>
+		</div>
+	</header><!-- #masthead -->
+
+	
+	<div id="content" class="site-content" tabindex="-1">
+		<div class="col-full">
+
+		
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+<div id="post-391" class="post-391 post type-post status-publish format-standard hentry category-magento category-magento-installation category-php category-web-development tag-browser-security tag-cookies tag-magento tag-magento-installation tag-timezones tag-virtual-hosting">
+
+			<header class="entry-header">
+		<span class="posted-on">Posted on <a href="../index.html" rel="bookmark"><time class="entry-date published" datetime="2009-05-10T13:15:53+00:00">May 10, 2009</time> <time class="updated" datetime="2014-07-11T15:18:07+00:00">July 11, 2014</time></a></span><h1 class="entry-title">Fixing Magento Login Problem after a Fresh Installation</h1>		</header><!-- .entry-header -->
+				<aside class="entry-meta">
+						<div class="author">
+				<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' /><div class="label">Written by</div><a href="../../../../author/admin/index.html" title="Posts by Ashley" rel="author">Ashley</a>			</div>
+							<div class="cat-links">
+					<div class="label">Posted in</div><a href="../../../../category/magento/index.html" rel="category tag">Magento</a>, <a href="../../../../category/magento-installation/index.html" rel="category tag">Magento Installation</a>, <a href="../../../../category/php/index.html" rel="category tag">PHP</a>, <a href="../../../../category/web-development/index.html" rel="category tag">Web Development</a>				</div>
+			
+							<div class="tags-links">
+					<div class="label">Tagged</div><a href="../../../../tag/browser-security/index.html" rel="tag">browser security</a>, <a href="../../../../tag/cookies/index.html" rel="tag">cookies</a>, <a href="../../../../tag/magento/index.html" rel="tag">Magento</a>, <a href="../../../../tag/magento-installation/index.html" rel="tag">Magento Installation</a>, <a href="../../../../tag/timezones/index.html" rel="tag">timezones</a>, <a href="../../../../tag/virtual-hosting/index.html" rel="tag">virtual hosting</a>				</div>
+			
+		
+							<div class="comments-link">
+					<div class="label">Comments</div>					<span class="comments-link"><a href="../index.html#comments">64 Comments</a></span>
+				</div>
+					</aside>
+				<div class="entry-content">
+		<p>This is just a quick little note to suggest two ways to solve the problem that you cannot log in to your Magento admin interface after a fresh install of Magento. </p>
+<h3>The Problem</h3>
+<p>The problem will manifest itself as a redirect back to the login screen, even though you typed the right username and password. If this problem is affecting you, you will be redirected back and see no error message. This indicates you have the right credentials, but the Magento Admin is just not letting you in.  You can verify it by typing the wrong username and password, you&#8217;ll see you get redirected back and it shows an error message.</p>
+<p>The problem occurs because the Magento backend tries to set a cookie on your browser, and then for some reason when you next make a request, the cookie is gone(or was never there). This makes Magento think you have never logged in, and of course it redirects you to the login screen. So the real guts of it is the missing cookie, we need to find out why it&#8217;s missing.</p>
+<p>There are <del datetime="2010-06-14T09:14:30+00:00">two</del> three solutions (<strong>Update:</strong> now with bonus 3rd solution) I have come across that will solve this, there may be others too, so please feel free to post them below. Both of these solutions have been suggested in the comments of my post on <a href="../../../02/how-to-set-up-apache-virtual-hosting-on-mamp-for-magento/index.html">Setting up Apache Virtual Hosting</a>.</p>
+<h3>Solution 1: Domain Name with no dots</h3>
+<p>This is the most common solution, if you have set up Magento to run locally (on MAMP for example) then you may be accessing the Apache webserver using the <code>localhost</code> hostname. A security setting in browsers means that the cookie will not be set, though apparently in <a href="https://bugs.launchpad.net/ubuntu/+source/firefox-3.0/+bug/325266">FF3 at least, this behavior is a bug</a>?.</p>
+<p>So simply stop using localhost, you can use your localhost interface (e.g. 127.0.0.1 or 127.0.1.1). To determine your localhost interface you can look at the contents of your hosts file:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #666666; font-style: italic;"># Look for the number to the left of localhost</span>
+<span style="color: #c20cb9; font-weight: bold;">cat</span> <span style="color: #000000; font-weight: bold;">/</span>etc<span style="color: #000000; font-weight: bold;">/</span>hosts</pre></td></tr></table><p class="theCode" style="display:none;"># Look for the number to the left of localhost
+cat /etc/hosts</p></div>
+
+<p>or your interface configuration.</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #666666; font-style: italic;"># Look for interface loX with the LOOPBACK flag (probably lo0)</span>
+<span style="color: #c20cb9; font-weight: bold;">ifconfig</span></pre></td></tr></table><p class="theCode" style="display:none;"># Look for interface loX with the LOOPBACK flag (probably lo0)
+ifconfig</p></div>
+
+<p>Once you know which number to use, you can replace localhost with the number. If you have already installed Magento using localhost then it will keep writing out links to localhost, even after you have changed to using the IP address, you will need to change the base_url values in the <code>core_config_data</code> table, you can run a query like this to find the right config values to change:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="sql" style="font-family:monospace;"><span style="color: #993333; font-weight: bold;">SELECT</span> <span style="color: #66cc66;">*</span> <span style="color: #993333; font-weight: bold;">FROM</span> core_config_data <span style="color: #993333; font-weight: bold;">WHERE</span> <span style="color: #993333; font-weight: bold;">VALUE</span> <span style="color: #993333; font-weight: bold;">LIKE</span> <span style="color: #ff0000;">&quot;%localhost%&quot;</span>;</pre></td></tr></table><p class="theCode" style="display:none;">select * from core_config_data where value like &quot;%localhost%&quot;;</p></div>
+
+<p>This should identfy two config values that will need to update with a query like:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="sql" style="font-family:monospace;"><span style="color: #993333; font-weight: bold;">UPDATE</span> core_config_data <span style="color: #993333; font-weight: bold;">SET</span> <span style="color: #993333; font-weight: bold;">VALUE</span><span style="color: #66cc66;">=</span><span style="color: #ff0000;">&quot;http://127.0.0.1/&quot;</span> <span style="color: #993333; font-weight: bold;">WHERE</span> path <span style="color: #993333; font-weight: bold;">IN</span> <span style="color: #66cc66;">&#40;</span><span style="color: #ff0000;">'web/unsecure/base_url'</span><span style="color: #66cc66;">,</span><span style="color: #ff0000;">'web/secure/base_url'</span><span style="color: #66cc66;">&#41;</span> ;</pre></td></tr></table><p class="theCode" style="display:none;">update core_config_data set value=&quot;http://127.0.0.1/&quot; where path in ('web/unsecure/base_url','web/secure/base_url') ;</p></div>
+
+<p>I&#8217;m going to assume you know to put the right value into that query, and not use the example one I have provided! </p>
+<p>After changing that value you should delete your var/cache contents, and then refresh the page. Now you should have Magento running on an IP address, not a hostname with no dots in it. Of course you could always set up a fake domain name like <code>www.testing.com</code> by using a <a href="../../../02/how-to-set-up-apache-virtual-hosting-on-mamp-for-magento/index.html"><a href="../../../02/how-to-set-up-apache-virtual-hosting-on-mamp-for-magento/index.html">Virtual Hosting setup</a> like I describe in my post on how to configure a <a href="../../../02/how-to-set-up-apache-virtual-hosting-on-mamp-for-magento/index.html">MAMP Virtual host</a>.</p>
+<h3>Solution 2: Timezone differences between server and client</h3>
+<p>One other, less likely problem, is that the cookie is being set, but expiring immediately. To check this you can inspect the cookies your browser is holding, and check if there is one there from Magento. If there is then check both the timezone your magento installation is using , and the one you have set locally, perhaps your local time is not set properly?</p>
+<h3>Solution 3: Cookie domain does not match server domain</h3>
+<p>This caught me out when I was replicating a remote site on my local mac development environment. I thought it&#8217;d be worth adding this solution here, seeing as this post still seems to rank well for Magento install problems. I had changed the base URLs but had forgotten to check the core_config_data table for any other Magento configuration data that might have been interfering with cookies. The config path in question is: <code>web/cookie/cookie_domain</code>.</p>
+<p>You can check the table with an SQL command like this &#8211; you should be on the look out for config values that have hard coded the old URL:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="sql" style="font-family:monospace;"><span style="color: #993333; font-weight: bold;">SELECT</span> <span style="color: #66cc66;">*</span> <span style="color: #993333; font-weight: bold;">FROM</span> core_config_data <span style="color: #993333; font-weight: bold;">WHERE</span> <span style="color: #993333; font-weight: bold;">VALUE</span> <span style="color: #993333; font-weight: bold;">LIKE</span> <span style="color: #ff0000;">&quot;%domain.com%&quot;</span>;
+&nbsp;
+<span style="color: #808080; font-style: italic;">-- Be on the look out for something like this:</span>
+<span style="color: #66cc66;">|</span>       <span style="color: #cc66cc;">513</span> <span style="color: #66cc66;">|</span> <span style="color: #993333; font-weight: bold;">DEFAULT</span> <span style="color: #66cc66;">|</span>        <span style="color: #cc66cc;">0</span> <span style="color: #66cc66;">|</span> web<span style="color: #66cc66;">/</span>cookie<span style="color: #66cc66;">/</span>cookie_domain               <span style="color: #66cc66;">|</span> <span style="color: #993333; font-weight: bold;">DOMAIN</span><span style="color: #66cc66;">.</span>com                                     <span style="color: #66cc66;">|</span></pre></td></tr></table><p class="theCode" style="display:none;">select * from core_config_data where value like &quot;%domain.com%&quot;;
+
+-- Be on the look out for something like this:
+|       513 | default |        0 | web/cookie/cookie_domain               | domain.com                                     |</p></div>
+
+<p>And update it to an empty string (less secure) or the new actual domain (more secure) as shown below:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="sql" style="font-family:monospace;"><span style="color: #993333; font-weight: bold;">UPDATE</span> core_config_data <span style="color: #993333; font-weight: bold;">SET</span> <span style="color: #993333; font-weight: bold;">VALUE</span> <span style="color: #66cc66;">=</span> <span style="color: #ff0000;">&quot;&quot;</span> <span style="color: #993333; font-weight: bold;">WHERE</span> config_id <span style="color: #66cc66;">=</span> <span style="color: #cc66cc;">513</span>;
+<span style="color: #808080; font-style: italic;">-- or</span>
+<span style="color: #993333; font-weight: bold;">UPDATE</span> core_config_data <span style="color: #993333; font-weight: bold;">SET</span> <span style="color: #993333; font-weight: bold;">VALUE</span> <span style="color: #66cc66;">=</span> <span style="color: #ff0000;">&quot;domain.com&quot;</span> <span style="color: #993333; font-weight: bold;">WHERE</span> config_id <span style="color: #66cc66;">=</span> <span style="color: #cc66cc;">513</span>;</pre></td></tr></table><p class="theCode" style="display:none;">update core_config_data set value = &quot;&quot; where config_id = 513;
+-- or
+update core_config_data set value = &quot;domain.com&quot; where config_id = 513;</p></div>
+
+<p><em>But wait, there&#8217;s more&#8230;.</em></p>
+<p>Thanks to <a href="http://fooman.co.nz/">Kristof aka Fooman for this gem</a>:</p>
+<blockquote class="twitter-tweet" lang="en">
+<p><a href="https://twitter.com/aschroder">@aschroder</a> <a href="https://twitter.com/philwinkle">@philwinkle</a> one more is if you have multiple cookies that are valid: .example.com on <a href="http://t.co/756vQClu8B">http://t.co/756vQClu8B</a></p>
+<p>&mdash; Fooman (@foomanNZ) <a href="https://twitter.com/foomanNZ/statuses/483775784142643200">July 1, 2014</a></p></blockquote>
+<p><script async src="http://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+<p>Th solution here is to clear all your cookies related to the store domains and subdomains.</p>
+<p>And yet still more possible issues, this time from <a href="https://twitter.com/maurospivak">Mauro Spivak</a>:</p>
+<blockquote class="twitter-tweet" data-conversation="none" lang="en">
+<p><a href="https://twitter.com/aschroder">@aschroder</a> <a href="https://twitter.com/philwinkle">@philwinkle</a> I found another one: Session store method (local.xml, session_save) was memcache and it wasn&#39;t installed.</p>
+<p>&mdash; Mauro Spivak (@maurospivak) <a href="https://twitter.com/maurospivak/statuses/487708678217564160">July 11, 2014</a></p></blockquote>
+<p><script async src="http://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+<p>This is an example of the more general issue that sessions are not able to be created. That could be because local.xml is instructing Magento to store them in a non-exsistent location such as in Maruo&#8217;s example &#8211; or may also be caused by permission issues on the filesystem when storing sessions in var/session. I&#8217;d suggest checking there is a session matching the session ID for your cookie to see if this issue is affecting you.</p>
+<p>Hopefully one of these <del datetime="2010-06-14T09:14:30+00:00">two</del> <del datetime="2014-07-01T01:27:37+00:00">three</del> four solutions will get you back on track and able to log in to your newly installed Magento. Feel free to post problems or suggest other solutions in the comments below. I&#8217;m always more than happy to update my posts with helpful tips from readers.</p>
+<div class='yarpp-related'>
+<p>You might also be interested in:<ol>
+<li><a href="../../../03/magento-csrf-attack-explanation/index.html" rel="bookmark" title="Magento CSRF attack: A Simple Explanation">Magento CSRF attack: A Simple Explanation </a></li>
+<li><a href="../../../04/how-to-bulk-enable-products-when-google-checkout-is-disabled-in-magento/index.html" rel="bookmark" title="How to Bulk Enable Products when Google Checkout is Disabled in Magento">How to Bulk Enable Products when Google Checkout is Disabled in Magento </a></li>
+<li><a href="../../../03/first-happy-customer-review-free-magento-installation/index.html" rel="bookmark" title="First Happy Customer: Free Magento Installation reviewed">First Happy Customer: Free Magento Installation reviewed </a></li>
+<li><a href="../../../03/magento-installation-database-server-does-not-support-innodb-storage-engine/index.html" rel="bookmark" title="Magento Installation: Database server does not support InnoDB storage engine">Magento Installation: Database server does not support InnoDB storage engine </a></li>
+<li><a href="../../../../2011/02/magento-development-and-deployment-setting-up-a-modman-based-magento-project-on-magento-1-5/index.html" rel="bookmark" title="Magento Development and Deployment: Setting up a Modman based Magento project on Magento 1.5">Magento Development and Deployment: Setting up a Modman based Magento project on Magento 1.5 </a></li>
+</ol></p>
+</div>
+		</div><!-- .entry-content -->
+		<nav id="post-navigation" class="navigation post-navigation" role="navigation" aria-label="Post Navigation"><span class="screen-reader-text">Post navigation</span><div class="nav-links"><div class="nav-previous"><a href="../../magento-error-it-is-not-safe-to-rely-on-the-systems-timezone-settings/index.html" rel="prev">Magento Error: It is not safe to rely on the system&#8217;s timezone settings</a></div><div class="nav-next"><a href="../../magento-javascript-404-breaks-admin-menu-solved/index.html" rel="next">Magento javascript 404 breaks Admin menu&#8230;solved!</a></div></div></nav>
+<section id="comments" class="comments-area" aria-label="Post Comments">
+
+			<h2 class="comments-title">
+			64 thoughts on &ldquo;<span>Fixing Magento Login Problem after a Fresh Installation</span>&rdquo;		</h2>
+
+				<nav id="comment-nav-above" class="comment-navigation" role="navigation" aria-label="Comment Navigation Above">
+			<span class="screen-reader-text">Comment navigation</span>
+			<div class="nav-previous"></div>
+			<div class="nav-next"><a href="../index.html#comments" >Newer Comments &rarr;</a></div>
+		</nav><!-- #comment-nav-above -->
+		
+		<ol class="comment-list">
+					<li class="comment even thread-even depth-1" id="comment-302">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/64c70eb75445c07fc2d384c6eca9f465?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/64c70eb75445c07fc2d384c6eca9f465?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Dan</cite>			</div>
+			
+			<a href="index.html#comment-302" class="comment-date">
+				<time datetime="2009-06-07T01:25:38+00:00">June 7, 2009</time>			</a>
+		</div>
+				<div id="div-comment-302" class="comment-content">
+				<div class="comment-text">
+		<p>Just wanted to say your information on magento is a huge help. There aren&#8217;t many places that document it and I just wanted to say thanks! No need to reply, just smile and know that you and your site rock!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-315">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/3977e84a9428d245519b7d2dc0851300?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/3977e84a9428d245519b7d2dc0851300?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">lindani</cite>			</div>
+			
+			<a href="index.html#comment-315" class="comment-date">
+				<time datetime="2009-06-18T10:52:46+00:00">June 18, 2009</time>			</a>
+		</div>
+				<div id="div-comment-315" class="comment-content">
+				<div class="comment-text">
+		<p>I totally agree with Dan you information is great saved me a third reinstall<br />
+You rock !</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-328">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/4073d4ab0d94a8112017725327aefb82?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/4073d4ab0d94a8112017725327aefb82?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://ragstomillions.com/' rel='external nofollow' class='url'>Jason</a></cite>			</div>
+			
+			<a href="index.html#comment-328" class="comment-date">
+				<time datetime="2009-06-24T16:21:09+00:00">June 24, 2009</time>			</a>
+		</div>
+				<div id="div-comment-328" class="comment-content">
+				<div class="comment-text">
+		<p>Just wanted to say thanks. All I had to do was drop &#8220;localhost&#8221; and use my local IP.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-362">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/b642b4217b34b1e8d3bd915fc65c4452?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/b642b4217b34b1e8d3bd915fc65c4452?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Sambir Shrestha</cite>			</div>
+			
+			<a href="index.html#comment-362" class="comment-date">
+				<time datetime="2009-07-17T13:20:00+00:00">July 17, 2009</time>			</a>
+		</div>
+				<div id="div-comment-362" class="comment-content">
+				<div class="comment-text">
+		<p>Just wanna say thank you. That was really easy solution</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-365">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/e8b33c421a7cf04666d8763fbe8611e4?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/e8b33c421a7cf04666d8763fbe8611e4?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.eyemade.ch/' rel='external nofollow' class='url'>René</a></cite>			</div>
+			
+			<a href="index.html#comment-365" class="comment-date">
+				<time datetime="2009-07-20T14:50:23+00:00">July 20, 2009</time>			</a>
+		</div>
+				<div id="div-comment-365" class="comment-content">
+				<div class="comment-text">
+		<p>But I have this Problem also on a Webserver. This entries are set by my Domain in the database. I don&#8217;t know how to fix it. Any suggestions?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-366">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-366" class="comment-date">
+				<time datetime="2009-07-20T14:53:02+00:00">July 20, 2009</time>			</a>
+		</div>
+				<div id="div-comment-366" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, thanks for commenting, you mean the cookie is not being set, or your domain name has no dots in it?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-386">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/04919a6cd23e89eb089462314066d6d3?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/04919a6cd23e89eb089462314066d6d3?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ryan Hayle</cite>			</div>
+			
+			<a href="index.html#comment-386" class="comment-date">
+				<time datetime="2009-07-30T20:09:53+00:00">July 30, 2009</time>			</a>
+		</div>
+				<div id="div-comment-386" class="comment-content">
+				<div class="comment-text">
+		<p>There is no reason that Magento can&#8217;t set cookies on a local host with no dots in it.  This is a bug in Magento.  I do 100% of my development on various local hosts with no dots in them, and I can set cookies in them just fine.  What&#8217;s going on here?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-387">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-387" class="comment-date">
+				<time datetime="2009-07-30T20:19:23+00:00">July 30, 2009</time>			</a>
+		</div>
+				<div id="div-comment-387" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, Ryan</p>
+<p>Thanks for the feedback, I&#8217;m not sure what the answer is. I do know when I was investigating, the problem seemed browser dependent, and that the actual HTTP response coming back from Magento, appeared totally valid to me (i.e it was setting the cookie properly). The bug I found reported for FF3 (link in the post) seemed to make it seem a browser problem, maybe you luckily do 100% of your development in a browser that does not have this problem? Is this problem affecting you now only on Magento where it has not in the past?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-388">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-388" class="comment-date">
+				<time datetime="2009-07-30T20:21:44+00:00">July 30, 2009</time>			</a>
+		</div>
+				<div id="div-comment-388" class="comment-content">
+				<div class="comment-text">
+		<p>I was just re-reading the bug report, it looks like it may even be FF3 + Ubuntu, where the problem is &#8211; so it may be less of a problem to most users. I&#8217;d be keen to hear feedback on that.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-405">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/997060f0cfc110dc88c20d9d9cd32820?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/997060f0cfc110dc88c20d9d9cd32820?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.hamaramuziq.com/' rel='external nofollow' class='url'>Ghulam H</a></cite>			</div>
+			
+			<a href="index.html#comment-405" class="comment-date">
+				<time datetime="2009-08-16T12:56:20+00:00">August 16, 2009</time>			</a>
+		</div>
+				<div id="div-comment-405" class="comment-content">
+				<div class="comment-text">
+		<p>This really helped. Thanks for sharing</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-416">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/c884531ca961278bfe0684bec6abf84d?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/c884531ca961278bfe0684bec6abf84d?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://freefonty.com/' rel='external nofollow' class='url'>inspir</a></cite>			</div>
+			
+			<a href="index.html#comment-416" class="comment-date">
+				<time datetime="2009-08-23T21:27:15+00:00">August 23, 2009</time>			</a>
+		</div>
+				<div id="div-comment-416" class="comment-content">
+				<div class="comment-text">
+		<p>After last upgrade magento, I have big problem with cookies, anybody have a solution?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-417">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-417" class="comment-date">
+				<time datetime="2009-08-23T21:54:00+00:00">August 23, 2009</time>			</a>
+		</div>
+				<div id="div-comment-417" class="comment-content">
+				<div class="comment-text">
+		<p>Can you describe the symptoms? What isn&#8217;t working?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-440">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/7ca11f2b2afc7a7392f5cc2713d8ecd4?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/7ca11f2b2afc7a7392f5cc2713d8ecd4?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.soluvas.com/' rel='external nofollow' class='url'>Hendy Irawan (Soluvas)</a></cite>			</div>
+			
+			<a href="index.html#comment-440" class="comment-date">
+				<time datetime="2009-09-01T19:01:04+00:00">September 1, 2009</time>			</a>
+		</div>
+				<div id="div-comment-440" class="comment-content">
+				<div class="comment-text">
+		<p>I reported the bug at <a href="https://edge.launchpad.net/ubuntu/+source/firefox-3.0/+bug/325266" rel="nofollow">https://edge.launchpad.net/ubuntu/+source/firefox-3.0/+bug/325266</a></p>
+<p>According to my findings it is due combination of PHP&#8217;s setcookie() call with the domain set AND the browser. Not only Firefox but Google Chrome is also affected, but not Opera (all under Ubuntu 9.04).</p>
+<p>Even if Firefox/Chrome somehow gets fixed in the future, it&#8217;d already be affecting many users. I think Magento should fix its setcookie() call and save all of us the trouble.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-441">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-441" class="comment-date">
+				<time datetime="2009-09-01T19:40:45+00:00">September 1, 2009</time>			</a>
+		</div>
+				<div id="div-comment-441" class="comment-content">
+				<div class="comment-text">
+		<p>I read somewhere that it was in an RFC that cookies only get set for FQDN&#8217;s and not just hostnames. With localhost being a hostname, that could be why localhost cookies do not work. I&#8217;m not sure of an RFC # though to confirm that, anyone got any clues?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-442">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-442" class="comment-date">
+				<time datetime="2009-09-01T19:44:22+00:00">September 1, 2009</time>			</a>
+		</div>
+				<div id="div-comment-442" class="comment-content">
+				<div class="comment-text">
+		<p>Further to that, setcookie() would just be telling the response to include a Cookie header &#8211; so nothing to fix there. It&#8217;s the fact the browser is not actually carrying out what it&#8217;s told to in the headers. I&#8217;m just not sure if that is a bug, or a security feature. Some vague reference to an RFC reckoned the latter.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-448">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/491d1c2e4e41798b0c8591948ee502cf?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/491d1c2e4e41798b0c8591948ee502cf?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">mokker</cite>			</div>
+			
+			<a href="index.html#comment-448" class="comment-date">
+				<time datetime="2009-09-04T03:00:44+00:00">September 4, 2009</time>			</a>
+		</div>
+				<div id="div-comment-448" class="comment-content">
+				<div class="comment-text">
+		<p>Here&#8217;s a solution i found really working. For those who want to try something else, this might be worth it. Check this site: <a href="http://markuzweb.blogspot.com/" rel="nofollow">http://markuzweb.blogspot.com/</a></p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-489">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/044162d88a188095c121595ecf777a6f?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/044162d88a188095c121595ecf777a6f?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Bella</cite>			</div>
+			
+			<a href="index.html#comment-489" class="comment-date">
+				<time datetime="2009-09-16T06:27:53+00:00">September 16, 2009</time>			</a>
+		</div>
+				<div id="div-comment-489" class="comment-content">
+				<div class="comment-text">
+		<p>I already checked the site. It did solve the issue. Works great when you&#8217;re developing themes for Magento or building apps for it. Here&#8217;s how you get there directly: <a href="http://markuzweb.blogspot.com/2009/08/cant-login-to-magento-admin-panel-after.html" rel="nofollow">http://markuzweb.blogspot.com/2009/08/cant-login-to-magento-admin-panel-after.html</a></p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-682">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/ee1d9e36b5337c198d43b37d8e555f91?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/ee1d9e36b5337c198d43b37d8e555f91?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.pemanasanglobal.net/' rel='external nofollow' class='url'>andy</a></cite>			</div>
+			
+			<a href="index.html#comment-682" class="comment-date">
+				<time datetime="2009-11-02T07:53:52+00:00">November 2, 2009</time>			</a>
+		</div>
+				<div id="div-comment-682" class="comment-content">
+				<div class="comment-text">
+		<p>I found the article that can solve the problem..<br />
+<a href="http://markuzweb.blogspot.com/2009/08/cant-login-to-magento-admin-panel-after.html#comment-form" rel="nofollow">http://markuzweb.blogspot.com/2009/08/cant-login-to-magento-admin-panel-after.html#comment-form</a></p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-804">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/0aa1d9bb6b1c018697efcf9d2a33ab4d?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/0aa1d9bb6b1c018697efcf9d2a33ab4d?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.nanhekumar.blogspot.com/' rel='external nofollow' class='url'>nanhe</a></cite>			</div>
+			
+			<a href="index.html#comment-804" class="comment-date">
+				<time datetime="2010-01-19T04:36:01+00:00">January 19, 2010</time>			</a>
+		</div>
+				<div id="div-comment-804" class="comment-content">
+				<div class="comment-text">
+		<p><a href="http://markuzweb.blogspot.com/2009/08/cant-login-to-magento-admin-panel-after.html#comment-form" rel="nofollow">http://markuzweb.blogspot.com/2009/08/cant-login-to-magento-admin-panel-after.html#comment-form</a></p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-848">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/b7f9343f2a67874e74ed863cb6da5322?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/b7f9343f2a67874e74ed863cb6da5322?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">diana</cite>			</div>
+			
+			<a href="index.html#comment-848" class="comment-date">
+				<time datetime="2010-02-09T21:30:24+00:00">February 9, 2010</time>			</a>
+		</div>
+				<div id="div-comment-848" class="comment-content">
+				<div class="comment-text">
+		<p>thanks for helping solve my problem! the admin panel login was not going through after upgrade to 1.7. When i checked the cookies, found that cookies were not getting set at all.. all was fine when the cookie domain was reset in the core_config table to blank instead of the earlier .domain.com</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-873">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/36a58f1902b65ea74367891d947ba2b5?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/36a58f1902b65ea74367891d947ba2b5?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Muthuraj</cite>			</div>
+			
+			<a href="index.html#comment-873" class="comment-date">
+				<time datetime="2010-02-20T10:04:10+00:00">February 20, 2010</time>			</a>
+		</div>
+				<div id="div-comment-873" class="comment-content">
+				<div class="comment-text">
+		<p>Hi all, i also have the same login problem once after installation of magento in locahost, but if you use opera browser you may not face this login problem.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1068">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/34b8addc5dec10aa0cf55fca7302a65f?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/34b8addc5dec10aa0cf55fca7302a65f?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Harsha</cite>			</div>
+			
+			<a href="index.html#comment-1068" class="comment-date">
+				<time datetime="2010-03-21T21:43:03+00:00">March 21, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1068" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks for the info&#8230;</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1094">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/910c3644d6b0a6038379af538aea44f0?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/910c3644d6b0a6038379af538aea44f0?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.egyptvision.com/' rel='external nofollow' class='url'>Ahmad Abubakr</a></cite>			</div>
+			
+			<a href="index.html#comment-1094" class="comment-date">
+				<time datetime="2010-03-25T02:46:35+00:00">March 25, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1094" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks for the great help. you rock</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1171">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/1f1260ec89002e143d0083c62967ef07?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/1f1260ec89002e143d0083c62967ef07?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://mysillypointofview.wordpress.com/' rel='external nofollow' class='url'>Richard Feraro</a></cite>			</div>
+			
+			<a href="index.html#comment-1171" class="comment-date">
+				<time datetime="2010-04-05T01:05:44+00:00">April 5, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1171" class="comment-content">
+				<div class="comment-text">
+		<p>Instead commenting all those line of codes which make it pretty unsecured when used in a production environment, why not detect the domain if its localhost and disable it, then restore usual function when it&#8217;s not.</p>
+<p>This is how I did it:<br />
+<a href="http://mysillypointofview.wordpress.com/2010/03/24/how-to-fix-magentos-admin-login-failing-no-error-message-on-localhost/" rel="nofollow">http://mysillypointofview.wordpress.com/2010/03/24/how-to-fix-magentos-admin-login-failing-no-error-message-on-localhost/</a></p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1235">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/654b6d2ffc499b5779dd306a9011b2f4?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/654b6d2ffc499b5779dd306a9011b2f4?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.ekkitab.com/' rel='external nofollow' class='url'>Anisha</a></cite>			</div>
+			
+			<a href="index.html#comment-1235" class="comment-date">
+				<time datetime="2010-04-20T04:40:29+00:00">April 20, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1235" class="comment-content">
+				<div class="comment-text">
+		<p>Hi </p>
+<p>I know this question of mine is irrelevant to this forum, but its kind of a similar cookie problem, not on the admin side of magento though, but on the frontend. When I login to the frontend I am redirected to the enable-cookies page, even though cookies are enabled on my browsers ( FF &amp; IE ). This is intermittent. I mean this doesn’t happen every time i login. After that when I click on the home page link or any other page it works fine ( without having to do anything on the browser settings ).</p>
+<p>So if someone can help me, that would be great</p>
+<p>I use magento 1.3.2.4 &amp; both ubuntu and windows machines as clients &amp; windows (localhost ) &amp; ubuntu (production ) as server</p>
+<p>Thanks<br />
+Anisha</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1307">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/e0fc2d1b594b9b1bd0acad35c6f9595b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/e0fc2d1b594b9b1bd0acad35c6f9595b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">phpkid</cite>			</div>
+			
+			<a href="index.html#comment-1307" class="comment-date">
+				<time datetime="2010-05-08T08:54:49+00:00">May 8, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1307" class="comment-content">
+				<div class="comment-text">
+		<p>I am using Magento 1.3.2.3..I am not able to login using front end in any case..i am sucessfully able to login to admin…i changed cookie to 10000 and tried everything but no luck until now???any help will be appreciated?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-1311">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-1311" class="comment-date">
+				<time datetime="2010-05-08T15:06:52+00:00">May 8, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1311" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, You mean you can login to the Magento admin, but if you try to log in as a customer it won&#8217;t let you? Very strange, have you tripple checked your login details? Have you tested with purposefully wrong credentials to make sure you get a different error?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1360">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/64bb42b1adb4505079fb7f6d7f26b50c?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/64bb42b1adb4505079fb7f6d7f26b50c?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">fero</cite>			</div>
+			
+			<a href="index.html#comment-1360" class="comment-date">
+				<time datetime="2010-05-25T09:21:05+00:00">May 25, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1360" class="comment-content">
+				<div class="comment-text">
+		<p>No error messages at login, which may mean USER and PASSWORD are correct.<br />
+How do I check the timezone my magento installation is using? I do not have access as amin.<br />
+Thanks</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-1363">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-1363" class="comment-date">
+				<time datetime="2010-05-26T12:06:33+00:00">May 26, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1363" class="comment-content">
+				<div class="comment-text">
+		<p>Try installing firebug (a must have firefox extension) then looking at the Date headers in the &#8216;Net&#8217; tab. Otherwise, I&#8217;m not sure what&#8217;s best. Maybe you could write a php script to echo the date?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1398">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/f7083683e0e2c7e65b755457ef8e8a49?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/f7083683e0e2c7e65b755457ef8e8a49?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Jaso</cite>			</div>
+			
+			<a href="index.html#comment-1398" class="comment-date">
+				<time datetime="2010-06-07T02:59:50+00:00">June 7, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1398" class="comment-content">
+				<div class="comment-text">
+		<p>Hi there,</p>
+<p>I am using this simple procedure under Windows7:<br />
+1. install XAMPP and enable &#8220;iconv&#8221;</p>
+<p>2. edit the file &#8220;hosts&#8221; to this: 127.0.0.1 localhost.com</p>
+<p>3. copy the magento files to the directory: C:\xampp\htdcs\magento\</p>
+<p>4. start the Apache and MySQL</p>
+<p>5. Go to the address: <a href="http://localhost.com/magento" rel="nofollow">http://localhost.com/magento</a></p>
+<p>6. Follow the installation wizard.</p>
+<p>7. Now You will be able login to the administration.</p>
+<p>ENJOY!</p>
+<p>=D</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1490">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/1d8869dd1d3150ba3fb5797ee2d2b0f9?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/1d8869dd1d3150ba3fb5797ee2d2b0f9?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Jamie</cite>			</div>
+			
+			<a href="index.html#comment-1490" class="comment-date">
+				<time datetime="2010-07-01T12:50:49+00:00">July 1, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1490" class="comment-content">
+				<div class="comment-text">
+		<p>I am having the same problem as Jaso! I can login to the admin just fine, and I stay logged in. I cannot log in as a customer at all. If I enter the correct credentials I go nowhere, if I enter incorrect credentials I am given error messages, which is what you describe at the beginning. I&#8217;m confused about the localhost. I am on dreamhost and they run everything from your domain, so on install I changed &#8220;localhost&#8221; to be my domain name.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1501">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/38f1c6d603832e03af9ccdf4f29e56f0?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/38f1c6d603832e03af9ccdf4f29e56f0?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Uneeb</cite>			</div>
+			
+			<a href="index.html#comment-1501" class="comment-date">
+				<time datetime="2010-07-06T06:26:31+00:00">July 6, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1501" class="comment-content">
+				<div class="comment-text">
+		<p>hey,<br />
+this is for people using &#8216;localhost&#8217;. Instead of using &#8216;localhost&#8217; use 127.0.0.1 or what ever in your case during the magento installation and while accessing it everywhere and dont forget to tick mark the &#8216;[somthing]rewrite option of the three options during the installation&#8230; This worked for me&#8230;</p>
+<p>hope it helps..</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1502">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/38f1c6d603832e03af9ccdf4f29e56f0?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/38f1c6d603832e03af9ccdf4f29e56f0?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Uneeb</cite>			</div>
+			
+			<a href="index.html#comment-1502" class="comment-date">
+				<time datetime="2010-07-06T06:31:33+00:00">July 6, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1502" class="comment-content">
+				<div class="comment-text">
+		<p>oo! and yes! dont forget to replace localhost with 127.0.0.1 or whatever in your case in the address bar while installing :p</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1589">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/87d0b1fd4b1b1aa2e7ea425e2d3224ae?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/87d0b1fd4b1b1aa2e7ea425e2d3224ae?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://weddingpapergenie.com/' rel='external nofollow' class='url'>Tim</a></cite>			</div>
+			
+			<a href="index.html#comment-1589" class="comment-date">
+				<time datetime="2010-07-24T14:43:29+00:00">July 24, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1589" class="comment-content">
+				<div class="comment-text">
+		<p>I am having issues logging in to my Admin panel &#8211; I uploaded Magento to my Media Temple server and was able to create an admin account the first time.</p>
+<p>Upon returning to domain.com/magento/index.php/admin I receive a 404 error.  Any suggestions on how I can access my Admin account?  Also, should I be configuring locally rather online through my mt server? (I am admittedly new to e-commerce/carts)</p>
+<p>Thanks so much for your help.</p>
+<p>Tim</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-1593">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-1593" class="comment-date">
+				<time datetime="2010-07-24T22:35:41+00:00">July 24, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1593" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, Tim<br />
+Are you 100% sure you have the right URL? If so, then it&#8217;s quite strange to be getting a 404. Are you getting a Magento 404 or a default Apache 404? perhaps send me a screenshot?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1622">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/ff900f2f6ab5c8627682b9f497672858?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/ff900f2f6ab5c8627682b9f497672858?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">vipin</cite>			</div>
+			
+			<a href="index.html#comment-1622" class="comment-date">
+				<time datetime="2010-07-28T03:40:37+00:00">July 28, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1622" class="comment-content">
+				<div class="comment-text">
+		<p>Hi,<br />
+      I want to say thanks, because here my many problems are solved without efforts.</p>
+<p>Thanks so much for your help.</p>
+<p>  vipin</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1650">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/9d65292cd964a8192cea32f7998bd143?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/9d65292cd964a8192cea32f7998bd143?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://michaelplants.com/' rel='external nofollow' class='url'>Mike Plant</a></cite>			</div>
+			
+			<a href="index.html#comment-1650" class="comment-date">
+				<time datetime="2010-07-30T18:44:09+00:00">July 30, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1650" class="comment-content">
+				<div class="comment-text">
+		<p>I just got this to work form your tips here. Thank you very much. I had to set the sever time and extend te cookie time ad that worked. Not sure why the server time alone didn&#8217;t fix the problem but I just extended the cookie as you suggested to a full day.</p>
+<p>Thanks again,<br />
+Mike</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1702">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/1ed07429b3e4bfec819a8b6db9c8416d?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/1ed07429b3e4bfec819a8b6db9c8416d?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://penguindreams.org/' rel='external nofollow' class='url'>Sumit Khanna</a></cite>			</div>
+			
+			<a href="index.html#comment-1702" class="comment-date">
+				<time datetime="2010-08-10T04:46:26+00:00">August 10, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1702" class="comment-content">
+				<div class="comment-text">
+		<p>I was running Magento in a Linux VirtualBox and both IE8 and FF were giving me problems with not sending the issued cookie (and so a new session was created with each request). Safari for Mac and Windows were working fine though. I was using a DNS like &#8220;dev-magento&#8221; and adding it to my hosts file. Adding a domain (dev-magento.local) fixed the problem! </p>
+<p>Thanks for the writeup! I hate how something that trivial cost me nearly a day of pulling my hair out.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1839">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/ad611e4d550c8588e5eb89c01159fe23?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/ad611e4d550c8588e5eb89c01159fe23?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.dreamingtrack.com/' rel='external nofollow' class='url'>Amber</a></cite>			</div>
+			
+			<a href="index.html#comment-1839" class="comment-date">
+				<time datetime="2010-09-10T17:23:00+00:00">September 10, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1839" class="comment-content">
+				<div class="comment-text">
+		<p>Phew. Thank you. The ol&#8217; cookie domain</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1919">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo avatar-default' height='128' width='128' />			<cite class="fn"><a href='http://yoururl/' rel='external nofollow' class='url'>Naveen</a></cite>			</div>
+			
+			<a href="index.html#comment-1919" class="comment-date">
+				<time datetime="2010-10-11T07:50:47+00:00">October 11, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1919" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Guys, </p>
+<p>I was also having the similar problem of first login after successful installation of Magento.</p>
+<p>Check this link&#8230; it really helped me in solving this.</p>
+<p><a href="http://mysillypointofview.richardferaro.com/2010/03/24/how-to-fix-magentos-admin-login-failing-no-error-message-on-localhost/" rel="nofollow">http://mysillypointofview.richardferaro.com/2010/03/24/how-to-fix-magentos-admin-login-failing-no-error-message-on-localhost/</a></p>
+<p>Note : Editing the core file is not recommended, but you can try this since it works</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1995">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/95757f2fa6d7d55ae69730372ceb5195?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/95757f2fa6d7d55ae69730372ceb5195?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.jaymatthews.co.uk/' rel='external nofollow' class='url'>Jay</a></cite>			</div>
+			
+			<a href="index.html#comment-1995" class="comment-date">
+				<time datetime="2010-12-02T05:07:50+00:00">December 2, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1995" class="comment-content">
+				<div class="comment-text">
+		<p>Tried all the above but no joy. Found this solution that worked for me at:<br />
+<a href="http://net.tutsplus.com/articles/news/easy-e-commerce-with-magento/" rel="nofollow">http://net.tutsplus.com/articles/news/easy-e-commerce-with-magento/</a></p>
+<p>In your Magento folder go to app/code/core/Mage/Core/Model/Session/Abstract/Varien.php</p>
+<p>Find the session_set_cookie_params code block (Line 78) and replace it with this code:</p>
+<p>		session_set_cookie_params(<br />
+            $this-&gt;getCookie()-&gt;getLifetime(),<br />
+            $this-&gt;getCookie()-&gt;getPath()<br />
+               //$this-&gt;getCookie()-&gt;getDomain(),<br />
+               //$this-&gt;getCookie()-&gt;isSecure(),<br />
+               //$this-&gt;getCookie()-&gt;getHttponly()<br />
+        );</p>
+<p>On a proper webhost you do not need to do this! However as we are working on localhost we need to do this to address an cookie issue.</p>
+<p>Happy days!!!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2026">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/ffe07b0e04cabb03c37a701754a00449?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/ffe07b0e04cabb03c37a701754a00449?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.webcampone.com/' rel='external nofollow' class='url'>Jim Pietrangelo</a></cite>			</div>
+			
+			<a href="index.html#comment-2026" class="comment-date">
+				<time datetime="2010-12-18T14:27:40+00:00">December 18, 2010</time>			</a>
+		</div>
+				<div id="div-comment-2026" class="comment-content">
+				<div class="comment-text">
+		<p>Same problem as the others. Using MAMP. Resolved problem by simply creating a regular user using the Magento login page. Then, go into the database, look for table named customer_entity_varchar. Copy the entry that&#8217;s in the value field on row 3. Paste that into the password field in the table admin_user. Done. When you go back to the admin login page, simply use your admin password and the password that you assigned to the regular user you created. Magento should accept these and let you into the back-end.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2620">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/b22b884faa6d9ad5ab1c5ccdbd86092c?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/b22b884faa6d9ad5ab1c5ccdbd86092c?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.3iqs.com/' rel='external nofollow' class='url'>Emiliano</a></cite>			</div>
+			
+			<a href="index.html#comment-2620" class="comment-date">
+				<time datetime="2011-09-13T18:48:27+00:00">September 13, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2620" class="comment-content">
+				<div class="comment-text">
+		<p>Hello,<br />
+Unfortunately none of those methods worked. As for the web/cookie/cookie_domain<br />
+I do not even have that in the database.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2686">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/7fbe3e1f26f3216eb4700fbb5c9d681d?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/7fbe3e1f26f3216eb4700fbb5c9d681d?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Josh</cite>			</div>
+			
+			<a href="index.html#comment-2686" class="comment-date">
+				<time datetime="2011-10-14T13:36:05+00:00">October 14, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2686" class="comment-content">
+				<div class="comment-text">
+		<p>The root cause of the problem is an inherent bug with Magento overriding and hard coding it to UTC time zone. The fix is rather easy, no coding required, just a little math. This fix worked immediately for us.  </p>
+<p><a href="http://www.yireo.com/blog/1296-windows-7-google-chrome-magento-admin-cookie-problem" rel="nofollow">http://www.yireo.com/blog/1296-windows-7-google-chrome-magento-admin-cookie-problem</a></p>
+<p>I sincerely hope Magento gets this fixed, what a waste of time, no pun intended.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2694">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/636c5a1b1d8d13f477ba81db1601c4d2?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/636c5a1b1d8d13f477ba81db1601c4d2?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Vishnu Dutt</cite>			</div>
+			
+			<a href="index.html#comment-2694" class="comment-date">
+				<time datetime="2011-10-21T04:07:27+00:00">October 21, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2694" class="comment-content">
+				<div class="comment-text">
+		<p>Hello Sir I am doing magento changes and there is an problems of redirecting I have added new module in magento admin if I am inserting mysql from  controller like </p>
+<p>if(isset($_REQUEST[&#8216;submitformimage&#8217;]))<br />
+{}<br />
+and after that is not going on the module page come on the admin home page</p>
+<p>Please suggest me well.</p>
+<p>Thanks</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2713">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/0c9e9acd821268dab8ad99117a0c46a1?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/0c9e9acd821268dab8ad99117a0c46a1?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.netsorce.com/' rel='external nofollow' class='url'>Ocean</a></cite>			</div>
+			
+			<a href="index.html#comment-2713" class="comment-date">
+				<time datetime="2011-10-27T08:18:49+00:00">October 27, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2713" class="comment-content">
+				<div class="comment-text">
+		<p>GoDaddy updated their server with the newest version of Apache in mid Oct.  With that in mind Magento wont allow me to login and when I try to retrieve a new password, I use it and it wont let me in the front end either. How can I fix this issue.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2944">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/5748c6da1f5441936e9d3476e72f40a8?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/5748c6da1f5441936e9d3476e72f40a8?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Roy</cite>			</div>
+			
+			<a href="index.html#comment-2944" class="comment-date">
+				<time datetime="2012-02-13T09:21:25+00:00">February 13, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2944" class="comment-content">
+				<div class="comment-text">
+		<p>For me, this fixed it:<br />
+<a href="http://www.redbridgenet.com/magento/cannot-login-to-frontend-with-explorer-on-magento-store/" rel="nofollow">http://www.redbridgenet.com/magento/cannot-login-to-frontend-with-explorer-on-magento-store/</a></p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2958">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/5cbe20e5b1330746222bea39a60cc316?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/5cbe20e5b1330746222bea39a60cc316?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.avs-webentwicklung.de/' rel='external nofollow' class='url'>Andreas von Studnitz</a></cite>			</div>
+			
+			<a href="index.html#comment-2958" class="comment-date">
+				<time datetime="2012-02-17T06:43:38+00:00">February 17, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2958" class="comment-content">
+				<div class="comment-text">
+		<p>Just one note regarding dots in the domain. No dots at all doesn&#8217;t work, as you wrote, but having 4 dots or more doesn&#8217;t work either. We had that on a development server. Now changing subdomains&#8230;</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-3047">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/1f306ae0ca2aa621dcfb90df5481dd89?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/1f306ae0ca2aa621dcfb90df5481dd89?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">chrystian</cite>			</div>
+			
+			<a href="index.html#comment-3047" class="comment-date">
+				<time datetime="2012-02-27T06:20:35+00:00">February 27, 2012</time>			</a>
+		</div>
+				<div id="div-comment-3047" class="comment-content">
+				<div class="comment-text">
+		<p>I&#8217;m working in webserver and for me this solved the bug:<br />
+<a href="http://beanofjava.blogspot.com/2010/05/unable-to-login-into-customer-account.html" rel="nofollow">http://beanofjava.blogspot.com/2010/05/unable-to-login-into-customer-account.html</a></p>
+<p>But I don&#8217;t know if there is some colateral effect changing the code.</p>
+<p>You need to clean cookies and after that and changing the code like said in this link, it seems like works.</p>
+<p>Just one thing, he said change &#8220;inMage.php&#8221; he meant &#8220;in the file Mage.php&#8221; for me that am not developer I did had a time to figure it out.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-3285">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/c686a7659caf97ea77539532d542b258?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/c686a7659caf97ea77539532d542b258?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">SAN</cite>			</div>
+			
+			<a href="index.html#comment-3285" class="comment-date">
+				<time datetime="2012-03-04T07:11:29+00:00">March 4, 2012</time>			</a>
+		</div>
+				<div id="div-comment-3285" class="comment-content">
+				<div class="comment-text">
+		<p>Great help. I installed Magento with Bitnami stack on my local machine. Your solution #1 worked for me. Thanks!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		</ol><!-- .comment-list -->
+
+				<nav id="comment-nav-below" class="comment-navigation" role="navigation" aria-label="Comment Navigation Below">
+			<span class="screen-reader-text">Comment navigation</span>
+			<div class="nav-previous"></div>
+			<div class="nav-next"><a href="../index.html#comments" >Newer Comments &rarr;</a></div>
+		</nav><!-- #comment-nav-below -->
+				<p class="no-comments">Comments are closed.</p>
+	
+</section><!-- #comments -->
+
+</div><!-- #post-## -->
+
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+		</div><!-- .col-full -->
+	</div><!-- #content -->
+
+	
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="col-full">
+
+					<div class="site-info">
+			&copy; ASchroder.com 2023						<br /> Storefront designed by <a href="http://www.woocommerce.com/" title="WooCommerce - The Best eCommerce Platform for WordPress" rel="author">WooCommerce</a>.					</div><!-- .site-info -->
+		
+		</div><!-- .col-full -->
+	</footer><!-- #colophon -->
+
+	
+</div><!-- #page -->
+
+<link rel='stylesheet' id='yarppRelatedCss-css'  href='../../../../wp-content/plugins/yet-another-related-posts-plugin/style/related101e.css?ver=4.8.15' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../wp-content/plugins/wp-syntax/js/wp-syntax4963.js?ver=1.1'></script>
+<script type='text/javascript' src='../../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/navigation.min11a8.js?ver=20120206'></script>
+<script type='text/javascript' src='../../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/skip-link-focus-fix.min08e0.js?ver=20130115'></script>
+<script type='text/javascript' src='../../../../../cdn.aschroder.com/wp-includes/js/wp-embed.min101e.js?ver=4.8.15'></script>
+
+</body>
+
+<!-- Mirrored from www.aschroder.com/2009/05/fixing-magento-login-problem-after-a-fresh-installation/comment-page-1/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:39:10 GMT -->
+</html>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:31:26 by W3 Total Cache -->

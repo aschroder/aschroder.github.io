@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en-US">
+
+<!-- Mirrored from www.aschroder.com/2008/11/my-list-of-php-language-features-with-hard-to-imagine-use-cases-1-the-symbol-that-supresses-errors/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:27:52 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="../../../xmlrpc.php">
+
+<title>My list of PHP language features with hard-to-imagine-use-cases: #1 – The @ symbol that supresses errors | ASchroder.com</title>
+
+<!-- All in One SEO Pack 2.4.2 by Michael Torbert of Semper Fi Web Design[289,428] -->
+<meta name="description"  content="I&#039;ll preface this post by saying that the hours spent chasing bugs after 1AM are seldom remembered fondly. So perhaps that&#039;s causing some bias in my opinion -" />
+
+<!-- /all in one seo pack -->
+<link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
+<link rel='dns-prefetch' href='http://s.w.org/' />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Feed" href="../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Comments Feed" href="../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; My list of PHP language features with hard-to-imagine-use-cases: #1 &#8211; The @ symbol that supresses errors Comments Feed" href="feed/index.html" />
+<!-- This site uses the Google Analytics by MonsterInsights plugin v6.2.4 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+<script type="text/javascript" data-cfasync="false">
+		var disableStr = 'ga-disable-UA-6477134-1';
+
+	/* Function to detect opted out users */
+	function __gaTrackerIsOptedOut() {
+		return document.cookie.indexOf(disableStr + '=true') > -1;
+	}
+
+	/* Disable tracking if the opt-out cookie exists. */
+	if ( __gaTrackerIsOptedOut() ) {
+		window[disableStr] = true;
+	}
+
+	/* Opt-out function */
+	function __gaTrackerOptout() {
+	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+	  window[disableStr] = true;
+	}
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','http://www.google-analytics.com/analytics.js','__gaTracker');
+
+	__gaTracker('create', 'UA-6477134-1', 'auto');
+	__gaTracker('set', 'forceSSL', true);
+	__gaTracker('send','pageview');
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/www.aschroder.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.15"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='yarppWidgetCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/widget101e.css?ver=4.8.15' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-syntax-css-css'  href='../../../wp-content/plugins/wp-syntax/css/wp-syntax4963.css?ver=1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-style-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/style5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<style id='storefront-style-inline-css' type='text/css'>
+
+			.main-navigation ul li a,
+			.site-title a,
+			ul.menu li a,
+			.site-branding h1 a,
+			.site-footer .storefront-handheld-footer-bar a:not(.button),
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				color: #333333;
+			}
+
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				border-color: #333333;
+			}
+
+			.main-navigation ul li a:hover,
+			.main-navigation ul li:hover > a,
+			.site-title a:hover,
+			a.cart-contents:hover,
+			.site-header-cart .widget_shopping_cart a:hover,
+			.site-header-cart:hover > li > a,
+			.site-header ul.menu li.current-menu-item > a {
+				color: #838383;
+			}
+
+			table th {
+				background-color: #f8f8f8;
+			}
+
+			table tbody td {
+				background-color: #fdfdfd;
+			}
+
+			table tbody tr:nth-child(2n) td,
+			fieldset,
+			fieldset legend {
+				background-color: #fbfbfb;
+			}
+
+			.site-header,
+			.secondary-navigation ul ul,
+			.main-navigation ul.menu > li.menu-item-has-children:after,
+			.secondary-navigation ul.menu ul,
+			.storefront-handheld-footer-bar,
+			.storefront-handheld-footer-bar ul li > a,
+			.storefront-handheld-footer-bar ul li.search .site-search,
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				background-color: #ffffff;
+			}
+
+			p.site-description,
+			.site-header,
+			.storefront-handheld-footer-bar {
+				color: #6d6d6d;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count,
+			button.menu-toggle:after,
+			button.menu-toggle:before,
+			button.menu-toggle span:before {
+				background-color: #333333;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				color: #ffffff;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				border-color: #ffffff;
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+				color: #333333;
+			}
+
+			.widget h1 {
+				border-bottom-color: #333333;
+			}
+
+			body,
+			.secondary-navigation a,
+			.onsale,
+			.pagination .page-numbers li .page-numbers:not(.current), .woocommerce-pagination .page-numbers li .page-numbers:not(.current) {
+				color: #6d6d6d;
+			}
+
+			.widget-area .widget a,
+			.hentry .entry-header .posted-on a,
+			.hentry .entry-header .byline a {
+				color: #9f9f9f;
+			}
+
+			a  {
+				color: #0228d1;
+			}
+
+			a:focus,
+			.button:focus,
+			.button.alt:focus,
+			.button.added_to_cart:focus,
+			.button.wc-forward:focus,
+			button:focus,
+			input[type="button"]:focus,
+			input[type="reset"]:focus,
+			input[type="submit"]:focus {
+				outline-color: #0228d1;
+			}
+
+			button, input[type="button"], input[type="reset"], input[type="submit"], .button, .added_to_cart, .widget a.button, .site-header-cart .widget_shopping_cart a.button {
+				background-color: #eeeeee;
+				border-color: #eeeeee;
+				color: #333333;
+			}
+
+			button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, .button:hover, .added_to_cart:hover, .widget a.button:hover, .site-header-cart .widget_shopping_cart a.button:hover {
+				background-color: #d5d5d5;
+				border-color: #d5d5d5;
+				color: #333333;
+			}
+
+			button.alt, input[type="button"].alt, input[type="reset"].alt, input[type="submit"].alt, .button.alt, .added_to_cart.alt, .widget-area .widget a.button.alt, .added_to_cart, .widget a.button.checkout {
+				background-color: #333333;
+				border-color: #333333;
+				color: #ffffff;
+			}
+
+			button.alt:hover, input[type="button"].alt:hover, input[type="reset"].alt:hover, input[type="submit"].alt:hover, .button.alt:hover, .added_to_cart.alt:hover, .widget-area .widget a.button.alt:hover, .added_to_cart:hover, .widget a.button.checkout:hover {
+				background-color: #1a1a1a;
+				border-color: #1a1a1a;
+				color: #ffffff;
+			}
+
+			.pagination .page-numbers li .page-numbers.current, .woocommerce-pagination .page-numbers li .page-numbers.current {
+				background-color: #e6e6e6;
+				color: #6d6d6d;
+			}
+
+			#comments .comment-list .comment-content .comment-text {
+				background-color: #f8f8f8;
+			}
+
+			.site-footer {
+				background-color: #f0f0f0;
+				color: #6d6d6d;
+			}
+
+			.site-footer a:not(.button) {
+				color: #333333;
+			}
+
+			.site-footer h1, .site-footer h2, .site-footer h3, .site-footer h4, .site-footer h5, .site-footer h6 {
+				color: #333333;
+			}
+
+			#order_review {
+				background-color: #ffffff;
+			}
+
+			#payment .payment_methods > li .payment_box,
+			#payment .place-order {
+				background-color: #fafafa;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice) {
+				background-color: #f5f5f5;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice):hover {
+				background-color: #f0f0f0;
+			}
+
+			@media screen and ( min-width: 768px ) {
+				.secondary-navigation ul.menu a:hover {
+					color: #868686;
+				}
+
+				.secondary-navigation ul.menu a {
+					color: #6d6d6d;
+				}
+
+				.site-header-cart .widget_shopping_cart,
+				.main-navigation ul.menu ul.sub-menu,
+				.main-navigation ul.nav-menu ul.children {
+					background-color: #f0f0f0;
+				}
+
+				.site-header-cart .widget_shopping_cart .buttons,
+				.site-header-cart .widget_shopping_cart .total {
+					background-color: #f5f5f5;
+				}
+
+				.site-header {
+					border-bottom-color: #f0f0f0;
+				}
+			}
+</style>
+<link rel='stylesheet' id='storefront-icons-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/sass/base/icons5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-fonts-css'  href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,600,700,900&amp;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jqueryb8ff.js?ver=1.12.4'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jquery-migrate.min330a.js?ver=1.4.1'></script>
+<link rel='https://api.w.org/' href='../../../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../xmlrpc0db0.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Taking GWT 1.5 RC1 for a spin &#8211; a review of the new GWT release candidate.' href='../taking-gwt-15-rc1-for-a-spin-a-review-of-the-new-gwt-release-candidate/index.html' />
+<link rel='next' title='Magento 1.1.7 Google Checkout and Free Shipping' href='../magento-google-checkout-free-shipping/index.html' />
+<meta name="generator" content="WordPress 4.8.15" />
+<link rel="canonical" href="index.html" />
+<link rel='shortlink' href='../../../index2df4.html?p=8' />
+<link rel="alternate" type="application/json+oembed" href="../../../wp-json/oembed/1.0/embed91d2.json?url=http%3A%2F%2Fwww.aschroder.com%2F2008%2F11%2Fmy-list-of-php-language-features-with-hard-to-imagine-use-cases-1-the-symbol-that-supresses-errors%2F" />
+<link rel="alternate" type="text/xml+oembed" href="../../../wp-json/oembed/1.0/embed0822?url=http%3A%2F%2Fwww.aschroder.com%2F2008%2F11%2Fmy-list-of-php-language-features-with-hard-to-imagine-use-cases-1-the-symbol-that-supresses-errors%2F&amp;format=xml" />
+</head>
+
+<body class="post-template-default single single-post postid-8 single-format-standard no-wc-breadcrumb storefront-full-width-content right-sidebar">
+
+
+<div id="page" class="hfeed site">
+	
+	<header id="masthead" class="site-header" role="banner" style="">
+		<div class="col-full">
+
+					<a class="skip-link screen-reader-text" href="#site-navigation">Skip to navigation</a>
+		<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+				<div class="site-branding">
+			<div class="beta site-title"><a href="../../../index.html" rel="home">ASchroder.com</a></div><p class="site-description">Notes on Web Development</p>		</div>
+		<div class="storefront-primary-navigation">		<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="Primary Navigation">
+		<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><span>Menu</span></button>
+			<div class="primary-navigation"><ul id="menu-main-menu" class="menu"><li id="menu-item-1119" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li id="menu-item-1118" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li id="menu-item-1872" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div><div class="handheld-navigation"><ul id="menu-main-menu-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div>		</nav><!-- #site-navigation -->
+		</div>
+		</div>
+	</header><!-- #masthead -->
+
+	
+	<div id="content" class="site-content" tabindex="-1">
+		<div class="col-full">
+
+		
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+<div id="post-8" class="post-8 post type-post status-publish format-standard hentry category-language-design category-php tag-language-design tag-php tag-web-development">
+
+			<header class="entry-header">
+		<span class="posted-on">Posted on <a href="index.html" rel="bookmark"><time class="entry-date published" datetime="2008-11-26T14:42:20+00:00">November 26, 2008</time> <time class="updated" datetime="2009-03-15T00:11:18+00:00">March 15, 2009</time></a></span><h1 class="entry-title">My list of PHP language features with hard-to-imagine-use-cases: #1 &#8211; The @ symbol that supresses errors</h1>		</header><!-- .entry-header -->
+				<aside class="entry-meta">
+						<div class="author">
+				<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' /><div class="label">Written by</div><a href="../../../author/admin/index.html" title="Posts by Ashley" rel="author">Ashley</a>			</div>
+							<div class="cat-links">
+					<div class="label">Posted in</div><a href="../../../category/language-design/index.html" rel="category tag">Language Design</a>, <a href="../../../category/php/index.html" rel="category tag">PHP</a>				</div>
+			
+							<div class="tags-links">
+					<div class="label">Tagged</div><a href="../../../tag/language-design/index.html" rel="tag">Language Design</a>, <a href="../../../tag/php/index.html" rel="tag">PHP</a>, <a href="../../../tag/web-development/index.html" rel="tag">Web Development</a>				</div>
+			
+		
+							<div class="comments-link">
+					<div class="label">Comments</div>					<span class="comments-link"><a href="index.html#comments">4 Comments</a></span>
+				</div>
+					</aside>
+				<div class="entry-content">
+		<p>I&#8217;ll preface this post by saying that the hours spent chasing bugs after 1AM are seldom remembered fondly. So perhaps that&#8217;s causing some bias in my opinion &#8211; bear it in mind.</p>
+<p>I&#8217;m really learning PHP as I go along, so you can imagine my suprise when at 3AM I discovered the reason I wasn&#8217;t seeing an out of memory error was because in PHP:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="php" style="font-family:monospace;"><span style="color: #339933;">@&lt;</span>any statement<span style="color: #339933;">&gt;&lt;/</span>any<span style="color: #339933;">&gt;</span></pre></td></tr></table><p class="theCode" style="display:none;">@&lt;any statement&gt;&lt;/any&gt;</p></div>
+
+<p>is the same as an empty try/catch:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="php" style="font-family:monospace;">try <span style="color: #009900;">&#123;</span>
+   <span style="color: #339933;">&lt;</span>any statement<span style="color: #339933;">&gt;</span>
+<span style="color: #009900;">&#125;</span> catch <span style="color: #009900;">&#123;</span><span style="color: #009900;">&#125;</span><span style="color: #339933;">&lt;/</span>any<span style="color: #339933;">&gt;</span></pre></td></tr></table><p class="theCode" style="display:none;">try {
+   &lt;any statement&gt;
+} catch {}&lt;/any&gt;</p></div>
+
+<p><span id="more-8"></span></p>
+<p>From the PHP syntax docs the @ symbol means:</p>
+<blockquote><p>&#8220;When     prepended to an expression in PHP, any error messages that might     be generated by that expression will be ignored&#8221;</p></blockquote>
+<p>You can read all about this <a href="http://php.net/manual/en/language.operators.errorcontrol.php" onclick="__gaTracker('send', 'event', 'outbound-article', 'http://php.net/manual/en/language.operators.errorcontrol.php', 'bad language design');" rel="nofollow">bad language design</a> &#8211; particularly funny is the warning they have included!</p>
+<p>Is typing out an empty try/catch <em>really</em> that hard? Most decent IDE&#8217;s will do it for you. I&#8217;m struggling to see the reason why anyone would want this functionality, but would love to hear from anyone who knows.</p>
+<p>The problem I have with it is the lack of transparency &#8211; the more features like this in a language the more difficult it becomes to read and maintain the code. One of the things I like about Java is the simple syntax. Yes that will make a language take up more &#8216;lines of code&#8217; but when your IDE is writing all the boilerplate code for you, who cares? At least you know there are no special operators or obscure syntax features that will catch developers out.</p>
+<p>It probably has a bit to do with the static typing vs dynamic typing. IDE&#8217;s generally have a hard time writing code for you if they do not know what type of objects you are dealing with. Dynamic languages tend to be terse, and the more symbols you have, the terser your applications can become.</p>
+<p>Moral of the story: be suspicious of any syntax you haven&#8217;t seen before in PHP &#8211; no matter how innocuous it may seem.</p>
+<div class='yarpp-related'>
+<p>You might also be interested in:<ol>
+<li><a href="../../../2009/03/shuffle-or-how-i-learned-to-stop-worrying-and-love-php/index.html" rel="bookmark" title="shuffle() or: How I Learned to Stop Worrying and Love PHP">shuffle() or: How I Learned to Stop Worrying and Love PHP </a></li>
+<li><a href="../../../2012/04/magento-imagine-2012-making-the-most-of-apis/index.html" rel="bookmark" title="Magento Imagine 2012: Making the most of APIs">Magento Imagine 2012: Making the most of APIs </a></li>
+<li><a href="../../../2011/10/magento-cloud-backup-0-3-rc-new-features-and-an-end-to-the-beta-program-in-sight/index.html" rel="bookmark" title="Magento Cloud Backup 0.3 RC &#8211; new features and an end to the beta program in sight">Magento Cloud Backup 0.3 RC &#8211; new features and an end to the beta program in sight </a></li>
+<li><a href="../../../2010/04/new-magento-smtp-features-email-logging-and-email-sending-events/index.html" rel="bookmark" title="New Magento SMTP features: Email logging and email sending events">New Magento SMTP features: Email logging and email sending events </a></li>
+<li><a href="../../../2011/02/magento-imagine-2011-presentation-notes-and-links-engineering-your-magento-store/index.html" rel="bookmark" title="Magento Imagine 2011 Presentation Notes and Links: Engineering your Magento Store">Magento Imagine 2011 Presentation Notes and Links: Engineering your Magento Store </a></li>
+</ol></p>
+</div>
+		</div><!-- .entry-content -->
+		<nav id="post-navigation" class="navigation post-navigation" role="navigation" aria-label="Post Navigation"><span class="screen-reader-text">Post navigation</span><div class="nav-links"><div class="nav-previous"><a href="../taking-gwt-15-rc1-for-a-spin-a-review-of-the-new-gwt-release-candidate/index.html" rel="prev">Taking GWT 1.5 RC1 for a spin &#8211; a review of the new GWT release candidate.</a></div><div class="nav-next"><a href="../magento-google-checkout-free-shipping/index.html" rel="next">Magento 1.1.7 Google Checkout and Free Shipping</a></div></div></nav>
+<section id="comments" class="comments-area" aria-label="Post Comments">
+
+			<h2 class="comments-title">
+			4 thoughts on &ldquo;<span>My list of PHP language features with hard-to-imagine-use-cases: #1 &#8211; The @ symbol that supresses errors</span>&rdquo;		</h2>
+
+		
+		<ol class="comment-list">
+					<li class="comment even thread-even depth-1" id="comment-1421">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/0f0a06c9bd1abfd7d77d43419c2d1ee4?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/0f0a06c9bd1abfd7d77d43419c2d1ee4?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='www.renaissance-design.html' rel='external nofollow' class='url'>Chris Cox</a></cite>			</div>
+			
+			<a href="index.html#comment-1421" class="comment-date">
+				<time datetime="2010-06-11T07:46:59+00:00">June 11, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1421" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Ashley,</p>
+<p>I appreciate that this is a very old post, but I thought I&#8217;d throw in a clarification for the sake of other folks like me who might stumble across this. PHP wasn&#8217;t developed as an OO language so I can see how it might not have made sense to someone with a Java background.</p>
+<p>PHP has grown more or less organically from a simple procedural language and, apart from a very limited attempt to introduce OO constructs in PHP4, it wasn&#8217;t until PHP5 that most of the things you take for granted appeared. Older language constructs are very slow to be deprecated for reasons of backward compatibility.</p>
+<p>So from the viewpoint of writing a simple script on a webpage (which is PHP&#8217;s origins) being able to suppress error messages is a good thing. Of course, now we have proper exception handling and all manner of other goodies the @ is a bit vestigial.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-1422">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-1422" class="comment-date">
+				<time datetime="2010-06-11T14:56:16+00:00">June 11, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1422" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks for the insightful comment Chris &#8211; it&#8217;s easy to forget PHP has a long history and evolution to it&#8217;s current state. Ironically I&#8217;ve worked with it so long now, the coding in Java feels cumbersome (safe, but cumbersome).</p>
+<p>Perhaps the answer is a <del datetime="2010-06-11T22:50:26+00:00">newer</del> differently designed scripting language like ruby, all the benefits of simplicity and a modern OO architecture.</p>
+<p>(according to wikipedia, both came about around the same time &#8211; who knew&#8230;)</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2309">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/dd6a7f98fc0d32f5a61fc12721a21312?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/dd6a7f98fc0d32f5a61fc12721a21312?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://yoururl/' rel='external nofollow' class='url'>Lee Saferite</a></cite>			</div>
+			
+			<a href="index.html#comment-2309" class="comment-date">
+				<time datetime="2011-05-17T02:13:05+00:00">May 17, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2309" class="comment-content">
+				<div class="comment-text">
+		<p>I know this is a REALLY old post, but I thought I&#8217;d point out one thing.  While the usage of @ is bad, it&#8217;s not as simple as replacing usages of it with a try/catch block.  </p>
+<p>The @ is supressing PHP error messages which are not the same as exceptions. You can register an error handler that can throw exceptions, which is what Magento does, but it&#8217;s not standard.</p>
+<p>Any usage of the @ should include good error checking at the very least. In reality it should prompt a mental refactoring of what you are doing.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-2313">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-2313" class="comment-date">
+				<time datetime="2011-05-17T14:10:02+00:00">May 17, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2313" class="comment-content">
+				<div class="comment-text">
+		<p>Very old indeed! But you&#8217;re right, plus I&#8217;m not so scathing of PHP these days &#8211; still prefer Java though 🙂</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		</ol><!-- .comment-list -->
+
+				<p class="no-comments">Comments are closed.</p>
+	
+</section><!-- #comments -->
+
+</div><!-- #post-## -->
+
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+		</div><!-- .col-full -->
+	</div><!-- #content -->
+
+	
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="col-full">
+
+					<div class="site-info">
+			&copy; ASchroder.com 2023						<br /> Storefront designed by <a href="http://www.woocommerce.com/" title="WooCommerce - The Best eCommerce Platform for WordPress" rel="author">WooCommerce</a>.					</div><!-- .site-info -->
+		
+		</div><!-- .col-full -->
+	</footer><!-- #colophon -->
+
+	
+</div><!-- #page -->
+
+<link rel='stylesheet' id='yarppRelatedCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/related101e.css?ver=4.8.15' type='text/css' media='all' />
+<script type='text/javascript' src='../../../wp-content/plugins/wp-syntax/js/wp-syntax4963.js?ver=1.1'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/navigation.min11a8.js?ver=20120206'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/skip-link-focus-fix.min08e0.js?ver=20130115'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/wp-embed.min101e.js?ver=4.8.15'></script>
+
+</body>
+
+<!-- Mirrored from www.aschroder.com/2008/11/my-list-of-php-language-features-with-hard-to-imagine-use-cases-1-the-symbol-that-supresses-errors/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:27:58 GMT -->
+</html>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:18:40 by W3 Total Cache -->

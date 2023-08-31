@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>Comments on: Clustering WordPress on Amazon EC2 micro instances</title>
+	<atom:link href="http://www.aschroder.com/2011/06/clustering-wordpress-on-amazon-ec2-micro-instances/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.aschroder.com/2011/06/clustering-wordpress-on-amazon-ec2-micro-instances/</link>
+	<description>Notes on Web Development</description>
+	<lastBuildDate>Wed, 23 Dec 2020 09:25:05 +0000</lastBuildDate>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8.15</generator>
+	<item>
+		<title>By: Ashley</title>
+		<link>http://www.aschroder.com/2011/06/clustering-wordpress-on-amazon-ec2-micro-instances/comment-page-1/#comment-9972</link>
+		<dc:creator><![CDATA[Ashley]]></dc:creator>
+		<pubDate>Thu, 04 Apr 2013 21:06:28 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1513#comment-9972</guid>
+		<description><![CDATA[Joe, you have restored my faith in enabling comments, thanks for your contribution. 
+
+https://twitter.com/aschroder/status/319918359200276481]]></description>
+		<content:encoded><![CDATA[<p>Joe, you have restored my faith in enabling comments, thanks for your contribution. </p>
+<p><a href="https://twitter.com/aschroder/status/319918359200276481" rel="nofollow">https://twitter.com/aschroder/status/319918359200276481</a></p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Joe Cole</title>
+		<link>http://www.aschroder.com/2011/06/clustering-wordpress-on-amazon-ec2-micro-instances/comment-page-1/#comment-9970</link>
+		<dc:creator><![CDATA[Joe Cole]]></dc:creator>
+		<pubDate>Thu, 04 Apr 2013 20:59:32 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1513#comment-9970</guid>
+		<description><![CDATA[Just a tip for anyone that doesn&#039;t know much about MySQL.  I followed the steps in this blog post but still couldn&#039;t connect to MySQL from neither my master node nor my web front-end node.  I kept getting a &quot;Error establishing a database connection&quot; error whenever I attempted to view my site in a browser.  After MUCH banging my head on the proverbial wall, I figured out that the TurnKey WordPress AMI I started with when I created my EC2 instances was set to bind MySQL to the loopback address AND the privileges for user root in the User table were restricting host to localhost only.
+
+To resolve the error, I modified /etc/mysql/my.cnf and changed
+
+bind-address		= 127.0.0.1
+to
+bind-address		= ec2-[elastic ip here with dashes].compute-1.amazonaws.com
+
+So that fixed the binding issue.  To fix the permissions issue, I logged into MySQL as root on the console and added a new record to the User table in the mysql database as follows:
+
+mysql -u root -p
+[password]
+GRANT ALL PRIVILEGES ON *.* TO &#039;root&#039;@&#039;ip-%.ec2.internal&#039; IDENTIFIED BY &#039;[password]&#039;;
+
+This allows the root user to access MySQL from any host that starts with &quot;ip-&quot; and ends with &quot;.ec2.internal&quot;.  (FYI - I tested using telnet to see that the internal DNS name is what goes across the wire.
+
+After those changes, I was able to connect to MySQL from both the master node and my web front-end nodes.
+
+So if you&#039;re using a 3rd-party AMI as your starting image and can&#039;t connect to MySQL to save your life, check your /etc/mysql/my.cnf file and the mysql.User table!!]]></description>
+		<content:encoded><![CDATA[<p>Just a tip for anyone that doesn&#8217;t know much about MySQL.  I followed the steps in this blog post but still couldn&#8217;t connect to MySQL from neither my master node nor my web front-end node.  I kept getting a &#8220;Error establishing a database connection&#8221; error whenever I attempted to view my site in a browser.  After MUCH banging my head on the proverbial wall, I figured out that the TurnKey WordPress AMI I started with when I created my EC2 instances was set to bind MySQL to the loopback address AND the privileges for user root in the User table were restricting host to localhost only.</p>
+<p>To resolve the error, I modified /etc/mysql/my.cnf and changed</p>
+<p>bind-address		= 127.0.0.1<br />
+to<br />
+bind-address		= ec2-[elastic ip here with dashes].compute-1.amazonaws.com</p>
+<p>So that fixed the binding issue.  To fix the permissions issue, I logged into MySQL as root on the console and added a new record to the User table in the mysql database as follows:</p>
+<p>mysql -u root -p<br />
+[password]<br />
+GRANT ALL PRIVILEGES ON *.* TO &#8216;root&#8217;@&#8217;ip-%.ec2.internal&#8217; IDENTIFIED BY &#8216;[password]&#8217;;</p>
+<p>This allows the root user to access MySQL from any host that starts with &#8220;ip-&#8221; and ends with &#8220;.ec2.internal&#8221;.  (FYI &#8211; I tested using telnet to see that the internal DNS name is what goes across the wire.</p>
+<p>After those changes, I was able to connect to MySQL from both the master node and my web front-end nodes.</p>
+<p>So if you&#8217;re using a 3rd-party AMI as your starting image and can&#8217;t connect to MySQL to save your life, check your /etc/mysql/my.cnf file and the mysql.User table!!</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Larsen</title>
+		<link>http://www.aschroder.com/2011/06/clustering-wordpress-on-amazon-ec2-micro-instances/comment-page-1/#comment-7393</link>
+		<dc:creator><![CDATA[Larsen]]></dc:creator>
+		<pubDate>Thu, 17 Jan 2013 11:15:18 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1513#comment-7393</guid>
+		<description><![CDATA[Hi Ashley,
+
+thanks a lot for your blog post. I am just starting to learn about EC2 and still have some questions:
+
+How is your storage organized? Do you use an EBS volume for your master instance and the slave instances use the data via NFS?
+
+Do you have different AMIs for the master and the slaves?
+
+
+Cheers
+Lars]]></description>
+		<content:encoded><![CDATA[<p>Hi Ashley,</p>
+<p>thanks a lot for your blog post. I am just starting to learn about EC2 and still have some questions:</p>
+<p>How is your storage organized? Do you use an EBS volume for your master instance and the slave instances use the data via NFS?</p>
+<p>Do you have different AMIs for the master and the slaves?</p>
+<p>Cheers<br />
+Lars</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Ashley</title>
+		<link>http://www.aschroder.com/2011/06/clustering-wordpress-on-amazon-ec2-micro-instances/comment-page-1/#comment-5239</link>
+		<dc:creator><![CDATA[Ashley]]></dc:creator>
+		<pubDate>Wed, 28 Nov 2012 19:15:21 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1513#comment-5239</guid>
+		<description><![CDATA[Thanks Larry! Yes, the &lt;a href=&quot;http://www.aschroder.com/2012/01/using-aws-auto-scaling-with-an-elastic-load-balancer-cluster-on-ec2/&quot; rel=&quot;nofollow&quot;&gt;autoscaling follow up to this post&lt;/a&gt; is I think important, since adding that, and going on-demand, not spot, I have had a much more reliable site.]]></description>
+		<content:encoded><![CDATA[<p>Thanks Larry! Yes, the <a href="http://www.aschroder.com/2012/01/using-aws-auto-scaling-with-an-elastic-load-balancer-cluster-on-ec2/" rel="nofollow">autoscaling follow up to this post</a> is I think important, since adding that, and going on-demand, not spot, I have had a much more reliable site.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Larry</title>
+		<link>http://www.aschroder.com/2011/06/clustering-wordpress-on-amazon-ec2-micro-instances/comment-page-1/#comment-5235</link>
+		<dc:creator><![CDATA[Larry]]></dc:creator>
+		<pubDate>Wed, 28 Nov 2012 12:58:34 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1513#comment-5235</guid>
+		<description><![CDATA[Ashley, I have to applaud you on being one of the very few to actually think things through and have a viable aws scaling wordpress tutorial.  I&#039;ve tried them all, with a real 1000 page blog, and almost all of them can&#039;t run on a t1.micro - but your auto scaling solution does the trick.]]></description>
+		<content:encoded><![CDATA[<p>Ashley, I have to applaud you on being one of the very few to actually think things through and have a viable aws scaling wordpress tutorial.  I&#8217;ve tried them all, with a real 1000 page blog, and almost all of them can&#8217;t run on a t1.micro &#8211; but your auto scaling solution does the trick.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: John Wheal</title>
+		<link>http://www.aschroder.com/2011/06/clustering-wordpress-on-amazon-ec2-micro-instances/comment-page-1/#comment-4860</link>
+		<dc:creator><![CDATA[John Wheal]]></dc:creator>
+		<pubDate>Mon, 02 Jul 2012 20:32:44 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1513#comment-4860</guid>
+		<description><![CDATA[This is what I do for my site. The only difference is that I have a memcached server to handle PHP sessions.]]></description>
+		<content:encoded><![CDATA[<p>This is what I do for my site. The only difference is that I have a memcached server to handle PHP sessions.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Chief Editor</title>
+		<link>http://www.aschroder.com/2011/06/clustering-wordpress-on-amazon-ec2-micro-instances/comment-page-1/#comment-4850</link>
+		<dc:creator><![CDATA[Chief Editor]]></dc:creator>
+		<pubDate>Sat, 23 Jun 2012 19:01:38 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1513#comment-4850</guid>
+		<description><![CDATA[Dear Ashley, excellent solution; I was looking exactly the same. However need step by step guidance for setting up master, slave instances and creating database and NFS server and client. Please give some leads. Thanks]]></description>
+		<content:encoded><![CDATA[<p>Dear Ashley, excellent solution; I was looking exactly the same. However need step by step guidance for setting up master, slave instances and creating database and NFS server and client. Please give some leads. Thanks</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Ashley</title>
+		<link>http://www.aschroder.com/2011/06/clustering-wordpress-on-amazon-ec2-micro-instances/comment-page-1/#comment-3784</link>
+		<dc:creator><![CDATA[Ashley]]></dc:creator>
+		<pubDate>Tue, 20 Mar 2012 20:00:00 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1513#comment-3784</guid>
+		<description><![CDATA[You have the ports open, but only for EC2 instances within the specific security group of your front end nodes. The EC2 firewall makes this part easy.]]></description>
+		<content:encoded><![CDATA[<p>You have the ports open, but only for EC2 instances within the specific security group of your front end nodes. The EC2 firewall makes this part easy.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Heiko</title>
+		<link>http://www.aschroder.com/2011/06/clustering-wordpress-on-amazon-ec2-micro-instances/comment-page-1/#comment-3781</link>
+		<dc:creator><![CDATA[Heiko]]></dc:creator>
+		<pubDate>Tue, 20 Mar 2012 15:12:52 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1513#comment-3781</guid>
+		<description><![CDATA[Hi Ashley,
+
+with the help of your post I managed to put my TYPO3 Website on ec2 instances. Thanks a lot.
+One thing I came up with is that I had to open TCP-Ports in my security group for NFS. I&#039;m wondering if I configured something wrong or did you also open TCP-Ports for NFS?
+
+Regards
+Heiko]]></description>
+		<content:encoded><![CDATA[<p>Hi Ashley,</p>
+<p>with the help of your post I managed to put my TYPO3 Website on ec2 instances. Thanks a lot.<br />
+One thing I came up with is that I had to open TCP-Ports in my security group for NFS. I&#8217;m wondering if I configured something wrong or did you also open TCP-Ports for NFS?</p>
+<p>Regards<br />
+Heiko</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Ashley</title>
+		<link>http://www.aschroder.com/2011/06/clustering-wordpress-on-amazon-ec2-micro-instances/comment-page-1/#comment-3569</link>
+		<dc:creator><![CDATA[Ashley]]></dc:creator>
+		<pubDate>Wed, 14 Mar 2012 09:49:33 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1513#comment-3569</guid>
+		<description><![CDATA[Glad to hear it.
+
+RDS is great, I just didn&#039;t need a dedicated DB server for a small Wordpress cluster. 
+
+The database is hardly doing any work. For difefrent applications, such as Magento it&#039;d be ideal to use RDS, and the memcache server, so that the front end nodes can focus only on running the web app.]]></description>
+		<content:encoded><![CDATA[<p>Glad to hear it.</p>
+<p>RDS is great, I just didn&#8217;t need a dedicated DB server for a small WordPress cluster. </p>
+<p>The database is hardly doing any work. For difefrent applications, such as Magento it&#8217;d be ideal to use RDS, and the memcache server, so that the front end nodes can focus only on running the web app.</p>
+]]></content:encoded>
+	</item>
+</channel>
+</rss>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:32:28 by W3 Total Cache -->

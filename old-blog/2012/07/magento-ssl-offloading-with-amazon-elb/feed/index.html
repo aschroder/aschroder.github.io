@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>Comments on: Magento SSL Offloading with Amazon ELB</title>
+	<atom:link href="http://www.aschroder.com/2012/07/magento-ssl-offloading-with-amazon-elb/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.aschroder.com/2012/07/magento-ssl-offloading-with-amazon-elb/</link>
+	<description>Notes on Web Development</description>
+	<lastBuildDate>Wed, 23 Dec 2020 09:25:05 +0000</lastBuildDate>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8.15</generator>
+	<item>
+		<title>By: josh belke</title>
+		<link>http://www.aschroder.com/2012/07/magento-ssl-offloading-with-amazon-elb/comment-page-1/#comment-9723</link>
+		<dc:creator><![CDATA[josh belke]]></dc:creator>
+		<pubDate>Wed, 27 Feb 2013 23:35:20 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1792#comment-9723</guid>
+		<description><![CDATA[index.php
+
+above Mage::run($mageRunCode, $mageRunType);
+
+try the following:
+
+if (isset($_SERVER[&#039;HTTP_X_FORWARDED_PROTO&#039;]) &#038;&#038; $_SERVER[&#039;HTTP_X_FORWARDED_PROTO&#039;] == &#039;https&#039;) {
+    $_SERVER[&#039;HTTPS&#039;] = &#039;on&#039;;
+    $_SERVER[&#039;SERVER_PORT&#039;] = 443;
+}]]></description>
+		<content:encoded><![CDATA[<p>index.php</p>
+<p>above Mage::run($mageRunCode, $mageRunType);</p>
+<p>try the following:</p>
+<p>if (isset($_SERVER[&#8216;HTTP_X_FORWARDED_PROTO&#8217;]) &amp;&amp; $_SERVER[&#8216;HTTP_X_FORWARDED_PROTO&#8217;] == &#8216;https&#8217;) {<br />
+    $_SERVER[&#8216;HTTPS&#8217;] = &#8216;on&#8217;;<br />
+    $_SERVER[&#8216;SERVER_PORT&#8217;] = 443;<br />
+}</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Jay</title>
+		<link>http://www.aschroder.com/2012/07/magento-ssl-offloading-with-amazon-elb/comment-page-1/#comment-9720</link>
+		<dc:creator><![CDATA[Jay]]></dc:creator>
+		<pubDate>Tue, 26 Feb 2013 03:24:08 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1792#comment-9720</guid>
+		<description><![CDATA[For NGINX, I used the following:
+
+Within the server block:
+# Check if Load Balancer handled SSL
+set $my_https &quot;off&quot;;
+if ($http_x_forwarded_proto = &quot;https&quot;) {
+        set $my_https &quot;on&quot;;
+}
+
+I then added with the rest of the fastcgi params:
+fastcgi_param HTTPS $my_https;]]></description>
+		<content:encoded><![CDATA[<p>For NGINX, I used the following:</p>
+<p>Within the server block:<br />
+# Check if Load Balancer handled SSL<br />
+set $my_https &#8220;off&#8221;;<br />
+if ($http_x_forwarded_proto = &#8220;https&#8221;) {<br />
+        set $my_https &#8220;on&#8221;;<br />
+}</p>
+<p>I then added with the rest of the fastcgi params:<br />
+fastcgi_param HTTPS $my_https;</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: robbyt</title>
+		<link>http://www.aschroder.com/2012/07/magento-ssl-offloading-with-amazon-elb/comment-page-1/#comment-7596</link>
+		<dc:creator><![CDATA[robbyt]]></dc:creator>
+		<pubDate>Sat, 19 Jan 2013 06:16:54 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1792#comment-7596</guid>
+		<description><![CDATA[Great post! Thank you!!!]]></description>
+		<content:encoded><![CDATA[<p>Great post! Thank you!!!</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Max</title>
+		<link>http://www.aschroder.com/2012/07/magento-ssl-offloading-with-amazon-elb/comment-page-1/#comment-5305</link>
+		<dc:creator><![CDATA[Max]]></dc:creator>
+		<pubDate>Thu, 20 Dec 2012 09:39:53 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1792#comment-5305</guid>
+		<description><![CDATA[Hello Ashley, 
+thanks for the information and description. I&#039;ve identified another issue which I describe here in my blogpost as Step 2. Might help some users. Step 3 is the same as yours.
+
+http://blog.ideaday.de/max/2012/12/magento-https-redirect-loop-ssl-offloading-proxies-pound-nginx/
+
+Have a nice day!
+Max]]></description>
+		<content:encoded><![CDATA[<p>Hello Ashley,<br />
+thanks for the information and description. I&#8217;ve identified another issue which I describe here in my blogpost as Step 2. Might help some users. Step 3 is the same as yours.</p>
+<p><a href="http://blog.ideaday.de/max/2012/12/magento-https-redirect-loop-ssl-offloading-proxies-pound-nginx/" rel="nofollow">http://blog.ideaday.de/max/2012/12/magento-https-redirect-loop-ssl-offloading-proxies-pound-nginx/</a></p>
+<p>Have a nice day!<br />
+Max</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Ashley</title>
+		<link>http://www.aschroder.com/2012/07/magento-ssl-offloading-with-amazon-elb/comment-page-1/#comment-4992</link>
+		<dc:creator><![CDATA[Ashley]]></dc:creator>
+		<pubDate>Sun, 16 Sep 2012 07:35:00 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1792#comment-4992</guid>
+		<description><![CDATA[Weird...working fine for me. Maybe depends on Apache version? In any case, best to test this in &lt;em&gt;dev&lt;/em&gt; before you release it (that goes without saying, right?)]]></description>
+		<content:encoded><![CDATA[<p>Weird&#8230;working fine for me. Maybe depends on Apache version? In any case, best to test this in <em>dev</em> before you release it (that goes without saying, right?)</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Vince</title>
+		<link>http://www.aschroder.com/2012/07/magento-ssl-offloading-with-amazon-elb/comment-page-1/#comment-4986</link>
+		<dc:creator><![CDATA[Vince]]></dc:creator>
+		<pubDate>Thu, 13 Sep 2012 10:51:23 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1792#comment-4986</guid>
+		<description><![CDATA[SetEnvIf X-Forwarded-Proto https HTTPS=on can&#039;t work since you can&#039;t use an environnement variable in the condition statement.$*
+
+Read Apache doc here : http://httpd.apache.org/docs/2.2/mod/mod_setenvif.html]]></description>
+		<content:encoded><![CDATA[<p>SetEnvIf X-Forwarded-Proto https HTTPS=on can&#8217;t work since you can&#8217;t use an environnement variable in the condition statement.$*</p>
+<p>Read Apache doc here : <a href="http://httpd.apache.org/docs/2.2/mod/mod_setenvif.html" rel="nofollow">http://httpd.apache.org/docs/2.2/mod/mod_setenvif.html</a></p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Ashley</title>
+		<link>http://www.aschroder.com/2012/07/magento-ssl-offloading-with-amazon-elb/comment-page-1/#comment-4901</link>
+		<dc:creator><![CDATA[Ashley]]></dc:creator>
+		<pubDate>Wed, 25 Jul 2012 23:54:21 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1792#comment-4901</guid>
+		<description><![CDATA[Looks fine to me, Magento is emitting the https URL&#039;s that it should.
+
+You just need to fix up the absolute URL&#039;s you&#039;re using on the footer, e.g:
+http://www.leluv.xxx/skin/frontend/default/default/images/credit-card-new.png
+
+View the page source, or inspect it with Chrome inspector or Firebug to see which resources are being loaded without https.
+
+These url&#039;s are probably hard coded in your theme/template files. Fire your Magento developer and get a good one :P]]></description>
+		<content:encoded><![CDATA[<p>Looks fine to me, Magento is emitting the https URL&#8217;s that it should.</p>
+<p>You just need to fix up the absolute URL&#8217;s you&#8217;re using on the footer, e.g:<br />
+<a href="http://www.leluv.xxx/skin/frontend/default/default/images/credit-card-new.png" rel="nofollow">http://www.leluv.xxx/skin/frontend/default/default/images/credit-card-new.png</a></p>
+<p>View the page source, or inspect it with Chrome inspector or Firebug to see which resources are being loaded without https.</p>
+<p>These url&#8217;s are probably hard coded in your theme/template files. Fire your Magento developer and get a good one 😛</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Jun</title>
+		<link>http://www.aschroder.com/2012/07/magento-ssl-offloading-with-amazon-elb/comment-page-1/#comment-4900</link>
+		<dc:creator><![CDATA[Jun]]></dc:creator>
+		<pubDate>Wed, 25 Jul 2012 23:46:35 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1792#comment-4900</guid>
+		<description><![CDATA[I&#039;m currently setting up our magento website in Amazon and after setting up SSL on Amazon ELB and when using a simple html file, I can see that SSL is working (since the padlock icon is seen in firefox browser). But when I check the Magento website&#039;s checkout page I&#039;m not seeing the padlock icon, check this out:
+
+https://www.leluv.xxx/amazon-check.html
+vs:
+https://www.leluv.xxx/checkout/cart/
+
+So far I already added the below line to .htaccess file, is there anything else I need to do to make this works? THANKS IN ADVANCE..
+
+SetEnvIf X-Forwarded-Proto https HTTPS=on]]></description>
+		<content:encoded><![CDATA[<p>I&#8217;m currently setting up our magento website in Amazon and after setting up SSL on Amazon ELB and when using a simple html file, I can see that SSL is working (since the padlock icon is seen in firefox browser). But when I check the Magento website&#8217;s checkout page I&#8217;m not seeing the padlock icon, check this out:</p>
+<p><a href="https://www.leluv.xxx/amazon-check.html" rel="nofollow">https://www.leluv.xxx/amazon-check.html</a><br />
+vs:<br />
+<a href="https://www.leluv.xxx/checkout/cart/" rel="nofollow">https://www.leluv.xxx/checkout/cart/</a></p>
+<p>So far I already added the below line to .htaccess file, is there anything else I need to do to make this works? THANKS IN ADVANCE..</p>
+<p>SetEnvIf X-Forwarded-Proto https HTTPS=on</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Chris</title>
+		<link>http://www.aschroder.com/2012/07/magento-ssl-offloading-with-amazon-elb/comment-page-1/#comment-4898</link>
+		<dc:creator><![CDATA[Chris]]></dc:creator>
+		<pubDate>Wed, 25 Jul 2012 12:04:49 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1792#comment-4898</guid>
+		<description><![CDATA[Spot on mate, been trying to work this out for weeks!
+
+Cheers]]></description>
+		<content:encoded><![CDATA[<p>Spot on mate, been trying to work this out for weeks!</p>
+<p>Cheers</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Sergei Filippov</title>
+		<link>http://www.aschroder.com/2012/07/magento-ssl-offloading-with-amazon-elb/comment-page-1/#comment-4883</link>
+		<dc:creator><![CDATA[Sergei Filippov]]></dc:creator>
+		<pubDate>Wed, 18 Jul 2012 10:07:37 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=1792#comment-4883</guid>
+		<description><![CDATA[Awesome post Ashley. Will save this one for leter use. =]]]></description>
+		<content:encoded><![CDATA[<p>Awesome post Ashley. Will save this one for leter use. =]</p>
+]]></content:encoded>
+	</item>
+</channel>
+</rss>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:32:04 by W3 Total Cache -->

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	>
+<channel>
+	<title>Comments on: How to Bulk Enable Products when Google Checkout is Disabled in Magento</title>
+	<atom:link href="http://www.aschroder.com/2009/04/how-to-bulk-enable-products-when-google-checkout-is-disabled-in-magento/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.aschroder.com/2009/04/how-to-bulk-enable-products-when-google-checkout-is-disabled-in-magento/</link>
+	<description>Notes on Web Development</description>
+	<lastBuildDate>Wed, 23 Dec 2020 09:25:05 +0000</lastBuildDate>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8.15</generator>
+	<item>
+		<title>By: Christian</title>
+		<link>http://www.aschroder.com/2009/04/how-to-bulk-enable-products-when-google-checkout-is-disabled-in-magento/comment-page-1/#comment-2939</link>
+		<dc:creator><![CDATA[Christian]]></dc:creator>
+		<pubDate>Sat, 11 Feb 2012 18:05:56 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=342#comment-2939</guid>
+		<description><![CDATA[opps, i left our  table name in there. you need to replace itmanx_magento with your own table name or remove it all together (including the dot)]]></description>
+		<content:encoded><![CDATA[<p>opps, i left our  table name in there. you need to replace itmanx_magento with your own table name or remove it all together (including the dot)</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Christian</title>
+		<link>http://www.aschroder.com/2009/04/how-to-bulk-enable-products-when-google-checkout-is-disabled-in-magento/comment-page-1/#comment-2938</link>
+		<dc:creator><![CDATA[Christian]]></dc:creator>
+		<pubDate>Sat, 11 Feb 2012 18:03:19 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=342#comment-2938</guid>
+		<description><![CDATA[Direct SQL
+
+UPDATE catalog_product_entity_int SET `value`=1 WHERE attribute_id=(SELECT attribute_id FROM eav_attribute WHERE attribute_code LIKE &#039;enable_googlecheckout&#039;); #114
+
+SELECT * FROM `itmanx_magento`.`catalog_product_entity_int`
+LEFT JOIN eav_attribute USING (attribute_id)
+WHERE attribute_code LIKE &#039;enable_googlecheckout&#039;]]></description>
+		<content:encoded><![CDATA[<p>Direct SQL</p>
+<p>UPDATE catalog_product_entity_int SET `value`=1 WHERE attribute_id=(SELECT attribute_id FROM eav_attribute WHERE attribute_code LIKE &#8216;enable_googlecheckout&#8217;); #114</p>
+<p>SELECT * FROM `itmanx_magento`.`catalog_product_entity_int`<br />
+LEFT JOIN eav_attribute USING (attribute_id)<br />
+WHERE attribute_code LIKE &#8216;enable_googlecheckout&#8217;</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Moiz Ahmed</title>
+		<link>http://www.aschroder.com/2009/04/how-to-bulk-enable-products-when-google-checkout-is-disabled-in-magento/comment-page-1/#comment-2443</link>
+		<dc:creator><![CDATA[Moiz Ahmed]]></dc:creator>
+		<pubDate>Mon, 11 Jul 2011 08:41:00 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=342#comment-2443</guid>
+		<description><![CDATA[Can you please update the script for 1.4.1 ?
+Thanks!]]></description>
+		<content:encoded><![CDATA[<p>Can you please update the script for 1.4.1 ?<br />
+Thanks!</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Mike</title>
+		<link>http://www.aschroder.com/2009/04/how-to-bulk-enable-products-when-google-checkout-is-disabled-in-magento/comment-page-1/#comment-2270</link>
+		<dc:creator><![CDATA[Mike]]></dc:creator>
+		<pubDate>Sat, 23 Apr 2011 13:15:42 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=342#comment-2270</guid>
+		<description><![CDATA[Hi, Big thanks, BIG
+
+Can we set the var to tax to enable all to one tax class or disable or enable for all products ?]]></description>
+		<content:encoded><![CDATA[<p>Hi, Big thanks, BIG</p>
+<p>Can we set the var to tax to enable all to one tax class or disable or enable for all products ?</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Eric Rodgers</title>
+		<link>http://www.aschroder.com/2009/04/how-to-bulk-enable-products-when-google-checkout-is-disabled-in-magento/comment-page-1/#comment-2100</link>
+		<dc:creator><![CDATA[Eric Rodgers]]></dc:creator>
+		<pubDate>Mon, 24 Jan 2011 20:13:09 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=342#comment-2100</guid>
+		<description><![CDATA[Does anyone know how to do this with magento 1.4? I tried using johns script, but the browser just kept processing and never ended up doing anything.]]></description>
+		<content:encoded><![CDATA[<p>Does anyone know how to do this with magento 1.4? I tried using johns script, but the browser just kept processing and never ended up doing anything.</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Ashley</title>
+		<link>http://www.aschroder.com/2009/04/how-to-bulk-enable-products-when-google-checkout-is-disabled-in-magento/comment-page-1/#comment-1104</link>
+		<dc:creator><![CDATA[Ashley]]></dc:creator>
+		<pubDate>Fri, 26 Mar 2010 05:49:37 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=342#comment-1104</guid>
+		<description><![CDATA[That is odd... what version of Magento are you on?]]></description>
+		<content:encoded><![CDATA[<p>That is odd&#8230; what version of Magento are you on?</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Brian Fritton</title>
+		<link>http://www.aschroder.com/2009/04/how-to-bulk-enable-products-when-google-checkout-is-disabled-in-magento/comment-page-1/#comment-1102</link>
+		<dc:creator><![CDATA[Brian Fritton]]></dc:creator>
+		<pubDate>Fri, 26 Mar 2010 05:30:43 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=342#comment-1102</guid>
+		<description><![CDATA[This is odd: I&#039;m getting an Abstract error.
+
+Warning: Invalid argument supplied for foreach() in /app/code/core/Mage/Eav/Model/Entity/Abstract.php on line 970]]></description>
+		<content:encoded><![CDATA[<p>This is odd: I&#8217;m getting an Abstract error.</p>
+<p>Warning: Invalid argument supplied for foreach() in /app/code/core/Mage/Eav/Model/Entity/Abstract.php on line 970</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: John Kinsella</title>
+		<link>http://www.aschroder.com/2009/04/how-to-bulk-enable-products-when-google-checkout-is-disabled-in-magento/comment-page-1/#comment-822</link>
+		<dc:creator><![CDATA[John Kinsella]]></dc:creator>
+		<pubDate>Thu, 28 Jan 2010 07:46:51 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=342#comment-822</guid>
+		<description><![CDATA[Guys - thanks for the help on this one...just updated a client from 1.1.8 to 1.3.2.4 and suddenly saw all the Google checkout buttons greyed. :/
+
+Anyways, had to tweak Ashley&#039;s script slightly, what worked follows:
+
+set_time_limit(0);
+require_once &#039;app/Mage.php&#039;;
+Mage::app(&#039;default&#039;);
+ 
+try{
+Mage::app()-&#062;setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
+$products = Mage::getModel(&#039;catalog/product&#039;)-&#062;getCollection();
+$prodIds=$products-&#062;getAllIds();
+
+$product = Mage::getModel(&#039;catalog/product&#039;);
+$count = 0;
+
+foreach($prodIds as $productId) {
+$product-&#062;load($productId);
+$product-&#062;setEnableGooglecheckout(true);
+$product-&#062;save();
+$count++;
+}
+echo &quot;Update complete. &quot;. $count.&quot; records saved.&quot;;
+}
+catch(Exception $e){
+die($e-&#062;getMessage());
+}]]></description>
+		<content:encoded><![CDATA[<p>Guys &#8211; thanks for the help on this one&#8230;just updated a client from 1.1.8 to 1.3.2.4 and suddenly saw all the Google checkout buttons greyed. :/</p>
+<p>Anyways, had to tweak Ashley&#8217;s script slightly, what worked follows:</p>
+<p>set_time_limit(0);<br />
+require_once &#8216;app/Mage.php&#8217;;<br />
+Mage::app(&#8216;default&#8217;);</p>
+<p>try{<br />
+Mage::app()-&gt;setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);<br />
+$products = Mage::getModel(&#8216;catalog/product&#8217;)-&gt;getCollection();<br />
+$prodIds=$products-&gt;getAllIds();</p>
+<p>$product = Mage::getModel(&#8216;catalog/product&#8217;);<br />
+$count = 0;</p>
+<p>foreach($prodIds as $productId) {<br />
+$product-&gt;load($productId);<br />
+$product-&gt;setEnableGooglecheckout(true);<br />
+$product-&gt;save();<br />
+$count++;<br />
+}<br />
+echo &#8220;Update complete. &#8220;. $count.&#8221; records saved.&#8221;;<br />
+}<br />
+catch(Exception $e){<br />
+die($e-&gt;getMessage());<br />
+}</p>
+]]></content:encoded>
+	</item>
+	<item>
+		<title>By: Matt</title>
+		<link>http://www.aschroder.com/2009/04/how-to-bulk-enable-products-when-google-checkout-is-disabled-in-magento/comment-page-1/#comment-323</link>
+		<dc:creator><![CDATA[Matt]]></dc:creator>
+		<pubDate>Mon, 22 Jun 2009 03:14:09 +0000</pubDate>
+		<guid isPermaLink="false">http://www.aschroder.com/?p=342#comment-323</guid>
+		<description><![CDATA[I found I had to change the script to this for it to work with the most recent version of magento (1.3.2.1)
+
+setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
+
+              $products = Mage::getModel(&#039;catalog/product&#039;)-&#062;getCollection();
+                $prodIds=$products-&#062;getAllIds();
+
+                $product = Mage::getModel(&#039;catalog/product&#039;);
+
+                $count = 0;
+                foreach($prodIds as $productId) {
+
+                    $product-&#062;load($productId);
+                    $product-&#062;setEnableGooglecheckout(true);
+                    $product-&#062;save();
+                    $count++;
+                }
+                echo &quot;Update complete. &quot;. $count.&quot; records saved.&quot;;
+?&#062;]]></description>
+		<content:encoded><![CDATA[<p>I found I had to change the script to this for it to work with the most recent version of magento (1.3.2.1)</p>
+<p>setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);</p>
+<p>              $products = Mage::getModel(&#8216;catalog/product&#8217;)-&gt;getCollection();<br />
+                $prodIds=$products-&gt;getAllIds();</p>
+<p>                $product = Mage::getModel(&#8216;catalog/product&#8217;);</p>
+<p>                $count = 0;<br />
+                foreach($prodIds as $productId) {</p>
+<p>                    $product-&gt;load($productId);<br />
+                    $product-&gt;setEnableGooglecheckout(true);<br />
+                    $product-&gt;save();<br />
+                    $count++;<br />
+                }<br />
+                echo &#8220;Update complete. &#8220;. $count.&#8221; records saved.&#8221;;<br />
+?&gt;</p>
+]]></content:encoded>
+	</item>
+</channel>
+</rss>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk (Requested URI is rejected)
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:34:14 by W3 Total Cache -->

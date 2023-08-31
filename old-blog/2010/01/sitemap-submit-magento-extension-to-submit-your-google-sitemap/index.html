@@ -1,0 +1,1306 @@
+<!doctype html>
+<html lang="en-US">
+
+<!-- Mirrored from www.aschroder.com/2010/01/sitemap-submit-magento-extension-to-submit-your-google-sitemap/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:30:37 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="../../../xmlrpc.php">
+
+<title>Sitemap Submit - Magento Extension to Submit your Google Sitemap | ASchroder.com</title>
+
+<!-- All in One SEO Pack 2.4.2 by Michael Torbert of Semper Fi Web Design[289,388] -->
+<meta name="description"  content="I&#039;ve made a Magento extension for submitting your sitemap to Google, Yahoo, Ask and Bing called Sitemap Submit. It can submit automatically or from Magento&#039;s UI" />
+
+<meta name="keywords"  content="magento,sitemap,submit,sitemap.xml,yahoo,google,ask,bing" />
+
+<!-- /all in one seo pack -->
+<link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
+<link rel='dns-prefetch' href='http://s.w.org/' />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Feed" href="../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Comments Feed" href="../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Sitemap Submit &#8211; Magento Extension to Submit your Google Sitemap Comments Feed" href="feed/index.html" />
+<!-- This site uses the Google Analytics by MonsterInsights plugin v6.2.4 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+<script type="text/javascript" data-cfasync="false">
+		var disableStr = 'ga-disable-UA-6477134-1';
+
+	/* Function to detect opted out users */
+	function __gaTrackerIsOptedOut() {
+		return document.cookie.indexOf(disableStr + '=true') > -1;
+	}
+
+	/* Disable tracking if the opt-out cookie exists. */
+	if ( __gaTrackerIsOptedOut() ) {
+		window[disableStr] = true;
+	}
+
+	/* Opt-out function */
+	function __gaTrackerOptout() {
+	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+	  window[disableStr] = true;
+	}
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','http://www.google-analytics.com/analytics.js','__gaTracker');
+
+	__gaTracker('create', 'UA-6477134-1', 'auto');
+	__gaTracker('set', 'forceSSL', true);
+	__gaTracker('send','pageview');
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/www.aschroder.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.15"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='yarppWidgetCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/widget101e.css?ver=4.8.15' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-syntax-css-css'  href='../../../wp-content/plugins/wp-syntax/css/wp-syntax4963.css?ver=1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-style-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/style5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<style id='storefront-style-inline-css' type='text/css'>
+
+			.main-navigation ul li a,
+			.site-title a,
+			ul.menu li a,
+			.site-branding h1 a,
+			.site-footer .storefront-handheld-footer-bar a:not(.button),
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				color: #333333;
+			}
+
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				border-color: #333333;
+			}
+
+			.main-navigation ul li a:hover,
+			.main-navigation ul li:hover > a,
+			.site-title a:hover,
+			a.cart-contents:hover,
+			.site-header-cart .widget_shopping_cart a:hover,
+			.site-header-cart:hover > li > a,
+			.site-header ul.menu li.current-menu-item > a {
+				color: #838383;
+			}
+
+			table th {
+				background-color: #f8f8f8;
+			}
+
+			table tbody td {
+				background-color: #fdfdfd;
+			}
+
+			table tbody tr:nth-child(2n) td,
+			fieldset,
+			fieldset legend {
+				background-color: #fbfbfb;
+			}
+
+			.site-header,
+			.secondary-navigation ul ul,
+			.main-navigation ul.menu > li.menu-item-has-children:after,
+			.secondary-navigation ul.menu ul,
+			.storefront-handheld-footer-bar,
+			.storefront-handheld-footer-bar ul li > a,
+			.storefront-handheld-footer-bar ul li.search .site-search,
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				background-color: #ffffff;
+			}
+
+			p.site-description,
+			.site-header,
+			.storefront-handheld-footer-bar {
+				color: #6d6d6d;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count,
+			button.menu-toggle:after,
+			button.menu-toggle:before,
+			button.menu-toggle span:before {
+				background-color: #333333;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				color: #ffffff;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				border-color: #ffffff;
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+				color: #333333;
+			}
+
+			.widget h1 {
+				border-bottom-color: #333333;
+			}
+
+			body,
+			.secondary-navigation a,
+			.onsale,
+			.pagination .page-numbers li .page-numbers:not(.current), .woocommerce-pagination .page-numbers li .page-numbers:not(.current) {
+				color: #6d6d6d;
+			}
+
+			.widget-area .widget a,
+			.hentry .entry-header .posted-on a,
+			.hentry .entry-header .byline a {
+				color: #9f9f9f;
+			}
+
+			a  {
+				color: #0228d1;
+			}
+
+			a:focus,
+			.button:focus,
+			.button.alt:focus,
+			.button.added_to_cart:focus,
+			.button.wc-forward:focus,
+			button:focus,
+			input[type="button"]:focus,
+			input[type="reset"]:focus,
+			input[type="submit"]:focus {
+				outline-color: #0228d1;
+			}
+
+			button, input[type="button"], input[type="reset"], input[type="submit"], .button, .added_to_cart, .widget a.button, .site-header-cart .widget_shopping_cart a.button {
+				background-color: #eeeeee;
+				border-color: #eeeeee;
+				color: #333333;
+			}
+
+			button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, .button:hover, .added_to_cart:hover, .widget a.button:hover, .site-header-cart .widget_shopping_cart a.button:hover {
+				background-color: #d5d5d5;
+				border-color: #d5d5d5;
+				color: #333333;
+			}
+
+			button.alt, input[type="button"].alt, input[type="reset"].alt, input[type="submit"].alt, .button.alt, .added_to_cart.alt, .widget-area .widget a.button.alt, .added_to_cart, .widget a.button.checkout {
+				background-color: #333333;
+				border-color: #333333;
+				color: #ffffff;
+			}
+
+			button.alt:hover, input[type="button"].alt:hover, input[type="reset"].alt:hover, input[type="submit"].alt:hover, .button.alt:hover, .added_to_cart.alt:hover, .widget-area .widget a.button.alt:hover, .added_to_cart:hover, .widget a.button.checkout:hover {
+				background-color: #1a1a1a;
+				border-color: #1a1a1a;
+				color: #ffffff;
+			}
+
+			.pagination .page-numbers li .page-numbers.current, .woocommerce-pagination .page-numbers li .page-numbers.current {
+				background-color: #e6e6e6;
+				color: #6d6d6d;
+			}
+
+			#comments .comment-list .comment-content .comment-text {
+				background-color: #f8f8f8;
+			}
+
+			.site-footer {
+				background-color: #f0f0f0;
+				color: #6d6d6d;
+			}
+
+			.site-footer a:not(.button) {
+				color: #333333;
+			}
+
+			.site-footer h1, .site-footer h2, .site-footer h3, .site-footer h4, .site-footer h5, .site-footer h6 {
+				color: #333333;
+			}
+
+			#order_review {
+				background-color: #ffffff;
+			}
+
+			#payment .payment_methods > li .payment_box,
+			#payment .place-order {
+				background-color: #fafafa;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice) {
+				background-color: #f5f5f5;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice):hover {
+				background-color: #f0f0f0;
+			}
+
+			@media screen and ( min-width: 768px ) {
+				.secondary-navigation ul.menu a:hover {
+					color: #868686;
+				}
+
+				.secondary-navigation ul.menu a {
+					color: #6d6d6d;
+				}
+
+				.site-header-cart .widget_shopping_cart,
+				.main-navigation ul.menu ul.sub-menu,
+				.main-navigation ul.nav-menu ul.children {
+					background-color: #f0f0f0;
+				}
+
+				.site-header-cart .widget_shopping_cart .buttons,
+				.site-header-cart .widget_shopping_cart .total {
+					background-color: #f5f5f5;
+				}
+
+				.site-header {
+					border-bottom-color: #f0f0f0;
+				}
+			}
+</style>
+<link rel='stylesheet' id='storefront-icons-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/sass/base/icons5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-fonts-css'  href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,600,700,900&amp;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jqueryb8ff.js?ver=1.12.4'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jquery-migrate.min330a.js?ver=1.4.1'></script>
+<link rel='https://api.w.org/' href='../../../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../xmlrpc0db0.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Magento Events Explained and a few Gotchas avoided!' href='../magento-events-explained-and-a-few-gotchas-avoided/index.html' />
+<link rel='next' title='Mailchimp + Magento: How to get autoresponders working with the API' href='../../02/mailchimp-magento-how-to-get-autoresponders-working-with-the-api/index.html' />
+<meta name="generator" content="WordPress 4.8.15" />
+<link rel="canonical" href="index.html" />
+<link rel='shortlink' href='../../../indexa180.html?p=608' />
+<link rel="alternate" type="application/json+oembed" href="../../../wp-json/oembed/1.0/embedc32f.json?url=http%3A%2F%2Fwww.aschroder.com%2F2010%2F01%2Fsitemap-submit-magento-extension-to-submit-your-google-sitemap%2F" />
+<link rel="alternate" type="text/xml+oembed" href="../../../wp-json/oembed/1.0/embedd79d?url=http%3A%2F%2Fwww.aschroder.com%2F2010%2F01%2Fsitemap-submit-magento-extension-to-submit-your-google-sitemap%2F&amp;format=xml" />
+</head>
+
+<body class="post-template-default single single-post postid-608 single-format-standard no-wc-breadcrumb storefront-full-width-content right-sidebar">
+
+
+<div id="page" class="hfeed site">
+	
+	<header id="masthead" class="site-header" role="banner" style="">
+		<div class="col-full">
+
+					<a class="skip-link screen-reader-text" href="#site-navigation">Skip to navigation</a>
+		<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+				<div class="site-branding">
+			<div class="beta site-title"><a href="../../../index.html" rel="home">ASchroder.com</a></div><p class="site-description">Notes on Web Development</p>		</div>
+		<div class="storefront-primary-navigation">		<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="Primary Navigation">
+		<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><span>Menu</span></button>
+			<div class="primary-navigation"><ul id="menu-main-menu" class="menu"><li id="menu-item-1119" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li id="menu-item-1118" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li id="menu-item-1872" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div><div class="handheld-navigation"><ul id="menu-main-menu-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div>		</nav><!-- #site-navigation -->
+		</div>
+		</div>
+	</header><!-- #masthead -->
+
+	
+	<div id="content" class="site-content" tabindex="-1">
+		<div class="col-full">
+
+		
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+<div id="post-608" class="post-608 post type-post status-publish format-standard hentry category-magento category-php category-projects category-sitemap-submit tag-ask tag-auto-submit tag-bing tag-google tag-magento tag-sitemap tag-sitemap-xml tag-submit tag-yahoo">
+
+			<header class="entry-header">
+		<span class="posted-on">Posted on <a href="index.html" rel="bookmark"><time class="entry-date published" datetime="2010-01-30T22:39:41+00:00">January 30, 2010</time> <time class="updated" datetime="2010-05-29T14:28:51+00:00">May 29, 2010</time></a></span><h1 class="entry-title">Sitemap Submit &#8211; Magento Extension to Submit your Google Sitemap</h1>		</header><!-- .entry-header -->
+				<aside class="entry-meta">
+						<div class="author">
+				<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' /><div class="label">Written by</div><a href="../../../author/admin/index.html" title="Posts by Ashley" rel="author">Ashley</a>			</div>
+							<div class="cat-links">
+					<div class="label">Posted in</div><a href="../../../category/magento/index.html" rel="category tag">Magento</a>, <a href="../../../category/php/index.html" rel="category tag">PHP</a>, <a href="../../../category/projects/index.html" rel="category tag">Projects</a>, <a href="../../../category/sitemap-submit/index.html" rel="category tag">Sitemap Submit</a>				</div>
+			
+							<div class="tags-links">
+					<div class="label">Tagged</div><a href="../../../tag/ask/index.html" rel="tag">ask</a>, <a href="../../../tag/auto-submit/index.html" rel="tag">auto-submit</a>, <a href="../../../tag/bing/index.html" rel="tag">bing</a>, <a href="../../../tag/google/index.html" rel="tag">google</a>, <a href="../../../tag/magento/index.html" rel="tag">Magento</a>, <a href="../../../tag/sitemap/index.html" rel="tag">sitemap</a>, <a href="../../../tag/sitemap-xml/index.html" rel="tag">sitemap.xml</a>, <a href="../../../tag/submit/index.html" rel="tag">submit</a>, <a href="../../../tag/yahoo/index.html" rel="tag">yahoo</a>				</div>
+			
+		
+							<div class="comments-link">
+					<div class="label">Comments</div>					<span class="comments-link"><a href="index.html#comments">42 Comments</a></span>
+				</div>
+					</aside>
+				<div class="entry-content">
+		<p>I&#8217;ve made a new Magento extension for submitting your store sitemap to Google, Yahoo, Ask and Bing. My new extension can submit automatically whenever the sitemap is regenerated, or on-demand from the admin UI. More about how I made it and how it works below, but first a little background.<br />
+<span id="more-608"></span></p>
+<h3>How Sitemap Submit came to be</h3>
+<p>As of last week I have been taking a train to work in a far off land called <a href="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=pukekohe&amp;sll=37.0625,-95.677068&amp;sspn=38.690438,52.558594&amp;ie=UTF8&amp;hq=&amp;hnear=Pukekohe,+Auckland,+New+Zealand&amp;ll=-36.952087,174.920197&amp;spn=0.611283,0.821228&amp;t=h&amp;z=10">Pukekohe</a> a couple of times per week. <a href="http://en.wikipedia.org/wiki/Pukekohe">Pukekohe itself is not traditionally known as a high-tech startup hub</a> &#8211; but in 2010 the number of small high-tech software engineering companies has grown considerably (probably at least 200%).</p>
+<p>What all this means is I get a couple of hours a day, two times a week where I&#8217;m literally stuck in front of my laptop as the train I&#8217;m on rocks and weaves it&#8217;s way across country to WWA HQ. This new Magento extension I have made is the first of hopefully many what I&#8217;ll now call Public-Transport-Projects. The extension will manually or automatically submit your Google sitemap file from your Magento store to several major search engines (Google, Yahoo, Bing and Ask). </p>
+<h3>How to use Sitemap Submit</h3>
+<p>To start with, you&#8217;ll need to install it &#8211; head over to the <a href="http://www.magentocommerce.com/extension/2816">Sitemap Submit extension page on Magento connect</a> to get started with that.</p>
+<p>Once installed, It&#8217;s dead easy to use &#8211; basically <a href="http://www.magentocommerce.com/wiki/creating_google_sitemaps_for_magento_sites">you generate your sitemaps the usual way using Magento&#8217;s built in functionality</a> &#8211; to do this go to the Catalog -> Google Sitemap section of the admin interface as shown in the screenshot below.</p>
+<figure id="attachment_613" style="width: 450px" class="wp-caption aligncenter"><img src="../../../../cdn.aschroder.com/wp-content/uploads/2010/01/SitemapSubmit-thesitemap-admin.png" alt="Sitemap Submit  found in the Magento Sitemap admin menu option" title="Sitemap Submit  found in the Magento Sitemap admin menu option" width="450" class="size-full wp-image-613" srcset="http://cdn.aschroder.com/wp-content/uploads/2010/01/SitemapSubmit-thesitemap-admin.png 485w, http://cdn.aschroder.com/wp-content/uploads/2010/01/SitemapSubmit-thesitemap-admin-300x176.png 300w" sizes="(max-width: 485px) 100vw, 485px" /><figcaption class="wp-caption-text">Sitemap Submit  found in the Magento Sitemap admin menu option</figcaption></figure>
+<p>Once you have your sitemap.xml generated you can click on it and view the details. One this edit screen you will see the new Submit button, which when clicked, my extension will submit your sitemap to Google, Yahoo, Ask and Bing. You can see in the screenshot below where the button should be.</p>
+<figure id="attachment_612" style="width: 450px" class="wp-caption aligncenter"><img src="../../../../cdn.aschroder.com/wp-content/uploads/2010/01/SitemapSubmit-submit-button.png" alt="The Sitemap Submit submit button on the sitemap edit screen of Magento Admin" title="Sitemap Submit submit button" width="450"  class="size-full wp-image-612" srcset="http://cdn.aschroder.com/wp-content/uploads/2010/01/SitemapSubmit-submit-button.png 474w, http://cdn.aschroder.com/wp-content/uploads/2010/01/SitemapSubmit-submit-button-300x105.png 300w" sizes="(max-width: 474px) 100vw, 474px" /><figcaption class="wp-caption-text">The Sitemap Submit submit button on the sitemap edit screen of Magento Admin</figcaption></figure>
+<p>There is also a configuration option for automatic submission (In System->Config->Catalog->Google Sitemap). What this means is that whenever your sitemap is generated or regenerated (by you or by cron if you have it configured to do so) then the sitemap will also be submitted to the search engines.</p>
+<img src="../../../../cdn.aschroder.com/wp-content/uploads/2010/01/SitemapSubmit-configuration.png" alt="The Sitemap Submit Configuration options - an option to enable automatic submission each time the sitemap is generated, and also the yahoo App Id required for yahoo submission." title="SitemapSubmit Configuration options" width="450" class="size-full wp-image-611" srcset="http://cdn.aschroder.com/wp-content/uploads/2010/01/SitemapSubmit-configuration.png 481w, http://cdn.aschroder.com/wp-content/uploads/2010/01/SitemapSubmit-configuration-300x177.png 300w" sizes="(max-width: 481px) 100vw, 481px" />
+<p>The only other configuration to be aware of is the yahoo app id, to use the api you need to add an app id &#8211; read all about the <a href="http://developer.yahoo.com/search/siteexplorer/V1/updateNotification.html">Yahoo API and the app id</a>. If you omit an ID, the extension will just skip notifying Yahoo, no big deal.</p>
+<h3>How Sitemap Submit works</h3>
+<p>I won&#8217;t bore you with too many details, basically it&#8217;s made up of an observer that watches out for the regeneration and a service object that actually does it (plus the usual various Magento extension things, like a controller and a helper.</p>
+<p>The only tricky thing was the core Sitemap.php object didn&#8217;t fire a <code>generating</code> event, which if you read my explanation of <a href="../magento-events-explained-and-a-few-gotchas-avoided/index.html">Magento events and observers</a> you&#8217;ll know is quite important. I override and slightly alter the default Magento sitemap as shown below:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="php" style="font-family:monospace;"> <span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> generateAction<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+    	parent<span style="color: #339933;">::</span><span style="color: #004000;">generateAction</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+    	Mage<span style="color: #339933;">::</span><span style="color: #004000;">dispatchEvent</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'sitemap_sitemap_generate'</span><span style="color: #339933;">,</span> <span style="color: #990000;">array</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'sitemap'</span><span style="color: #339933;">=&gt;</span><span style="color: #000088;">$this</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+    <span style="color: #009900;">&#125;</span></pre></td></tr></table><p class="theCode" style="display:none;"> public function generateAction() {
+    	parent::generateAction();
+    	Mage::dispatchEvent('sitemap_sitemap_generate', array('sitemap'=&gt;$this));
+    }</p></div>
+
+<p>That fires the event which is then picked up by my observer and in turn my submission service kicks off. It basically runs through each search engine and submits the sitemap using the required URL&#8217;s like so :</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="php" style="font-family:monospace;">         	<span style="color: #666666; font-style: italic;">//ping google</span>
+        	<span style="color: #b1b100;">if</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span>_pingGoogle<span style="color: #009900;">&#40;</span><span style="color: #000088;">$url</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+        		<span style="color: #000088;">$msg</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$msg</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">&quot;Pinged Google successfully&lt;br/&gt;&quot;</span><span style="color: #339933;">;</span>
+        	<span style="color: #009900;">&#125;</span> <span style="color: #b1b100;">else</span> <span style="color: #009900;">&#123;</span>
+        		<span style="color: #000088;">$msg</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$msg</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">&quot;Failed to ping Google.&lt;br/&gt;&quot;</span><span style="color: #339933;">;</span>
+        	<span style="color: #009900;">&#125;</span></pre></td></tr></table><p class="theCode" style="display:none;">         	//ping google
+        	if($this-&gt;_pingGoogle($url)) {
+        		$msg = $msg . &quot;Pinged Google successfully&lt;br/&gt;&quot;;
+        	} else {
+        		$msg = $msg . &quot;Failed to ping Google.&lt;br/&gt;&quot;;
+        	}</p></div>
+
+<p>&#8230; and then I actually make the request like this:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="php" style="font-family:monospace;">&nbsp;
+	<span style="color: #000000; font-weight: bold;">protected</span> <span style="color: #000000; font-weight: bold;">function</span> _makeRequest<span style="color: #009900;">&#40;</span><span style="color: #000088;">$ping</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+&nbsp;
+		<span style="color: #000088;">$curl</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> Varien_Http_Adapter_Curl<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+        <span style="color: #000088;">$curl</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setConfig</span><span style="color: #009900;">&#40;</span><span style="color: #990000;">array</span><span style="color: #009900;">&#40;</span>
+            <span style="color: #0000ff;">'timeout'</span>   <span style="color: #339933;">=&gt;</span> <span style="color: #cc66cc;">20</span>
+        <span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+        <span style="color: #000088;">$curl</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">write</span><span style="color: #009900;">&#40;</span>Zend_Http_Client<span style="color: #339933;">::</span><span style="color: #004000;">GET</span><span style="color: #339933;">,</span> <span style="color: #000088;">$ping</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'1.1'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+        <span style="color: #000088;">$data</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$curl</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">read</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$data</span> <span style="color: #339933;">===</span> <span style="color: #009900; font-weight: bold;">false</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+            <span style="color: #b1b100;">return</span> <span style="color: #009900; font-weight: bold;">false</span><span style="color: #339933;">;</span>
+        <span style="color: #009900;">&#125;</span>
+&nbsp;
+        <span style="color: #b1b100;">if</span> <span style="color: #009900;">&#40;</span><span style="color: #000088;">$curl</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getInfo</span><span style="color: #009900;">&#40;</span>CURLINFO_HTTP_CODE<span style="color: #009900;">&#41;</span> <span style="color: #339933;">==</span> <span style="color: #cc66cc;">200</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+	        <span style="color: #666666; font-style: italic;">// Mage::log($data); // uncomment to debug raw submission response</span>
+	        <span style="color: #b1b100;">return</span> <span style="color: #000088;">$data</span><span style="color: #339933;">;</span>
+        <span style="color: #009900;">&#125;</span> <span style="color: #b1b100;">else</span> <span style="color: #009900;">&#123;</span>
+	        Mage<span style="color: #339933;">::</span><span style="color: #990000;">log</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">&quot;Submission to: &quot;</span> <span style="color: #339933;">.</span> <span style="color: #000088;">$ping</span> <span style="color: #339933;">.</span> <span style="color: #0000ff;">&quot; failed, HTTP response code was not 200&quot;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+	        <span style="color: #b1b100;">return</span> <span style="color: #009900; font-weight: bold;">false</span><span style="color: #339933;">;</span>
+        <span style="color: #009900;">&#125;</span>
+&nbsp;
+        <span style="color: #666666; font-style: italic;">//TODO: handle timeout?</span>
+&nbsp;
+	<span style="color: #009900;">&#125;</span></pre></td></tr></table><p class="theCode" style="display:none;">
+	protected function _makeRequest($ping) {
+		
+		$curl = new Varien_Http_Adapter_Curl();
+        $curl-&gt;setConfig(array(
+            'timeout'   =&gt; 20
+        ));
+        
+        $curl-&gt;write(Zend_Http_Client::GET, $ping, '1.1');
+        $data = $curl-&gt;read();
+        
+        if ($data === false) {
+            return false;
+        }
+       
+        if ($curl-&gt;getInfo(CURLINFO_HTTP_CODE) == 200) {
+	        // Mage::log($data); // uncomment to debug raw submission response
+	        return $data;
+        } else {
+	        Mage::log(&quot;Submission to: &quot; . $ping . &quot; failed, HTTP response code was not 200&quot;);
+	        return false;
+        }
+        
+        //TODO: handle timeout?
+		
+	}</p></div>
+
+<p>And that&#8217;s about it, you can read the full story in the open-source PHP code, in fact I&#8217;d invite you to do so, and give me some feedback on it!</p>
+<h3>The Sitemap Submit Feature Roadmap</h3>
+<p>I&#8217;ll be looking to extend the extension further over the next month or so in two ways. One is to add many more search engines that have an open sitemap submit function. The second is I want to enable more SEO capability and allow store submission to the many Magento store directories and <a href="http://www.magentoparade.com/">Magento showcases like Magento Parade</a>. I&#8217;m also, as always, really keen to hear feedback on fixes and features that you would like to see in the product.</p>
+<div class='yarpp-related'>
+<p>You might also be interested in:<ol>
+<li><a href="../../12/making-a-site-map-for-magento/index.html" rel="bookmark" title="Making a sitemap.xml for Magento">Making a sitemap.xml for Magento </a></li>
+<li><a href="../../../2011/03/magento-google-site-maps-and-my-magento-speed-test/index.html" rel="bookmark" title="Magento, Google XML Sitemaps and my Magento Speed Test">Magento, Google XML Sitemaps and my Magento Speed Test </a></li>
+<li><a href="../../../2009/08/google-apps-email-gmail-magento-extension-v05-released/index.html" rel="bookmark" title="Google Apps Email/Gmail Magento Extension v0.5 released">Google Apps Email/Gmail Magento Extension v0.5 released </a></li>
+<li><a href="../../../2009/09/sneak-peek-at-the-new-magento-gmailgoogle-apps-and-smtp-extension/index.html" rel="bookmark" title="Sneak Peek at the New Magento Gmail/Google Apps and SMTP extension">Sneak Peek at the New Magento Gmail/Google Apps and SMTP extension </a></li>
+<li><a href="../../03/magento-smtp-gmail-and-google-apps-email-combined-extension-released-at-last/index.html" rel="bookmark" title="Magento SMTP, Gmail and Google Apps Email combined extension released (at last)">Magento SMTP, Gmail and Google Apps Email combined extension released (at last) </a></li>
+</ol></p>
+</div>
+		</div><!-- .entry-content -->
+		<nav id="post-navigation" class="navigation post-navigation" role="navigation" aria-label="Post Navigation"><span class="screen-reader-text">Post navigation</span><div class="nav-links"><div class="nav-previous"><a href="../magento-events-explained-and-a-few-gotchas-avoided/index.html" rel="prev">Magento Events Explained and a few Gotchas avoided!</a></div><div class="nav-next"><a href="../../02/mailchimp-magento-how-to-get-autoresponders-working-with-the-api/index.html" rel="next">Mailchimp + Magento: How to get autoresponders working with the API</a></div></div></nav>
+<section id="comments" class="comments-area" aria-label="Post Comments">
+
+			<h2 class="comments-title">
+			42 thoughts on &ldquo;<span>Sitemap Submit &#8211; Magento Extension to Submit your Google Sitemap</span>&rdquo;		</h2>
+
+		
+		<ol class="comment-list">
+					<li class="comment even thread-even depth-1" id="comment-836">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/bb534a6ef8b94997cd22ea75137ee6c9?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/bb534a6ef8b94997cd22ea75137ee6c9?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://casesforguns.com/' rel='external nofollow' class='url'>Chris</a></cite>			</div>
+			
+			<a href="index.html#comment-836" class="comment-date">
+				<time datetime="2010-02-03T06:41:45+00:00">February 3, 2010</time>			</a>
+		</div>
+				<div id="div-comment-836" class="comment-content">
+				<div class="comment-text">
+		<p>When signing up for the Yahoo API what url should be used for the application entrypoint?  Just the root website or is something more specific required?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-866">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/64d7370622897ec5610a5615ed8b26cc?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/64d7370622897ec5610a5615ed8b26cc?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Scott</cite>			</div>
+			
+			<a href="index.html#comment-866" class="comment-date">
+				<time datetime="2010-02-18T09:15:31+00:00">February 18, 2010</time>			</a>
+		</div>
+				<div id="div-comment-866" class="comment-content">
+				<div class="comment-text">
+		<p>Would be nice if you could also build in sitemap splitting support for websites with more than Google&#8217;s 50K URL / 10MB limit.</p>
+<p>Like this:<br />
+<a href="http://www.offshoresoftwaredevelopmentindia.com/blog/2009/06/13/magento-extension-google-xml-sitemap-split-module/" rel="nofollow">http://www.offshoresoftwaredevelopmentindia.com/blog/2009/06/13/magento-extension-google-xml-sitemap-split-module/</a></p>
+<p>Not sure if these two extensions would work together or not.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-874">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/b9f919c1b6096d16c5c7876bec0b05e2?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/b9f919c1b6096d16c5c7876bec0b05e2?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://methodskn.com/' rel='external nofollow' class='url'>Paul</a></cite>			</div>
+			
+			<a href="index.html#comment-874" class="comment-date">
+				<time datetime="2010-02-20T10:55:19+00:00">February 20, 2010</time>			</a>
+		</div>
+				<div id="div-comment-874" class="comment-content">
+				<div class="comment-text">
+		<p>Not able to get 0.2.1  to show up in admin. (?)</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-875">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-875" class="comment-date">
+				<time datetime="2010-02-20T12:57:39+00:00">February 20, 2010</time>			</a>
+		</div>
+				<div id="div-comment-875" class="comment-content">
+				<div class="comment-text">
+		<p>Can you confirm the files are installed in app/code/community/Aschroder? Also you have cleared your cache?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-878">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/b9f919c1b6096d16c5c7876bec0b05e2?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/b9f919c1b6096d16c5c7876bec0b05e2?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://methodskn.com/' rel='external nofollow' class='url'>Paul</a></cite>			</div>
+			
+			<a href="index.html#comment-878" class="comment-date">
+				<time datetime="2010-02-23T22:24:42+00:00">February 23, 2010</time>			</a>
+		</div>
+				<div id="div-comment-878" class="comment-content">
+				<div class="comment-text">
+		<p>Got it&#8230;Cache. Thanks</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-962">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/6f2eeb8b234cc9ef200fa7adc78a1a88?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/6f2eeb8b234cc9ef200fa7adc78a1a88?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.geesang.com/' rel='external nofollow' class='url'>jerry</a></cite>			</div>
+			
+			<a href="index.html#comment-962" class="comment-date">
+				<time datetime="2010-03-08T04:38:39+00:00">March 8, 2010</time>			</a>
+		</div>
+				<div id="div-comment-962" class="comment-content">
+				<div class="comment-text">
+		<p>How to work in multi websites ? generate it , always main site url.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-973">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-973" class="comment-date">
+				<time datetime="2010-03-08T18:08:20+00:00">March 8, 2010</time>			</a>
+		</div>
+				<div id="div-comment-973" class="comment-content">
+				<div class="comment-text">
+		<p>Good question &#8211; thanks to Filipe my extension will submit the correct Magento store URL to Google, Yahoo, Bing etc however it looks like a display bug in the Magento Core renderer (Mage_Adminhtml_Block_Sitemap_Grid_Renderer_Link) that causes it to use this:</p>
+<p><code>$this-&gt;htmlEscape(Mage::getBaseUrl('web') . $fileName);</code></p>
+<p>when it should probably use:</p>
+<p><code>Mage::app()-&gt;getStore($sitemap-&gt;getStoreId())<br />
+        	-&gt;getBaseUrl(Mage_Core_Model_Store::URL_TYPE_LINK) . $fileName; </code></p>
+<p>The <code>htmlescape()</code> I&#8217;m not sure about &#8211; can any URL characters actually mess with HTML? I guess there could be spaces etc in the url path, perhaps I should escape my url too &#8211; anyone confirm this?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1176">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/26ff21e93dce7aaf449a6e4ee580dc55?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/26ff21e93dce7aaf449a6e4ee580dc55?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://collagesheets.paperstreetsupplies.com/' rel='external nofollow' class='url'>Ken</a></cite>			</div>
+			
+			<a href="index.html#comment-1176" class="comment-date">
+				<time datetime="2010-04-07T11:17:43+00:00">April 7, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1176" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Ashley,<br />
+I&#8217;m having a minor issue with your Sitemap extension and was hoping you could help. When the sitemap is submitted to Google, Yahoo, etc. it&#8217;s being submitted as DOMAIN/index.php/sitemap.xml when the actual address is just DOMAIN/sitemap.xml &#8211; is there a simple way I can remove the &#8220;index.php&#8221; bit so that the various search engines can fine my sitemap rather than a 404 error? Thanks!!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-1178">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-1178" class="comment-date">
+				<time datetime="2010-04-07T13:20:18+00:00">April 7, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1178" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, Please check the base url in your system configuration settings &#8211; perhaps the index.php is coming from there? Let me know.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1179">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/26ff21e93dce7aaf449a6e4ee580dc55?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/26ff21e93dce7aaf449a6e4ee580dc55?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://collagesheets.paperstreetsupplies.com/' rel='external nofollow' class='url'>Ken</a></cite>			</div>
+			
+			<a href="index.html#comment-1179" class="comment-date">
+				<time datetime="2010-04-07T13:25:04+00:00">April 7, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1179" class="comment-content">
+				<div class="comment-text">
+		<p>No, nothing in there. I know I&#8217;m stuck with the index.php for most of my URLs until I can get the Base Rewrite to work correctly, but that&#8217;s not the case with the sitemap. Anyway, I&#8217;ll fiddle around and figure it out eventually, just thought you might have an idea. Thanks!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-1180">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-1180" class="comment-date">
+				<time datetime="2010-04-07T13:35:17+00:00">April 7, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1180" class="comment-content">
+				<div class="comment-text">
+		<p>oh &#8211; it might be a bug then &#8211; If url rewrites are off then I need to return the base URL without index.php, I&#8217;ll look into it when I get a moment. Thanks for the heads  up.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1181">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/26ff21e93dce7aaf449a6e4ee580dc55?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/26ff21e93dce7aaf449a6e4ee580dc55?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://collagesheets.paperstreetsupplies.com/' rel='external nofollow' class='url'>Ken</a></cite>			</div>
+			
+			<a href="index.html#comment-1181" class="comment-date">
+				<time datetime="2010-04-07T13:39:24+00:00">April 7, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1181" class="comment-content">
+				<div class="comment-text">
+		<p>Anytime. Keep up the great work!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1191">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/26ff21e93dce7aaf449a6e4ee580dc55?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/26ff21e93dce7aaf449a6e4ee580dc55?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://collagesheets.paperstreetsupplies.com/' rel='external nofollow' class='url'>Ken</a></cite>			</div>
+			
+			<a href="index.html#comment-1191" class="comment-date">
+				<time datetime="2010-04-12T14:27:55+00:00">April 12, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1191" class="comment-content">
+				<div class="comment-text">
+		<p>Finally managed to get my rewrites working properly, so the sitemap extension is behaving just as it should for me now. Good luck w/ the potential bug fix &amp; thanks again for a great addon!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1194">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/b7ba76cd145e33e3fa86074f52f63bed?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/b7ba76cd145e33e3fa86074f52f63bed?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Gary</cite>			</div>
+			
+			<a href="index.html#comment-1194" class="comment-date">
+				<time datetime="2010-04-13T03:46:41+00:00">April 13, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1194" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Ashley,</p>
+<p>I have tried the plugin on Magento 1.2.x, but cant see the set-up forms etc. Does it work on this platform?</p>
+<p>Thanks,<br />
+Gary</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1195">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/b7ba76cd145e33e3fa86074f52f63bed?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/b7ba76cd145e33e3fa86074f52f63bed?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Gary</cite>			</div>
+			
+			<a href="index.html#comment-1195" class="comment-date">
+				<time datetime="2010-04-13T04:28:50+00:00">April 13, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1195" class="comment-content">
+				<div class="comment-text">
+		<p>I should have mentioned that the specific issue is that I can enter the Yahoo API code etc under the configuration part, but that when I run the Submit option for the sitemap, I get the following error.</p>
+<p>Fatal error: Call to undefined method Varien_Http_Adapter_Curl::getInfo() in /home1/myweb/public_html/mywebsite/app/code/community/Aschroder/SitemapSubmit/Model/Submit.php  on line 126</p>
+<p>However, manual generation does work as expected.</p>
+<p>Gary</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1309">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/26ff21e93dce7aaf449a6e4ee580dc55?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/26ff21e93dce7aaf449a6e4ee580dc55?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://collagesheets.paperstreetsupplies.com/' rel='external nofollow' class='url'>Ken</a></cite>			</div>
+			
+			<a href="index.html#comment-1309" class="comment-date">
+				<time datetime="2010-05-08T12:43:11+00:00">May 8, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1309" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Ashley,</p>
+<p>I&#8217;ve just recovered from having my site hacked (grr, PHP code injection) &amp; am concentrating on hardening security wherever I can. I noticed last night that the sitemap.xml file generated by your extension always sets itself to 666 permissions, meaning that it&#8217;s world writable. It&#8217;s easy enough for me to change the perms, but a bit of a headache to have to remember to redo it every time it gets generated. Is there something in the code I could change to make the file always generate with 644 permissions?</p>
+<p>Thanks!!<br />
+&#8211; Ken</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-1310">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-1310" class="comment-date">
+				<time datetime="2010-05-08T14:56:28+00:00">May 8, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1310" class="comment-content">
+				<div class="comment-text">
+		<p>Sorry to hear about your hack &#8211; was it a vulnerability in Magento or some other PHP script? God suggestion to limit the sitemap permissions.The sitemap.xml is actually generated by the built in Magento code, I just took a look though and I think I could add something to my extension to tweak the permissions. I&#8217;ll add it to the list of features for the extension, and update it when I&#8217;m next on the train.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1312">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/26ff21e93dce7aaf449a6e4ee580dc55?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/26ff21e93dce7aaf449a6e4ee580dc55?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://paperstreetsupplies.com/' rel='external nofollow' class='url'>Ken</a></cite>			</div>
+			
+			<a href="index.html#comment-1312" class="comment-date">
+				<time datetime="2010-05-08T19:02:47+00:00">May 8, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1312" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Ashley,</p>
+<p>Thanks 😉 It was a nightmare to cleanup, but I think we&#8217;re more solid than ever now, so I &#8216;spose it was for the best. It was actually vulnerabilities in an old WordPress installation I hadn&#8217;t updated or removed &amp; wasn&#8217;t using &#8211; laziness on my part pure and simple.</p>
+<p>I&#8217;ll keep my eyes here for updates &amp; will just alter perms manually in the meantime.</p>
+<p>Thanks again!<br />
+&#8211; Ken</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1365">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/ab755f1c5c7b95c197718e318d14afb5?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/ab755f1c5c7b95c197718e318d14afb5?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.jlapitan.com/' rel='external nofollow' class='url'>jlapitan</a></cite>			</div>
+			
+			<a href="index.html#comment-1365" class="comment-date">
+				<time datetime="2010-05-29T01:08:16+00:00">May 29, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1365" class="comment-content">
+				<div class="comment-text">
+		<p>i cant find the configuration option for automatic submission</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-1367">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-1367" class="comment-date">
+				<time datetime="2010-05-29T14:27:32+00:00">May 29, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1367" class="comment-content">
+				<div class="comment-text">
+		<p>It&#8217;s in System-&gt;Config-&gt;Catalog-&gt;Google Sitemap &#8211; I should make that clear in the blog post, thanks for the heads up.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1672">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/387207fa223cd8d2200db6d4d6812b07?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/387207fa223cd8d2200db6d4d6812b07?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://holylandmarketplace.com/' rel='external nofollow' class='url'>Mike Reid</a></cite>			</div>
+			
+			<a href="index.html#comment-1672" class="comment-date">
+				<time datetime="2010-08-04T05:14:57+00:00">August 4, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1672" class="comment-content">
+				<div class="comment-text">
+		<p>Hi<br />
+I just installed this on 1.4.1.1 and it&#8217;s not showing up in the admin.<br />
+Is it not compatible with that version?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1944">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/6b2489273fef5f484a3af6dfe03548ec?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/6b2489273fef5f484a3af6dfe03548ec?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.indigoclothing.com/' rel='external nofollow' class='url'>T-Shirt Printing</a></cite>			</div>
+			
+			<a href="index.html#comment-1944" class="comment-date">
+				<time datetime="2010-10-27T06:27:02+00:00">October 27, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1944" class="comment-content">
+				<div class="comment-text">
+		<p>I see the Yahoo Notification API is being shut down in Dec 2010. Is there are plan to support the new Update Notification service?<br />
+ <a href="http://developer.yahoo.com/search/siteexplorer/V1/updateNotification.html" rel="nofollow">http://developer.yahoo.com/search/siteexplorer/V1/updateNotification.html</a></p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1985">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/02e5b29ba4aad4fc27b7f82749a25b76?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/02e5b29ba4aad4fc27b7f82749a25b76?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://yoururl/' rel='external nofollow' class='url'>iain</a></cite>			</div>
+			
+			<a href="index.html#comment-1985" class="comment-date">
+				<time datetime="2010-11-24T07:35:09+00:00">November 24, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1985" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Ashley, I tried to install the extension using Connect but got this error..</p>
+<p>&#8220;Invalid package identifier provided: <a href="http://connect20.magentocommerce.com/community/ASchroder_SitemapSubmit" rel="nofollow">http://connect20.magentocommerce.com/community/ASchroder_SitemapSubmit</a>&#8221;</p>
+<p>any suggestions..?</p>
+<p>thanks</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-1987">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-1987" class="comment-date">
+				<time datetime="2010-11-24T11:33:51+00:00">November 24, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1987" class="comment-content">
+				<div class="comment-text">
+		<p>Um I think you&#8217;re trying to use connect20 &#8211; but that&#8217;s for Magento 1.4.2 right? I haven&#8217;t tested the extension with that version of Magento, it probably doesn&#8217;t get put on connect20 until marked as compatible (I&#8217;m guessing&#8230;)</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2051">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/0aeb6cbbd2cbd959296c0f6ba15a28a0?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/0aeb6cbbd2cbd959296c0f6ba15a28a0?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://yoururl/' rel='external nofollow' class='url'>lexd1</a></cite>			</div>
+			
+			<a href="index.html#comment-2051" class="comment-date">
+				<time datetime="2010-12-29T12:09:44+00:00">December 29, 2010</time>			</a>
+		</div>
+				<div id="div-comment-2051" class="comment-content">
+				<div class="comment-text">
+		<p>Yahoo API Key #We’re shutting down this service in December 2010. For further details, please see the Deprecated Services blog post.#<br />
+And Now??<br />
+Thanks a lot for your the great work</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2132">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/02b8a690bb5352c5b3e08c9ca1a5d995?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/02b8a690bb5352c5b3e08c9ca1a5d995?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.conserveradetarifa.es/' rel='external nofollow' class='url'>Valentín</a></cite>			</div>
+			
+			<a href="index.html#comment-2132" class="comment-date">
+				<time datetime="2011-02-05T19:38:10+00:00">February 5, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2132" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks for this great extension.<br />
+I note that this extension don´t generate sitemap for AW-Blog contents. I think that this is very important.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2194">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/664a0216d5261c32a311b46e6e1bba00?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/664a0216d5261c32a311b46e6e1bba00?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://toggle.co.nz/' rel='external nofollow' class='url'>Todd</a></cite>			</div>
+			
+			<a href="index.html#comment-2194" class="comment-date">
+				<time datetime="2011-03-16T15:22:25+00:00">March 16, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2194" class="comment-content">
+				<div class="comment-text">
+		<p>Hey Andy,</p>
+<p>Trying to get your extension installed for toggle.co.nz. </p>
+<p>Mage Connect keeps falling over. Can you flick me through the source to <a href="mailto:info@toggle.co.nz">info@toggle.co.nz</a></p>
+<p>Cheers bud.<br />
+Todd</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2195">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/664a0216d5261c32a311b46e6e1bba00?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/664a0216d5261c32a311b46e6e1bba00?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://toggle.co.nz/' rel='external nofollow' class='url'>Todd</a></cite>			</div>
+			
+			<a href="index.html#comment-2195" class="comment-date">
+				<time datetime="2011-03-16T15:23:19+00:00">March 16, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2195" class="comment-content">
+				<div class="comment-text">
+		<p>Make that Ashley&#8230;</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2238">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/41a48e7d125880de4c6161b226f32c1b?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/41a48e7d125880de4c6161b226f32c1b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.hobbyid.com/' rel='external nofollow' class='url'>HobbyID</a></cite>			</div>
+			
+			<a href="index.html#comment-2238" class="comment-date">
+				<time datetime="2011-04-02T12:48:15+00:00">April 2, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2238" class="comment-content">
+				<div class="comment-text">
+		<p>Great extension Ashley! Is there anyway to confirm that the sitemaps are submitted? Mine are being regenerated by Mage&#8217;s cron daily, but I&#8217;m not certain if they are successfully being submitted to Google etc&#8230;</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2267">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/75e79b81c27b5836f85b68f7a688a18c?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/75e79b81c27b5836f85b68f7a688a18c?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://rosespetsupplies.com/' rel='external nofollow' class='url'>Rose</a></cite>			</div>
+			
+			<a href="index.html#comment-2267" class="comment-date">
+				<time datetime="2011-04-20T10:46:01+00:00">April 20, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2267" class="comment-content">
+				<div class="comment-text">
+		<p>Is this compatible with Magento CE 1.5?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-2268">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-2268" class="comment-date">
+				<time datetime="2011-04-20T14:04:07+00:00">April 20, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2268" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, Rose &#8211; I haven&#8217;t tested it on a 1.5 site yet, you could give it a go and let us all know?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2328">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/946121eb1dfef65d8a83643d99ca2dd2?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/946121eb1dfef65d8a83643d99ca2dd2?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://yoururl/' rel='external nofollow' class='url'>Bart</a></cite>			</div>
+			
+			<a href="index.html#comment-2328" class="comment-date">
+				<time datetime="2011-05-26T22:43:30+00:00">May 26, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2328" class="comment-content">
+				<div class="comment-text">
+		<p>Rose,<br />
+Did you test this on 1.5+ yet?<br />
+Does it work on CE 1.5?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2344">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/8fa8dea76fc32bb87f4f2efc08b10869?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/8fa8dea76fc32bb87f4f2efc08b10869?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://mikeyblueeyes.blogspot.com/' rel='external nofollow' class='url'>Joel</a></cite>			</div>
+			
+			<a href="index.html#comment-2344" class="comment-date">
+				<time datetime="2011-06-03T06:30:19+00:00">June 3, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2344" class="comment-content">
+				<div class="comment-text">
+		<p>This extension looks to be a great time-saver.  Much appreciated.  Are there any plans for a new version incorporating the new method Yahoo is using or site maps?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2590">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/75e79b81c27b5836f85b68f7a688a18c?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/75e79b81c27b5836f85b68f7a688a18c?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.rosespetsupplies.com/' rel='external nofollow' class='url'>Rose</a></cite>			</div>
+			
+			<a href="index.html#comment-2590" class="comment-date">
+				<time datetime="2011-09-05T18:32:18+00:00">September 5, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2590" class="comment-content">
+				<div class="comment-text">
+		<p>Hi,<br />
+I sort of got sidetracked in my attempt to upgrade to 1.5, I was setting up to upgrade and was checking all the extensions I have installed. If you check over at magento connect it seems many people are having difficulty installing this with 1.5. Maybe you can take a look and see if you can help us out and get it to work in 1.5. It is a great extension and I think we would all apreciate if we could continue to have this great functionality in 1.5.<br />
+In advance, Thanks so much for all you have done in Magento. I just tried your speedtest very nice. Thanks</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2729">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/d227fb7c9b0cadbb32320786d8a4bf58?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/d227fb7c9b0cadbb32320786d8a4bf58?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.supermarket.no/' rel='external nofollow' class='url'>emil</a></cite>			</div>
+			
+			<a href="index.html#comment-2729" class="comment-date">
+				<time datetime="2011-11-04T05:16:05+00:00">November 4, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2729" class="comment-content">
+				<div class="comment-text">
+		<p>My question is like &#8220;Rose&#8221;. If you can update your extension with 1.5 or even 1.6. thanks</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2822">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/37254d0e55b232a733c18f024d45ad54?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/37254d0e55b232a733c18f024d45ad54?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">lena w</cite>			</div>
+			
+			<a href="index.html#comment-2822" class="comment-date">
+				<time datetime="2012-01-01T08:29:45+00:00">January 1, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2822" class="comment-content">
+				<div class="comment-text">
+		<p>example of a sitemap <a href="http://www.postpot.com/sitemap/sitemap.php" rel="nofollow">http://www.postpot.com/sitemap/sitemap.php</a></p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-3866">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/8df8afd52b6a5f62c37ad6800400ff3a?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/8df8afd52b6a5f62c37ad6800400ff3a?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.mybad.com.br/' rel='external nofollow' class='url'>Alexandre Mateus</a></cite>			</div>
+			
+			<a href="index.html#comment-3866" class="comment-date">
+				<time datetime="2012-03-24T13:57:10+00:00">March 24, 2012</time>			</a>
+		</div>
+				<div id="div-comment-3866" class="comment-content">
+				<div class="comment-text">
+		<p>Unfortunely it not works on 1.6.x. I wasn&#8217;t able even to install it via connect2.0. Can you, please, provide the files? We could try to make it work on new releases.<br />
+Thanks.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4780">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/698e62acd2254042eed5c5b45667baf8?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/698e62acd2254042eed5c5b45667baf8?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Postadelmaga</cite>			</div>
+			
+			<a href="index.html#comment-4780" class="comment-date">
+				<time datetime="2012-05-02T13:32:30+00:00">May 2, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4780" class="comment-content">
+				<div class="comment-text">
+		<p>Works fine on 1.6 and 1.5<br />
+becareful to use Mage_Core_Model_Store::URL_TYPE_WEB for the correct link generation</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-4798">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/14d3eb3e819295cafc86f4c2d4672acc?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/14d3eb3e819295cafc86f4c2d4672acc?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.charngnoi.com/' rel='external nofollow' class='url'>kim</a></cite>			</div>
+			
+			<a href="index.html#comment-4798" class="comment-date">
+				<time datetime="2012-05-11T09:20:07+00:00">May 11, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4798" class="comment-content">
+				<div class="comment-text">
+		<p>How did you install this in 1.6? There&#8217;s no extension key for 2.0 on the magentoconnect website. </p>
+<p>My website: <a href="http://www.charngnoi.com/" rel="nofollow">http://www.charngnoi.com</a> is running 1.7&#8230; do you know if this would work on 1.7?</p>
+<p>Thanks!</p>
+<p>Kim</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4990">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/e38ef3bd7e2a1073a8bac87f7c7ba995?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/e38ef3bd7e2a1073a8bac87f7c7ba995?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.speelal.nl/' rel='external nofollow' class='url'>Coer</a></cite>			</div>
+			
+			<a href="index.html#comment-4990" class="comment-date">
+				<time datetime="2012-09-13T12:30:25+00:00">September 13, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4990" class="comment-content">
+				<div class="comment-text">
+		<p>Would love for this to work on Magento CE 1.7, but I cannot get it to install on my site <a href="http://www.speelal.nl/" rel="nofollow">http://www.speelal.nl</a></p>
+<p>Developer, please pretty please with sugar on top; would you consider developing this further?</p>
+<p>Regards,<br />
+Cper</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-9677">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/01a9783e6ea60a56afa8b625cc6719b8?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/01a9783e6ea60a56afa8b625cc6719b8?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.iconprinting.com/' rel='external nofollow' class='url'>Polo Shirt Printing</a></cite>			</div>
+			
+			<a href="index.html#comment-9677" class="comment-date">
+				<time datetime="2013-02-07T07:16:10+00:00">February 7, 2013</time>			</a>
+		</div>
+				<div id="div-comment-9677" class="comment-content">
+				<div class="comment-text">
+		<p>Great extension, really helpful thanks!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-10201">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/d4c26b3450ca765b0dbb52d28af6190f?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/d4c26b3450ca765b0dbb52d28af6190f?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.peta.cl/' rel='external nofollow' class='url'>Nicolas</a></cite>			</div>
+			
+			<a href="index.html#comment-10201" class="comment-date">
+				<time datetime="2013-05-08T08:18:59+00:00">May 8, 2013</time>			</a>
+		</div>
+				<div id="div-comment-10201" class="comment-content">
+				<div class="comment-text">
+		<p>The link is not working (page not found)</p>
+<p><a href="http://www.magentocommerce.com/extension/2816" rel="nofollow">http://www.magentocommerce.com/extension/2816</a></p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		</ol><!-- .comment-list -->
+
+				<p class="no-comments">Comments are closed.</p>
+	
+</section><!-- #comments -->
+
+</div><!-- #post-## -->
+
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+		</div><!-- .col-full -->
+	</div><!-- #content -->
+
+	
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="col-full">
+
+					<div class="site-info">
+			&copy; ASchroder.com 2023						<br /> Storefront designed by <a href="http://www.woocommerce.com/" title="WooCommerce - The Best eCommerce Platform for WordPress" rel="author">WooCommerce</a>.					</div><!-- .site-info -->
+		
+		</div><!-- .col-full -->
+	</footer><!-- #colophon -->
+
+	
+</div><!-- #page -->
+
+<link rel='stylesheet' id='yarppRelatedCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/related101e.css?ver=4.8.15' type='text/css' media='all' />
+<script type='text/javascript' src='../../../wp-content/plugins/wp-syntax/js/wp-syntax4963.js?ver=1.1'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/navigation.min11a8.js?ver=20120206'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/skip-link-focus-fix.min08e0.js?ver=20130115'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/wp-embed.min101e.js?ver=4.8.15'></script>
+
+</body>
+
+<!-- Mirrored from www.aschroder.com/2010/01/sitemap-submit-magento-extension-to-submit-your-google-sitemap/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:30:42 GMT -->
+</html>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:19:55 by W3 Total Cache -->

@@ -1,0 +1,1548 @@
+<!doctype html>
+<html lang="en-US">
+
+<!-- Mirrored from www.aschroder.com/2009/02/how-to-set-up-apache-virtual-hosting-on-mamp-for-magento/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:30:54 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="../../../xmlrpc.php">
+
+<title>How to set up Apache Virtual hosting on MAMP for Magento | ASchroder.com</title>
+
+<!-- All in One SEO Pack 2.4.2 by Michael Torbert of Semper Fi Web Design[289,374] -->
+<meta name="description"  content="setting up a local testing Magento install for MAMP Leopard to include a virtual hosting configuration using the hosts file." />
+
+<meta name="keywords"  content="magento,mamp,testing,virtual host,apache" />
+
+<!-- /all in one seo pack -->
+<link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
+<link rel='dns-prefetch' href='http://s.w.org/' />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Feed" href="../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Comments Feed" href="../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; How to set up Apache Virtual hosting on MAMP for Magento Comments Feed" href="feed/index.html" />
+<!-- This site uses the Google Analytics by MonsterInsights plugin v6.2.4 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+<script type="text/javascript" data-cfasync="false">
+		var disableStr = 'ga-disable-UA-6477134-1';
+
+	/* Function to detect opted out users */
+	function __gaTrackerIsOptedOut() {
+		return document.cookie.indexOf(disableStr + '=true') > -1;
+	}
+
+	/* Disable tracking if the opt-out cookie exists. */
+	if ( __gaTrackerIsOptedOut() ) {
+		window[disableStr] = true;
+	}
+
+	/* Opt-out function */
+	function __gaTrackerOptout() {
+	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+	  window[disableStr] = true;
+	}
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','http://www.google-analytics.com/analytics.js','__gaTracker');
+
+	__gaTracker('create', 'UA-6477134-1', 'auto');
+	__gaTracker('set', 'forceSSL', true);
+	__gaTracker('send','pageview');
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/www.aschroder.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.15"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='yarppWidgetCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/widget101e.css?ver=4.8.15' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-syntax-css-css'  href='../../../wp-content/plugins/wp-syntax/css/wp-syntax4963.css?ver=1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-style-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/style5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<style id='storefront-style-inline-css' type='text/css'>
+
+			.main-navigation ul li a,
+			.site-title a,
+			ul.menu li a,
+			.site-branding h1 a,
+			.site-footer .storefront-handheld-footer-bar a:not(.button),
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				color: #333333;
+			}
+
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				border-color: #333333;
+			}
+
+			.main-navigation ul li a:hover,
+			.main-navigation ul li:hover > a,
+			.site-title a:hover,
+			a.cart-contents:hover,
+			.site-header-cart .widget_shopping_cart a:hover,
+			.site-header-cart:hover > li > a,
+			.site-header ul.menu li.current-menu-item > a {
+				color: #838383;
+			}
+
+			table th {
+				background-color: #f8f8f8;
+			}
+
+			table tbody td {
+				background-color: #fdfdfd;
+			}
+
+			table tbody tr:nth-child(2n) td,
+			fieldset,
+			fieldset legend {
+				background-color: #fbfbfb;
+			}
+
+			.site-header,
+			.secondary-navigation ul ul,
+			.main-navigation ul.menu > li.menu-item-has-children:after,
+			.secondary-navigation ul.menu ul,
+			.storefront-handheld-footer-bar,
+			.storefront-handheld-footer-bar ul li > a,
+			.storefront-handheld-footer-bar ul li.search .site-search,
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				background-color: #ffffff;
+			}
+
+			p.site-description,
+			.site-header,
+			.storefront-handheld-footer-bar {
+				color: #6d6d6d;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count,
+			button.menu-toggle:after,
+			button.menu-toggle:before,
+			button.menu-toggle span:before {
+				background-color: #333333;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				color: #ffffff;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				border-color: #ffffff;
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+				color: #333333;
+			}
+
+			.widget h1 {
+				border-bottom-color: #333333;
+			}
+
+			body,
+			.secondary-navigation a,
+			.onsale,
+			.pagination .page-numbers li .page-numbers:not(.current), .woocommerce-pagination .page-numbers li .page-numbers:not(.current) {
+				color: #6d6d6d;
+			}
+
+			.widget-area .widget a,
+			.hentry .entry-header .posted-on a,
+			.hentry .entry-header .byline a {
+				color: #9f9f9f;
+			}
+
+			a  {
+				color: #0228d1;
+			}
+
+			a:focus,
+			.button:focus,
+			.button.alt:focus,
+			.button.added_to_cart:focus,
+			.button.wc-forward:focus,
+			button:focus,
+			input[type="button"]:focus,
+			input[type="reset"]:focus,
+			input[type="submit"]:focus {
+				outline-color: #0228d1;
+			}
+
+			button, input[type="button"], input[type="reset"], input[type="submit"], .button, .added_to_cart, .widget a.button, .site-header-cart .widget_shopping_cart a.button {
+				background-color: #eeeeee;
+				border-color: #eeeeee;
+				color: #333333;
+			}
+
+			button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, .button:hover, .added_to_cart:hover, .widget a.button:hover, .site-header-cart .widget_shopping_cart a.button:hover {
+				background-color: #d5d5d5;
+				border-color: #d5d5d5;
+				color: #333333;
+			}
+
+			button.alt, input[type="button"].alt, input[type="reset"].alt, input[type="submit"].alt, .button.alt, .added_to_cart.alt, .widget-area .widget a.button.alt, .added_to_cart, .widget a.button.checkout {
+				background-color: #333333;
+				border-color: #333333;
+				color: #ffffff;
+			}
+
+			button.alt:hover, input[type="button"].alt:hover, input[type="reset"].alt:hover, input[type="submit"].alt:hover, .button.alt:hover, .added_to_cart.alt:hover, .widget-area .widget a.button.alt:hover, .added_to_cart:hover, .widget a.button.checkout:hover {
+				background-color: #1a1a1a;
+				border-color: #1a1a1a;
+				color: #ffffff;
+			}
+
+			.pagination .page-numbers li .page-numbers.current, .woocommerce-pagination .page-numbers li .page-numbers.current {
+				background-color: #e6e6e6;
+				color: #6d6d6d;
+			}
+
+			#comments .comment-list .comment-content .comment-text {
+				background-color: #f8f8f8;
+			}
+
+			.site-footer {
+				background-color: #f0f0f0;
+				color: #6d6d6d;
+			}
+
+			.site-footer a:not(.button) {
+				color: #333333;
+			}
+
+			.site-footer h1, .site-footer h2, .site-footer h3, .site-footer h4, .site-footer h5, .site-footer h6 {
+				color: #333333;
+			}
+
+			#order_review {
+				background-color: #ffffff;
+			}
+
+			#payment .payment_methods > li .payment_box,
+			#payment .place-order {
+				background-color: #fafafa;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice) {
+				background-color: #f5f5f5;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice):hover {
+				background-color: #f0f0f0;
+			}
+
+			@media screen and ( min-width: 768px ) {
+				.secondary-navigation ul.menu a:hover {
+					color: #868686;
+				}
+
+				.secondary-navigation ul.menu a {
+					color: #6d6d6d;
+				}
+
+				.site-header-cart .widget_shopping_cart,
+				.main-navigation ul.menu ul.sub-menu,
+				.main-navigation ul.nav-menu ul.children {
+					background-color: #f0f0f0;
+				}
+
+				.site-header-cart .widget_shopping_cart .buttons,
+				.site-header-cart .widget_shopping_cart .total {
+					background-color: #f5f5f5;
+				}
+
+				.site-header {
+					border-bottom-color: #f0f0f0;
+				}
+			}
+</style>
+<link rel='stylesheet' id='storefront-icons-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/sass/base/icons5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-fonts-css'  href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,600,700,900&amp;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jqueryb8ff.js?ver=1.12.4'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jquery-migrate.min330a.js?ver=1.4.1'></script>
+<link rel='https://api.w.org/' href='../../../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../xmlrpc0db0.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='3 Quick Methods To Diagnose Communication Problems between Magento and Google Checkout' href='../3-quick-methods-to-diagnose-problems-between-magento-and-google-checkout/index.html' />
+<link rel='next' title='How to install MAMP on your Leopard Mac' href='../how-to-install-mamp-on-your-macbook/index.html' />
+<meta name="generator" content="WordPress 4.8.15" />
+<link rel="canonical" href="index.html" />
+<link rel='shortlink' href='../../../index269b.html?p=141' />
+<link rel="alternate" type="application/json+oembed" href="../../../wp-json/oembed/1.0/embedf815.json?url=http%3A%2F%2Fwww.aschroder.com%2F2009%2F02%2Fhow-to-set-up-apache-virtual-hosting-on-mamp-for-magento%2F" />
+<link rel="alternate" type="text/xml+oembed" href="../../../wp-json/oembed/1.0/embed610e?url=http%3A%2F%2Fwww.aschroder.com%2F2009%2F02%2Fhow-to-set-up-apache-virtual-hosting-on-mamp-for-magento%2F&amp;format=xml" />
+</head>
+
+<body class="post-template-default single single-post postid-141 single-format-standard no-wc-breadcrumb storefront-full-width-content right-sidebar">
+
+
+<div id="page" class="hfeed site">
+	
+	<header id="masthead" class="site-header" role="banner" style="">
+		<div class="col-full">
+
+					<a class="skip-link screen-reader-text" href="#site-navigation">Skip to navigation</a>
+		<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+				<div class="site-branding">
+			<div class="beta site-title"><a href="../../../index.html" rel="home">ASchroder.com</a></div><p class="site-description">Notes on Web Development</p>		</div>
+		<div class="storefront-primary-navigation">		<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="Primary Navigation">
+		<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><span>Menu</span></button>
+			<div class="primary-navigation"><ul id="menu-main-menu" class="menu"><li id="menu-item-1119" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li id="menu-item-1118" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li id="menu-item-1872" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div><div class="handheld-navigation"><ul id="menu-main-menu-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div>		</nav><!-- #site-navigation -->
+		</div>
+		</div>
+	</header><!-- #masthead -->
+
+	
+	<div id="content" class="site-content" tabindex="-1">
+		<div class="col-full">
+
+		
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+<div id="post-141" class="post-141 post type-post status-publish format-standard hentry category-magento category-web-development tag-24 tag-hosts-file tag-leopard tag-mac tag-magento tag-mamp tag-unix">
+
+			<header class="entry-header">
+		<span class="posted-on">Posted on <a href="index.html" rel="bookmark"><time class="entry-date published" datetime="2009-02-16T13:34:04+00:00">February 16, 2009</time> <time class="updated" datetime="2009-04-17T12:31:58+00:00">April 17, 2009</time></a></span><h1 class="entry-title">How to set up Apache Virtual hosting on MAMP for Magento</h1>		</header><!-- .entry-header -->
+				<aside class="entry-meta">
+						<div class="author">
+				<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' /><div class="label">Written by</div><a href="../../../author/admin/index.html" title="Posts by Ashley" rel="author">Ashley</a>			</div>
+							<div class="cat-links">
+					<div class="label">Posted in</div><a href="../../../category/magento/index.html" rel="category tag">Magento</a>, <a href="../../../category/web-development/index.html" rel="category tag">Web Development</a>				</div>
+			
+							<div class="tags-links">
+					<div class="label">Tagged</div><a href="../../../tag/105/index.html" rel="tag">10.5</a>, <a href="../../../tag/hosts-file/index.html" rel="tag">hosts file</a>, <a href="../../../tag/leopard/index.html" rel="tag">leopard</a>, <a href="../../../tag/mac/index.html" rel="tag">Mac</a>, <a href="../../../tag/magento/index.html" rel="tag">Magento</a>, <a href="../../../tag/mamp/index.html" rel="tag">MAMP</a>, <a href="../../../tag/unix/index.html" rel="tag">Unix</a>				</div>
+			
+		
+							<div class="comments-link">
+					<div class="label">Comments</div>					<span class="comments-link"><a href="index.html#comments">49 Comments</a></span>
+				</div>
+					</aside>
+				<div class="entry-content">
+		<p>When developing and testing a production Magento store locally it&#8217;s easy and convenient to set up an exact replica of the production environment. This can be achieved using Apache virtual hosting and your operating system hosts file.</p>
+<p>This post will walk you through setting up a local testing Magento install for MAMP Leopard to include a virtual hosting configuration and how to configure your operating system to send requests for  your production site to your local testing environment.</p>
+<p><span id="more-141"></span></p>
+<p>This post will not cover installing Magento, copying an existing production Magento &#8211; it is assumed this will have already been done and we are focusing only on how to actually set up an Apache virtual host and the operating system hosts file. If you need help <a href="../how-to-install-mamp-on-your-macbook/index.html">installing MAMP</a> you can read my <a href="../how-to-install-mamp-on-your-macbook/index.html">step by step guide to install MAMP on Leopard</a>.</p>
+<h3>Step 1: Configure Apache for Virtual Hosting</h3>
+<p>The default MAMP Apache install does not offer pre-configured virtual hosting but it can be easily added. First thing to do is back up your existing MAMP Apache configuration files.</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #7a0874; font-weight: bold;">cd</span> <span style="color: #000000; font-weight: bold;">/</span>Applications<span style="color: #000000; font-weight: bold;">/</span>MAMP<span style="color: #000000; font-weight: bold;">/</span>conf<span style="color: #000000; font-weight: bold;">/</span>apache<span style="color: #000000; font-weight: bold;">/</span>
+<span style="color: #c20cb9; font-weight: bold;">cp</span> httpd.conf httpd.conf.bak</pre></td></tr></table><p class="theCode" style="display:none;">cd /Applications/MAMP/conf/apache/
+cp httpd.conf httpd.conf.bak</p></div>
+
+<p>Now you need to edit the <code>httpd.conf</code> file to add virtual hosting configuration. Open the file with <a href="http://en.wikipedia.org/wiki/Vi">your favourite text editor</a> and add the following to the end:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="apache" style="font-family:monospace;"><span style="color: #00007f;">Include</span> /Applications/MAMP/conf/apache/sites</pre></td></tr></table><p class="theCode" style="display:none;">Include /Applications/MAMP/conf/apache/sites</p></div>
+
+<p>This tells Apache to include another file called <code>sites</code> which we obviously haven&#8217;t created yet.</p>
+<p>We could include our virtual hosting configration in the httpd.conf file but it&#8217;ll get grubby if we start having many local sites. Likewise we could include an entire directory (say one called &#8216;sites-enabled&#8217;) and then have a symlink for each site within that directory pointing to a file in a directory called site-available! If you want to set up something more robust like that, you can. Before you do though, ask yourself how many production stores you&#8217;ll be running from your laptop&#8230;</p>
+<p>Anyway back to the actual configuration. Now we create a file called <code>sites</code> in the directory we told Apache it was (recall that was: /Applications/MAMP/conf/apache/)</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #c20cb9; font-weight: bold;">vi</span> <span style="color: #000000; font-weight: bold;">/</span>Applications<span style="color: #000000; font-weight: bold;">/</span>MAMP<span style="color: #000000; font-weight: bold;">/</span>conf<span style="color: #000000; font-weight: bold;">/</span>apache<span style="color: #000000; font-weight: bold;">/</span>sites</pre></td></tr></table><p class="theCode" style="display:none;">vi /Applications/MAMP/conf/apache/sites</p></div>
+
+<p>And put the following configuration into the file:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="apache" style="font-family:monospace;"><span style="color: #00007f;">NameVirtualHost</span> *:<span style="color: #ff0000;">80</span>
+&nbsp;
+&lt;<span style="color: #000000; font-weight:bold;">VirtualHost</span> *:<span style="color: #ff0000;">80</span>&gt;
+<span style="color: #00007f;">ServerName</span> example.com
+<span style="color: #00007f;">DocumentRoot</span> /Users/ashley/Documents/www/example.com
+&lt;/<span style="color: #000000; font-weight:bold;">VirtualHost</span>&gt;</pre></td></tr></table><p class="theCode" style="display:none;">NameVirtualHost *:80
+
+&lt;VirtualHost *:80&gt;
+ServerName example.com
+DocumentRoot /Users/ashley/Documents/www/example.com
+&lt;/VirtualHost&gt;</p></div>
+
+<p>Your DocumentRoot value should match up to where you have installed Magento. It helps your organization to have an entire directory dedicated to different virtual host Document Roots and to name each Document Root after the site it is the root of as in my example configuration.</p>
+<p>You can add as many VirtualHost sections as you like in this sites file. Each one will be a new testing or development site.</p>
+<p>After saving the <code>sites</code> file you can restart MAMP and it should now support virtual hosting and have one virtual host running. If you open a browser and browse to example.com though, you will still see the production site.</p>
+<p>This is because your local computer is still requesting DNS records for the domain name and it is still resolving the real IP address. Never fear though, we can instruct our local computer not to get the DNS record, by giving it a local name resolution through the hosts file.</p>
+<h3>Step 2: Setup your hosts file</h3>
+<p>I won&#8217;t tell you about a hosts file here, someone has already written up an <a href="http://en.wikipedia.org/wiki/Hosts_file">excellent description of the hosts file</a>, I&#8217;ll just explain how to add configuration for your local Apache testing virtual host.</p>
+<p>Before going any further I&#8217;ll stress that if you set up a name exactly the same as your production server then you <strong>will</strong> end up confusing your production and testing sites <strong>at least</strong> once. If you want to avoid this and create a really clean separation then make the test environment a virtual subdomain such as test.example.com.</p>
+<p>To proceed with the same name setup, then simple edit your /etc/hosts file as root.</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #c20cb9; font-weight: bold;">sudo</span> <span style="color: #c20cb9; font-weight: bold;">vi</span> <span style="color: #000000; font-weight: bold;">/</span>etc<span style="color: #000000; font-weight: bold;">/</span>hosts</pre></td></tr></table><p class="theCode" style="display:none;">sudo vi /etc/hosts</p></div>
+
+<p>and find the line for 127.0.0.1 then edit it to look like this:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;">127.0.0.1       localhost example.com</pre></td></tr></table><p class="theCode" style="display:none;">127.0.0.1       localhost example.com</p></div>
+
+<p>You can add more and more sites too like:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;">127.0.0.1       localhost example.com anotherexample.com</pre></td></tr></table><p class="theCode" style="display:none;">127.0.0.1       localhost example.com anotherexample.com</p></div>
+
+<p>Note that all the entries need to be on one line, i.e. no line breaks.</p>
+<p>Now when you visit example.com in your browser you will be able to see your local testing Magento installation running as a virtual host on MAMP Apache. if you can&#8217;t for some reason, let me know and I&#8217;ll help you with it.</p>
+<p>To revert back to using DNS entries you just remove the site from the line and refresh in your browser.</p>
+<div class='yarpp-related'>
+<p>You might also be interested in:<ol>
+<li><a href="../../04/how-to-use-apache-virtual-hosts-over-a-local-network-with-mamp/index.html" rel="bookmark" title="How to use Apache Virtual Hosts over a local network with MAMP">How to use Apache Virtual Hosts over a local network with MAMP </a></li>
+<li><a href="../how-to-install-mamp-on-your-macbook/index.html" rel="bookmark" title="How to install MAMP on your Leopard Mac">How to install MAMP on your Leopard Mac </a></li>
+<li><a href="../../03/a-simple-way-to-password-protect-your-magento-store/index.html" rel="bookmark" title="A simple way to password protect your Magento store">A simple way to password protect your Magento store </a></li>
+<li><a href="../../../2011/03/command-line-magento-1-5-install-on-mamp/index.html" rel="bookmark" title="Command line Magento 1.5 install on MAMP">Command line Magento 1.5 install on MAMP </a></li>
+<li><a href="../../03/how-to-use-the-mamp-mysql-command-line-client-in-a-terminal/index.html" rel="bookmark" title="How to use the MAMP Mysql command line client in a terminal">How to use the MAMP Mysql command line client in a terminal </a></li>
+</ol></p>
+</div>
+		</div><!-- .entry-content -->
+		<nav id="post-navigation" class="navigation post-navigation" role="navigation" aria-label="Post Navigation"><span class="screen-reader-text">Post navigation</span><div class="nav-links"><div class="nav-previous"><a href="../3-quick-methods-to-diagnose-problems-between-magento-and-google-checkout/index.html" rel="prev">3 Quick Methods To Diagnose Communication Problems between Magento and Google Checkout</a></div><div class="nav-next"><a href="../how-to-install-mamp-on-your-macbook/index.html" rel="next">How to install MAMP on your Leopard Mac</a></div></div></nav>
+<section id="comments" class="comments-area" aria-label="Post Comments">
+
+			<h2 class="comments-title">
+			49 thoughts on &ldquo;<span>How to set up Apache Virtual hosting on MAMP for Magento</span>&rdquo;		</h2>
+
+		
+		<ol class="comment-list">
+					<li class="comment even thread-even depth-1" id="comment-11">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/5448ac7fee702e89a567029b04776c1f?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/5448ac7fee702e89a567029b04776c1f?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Dave</cite>			</div>
+			
+			<a href="index.html#comment-11" class="comment-date">
+				<time datetime="2009-02-22T10:29:42+00:00">February 22, 2009</time>			</a>
+		</div>
+				<div id="div-comment-11" class="comment-content">
+				<div class="comment-text">
+		<p>I just can&#8217;t seem to get this working.  No matter what I try it just gives me a server can&#8217;t be found error.</p>
+<p>MAMP was working just fine so I&#8217;m not sure if that would be it or not.  Is there any setting in the MAMP preferences I need to change?</p>
+<p>Here&#8217;s what I have:</p>
+<p>sites file:</p>
+<p>NameVirtualHost *:80</p>
+<p>ServerName localhost.com<br />
+DocumentRoot /Applications/MAMP/htdocs</p>
+<p>hosts file:</p>
+<p>##<br />
+# Host Database<br />
+#<br />
+# localhost is used to configure the loopback interface<br />
+# when the system is booting.  Do not change this entry.<br />
+##<br />
+127.0.0.1	localhost localhost.com<br />
+255.255.255.255	broadcasthost<br />
+::1             localhost<br />
+fe80::1%lo0	localhost</p>
+<p>I can usually figure this stuff out but this one is rather perplexing so I thought I&#8217;d leave a comment.</p>
+<p>Thanks.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-12">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/5448ac7fee702e89a567029b04776c1f?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/5448ac7fee702e89a567029b04776c1f?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Dave</cite>			</div>
+			
+			<a href="index.html#comment-12" class="comment-date">
+				<time datetime="2009-02-22T10:31:17+00:00">February 22, 2009</time>			</a>
+		</div>
+				<div id="div-comment-12" class="comment-content">
+				<div class="comment-text">
+		<p>the Virtualhost brackets are in there as well but I noticed they didn&#8217;t show up in the comment.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-13">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-13" class="comment-date">
+				<time datetime="2009-02-22T11:21:44+00:00">February 22, 2009</time>			</a>
+		</div>
+				<div id="div-comment-13" class="comment-content">
+				<div class="comment-text">
+		<p>Hi,</p>
+<p>Thanks for commenting. For troubleshooting this configuration I&#8217;d suggest trying to first narrow it down to either MAMP or your hosts. The way to do this is to first try a very simple folder with just an index.html in it (e.g. containing &#8216;hello world&#8217;). You can test accessing just that simple file in the virtual host to see if it is loading. Also you can try pinging localhost.com from the terminal to confirm it is picking up the right IP address.<br />
+One other thing to confirm, have you got MAMP configured for the usual default ports as per my <a href="../how-to-install-mamp-on-your-macbook/index.html" rel="nofollow">guide to install MAMP</a></p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-22">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/d0eff30b269c69df6d76bda0de8524b7?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/d0eff30b269c69df6d76bda0de8524b7?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Romain</cite>			</div>
+			
+			<a href="index.html#comment-22" class="comment-date">
+				<time datetime="2009-02-25T10:27:13+00:00">February 25, 2009</time>			</a>
+		</div>
+				<div id="div-comment-22" class="comment-content">
+				<div class="comment-text">
+		<p>Hi thanks for sharing some informations about installing Magento on mac  os x. Does MAMP include all the specific PHP extensions required to run Magento ? </p>
+<p>I&#8217;ve tried to make a local install with the native Leopard PHP install and I get errors when loading the file magento-check.php</p>
+<p>Basically, Magento requires &#8220;pdo_mysql&#8221;, &#8220;mcrypt&#8221; and &#8220;GD&#8221; libraries that are not bundled into the default php version of Mac os x leopard.</p>
+<p>Does install MAMP allowed you to run magento with complete faetures ?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-23">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-23" class="comment-date">
+				<time datetime="2009-02-25T11:48:51+00:00">February 25, 2009</time>			</a>
+		</div>
+				<div id="div-comment-23" class="comment-content">
+				<div class="comment-text">
+		<p>Yes, MAMP has the required extensions, this makes it a great alternative to the standard Leopard 10.5 PHP which will require you to recompile with the extensions. I did a <em>really</em> basic <a href="../how-to-install-mamp-on-your-macbook/index.html" rel="nofollow">MAMP installation tutorial</a> which if you want to see how easy MAMP is to set up, will show you.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-55">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/6d33174e3b44e75615bed98462a00899?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/6d33174e3b44e75615bed98462a00899?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.frosted.ca/' rel='external nofollow' class='url'>Justin Frost</a></cite>			</div>
+			
+			<a href="index.html#comment-55" class="comment-date">
+				<time datetime="2009-03-10T18:03:33+00:00">March 10, 2009</time>			</a>
+		</div>
+				<div id="div-comment-55" class="comment-content">
+				<div class="comment-text">
+		<p>Hey Ashley, </p>
+<p>Great site.. I love learning all these tricks for local development!  Very cool&#8230;.</p>
+<p>I tried to implement this tutorial and it would seem something is going wrong on the MAMP end for me&#8230; I did try to be sneaky though and specify a different DocumentRoot than what was spec&#8217;d in ServerName..</p>
+<p>NameVirtualHost *:80</p>
+<p>ServerName dev.domain.com<br />
+DocumentRoot /Users/frosted/Sites/mag</p>
+<p>Do these need to match up?  Like&#8230;</p>
+<p>ServerName dev.domain.com<br />
+DocumentRoot /Users/frosted/Sites/dev.domain.com</p>
+<p>If so.. any tips on where to modify the magento paths in the DB via phpMyAdmin ?  I can reinstall to a directory called dev.domain.com but would obviously need to correct those paths outside of the admin panel&#8230; </p>
+<p>**figured you&#8217;ve done this before so thought I&#8217;d post up here[:</p>
+<p>Peace from Vancouver BC!<br />
+Gonna go hit the slopes now!</p>
+<p>Cheers,<br />
+J</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-56">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-56" class="comment-date">
+				<time datetime="2009-03-10T18:16:37+00:00">March 10, 2009</time>			</a>
+		</div>
+				<div id="div-comment-56" class="comment-content">
+				<div class="comment-text">
+		<p>The directories do not have to match, that is more just a convenient way to remember which folder is which domain. Otherwise you&#8217;ll be forever wondering if store1.com is mag1 or mag2 🙂</p>
+<p>You need to narrow down what isn&#8217;t working. Try putting a a dummy file like index.html with just the world hello in the root directory of your virtual host. Then if you can browse to it at dev.domain.com/index.html then you know your virtual hosts are working. </p>
+<p>Things to check for: ports &#8211; is MAMP&#8217;s Apache running on 80?<br />
+Is Magento the root of your virtual host or in a sub directory. By that I mean does /Users/frosted/Sites/mag/index.php exist or is it /Users/frosted/Sites/mag/magento/index.php?<br />
+Does your dev.domain.com actually resolve to localhost if you ping it on the command line?</p>
+<p>This has all the hallmarks of a blog post&#8230;think I&#8217;ll do a &#8216;How to find out what is wrong with your MAMP virtual hosts config&#8217; post tonight.</p>
+<p>Nice to here from a Canadian, I hear it&#8217;s a lot like New Zealand.</p>
+<p>ashley</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-59">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/6d33174e3b44e75615bed98462a00899?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/6d33174e3b44e75615bed98462a00899?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.frosted.ca/' rel='external nofollow' class='url'>Justin Frost</a></cite>			</div>
+			
+			<a href="index.html#comment-59" class="comment-date">
+				<time datetime="2009-03-11T10:11:09+00:00">March 11, 2009</time>			</a>
+		</div>
+				<div id="div-comment-59" class="comment-content">
+				<div class="comment-text">
+		<p>Yep I have met lots of Kiwis out here, Whistler and Vancouver have quite a few[: Usually meet them on or near mountains!  </p>
+<p>I hear the mountain biking out in New Zealand is amazing as well&#8230;</p>
+<p>I&#8217;ll check into those things and post back if I can get some solid figures.  The odd thing is that magento loads, just without some files [mainly styling]</p>
+<p>Cheers,<br />
+J</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-64">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/6d33174e3b44e75615bed98462a00899?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/6d33174e3b44e75615bed98462a00899?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.frosted.ca/' rel='external nofollow' class='url'>Justin Frost</a></cite>			</div>
+			
+			<a href="index.html#comment-64" class="comment-date">
+				<time datetime="2009-03-11T16:45:25+00:00">March 11, 2009</time>			</a>
+		</div>
+				<div id="div-comment-64" class="comment-content">
+				<div class="comment-text">
+		<p>Ok Resolved it.. this is what ended up working.  It was a problem on the Apache side.</p>
+<p>NameVirtualHost *</p>
+<p>ServerName localhost<br />
+DocumentRoot /Users/frosted/Sites/</p>
+<p>ServerName <a href="http://www.domain.dev/" rel="nofollow">http://www.domain.dev</a><br />
+DocumentRoot /Users/frosted/Sites/domain.dev</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-65">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-65" class="comment-date">
+				<time datetime="2009-03-11T16:52:58+00:00">March 11, 2009</time>			</a>
+		</div>
+				<div id="div-comment-65" class="comment-content">
+				<div class="comment-text">
+		<p>Great to hear it, and thanks for posting the solution back too!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-150">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/be5c33249313555d693772a09ec31247?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/be5c33249313555d693772a09ec31247?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Pete</cite>			</div>
+			
+			<a href="index.html#comment-150" class="comment-date">
+				<time datetime="2009-04-01T11:17:49+00:00">April 1, 2009</time>			</a>
+		</div>
+				<div id="div-comment-150" class="comment-content">
+				<div class="comment-text">
+		<p>Has anyone had a problem where after you install Magento and it gives you the option to login to the frontend or backend when you go to the backend it doesn&#8217;t let you in? I had heard it was related to a cookie/timezone and MAMP issue but I have not heard of a solution. Any ideas? My login page just reloads, if I put the wrong user/pass it says access denied but with the right stuff it just reloads.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-151">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-151" class="comment-date">
+				<time datetime="2009-04-01T11:48:49+00:00">April 1, 2009</time>			</a>
+		</div>
+				<div id="div-comment-151" class="comment-content">
+				<div class="comment-text">
+		<p>You are right it sounds like a cookie problem. Have a look at what cookies are being placed by Magento, and check the &#8216;Expires&#8217; portion is a date in the future. If not then check the timezone in Magento is set the same as the timezone on your MAMP server (which may well be your laptop time?).</p>
+<p>To check cookie in Firefox, go to the options and on the privacy tab is a &#8216;show cookies&#8217; button. Search in there using the search box for your domain/IP address.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-183">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/6d33174e3b44e75615bed98462a00899?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/6d33174e3b44e75615bed98462a00899?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.frosted.ca/' rel='external nofollow' class='url'>Justin Frost</a></cite>			</div>
+			
+			<a href="index.html#comment-183" class="comment-date">
+				<time datetime="2009-04-13T14:50:42+00:00">April 13, 2009</time>			</a>
+		</div>
+				<div id="div-comment-183" class="comment-content">
+				<div class="comment-text">
+		<p>@pete<br />
+your issue is most likely that there is no . [dot] in your domain name.  This drove me crazy and lead me to this post for virtual hosting [as I know have a dot in the url&#8230;] . You can usually use your ip as well.</p>
+<p>@ashley<br />
+dude, I was wondering if you had any idea how to implement this virtual hosts setup across a network.  </p>
+<p>I would like my colleague to be able to access my web server like any other.  We are on the same network and I tried modding her hosts file to point to the dev path on my machine.  It executes the php and works but the paths are incorrect causing styling to strip and relative links to break..</p>
+<p>Basically I want to use mamp as a server for my network. I try: 192.168.1.1/project.dev/ 72.1.1.1 in the hosts file [on her machine] and it keeps putting me to the /sites directory instead of the target [192.168.1.1/project.dev/]</p>
+<p>Any ideas on why this is happening?  Ever used MAMP across a network?</p>
+<p>Thanks again man,<br />
+Cheers,<br />
+J</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-185">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-185" class="comment-date">
+				<time datetime="2009-04-14T01:42:58+00:00">April 14, 2009</time>			</a>
+		</div>
+				<div id="div-comment-185" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, Justin</p>
+<p>Welcome back!</p>
+<p>&#8230;snip&#8230;</p>
+<p>Wow! That turned out to be longer than I had planned &#8211; I&#8217;ve made my reply a blog post on <a href="../../04/how-to-use-apache-virtual-hosts-over-a-local-network-with-mamp/index.html" rel="nofollow">Apache virtual hosting in MAMP across a local network</a> instead.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-194">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/a31ba24ecbc65fa79959b30d9c7670e8?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/a31ba24ecbc65fa79959b30d9c7670e8?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">CheeseandRice</cite>			</div>
+			
+			<a href="index.html#comment-194" class="comment-date">
+				<time datetime="2009-04-16T19:27:52+00:00">April 16, 2009</time>			</a>
+		</div>
+				<div id="div-comment-194" class="comment-content">
+				<div class="comment-text">
+		<p>I got this  when tring to access test.mysite.com/magento<br />
+&#8212;&#8212;-<br />
+Whoops, it looks like you have an invalid PHP version.</p>
+<p>Magento supports PHP 5.2.0 or newer. Find out how to install Magento using PHP-CGI as a work-around.<br />
+&#8212;&#8212;-/</p>
+<p>Most recent MAMP is installed and running, hmmmm&#8230;.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-195">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-195" class="comment-date">
+				<time datetime="2009-04-16T19:32:08+00:00">April 16, 2009</time>			</a>
+		</div>
+				<div id="div-comment-195" class="comment-content">
+				<div class="comment-text">
+		<p>Hi,</p>
+<p>Please check your MAMP preferences you can select either PHP 4 or PHP5 , you possibly have PHP 4 selected as the recent MAMP&#8217;s use at least PHP 5.2.6. Let us know if that works. </p>
+<p>Cheers,<br />
+Ashley</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-197">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/a31ba24ecbc65fa79959b30d9c7670e8?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/a31ba24ecbc65fa79959b30d9c7670e8?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">CheeseandRice</cite>			</div>
+			
+			<a href="index.html#comment-197" class="comment-date">
+				<time datetime="2009-04-17T10:14:13+00:00">April 17, 2009</time>			</a>
+		</div>
+				<div id="div-comment-197" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Ashley,</p>
+<p>Thank you for your reply and compiling this very useful information. The PHP version was the first thing I checked, all is good there. I am a little confused, after 6 hours of tweaking things on my fresh out of the box Macbook Pro, though less confused then when I started, thanks to you. I am not sure what is broken and I do have a few questions if you have a minute. Does the virtual host path have to point directly to /Users/ME/Documents/www/example.com/magento or will /Users/ME/Documents/www automatically give me use of MAMP in the sub all directories? Here is my setup at the moment and what I am experiencing. If I solve it, I will post my fix asap. </p>
+<p>MAMP Setup:<br />
+-Ports 80 &amp; 3306<br />
+-PHP 5<br />
+-Apache Document Root<br />
+/Users/ME/Documents/www</p>
+<p>In my httpd.conf:<br />
+&#8230;</p>
+<p>    Include /Applications/MAMP/conf/apache/sites</p>
+<p>In my &#8216;sites&#8217; doc:<br />
+NameVirtualHost *:80</p>
+<p>ServerName test.example.com<br />
+DocumentRoot /Users/ME/Documents/www/example.com</p>
+<p>##<br />
+# Host Database<br />
+#<br />
+# localhost is used to configure the loopback interface<br />
+# when the system is booting.  Do not change this entry.<br />
+##<br />
+127.0.0.1	localhost test.example.com<br />
+255.255.255.255	broadcasthost<br />
+::1             localhost<br />
+fe80::1%lo0	localhost</p>
+<p>MAMP page works fine here:<br />
+<a href="http://localhost/MAMP/?language=English" rel="nofollow">http://localhost/MAMP/?language=English</a></p>
+<p>Browser Results for: <a href="http://localhost/" rel="nofollow">http://localhost/</a> and test.example.com</p>
+<p>Index of /<br />
+[DIR] example.com/    &#8211;<br />
+Apache/2.0.59 (Unix) PHP/5.1.6 DAV/2 Server at localhost Port 80</p>
+<p>Index.html does not load but it does here: <a href="http://test.example.com/example.com/" rel="nofollow">http://test.example.com/example.com/</a></p>
+<p>Browser Results for: <a href="http://test.example.com/example.com/magento" rel="nofollow">http://test.example.com/example.com/magento</a></p>
+<p>Whoops, it looks like you have an invalid PHP version.<br />
+Magento supports PHP 5.2.0 or newer. Find out how to install Magento using PHP-CGI as a work-around.</p>
+<p>You see anything wrong here?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-198">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/a31ba24ecbc65fa79959b30d9c7670e8?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/a31ba24ecbc65fa79959b30d9c7670e8?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">CheeseandRice</cite>			</div>
+			
+			<a href="index.html#comment-198" class="comment-date">
+				<time datetime="2009-04-17T10:19:35+00:00">April 17, 2009</time>			</a>
+		</div>
+				<div id="div-comment-198" class="comment-content">
+				<div class="comment-text">
+		<p>I just noticed the blog strips out the VirtualHost Tags. Are there any other tags that are missing from the tutorial. That was the only thing I put tags on. Thanks</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-199">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-199" class="comment-date">
+				<time datetime="2009-04-17T12:44:00+00:00">April 17, 2009</time>			</a>
+		</div>
+				<div id="div-comment-199" class="comment-content">
+				<div class="comment-text">
+		<p>Hi,</p>
+<p>Thanks for spotting that, I have put the VirtualHost tags back in. Lesson: never forget to change back to plain HTML mode before updating a post! </p>
+<p>Regarding your config it looks like the PHP your MAMP is running is 5.1.6 based on this line:<br />
+&#8220;Apache/2.0.59 (Unix) PHP/5.1.6 DAV/2 Server at localhost Port 80&#8221;</p>
+<p>Do you definitely have the latest MAMP? You can confirm the MAMP php version by going to the MAMP &#8216;start page&#8217; and clicking on the &#8216;phpInfo&#8217; menu option. Mine tells me 5.2.6. </p>
+<p>One other thing to check is for another php version. Open a terminal (Terminal.app), and type php -version. I wonder if you have an older php installed that is being picked up on the PATH by MAMP instead of it&#8217;s own one.</p>
+<p>Your virtual host configuration looks fine (except the missing VirtualHost tag), once you put those tags in (and that&#8217;s totally my fault so sorry about that) it should work fine.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-200">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/a31ba24ecbc65fa79959b30d9c7670e8?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/a31ba24ecbc65fa79959b30d9c7670e8?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">CheeseandRice</cite>			</div>
+			
+			<a href="index.html#comment-200" class="comment-date">
+				<time datetime="2009-04-17T15:22:43+00:00">April 17, 2009</time>			</a>
+		</div>
+				<div id="div-comment-200" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Again,</p>
+<p>With the tags posted in place as directed in your instructions I was able to correct a mistake and get my index loading. But my PHP is still not working properly. That was an interesting idea to look at the PHP version/s. Here is what I discovered:</p>
+<p>Results for MAMP PHP.ini is PHP Version 5.1.6</p>
+<p>Results for Terminal: Earth:~ ME$ php -version</p>
+<p>&#8212;-Results START&#8212;-<br />
+PHP 5.2.6 (cli) (built: Sep 19 2008 11:28:54)<br />
+Copyright (c) 1997-2008 The PHP Group<br />
+Zend Engine v2.2.0, Copyright (c) 1998-2008 Zend Technologies<br />
+&#8212;-Results END&#8212;-</p>
+<p>So my MAMP PHP is older than yours which doesn&#8217;t make sense since I just downloaded MAMP yesterday. Though as expected the newer version trump over the older. And in fact my MAMP Zend engine is &#8216;off&#8217; but Terminal says it is on&#8230; So? How to disable the extra PHP so MAMP PHP can take over? Where do I look for this mystery PHP?</p>
+<p>I searched my drive but only found only 2 PHP.ini files, both were in MAMP for PHP 4 and 5. Hmmm, I was not totally convinced 2 PHP versions were running until I turned MAMP off and Terminal results were still PHP 5.2.6. </p>
+<p>I checked /ect/apache2/httpd.conf and the PHP module is commented out, which makes sense since I never activated it. My user_me/Sites folder has no trace of it. I am very confused how this could be&#8230;. Any idea? Sorry, this seems to be moving off topic.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-201">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-201" class="comment-date">
+				<time datetime="2009-04-17T16:19:02+00:00">April 17, 2009</time>			</a>
+		</div>
+				<div id="div-comment-201" class="comment-content">
+				<div class="comment-text">
+		<p>Hi,</p>
+<p>I&#8217;ve started a new post with some possible tips for this <a href="../../04/whoops-magento-supports-php-520-or-newer/index.html" rel="nofollow">PHP version problem with MAMP</a>.  Let&#8217;s move the discussion to there and keep this post focused on just Apache virtual hosting in MAMP.</p>
+<p>Cheers,<br />
+Ashley</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-249">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/d7943959ecf9f3fe591c37c146fdf1ac?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/d7943959ecf9f3fe591c37c146fdf1ac?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.olafg.com/' rel='external nofollow' class='url'>Olafg</a></cite>			</div>
+			
+			<a href="index.html#comment-249" class="comment-date">
+				<time datetime="2009-05-07T07:03:51+00:00">May 7, 2009</time>			</a>
+		</div>
+				<div id="div-comment-249" class="comment-content">
+				<div class="comment-text">
+		<p>I tried to install Magento the way I did with wordpress, seemed to work except &#8211; I couldn&#8217;t logging into the admin. Is this because I didn&#8217;t setup a virtual server, or?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-250">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-250" class="comment-date">
+				<time datetime="2009-05-07T11:52:52+00:00">May 7, 2009</time>			</a>
+		</div>
+				<div id="div-comment-250" class="comment-content">
+				<div class="comment-text">
+		<p>Hi,<br />
+I&#8217;ll need a bit more info, by &#8216;couldn&#8217;t login&#8217;, do you mean couldn&#8217;t get to the login page, or login  was denied?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-252">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/d7943959ecf9f3fe591c37c146fdf1ac?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/d7943959ecf9f3fe591c37c146fdf1ac?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.olafg.com/' rel='external nofollow' class='url'>Olaf Ghanizadeh</a></cite>			</div>
+			
+			<a href="index.html#comment-252" class="comment-date">
+				<time datetime="2009-05-10T12:26:23+00:00">May 10, 2009</time>			</a>
+		</div>
+				<div id="div-comment-252" class="comment-content">
+				<div class="comment-text">
+		<p>Hey. I got it to work by just installing it the simple way in MAMP. Just had to login via safari and change the baseurl to 127.0.0.1 instead of localhost</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-278">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/d37af45628c5bc6301c22a5f2f070542?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/d37af45628c5bc6301c22a5f2f070542?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Alex</cite>			</div>
+			
+			<a href="index.html#comment-278" class="comment-date">
+				<time datetime="2009-05-25T04:19:55+00:00">May 25, 2009</time>			</a>
+		</div>
+				<div id="div-comment-278" class="comment-content">
+				<div class="comment-text">
+		<p>Had the same problem: No login in FF.<br />
+First I thought it was due to running on localhost so I set up a virtual server under <a href="http://localmagento/" rel="nofollow">http://localmagento</a>. Funnily enough that didn&#8217;t cut it either. Only after I set up <a href="http://magento.local/" rel="nofollow">http://magento.local</a> things started working. Looks like FF insists on a dot in the domain name&#8230;</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-316">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/23351b66423667b19371aaca46b8b921?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/23351b66423667b19371aaca46b8b921?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://bradysewall.com/' rel='external nofollow' class='url'>Brady</a></cite>			</div>
+			
+			<a href="index.html#comment-316" class="comment-date">
+				<time datetime="2009-06-18T17:16:44+00:00">June 18, 2009</time>			</a>
+		</div>
+				<div id="div-comment-316" class="comment-content">
+				<div class="comment-text">
+		<p>Brilliant! Works perfectly. I&#8217;ve been trying to get multiple Magento stores setup in MAMP using symlinks with no luck. This makes it easy. THANK YOU!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-443">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/bea7c189154555ecda9071a4b5cf5185?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/bea7c189154555ecda9071a4b5cf5185?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">shilan</cite>			</div>
+			
+			<a href="index.html#comment-443" class="comment-date">
+				<time datetime="2009-09-02T12:44:22+00:00">September 2, 2009</time>			</a>
+		</div>
+				<div id="div-comment-443" class="comment-content">
+				<div class="comment-text">
+		<p>gr8! using 127.0.0.1 interface worked for me 🙂 make sure using it in every step you take</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-463">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/23351b66423667b19371aaca46b8b921?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/23351b66423667b19371aaca46b8b921?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://bradysewall.com/' rel='external nofollow' class='url'>Brady</a></cite>			</div>
+			
+			<a href="index.html#comment-463" class="comment-date">
+				<time datetime="2009-09-08T12:40:15+00:00">September 8, 2009</time>			</a>
+		</div>
+				<div id="div-comment-463" class="comment-content">
+				<div class="comment-text">
+		<p>This seems to work great, until I try to add a second virtual host to the sites file. Can you explain how to do that? When I add a second virtual host, I can not get the MAMP Apache server to start. Apache error (via log file): [Tue Sep 08 13:00:06 2009] [notice] caught SIGTERM, shutting down</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-464">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-464" class="comment-date">
+				<time datetime="2009-09-08T15:01:59+00:00">September 8, 2009</time>			</a>
+		</div>
+				<div id="div-comment-464" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, Please flick me an email with your config in it, I&#8217;ll take a quick look, sounds like a problem with the config is causing Apache to fail at startup.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-867">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/702e7dce714633bf6fa7366202404709?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/702e7dce714633bf6fa7366202404709?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.100abandonedhouses.com/' rel='external nofollow' class='url'>Kevin</a></cite>			</div>
+			
+			<a href="index.html#comment-867" class="comment-date">
+				<time datetime="2010-02-18T12:13:53+00:00">February 18, 2010</time>			</a>
+		</div>
+				<div id="div-comment-867" class="comment-content">
+				<div class="comment-text">
+		<p>I found this to be very helpful, though in my case the DocumentRoot had to be in quotes. In other words:<br />
+DocumentRoot /Users/ashley/Documents/www/example.com</p>
+<p>needs to be:</p>
+<p>DocumentRoot &#8216;/Users/ashley/Documents/www/example.com&#8217;</p>
+<p>It did not work without them.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1468">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/085cfd7cd83e66f251f8bd7e68493e1f?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/085cfd7cd83e66f251f8bd7e68493e1f?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Leon de Rijke</cite>			</div>
+			
+			<a href="index.html#comment-1468" class="comment-date">
+				<time datetime="2010-06-27T09:47:03+00:00">June 27, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1468" class="comment-content">
+				<div class="comment-text">
+		<p>After trying loads of tutorials yours finally provided a (almost) working solution, thanks! My problem is that all VirtualHosts are served from the same folder. So <a href="http://localhost/" rel="nofollow">http://localhost/</a>, <a href="http://leonderijke.local/" rel="nofollow">http://leonderijke.local</a> and <a href="http://fototest.local/" rel="nofollow">http://fototest.local</a> display the contents of the localhost DocumentRoot. If I add the DocumentRoot foldername to the url, then it serves the right folder: <a href="http://fototest.local/fototest" rel="nofollow">http://fototest.local/fototest</a></p>
+<p>My files:<br />
+/etc/hosts:<br />
+127.0.0.1       localhost fototest.local leonderijke.local</p>
+<p>httpd.conf:</p>
+<p>#<br />
+# Use name-based virtual hosting.<br />
+#</p>
+<p>NameVirtualHost *:80</p>
+<p>ServerName localhost<br />
+DocumentRoot &#8216;/Users/leonderijke/websites&#8217;</p>
+<p>ServerName fototest.local<br />
+DocumentRoot &#8216;/Users/leonderijke/websites/fototest&#8217;</p>
+<p>ServerName leonderijke.local<br />
+DocumentRoot &#8216;/Users/leonderijke/websites/leonderijke&#8217;</p>
+<p>I&#8217;ve tried with and without quotes, but that doesn&#8217;t make a difference. Every VirtualHost gets served from &#8216;/Users/leonderijke/websites&#8217;. Any ideas? Thanks in advance!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-1469">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-1469" class="comment-date">
+				<time datetime="2010-06-27T12:30:32+00:00">June 27, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1469" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, Leon &#8211; can you try with either no localhost root or by moving the virtual hosts to directories outside of the localhost root? (just as a test)</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1472">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/085cfd7cd83e66f251f8bd7e68493e1f?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/085cfd7cd83e66f251f8bd7e68493e1f?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Leon de Rijke</cite>			</div>
+			
+			<a href="index.html#comment-1472" class="comment-date">
+				<time datetime="2010-06-28T09:46:48+00:00">June 28, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1472" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Ashley,</p>
+<p>Without localhost root it serves both fototest.local and leonderijke.local from ‘/Users/leonderijke/websites/fototest’. </p>
+<p>With localhost root, if I move the virtual hosts to directories outside of the localhost root it serves both virtual hosts from the localhost root.</p>
+<p>I tested some more and I concluded that it serves every virtual host from the document root of the top virtual host (the first virtual host).</p>
+<p>I&#8217;m staring at the virtual host config but I can&#8217;t find anything wrong with it. Do you?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-1475">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-1475" class="comment-date">
+				<time datetime="2010-06-28T14:20:54+00:00">June 28, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1475" class="comment-content">
+				<div class="comment-text">
+		<p>You have got the <code>&lt;VirtualHost *:80&gt;</code> tags around each one right? I think it probably just got stripped from the comment?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1476">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/085cfd7cd83e66f251f8bd7e68493e1f?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/085cfd7cd83e66f251f8bd7e68493e1f?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Leon de Rijke</cite>			</div>
+			
+			<a href="index.html#comment-1476" class="comment-date">
+				<time datetime="2010-06-28T23:02:36+00:00">June 28, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1476" class="comment-content">
+				<div class="comment-text">
+		<p>Yes, the VirtualHost tags are around each one.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-1480">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-1480" class="comment-date">
+				<time datetime="2010-06-29T15:18:01+00:00">June 29, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1480" class="comment-content">
+				<div class="comment-text">
+		<p>Hmmm &#8211; I suggest back peddling a bit, to try and get a more minimal setup working. How about setting up a vhost for &#8216;blahblah.com&#8217; and pointing it&#8217;s root at a directory somewhere that just has a single index.html file in it. Add blahblah.com to your hosts file pointing to 127&#8230; and see if that works (remove all other vhost config while testing it)</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1481">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/085cfd7cd83e66f251f8bd7e68493e1f?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/085cfd7cd83e66f251f8bd7e68493e1f?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Leon de Rijke</cite>			</div>
+			
+			<a href="index.html#comment-1481" class="comment-date">
+				<time datetime="2010-06-29T22:53:16+00:00">June 29, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1481" class="comment-content">
+				<div class="comment-text">
+		<p>Ok, I deleted all virtual hosts from both the httpd.conf and the hosts file. I set up blahblah.com with just an index.html file in it. That worked. Then I added blahblah2.com with just an index.html file. That worked too!</p>
+<p>Now I set up the other virtual hosts for my sites and they all worked! I really have no idea what went wrong (which frightens me a bit) but in any case: everything works fine now.</p>
+<p>Thanks for your help Ashley!!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-1483">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-1483" class="comment-date">
+				<time datetime="2010-06-30T15:18:56+00:00">June 30, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1483" class="comment-content">
+				<div class="comment-text">
+		<p>Glad to hear it Leon! I also hate it when you do that same thing and get different results. A programmer I used to work with called that &#8216;solar flares&#8217; &#8211; seems like a good excuse to me!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-1496">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/ad7e338b9ee08c5b9ed4c518656ba18a?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/ad7e338b9ee08c5b9ed4c518656ba18a?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Matt</cite>			</div>
+			
+			<a href="index.html#comment-1496" class="comment-date">
+				<time datetime="2010-07-03T23:44:46+00:00">July 3, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1496" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Ashley</p>
+<p>I could really do with your help </p>
+<p>I&#8217;m running MAMP 1.9 on OS X 10.5.8 </p>
+<p>I done a fresh install of Magento locally and it works, using default ports. </p>
+<p>However, I have downloaded a remote site to make changes locally and am struggling to get this to work as it continues to go to the live site or brings up an error.</p>
+<p>I have several questions.<br />
+1. Does Little Snitch affect the host file ?<br />
+2. If I add &#8220;Include /Applications/MAMP/conf/apache/sites&#8221; Apache server does not start (Web sharing is switched off in sharing preferences)</p>
+<p>I appreciate any help you can offer</p>
+<p>Thanks Matt 🙂</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1497">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/ad7e338b9ee08c5b9ed4c518656ba18a?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/ad7e338b9ee08c5b9ed4c518656ba18a?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Matt</cite>			</div>
+			
+			<a href="index.html#comment-1497" class="comment-date">
+				<time datetime="2010-07-05T01:14:54+00:00">July 5, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1497" class="comment-content">
+				<div class="comment-text">
+		<p>I finally solved my magento issue of taking a site from a remote host to a local host and I thought my notes may help someone else</p>
+<p>1. Check .htaccess file for #RewriteBase &#8211; my previous programmer had added rules</p>
+<p>2. Check MAMP Preferences &#8211; Mine was set to PHP 5.3 when it should have been PHP 5.2</p>
+<p>It has taken me almost 12 hours to resolve this, 3 times longer than the actual job. But now I can get on with the design changes.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-1498">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-1498" class="comment-date">
+				<time datetime="2010-07-05T02:25:45+00:00">July 5, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1498" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, Matt &#8211; Sorry you solved this before I got a chance to offer some suggestions &#8211; glad to hear you got it sorted and thanks for stopping by to post your fixes.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-1893">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/a72fd3fa3af30b8b05bb6c7b3d51a026?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/a72fd3fa3af30b8b05bb6c7b3d51a026?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://tanlaiz..bf/' rel='external nofollow' class='url'>ghanu</a></cite>			</div>
+			
+			<a href="index.html#comment-1893" class="comment-date">
+				<time datetime="2010-09-29T07:20:27+00:00">September 29, 2010</time>			</a>
+		</div>
+				<div id="div-comment-1893" class="comment-content">
+				<div class="comment-text">
+		<p>thanks lot learn new thing from you&#8230;&#8230;.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2444">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/568a5cb992b96a0e5a0614620e6e1dcb?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/568a5cb992b96a0e5a0614620e6e1dcb?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Andrew Y</cite>			</div>
+			
+			<a href="index.html#comment-2444" class="comment-date">
+				<time datetime="2011-07-11T01:53:46+00:00">July 11, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2444" class="comment-content">
+				<div class="comment-text">
+		<p>When I setup a virtual host domain on my local MAMP Magento site, the<br />
+homepage would show up fine, but none of the links from the homepage<br />
+would work &#8211; I would get server errors.  I originally thought that the<br />
+problem was with my .htaccess files and Apache settings, but the<br />
+problem was actually in the /app/etc/local.xml config file.  The line:</p>
+<p><code><host>< ![CDATA[localhost]]></host></code></p>
+<p>&#8230;needed to be updated to reflect the exact name of the virtual host:</p>
+<p><code><host>< ![CDATA[virtualhostname]]></host></code></p>
+<p>I assumed that because the virtual host was local, and the mySQL<br />
+connection worked with localhost, this setting would be fine.<br />
+However, localhost won&#8217;t work &#8211; it needs to be the virtual host name.<br />
+A pretty obvious mistake, but one that is easy to make.   Hope this<br />
+helps someone troubleshoot in the future&#8230;&#8230;</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2635">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/f4fd232a842cede652cb747ce6293d8e?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/f4fd232a842cede652cb747ce6293d8e?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">dan</cite>			</div>
+			
+			<a href="index.html#comment-2635" class="comment-date">
+				<time datetime="2011-09-16T16:39:25+00:00">September 16, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2635" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks for this clear write up!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2790">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/7b8a1f52394f4ab938bcb7e906f87859?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/7b8a1f52394f4ab938bcb7e906f87859?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ivn</cite>			</div>
+			
+			<a href="index.html#comment-2790" class="comment-date">
+				<time datetime="2011-12-06T06:44:10+00:00">December 6, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2790" class="comment-content">
+				<div class="comment-text">
+		<p>Hi there,</p>
+<p>I am trying to set up local environment for one of my client&#8217;s Magento sites.<br />
+I have copied their files and folders in my local folder and followed your instructions bt couldn&#8217;t set up a local environment.<br />
+I took the backup of httpd.conf file.<br />
+I also edited the file and added the following line at the end of the file<br />
+#Include /Applications/MAMP/conf/apache/sites<br />
+I created a text file called as sites in Applications/MAMP/conf/apache which has the following content<br />
+ NameVirtualHost *:80</p>
+<p> ServerName localhost<br />
+ DocumentRoot /Applications/MAMP/htdocs/foldername</p>
+<p>But don&#8217;t know how to edit etc/host and where it is located.<br />
+And have I done all the steps until here properly?<br />
+Please help !!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4834">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/23351b66423667b19371aaca46b8b921?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/23351b66423667b19371aaca46b8b921?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://bradysewall.com/' rel='external nofollow' class='url'>Brady</a></cite>			</div>
+			
+			<a href="index.html#comment-4834" class="comment-date">
+				<time datetime="2012-06-01T17:11:11+00:00">June 1, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4834" class="comment-content">
+				<div class="comment-text">
+		<p>I&#8217;m a bit confused about the virtual subdomain in the hosts file&#8230;</p>
+<p>If I already have Magento installed at example.com and I create a hosts entry for local.example.com, the Magento install example.com won&#8217;t run, will it? Wouldn&#8217;t I need to update the Magento database so it shows local.example.com as the site URL?</p>
+<p>The issue I&#8217;m running into is with certain paid extensions you have to give them the URL you are going to use. Any deviation from that URL and the extension will not work. So doing local development, I need to keep the URL the same as the live site. That&#8217;s why I was thinking of using MAMP&#8217;s ports, but I can&#8217;t seem to get Magento configured to use those.</p>
+<p>Any ideas?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-10120">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/959e4a91b65800dc7015872e6fe1b32c?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/959e4a91b65800dc7015872e6fe1b32c?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://dreamlabs.tv/' rel='external nofollow' class='url'>mtupper</a></cite>			</div>
+			
+			<a href="index.html#comment-10120" class="comment-date">
+				<time datetime="2013-04-23T19:16:03+00:00">April 23, 2013</time>			</a>
+		</div>
+				<div id="div-comment-10120" class="comment-content">
+				<div class="comment-text">
+		<p>So, I had Magento 1.7.0.2 CE running fine on MAMP using the <a href="http://localhost/magento/" rel="nofollow">http://localhost/magento/</a> URL, but had the problem with Chrome not being able to login.  I read about the issue with cookies and extending the Cookie Lifetime to 86400, but also understand that Chrome wouldn&#8217;t accept any cookies not from a qualified domain, so it seemed like it was time to bite the bullet and implement this Virtual Server solution with MAMP.  After some playing with various configs, it is working fine with multiple fake domains pointing to plain index.html sites.</p>
+<p>So my problem is somewhere in Magento.  Now when I goto the new domain, <a href="http://magdevsite.com/" rel="nofollow">http://magdevsite.com</a> it is redirecting straight away to <a href="http://localhost/magento/" rel="nofollow">http://localhost/magento/</a> where it was originally installed.  I have checked:<br />
+&#8211; .htaccess has:  RewriteBase /<br />
+&#8211; core_config_data has both unsecure and secure URL set to new domain (ej. <a href="http://magdevsite.com/" rel="nofollow">http://magdevsite.com/</a> )<br />
+&#8211; pinging <a href="http://magdevsite.com/" rel="nofollow">http://magdevsite.com/</a> resolves correctly to 127.0.0.1 </p>
+<p>Can&#8217;t figure out what is causing this!  Any ideas maestro?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-10121">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/959e4a91b65800dc7015872e6fe1b32c?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/959e4a91b65800dc7015872e6fe1b32c?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://dreamlabs.tv/' rel='external nofollow' class='url'>mtupper</a></cite>			</div>
+			
+			<a href="index.html#comment-10121" class="comment-date">
+				<time datetime="2013-04-23T19:20:47+00:00">April 23, 2013</time>			</a>
+		</div>
+				<div id="div-comment-10121" class="comment-content">
+				<div class="comment-text">
+		<p>OMG!!!  How embarrassing&#8230;  as soon as I hit &#8220;Post Comment&#8221; I realized: clear cache!  That did it.  Basic— total rookie error. Sorry.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-10376">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/1f87a183ca3d925c8de612927de134d2?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/1f87a183ca3d925c8de612927de134d2?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.newkarenmillendressesuk.com/' rel='external nofollow' class='url'>Georgia</a></cite>			</div>
+			
+			<a href="index.html#comment-10376" class="comment-date">
+				<time datetime="2013-06-21T02:16:20+00:00">June 21, 2013</time>			</a>
+		</div>
+				<div id="div-comment-10376" class="comment-content">
+				<div class="comment-text">
+		<p>Third on the shortlist is the military-style. Shoes create<br />
+a arely there?aesthetic and could possibly pretty much with regard to<br />
+everything. These frequencies may vary from one starting point<br />
+another. Feel women can quickly embrace heels,<br />
+flats, flip flops also sandals! karen millen ebay outlet *<a href="http://www.newkarenmillendressesuk.com/" rel="nofollow">Georgia</a>*.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		</ol><!-- .comment-list -->
+
+				<p class="no-comments">Comments are closed.</p>
+	
+</section><!-- #comments -->
+
+</div><!-- #post-## -->
+
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+		</div><!-- .col-full -->
+	</div><!-- #content -->
+
+	
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="col-full">
+
+					<div class="site-info">
+			&copy; ASchroder.com 2023						<br /> Storefront designed by <a href="http://www.woocommerce.com/" title="WooCommerce - The Best eCommerce Platform for WordPress" rel="author">WooCommerce</a>.					</div><!-- .site-info -->
+		
+		</div><!-- .col-full -->
+	</footer><!-- #colophon -->
+
+	
+</div><!-- #page -->
+
+<link rel='stylesheet' id='yarppRelatedCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/related101e.css?ver=4.8.15' type='text/css' media='all' />
+<script type='text/javascript' src='../../../wp-content/plugins/wp-syntax/js/wp-syntax4963.js?ver=1.1'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/navigation.min11a8.js?ver=20120206'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/skip-link-focus-fix.min08e0.js?ver=20130115'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/wp-embed.min101e.js?ver=4.8.15'></script>
+
+</body>
+
+<!-- Mirrored from www.aschroder.com/2009/02/how-to-set-up-apache-virtual-hosting-on-mamp-for-magento/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:30:58 GMT -->
+</html>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:20:15 by W3 Total Cache -->

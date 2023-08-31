@@ -1,0 +1,1593 @@
+<!doctype html>
+<html lang="en-US">
+
+<!-- Mirrored from www.aschroder.com/2012/01/how-to-edit-and-disable-checkout-fields-in-woocommerce/comment-page-1/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:39:53 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="../../../../xmlrpc.php">
+
+<title>How to Edit and Disable Checkout Fields in Woocommerce | ASchroder.com</title>
+
+<!-- All in One SEO Pack 2.4.2 by Michael Torbert of Semper Fi Web Design[289,372] -->
+<meta name="description"  content="a quick post that shows you how to edit or disable the checkout fields in Woothemes wordpress shopping cart Woocommerce" />
+
+<meta name="keywords"  content="wordpress,woocommerce,woothemes,checkout" />
+
+<!-- /all in one seo pack -->
+<link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
+<link rel='dns-prefetch' href='http://s.w.org/' />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Feed" href="../../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Comments Feed" href="../../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; How to Edit and Disable Checkout Fields in Woocommerce Comments Feed" href="../feed/index.html" />
+<!-- This site uses the Google Analytics by MonsterInsights plugin v6.2.4 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+<script type="text/javascript" data-cfasync="false">
+		var disableStr = 'ga-disable-UA-6477134-1';
+
+	/* Function to detect opted out users */
+	function __gaTrackerIsOptedOut() {
+		return document.cookie.indexOf(disableStr + '=true') > -1;
+	}
+
+	/* Disable tracking if the opt-out cookie exists. */
+	if ( __gaTrackerIsOptedOut() ) {
+		window[disableStr] = true;
+	}
+
+	/* Opt-out function */
+	function __gaTrackerOptout() {
+	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+	  window[disableStr] = true;
+	}
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','http://www.google-analytics.com/analytics.js','__gaTracker');
+
+	__gaTracker('create', 'UA-6477134-1', 'auto');
+	__gaTracker('set', 'forceSSL', true);
+	__gaTracker('send','pageview');
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/www.aschroder.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.15"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='yarppWidgetCss-css'  href='../../../../wp-content/plugins/yet-another-related-posts-plugin/style/widget101e.css?ver=4.8.15' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-syntax-css-css'  href='../../../../wp-content/plugins/wp-syntax/css/wp-syntax4963.css?ver=1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-style-css'  href='../../../../../cdn.aschroder.com/wp-content/themes/storefront/style5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<style id='storefront-style-inline-css' type='text/css'>
+
+			.main-navigation ul li a,
+			.site-title a,
+			ul.menu li a,
+			.site-branding h1 a,
+			.site-footer .storefront-handheld-footer-bar a:not(.button),
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				color: #333333;
+			}
+
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				border-color: #333333;
+			}
+
+			.main-navigation ul li a:hover,
+			.main-navigation ul li:hover > a,
+			.site-title a:hover,
+			a.cart-contents:hover,
+			.site-header-cart .widget_shopping_cart a:hover,
+			.site-header-cart:hover > li > a,
+			.site-header ul.menu li.current-menu-item > a {
+				color: #838383;
+			}
+
+			table th {
+				background-color: #f8f8f8;
+			}
+
+			table tbody td {
+				background-color: #fdfdfd;
+			}
+
+			table tbody tr:nth-child(2n) td,
+			fieldset,
+			fieldset legend {
+				background-color: #fbfbfb;
+			}
+
+			.site-header,
+			.secondary-navigation ul ul,
+			.main-navigation ul.menu > li.menu-item-has-children:after,
+			.secondary-navigation ul.menu ul,
+			.storefront-handheld-footer-bar,
+			.storefront-handheld-footer-bar ul li > a,
+			.storefront-handheld-footer-bar ul li.search .site-search,
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				background-color: #ffffff;
+			}
+
+			p.site-description,
+			.site-header,
+			.storefront-handheld-footer-bar {
+				color: #6d6d6d;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count,
+			button.menu-toggle:after,
+			button.menu-toggle:before,
+			button.menu-toggle span:before {
+				background-color: #333333;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				color: #ffffff;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				border-color: #ffffff;
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+				color: #333333;
+			}
+
+			.widget h1 {
+				border-bottom-color: #333333;
+			}
+
+			body,
+			.secondary-navigation a,
+			.onsale,
+			.pagination .page-numbers li .page-numbers:not(.current), .woocommerce-pagination .page-numbers li .page-numbers:not(.current) {
+				color: #6d6d6d;
+			}
+
+			.widget-area .widget a,
+			.hentry .entry-header .posted-on a,
+			.hentry .entry-header .byline a {
+				color: #9f9f9f;
+			}
+
+			a  {
+				color: #0228d1;
+			}
+
+			a:focus,
+			.button:focus,
+			.button.alt:focus,
+			.button.added_to_cart:focus,
+			.button.wc-forward:focus,
+			button:focus,
+			input[type="button"]:focus,
+			input[type="reset"]:focus,
+			input[type="submit"]:focus {
+				outline-color: #0228d1;
+			}
+
+			button, input[type="button"], input[type="reset"], input[type="submit"], .button, .added_to_cart, .widget a.button, .site-header-cart .widget_shopping_cart a.button {
+				background-color: #eeeeee;
+				border-color: #eeeeee;
+				color: #333333;
+			}
+
+			button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, .button:hover, .added_to_cart:hover, .widget a.button:hover, .site-header-cart .widget_shopping_cart a.button:hover {
+				background-color: #d5d5d5;
+				border-color: #d5d5d5;
+				color: #333333;
+			}
+
+			button.alt, input[type="button"].alt, input[type="reset"].alt, input[type="submit"].alt, .button.alt, .added_to_cart.alt, .widget-area .widget a.button.alt, .added_to_cart, .widget a.button.checkout {
+				background-color: #333333;
+				border-color: #333333;
+				color: #ffffff;
+			}
+
+			button.alt:hover, input[type="button"].alt:hover, input[type="reset"].alt:hover, input[type="submit"].alt:hover, .button.alt:hover, .added_to_cart.alt:hover, .widget-area .widget a.button.alt:hover, .added_to_cart:hover, .widget a.button.checkout:hover {
+				background-color: #1a1a1a;
+				border-color: #1a1a1a;
+				color: #ffffff;
+			}
+
+			.pagination .page-numbers li .page-numbers.current, .woocommerce-pagination .page-numbers li .page-numbers.current {
+				background-color: #e6e6e6;
+				color: #6d6d6d;
+			}
+
+			#comments .comment-list .comment-content .comment-text {
+				background-color: #f8f8f8;
+			}
+
+			.site-footer {
+				background-color: #f0f0f0;
+				color: #6d6d6d;
+			}
+
+			.site-footer a:not(.button) {
+				color: #333333;
+			}
+
+			.site-footer h1, .site-footer h2, .site-footer h3, .site-footer h4, .site-footer h5, .site-footer h6 {
+				color: #333333;
+			}
+
+			#order_review {
+				background-color: #ffffff;
+			}
+
+			#payment .payment_methods > li .payment_box,
+			#payment .place-order {
+				background-color: #fafafa;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice) {
+				background-color: #f5f5f5;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice):hover {
+				background-color: #f0f0f0;
+			}
+
+			@media screen and ( min-width: 768px ) {
+				.secondary-navigation ul.menu a:hover {
+					color: #868686;
+				}
+
+				.secondary-navigation ul.menu a {
+					color: #6d6d6d;
+				}
+
+				.site-header-cart .widget_shopping_cart,
+				.main-navigation ul.menu ul.sub-menu,
+				.main-navigation ul.nav-menu ul.children {
+					background-color: #f0f0f0;
+				}
+
+				.site-header-cart .widget_shopping_cart .buttons,
+				.site-header-cart .widget_shopping_cart .total {
+					background-color: #f5f5f5;
+				}
+
+				.site-header {
+					border-bottom-color: #f0f0f0;
+				}
+			}
+</style>
+<link rel='stylesheet' id='storefront-icons-css'  href='../../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/sass/base/icons5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-fonts-css'  href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,600,700,900&amp;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../../cdn.aschroder.com/wp-includes/js/jquery/jqueryb8ff.js?ver=1.12.4'></script>
+<script type='text/javascript' src='../../../../../cdn.aschroder.com/wp-includes/js/jquery/jquery-migrate.min330a.js?ver=1.4.1'></script>
+<link rel='https://api.w.org/' href='../../../../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../../xmlrpc0db0.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Java App Engine integration testing with Spring MVC and OpenPersistenceManagerInViewFilter' href='../../../../2011/12/java-app-engine-integration-testing-with-spring-mvc-and-openpersistencemanagerinviewfilter/index.html' />
+<link rel='next' title='Using AWS Auto Scaling with an Elastic Load Balancer cluster on EC2' href='../../using-aws-auto-scaling-with-an-elastic-load-balancer-cluster-on-ec2/index.html' />
+<meta name="generator" content="WordPress 4.8.15" />
+<link rel="canonical" href="index.html#comments" />
+<link rel='shortlink' href='../../../../index2648.html?p=1646' />
+<link rel="alternate" type="application/json+oembed" href="../../../../wp-json/oembed/1.0/embed69c9.json?url=http%3A%2F%2Fwww.aschroder.com%2F2012%2F01%2Fhow-to-edit-and-disable-checkout-fields-in-woocommerce%2F" />
+<link rel="alternate" type="text/xml+oembed" href="../../../../wp-json/oembed/1.0/embedd643?url=http%3A%2F%2Fwww.aschroder.com%2F2012%2F01%2Fhow-to-edit-and-disable-checkout-fields-in-woocommerce%2F&amp;format=xml" />
+</head>
+
+<body class="post-template-default single single-post postid-1646 single-format-standard no-wc-breadcrumb storefront-full-width-content right-sidebar">
+
+
+<div id="page" class="hfeed site">
+	
+	<header id="masthead" class="site-header" role="banner" style="">
+		<div class="col-full">
+
+					<a class="skip-link screen-reader-text" href="#site-navigation">Skip to navigation</a>
+		<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+				<div class="site-branding">
+			<div class="beta site-title"><a href="../../../../index.html" rel="home">ASchroder.com</a></div><p class="site-description">Notes on Web Development</p>		</div>
+		<div class="storefront-primary-navigation">		<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="Primary Navigation">
+		<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><span>Menu</span></button>
+			<div class="primary-navigation"><ul id="menu-main-menu" class="menu"><li id="menu-item-1119" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../../index.html">Home</a></li>
+<li id="menu-item-1118" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../../about/index.html">About</a></li>
+<li id="menu-item-1872" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../../presentations/index.html">Presentations</a></li>
+</ul></div><div class="handheld-navigation"><ul id="menu-main-menu-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../../index.html">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../../about/index.html">About</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../../presentations/index.html">Presentations</a></li>
+</ul></div>		</nav><!-- #site-navigation -->
+		</div>
+		</div>
+	</header><!-- #masthead -->
+
+	
+	<div id="content" class="site-content" tabindex="-1">
+		<div class="col-full">
+
+		
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+<div id="post-1646" class="post-1646 post type-post status-publish format-standard hentry category-php category-web-development tag-woocommerce tag-wordpress">
+
+			<header class="entry-header">
+		<span class="posted-on">Posted on <a href="../index.html" rel="bookmark"><time class="entry-date published" datetime="2012-01-07T00:10:36+00:00">January 7, 2012</time> <time class="updated" datetime="2012-01-27T21:56:36+00:00">January 27, 2012</time></a></span><h1 class="entry-title">How to Edit and Disable Checkout Fields in Woocommerce</h1>		</header><!-- .entry-header -->
+				<aside class="entry-meta">
+						<div class="author">
+				<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' /><div class="label">Written by</div><a href="../../../../author/admin/index.html" title="Posts by Ashley" rel="author">Ashley</a>			</div>
+							<div class="cat-links">
+					<div class="label">Posted in</div><a href="../../../../category/php/index.html" rel="category tag">PHP</a>, <a href="../../../../category/web-development/index.html" rel="category tag">Web Development</a>				</div>
+			
+							<div class="tags-links">
+					<div class="label">Tagged</div><a href="../../../../tag/woocommerce/index.html" rel="tag">woocommerce</a>, <a href="../../../../tag/wordpress/index.html" rel="tag">wordpress</a>				</div>
+			
+		
+							<div class="comments-link">
+					<div class="label">Comments</div>					<span class="comments-link"><a href="../index.html#comments">79 Comments</a></span>
+				</div>
+					</aside>
+				<div class="entry-content">
+		<p>This is just a quick post that shows you how to edit or disable the checkout fields in <a href="http://www.woothemes.com/">Woothemes</a> WordPress shopping cart <a href="http://www.woothemes.com/woocommerce/">Woocommerce</a>. It may make all the Magento developers jealous to see how nearly trivial it is &#8211; but I couldn&#8217;t see a good blog post explaining it, so here goes.</p>
+<h3>Disabling and Editing Checkout</h3>
+<p>To use the WordPress API, I made a simple little plugin that listens for the filter event and then makes some changes to the arrays. </p>
+<p>The anatomy of a plugin is really just a class definition, in the constructor you listen for events and bind them to functions of that class. In those functions, you do the real grunt work. In this case, that&#8217;s where I weed out disabled fields, and swap in my edited field definitions.</p>
+<p>Hopefully the way the code is laid out makes the actual editing/disabling is performed self-evident. To see the full range of available fields and options, please see the underlying array declaration in the core file <code>woocommerce/classes/checkout.class.php</code>.</p>
+<p>My class looks like this:<br />
+<span id="more-1646"></span></p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="php" style="font-family:monospace;"><span style="color: #000000; font-weight: bold;">class</span> woocommerce_disable_checkout_fields <span style="color: #009900;">&#123;</span>
+&nbsp;
+	<span style="color: #000000; font-weight: bold;">var</span> <span style="color: #000088;">$update_billing</span><span style="color: #339933;">;</span>
+	<span style="color: #000000; font-weight: bold;">var</span> <span style="color: #000088;">$disabled_billing</span><span style="color: #339933;">;</span>
+	<span style="color: #000000; font-weight: bold;">var</span> <span style="color: #000088;">$disabled_shipping</span><span style="color: #339933;">;</span>
+	<span style="color: #000000; font-weight: bold;">var</span> <span style="color: #000088;">$update_shipping</span><span style="color: #339933;">;</span>
+&nbsp;
+	<span style="color: #000000; font-weight: bold;">public</span> <span style="color: #000000; font-weight: bold;">function</span> __construct<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span> 
+&nbsp;
+		<span style="color: #666666; font-style: italic;">// If you do not have shipping on checkout, then only billing will have an effect</span>
+		<span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">disabled_shipping</span> <span style="color: #339933;">=</span> <span style="color: #990000;">array</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'shipping_last_name'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+		<span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">update_shipping</span> <span style="color: #339933;">=</span> <span style="color: #990000;">array</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+		<span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">disabled_billing</span> <span style="color: #339933;">=</span> <span style="color: #990000;">array</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'billing_last_name'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'billing_address_1'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'billing_address_2'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'billing_city'</span><span style="color: #339933;">,</span> 
+						<span style="color: #0000ff;">'billing_postcode'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'billing_country'</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'billing_state'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+		<span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">update_billing</span> <span style="color: #339933;">=</span> <span style="color: #990000;">array</span><span style="color: #009900;">&#40;</span>
+			<span style="color: #0000ff;">'billing_first_name'</span> 	<span style="color: #339933;">=&gt;</span> <span style="color: #990000;">array</span><span style="color: #009900;">&#40;</span>
+				<span style="color: #0000ff;">'name'</span><span style="color: #339933;">=&gt;</span>	<span style="color: #0000ff;">'billing_first_name'</span><span style="color: #339933;">,</span>
+				<span style="color: #0000ff;">'label'</span>                 <span style="color: #339933;">=&gt;</span> __<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'Name'</span><span style="color: #339933;">,</span><span style="color: #0000ff;">'wc_disable_checkout_fields'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span>
+				<span style="color: #0000ff;">'placeholder'</span>  		<span style="color: #339933;">=&gt;</span> __<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'Name'</span><span style="color: #339933;">,</span><span style="color: #0000ff;">'wc_disable_checkout_fields'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span>
+				<span style="color: #0000ff;">'required'</span>              <span style="color: #339933;">=&gt;</span> <span style="color: #009900; font-weight: bold;">true</span><span style="color: #339933;">,</span>
+				<span style="color: #0000ff;">'class'</span>                 <span style="color: #339933;">=&gt;</span> <span style="color: #990000;">array</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'form-row-first'</span><span style="color: #009900;">&#41;</span>
+				<span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span>
+			<span style="color: #0000ff;">'billing_company'</span>         <span style="color: #339933;">=&gt;</span> <span style="color: #990000;">array</span><span style="color: #009900;">&#40;</span>
+				<span style="color: #0000ff;">'label'</span>                 <span style="color: #339933;">=&gt;</span> __<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'Company'</span><span style="color: #339933;">,</span><span style="color: #0000ff;">'wc_disable_checkout_fields'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span>
+				<span style="color: #0000ff;">'placeholder'</span>  		<span style="color: #339933;">=&gt;</span> __<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'Company'</span><span style="color: #339933;">,</span><span style="color: #0000ff;">'wc_disable_checkout_fields'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span>
+				<span style="color: #0000ff;">'required'</span>              <span style="color: #339933;">=&gt;</span> <span style="color: #009900; font-weight: bold;">false</span><span style="color: #339933;">,</span>
+				<span style="color: #0000ff;">'class'</span>                 <span style="color: #339933;">=&gt;</span> <span style="color: #990000;">array</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'form-row-first'</span><span style="color: #009900;">&#41;</span>
+				<span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span>
+			<span style="color: #0000ff;">'billing_email'</span> 	<span style="color: #339933;">=&gt;</span> <span style="color: #990000;">array</span><span style="color: #009900;">&#40;</span>
+				<span style="color: #0000ff;">'label'</span>                 <span style="color: #339933;">=&gt;</span> __<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'Email'</span><span style="color: #339933;">,</span><span style="color: #0000ff;">'wc_disable_checkout_fields'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span>
+				<span style="color: #0000ff;">'placeholder'</span>   	<span style="color: #339933;">=&gt;</span> __<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'you@yourdomain.com'</span><span style="color: #339933;">,</span><span style="color: #0000ff;">'wc_disable_checkout_fields'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span>
+				<span style="color: #0000ff;">'required'</span>              <span style="color: #339933;">=&gt;</span> <span style="color: #009900; font-weight: bold;">true</span><span style="color: #339933;">,</span>
+				<span style="color: #0000ff;">'class'</span>                 <span style="color: #339933;">=&gt;</span> <span style="color: #990000;">array</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'form-row-first'</span><span style="color: #009900;">&#41;</span>
+				<span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span>
+			<span style="color: #0000ff;">'billing_phone'</span>         <span style="color: #339933;">=&gt;</span> <span style="color: #990000;">array</span><span style="color: #009900;">&#40;</span>
+				<span style="color: #0000ff;">'label'</span>                 <span style="color: #339933;">=&gt;</span> __<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'Phone'</span><span style="color: #339933;">,</span><span style="color: #0000ff;">'wc_disable_checkout_fields'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span>
+				<span style="color: #0000ff;">'placeholder'</span>   	<span style="color: #339933;">=&gt;</span> __<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'Phone number'</span><span style="color: #339933;">,</span><span style="color: #0000ff;">'wc_disable_checkout_fields'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span>
+				<span style="color: #0000ff;">'required'</span>              <span style="color: #339933;">=&gt;</span> <span style="color: #009900; font-weight: bold;">true</span><span style="color: #339933;">,</span>
+				<span style="color: #0000ff;">'class'</span>                 <span style="color: #339933;">=&gt;</span> <span style="color: #990000;">array</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'form-row-first'</span><span style="color: #009900;">&#41;</span>
+				<span style="color: #009900;">&#41;</span>
+			<span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+		<span style="color: #666666; font-style: italic;">// Filters for checkout actions</span>
+		add_filter<span style="color: #009900;">&#40;</span> <span style="color: #0000ff;">'woocommerce_shipping_fields'</span><span style="color: #339933;">,</span> <span style="color: #990000;">array</span><span style="color: #009900;">&#40;</span><span style="color: #339933;">&amp;</span><span style="color: #000088;">$this</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'filter_shipping'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span> <span style="color: #cc66cc;">10</span><span style="color: #339933;">,</span> <span style="color: #cc66cc;">1</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+		add_filter<span style="color: #009900;">&#40;</span> <span style="color: #0000ff;">'woocommerce_billing_fields'</span><span style="color: #339933;">,</span> <span style="color: #990000;">array</span><span style="color: #009900;">&#40;</span><span style="color: #339933;">&amp;</span><span style="color: #000088;">$this</span><span style="color: #339933;">,</span> <span style="color: #0000ff;">'filter_billing'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span> <span style="color: #cc66cc;">10</span><span style="color: #339933;">,</span> <span style="color: #cc66cc;">1</span> <span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+	<span style="color: #009900;">&#125;</span> 
+&nbsp;
+&nbsp;
+	<span style="color: #666666; font-style: italic;">// array_flip is a somewhat smelly way to make a normal array into an associative one</span>
+	<span style="color: #000000; font-weight: bold;">function</span> filter_shipping<span style="color: #009900;">&#40;</span> <span style="color: #000088;">$fields_array</span> <span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+		<span style="color: #000088;">$fields_array</span> <span style="color: #339933;">=</span> array_replace<span style="color: #009900;">&#40;</span><span style="color: #000088;">$fields_array</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">update_shipping</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+		<span style="color: #b1b100;">return</span> <span style="color: #990000;">array_diff_key</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$fields_array</span><span style="color: #339933;">,</span> <span style="color: #990000;">array_flip</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">disabled_shipping</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+	<span style="color: #009900;">&#125;</span>
+&nbsp;
+	<span style="color: #000000; font-weight: bold;">function</span> filter_billing<span style="color: #009900;">&#40;</span> <span style="color: #000088;">$fields_array</span> <span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+		<span style="color: #000088;">$fields_array</span> <span style="color: #339933;">=</span> array_replace<span style="color: #009900;">&#40;</span><span style="color: #000088;">$fields_array</span><span style="color: #339933;">,</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">update_billing</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+		<span style="color: #b1b100;">return</span> <span style="color: #990000;">array_diff_key</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$fields_array</span><span style="color: #339933;">,</span> <span style="color: #990000;">array_flip</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">disabled_billing</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+	<span style="color: #009900;">&#125;</span>
+&nbsp;
+&nbsp;
+<span style="color: #009900;">&#125;</span></pre></td></tr></table><p class="theCode" style="display:none;">class woocommerce_disable_checkout_fields {
+	
+	var $update_billing;
+	var $disabled_billing;
+	var $disabled_shipping;
+	var $update_shipping;
+
+	public function __construct() { 
+
+		// If you do not have shipping on checkout, then only billing will have an effect
+		$this-&gt;disabled_shipping = array('shipping_last_name');
+		$this-&gt;update_shipping = array();
+
+		$this-&gt;disabled_billing = array('billing_last_name', 'billing_address_1', 'billing_address_2', 'billing_city', 
+						'billing_postcode', 'billing_country', 'billing_state');
+		$this-&gt;update_billing = array(
+			'billing_first_name' 	=&gt; array(
+				'name'=&gt;	'billing_first_name',
+				'label'                 =&gt; __('Name','wc_disable_checkout_fields'),
+				'placeholder'  		=&gt; __('Name','wc_disable_checkout_fields'),
+				'required'              =&gt; true,
+				'class'                 =&gt; array('form-row-first')
+				),
+			'billing_company'         =&gt; array(
+				'label'                 =&gt; __('Company','wc_disable_checkout_fields'),
+				'placeholder'  		=&gt; __('Company','wc_disable_checkout_fields'),
+				'required'              =&gt; false,
+				'class'                 =&gt; array('form-row-first')
+				),
+			'billing_email' 	=&gt; array(
+				'label'                 =&gt; __('Email','wc_disable_checkout_fields'),
+				'placeholder'   	=&gt; __('you@yourdomain.com','wc_disable_checkout_fields'),
+				'required'              =&gt; true,
+				'class'                 =&gt; array('form-row-first')
+				),
+			'billing_phone'         =&gt; array(
+				'label'                 =&gt; __('Phone','wc_disable_checkout_fields'),
+				'placeholder'   	=&gt; __('Phone number','wc_disable_checkout_fields'),
+				'required'              =&gt; true,
+				'class'                 =&gt; array('form-row-first')
+				)
+			);
+
+		// Filters for checkout actions
+		add_filter( 'woocommerce_shipping_fields', array(&amp;$this, 'filter_shipping'), 10, 1 );
+		add_filter( 'woocommerce_billing_fields', array(&amp;$this, 'filter_billing'), 10, 1 );
+	} 
+ 
+		
+	// array_flip is a somewhat smelly way to make a normal array into an associative one
+	function filter_shipping( $fields_array ) {
+		$fields_array = array_replace($fields_array, $this-&gt;update_shipping);
+		return array_diff_key($fields_array, array_flip($this-&gt;disabled_shipping));
+	}
+
+	function filter_billing( $fields_array ) {
+		$fields_array = array_replace($fields_array, $this-&gt;update_billing);
+		return array_diff_key($fields_array, array_flip($this-&gt;disabled_billing));
+	}
+
+
+}</p></div>
+
+<p>This disables most of the billing fields, and edits a couple of others. It doesn&#8217;t touch shipping because on the site I&#8217;m building this for, the products are all digitally delivered. It looks like this (with a few CSS tweaks):</p>
+<p><a href="../../../../../cdn.aschroder.com/wp-content/uploads/2012/01/woocommerce-checkout-fields-disabled.png"><img src="../../../../../cdn.aschroder.com/wp-content/uploads/2012/01/woocommerce-checkout-fields-disabled.png" alt="" title="woocommerce-checkout-fields-disabled" width="332" height="373" class="aligncenter size-full wp-image-1650" srcset="http://cdn.aschroder.com/wp-content/uploads/2012/01/woocommerce-checkout-fields-disabled.png 332w, http://cdn.aschroder.com/wp-content/uploads/2012/01/woocommerce-checkout-fields-disabled-267x300.png 267w" sizes="(max-width: 332px) 100vw, 332px" /></a></p>
+<p>To complete the plugin, at the end of your class definition, you can just instantiate your plugin class to kick things off.</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="php" style="font-family:monospace;"><span style="color: #000088;">$woocommerce_disable_checkout_fields</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> woocommerce_disable_checkout_fields<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre></td></tr></table><p class="theCode" style="display:none;">$woocommerce_disable_checkout_fields = new woocommerce_disable_checkout_fields();</p></div>
+
+<p>That&#8217;s all there is to it.</p>
+<h3>Download</h3>
+<p>You can <a href="../../../../../cdn.aschroder.com/wp-content/uploads/2012/01/woocommerce-aschroder-customize-checkout-0.2.zip">download the file here</a> and drop it into your wordpress install. It&#8217;s provided <em>as is</em> with no promise of any maintenance!</p>
+<p><strong>Update 0.2:</strong> Moved the variable initialization to the constructor so that inline translation can be used if desired.</p>
+<h3>Ease of Modification</h3>
+<p>Note how much easier the learning curve for WordPress+Woocommerce is, compared to Magento. Within an hour I have managed to edit the checkout fields, and publish some code that I&#8217;m pretty sure will make it really easy to do this in a maintainable and upgradeable way.</p>
+<p>One of the reasons it&#8217;s so easy is the <a href="http://codex.wordpress.org/Function_Reference/apply_filters">filter API for WordPress</a>. This <a href="https://twitter.com/aschroder/status/155496316355624962">innocuous little comment</a> in the Woocommerce code was perfect:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="php" style="font-family:monospace;"><span style="color: #666666; font-style: italic;">// Define shipping fields in an array. This can be hooked into and filtered if you wish to change/add anything.</span></pre></td></tr></table><p class="theCode" style="display:none;">// Define shipping fields in an array. This can be hooked into and filtered if you wish to change/add anything.</p></div>
+
+<p>It gives all the hinting required to lead you to make changes the <em>right way</em> &#8211; although it&#8217;s tempting just to hack the core code, my experience has been that&#8217;s a very bad idea.</p>
+<p>Admittedly my code is not a proper UI-based plugin yet, but if there&#8217;s enough interest, I&#8217;ll turn it into one (so comment below if you&#8217;d like a plugin for this). </p>
+<p>Lastly, this is my first public foray into Woocommerce, so if I&#8217;m <em>doing it wrong</em>, let me know, I&#8217;ll save further embarrassment!</p>
+<div class='yarpp-related'>
+<p>You might also be interested in:<ol>
+<li><a href="../../../../2009/01/google-checkout-payout-report-end-date-usability/index.html" rel="bookmark" title="Bad Usability Fixed: No End Date For Google Checkout Payout Transaction Report">Bad Usability Fixed: No End Date For Google Checkout Payout Transaction Report </a></li>
+<li><a href="../../../../2009/02/3-quick-methods-to-diagnose-problems-between-magento-and-google-checkout/index.html" rel="bookmark" title="3 Quick Methods To Diagnose Communication Problems between Magento and Google Checkout">3 Quick Methods To Diagnose Communication Problems between Magento and Google Checkout </a></li>
+<li><a href="../../../../2009/06/masking-password-fields-in-magento-extensions/index.html" rel="bookmark" title="Masking Password fields in Magento Extensions">Masking Password fields in Magento Extensions </a></li>
+<li><a href="../../../../2008/11/magento-google-checkout-free-shipping/index.html" rel="bookmark" title="Magento 1.1.7 Google Checkout and Free Shipping">Magento 1.1.7 Google Checkout and Free Shipping </a></li>
+<li><a href="../../../../2009/02/google-checkout-disabled-not-available-with-these-items/index.html" rel="bookmark" title="Google Checkout disabled &#8211; Not available with these items">Google Checkout disabled &#8211; Not available with these items </a></li>
+</ol></p>
+</div>
+		</div><!-- .entry-content -->
+		<nav id="post-navigation" class="navigation post-navigation" role="navigation" aria-label="Post Navigation"><span class="screen-reader-text">Post navigation</span><div class="nav-links"><div class="nav-previous"><a href="../../../../2011/12/java-app-engine-integration-testing-with-spring-mvc-and-openpersistencemanagerinviewfilter/index.html" rel="prev">Java App Engine integration testing with Spring MVC and OpenPersistenceManagerInViewFilter</a></div><div class="nav-next"><a href="../../using-aws-auto-scaling-with-an-elastic-load-balancer-cluster-on-ec2/index.html" rel="next">Using AWS Auto Scaling with an Elastic Load Balancer cluster on EC2</a></div></div></nav>
+<section id="comments" class="comments-area" aria-label="Post Comments">
+
+			<h2 class="comments-title">
+			79 thoughts on &ldquo;<span>How to Edit and Disable Checkout Fields in Woocommerce</span>&rdquo;		</h2>
+
+				<nav id="comment-nav-above" class="comment-navigation" role="navigation" aria-label="Comment Navigation Above">
+			<span class="screen-reader-text">Comment navigation</span>
+			<div class="nav-previous"></div>
+			<div class="nav-next"><a href="../index.html#comments" >Newer Comments &rarr;</a></div>
+		</nav><!-- #comment-nav-above -->
+		
+		<ol class="comment-list">
+					<li class="comment even thread-even depth-1" id="comment-2835">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/9e1c03354fa804d3b81e9bbd8f9b3ff1?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/9e1c03354fa804d3b81e9bbd8f9b3ff1?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.razvanstavila.com/' rel='external nofollow' class='url'>Razvan</a></cite>			</div>
+			
+			<a href="index.html#comment-2835" class="comment-date">
+				<time datetime="2012-01-07T12:18:10+00:00">January 7, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2835" class="comment-content">
+				<div class="comment-text">
+		<p>Hy!<br />
+Great, just what I was looking for.<br />
+I tried to add a translation for the fields but I get this error:<br />
+Parse error: syntax error, unexpected &#8216;(&#8216;, expecting &#8216;)&#8217; &#8230; wp-content\plugins\disable-checkout-fields.php on line 39:<br />
+&#8216;label&#8217; =&gt; __(&#8216;Name&#8217;, &#8216;woothemes&#8217;),</p>
+<p>Please any idea!<br />
+Thank you!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-2836">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-2836" class="comment-date">
+				<time datetime="2012-01-07T16:58:44+00:00">January 7, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2836" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Razvan.</p>
+<p>The __() is a function call, so if you want to do any inline translation you&#8217;ll have to move it to the constructor, rather than as part of the variable declaration. I&#8217;ve updated the code to show this, as using translations is a cleaner way of doing it.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2838">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/9e1c03354fa804d3b81e9bbd8f9b3ff1?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/9e1c03354fa804d3b81e9bbd8f9b3ff1?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.razvanstavila.com/' rel='external nofollow' class='url'>Razvan</a></cite>			</div>
+			
+			<a href="index.html#comment-2838" class="comment-date">
+				<time datetime="2012-01-08T09:24:09+00:00">January 8, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2838" class="comment-content">
+				<div class="comment-text">
+		<p>Thank you very much..it works like a charm!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2839">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/9e1c03354fa804d3b81e9bbd8f9b3ff1?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/9e1c03354fa804d3b81e9bbd8f9b3ff1?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.razvanstavila.com/' rel='external nofollow' class='url'>Razvan</a></cite>			</div>
+			
+			<a href="index.html#comment-2839" class="comment-date">
+				<time datetime="2012-01-08T11:21:27+00:00">January 8, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2839" class="comment-content">
+				<div class="comment-text">
+		<p>My big challenge now is to have two sets of fields, one for individual billing (Name, ID number, etc) and one for legal entity (Company, Trade Register Number, etc) and to be able to hide or show this fields but to disable the validation for the hidden fields.<br />
+So far you have done a great job for me, a designer 🙂</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2844">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/9e1c03354fa804d3b81e9bbd8f9b3ff1?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/9e1c03354fa804d3b81e9bbd8f9b3ff1?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.razvanstavila.com/' rel='external nofollow' class='url'>Razvan</a></cite>			</div>
+			
+			<a href="index.html#comment-2844" class="comment-date">
+				<time datetime="2012-01-11T06:51:01+00:00">January 11, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2844" class="comment-content">
+				<div class="comment-text">
+		<p>Another problem is that on the Orders Section (Admin) the billing and shipping info it does not get replaced with the new/updated fields.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2854">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/60b1fa98966db5a04dc9f255e5da3d31?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/60b1fa98966db5a04dc9f255e5da3d31?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://lanegoldberg.com/' rel='external nofollow' class='url'>Lane</a></cite>			</div>
+			
+			<a href="index.html#comment-2854" class="comment-date">
+				<time datetime="2012-01-13T10:00:56+00:00">January 13, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2854" class="comment-content">
+				<div class="comment-text">
+		<p>I been working with Magento for about a year now, and I can&#8217;t stand how unweildly it is to work with. Is it just me? What&#8217;s the future for Magento?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2859">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/a03eef5dfc31857b2f7c0dd3548f1a4b?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/a03eef5dfc31857b2f7c0dd3548f1a4b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.iwebsquare.co.uk/' rel='external nofollow' class='url'>Iwebsquare</a></cite>			</div>
+			
+			<a href="index.html#comment-2859" class="comment-date">
+				<time datetime="2012-01-16T00:39:41+00:00">January 16, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2859" class="comment-content">
+				<div class="comment-text">
+		<p>This is Exactly what i am looking for, thanks for sharing this.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2896">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/e851526e2bd9dcbea65de7e4fccd4db6?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/e851526e2bd9dcbea65de7e4fccd4db6?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.nomediakings.org/' rel='external nofollow' class='url'>Jim Munroe</a></cite>			</div>
+			
+			<a href="index.html#comment-2896" class="comment-date">
+				<time datetime="2012-01-29T16:41:20+00:00">January 29, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2896" class="comment-content">
+				<div class="comment-text">
+		<p>When I add this as a plugin and activate it, I get this when I get to checkout:</p>
+<p>Fatal error: Call to undefined function array_replace() in /home/nmk/public_html/ghostswithshitjobs/wp-content/plugins/woocommerce-aschroder-customize-checkout/disable-checkout-fields.php on line 82</p>
+<p>It&#8217;s a virtual downloadable product, if that makes a difference.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2900">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='../../../../index.html' rel='external nofollow' class='url'>Ashley</a></cite>			</div>
+			
+			<a href="index.html#comment-2900" class="comment-date">
+				<time datetime="2012-01-30T12:11:35+00:00">January 30, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2900" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, Jim</p>
+<p>Google that error, there are several solutions &#8211; it is to do with PHP version 5.3 vs 5.2. Here&#8217;s one of the top hits which describes the problem and a solution: <a href="https://github.com/fabpot/Twig/issues/420" rel="nofollow">https://github.com/fabpot/Twig/issues/420</a></p>
+<p>Also, you should check out this blog post, regarding for help and trying to solve it first:<br />
+<a href="http://mattgemmell.com/2008/12/08/what-have-you-tried/" rel="nofollow">http://mattgemmell.com/2008/12/08/what-have-you-tried/</a></p>
+<p>Thanks,<br />
+Ashley</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2942">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/51db3d0892db58a659e76e8d0409e5f0?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/51db3d0892db58a659e76e8d0409e5f0?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Sheila</cite>			</div>
+			
+			<a href="index.html#comment-2942" class="comment-date">
+				<time datetime="2012-02-12T18:20:55+00:00">February 12, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2942" class="comment-content">
+				<div class="comment-text">
+		<p>Thank you for the informative post, this is just what I am looking for but i am definitly green.</p>
+<p>You wrote:&gt;&gt;&gt;<br />
+To complete the plugin, at the end of your class definition, you can just instantiate your plugin class to kick things off.</p>
+<p>$woocommerce_disable_checkout_fields = new woocommerce_disable_checkout_fields();</p>
+<p>What does this mean?  Where would I put this line of code?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2945">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/585358fc9b0341938b76ec3ae4e74b8c?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/585358fc9b0341938b76ec3ae4e74b8c?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Sarah</cite>			</div>
+			
+			<a href="index.html#comment-2945" class="comment-date">
+				<time datetime="2012-02-13T14:50:41+00:00">February 13, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2945" class="comment-content">
+				<div class="comment-text">
+		<p>Thank you for the amazing post I didn&#8217;t understand that much cause Im a beginner  .<br />
+I was wondering what is the code for adding a delivery date option in the checkout page and where should I paste it ?</p>
+<p>Thank you SO MUCH !</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-2988">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/54a3a12a468313dca06941074258e9ba?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/54a3a12a468313dca06941074258e9ba?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Karl</cite>			</div>
+			
+			<a href="index.html#comment-2988" class="comment-date">
+				<time datetime="2012-02-22T08:38:17+00:00">February 22, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2988" class="comment-content">
+				<div class="comment-text">
+		<p>THANK YOU! I&#8217;m doing my best to use this, but I would love to see a plugin for modifying WooCommerce checkout fields.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2994">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/68808fe1b55cbfeaf7d3bd7e52bdb00e?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/68808fe1b55cbfeaf7d3bd7e52bdb00e?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://ghettocottage.com/' rel='external nofollow' class='url'>Endle</a></cite>			</div>
+			
+			<a href="index.html#comment-2994" class="comment-date">
+				<time datetime="2012-02-23T23:16:13+00:00">February 23, 2012</time>			</a>
+		</div>
+				<div id="div-comment-2994" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks Bro! Works a treat. I had to change all array_replace to array_merge and, then updated the fields I wanted to show and everything does exactly what I wished for. Perfect!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-3011">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-3011" class="comment-date">
+				<time datetime="2012-02-26T00:39:30+00:00">February 26, 2012</time>			</a>
+		</div>
+				<div id="div-comment-3011" class="comment-content">
+				<div class="comment-text">
+		<p>Hey Karl, by <em>love</em> do you mean you&#8217;d buy one?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-3283">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/73d306ca2c8c1b858b57618222886f4c?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/73d306ca2c8c1b858b57618222886f4c?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Margaret</cite>			</div>
+			
+			<a href="index.html#comment-3283" class="comment-date">
+				<time datetime="2012-03-04T05:55:39+00:00">March 4, 2012</time>			</a>
+		</div>
+				<div id="div-comment-3283" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, I&#8217;m wondering about the same thing as Sheila. I&#8217;ve installed your plugin but I do not know where I am supposed to paste </p>
+<p>$woocommerce_disable_checkout_fields = new woocommerce_disable_checkout_fields();</p>
+<p>There is no core file named woocommerce/classes/checkout.class.php in my woocommerce but there is a file called woocommerce/classes/class-wc-checkout.php</p>
+<p>Is that the same? If so, where in that file do I paste your code? </p>
+<p>I tried pasting it below the definition, i.e. around line 63 in the class-wc-checkout.php file but to no avail. The checkout page is still blank. </p>
+<p>Any help would be appreciated. Maybe some of the readers know where the code is to be pasted?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-3520">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/fade0f5eda90198ad9babae12b817ad2?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/fade0f5eda90198ad9babae12b817ad2?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Leland</cite>			</div>
+			
+			<a href="index.html#comment-3520" class="comment-date">
+				<time datetime="2012-03-12T02:38:40+00:00">March 12, 2012</time>			</a>
+		</div>
+				<div id="div-comment-3520" class="comment-content">
+				<div class="comment-text">
+		<p>Would be great if you turned this into a UI based drag/drop addon for Woocommerce.  It would sell very well I bet.  Thanks for tutorial.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-3605">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/55a214bdaf6ca4423e58bd39567d957f?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/55a214bdaf6ca4423e58bd39567d957f?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Andrew</cite>			</div>
+			
+			<a href="index.html#comment-3605" class="comment-date">
+				<time datetime="2012-03-15T15:57:14+00:00">March 15, 2012</time>			</a>
+		</div>
+				<div id="div-comment-3605" class="comment-content">
+				<div class="comment-text">
+		<p>Anyone got any example code that allows you to add  fields and other types of fields in to your billing fields?</p>
+<p>I&#8217;ve tried adding this to the array for a field, with no luck:</p>
+<p>&#8216;type&#8217; =&gt; &#8216;select&#8217;,<br />
+&#8216;options&#8217; =&gt; array(<br />
+    &#8216;Option 1&#8217; =&gt; &#8216;Option 1&#8217;,<br />
+    &#8216;Option 2&#8217; =&gt; &#8216;Option 2&#8217;<br />
+)</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-3650">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/e7747dcaa7f1b333883cc7fb9b19b34d?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/e7747dcaa7f1b333883cc7fb9b19b34d?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Lafanter</cite>			</div>
+			
+			<a href="index.html#comment-3650" class="comment-date">
+				<time datetime="2012-03-16T09:45:41+00:00">March 16, 2012</time>			</a>
+		</div>
+				<div id="div-comment-3650" class="comment-content">
+				<div class="comment-text">
+		<p>It didnt work for me. After installing the plugin, the whole checkout page went blank. Its easier to just go to the countries class and // comment out the field you dont want to add in the check out at the bottom of the file.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-3712">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/b76f4cd350e2290a613c90eb7deca99e?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/b76f4cd350e2290a613c90eb7deca99e?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">ahmad</cite>			</div>
+			
+			<a href="index.html#comment-3712" class="comment-date">
+				<time datetime="2012-03-18T03:05:08+00:00">March 18, 2012</time>			</a>
+		</div>
+				<div id="div-comment-3712" class="comment-content">
+				<div class="comment-text">
+		<p>it&#8217;s worked for me but when i click the place order button i get a list of errors<br />
+Notice: Undefined index: billing_country in D:\x\htdocs\wpwc\wp-content\plugins\woocommerce\classes\class-wc-checkout.php on line 176</p>
+<p>Notice: Undefined index: billing_state in D:\x\htdocs\wpwc\wp-content\plugins\woocommerce\classes\class-wc-checkout.php on line 177<br />
+.<br />
+.<br />
+.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-3763">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/fbd8bd19ddca307dd900bc565bca4e95?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/fbd8bd19ddca307dd900bc565bca4e95?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://ph7labs.com/' rel='external nofollow' class='url'>Camilo Bejarano</a></cite>			</div>
+			
+			<a href="index.html#comment-3763" class="comment-date">
+				<time datetime="2012-03-19T17:30:30+00:00">March 19, 2012</time>			</a>
+		</div>
+				<div id="div-comment-3763" class="comment-content">
+				<div class="comment-text">
+		<p>Dude! just what i was looking for. But can I remove the phone number 🙂</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-3785">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/69950830abfdf57a8ae45bd0affd8d02?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/69950830abfdf57a8ae45bd0affd8d02?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Sheila</cite>			</div>
+			
+			<a href="index.html#comment-3785" class="comment-date">
+				<time datetime="2012-03-20T15:21:45+00:00">March 20, 2012</time>			</a>
+		</div>
+				<div id="div-comment-3785" class="comment-content">
+				<div class="comment-text">
+		<p>This plug is was working for me until the last woocommerce upgrade.  I am experiencing the same as Lafanter where the screen is blank &#8211; just the header &#8220;Checkout&#8221; is displaying.  I tried uninstalling and reinstalling the plugin again to no avail.  Anyone know what might have changed that needs to be upgraded in the plug?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-3855">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/a1a3108079a4494bc5ce6475086002ce?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/a1a3108079a4494bc5ce6475086002ce?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='../index.html' rel='external nofollow' class='url'>huma</a></cite>			</div>
+			
+			<a href="index.html#comment-3855" class="comment-date">
+				<time datetime="2012-03-24T03:45:47+00:00">March 24, 2012</time>			</a>
+		</div>
+				<div id="div-comment-3855" class="comment-content">
+				<div class="comment-text">
+		<p>yes Sheila you are right it is not working with lates woocommerce upgraded that is 1.5.2<br />
+if you upgrade the woocommerece you have to find out the other option may be customize the latest plugin but i think if your work is fine then why you would update the plugin it is not good work if you updates the plugin with out taking the back up of all including files and DB</p>
+<p>THanks</p>
+<p>Best Regards<br />
+Huma Naseem</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-3856">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/a1a3108079a4494bc5ce6475086002ce?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/a1a3108079a4494bc5ce6475086002ce?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='../index.html' rel='external nofollow' class='url'>huma</a></cite>			</div>
+			
+			<a href="index.html#comment-3856" class="comment-date">
+				<time datetime="2012-03-24T03:57:54+00:00">March 24, 2012</time>			</a>
+		</div>
+				<div id="div-comment-3856" class="comment-content">
+				<div class="comment-text">
+		<p>Hello Ashley !<br />
+please help me what can i do now and please tell us all what sould we do with new updated version of woocommerece<br />
+thanks a lot for this kindness</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-3886">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/08ebf89ee040b8ed8f3df403b922ead3?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/08ebf89ee040b8ed8f3df403b922ead3?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://greenbeemedia.ca/' rel='external nofollow' class='url'>John</a></cite>			</div>
+			
+			<a href="index.html#comment-3886" class="comment-date">
+				<time datetime="2012-03-25T22:48:49+00:00">March 25, 2012</time>			</a>
+		</div>
+				<div id="div-comment-3886" class="comment-content">
+				<div class="comment-text">
+		<p>This seems to work with the latest updated WooCommerce v1.5.2.1</p>
+<p>Thank you so much for posting this.</p>
+<p>I teach a class on how to build e-commerce sites for people on social assistance and I&#8217;m deep into the process of moving the curriculum from Magento to WordPress + WooCommerce since I first discovered it in October 2011.</p>
+<p>Your plug-in is great.  If you&#8217;d like help to make the admin side of this plug-in I would love to offer my assistance.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-3902">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/69950830abfdf57a8ae45bd0affd8d02?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/69950830abfdf57a8ae45bd0affd8d02?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Sheila</cite>			</div>
+			
+			<a href="index.html#comment-3902" class="comment-date">
+				<time datetime="2012-03-26T11:06:58+00:00">March 26, 2012</time>			</a>
+		</div>
+				<div id="div-comment-3902" class="comment-content">
+				<div class="comment-text">
+		<p>For those of you that are getting a blank page, do what user Endle wrote on Feb 23.<br />
+Look for array_return and replace it with array_merge.  There are 2</p>
+<p>function filter_shipping( $fields_array ) {<br />
+			$fields_array = array_merge($fields_array, $this-&gt;update_shipping);<br />
+			return array_diff_key($fields_array, array_flip($this-&gt;disabled_shipping));<br />
+		}</p>
+<p>function filter_billing( $fields_array ) {<br />
+			$fields_array = array_merge($fields_array, $this-&gt;update_billing);<br />
+			return array_diff_key($fields_array, array_flip($this-&gt;disabled_billing));<br />
+		}</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4016">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/2829894d86a714eb10f58c4e32a42a78?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/2829894d86a714eb10f58c4e32a42a78?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Umar</cite>			</div>
+			
+			<a href="index.html#comment-4016" class="comment-date">
+				<time datetime="2012-03-30T11:13:53+00:00">March 30, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4016" class="comment-content">
+				<div class="comment-text">
+		<p>Is there a way to have an email me button as opposed to add to cart in WooCommerce? I just need to make a site where its possible to add products, but the customer doesnt want any online payments (but still wants to be able to easily add/remove products).So everytime the email me button is pressed I hook in some javascript or something to pop open a popup or something?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-4719">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/beda65ff73b5609b3a758a5928cdfadd?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/beda65ff73b5609b3a758a5928cdfadd?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://oreganooil.com.au/' rel='external nofollow' class='url'>Samir</a></cite>			</div>
+			
+			<a href="index.html#comment-4719" class="comment-date">
+				<time datetime="2012-04-12T06:39:06+00:00">April 12, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4719" class="comment-content">
+				<div class="comment-text">
+		<p>Anyone know where to find the index.php file in woocomm? OR if you know how to add a class to the shop&#8217;s title &#8211; help us all suffering from the woocommingitis.</p>
+<p>Thanks.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4751">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/398f77dc63511a3980be18546576d478?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/398f77dc63511a3980be18546576d478?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Angela</cite>			</div>
+			
+			<a href="index.html#comment-4751" class="comment-date">
+				<time datetime="2012-04-18T14:58:49+00:00">April 18, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4751" class="comment-content">
+				<div class="comment-text">
+		<p>PLEASE make this a plugin!  I&#8217;d certainly pay for it. I understand the logic of the code edits, but whenever I try to hook in I end up with errors, and to be honest I just don&#8217;t have the time to mess with it&#8230; that&#8217;s why good people like yourself make a living! 🙂</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-4754">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/89cab8a4ab717a4b90c76a7dc513846e?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/89cab8a4ab717a4b90c76a7dc513846e?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://thebizophub.net/' rel='external nofollow' class='url'>Rich</a></cite>			</div>
+			
+			<a href="index.html#comment-4754" class="comment-date">
+				<time datetime="2012-04-20T07:57:11+00:00">April 20, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4754" class="comment-content">
+				<div class="comment-text">
+		<p>Hey, awesome stuff maybe this would solve a little problem with layout in woocommerce I am having because field liek first and last name layout next to each other and i cannot figure how to drop to next line. Maybe i can just do this to shut off those fields from displaying.</p>
+<p>Thank You for spending the time to do this.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4755">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/9b50a3de545e381bbdeeaba9314da3a4?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/9b50a3de545e381bbdeeaba9314da3a4?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.kodrella.com/' rel='external nofollow' class='url'>mehmet</a></cite>			</div>
+			
+			<a href="index.html#comment-4755" class="comment-date">
+				<time datetime="2012-04-22T08:29:15+00:00">April 22, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4755" class="comment-content">
+				<div class="comment-text">
+		<p>Hi,<br />
+I want to add two new field registration form. Using Woocommerce. I tried hard, I could not. Please help ..</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-4775">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/ed4143e7c7d7b470131f2fa8339d8f79?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/ed4143e7c7d7b470131f2fa8339d8f79?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.ticktockdesign.com/' rel='external nofollow' class='url'>David Horn</a></cite>			</div>
+			
+			<a href="index.html#comment-4775" class="comment-date">
+				<time datetime="2012-05-01T02:35:19+00:00">May 1, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4775" class="comment-content">
+				<div class="comment-text">
+		<p>Perfect &#8211; thanks for this.  Yes, I&#8217;d pay for this if it were on Code Canyon or something similar.  Got to be worth $5 of anyone&#8217;s money to be able to customise the checkout forms.  Good luck, and thanks again!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4805">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/faf9375d6edae020a12977b4c62c3424?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/faf9375d6edae020a12977b4c62c3424?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://3dessentials.com/' rel='external nofollow' class='url'>Anton Vasilescu</a></cite>			</div>
+			
+			<a href="index.html#comment-4805" class="comment-date">
+				<time datetime="2012-05-13T14:17:07+00:00">May 13, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4805" class="comment-content">
+				<div class="comment-text">
+		<p>I&#8217;m trying to use the plugin but I am getting this error:</p>
+<p>Fatal error: Call to undefined function array_replace() in /home/antonv/public_html/3dessentials.com/3dewp/wp-content/plugins/woocommerce-aschroder-customize-checkout/disable-checkout-fields.php on line 82</p>
+<p>Anybody has an idea to why is this happening?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-4817">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/3a2f1e260acad2037368a12b5e941429?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/3a2f1e260acad2037368a12b5e941429?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">batman</cite>			</div>
+			
+			<a href="index.html#comment-4817" class="comment-date">
+				<time datetime="2012-05-22T02:06:29+00:00">May 22, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4817" class="comment-content">
+				<div class="comment-text">
+		<p>much easier..<br />
+<a href="http://www.pluginbay.com/how-to-disable-checkout-fields-i-e-phone-in-woocommerce-73.html" rel="nofollow">http://www.pluginbay.com/how-to-disable-checkout-fields-i-e-phone-in-woocommerce-73.html</a></p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4821">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/b008fef4c9f39e1b0f34cc93a5293462?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/b008fef4c9f39e1b0f34cc93a5293462?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.famousbloggers.net/' rel='external nofollow' class='url'>Hesham Zebida</a></cite>			</div>
+			
+			<a href="index.html#comment-4821" class="comment-date">
+				<time datetime="2012-05-23T20:03:06+00:00">May 23, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4821" class="comment-content">
+				<div class="comment-text">
+		<p>Ashley , this is time saver, adding/removing fields is no longer issue, thanks to your pretty cool class!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-4828">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/5b853df72f98e81d52fc8c9b26098cb6?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/5b853df72f98e81d52fc8c9b26098cb6?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://whooshsoundeffect.com/' rel='external nofollow' class='url'>Matt</a></cite>			</div>
+			
+			<a href="index.html#comment-4828" class="comment-date">
+				<time datetime="2012-05-26T06:35:10+00:00">May 26, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4828" class="comment-content">
+				<div class="comment-text">
+		<p>This is my 2 minute hack for getting rid of all fields. It seems to work although I haven&#8217;t done much testing on it.</p>
+<p>Its not perfect but it might be useful to some.</p>
+<p>/* add to functions.php */</p>
+<p>add_filter( &#8216;woocommerce_checkout_fields&#8217; , &#8216;custom_override_checkout_fields&#8217; );</p>
+<p>// Our hooked in function &#8211; $fields is passed via the filter!<br />
+function custom_override_checkout_fields( $fields ) {<br />
+	unset($fields[&#8216;billing&#8217;]);<br />
+	unset($fields[&#8216;shipping&#8217;]);<br />
+	unset($fields[&#8216;account&#8217;]);</p>
+<p>    return $fields;<br />
+}</p>
+<p>/* add to style.css ( to not display the warning that the array is empty  */</p>
+<p>#customer_details .col-1{display:none}</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4831">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/5b853df72f98e81d52fc8c9b26098cb6?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/5b853df72f98e81d52fc8c9b26098cb6?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://whooshsoundeffect.com/' rel='external nofollow' class='url'>Matt</a></cite>			</div>
+			
+			<a href="index.html#comment-4831" class="comment-date">
+				<time datetime="2012-05-28T18:35:49+00:00">May 28, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4831" class="comment-content">
+				<div class="comment-text">
+		<p>Ok, after a few days of pain it turns out this was a bad solution.</p>
+<p>I made some assumptions that turned out to be false. You need to keep billing in there because the shop is getting the email address from this form and not from paypal. No emails will be sent to the buyer if you use my above solution. </p>
+<p>I assume you can use the above solution to zero out shipping and account, then use some other solution to alter billing. </p>
+<p>Also, don&#8217;t use that css line from above.</p>
+<p>/* add to functions.php */</p>
+<p>add_filter( ‘woocommerce_checkout_fields’ , ‘custom_override_checkout_fields’ );</p>
+<p>// Our hooked in function – $fields is passed via the filter!<br />
+function custom_override_checkout_fields( $fields ) {<br />
+unset($fields[&#8216;shipping&#8217;]);<br />
+unset($fields[&#8216;account&#8217;]);</p>
+<p>return $fields;<br />
+}</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-4833">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/9e1bcb8a701e25bef2ea4957c35d97f9?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/9e1bcb8a701e25bef2ea4957c35d97f9?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://shavindra.wordpress.com/' rel='external nofollow' class='url'>shavindra</a></cite>			</div>
+			
+			<a href="index.html#comment-4833" class="comment-date">
+				<time datetime="2012-05-29T11:38:47+00:00">May 29, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4833" class="comment-content">
+				<div class="comment-text">
+		<p>What I did was changed the shipping to free&#8230; Made the payment to cash on delivery/manual payments</p>
+<p>Then disabled the functions that echos these info&#8230;</p>
+<p>Customer still have to go through checkout process and send “enquiry” to shop manager but it won&#8217;t get charged or anything like that&#8230; But still capture all the details necessary for shop manager to contact customer&#8230;.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4844">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/abeda88ad2f05a32331a0e515fe0da8f?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/abeda88ad2f05a32331a0e515fe0da8f?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.s2s.com/' rel='external nofollow' class='url'>shailender</a></cite>			</div>
+			
+			<a href="index.html#comment-4844" class="comment-date">
+				<time datetime="2012-06-14T10:34:05+00:00">June 14, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4844" class="comment-content">
+				<div class="comment-text">
+		<p>I’m trying to use the plugin but I am getting this error:</p>
+<p>Fatal error: Call to undefined function array_replace() in /home/antonv/public_html/3dessentials.com/3dewp/wp-content/plugins/woocommerce-aschroder-customize-checkout/disable-checkout-fields.php on line 82</p>
+<p>Anybody has an idea to why is this happening?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-4852">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/ae40cb168ce32e442337aac0d88fd1a1?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/ae40cb168ce32e442337aac0d88fd1a1?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Iskander</cite>			</div>
+			
+			<a href="index.html#comment-4852" class="comment-date">
+				<time datetime="2012-06-27T03:04:36+00:00">June 27, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4852" class="comment-content">
+				<div class="comment-text">
+		<p>@ shailender<br />
+It&#8217;s is to do with PHP version 5.3 vs 5.2.</p>
+<p>if you replace  &#8220;array_replace&#8221; to &#8220;array_merge&#8221; in disable-checkout-fields.php file it should work.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4936">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/d7e48d719674f335cf2ab6c51e205912?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/d7e48d719674f335cf2ab6c51e205912?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.louisg.org/' rel='external nofollow' class='url'>Louis</a></cite>			</div>
+			
+			<a href="index.html#comment-4936" class="comment-date">
+				<time datetime="2012-08-07T14:25:55+00:00">August 7, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4936" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Ashley, thanks for this tutorial &#8211; much appreciated.</p>
+<p>Although, I am using a different cart at the minute, I am whiling to look into this one.</p>
+<p>I have a question; if I simply want customers to pay via Paypal and NOT register at all on my website, is it possible with this plugin and your hack?</p>
+<p>Basically, I don&#8217;t need/want people&#8217;s information, the email is enough, AND I think that&#8217;s good to be able to purchase digital goods without having to register on the site. At the same time, I don&#8217;t want to &#8220;clog up&#8221; the database with passwords and what not&#8230;</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-4939">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/4342868fd8cfc8f6aeca120748462040?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/4342868fd8cfc8f6aeca120748462040?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://naturedoggie.co.nz/' rel='external nofollow' class='url'>Saylesh</a></cite>			</div>
+			
+			<a href="index.html#comment-4939" class="comment-date">
+				<time datetime="2012-08-09T23:27:59+00:00">August 9, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4939" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Ashley,<br />
+I&#8217;m a real novice when it comes to making a website and I wouldn&#8217;t have a clue about coding so I was wondering if you could point me in the right direction. Basically what I want to do is create an area in the My Account page in woocommerce for customer to submit there dogs name, breed and Birth date. I was wondering if this plugin would assist in doing this? Or is this only for the checkout options? This dog profile also needs to be dynamic so customers can add a second or third etc profiles just in case they have more than one dog. </p>
+<p>Any assistance would be much appreciated.</p>
+<p>Cheers,<br />
+Saylesh</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4941">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/d868fdcb6f7813d4abfd6865fc5ab332?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/d868fdcb6f7813d4abfd6865fc5ab332?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://beautifulsin.net/' rel='external nofollow' class='url'>Faith</a></cite>			</div>
+			
+			<a href="index.html#comment-4941" class="comment-date">
+				<time datetime="2012-08-11T02:35:16+00:00">August 11, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4941" class="comment-content">
+				<div class="comment-text">
+		<p>Absolutely love this, exactly what I needed and so easy to modify! Thanks!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-4948">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/def2cc24b7c30db658a307240376dd04?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/def2cc24b7c30db658a307240376dd04?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">yaroslav</cite>			</div>
+			
+			<a href="index.html#comment-4948" class="comment-date">
+				<time datetime="2012-08-15T07:37:12+00:00">August 15, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4948" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks a lot!<br />
+Now I can customize shipping fields for different countries without modifying core Woocommerce code! Awesome!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4961">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/a54fbdef1971c11d087f5c9c9cc3ed79?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/a54fbdef1971c11d087f5c9c9cc3ed79?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.rabbit.com.sg/' rel='external nofollow' class='url'>Garie</a></cite>			</div>
+			
+			<a href="index.html#comment-4961" class="comment-date">
+				<time datetime="2012-08-25T23:15:35+00:00">August 25, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4961" class="comment-content">
+				<div class="comment-text">
+		<p>Thank you very much. Please start making good money with a plugin.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-4980">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/c770a0e833b802e0a8c98bcf6685827b?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/c770a0e833b802e0a8c98bcf6685827b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://lawspot.ca/' rel='external nofollow' class='url'>Holly</a></cite>			</div>
+			
+			<a href="index.html#comment-4980" class="comment-date">
+				<time datetime="2012-09-05T17:45:00+00:00">September 5, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4980" class="comment-content">
+				<div class="comment-text">
+		<p>This is exactly what I need too, but I am not a programmer, and can not figure this out on my own.  A plugin for people like me would be great.  In the mean time, wondering whether I could hire you to just fix this problem for me? Please send me a note and let me know? </p>
+<p>I am ready to switch shopping carts if I can&#8217;t fix this.  There is no way people want to provide all that personal information just to buy a digital download. What are the woocommerce people thinking? </p>
+<p>Thanks for your help.</p>
+<p>Holly</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4996">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/7e721665c39b92f1e9ff68624fcf6a29?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/7e721665c39b92f1e9ff68624fcf6a29?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.steviedean.co.uk/' rel='external nofollow' class='url'>Stevie Dean</a></cite>			</div>
+			
+			<a href="index.html#comment-4996" class="comment-date">
+				<time datetime="2012-09-16T20:18:56+00:00">September 16, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4996" class="comment-content">
+				<div class="comment-text">
+		<p>much easier way to do this with your functions.php file </p>
+<p>// Hook in<br />
+add_filter( &#8216;woocommerce_checkout_fields&#8217; , &#8216;custom_override_checkout_fields&#8217; );</p>
+<p>// Our hooked in function &#8211; $fields is passed via the filter!<br />
+function custom_override_checkout_fields( $fields ) {<br />
+     unset($fields[&#8216;order&#8217;][&#8216;order_comments&#8217;]);</p>
+<p>     return $fields;<br />
+}</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-4997">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/7e721665c39b92f1e9ff68624fcf6a29?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/7e721665c39b92f1e9ff68624fcf6a29?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.steviedean.co.uk/' rel='external nofollow' class='url'>Stevie Dean</a></cite>			</div>
+			
+			<a href="index.html#comment-4997" class="comment-date">
+				<time datetime="2012-09-16T20:37:46+00:00">September 16, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4997" class="comment-content">
+				<div class="comment-text">
+		<p>i.e to avoid matts problem above, just filter out all the billing fields (disable shipping in woocommerce control panel) </p>
+<p>// Hook in<br />
+add_filter( &#8216;woocommerce_checkout_fields&#8217; , &#8216;custom_override_checkout_fields&#8217; );</p>
+<p>// Our hooked in function &#8211; $fields is passed via the filter!<br />
+function custom_override_checkout_fields( $fields ) {<br />
+     unset($fields[&#8216;billing&#8217;][&#8216;billing_phone&#8217;]);<br />
+     unset($fields[&#8216;billing&#8217;][&#8216;billing_company&#8217;]);<br />
+     unset($fields[&#8216;billing&#8217;][&#8216;billing_address_1&#8217;]);<br />
+     unset($fields[&#8216;billing&#8217;][&#8216;billing_address_2&#8217;]);<br />
+     unset($fields[&#8216;billing&#8217;][&#8216;billing_city&#8217;]);<br />
+     unset($fields[&#8216;billing&#8217;][&#8216;billing_country&#8217;]);<br />
+     unset($fields[&#8216;billing&#8217;][&#8216;billing_state&#8217;]);<br />
+     unset($fields[&#8216;billing&#8217;][&#8216;billing_postcode&#8217;]);<br />
+     return $fields;<br />
+}</p>
+<p>Hope this helps</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-5022">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/5b1820c5cee78f0d919e70d884dd3721?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/5b1820c5cee78f0d919e70d884dd3721?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.buypponline.com/' rel='external nofollow' class='url'>Christy</a></cite>			</div>
+			
+			<a href="index.html#comment-5022" class="comment-date">
+				<time datetime="2012-09-29T11:53:13+00:00">September 29, 2012</time>			</a>
+		</div>
+				<div id="div-comment-5022" class="comment-content">
+				<div class="comment-text">
+		<p>Thank you so much for this!  </p>
+<p>I knew it could be done with with hooks and filters, but it was really beyond my comfort zone.  REALLY appreciate you&#8217;re sharing your work with everyone.</p>
+<p>Thanks again!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-5031">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/799a15a3fed31b71c18bc74a397f6d82?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/799a15a3fed31b71c18bc74a397f6d82?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Emily</cite>			</div>
+			
+			<a href="index.html#comment-5031" class="comment-date">
+				<time datetime="2012-10-02T19:22:02+00:00">October 2, 2012</time>			</a>
+		</div>
+				<div id="div-comment-5031" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks for this! Worked great!</p>
+<p>I want a new field (web address), can I just change &#8220;Company&#8221; to the field name I want? Or do I need to create a new field?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-5032">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='../../../../index.html' rel='external nofollow' class='url'>Ashley</a></cite>			</div>
+			
+			<a href="index.html#comment-5032" class="comment-date">
+				<time datetime="2012-10-02T20:18:58+00:00">October 2, 2012</time>			</a>
+		</div>
+				<div id="div-comment-5032" class="comment-content">
+				<div class="comment-text">
+		<p>@Emily &#8211; you don&#8217;t need anyone&#8217;s permission, no one will die if it doesn&#8217;t work, and you can change it back later. Have fun!</p>
+<p>@Stevie &#8211; edit core files at your peril! Upgrading won&#8217;t be very fun if you do.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		</ol><!-- .comment-list -->
+
+				<nav id="comment-nav-below" class="comment-navigation" role="navigation" aria-label="Comment Navigation Below">
+			<span class="screen-reader-text">Comment navigation</span>
+			<div class="nav-previous"></div>
+			<div class="nav-next"><a href="../index.html#comments" >Newer Comments &rarr;</a></div>
+		</nav><!-- #comment-nav-below -->
+				<p class="no-comments">Comments are closed.</p>
+	
+</section><!-- #comments -->
+
+</div><!-- #post-## -->
+
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+		</div><!-- .col-full -->
+	</div><!-- #content -->
+
+	
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="col-full">
+
+					<div class="site-info">
+			&copy; ASchroder.com 2023						<br /> Storefront designed by <a href="http://www.woocommerce.com/" title="WooCommerce - The Best eCommerce Platform for WordPress" rel="author">WooCommerce</a>.					</div><!-- .site-info -->
+		
+		</div><!-- .col-full -->
+	</footer><!-- #colophon -->
+
+	
+</div><!-- #page -->
+
+<link rel='stylesheet' id='yarppRelatedCss-css'  href='../../../../wp-content/plugins/yet-another-related-posts-plugin/style/related101e.css?ver=4.8.15' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../wp-content/plugins/wp-syntax/js/wp-syntax4963.js?ver=1.1'></script>
+<script type='text/javascript' src='../../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/navigation.min11a8.js?ver=20120206'></script>
+<script type='text/javascript' src='../../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/skip-link-focus-fix.min08e0.js?ver=20130115'></script>
+<script type='text/javascript' src='../../../../../cdn.aschroder.com/wp-includes/js/wp-embed.min101e.js?ver=4.8.15'></script>
+
+</body>
+
+<!-- Mirrored from www.aschroder.com/2012/01/how-to-edit-and-disable-checkout-fields-in-woocommerce/comment-page-1/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:39:53 GMT -->
+</html>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk (Requested URI is rejected)
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:38:35 by W3 Total Cache -->

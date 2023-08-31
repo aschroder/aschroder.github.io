@@ -1,0 +1,616 @@
+<!doctype html>
+<html lang="en-US">
+
+<!-- Mirrored from www.aschroder.com/2009/04/how-to-use-apache-virtual-hosts-over-a-local-network-with-mamp/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:33:17 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="../../../xmlrpc.php">
+
+<title>How to use Apache Virtual Hosts over a local network with MAMP | ASchroder.com</title>
+
+<!-- All in One SEO Pack 2.4.2 by Michael Torbert of Semper Fi Web Design[289,380] -->
+<meta name="description"  content="I answer the question: How do I use Apache virtual hosting with a hosts file over a local network. In this example MAMP was used but it applies to any Apache." />
+
+<meta name="keywords"  content="apache,virtual host,local network,mamp,magento" />
+
+<!-- /all in one seo pack -->
+<link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
+<link rel='dns-prefetch' href='http://s.w.org/' />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Feed" href="../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Comments Feed" href="../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; How to use Apache Virtual Hosts over a local network with MAMP Comments Feed" href="feed/index.html" />
+<!-- This site uses the Google Analytics by MonsterInsights plugin v6.2.4 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+<script type="text/javascript" data-cfasync="false">
+		var disableStr = 'ga-disable-UA-6477134-1';
+
+	/* Function to detect opted out users */
+	function __gaTrackerIsOptedOut() {
+		return document.cookie.indexOf(disableStr + '=true') > -1;
+	}
+
+	/* Disable tracking if the opt-out cookie exists. */
+	if ( __gaTrackerIsOptedOut() ) {
+		window[disableStr] = true;
+	}
+
+	/* Opt-out function */
+	function __gaTrackerOptout() {
+	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+	  window[disableStr] = true;
+	}
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','http://www.google-analytics.com/analytics.js','__gaTracker');
+
+	__gaTracker('create', 'UA-6477134-1', 'auto');
+	__gaTracker('set', 'forceSSL', true);
+	__gaTracker('send','pageview');
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/www.aschroder.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.15"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='yarppWidgetCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/widget101e.css?ver=4.8.15' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-syntax-css-css'  href='../../../wp-content/plugins/wp-syntax/css/wp-syntax4963.css?ver=1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-style-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/style5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<style id='storefront-style-inline-css' type='text/css'>
+
+			.main-navigation ul li a,
+			.site-title a,
+			ul.menu li a,
+			.site-branding h1 a,
+			.site-footer .storefront-handheld-footer-bar a:not(.button),
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				color: #333333;
+			}
+
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				border-color: #333333;
+			}
+
+			.main-navigation ul li a:hover,
+			.main-navigation ul li:hover > a,
+			.site-title a:hover,
+			a.cart-contents:hover,
+			.site-header-cart .widget_shopping_cart a:hover,
+			.site-header-cart:hover > li > a,
+			.site-header ul.menu li.current-menu-item > a {
+				color: #838383;
+			}
+
+			table th {
+				background-color: #f8f8f8;
+			}
+
+			table tbody td {
+				background-color: #fdfdfd;
+			}
+
+			table tbody tr:nth-child(2n) td,
+			fieldset,
+			fieldset legend {
+				background-color: #fbfbfb;
+			}
+
+			.site-header,
+			.secondary-navigation ul ul,
+			.main-navigation ul.menu > li.menu-item-has-children:after,
+			.secondary-navigation ul.menu ul,
+			.storefront-handheld-footer-bar,
+			.storefront-handheld-footer-bar ul li > a,
+			.storefront-handheld-footer-bar ul li.search .site-search,
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				background-color: #ffffff;
+			}
+
+			p.site-description,
+			.site-header,
+			.storefront-handheld-footer-bar {
+				color: #6d6d6d;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count,
+			button.menu-toggle:after,
+			button.menu-toggle:before,
+			button.menu-toggle span:before {
+				background-color: #333333;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				color: #ffffff;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				border-color: #ffffff;
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+				color: #333333;
+			}
+
+			.widget h1 {
+				border-bottom-color: #333333;
+			}
+
+			body,
+			.secondary-navigation a,
+			.onsale,
+			.pagination .page-numbers li .page-numbers:not(.current), .woocommerce-pagination .page-numbers li .page-numbers:not(.current) {
+				color: #6d6d6d;
+			}
+
+			.widget-area .widget a,
+			.hentry .entry-header .posted-on a,
+			.hentry .entry-header .byline a {
+				color: #9f9f9f;
+			}
+
+			a  {
+				color: #0228d1;
+			}
+
+			a:focus,
+			.button:focus,
+			.button.alt:focus,
+			.button.added_to_cart:focus,
+			.button.wc-forward:focus,
+			button:focus,
+			input[type="button"]:focus,
+			input[type="reset"]:focus,
+			input[type="submit"]:focus {
+				outline-color: #0228d1;
+			}
+
+			button, input[type="button"], input[type="reset"], input[type="submit"], .button, .added_to_cart, .widget a.button, .site-header-cart .widget_shopping_cart a.button {
+				background-color: #eeeeee;
+				border-color: #eeeeee;
+				color: #333333;
+			}
+
+			button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, .button:hover, .added_to_cart:hover, .widget a.button:hover, .site-header-cart .widget_shopping_cart a.button:hover {
+				background-color: #d5d5d5;
+				border-color: #d5d5d5;
+				color: #333333;
+			}
+
+			button.alt, input[type="button"].alt, input[type="reset"].alt, input[type="submit"].alt, .button.alt, .added_to_cart.alt, .widget-area .widget a.button.alt, .added_to_cart, .widget a.button.checkout {
+				background-color: #333333;
+				border-color: #333333;
+				color: #ffffff;
+			}
+
+			button.alt:hover, input[type="button"].alt:hover, input[type="reset"].alt:hover, input[type="submit"].alt:hover, .button.alt:hover, .added_to_cart.alt:hover, .widget-area .widget a.button.alt:hover, .added_to_cart:hover, .widget a.button.checkout:hover {
+				background-color: #1a1a1a;
+				border-color: #1a1a1a;
+				color: #ffffff;
+			}
+
+			.pagination .page-numbers li .page-numbers.current, .woocommerce-pagination .page-numbers li .page-numbers.current {
+				background-color: #e6e6e6;
+				color: #6d6d6d;
+			}
+
+			#comments .comment-list .comment-content .comment-text {
+				background-color: #f8f8f8;
+			}
+
+			.site-footer {
+				background-color: #f0f0f0;
+				color: #6d6d6d;
+			}
+
+			.site-footer a:not(.button) {
+				color: #333333;
+			}
+
+			.site-footer h1, .site-footer h2, .site-footer h3, .site-footer h4, .site-footer h5, .site-footer h6 {
+				color: #333333;
+			}
+
+			#order_review {
+				background-color: #ffffff;
+			}
+
+			#payment .payment_methods > li .payment_box,
+			#payment .place-order {
+				background-color: #fafafa;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice) {
+				background-color: #f5f5f5;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice):hover {
+				background-color: #f0f0f0;
+			}
+
+			@media screen and ( min-width: 768px ) {
+				.secondary-navigation ul.menu a:hover {
+					color: #868686;
+				}
+
+				.secondary-navigation ul.menu a {
+					color: #6d6d6d;
+				}
+
+				.site-header-cart .widget_shopping_cart,
+				.main-navigation ul.menu ul.sub-menu,
+				.main-navigation ul.nav-menu ul.children {
+					background-color: #f0f0f0;
+				}
+
+				.site-header-cart .widget_shopping_cart .buttons,
+				.site-header-cart .widget_shopping_cart .total {
+					background-color: #f5f5f5;
+				}
+
+				.site-header {
+					border-bottom-color: #f0f0f0;
+				}
+			}
+</style>
+<link rel='stylesheet' id='storefront-icons-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/sass/base/icons5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-fonts-css'  href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,600,700,900&amp;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jqueryb8ff.js?ver=1.12.4'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jquery-migrate.min330a.js?ver=1.4.1'></script>
+<link rel='https://api.w.org/' href='../../../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../xmlrpc0db0.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Another Magento install success, Only 2 Free installations left!' href='../another-magento-install-success-only-2-free-installations-left/index.html' />
+<link rel='next' title='Whoops: Magento supports PHP 5.2.0 or newer' href='../whoops-magento-supports-php-520-or-newer/index.html' />
+<meta name="generator" content="WordPress 4.8.15" />
+<link rel="canonical" href="index.html" />
+<link rel='shortlink' href='../../../indexf47a.html?p=324' />
+<link rel="alternate" type="application/json+oembed" href="../../../wp-json/oembed/1.0/embed2bbf.json?url=http%3A%2F%2Fwww.aschroder.com%2F2009%2F04%2Fhow-to-use-apache-virtual-hosts-over-a-local-network-with-mamp%2F" />
+<link rel="alternate" type="text/xml+oembed" href="../../../wp-json/oembed/1.0/embedf80a?url=http%3A%2F%2Fwww.aschroder.com%2F2009%2F04%2Fhow-to-use-apache-virtual-hosts-over-a-local-network-with-mamp%2F&amp;format=xml" />
+</head>
+
+<body class="post-template-default single single-post postid-324 single-format-standard no-wc-breadcrumb storefront-full-width-content right-sidebar">
+
+
+<div id="page" class="hfeed site">
+	
+	<header id="masthead" class="site-header" role="banner" style="">
+		<div class="col-full">
+
+					<a class="skip-link screen-reader-text" href="#site-navigation">Skip to navigation</a>
+		<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+				<div class="site-branding">
+			<div class="beta site-title"><a href="../../../index.html" rel="home">ASchroder.com</a></div><p class="site-description">Notes on Web Development</p>		</div>
+		<div class="storefront-primary-navigation">		<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="Primary Navigation">
+		<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><span>Menu</span></button>
+			<div class="primary-navigation"><ul id="menu-main-menu" class="menu"><li id="menu-item-1119" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li id="menu-item-1118" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li id="menu-item-1872" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div><div class="handheld-navigation"><ul id="menu-main-menu-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div>		</nav><!-- #site-navigation -->
+		</div>
+		</div>
+	</header><!-- #masthead -->
+
+	
+	<div id="content" class="site-content" tabindex="-1">
+		<div class="col-full">
+
+		
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+<div id="post-324" class="post-324 post type-post status-publish format-standard hentry category-apache category-mac category-magento category-mamp tag-hosts-file tag-macbook tag-magento tag-mamp tag-virtual-hosts">
+
+			<header class="entry-header">
+		<span class="posted-on">Posted on <a href="index.html" rel="bookmark"><time class="entry-date published" datetime="2009-04-14T01:42:16+00:00">April 14, 2009</time> <time class="updated" datetime="2009-04-14T01:43:51+00:00">April 14, 2009</time></a></span><h1 class="entry-title">How to use Apache Virtual Hosts over a local network with MAMP</h1>		</header><!-- .entry-header -->
+				<aside class="entry-meta">
+						<div class="author">
+				<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' /><div class="label">Written by</div><a href="../../../author/admin/index.html" title="Posts by Ashley" rel="author">Ashley</a>			</div>
+							<div class="cat-links">
+					<div class="label">Posted in</div><a href="../../../category/apache/index.html" rel="category tag">Apache</a>, <a href="../../../category/mac/index.html" rel="category tag">Mac</a>, <a href="../../../category/magento/index.html" rel="category tag">Magento</a>, <a href="../../../category/mamp/index.html" rel="category tag">MAMP</a>				</div>
+			
+							<div class="tags-links">
+					<div class="label">Tagged</div><a href="../../../tag/hosts-file/index.html" rel="tag">hosts file</a>, <a href="../../../tag/macbook/index.html" rel="tag">Macbook</a>, <a href="../../../tag/magento/index.html" rel="tag">Magento</a>, <a href="../../../tag/mamp/index.html" rel="tag">MAMP</a>, <a href="../../../tag/virtual-hosts/index.html" rel="tag">Virtual Hosts</a>				</div>
+			
+		
+							<div class="comments-link">
+					<div class="label">Comments</div>					<span class="comments-link"><a href="index.html#comments">7 Comments</a></span>
+				</div>
+					</aside>
+				<div class="entry-content">
+		<p>I was <a href="../../02/how-to-set-up-apache-virtual-hosting-on-mamp-for-magento/comment-page-1/index.html#comment-183">asked recently whether it was possible to use the Virtual hosting in Apache</a> I describe for <a href="../../02/how-to-set-up-apache-virtual-hosting-on-mamp-for-magento/index.html">Magento on MAMP</a> over a network rather than just locally. To make a sensible response I wanted to give a quick background to the HTTP requests going on and how Apache uses those requests to decide what HTTP response to send back. It turned into a bit of a long reply comment so here it is as a post instead.</p>
+<p>I use a network Apache virtual hosts setup all the time (though the network isn&#8217;t a local network it&#8217;s the internet, but same principle).</p>
+<p><span id="more-324"></span></p>
+<p>Here&#8217;s a quick little summary to clarify. Basically when your browser requests www.example.com you OS goes to try and find an IP for that address. It&#8217;ll check in your hosts file and get the IP address, then it&#8217;ll connect and the HTTP request will be sent to the server. If it can&#8217;t find the server in your hosts file, it&#8217;ll ask the DNS server, the rest is history of course. I digress, this post is more about the hosts file configuration/scenario than the DNS one. If you wanted you could set up a local DNS relay server,  and remove the need for the modified hosts file at all &#8211; a story for another day!</p>
+<p>The important part is that the HTTP request contains the original hostname (www.example.com). If you have an Apache running without virtual hosting it will just send back and HTTP response without regard for the hostname, and in fact if you have a default virtual host, it will respond when no hostname matches anyway.</p>
+<p>When you configure Apache virtual hosts you are basically telling Apache to send back different responses based on the requested hostname in the HTTP request from the client.</p>
+<p>SO, why did I bore you with this? Hopefully to make it easy to understand for the network setup. Provided your friend can connect to your HTTP server running on MAMP (via your IP address) and is not blocked by any firewalls it will work perfectly. The HTTP request must contain a hostname that matches your Apache running on MAMP, and you&#8217;ll be in business.</p>
+<p>So say your macbook IP address is 192.168.1.100 and your development Magento store is called &#8216;www.devstore.com&#8217;. In your hosts file (<code>/etc/hosts</code>) you would have something like:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;">localhost	www.devstore.com</pre></td></tr></table><p class="theCode" style="display:none;">localhost	www.devstore.com</p></div>
+
+<p>In your friends hosts file they will need:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;">192.168.1.100	www.devstore.com</pre></td></tr></table><p class="theCode" style="display:none;">192.168.1.100	www.devstore.com</p></div>
+
+<p>This tells your machine to connect to localhost when making requests to www.devstore.com and tells your friends machine to connect to 192.168.1.100. Both will cause the HTTP request sent to Apache to be for &#8216;www.devstore.com&#8217; which would need to be a <a href="../../02/how-to-set-up-apache-virtual-hosting-on-mamp-for-magento/index.html">configured virtual host</a> (or the only/default host) in your Apache.</p>
+<p>I hope this clarifies it all a little, it seemed there was some confusion about the role the hosts file played in this <a href="../../02/how-to-set-up-apache-virtual-hosting-on-mamp-for-magento/index.html">MAMP virtual host setup</a>. The hosts file should not contain any URL&#8217;s, it only maps hostnames to IP addresses.</p>
+<div class='yarpp-related'>
+<p>You might also be interested in:<ol>
+<li><a href="../../02/how-to-set-up-apache-virtual-hosting-on-mamp-for-magento/index.html" rel="bookmark" title="How to set up Apache Virtual hosting on MAMP for Magento">How to set up Apache Virtual hosting on MAMP for Magento </a></li>
+<li><a href="../../02/how-to-install-mamp-on-your-macbook/index.html" rel="bookmark" title="How to install MAMP on your Leopard Mac">How to install MAMP on your Leopard Mac </a></li>
+<li><a href="../../../2011/03/command-line-magento-1-5-install-on-mamp/index.html" rel="bookmark" title="Command line Magento 1.5 install on MAMP">Command line Magento 1.5 install on MAMP </a></li>
+<li><a href="../../03/a-simple-way-to-password-protect-your-magento-store/index.html" rel="bookmark" title="A simple way to password protect your Magento store">A simple way to password protect your Magento store </a></li>
+<li><a href="../../05/fixing-magento-login-problem-after-a-fresh-installation/index.html" rel="bookmark" title="Fixing Magento Login Problem after a Fresh Installation">Fixing Magento Login Problem after a Fresh Installation </a></li>
+</ol></p>
+</div>
+		</div><!-- .entry-content -->
+		<nav id="post-navigation" class="navigation post-navigation" role="navigation" aria-label="Post Navigation"><span class="screen-reader-text">Post navigation</span><div class="nav-links"><div class="nav-previous"><a href="../another-magento-install-success-only-2-free-installations-left/index.html" rel="prev">Another Magento install success, Only 2 Free installations left!</a></div><div class="nav-next"><a href="../whoops-magento-supports-php-520-or-newer/index.html" rel="next">Whoops: Magento supports PHP 5.2.0 or newer</a></div></div></nav>
+<section id="comments" class="comments-area" aria-label="Post Comments">
+
+			<h2 class="comments-title">
+			7 thoughts on &ldquo;<span>How to use Apache Virtual Hosts over a local network with MAMP</span>&rdquo;		</h2>
+
+		
+		<ol class="comment-list">
+					<li class="comment even thread-even depth-1" id="comment-693">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/75932209e8d11a3b66fd0a2c948dcd01?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/75932209e8d11a3b66fd0a2c948dcd01?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.davestewart.co.uk/' rel='external nofollow' class='url'>Dave Stewart</a></cite>			</div>
+			
+			<a href="index.html#comment-693" class="comment-date">
+				<time datetime="2009-11-06T07:23:40+00:00">November 6, 2009</time>			</a>
+		</div>
+				<div id="div-comment-693" class="comment-content">
+				<div class="comment-text">
+		<p>Interesting post!</p>
+<p>What would I do to connect to a folder on the remote machine, where my virtual host is set up? Can I do that?</p>
+<p>Thanks</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-697">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-697" class="comment-date">
+				<time datetime="2009-11-11T02:47:21+00:00">November 11, 2009</time>			</a>
+		</div>
+				<div id="div-comment-697" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, You can.<br />
+I think <a href="index.html" rel="nofollow">this post on using Magento, MAMP and virtual hosts over a network</a> is what you need? Is that what you were trying to do?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2144">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/2dcaf28598c69bd12b1d9d7447020869?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/2dcaf28598c69bd12b1d9d7447020869?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://eandjdesign.com/' rel='external nofollow' class='url'>Eric Ritchey</a></cite>			</div>
+			
+			<a href="index.html#comment-2144" class="comment-date">
+				<time datetime="2011-02-12T19:32:53+00:00">February 12, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2144" class="comment-content">
+				<div class="comment-text">
+		<p>Hey Ashley &#8211;</p>
+<p>Thanks for the writeup.. I&#8217;m in the middle of trying to accomplish exactly this.</p>
+<p>Here&#8217;s my setup:<br />
+MBP + MAMP + VirtualHost = My development environment</p>
+<p>I want to view the websites I&#8217;m currently developing from anywhere on my local network (exactly what this article lays out), but I&#8217;m having some trouble here&#8230; :-/</p>
+<p>This is my vhost file on my development box:<br />
+<code><br />
+# Created Wed Feb  9 23:13:24 PST 2011<br />
+&lt;VirtualHost 127.0.0.1:80&gt;<br />
+  DocumentRoot /Applications/MAMP/htdocs/jennylynne<br />
+  ServerName jennylynne.dev</p>
+<p>  ScriptAlias /cgi-bin /Applications/MAMP/htdocs/jennylynne/cgi-bin</p>
+<p>&lt;Directory /Applications/MAMP/htdocs/jennylynne&gt;<br />
+    Options All<br />
+    AllowOverride All<br />
+    Order allow,deny<br />
+    Allow from all<br />
+  &lt;/Directory&gt;<br />
+&lt;/VirtualHost&gt;</p>
+<p></code><br />
+Here&#8217;s my /etc/hosts file from my development box:<br />
+<code><br />
+##<br />
+# Host Database<br />
+#<br />
+# localhost is used to configure the loopback interface<br />
+# when the system is booting.  Do not change this entry.<br />
+##</p>
+<p>127.0.0.1 localhost<br />
+255.255.255.255	broadcasthost<br />
+::1         localhost<br />
+fe80::1%lo0	localhost</p>
+<p>127.0.0.1	jennylynne.dev<br />
+</code><br />
+Here&#8217;s my /etc/hosts file from the computer on the same local network:<br />
+<code><br />
+192.168.1.156 jennylynne.net<br />
+</code></p>
+<p>The problem is that I simply get a directory listing of my /Applications/MAMP/htdocs folder when loading up <a href="http://jennylynne.dev/" rel="nofollow">http://jennylynne.dev</a> on my &#8220;local network&#8221; computer, whereas when i go to the same URL on my dev box, the site loads up fine. any thoughts?</p>
+<p>P.S. &#8211; I&#8217;ve verified the IP address also..</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-2146">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-2146" class="comment-date">
+				<time datetime="2011-02-13T09:51:02+00:00">February 13, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2146" class="comment-content">
+				<div class="comment-text">
+		<p>Hi, Eric<br />
+Not sure if it&#8217;s a copy paste issue, but your other box hosts file has:<br />
+<code>192.168.1.156 jennylynne.net</code></p>
+<p>That needs to match the <code>ServerName</code> in the Apache config, which is <code>.dev</code>. let me know if that was the issue.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-2468">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/271702c2f918143c568b1d63f389d91a?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/271702c2f918143c568b1d63f389d91a?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.dmcworks.com/' rel='external nofollow' class='url'>dcolumbus</a></cite>			</div>
+			
+			<a href="index.html#comment-2468" class="comment-date">
+				<time datetime="2011-07-23T20:45:29+00:00">July 23, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2468" class="comment-content">
+				<div class="comment-text">
+		<p>Hey Ashley,</p>
+<p>Thanks for the post &#8230; curious if you&#8217;d be able to help me.</p>
+<p>I&#8217;ve created a VM of CentOS on my MacBook Pro with the ethernet set to Bridged. So, the VM has it&#8217;s own static IP address of 192.168.1.111</p>
+<p>Within the &#8220;hosts&#8221; file on the VM, I&#8217;ve got:</p>
+<p>127.0.0.1 dev.example.com</p>
+<p>Within the &#8220;hosts&#8221; file on my MacBook Pro (the host machine), I&#8217;ve got:</p>
+<p>192.168.1.111 dev.example.com</p>
+<p>Now the site works fine from within the VM, but doesn&#8217;t pull up anything from the host MacBook Pro&#8230;</p>
+<p>I&#8217;ve spent literally 2 days trying to setup this stupid network and I have no idea what the issue is! :X</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-2476">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-2476" class="comment-date">
+				<time datetime="2011-07-26T01:55:57+00:00">July 26, 2011</time>			</a>
+		</div>
+				<div id="div-comment-2476" class="comment-content">
+				<div class="comment-text">
+		<p>Check if you can access the VM on port 80 by runnign this in a terminal:<br />
+telnet 192.168.1.111 80</p>
+<p>If that does not connect, then I&#8217;d check for firewalls on CentOS, check Apache is listening on the right interface not just localhost.</p>
+<p>If you _can_ connect, then I&#8217;d try and look for errors in Apache logs. Try access just the default &#8216;It Works&#8217; page etc.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-4946">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/6f224db1cc126321a000df1df0f2a378?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/6f224db1cc126321a000df1df0f2a378?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.twostarslost.com/' rel='external nofollow' class='url'>Lisa</a></cite>			</div>
+			
+			<a href="index.html#comment-4946" class="comment-date">
+				<time datetime="2012-08-14T11:12:34+00:00">August 14, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4946" class="comment-content">
+				<div class="comment-text">
+		<p>Hi,<br />
+I have a question about the localhost IP and domain name.</p>
+<p>Firstly I registered one domain name called vietyoung.org<br />
+Secondly, my Internet service provider gave me one static IP address. 123.45.67.89<br />
+Thirdly, I gave this IP address to my domain registry company and they points my domain name to this IP address.</p>
+<p>Fourly, I installed Apache web server in my personal computer<br />
+and I tested this Apache web server installation successfully with the testing page when I type <a href="http://localhost/index.htm" rel="nofollow">http://localhost/index.htm</a><br />
+However, when I typed in my domain name <a href="http://www.vietyoung.org/" rel="nofollow">http://www.vietyoung.org</a>, I got the issue about the page is not found or there is no internet connection. </p>
+<p>I checked that my index page is in the right document root folder as shown in localhost.<br />
+I checked that my internet connection is fine because I can view yahoo web page.</p>
+<p>I try to configure the host file and virtual host file to set my static IP address and  domain name. But I cannot view my site under <a href="http://www.vietyoung.org/" rel="nofollow">http://www.vietyoung.org</a></p>
+<p>Can you tell me difference between the IP address of my computer or IP address of internet service provider?<br />
+Which IP address can be used?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		</ol><!-- .comment-list -->
+
+				<p class="no-comments">Comments are closed.</p>
+	
+</section><!-- #comments -->
+
+</div><!-- #post-## -->
+
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+		</div><!-- .col-full -->
+	</div><!-- #content -->
+
+	
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="col-full">
+
+					<div class="site-info">
+			&copy; ASchroder.com 2023						<br /> Storefront designed by <a href="http://www.woocommerce.com/" title="WooCommerce - The Best eCommerce Platform for WordPress" rel="author">WooCommerce</a>.					</div><!-- .site-info -->
+		
+		</div><!-- .col-full -->
+	</footer><!-- #colophon -->
+
+	
+</div><!-- #page -->
+
+<link rel='stylesheet' id='yarppRelatedCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/related101e.css?ver=4.8.15' type='text/css' media='all' />
+<script type='text/javascript' src='../../../wp-content/plugins/wp-syntax/js/wp-syntax4963.js?ver=1.1'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/navigation.min11a8.js?ver=20120206'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/skip-link-focus-fix.min08e0.js?ver=20130115'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/wp-embed.min101e.js?ver=4.8.15'></script>
+
+</body>
+
+<!-- Mirrored from www.aschroder.com/2009/04/how-to-use-apache-virtual-hosts-over-a-local-network-with-mamp/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:33:19 GMT -->
+</html>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:22:01 by W3 Total Cache -->

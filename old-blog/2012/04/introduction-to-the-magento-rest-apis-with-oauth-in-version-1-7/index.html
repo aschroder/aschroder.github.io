@@ -1,0 +1,1198 @@
+<!doctype html>
+<html lang="en-US">
+
+<!-- Mirrored from www.aschroder.com/2012/04/introduction-to-the-magento-rest-apis-with-oauth-in-version-1-7/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:18:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="../../../xmlrpc.php">
+
+<title>Introduction to the Magento REST APIs in Version 1.7 | ASchroder.com</title>
+
+<!-- All in One SEO Pack 2.4.2 by Michael Torbert of Semper Fi Web Design[289,381] -->
+<meta name="description"  content="This post covers the technical aspects of setting up the Magento oAuth and making your first Magento REST API call." />
+
+<meta name="keywords"  content="magento,api,rest,oauth" />
+
+<!-- /all in one seo pack -->
+<link rel='dns-prefetch' href='http://fonts.googleapis.com/' />
+<link rel='dns-prefetch' href='http://s.w.org/' />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Feed" href="../../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Comments Feed" href="../../../comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="ASchroder.com &raquo; Introduction to the Magento REST APIs with oAuth in Version 1.7 Comments Feed" href="feed/index.html" />
+<!-- This site uses the Google Analytics by MonsterInsights plugin v6.2.4 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+<script type="text/javascript" data-cfasync="false">
+		var disableStr = 'ga-disable-UA-6477134-1';
+
+	/* Function to detect opted out users */
+	function __gaTrackerIsOptedOut() {
+		return document.cookie.indexOf(disableStr + '=true') > -1;
+	}
+
+	/* Disable tracking if the opt-out cookie exists. */
+	if ( __gaTrackerIsOptedOut() ) {
+		window[disableStr] = true;
+	}
+
+	/* Opt-out function */
+	function __gaTrackerOptout() {
+	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+	  window[disableStr] = true;
+	}
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','http://www.google-analytics.com/analytics.js','__gaTracker');
+
+	__gaTracker('create', 'UA-6477134-1', 'auto');
+	__gaTracker('set', 'forceSSL', true);
+	__gaTracker('send','pageview');
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/www.aschroder.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.8.15"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,56826,8203,55356,56819),0,0),c=j.toDataURL(),b!==c&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55358,56794,8205,9794,65039),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55358,56794,8203,9794,65039),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='yarppWidgetCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/widget101e.css?ver=4.8.15' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-syntax-css-css'  href='../../../wp-content/plugins/wp-syntax/css/wp-syntax4963.css?ver=1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-style-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/style5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<style id='storefront-style-inline-css' type='text/css'>
+
+			.main-navigation ul li a,
+			.site-title a,
+			ul.menu li a,
+			.site-branding h1 a,
+			.site-footer .storefront-handheld-footer-bar a:not(.button),
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				color: #333333;
+			}
+
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				border-color: #333333;
+			}
+
+			.main-navigation ul li a:hover,
+			.main-navigation ul li:hover > a,
+			.site-title a:hover,
+			a.cart-contents:hover,
+			.site-header-cart .widget_shopping_cart a:hover,
+			.site-header-cart:hover > li > a,
+			.site-header ul.menu li.current-menu-item > a {
+				color: #838383;
+			}
+
+			table th {
+				background-color: #f8f8f8;
+			}
+
+			table tbody td {
+				background-color: #fdfdfd;
+			}
+
+			table tbody tr:nth-child(2n) td,
+			fieldset,
+			fieldset legend {
+				background-color: #fbfbfb;
+			}
+
+			.site-header,
+			.secondary-navigation ul ul,
+			.main-navigation ul.menu > li.menu-item-has-children:after,
+			.secondary-navigation ul.menu ul,
+			.storefront-handheld-footer-bar,
+			.storefront-handheld-footer-bar ul li > a,
+			.storefront-handheld-footer-bar ul li.search .site-search,
+			button.menu-toggle,
+			button.menu-toggle:hover {
+				background-color: #ffffff;
+			}
+
+			p.site-description,
+			.site-header,
+			.storefront-handheld-footer-bar {
+				color: #6d6d6d;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count,
+			button.menu-toggle:after,
+			button.menu-toggle:before,
+			button.menu-toggle span:before {
+				background-color: #333333;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				color: #ffffff;
+			}
+
+			.storefront-handheld-footer-bar ul li.cart .count {
+				border-color: #ffffff;
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+				color: #333333;
+			}
+
+			.widget h1 {
+				border-bottom-color: #333333;
+			}
+
+			body,
+			.secondary-navigation a,
+			.onsale,
+			.pagination .page-numbers li .page-numbers:not(.current), .woocommerce-pagination .page-numbers li .page-numbers:not(.current) {
+				color: #6d6d6d;
+			}
+
+			.widget-area .widget a,
+			.hentry .entry-header .posted-on a,
+			.hentry .entry-header .byline a {
+				color: #9f9f9f;
+			}
+
+			a  {
+				color: #0228d1;
+			}
+
+			a:focus,
+			.button:focus,
+			.button.alt:focus,
+			.button.added_to_cart:focus,
+			.button.wc-forward:focus,
+			button:focus,
+			input[type="button"]:focus,
+			input[type="reset"]:focus,
+			input[type="submit"]:focus {
+				outline-color: #0228d1;
+			}
+
+			button, input[type="button"], input[type="reset"], input[type="submit"], .button, .added_to_cart, .widget a.button, .site-header-cart .widget_shopping_cart a.button {
+				background-color: #eeeeee;
+				border-color: #eeeeee;
+				color: #333333;
+			}
+
+			button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, .button:hover, .added_to_cart:hover, .widget a.button:hover, .site-header-cart .widget_shopping_cart a.button:hover {
+				background-color: #d5d5d5;
+				border-color: #d5d5d5;
+				color: #333333;
+			}
+
+			button.alt, input[type="button"].alt, input[type="reset"].alt, input[type="submit"].alt, .button.alt, .added_to_cart.alt, .widget-area .widget a.button.alt, .added_to_cart, .widget a.button.checkout {
+				background-color: #333333;
+				border-color: #333333;
+				color: #ffffff;
+			}
+
+			button.alt:hover, input[type="button"].alt:hover, input[type="reset"].alt:hover, input[type="submit"].alt:hover, .button.alt:hover, .added_to_cart.alt:hover, .widget-area .widget a.button.alt:hover, .added_to_cart:hover, .widget a.button.checkout:hover {
+				background-color: #1a1a1a;
+				border-color: #1a1a1a;
+				color: #ffffff;
+			}
+
+			.pagination .page-numbers li .page-numbers.current, .woocommerce-pagination .page-numbers li .page-numbers.current {
+				background-color: #e6e6e6;
+				color: #6d6d6d;
+			}
+
+			#comments .comment-list .comment-content .comment-text {
+				background-color: #f8f8f8;
+			}
+
+			.site-footer {
+				background-color: #f0f0f0;
+				color: #6d6d6d;
+			}
+
+			.site-footer a:not(.button) {
+				color: #333333;
+			}
+
+			.site-footer h1, .site-footer h2, .site-footer h3, .site-footer h4, .site-footer h5, .site-footer h6 {
+				color: #333333;
+			}
+
+			#order_review {
+				background-color: #ffffff;
+			}
+
+			#payment .payment_methods > li .payment_box,
+			#payment .place-order {
+				background-color: #fafafa;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice) {
+				background-color: #f5f5f5;
+			}
+
+			#payment .payment_methods > li:not(.woocommerce-notice):hover {
+				background-color: #f0f0f0;
+			}
+
+			@media screen and ( min-width: 768px ) {
+				.secondary-navigation ul.menu a:hover {
+					color: #868686;
+				}
+
+				.secondary-navigation ul.menu a {
+					color: #6d6d6d;
+				}
+
+				.site-header-cart .widget_shopping_cart,
+				.main-navigation ul.menu ul.sub-menu,
+				.main-navigation ul.nav-menu ul.children {
+					background-color: #f0f0f0;
+				}
+
+				.site-header-cart .widget_shopping_cart .buttons,
+				.site-header-cart .widget_shopping_cart .total {
+					background-color: #f5f5f5;
+				}
+
+				.site-header {
+					border-bottom-color: #f0f0f0;
+				}
+			}
+</style>
+<link rel='stylesheet' id='storefront-icons-css'  href='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/sass/base/icons5bf8.css?ver=2.2.5' type='text/css' media='all' />
+<link rel='stylesheet' id='storefront-fonts-css'  href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,300italic,400italic,600,700,900&amp;subset=latin%2Clatin-ext' type='text/css' media='all' />
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jqueryb8ff.js?ver=1.12.4'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/jquery/jquery-migrate.min330a.js?ver=1.4.1'></script>
+<link rel='https://api.w.org/' href='../../../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../xmlrpc0db0.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='X.commerce DevTalk newsletter featured MageSpeedTest.com' href='../../03/x-commerce-devtalk-newsletter-featured-magespeedtest-com/index.html' />
+<link rel='next' title='Magento Imagine 2012: Making the most of APIs' href='../magento-imagine-2012-making-the-most-of-apis/index.html' />
+<meta name="generator" content="WordPress 4.8.15" />
+<link rel="canonical" href="index.html" />
+<link rel='shortlink' href='../../../index8e28.html?p=1738' />
+<link rel="alternate" type="application/json+oembed" href="../../../wp-json/oembed/1.0/embedec5b.json?url=http%3A%2F%2Fwww.aschroder.com%2F2012%2F04%2Fintroduction-to-the-magento-rest-apis-with-oauth-in-version-1-7%2F" />
+<link rel="alternate" type="text/xml+oembed" href="../../../wp-json/oembed/1.0/embed870b?url=http%3A%2F%2Fwww.aschroder.com%2F2012%2F04%2Fintroduction-to-the-magento-rest-apis-with-oauth-in-version-1-7%2F&amp;format=xml" />
+</head>
+
+<body class="post-template-default single single-post postid-1738 single-format-standard no-wc-breadcrumb storefront-full-width-content right-sidebar">
+
+
+<div id="page" class="hfeed site">
+	
+	<header id="masthead" class="site-header" role="banner" style="">
+		<div class="col-full">
+
+					<a class="skip-link screen-reader-text" href="#site-navigation">Skip to navigation</a>
+		<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+				<div class="site-branding">
+			<div class="beta site-title"><a href="../../../index.html" rel="home">ASchroder.com</a></div><p class="site-description">Notes on Web Development</p>		</div>
+		<div class="storefront-primary-navigation">		<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="Primary Navigation">
+		<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><span>Menu</span></button>
+			<div class="primary-navigation"><ul id="menu-main-menu" class="menu"><li id="menu-item-1119" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li id="menu-item-1118" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li id="menu-item-1872" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div><div class="handheld-navigation"><ul id="menu-main-menu-1" class="menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1119"><a href="../../../index.html">Home</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1118"><a href="../../../about/index.html">About</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1872"><a href="../../../presentations/index.html">Presentations</a></li>
+</ul></div>		</nav><!-- #site-navigation -->
+		</div>
+		</div>
+	</header><!-- #masthead -->
+
+	
+	<div id="content" class="site-content" tabindex="-1">
+		<div class="col-full">
+
+		
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+<div id="post-1738" class="post-1738 post type-post status-publish format-standard hentry category-magento category-web-development tag-api tag-magento tag-rest">
+
+			<header class="entry-header">
+		<span class="posted-on">Posted on <a href="index.html" rel="bookmark"><time class="entry-date published" datetime="2012-04-23T00:25:25+00:00">April 23, 2012</time> <time class="updated" datetime="2012-04-23T09:36:09+00:00">April 23, 2012</time></a></span><h1 class="entry-title">Introduction to the Magento REST APIs with oAuth in Version 1.7</h1>		</header><!-- .entry-header -->
+				<aside class="entry-meta">
+						<div class="author">
+				<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' /><div class="label">Written by</div><a href="../../../author/admin/index.html" title="Posts by Ashley" rel="author">Ashley</a>			</div>
+							<div class="cat-links">
+					<div class="label">Posted in</div><a href="../../../category/magento/index.html" rel="category tag">Magento</a>, <a href="../../../category/web-development/index.html" rel="category tag">Web Development</a>				</div>
+			
+							<div class="tags-links">
+					<div class="label">Tagged</div><a href="../../../tag/api/index.html" rel="tag">api</a>, <a href="../../../tag/magento/index.html" rel="tag">Magento</a>, <a href="../../../tag/rest/index.html" rel="tag">REST</a>				</div>
+			
+		
+							<div class="comments-link">
+					<div class="label">Comments</div>					<span class="comments-link"><a href="index.html#comments">29 Comments</a></span>
+				</div>
+					</aside>
+				<div class="entry-content">
+		<p>The latest version of Magento (1.7rc1 right now) has support for <a href="http://en.wikipedia.org/wiki/OAuth">oAuth authenticated</a> <a href="http://en.wikipedia.org/wiki/REST">REST</a> APIs, yippee! In this post I&#8217;m going to run through the technical aspects of setting up the Magento oAuth and making your first Magento REST API call. </p>
+<p>I&#8217;m <a href="http://www.imagineecommerce.com/2012breakouts/">presenting on APIs</a> during the technology track at the <a href="http://www.imagineecommerce.com/">Magento Imagine</a> conference on Tuesday (<em>If you&#8217;re reading this, and you&#8217;re at the conference, I hope to see you there!</em>). In my talk I&#8217;ll cover interesting uses and benefits of the REST API but won&#8217;t have time for a big fully worked example. This post details the finer points of actually using these APIs which is a bit too low-level to cover, so this will be extra-for-experts homework for those that want to have a play around with REST after the talk.</p>
+<p>There are basically 3 steps to running your first REST API call in Magento.<br />
+<span id="more-1738"></span></p>
+<h3>0) Get an oAuth client tool</h3>
+<p>Let me say right at the outset, debugging oAuth issues is one of <em>those</em> crappy problems in web development, like character encoding and object aliasing, it is a real pain when it doesn&#8217;t <em>just work</em>™ and you&#8217;re going to want a good toolset if things go sour.</p>
+<p>In my examples below I&#8217;m using the <a href="http://oauth.rubyforge.org/">ruby oAuth library</a> because it&#8217;s clean simple and works well. There&#8217;s something similar for python and PHP, so choose your poison. To set up the ruby one, assuming you have ruby already, just run:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #c20cb9; font-weight: bold;">sudo</span> gem <span style="color: #c20cb9; font-weight: bold;">install</span> oauth</pre></td></tr></table><p class="theCode" style="display:none;">sudo gem install oauth</p></div>
+
+<p>Right, now you&#8217;re at the start line.</p>
+<h3>1) Set up the Magento server</h3>
+<p>You need to configure the role for the oAuth, specify the attributes and lastly create a consumer.</p>
+<p><img src="../../../../cdn.aschroder.com/wp-content/uploads/2012/04/REST-Menu.png" alt="" title="REST-Menu" width="298" height="410" class="aligncenter size-full wp-image-1746" srcset="http://cdn.aschroder.com/wp-content/uploads/2012/04/REST-Menu.png 298w, http://cdn.aschroder.com/wp-content/uploads/2012/04/REST-Menu-218x300.png 218w" sizes="(max-width: 298px) 100vw, 298px" /></p>
+<p>For the purposes of this tutorial to keep it simple, you can just grant the customer all the attributes and permissions &#8211; but if you were being cautious, you&#8217;d pick and choose to suit your needs.</p>
+<p><img src="../../../../cdn.aschroder.com/wp-content/uploads/2012/04/roles.png" alt="" title="roles" width="577" height="227" class="aligncenter size-full wp-image-1747" srcset="http://cdn.aschroder.com/wp-content/uploads/2012/04/roles.png 577w, http://cdn.aschroder.com/wp-content/uploads/2012/04/roles-300x118.png 300w" sizes="(max-width: 577px) 100vw, 577px" /></p>
+<p>The roles are similar to the old web service roles, they allow you to select which permissions a type of REST user has. The attributes allow you to select which entity attributes appear in the response. Customers probably would not see cost, for example.</p>
+<p><img src="../../../../cdn.aschroder.com/wp-content/uploads/2012/04/attributes.png" alt="" title="attributes" width="260" height="163" class="aligncenter size-full wp-image-1748" /></p>
+<p>Now, make your consumer, and take a note of the consumer key and secret.</p>
+<p><img src="../../../../cdn.aschroder.com/wp-content/uploads/2012/04/consumer.png" alt="" title="consumer" width="527" height="264" class="aligncenter size-full wp-image-1749" srcset="http://cdn.aschroder.com/wp-content/uploads/2012/04/consumer.png 527w, http://cdn.aschroder.com/wp-content/uploads/2012/04/consumer-300x150.png 300w" sizes="(max-width: 527px) 100vw, 527px" /></p>
+<p><em>(eek, the fields are disabled, not readonly &#8211; I used firebug to copy-paste, or you can view source.)</em></p>
+<p>Now the server is setup &#8211; you should have the roles, attributes and consumer configured, and for testing you&#8217;ll need a test customer account too. Now we are ready for the actual oAuth requests. </p>
+<h3>2) Get the oAuth tokens</h3>
+<p>The <a href="http://www.youtube.com/watch?v=qurTK_0re3Y">oAuth dance</a>, <em>oops I mean</em> <a href="http://hueniverse.com/oauth/guide/workflow/">dance</a> is not as fun as it sounds &#8211; but when it works, it&#8217;s a painless way for a web service client to be granted permission to call a service, without exposing any user credentials, which is great for security.</p>
+<p>Here&#8217;s an example of that authorization process:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;">oauth \
+  <span style="color: #660033;">--verbose</span> \
+   <span style="color: #660033;">--query-string</span> \
+   <span style="color: #660033;">--consumer-key</span> v484mnii2jyswedm6uo2cfcjay7uy49snws \
+   <span style="color: #660033;">--consumer-secret</span> koay6845che7giy5lr17gnrhckkbhf8h5 \
+   <span style="color: #660033;">--access-token-url</span> http:<span style="color: #000000; font-weight: bold;">//</span>www.yourstore.com<span style="color: #000000; font-weight: bold;">/</span>magento<span style="color: #000000; font-weight: bold;">/</span>oauth<span style="color: #000000; font-weight: bold;">/</span>token \
+   <span style="color: #660033;">--authorize-url</span> http:<span style="color: #000000; font-weight: bold;">//</span>www.yourstore.com<span style="color: #000000; font-weight: bold;">/</span>magento<span style="color: #000000; font-weight: bold;">/</span>oauth<span style="color: #000000; font-weight: bold;">/</span>authorize \
+   <span style="color: #660033;">--request-token-url</span> http:<span style="color: #000000; font-weight: bold;">//</span>www.yourstore.com<span style="color: #000000; font-weight: bold;">/</span>magento<span style="color: #000000; font-weight: bold;">/</span>oauth<span style="color: #000000; font-weight: bold;">/</span>initiate \
+   authorize
+&nbsp;
+Server appears to support OAuth 1.0a; enabling support.
+Please visit this url to authorize:
+http:<span style="color: #000000; font-weight: bold;">//</span>www.yourstore.com<span style="color: #000000; font-weight: bold;">/</span>magento<span style="color: #000000; font-weight: bold;">/</span>oauth<span style="color: #000000; font-weight: bold;">/</span>authorize?<span style="color: #007800;">oauth_token</span>=ey6fokp0pbzwr1016eb528y5xw1ak5ji
+&nbsp;
+Please enter the verification code provided by the SP <span style="color: #7a0874; font-weight: bold;">&#40;</span>oauth_verifier<span style="color: #7a0874; font-weight: bold;">&#41;</span>:
+YOUR_CODE_HERE
+&nbsp;
+Response:
+  oauth_token_secret: g9kyz8c7zv868d58eav1muih3gxvq763
+  oauth_token: aqvlfv9tuexn0mqiydgkaff4ixxg8743c</pre></td></tr></table><p class="theCode" style="display:none;">oauth \
+  --verbose \
+   --query-string \
+   --consumer-key v484mnii2jyswedm6uo2cfcjay7uy49snws \
+   --consumer-secret koay6845che7giy5lr17gnrhckkbhf8h5 \
+   --access-token-url http://www.yourstore.com/magento/oauth/token \
+   --authorize-url http://www.yourstore.com/magento/oauth/authorize \
+   --request-token-url http://www.yourstore.com/magento/oauth/initiate \
+   authorize
+
+Server appears to support OAuth 1.0a; enabling support.
+Please visit this url to authorize:
+http://www.yourstore.com/magento/oauth/authorize?oauth_token=ey6fokp0pbzwr1016eb528y5xw1ak5ji
+
+Please enter the verification code provided by the SP (oauth_verifier):
+YOUR_CODE_HERE
+
+Response:
+  oauth_token_secret: g9kyz8c7zv868d58eav1muih3gxvq763
+  oauth_token: aqvlfv9tuexn0mqiydgkaff4ixxg8743c</p></div>
+
+<p>The authorize url you visit will ask you to log in (as a customer, unless you use the admin authorize url instead: <code>/admin/oAuth_authorize</code>). You&#8217;ll login and then authorize the client like this.</p>
+<p><img src="../../../../cdn.aschroder.com/wp-content/uploads/2012/04/authorize.png" alt="" title="authorize" width="383" height="174" class="aligncenter size-full wp-image-1744" srcset="http://cdn.aschroder.com/wp-content/uploads/2012/04/authorize.png 383w, http://cdn.aschroder.com/wp-content/uploads/2012/04/authorize-300x136.png 300w" sizes="(max-width: 383px) 100vw, 383px" /></p>
+<p>After a successful login and authorize you should see this dialog, and you&#8217;ll copy the verifier code into the oauth commandline to complete the process.</p>
+<p><img src="../../../../cdn.aschroder.com/wp-content/uploads/2012/04/oath-auth-verifier.png" alt="" title="oath-auth-verifier" width="344" height="167" class="aligncenter size-full wp-image-1742" srcset="http://cdn.aschroder.com/wp-content/uploads/2012/04/oath-auth-verifier.png 344w, http://cdn.aschroder.com/wp-content/uploads/2012/04/oath-auth-verifier-300x145.png 300w" sizes="(max-width: 344px) 100vw, 344px" /></p>
+<h3>3) Make the API call</h3>
+<p>You&#8217;ll want to use the oauth command line tool (or your preferred tool) to create the oAuth signature and generate the URL to play around with. Here&#8217;s an example using the <code>debug</code> option, it&#8217;ll give you an idea of what&#8217;s going on, and displays the copy-pastable URL you&#8217;ll use in the next step:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;">oauth \
+    <span style="color: #660033;">--consumer-key</span> v484mnii2jyswedm6uo2cfcjay7uy49snws \
+    <span style="color: #660033;">--consumer-secret</span> koay6845che7giy5lr17gnrhckkbhf8h5 \ 
+    <span style="color: #660033;">--token</span> aqvlfv9tuexn0mqiydgkaff4ixxg8743c \
+    <span style="color: #660033;">--secret</span> g9kyz8c7zv868d58eav1muih3gxvq763 \ 
+    <span style="color: #660033;">--uri</span> http:<span style="color: #000000; font-weight: bold;">//</span>www.yourstore.com<span style="color: #000000; font-weight: bold;">/</span>magento<span style="color: #000000; font-weight: bold;">/</span>api<span style="color: #000000; font-weight: bold;">/</span>rest<span style="color: #000000; font-weight: bold;">/</span>products \
+    debug</pre></td></tr></table><p class="theCode" style="display:none;">oauth \
+    --consumer-key v484mnii2jyswedm6uo2cfcjay7uy49snws \
+    --consumer-secret koay6845che7giy5lr17gnrhckkbhf8h5 \ 
+    --token aqvlfv9tuexn0mqiydgkaff4ixxg8743c \
+    --secret g9kyz8c7zv868d58eav1muih3gxvq763 \ 
+    --uri http://www.yourstore.com/magento/api/rest/products \
+    debug</p></div>
+
+<p><strong>Note:</strong> the URL I am going to use is <code>http://www.yourstore.com/magento/api/rest/products</code> &#8211; but you can see all the possible urls in the api2.xml files in the core code. For example here&#8217;s a snippet from the catalog api2.xml that shows some of the path patterns:</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="xml" style="font-family:monospace;"> <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;routes<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+     <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;route_entity<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+         <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;route<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>/products/:id<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/route<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+         <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;action_type<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>entity<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/action_type<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+     <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/route_entity<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+     <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;route_entity_with_store<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+         <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;route<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>/products/:id/store/:store<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/route<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+         <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;action_type<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>entity<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/action_type<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+     <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/route_entity_with_store<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+     <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;route_collection<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+         <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;route<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>/products<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/route<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+         <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;action_type<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>collection<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/action_type<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+     <span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/route_collection<span style="color: #000000; font-weight: bold;">&gt;</span></span></span>
+...
+<span style="color: #009900;"><span style="color: #000000; font-weight: bold;">&lt;/routes</span></span></pre></td></tr></table><p class="theCode" style="display:none;"> &lt;routes&gt;
+     &lt;route_entity&gt;
+         &lt;route&gt;/products/:id&lt;/route&gt;
+         &lt;action_type&gt;entity&lt;/action_type&gt;
+     &lt;/route_entity&gt;
+     &lt;route_entity_with_store&gt;
+         &lt;route&gt;/products/:id/store/:store&lt;/route&gt;
+         &lt;action_type&gt;entity&lt;/action_type&gt;
+     &lt;/route_entity_with_store&gt;
+     &lt;route_collection&gt;
+         &lt;route&gt;/products&lt;/route&gt;
+         &lt;action_type&gt;collection&lt;/action_type&gt;
+     &lt;/route_collection&gt;
+...
+&lt;/routes</p></div>
+
+<p>You can choose your favorite HTTP client (the URL will work in any browser), I&#8217;ll use <code>curl</code> below, for demonstrative purposes. Grab the &#8216;OAuth Request URI&#8217; from the output above and use it like I do below.</p>
+<p>Getting a list of products in JSON (JSON is the default, you can omit the <code>Accept</code> header if you want):</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;">curl \
+    <span style="color: #660033;">-H</span> <span style="color: #ff0000;">&quot;Accept: application/json&quot;</span> \
+    <span style="color: #ff0000;">&quot;http://www.yourstore.com/magento/api/rest/products?oauth_consumer_key=tydkxii2jyswedm6uo2cfcjay7uy0crws&amp;oauth_nonce=HWJHh83HKeJnsFahdQxye52dapt8F7bswrnLcAYjsy&amp;oauth_signature=%2FkHLJKs9W3fmWRVxAPrd8R7LHDs%3D&amp;oauth_signature_method=HMAC-SHA1&amp;oauth_timestamp=1335162435&amp;oauth_token=aqvlfv9tuexn0mqiydgkaff4ixxgs58s&amp;oauth_version=1.0&quot;</span></pre></td></tr></table><p class="theCode" style="display:none;">curl \
+    -H &quot;Accept: application/json&quot; \
+    &quot;http://www.yourstore.com/magento/api/rest/products?oauth_consumer_key=tydkxii2jyswedm6uo2cfcjay7uy0crws&amp;oauth_nonce=HWJHh83HKeJnsFahdQxye52dapt8F7bswrnLcAYjsy&amp;oauth_signature=%2FkHLJKs9W3fmWRVxAPrd8R7LHDs%3D&amp;oauth_signature_method=HMAC-SHA1&amp;oauth_timestamp=1335162435&amp;oauth_token=aqvlfv9tuexn0mqiydgkaff4ixxgs58s&amp;oauth_version=1.0&quot;</p></div>
+
+<p>Getting a list of products in XML (set the <code>Accept</code> header for XML):</p>
+
+<div class="wp_syntax" style="position:relative;"><table><tr><td class="code"><pre class="bash" style="font-family:monospace;">curl \
+    <span style="color: #660033;">-H</span> <span style="color: #ff0000;">&quot;Accept: application/xml&quot;</span> \
+    <span style="color: #ff0000;">&quot;http://www.yourstore.com/magento/api/rest/products?oauth_consumer_key=tydkxii2jyswedm6uo2cfcjay7uy0crws&amp;oauth_nonce=HWJHh83HKeJnsFahdQxye52dapt8F7bswrnLcAYjsy&amp;oauth_signature=%2FkHLJKs9W3fmWRVxAPrd8R7LHDs%3D&amp;oauth_signature_method=HMAC-SHA1&amp;oauth_timestamp=1335162435&amp;oauth_token=aqvlfv9tuexn0mqiydgkaff4ixxgs58s&amp;oauth_version=1.0&quot;</span></pre></td></tr></table><p class="theCode" style="display:none;">curl \
+    -H &quot;Accept: application/xml&quot; \
+    &quot;http://www.yourstore.com/magento/api/rest/products?oauth_consumer_key=tydkxii2jyswedm6uo2cfcjay7uy0crws&amp;oauth_nonce=HWJHh83HKeJnsFahdQxye52dapt8F7bswrnLcAYjsy&amp;oauth_signature=%2FkHLJKs9W3fmWRVxAPrd8R7LHDs%3D&amp;oauth_signature_method=HMAC-SHA1&amp;oauth_timestamp=1335162435&amp;oauth_token=aqvlfv9tuexn0mqiydgkaff4ixxgs58s&amp;oauth_version=1.0&quot;</p></div>
+
+<p>All going to plan you should see some JSON or XML output that represents your products, phew!</p>
+<p>Lastly I&#8217;d like to say &#8216;Thanks&#8217; to Lindy, Baruch and Vinai from Magento for their help getting started with an example test harness (and rushing out a 1.7 WS-I bug fix for me!). There&#8217;s precious little documentation currently, but hopefully this post will help others get started. </p>
+<p>For PHP coders interested, here&#8217;s <a href="https://gist.github.com/2469319">the test harness courtesy of Lindy</a> you can dig into a bit more. (Note: all copyrights etc to Magento)</p>
+<p>And that&#8217;s it, you can now make your own REST calls and dream up cool and interesting ways to allow customers and admins to access Magento store data! I&#8217;ll cover some possibilities for this cool new technology in my talk on Tuesday, hope to see you all there &#8211; I&#8217;ll only accept inexplicable tigers and/or chickens in your hotel room as an excuse!</p>
+<p><iframe width="560" height="315" src="http://www.youtube.com/embed/vhFVZsk3XEs" frameborder="0" allowfullscreen></iframe></p>
+<div class='yarpp-related'>
+<p>You might also be interested in:<ol>
+<li><a href="../magento-imagine-2012-making-the-most-of-apis/index.html" rel="bookmark" title="Magento Imagine 2012: Making the most of APIs">Magento Imagine 2012: Making the most of APIs </a></li>
+<li><a href="../../../2011/01/new-version-of-smtp-pro-released-support-for-magento-1-4-2-and-several-bug-fixes/index.html" rel="bookmark" title="New Version of SMTP Pro now supports Magento 1.4.2 and has fewer bugs">New Version of SMTP Pro now supports Magento 1.4.2 and has fewer bugs </a></li>
+<li><a href="../../../2010/07/latest-version-of-smtp-pro-finally-uploaded-to-magento-connect/index.html" rel="bookmark" title="Latest version of SMTP Pro Finally Uploaded to Magento Connect">Latest version of SMTP Pro Finally Uploaded to Magento Connect </a></li>
+<li><a href="../../../2010/09/new-version-of-magento-cloud-backup-available-bug-fixes-stability-and-self-testing/index.html" rel="bookmark" title="New Version of Magento Cloud Backup Available: bug fixes, stability and self testing.">New Version of Magento Cloud Backup Available: bug fixes, stability and self testing. </a></li>
+<li><a href="../../08/magespeedtest-com-new-locations-magento-extension-rest-api-featured-host-and-pricing/index.html" rel="bookmark" title="MageSpeedTest.com: New locations, Magento Extension, REST API, Featured Host and Pricing">MageSpeedTest.com: New locations, Magento Extension, REST API, Featured Host and Pricing </a></li>
+</ol></p>
+</div>
+		</div><!-- .entry-content -->
+		<nav id="post-navigation" class="navigation post-navigation" role="navigation" aria-label="Post Navigation"><span class="screen-reader-text">Post navigation</span><div class="nav-links"><div class="nav-previous"><a href="../../03/x-commerce-devtalk-newsletter-featured-magespeedtest-com/index.html" rel="prev">X.commerce DevTalk newsletter featured MageSpeedTest.com</a></div><div class="nav-next"><a href="../magento-imagine-2012-making-the-most-of-apis/index.html" rel="next">Magento Imagine 2012: Making the most of APIs</a></div></div></nav>
+<section id="comments" class="comments-area" aria-label="Post Comments">
+
+			<h2 class="comments-title">
+			29 thoughts on &ldquo;<span>Introduction to the Magento REST APIs with oAuth in Version 1.7</span>&rdquo;		</h2>
+
+		
+		<ol class="comment-list">
+					<li class="comment even thread-even depth-1" id="comment-4758">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/76c95c8e802bdd03ff3532d7ea696dcd?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/76c95c8e802bdd03ff3532d7ea696dcd?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">J.T.</cite>			</div>
+			
+			<a href="index.html#comment-4758" class="comment-date">
+				<time datetime="2012-04-23T01:44:40+00:00">April 23, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4758" class="comment-content">
+				<div class="comment-text">
+		<p>Could you drop in at the Wynn and check whether my 600 USD is still there? Went there for CES in Jan and somehow lost some cash there, strange :S </p>
+<p>Enjoy the trip!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4794">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/b7640cf891a72d0a863fc5c8bcfdd351?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/b7640cf891a72d0a863fc5c8bcfdd351?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Joao</cite>			</div>
+			
+			<a href="index.html#comment-4794" class="comment-date">
+				<time datetime="2012-05-11T03:12:20+00:00">May 11, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4794" class="comment-content">
+				<div class="comment-text">
+		<p>Hi,</p>
+<p>I&#8217;m hiting error when i do :<br />
+oauth   &#8211;verbose    &#8211;query-string    &#8211;consumer-key mykey    &#8211;consumer-secret mysecret    &#8211;access-token-url <a href="http://ec2-23-22-82-120.compute-1.amazonaws.com/magento/oauth/token" rel="nofollow">http://ec2-23-22-82-120.compute-1.amazonaws.com/magento/oauth/token</a>    &#8211;authorize-url <a href="http://ec2-23-22-82-120.compute-1.amazonaws.com/magento/oauth/authorize" rel="nofollow">http://ec2-23-22-82-120.compute-1.amazonaws.com/magento/oauth/authorize</a>    &#8211;request-token-url <a href="http://ec2-23-22-82-120.compute-1.amazonaws.com/magento/oauth/initiate" rel="nofollow">http://ec2-23-22-82-120.compute-1.amazonaws.com/magento/oauth/initiate</a>  authorize</p>
+<p>A problem occurred while attempting to authorize:<br />
+404 Not Found</p>
+<p>404 Not Found</p>
+<p>Not Found<br />
+The requested URL /opt/bitnami/apps/magento/htdocs/index.php was not found on this server.</p>
+<p>Apache/2.2.15 (Red Hat) Server at ec2-23-22-82-120.compute-1.amazonaws.com Port 80</p>
+<p>can you help?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-4797">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-4797" class="comment-date">
+				<time datetime="2012-05-11T09:12:56+00:00">May 11, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4797" class="comment-content">
+				<div class="comment-text">
+		<p>Where&#8217;s this path coming from?<br />
+<code>/opt/bitnami/apps/magento/htdocs/index.php</code></p>
+<p>I&#8217;d say that&#8217;s the place to start looking.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4799">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/b7640cf891a72d0a863fc5c8bcfdd351?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/b7640cf891a72d0a863fc5c8bcfdd351?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Joao</cite>			</div>
+			
+			<a href="index.html#comment-4799" class="comment-date">
+				<time datetime="2012-05-11T11:08:24+00:00">May 11, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4799" class="comment-content">
+				<div class="comment-text">
+		<p>I&#8217;ve installed on amazon ec2 &#8230; a image from bitnami.<br />
+Everything else it&#8217;s working, I just cant oauth 🙁</p>
+<p>Regards<br />
+Joao</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-4804">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/b7640cf891a72d0a863fc5c8bcfdd351?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/b7640cf891a72d0a863fc5c8bcfdd351?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Joao</cite>			</div>
+			
+			<a href="index.html#comment-4804" class="comment-date">
+				<time datetime="2012-05-13T02:39:01+00:00">May 13, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4804" class="comment-content">
+				<div class="comment-text">
+		<p>After installing magento did you had to configure any http preference? Or any other thing?<br />
+If you install a fresh magento 1.7 does it work?</p>
+<p>Regards<br />
+Joao</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4806">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='../../../index.html' rel='external nofollow' class='url'>Ashley</a></cite>			</div>
+			
+			<a href="index.html#comment-4806" class="comment-date">
+				<time datetime="2012-05-13T21:50:00+00:00">May 13, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4806" class="comment-content">
+				<div class="comment-text">
+		<p>Yeh shouldn&#8217;t need any changes to HTTP prefs. What have you tried in terms of debug?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-4810">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/d87a6dae8f950b63f636b779fed393b9?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/d87a6dae8f950b63f636b779fed393b9?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">lpc</cite>			</div>
+			
+			<a href="index.html#comment-4810" class="comment-date">
+				<time datetime="2012-05-16T01:37:47+00:00">May 16, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4810" class="comment-content">
+				<div class="comment-text">
+		<p>hi,<br />
+  when i do:<br />
+curl -H &#8220;Accept: application/json&#8221; &#8220;http://localhost/api/rest/products?oauth_consumer_key=0cgpl85pwt5yzirgzu48tqzlcbtq1u1f&amp;oauth_nonce=a5HFSxOWaq9fn8KV8IpNKeGwQ2soYOksVEQdDW68&amp;oauth_signature=XO4rvz8Fx1a2Q9L8RkCCpsfBwv4%3D&amp;oauth_signature_method=HMAC-SHA1&amp;oauth_timestamp=1337160419&amp;oauth_token=4dgj0kc2jqlwg3pk4r0det7a9kbs2uud&amp;oauth_version=1.0</p>
+<p>i get:<br />
+{&#8220;messages&#8221;:{&#8220;error&#8221;:[{&#8220;code&#8221;:403,&#8221;message&#8221;:&#8221;Access denied&#8221;}]}}</p>
+<p>what is the matter? </p>
+<p>Regards<br />
+lpc</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4815">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/fa58839bd40c9bdf1e7c61deba1cc440?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/fa58839bd40c9bdf1e7c61deba1cc440?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://magentodeveloper.org/' rel='external nofollow' class='url'>Magento Developer</a></cite>			</div>
+			
+			<a href="index.html#comment-4815" class="comment-date">
+				<time datetime="2012-05-19T04:20:08+00:00">May 19, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4815" class="comment-content">
+				<div class="comment-text">
+		<p>After setting up magento did you had to set up any http preference? Or any other thing?<br />
+If you set up a clean magento 1.7 does it work?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-4822">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/f80982d1c65ba53b6e2fd7f1c658099f?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/f80982d1c65ba53b6e2fd7f1c658099f?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">alex</cite>			</div>
+			
+			<a href="index.html#comment-4822" class="comment-date">
+				<time datetime="2012-05-24T02:06:35+00:00">May 24, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4822" class="comment-content">
+				<div class="comment-text">
+		<p>@All</p>
+<p>witch OS did u use? i got the magento examples to work on fedora and windows 7 but neither on ubuntu nor mint. On all linux distributions i installed lammp and pecl oauth. After setting up magento i didnt make any http preferences.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4839">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/39ba51819a57db59dbb86b893e447beb?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/39ba51819a57db59dbb86b893e447beb?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Alfredo</cite>			</div>
+			
+			<a href="index.html#comment-4839" class="comment-date">
+				<time datetime="2012-06-06T10:23:22+00:00">June 6, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4839" class="comment-content">
+				<div class="comment-text">
+		<p>Hello Ashley!</p>
+<p>Greetings of Brazil.</p>
+<p>I have not many questions:</p>
+<p>1 &#8211; What is the oAuth version for use about magento community 1.7?</p>
+<p>2 &#8211; RubyGem works with Magento 1.7 ? or is prefered download other version?  which version do you recommend?</p>
+<p>3 &#8211; I can&#8217;t understand your step (2), This is a command on linux ?<br />
+or any modified file in magento structure ?</p>
+<p>sorry for my english</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-4848">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/1f2d0ec8a4ae4cfbebfa42438ba18844?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/1f2d0ec8a4ae4cfbebfa42438ba18844?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">jason</cite>			</div>
+			
+			<a href="index.html#comment-4848" class="comment-date">
+				<time datetime="2012-06-20T07:30:12+00:00">June 20, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4848" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks for the great post, just had one question.  for some reason when i try to get a list of products in the last step i am getting the html of &#8220;page you requsted is not found&#8221;</p>
+<p>any idea?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4856">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/39ba51819a57db59dbb86b893e447beb?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/39ba51819a57db59dbb86b893e447beb?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Alfredo</cite>			</div>
+			
+			<a href="index.html#comment-4856" class="comment-date">
+				<time datetime="2012-06-29T08:58:06+00:00">June 29, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4856" class="comment-content">
+				<div class="comment-text">
+		<p>if i use this url uniquely in browser my response is:<br />
+The requested URL /magento/api/rest/index.php/products was not found on this server.</p>
+<p><a href="http://myip/magento/api/rest/products?limit=2" rel="nofollow">http://myIP/magento/api/rest/products?limit=2</a></p>
+<p>The requested URL /magento/api/rest/index.php/products was not found on this server.</p>
+<p>this too:<br />
+<a href="http://myip/magento/index.php/api/rest/products?limit=2" rel="nofollow">http://myIP/magento/index.php/api/rest/products?limit=2</a></p>
+<p>And All was configured.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-4879">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/13d4daabff1d2d72c3cd93341e56ae32?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/13d4daabff1d2d72c3cd93341e56ae32?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Pit</cite>			</div>
+			
+			<a href="index.html#comment-4879" class="comment-date">
+				<time datetime="2012-07-14T08:00:25+00:00">July 14, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4879" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Ashley,</p>
+<p>it&#8217;s really driving me crazy&#8230;</p>
+<p>Hopefully you have a hint for me. I try to use Magento&#8217;s REST API through the python restkit.</p>
+<p>I managed the first 2 legs to &#8220;run&#8221;, so I get successfully the &#8220;final&#8221; access tokens. The last call (resource-call) fails with a 403.</p>
+<p>Could you kindly have a look at<br />
+<a href="http://juky.org/magento.py" rel="nofollow">http://juky.org/magento.py</a></p>
+<p>Thx in advance, Pit.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4880">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/13d4daabff1d2d72c3cd93341e56ae32?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/13d4daabff1d2d72c3cd93341e56ae32?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Pit</cite>			</div>
+			
+			<a href="index.html#comment-4880" class="comment-date">
+				<time datetime="2012-07-14T08:07:38+00:00">July 14, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4880" class="comment-content">
+				<div class="comment-text">
+		<p>sorry, please<br />
+<a href="http://juky.org/magento.txt" rel="nofollow">http://juky.org/magento.txt</a></p>
+<p>There was a prob with the uploaded .py</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-4881">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='../../../index.html' rel='external nofollow' class='url'>Ashley</a></cite>			</div>
+			
+			<a href="index.html#comment-4881" class="comment-date">
+				<time datetime="2012-07-14T13:18:53+00:00">July 14, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4881" class="comment-content">
+				<div class="comment-text">
+		<p>Are you 100% sure you have the resource permissions set up right? And you are authenticating as an admin, right?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-4882">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/13d4daabff1d2d72c3cd93341e56ae32?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/13d4daabff1d2d72c3cd93341e56ae32?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Pit</cite>			</div>
+			
+			<a href="index.html#comment-4882" class="comment-date">
+				<time datetime="2012-07-15T04:47:42+00:00">July 15, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4882" class="comment-content">
+				<div class="comment-text">
+		<p>I set the permissions to &#8220;all&#8221; for all three user types &#8211; no change.</p>
+<p>Then I tested it from the Mozilla-RESTClient plugin &#8211; success! With Python restkit &#8211; still 403.</p>
+<p>Then I changed to the lib from <a href="http://python-requests.org/" rel="nofollow">http://python-requests.org</a> and the oauth-extension: NOW IT WORKS!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-4947">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/f49338808d3e2ff551b755bb66450927?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/f49338808d3e2ff551b755bb66450927?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Cal</cite>			</div>
+			
+			<a href="index.html#comment-4947" class="comment-date">
+				<time datetime="2012-08-14T19:25:59+00:00">August 14, 2012</time>			</a>
+		</div>
+				<div id="div-comment-4947" class="comment-content">
+				<div class="comment-text">
+		<p>Hi Ashley, good write up. Do you have any examples of extending the Rest API on Magento with a new function in a class that takes some parameters? Running into resource not found issues and suspect it is an issue with my xml etc files. thanks.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-5012">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/4bc66461957156b527d1ce955bfb9826?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/4bc66461957156b527d1ce955bfb9826?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Karkotagan</cite>			</div>
+			
+			<a href="index.html#comment-5012" class="comment-date">
+				<time datetime="2012-09-20T07:14:19+00:00">September 20, 2012</time>			</a>
+		</div>
+				<div id="div-comment-5012" class="comment-content">
+				<div class="comment-text">
+		<p>I am trying to get<br />
+getRequestToken(&#8220;http://61.16.162.229/magento/oauth/token&#8221;);<br />
+    if(!empty($request_token_info)) {<br />
+        print_r($request_token_info);<br />
+    } else {<br />
+        print &#8220;Failed fetching request token, response was: &#8221; . $oauth-&gt;getLastResponse();<br />
+    }<br />
+} catch(OAuthException $E) {<br />
+    echo &#8220;Response: &#8220;. $E-&gt;lastResponse . &#8220;\n&#8221;;<br />
+}<br />
+?&gt;</p>
+<p>but getting </p>
+<p>Not Found</p>
+<p>The requested URL /magento/oauth/token was not found on this server.</p>
+<p>Magento installed in 61.16.162.229/magento/ folder</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-5014">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/4bc66461957156b527d1ce955bfb9826?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/4bc66461957156b527d1ce955bfb9826?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Karkotagan</cite>			</div>
+			
+			<a href="index.html#comment-5014" class="comment-date">
+				<time datetime="2012-09-21T06:49:52+00:00">September 21, 2012</time>			</a>
+		</div>
+				<div id="div-comment-5014" class="comment-content">
+				<div class="comment-text">
+		<p>ok, I solved this, changed /etc/apache2/sites-enabled/000-default</p>
+<p>from<br />
+DocumentRoot /var/www</p>
+<p>		Options FollowSymLinks<br />
+		AllowOverride None</p>
+<p>		Options Indexes FollowSymLinks MultiViews<br />
+		AllowOverride None<br />
+		Order allow,deny<br />
+		allow from all</p>
+<p>to </p>
+<p>DocumentRoot /var/www</p>
+<p>		Options FollowSymLinks<br />
+		AllowOverride All</p>
+<p>		Options Indexes FollowSymLinks MultiViews<br />
+		AllowOverride All<br />
+		Order allow,deny<br />
+		allow from all</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-5089">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/d99eb6dbd931328bdbe83aad9248e170?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/d99eb6dbd931328bdbe83aad9248e170?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Kalen</cite>			</div>
+			
+			<a href="index.html#comment-5089" class="comment-date">
+				<time datetime="2012-10-29T10:32:29+00:00">October 29, 2012</time>			</a>
+		</div>
+				<div id="div-comment-5089" class="comment-content">
+				<div class="comment-text">
+		<p>Hey Ashley!</p>
+<p>Thanks for the sweet article &#8211; you&#8217;ve laid it all out beautifully.  I&#8217;m hitting a weird access denied snag.</p>
+<p>1. Using the ruby oauth client.</p>
+<p>2. REST Role &#8211; Created a new REST Role (&#8220;Admin Consumer&#8221;).  Initially gave it access to *all* resources, when that didn&#8217;t work, changed it to custom, selecting all checkboxes.  </p>
+<p>Initially, under Role Users, it didn&#8217;t show any.  When I started hitting access denied issues, I went in here and searched for my admin user (username: &#8216;admin&#8217;) and assigned them to the role.  </p>
+<p>3. REST Attributes &#8211; not totally clear to me still how the attribute set is getting associated to the role or consumer, but I&#8217;ve set attributes to all for both Admin and Customer User Types.  As with role, I tried &#8220;all&#8221; as well as Custom with all checkboxes checked.</p>
+<p>4. Consumer &#8211; created.</p>
+<p>5. Got the oauth tokens using the command-line call to the oauth ruby client.  Only difference is that I used the /admin/oAuth_authorize endpoint.  The oauth flow went through just fine, got the verification token, got the the copy-pastable request URI from the oauth debug call.</p>
+<p>But I get access denied when I make the call to get products</p>
+<p>Request:<br />
+curl <a href="http://m.dev/mc1700/api/rest/products?oauth_consumer_key=klr6t0h7egq7xwqbzqj1tjn0dt2dhb0g&amp;oauth_nonce=oh7GQNO5exzZn1PkUJUjmr9zJyAEsvd7DUkhj0W4dgU&amp;oauth_signature=niJ07g3c8MhA6BLqvYIyy6cM3c0%3D&amp;oauth_signature_method=HMAC-SHA1&amp;oauth_timestamp=1351533398&amp;oauth_token=i35hybaai3wraexr3fzly7vxtjg83463&amp;oauth_version=1.0" rel="nofollow">http://m.dev/mc1700/api/rest/products?oauth_consumer_key=klr6t0h7egq7xwqbzqj1tjn0dt2dhb0g&#038;oauth_nonce=oh7GQNO5exzZn1PkUJUjmr9zJyAEsvd7DUkhj0W4dgU&#038;oauth_signature=niJ07g3c8MhA6BLqvYIyy6cM3c0%3D&#038;oauth_signature_method=HMAC-SHA1&#038;oauth_timestamp=1351533398&#038;oauth_token=i35hybaai3wraexr3fzly7vxtjg83463&#038;oauth_version=1.0</a></p>
+<p>Response:<br />
+{&#8220;messages&#8221;:{&#8220;error&#8221;:[{&#8220;code&#8221;:403,&#8221;message&#8221;:&#8221;Access denied&#8221;}]}}</p>
+<p>I&#8217;m gonna start debugging the Mage_Api2 module to see where it&#8217;s breaking, but thought I&#8217;d throw this comment up here in case you had any ideas!</p>
+<p>Thanks again for the awesome article!</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-5090">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/d99eb6dbd931328bdbe83aad9248e170?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/d99eb6dbd931328bdbe83aad9248e170?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Kalen</cite>			</div>
+			
+			<a href="index.html#comment-5090" class="comment-date">
+				<time datetime="2012-10-29T11:17:14+00:00">October 29, 2012</time>			</a>
+		</div>
+				<div id="div-comment-5090" class="comment-content">
+				<div class="comment-text">
+		<p>Figured it out.  It doesn&#8217;t seem to accept the OAuth parameters as query string parameters.  I tried sending them as HTTP headers instead and it&#8217;s going through.</p>
+<p>For example: (new keys, etc. b/c I set this up on a new install to be safe 🙂 )</p>
+<p>Authorization:OAuth realm=&#8221;http://m.dev/&#8221;,oauth_consumer_key=&#8221;0npq6crnxe0vo3iuwrdeg2x31pxjy91n&#8221;,oauth_token=&#8221;03mbcsplycit0uy77f0fk8sl23amkmk3&#8243;,oauth_nonce=&#8221;LsSLJpBZ6Xp1zQ6CkAnG2MDYYkHMQhSVOwgU3T7Jw&#8221;,oauth_signature_method=&#8221;HMAC-SHA1&#8243;,oauth_timestamp=&#8221;1351537874&#8243;,oauth_version=&#8221;1.0&#8243;,oauth_signature=&#8221;VPIVV0wltKt7LHJC2UDVVMUj5i0%3D&#8221;</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-5285">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/d99eb6dbd931328bdbe83aad9248e170?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/d99eb6dbd931328bdbe83aad9248e170?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Kalen</cite>			</div>
+			
+			<a href="index.html#comment-5285" class="comment-date">
+				<time datetime="2012-12-18T16:23:32+00:00">December 18, 2012</time>			</a>
+		</div>
+				<div id="div-comment-5285" class="comment-content">
+				<div class="comment-text">
+		<p>Want to throw up another weird thing I&#8217;m noticing.  If I don&#8217;t specify the &#8211;method as a parameter to the oauth command, it defaults to &#8220;post&#8221;.  Actually at one point it was defaulting to &#8220;get&#8221;.  At any rate, the request method is case sensitive.  Unless I specify &#8211;method GET (all caps), I get an invalid signature response.</p>
+<p>Noticed that because I popped over to this oauth validation tool:<br />
+<a href="http://quonos.nl/oauthTester/" rel="nofollow">http://quonos.nl/oauthTester/</a></p>
+<p>Which will tell you that the method is case sensitive if you paste in the Signature Base String.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-5287">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/29dbad2c1a21916b69ff05e64c16b23b?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Ashley</cite>			</div>
+			
+			<a href="index.html#comment-5287" class="comment-date">
+				<time datetime="2012-12-18T19:27:55+00:00">December 18, 2012</time>			</a>
+		</div>
+				<div id="div-comment-5287" class="comment-content">
+				<div class="comment-text">
+		<p>Thanks for the continued follow ups on this Kalen, I think there&#8217;s not too many devs really pushing this functionality in the wild yet so it&#8217;s really good to have some real world feedback to go alongside the tutorial.  </p>
+<p>Can you share what you&#8217;re working on or your use case?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-5906">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/4ef1dacc8630f8204a2d138a33b237c0?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/4ef1dacc8630f8204a2d138a33b237c0?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Shraddha</cite>			</div>
+			
+			<a href="index.html#comment-5906" class="comment-date">
+				<time datetime="2013-01-03T23:37:27+00:00">January 3, 2013</time>			</a>
+		</div>
+				<div id="div-comment-5906" class="comment-content">
+				<div class="comment-text">
+		<p>Is there a way to pass login credentials from code instead of entering credentials everytime in the popup for login authorization in Magento REST API?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-7407">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/ff1ace26928bd4ccf871c1083a552b25?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/ff1ace26928bd4ccf871c1083a552b25?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://indevelopment/' rel='external nofollow' class='url'>Roger North-Row</a></cite>			</div>
+			
+			<a href="index.html#comment-7407" class="comment-date">
+				<time datetime="2013-01-17T04:20:36+00:00">January 17, 2013</time>			</a>
+		</div>
+				<div id="div-comment-7407" class="comment-content">
+				<div class="comment-text">
+		<p>Magento 1.7.0.2 fresh install<br />
+OAuth for Ruby 0.4.7</p>
+<p>Set up REST consumer key and secret as below through Admin plus permissions. Can&#8217;t get past initiate/auth!<br />
+I can see that the signatures do not match if I print out the one generated by Magento in app/code/core/Mage/Oauth/Model/Server.php line 545. Am I doing something silly?</p>
+<p>$ oauth &#8211;verbose &#8211;query-string &#8211;consumer-key dbyf8fm41rc3m6r7ubfz02esx6hfei99 &#8211;consumer-secret ey4r833r35z08jpfek1rzga5gmk3oitz &#8211;access-token-url <a href="http://magento.north-row.com:10001/oauth/token" rel="nofollow">http://magento.north-row.com:10001/oauth/token</a> &#8211;authorize-url <a href="http://magento.north-row.com:10001/admin/oauth_authorize" rel="nofollow">http://magento.north-row.com:10001/admin/oauth_authorize</a> &#8211;request-token-url <a href="http://magento.north-row.com:10001/oauth/initiate" rel="nofollow">http://magento.north-row.com:10001/oauth/initiate</a> authorize<br />
+A problem occurred while attempting to authorize:<br />
+401 Authorization Required<br />
+oauth_problem=signature_invalid&amp;debug_sbs=TVXjIJdJWQDCsRyir4PCaXeqYK4=</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-7438">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://0.gravatar.com/avatar/ff1ace26928bd4ccf871c1083a552b25?s=128&amp;d=mm&amp;r=g' srcset="http://0.gravatar.com/avatar/ff1ace26928bd4ccf871c1083a552b25?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://indevelopment/' rel='external nofollow' class='url'>Roger North-Row</a></cite>			</div>
+			
+			<a href="index.html#comment-7438" class="comment-date">
+				<time datetime="2013-01-17T09:52:15+00:00">January 17, 2013</time>			</a>
+		</div>
+				<div id="div-comment-7438" class="comment-content">
+				<div class="comment-text">
+		<p>SOLVED: port is stripped from hostname by the underlying Zend signature creation utility and therefore the signatures no longer match.</p>
+<p>I did exactly the same but without port 10001 (and instead port 80) and it now works.</p>
+<p>Had to dig deep to find the answer 🙂</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-9696">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/427366a490485d934865ae026c7232a6?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/427366a490485d934865ae026c7232a6?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Aaron</cite>			</div>
+			
+			<a href="index.html#comment-9696" class="comment-date">
+				<time datetime="2013-02-15T14:19:57+00:00">February 15, 2013</time>			</a>
+		</div>
+				<div id="div-comment-9696" class="comment-content">
+				<div class="comment-text">
+		<p>Anybody know how to get the a configurable products associated simple products (and options for the configurable) via the api?</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-10069">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://2.gravatar.com/avatar/231b026c0a28d7e7231afbca5f72a04f?s=128&amp;d=mm&amp;r=g' srcset="http://2.gravatar.com/avatar/231b026c0a28d7e7231afbca5f72a04f?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn">Pleased</cite>			</div>
+			
+			<a href="index.html#comment-10069" class="comment-date">
+				<time datetime="2013-04-17T06:10:45+00:00">April 17, 2013</time>			</a>
+		</div>
+				<div id="div-comment-10069" class="comment-content">
+				<div class="comment-text">
+		<p>Thank you. This is the most useful post I have come accross related to Magento REST API for 1.7.</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="comment-10216">
+		<div class="comment-body">
+		<div class="comment-meta commentmetadata">
+			<div class="comment-author vcard">
+			<img alt='' src='http://1.gravatar.com/avatar/ab5619170aca0308176c6d0e215ca325?s=128&amp;d=mm&amp;r=g' srcset="http://1.gravatar.com/avatar/ab5619170aca0308176c6d0e215ca325?s=256&amp;d=mm&amp;r=g 2x" class='avatar avatar-128 photo' height='128' width='128' />			<cite class="fn"><a href='http://www.webshopapps.com/' rel='external nofollow' class='url'>karen baker</a></cite>			</div>
+			
+			<a href="index.html#comment-10216" class="comment-date">
+				<time datetime="2013-05-13T14:56:29+00:00">May 13, 2013</time>			</a>
+		</div>
+				<div id="div-comment-10216" class="comment-content">
+				<div class="comment-text">
+		<p>I found issues with using curl due to the requirement for Authorization: oAuth in the header and problems with the signature showing as invalid. I used the script here: <a href="http://stackoverflow.com/questions/15541952/create-product-using-oauth-curl" rel="nofollow">http://stackoverflow.com/questions/15541952/create-product-using-oauth-curl</a> and works fine after the authorisation has been done. Also repeated here:</p>
+<p>&lt;?php</p>
+<p>$nonce = substr(md5(uniqid(&#039;nonce_&#039;, true)),0,16);<br />
+$temprealm=&quot;<a href="http://www.localhost.com/magento/api/rest/products&amp;quot" rel="nofollow">http://www.localhost.com/magento/api/rest/products&#038;quot</a>;;<br />
+$realm=urlencode($temprealm);<br />
+$oauth_version=&quot;1.0&quot;;<br />
+$oauth_signature_method=&quot;HMAC-SHA1&quot;;<br />
+$oauth_consumer_key=&quot;ngn4vt1vxw8asd5viximgr0hbc2rbvcd&quot;;<br />
+$oauth_access_token=&quot;9zsfaxfdwktcuxhqa3w5pk88fut61my2&quot;;<br />
+$oauth_method=&quot;GET&quot;;<br />
+$oauth_timestamp=time();<br />
+$algo=&quot;sha1&quot;;<br />
+$key=&quot;xyvhm65nwr12939y0g0t288seqhzm780&amp;c5ajpmrxyuvxlron7o1dk07sbl8zgy5a&quot;; //consumer secret &amp; token secret //Both are used in generate signature<br />
+$data=&quot;oauth_consumer_key=&quot;.$oauth_consumer_key.&quot;&amp;oauth_nonce=&quot;.$nonce.&quot;&amp;oauth_signature_method=&quot;.$oauth_signature_method.&quot;&amp;oauth_timestamp=&quot;.$oauth_timestamp.&quot;&amp;oauth_token=&quot;.$oauth_access_token.&quot;&amp;oauth_version=&quot;.$oauth_version;</p>
+<p>$send_data=$oauth_method.&quot;&amp;&quot;.$realm.&quot;&amp;&quot;.urlencode($data);<br />
+$sign=hash_hmac($algo,$send_data,$key,1); // consumer key and token secrat used here<br />
+$fin_sign=base64_encode($sign);<br />
+$curl = curl_init();</p>
+<p>curl_setopt($curl,CURLOPT_HTTPHEADER,array(&#039;Authorization : OAuth realm=&#039;.$realm.&#039;, oauth_version=&quot;1.0&quot;, oauth_signature_method=&quot;HMAC-SHA1&quot;, oauth_nonce=&quot;&#039;.$nonce.&#039;&quot;, oauth_timestamp=&quot;&#039;.$oauth_timestamp.&#039;&quot;, oauth_consumer_key=&#039;.$oauth_consumer_key.&#039;, oauth_token=&#039;.$oauth_access_token.&#039;, oauth_signature=&quot;&#039;.$fin_sign.&#039;&quot;&#039;));</p>
+<p>curl_setopt ($curl, CURLOPT_URL,$temprealm);<br />
+$xml=curl_exec($curl);</p>
+		</div>
+		<div class="reply">
+						</div>
+		</div>
+				</div>
+			</li><!-- #comment-## -->
+		</ol><!-- .comment-list -->
+
+				<p class="no-comments">Comments are closed.</p>
+	
+</section><!-- #comments -->
+
+</div><!-- #post-## -->
+
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+
+		</div><!-- .col-full -->
+	</div><!-- #content -->
+
+	
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="col-full">
+
+					<div class="site-info">
+			&copy; ASchroder.com 2023						<br /> Storefront designed by <a href="http://www.woocommerce.com/" title="WooCommerce - The Best eCommerce Platform for WordPress" rel="author">WooCommerce</a>.					</div><!-- .site-info -->
+		
+		</div><!-- .col-full -->
+	</footer><!-- #colophon -->
+
+	
+</div><!-- #page -->
+
+<link rel='stylesheet' id='yarppRelatedCss-css'  href='../../../wp-content/plugins/yet-another-related-posts-plugin/style/related101e.css?ver=4.8.15' type='text/css' media='all' />
+<script type='text/javascript' src='../../../wp-content/plugins/wp-syntax/js/wp-syntax4963.js?ver=1.1'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/navigation.min11a8.js?ver=20120206'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-content/themes/storefront/assets/js/skip-link-focus-fix.min08e0.js?ver=20130115'></script>
+<script type='text/javascript' src='../../../../cdn.aschroder.com/wp-includes/js/wp-embed.min101e.js?ver=4.8.15'></script>
+
+</body>
+
+<!-- Mirrored from www.aschroder.com/2012/04/introduction-to-the-magento-rest-apis-with-oauth-in-version-1-7/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 30 Aug 2023 22:18:34 GMT -->
+</html>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk
+Content Delivery Network via cdn.aschroder.com
+
+ Served from: www.aschroder.com @ 2023-08-30 14:12:38 by W3 Total Cache -->
