@@ -9,6 +9,8 @@ layout: home
 list_title: Articles
 ---
 
+![ashley](bw-profile-ashley.png)
+
 
 Hi I'm Ashley, I'm a software engineer based in Auckland, New Zealand. I love to create software products, particularly early-stage SaaS. I built an ecommerce accounting service called [A2X](https://www.a2xaccounting.com). Currently working on a tool to automate accounts receivable processes called [Paidnice](https://www.paidnice.com).
 
