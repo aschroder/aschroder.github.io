@@ -14,3 +14,5 @@ Hi I'm Ashley, I'm a software engineer based in Auckland, New Zealand. I love to
 
 
 There was a blog about ecommerce software here once upon a time, you can find the archive [here](/blog-archive/) if you want some nostalgia about Magento, AWS, Google Cloud or Ecommerce from 2008-2017.
+
+I sporadically post articles on this site which you can find below.
