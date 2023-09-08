@@ -17,4 +17,4 @@ I'm a software engineer based in Auckland, New Zealand. I build software product
 
 There was a blog about ecommerce software here once upon a time, you can find the archive [here](/blog-archive/) if you want some nostalgia about Magento, AWS, Google Cloud or Ecommerce from 2008-2017.
 
-I sporadically post articles on this site which you can find below.
+These days I write articles here on software and business.
