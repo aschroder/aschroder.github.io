@@ -1,6 +1,7 @@
 title: aschroder.com
 author: Ashley Schroder
 email: ashley.schroder@gmail.com
+google_analytics: set-by-include
 
 # The `>` after `description:` means to ignore line-breaks until next key.
 # If you want to omit the line-break after the end of text, use `>-` instead.
