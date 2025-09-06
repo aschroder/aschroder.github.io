@@ -30,8 +30,8 @@
     }
   },
   
-  "postCreateCommand": "bundle install",
-  "postStartCommand": "nohup bundle exec jekyll serve --host 0.0.0.0 --livereload --detach > /tmp/jekyll.log 2>&1 &",
+  "postCreateCommand": "bundle install && chmod +x .devcontainer/start-jekyll.sh",
+  "postAttachCommand": ".devcontainer/start-jekyll.sh",
   
   "remoteUser": "vscode"
 }
