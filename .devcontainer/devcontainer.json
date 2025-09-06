@@ -1,0 +1,37 @@
+{
+  "name": "Jekyll Site",
+  "image": "mcr.microsoft.com/devcontainers/ruby:3.2-bullseye",
+  
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "yzhang.markdown-all-in-one",
+        "davidanson.vscode-markdownlint",
+        "ms-vscode.vscode-json"
+      ],
+      "settings": {
+        "markdown.preview.breaks": true,
+        "markdown.preview.linkify": true
+      }
+    }
+  },
+  
+  "forwardPorts": [4000],
+  "portsAttributes": {
+    "4000": {
+      "label": "Jekyll Site Preview",
+      "onAutoForward": "notify"
+    }
+  },
+  
+  "postCreateCommand": "bundle install",
+  "postStartCommand": "bundle exec jekyll serve --host 0.0.0.0 --livereload",
+  
+  "remoteUser": "vscode"
+}
